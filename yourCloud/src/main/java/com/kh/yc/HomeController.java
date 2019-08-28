@@ -36,4 +36,13 @@ public class HomeController {
 		return "main";
 	}
 	
+	
+	@RequestMapping("SelfTest")
+	public String test(){
+		
+		return "common/SelfTest";
+		
+	}
+	
+	
 }
