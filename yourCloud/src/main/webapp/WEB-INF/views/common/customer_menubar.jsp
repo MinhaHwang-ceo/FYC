@@ -98,7 +98,7 @@ document.addEventListener("scroll",fx_Floating);
                        <a class="nav-link" href="index.html">회원가입 </a>
                     </li>
                     <li >
-                       <a class="nav-link" href="index.html">펀딩 오픈하기</a>
+                       <a class="nav-link" href="${ contextPath }/FundingOpen.me">펀딩 오픈하기</a>
                     </li>
                     
                     
