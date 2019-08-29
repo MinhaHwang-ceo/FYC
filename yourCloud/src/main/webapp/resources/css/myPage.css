@@ -1,0 +1,376 @@
+@charset "UTF-8";
+
+#myPageOuter {
+	margin: 0 auto;
+	min-height: 1000px;
+	padding: 50px;
+}
+
+#myPageTable {
+	border-collapse: separate;
+	border-spacing: 10px 20px;
+}
+
+#myPageTable #header {
+	font-size: 1.2em;
+}
+
+#myPageTable .input, #myPageTable .button {
+	text-align: center;
+}
+
+#myPageTable .input input {
+	width: 80%;
+}
+
+#myPageTable .leftFirst {
+	text-align: right;
+}
+
+#interestProjectOuter, #outer {
+	width: 100%;
+	margin: 0 auto;
+	padding: 50px;
+}
+
+#interestProject, #openAlarmProject, #myReward, .tableDiv {
+	width: 60%;
+	margin: 0 auto;
+	min-height: 700px;
+}
+
+.hr {
+	width: 45%;
+}
+
+.projectDiv {
+	width: 100%;
+	display: inline-block;
+}
+
+.projects {
+	margin: 50px 1%;
+	width: 30%;
+	display: inline-block;
+}
+
+.projects table {
+	text-align: center;
+	width: 100%;
+}
+
+.projects table img {
+	width: 100%;
+}
+
+.projects table .projectTitles {
+	font-size: 1.5em;
+	font-weight: bold;
+}
+
+.projects table .projectCategories {
+	text-align: left;
+	color: gray;
+}
+
+.messageListTable {
+	padding-left: 50px;
+	border-collapse: separate;
+	border-spacing: 10px 10px;
+	width: 100%;
+	text-align: left;
+	margin-bottom: 10px;
+	border-collapse: separate;
+}
+
+.messageListTable .imgList {
+	width: 20%;
+}
+
+.messageListTable .imgList img {
+	width: 50%;
+}
+
+.messageListTable th {
+	text-align: center;
+}
+
+@import
+	url(https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css)
+	;
+
+@import url(https://fonts.googleapis.com/css?family=Raleway:400,300,800)
+	;
+
+figure.snip1141 {
+	font-family: 'Raleway', Arial, sans-serif;
+	position: relative;
+	overflow: hidden;
+	margin: 10px;
+	width: 100%;
+	text-align: left;
+	box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
+}
+
+figure.snip1141 * {
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+	-webkit-transition: all 0.4s ease-in-out;
+	transition: all 0.4s ease-in-out;
+}
+
+figure.snip1141 img {
+	max-width: 100%;
+	position: relative;
+}
+
+figure.snip1141 .circle {
+	position: relative;
+	height: 55px;
+	width: 55px;
+	top: 0%;
+	left: 0%;
+	background-color: rgba(0, 0, 0, 0.4);
+	border-radius: 50%;
+	text-align: center;
+}
+
+figure.snip1141 .circle:before, figure.snip1141 .circle:after {
+	border: 2px solid white;
+	border-right-color: transparent;
+	position: absolute;
+	content: '';
+	height: 100%;
+	width: 100%;
+	top: 0;
+	left: 0;
+	border-radius: 50%;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+	-webkit-transition: all 0.35s ease-in-out;
+	transition: all 0.35s ease-in-out;
+	-webkit-transition-delay: 0.3s;
+	transition-delay: 0.3s;
+}
+
+figure.snip1141 .circle:before {
+	-webkit-transform: rotate(45deg);
+	transform: rotate(45deg);
+}
+
+figure.snip1141 .circle:after {
+	-webkit-transform: rotate(-45deg);
+	transform: rotate(-45deg);
+}
+
+figure.snip1141 figcaption {
+	position: absolute;
+	top: 20px;
+	left: 20px;
+	display: block;
+	width: 100%;
+	overflow: hidden;
+}
+
+figure.snip1141 h2 {
+	position: absolute;
+	margin: 0;
+	text-transform: uppercase;
+	font-weight: 300;
+	letter-spacing: -1px;
+	line-height: 55px;
+	top: 0%;
+	left: 0%;
+	width: 100%;
+	padding: 0 20px;
+	opacity: 0;
+	-webkit-transform: translateX(-10%);
+	transform: translateX(-10%);
+}
+
+figure.snip1141 .icon {
+	overflow: hidden;
+	width: 100%;
+	position: absolute;
+}
+
+figure.snip1141 i {
+	color: white;
+	font-size: 48px;
+	line-height: 55px;
+	-webkit-transition-delay: 0.3s;
+	transition-delay: 0.3s;
+}
+
+figure.snip1141 a {
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	position: absolute;
+	z-index: 1;
+}
+
+figure.snip1141:hover .circle, figure.snip1141.hover .circle {
+	background-color: rgba(0, 0, 0, 0);
+}
+
+figure.snip1141:hover .circle:before, figure.snip1141.hover .circle:before,
+	figure.snip1141:hover .circle:after, figure.snip1141.hover .circle:after
+	{
+	-webkit-transform: rotate(0deg);
+	transform: rotate(0deg);
+	-webkit-transition-delay: 0s;
+	transition-delay: 0s;
+}
+
+figure.snip1141:hover h2, figure.snip1141.hover h2 {
+	opacity: 1;
+	-webkit-transition-delay: 0.3s;
+	transition-delay: 0.3s;
+	-webkit-transform: translateX(0);
+	transform: translateX(0);
+}
+
+figure.snip1141:hover img, figure.snip1141.hover img {
+	opacity: 0.35;
+	-webkit-transform: scale(1.1);
+	transform: scale(1.1);
+}
+
+figure.snip1141:hover i, figure.snip1141.hover i {
+	opacity: 0;
+	-webkit-transition-delay: 0s;
+	transition-delay: 0s;
+}
+
+#messageOuter {
+	width: 30%;
+	margin: 0 auto;
+	border: 1px solid black;
+}
+
+#messageOuter #messageWindow {
+	height: 500px;
+	background: lightgray;
+}
+
+#messageOuter #inputMessageDiv {
+	background: white;
+	margin: 0 auto;
+}
+
+#messageOuter #inputMessageDiv input[type="text"] {
+	margin-top: 10px;
+	width: 78%;
+}
+
+#messageOuter #inputMessageDiv input[type="button"] {
+	width: 20%;
+}
+
+.myMessage {
+	width: 100%;
+	height: 150px;
+}
+
+.receivedMessage {
+	height: 150px;
+	width: 100%;
+	text-align: right;
+}
+
+.rewards {
+	display: inline-block;
+	width: 100%;
+	border: 1px solid black;
+	padding: 1%;
+}
+
+.rewards p {
+	font-size: 0.9em;
+}
+
+.rewards .left {
+	width: 40%;
+	float: left;
+}
+
+.rewards .right {
+	width: 40%;
+	text-align: right;
+	float: right;
+}
+
+.rewards .category {
+	color: purple;
+}
+
+.rewards .status {
+	color: lightgray;
+}
+
+.rewards .projectTitle {
+	color: black;
+	font-size: 1.4em;
+	font-weight: bold;
+}
+
+.rewards .payStatus, .payStatusForm .payStatus {
+	color: #00a000;
+	font-weight: bold;
+}
+
+.rewards .stars {
+	color: yellow;
+	font-size: 2em;
+}
+
+.rewards a {
+	color: blue;
+	text-decoration: underline;
+}
+
+.payStatusForm {
+	border: 1px solid black;
+}
+
+.smallNotice {
+	font-size: 0.8em;
+	font-style: italic;
+}
+
+.smallText {
+	font-size: 0.8em;
+	color: lightgray;
+}
+
+#myProjectTable {
+	text-align: center;
+	width: 30%;
+	display: inline-block;
+	padding: 10px;
+}
+
+#myPageOuter .project {
+	width: 60%;
+	margin: 0 auto;
+	text-align: center;
+}
+#myPageOuter .project .projectImg{
+	height: 400px;
+}
+.modifyBtn {
+	background: white;	
+	border: 1px solid black;
+	color: black;
+	height: 40px;
+}
+.modifyBtn:hover {
+	cursor: pointer;
+	border: 1px solid red;
+	font-weight: bold;
+}
+* {
+	word-break: break-all;
+}
