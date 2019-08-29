@@ -38,7 +38,9 @@
 
       <!-- Main Content -->
       <div id="content">
-<!-- Topbar -->
+      
+
+        <!-- Topbar -->
         <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 
           <!-- Sidebar Toggle (Topbar) -->
@@ -225,7 +227,7 @@
         <div class="container-fluid">
 
           <!-- Page Heading -->
-          <h1 class="h3 mb-2 text-gray-800">회원관리</h1>
+          <h1 class="h3 mb-2 text-gray-800">신고관리</h1>
           <!-- <p class="mb-4">회원리스트입니다.</p> -->
 
           <!-- DataTales Example -->
@@ -238,72 +240,36 @@
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                   <thead>
                     <tr>
-                      <th>회원번호</th>
-                      <th>회원명</th>
-                      <th>회원아이디</th>
-                      <th>가입일</th>
-                      <th>상태</th>
-                      <th>상태변경</th>
+                      <th>신고번호</th>
+                      <th>프로젝트명</th>
+                      <th>신고사유</th>
+                      <th>신고자</th>
+                      <th>신고수</th>
                     </tr>
                   </thead>
                   <tfoot>
                     <tr>
-                     <th>회원번호</th>
-                      <th>회원명</th>
-                      <th>회원아이디</th>
-                      <th>가입일</th>
-                      <th>상태</th>
-                      <th>상태변경</th>
+                      <th>신고번호</th>
+                      <th>프로젝트명</th>
+                      <th>신고사유</th>
+                      <th>신고자</th>
+                      <th>신고수</th>
                     </tr>
                   </tfoot>
                   <tbody>
                     <tr>
                       <td>1</td>
-                      <td>황민하</td>
+                      <td>[당신의옷]너무나멋진똥간닦개</td>
+                      <td>허위사실이 기재된 프로젝트</td>
                       <td>minhada22</td>
-                      <td>2019/03/12</td>
-                      <td>정지</td>
-                      <td><button value="status">상태변경</button></td>
+                      <td>8</td>
                     </tr>
                     <tr>
                       <td>2</td>
-                      <td>고지효</td>
+                      <td>[당신의옷]너무나멋진똥간닦개</td>
+                      <td>허위사실이 기재된 프로젝트</td>
                       <td>kojihyo</td>
-                      <td>2019/04/11</td>
-                      <td>정상</td>
-                      <td><button value="status">상태변경</button></td>
-                    </tr>
-                    <tr>
-                      <td>3</td>
-                      <td>오수정</td>
-                      <td>sejel11</td>
-                      <td>2018/08/11</td>
-                      <td>탈퇴</td>
-                      <td><button value="status">상태변경</button></td>
-                    </tr>
-                    <tr>
-                      <td>4</td>
-                      <td>김진수</td>
-                      <td>jinsu124</td>
-                      <td>2018/12/13</td>
-                      <td>정상</td>
-                      <td><button value="status">상태변경</button></td>
-                    </tr>
-                    <tr>
-                      <td>5</td>
-                      <td>서무권</td>
-                      <td>smj127</td>
-                      <td>2019/05/15</td>
-                      <td>정상</td>
-                      <td><button value="status">상태변경</button></td>
-                    </tr>
-                    <tr>
-                      <td>6</td>
-                      <td>복권석</td>
-                      <td>lottoSuck</td>
-                      <td>2019/07/15</td>
-                      <td>정지</td>
-                      <td><button value="status">상태변경</button></td>
+                      <td>8</td>
                     </tr>
                     
                   </tbody>

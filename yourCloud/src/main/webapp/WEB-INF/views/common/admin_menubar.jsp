@@ -31,7 +31,7 @@
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
       <!-- Sidebar - Brand -->
-      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="${ contextPath }/main.ad">
         <div class="sidebar-brand-icon rotate-n-15">
           <i class="fas fa-laugh-wink"></i>
         </div>
@@ -43,9 +43,9 @@
 
       <!-- Nav Item - Dashboard -->
       <li class="nav-item active">
-        <a class="nav-link" href="index.html">
+        <a class="nav-link" href="${ contextPath }/main.ad">
           <i class="fas fa-fw fa-tachometer-alt"></i>
-          <span>Dashboard</span></a>
+          <span>메인페이지</span></a>
       </li>
 
       <!-- Divider -->
@@ -53,7 +53,7 @@
 
       <!-- Heading -->
       <div class="sidebar-heading">
-        Interface
+        	통합관리
       </div>
 
       <!-- Nav Item - Pages Collapse Menu -->
@@ -65,9 +65,9 @@
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">관리</h6>
-            <a class="collapse-item" href="buttons.html">회원관리</a>
-            <a class="collapse-item" href="buttons.html">신고관리</a>
-            <a class="collapse-item" href="cards.html">장부관리</a>
+            <a class="collapse-item" href="${ contextPath }/member.ad">회원관리</a>
+            <a class="collapse-item" href="${ contextPath }/project6.ad">신고관리</a>
+            <a class="collapse-item" href="${ contextPath }/project2.ad">장부관리</a>
           </div>
         </div>
       </li>
@@ -81,9 +81,9 @@
         <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">PROJECT:</h6>
-            <a class="collapse-item" href="utilities-color.html">프로젝트 심사</a>
-            <a class="collapse-item" href="utilities-border.html">프로젝트 현황</a>
-            <a class="collapse-item" href="utilities-animation.html">정산관리</a>
+            <a class="collapse-item" href="${ contextPath }/project1.ad">프로젝트 심사</a>
+            <a class="collapse-item" href="${ contextPath }/project4.ad">프로젝트 현황</a>
+            <a class="collapse-item" href="${ contextPath }/project5.ad">정산관리</a>
           </div>
         </div>
       </li>
@@ -93,8 +93,14 @@
 
       <!-- Heading -->
       <div class="sidebar-heading">
-        Addons
+        	데이터
       </div>
+      
+      <li class="nav-item">
+        <a class="nav-link" href="${ contextPath }/project3.ad">
+          <i class="fas fa-fw fa-chart-area"></i>
+          <span>통계</span></a>
+      </li>
 
       <!-- Nav Item - Pages Collapse Menu -->
       <li class="nav-item">
@@ -117,18 +123,9 @@
       </li>
 
       <!-- Nav Item - Charts -->
-      <li class="nav-item">
-        <a class="nav-link" href="charts.html">
-          <i class="fas fa-fw fa-chart-area"></i>
-          <span>통계</span></a>
-      </li>
+      
 
-      <!-- Nav Item - Tables -->
-      <li class="nav-item">
-        <a class="nav-link" href="tables.html">
-          <i class="fas fa-fw fa-table"></i>
-          <span>Tables</span></a>
-      </li>
+      
 
       <!-- Divider -->
       <hr class="sidebar-divider d-none d-md-block">
@@ -144,7 +141,7 @@
    
     
     
-      <!-- Bootstrap core JavaScript-->
+   <%--    <!-- Bootstrap core JavaScript-->
    <script src="${pageContext.request.contextPath}/resources/vendor/jquery/jquery.min.js"></script>
    <script src="${pageContext.request.contextPath}/resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
@@ -156,12 +153,14 @@
 
   <!-- Page level plugins -->
   <script src="${pageContext.request.contextPath}/resources/vendor/chart.js/Chart.min.js"></script>
+ <script src="${pageContext.request.contextPath}/resources/vendor/datatables/jquery.dataTables.min.js"></script>
+  <script src="${pageContext.request.contextPath}/resources/vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
   <!-- Page level custom scripts -->
   
   <script src="${pageContext.request.contextPath}/resources/js/demo/chart-area-demo.js"></script>
     <script src="${pageContext.request.contextPath}/resources/js/demo/chart-pie-demo.js"></script>
-
+  <script src="${pageContext.request.contextPath}/resources/js/demo/datatables-demo.js"></script> --%>
 </body>
 
 </html>
