@@ -7,15 +7,15 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
-public class CategoryOne {
+public class CategoryOneNews {
 
    
-	      @RequestMapping(value = "/categoryOne.ca", method = RequestMethod.GET)
+	      @RequestMapping(value = "/categoryOneNews.ca", method = RequestMethod.GET)
 	      public String home(Locale locale, Model model) {
 	      
 	         
 	         
-	         return "main/categoryOne";
+	         return "main/categoryOneNews";
 	      
 	}
 }

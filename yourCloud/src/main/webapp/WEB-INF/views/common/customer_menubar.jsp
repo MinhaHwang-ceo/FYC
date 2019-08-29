@@ -157,7 +157,7 @@ document.addEventListener("scroll",fx_Floating);
                         <a class="nav-link active" href="index.html">리워드 홈</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">카테고리</a>
+                        <a class="nav-link" href="categoryOne.ca">카테고리</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="intro">회사소개</a>
