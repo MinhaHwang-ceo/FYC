@@ -11,9 +11,11 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 <style>
-	.img {
+	#img {
 		width:500px;
 		height:300px;
+		position:relatve;
+		z-index:1;
 	}
 	#fntn {
 		margin-bottom: 10%;
@@ -24,10 +26,14 @@
 </style>
 </head>
 <body>
-	<div class="img" align="center">
-		<img src="<%=request.getContextPath()%>/yc/resources/images/banner.png" style="height:300px; width:1024px;">	
+	<div>
+		<div id="img">
+			<img src="<%=request.getContextPath()%>/../yc/resources/images/banner.png" style="height:300px; width:1024px;">	
+		</div>
+		<div id="fbtn">
+			<a href="${ contextPath }/FundingOpen2.me"><button>펀딩 시작하기</button></a>
+		</div>
 	</div>
-	<a href="${ contextPath }/FundingOpen2.me"><button>펀딩 시작하기</button></a>
 	<h2>&nbsp;니가 그린 구름 그림 리워드란?</h2>
 	<h4>&nbsp;&nbsp;펀딩한 서포터에게 제품이나 서비스를 제공하는 서비스입니다.</h4>
 	<h4>&nbsp;&nbsp;#현명한 창업가 #트렌디한 마케터 #슬기로운 디자이너</h4>

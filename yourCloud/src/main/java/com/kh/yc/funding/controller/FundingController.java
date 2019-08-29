@@ -32,4 +32,22 @@ public class FundingController {
 		
 		return "fundingOpen/FundingOpen4";
 	}
+	
+	@RequestMapping(value = "FundingOpen5.me", method = RequestMethod.GET)
+	public String FundingOpen5(Locale locale, Model model) {
+		
+		return "fundingOpen/FundingOpen5";
+	}
+	
+	@RequestMapping(value = "FundingOpen6.me", method = RequestMethod.GET)
+	public String FundingOpen6(Locale locale, Model model) {
+		
+		return "fundingOpen/FundingOpen6";
+	}
+	
+	@RequestMapping(value = "FundingOpen7.me", method = RequestMethod.GET)
+	public String FundingOpen7(Locale locale, Model model) {
+		
+		return "fundingOpen/FundingOpen7";
+	}
 }
