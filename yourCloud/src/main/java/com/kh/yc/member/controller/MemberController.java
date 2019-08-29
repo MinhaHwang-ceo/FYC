@@ -1,7 +1,5 @@
 package com.kh.yc.member.controller;
 
-import java.text.DateFormat;
-import java.util.Date;
 import java.util.Locale;
 
 import org.springframework.stereotype.Controller;
@@ -14,12 +12,6 @@ public class MemberController {
 	
 	@RequestMapping(value = "loginMain.me", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
-		
-		return "member/loginMain";
-	}
-	
-	@RequestMapping(value = "loginMain.me", method = RequestMethod.GET)
-	public String login(Locale locale, Model model) {
 		
 		return "member/loginMain";
 	}
