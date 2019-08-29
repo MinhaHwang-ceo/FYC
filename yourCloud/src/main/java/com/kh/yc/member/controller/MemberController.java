@@ -18,11 +18,6 @@ public class MemberController {
 		return "member/loginMain";
 	}
 	
-	@RequestMapping(value = "loginMain.me", method = RequestMethod.GET)
-	public String login(Locale locale, Model model) {
-		
-		return "member/loginMain";
-	}
 	
 	@RequestMapping(value = "joinMain.me", method = RequestMethod.GET)
 	public String join(Locale locale, Model model) {

@@ -100,6 +100,9 @@ document.addEventListener("scroll",fx_Floating);
                     <li >
                        <a class="nav-link" href="${ contextPath }/FundingOpen.me">펀딩 오픈하기</a>
                     </li>
+                    <li >
+                       <a class="nav-link" href="${ contextPath }/main.ad">(임시)관리자페이지</a>
+                    </li>
                     
                     
                 </ul>
@@ -182,10 +185,9 @@ document.addEventListener("scroll",fx_Floating);
 		<div><a href="blog.html"><img src="/yc/resources/images/rank2.PNG" alt="blog">캐시미어 코트의 가격을 다시 쓰다ㅣ매일 입는 캐시미어 코트, 벨리에</a></div>
 		<div><a href="blog.html"><img src="/yc/resources/images/rank3.PNG" alt="blog">세상에 없던 스마트한 카메라 어시스턴트, 키노피 루미 마크원!</a></div>
 		<hr>
-		<div><a href="blog.html"><img src="/yc/resources/images/talk.PNG" alt="blog"></a></figure></div>
+		<div><a href="blog.html"><img src="/yc/resources/images/talk.PNG" alt="blog"></a></div>
 	 </div>
     </nav>
-    
     
     
     <script>
@@ -205,16 +207,11 @@ $(function(){
 	
 })
 
-
     
     </script>
     
-   
- 
 
 </body>
-
-
 
 
 </html>

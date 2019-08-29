@@ -38,7 +38,8 @@
 
       <!-- Main Content -->
       <div id="content">
-<!-- Topbar -->
+
+        <!-- Topbar -->
         <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 
           <!-- Sidebar Toggle (Topbar) -->
@@ -225,89 +226,59 @@
         <div class="container-fluid">
 
           <!-- Page Heading -->
-          <h1 class="h3 mb-2 text-gray-800">회원관리</h1>
-          <!-- <p class="mb-4">회원리스트입니다.</p> -->
+          <h1 class="h3 mb-2 text-gray-800">통계</h1>
+          <p class="mb-4">Chart.js is a third party plugin that is used to generate the charts in this theme. The charts below have been customized - for further customization options, please visit the <a target="_blank" href="https://www.chartjs.org/docs/latest/">official Chart.js documentation</a>.</p>
 
-          <!-- DataTales Example -->
-          <div class="card shadow mb-4">
-            <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
+          <!-- Content Row -->
+          <div class="row">
+
+            <div class="col-xl-8 col-lg-7">
+
+              <!-- Area Chart -->
+              <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                  <h6 class="m-0 font-weight-bold text-primary">Area Chart</h6>
+                </div>
+                <div class="card-body">
+                  <div class="chart-area">
+                    <canvas id="myAreaChart"></canvas>
+                  </div>
+                  <hr>
+                  Styling for the area chart can be found in the <code>/js/demo/chart-area-demo.js</code> file.
+                </div>
+              </div>
+
+              <!-- Bar Chart -->
+              <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                  <h6 class="m-0 font-weight-bold text-primary">Bar Chart</h6>
+                </div>
+                <div class="card-body">
+                  <div class="chart-bar">
+                    <canvas id="myBarChart"></canvas>
+                  </div>
+                  <hr>
+                  Styling for the bar chart can be found in the <code>/js/demo/chart-bar-demo.js</code> file.
+                </div>
+              </div>
+
             </div>
-            <div class="card-body">
-              <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                  <thead>
-                    <tr>
-                      <th>회원번호</th>
-                      <th>회원명</th>
-                      <th>회원아이디</th>
-                      <th>가입일</th>
-                      <th>상태</th>
-                      <th>상태변경</th>
-                    </tr>
-                  </thead>
-                  <tfoot>
-                    <tr>
-                     <th>회원번호</th>
-                      <th>회원명</th>
-                      <th>회원아이디</th>
-                      <th>가입일</th>
-                      <th>상태</th>
-                      <th>상태변경</th>
-                    </tr>
-                  </tfoot>
-                  <tbody>
-                    <tr>
-                      <td>1</td>
-                      <td>황민하</td>
-                      <td>minhada22</td>
-                      <td>2019/03/12</td>
-                      <td>정지</td>
-                      <td><button value="status">상태변경</button></td>
-                    </tr>
-                    <tr>
-                      <td>2</td>
-                      <td>고지효</td>
-                      <td>kojihyo</td>
-                      <td>2019/04/11</td>
-                      <td>정상</td>
-                      <td><button value="status">상태변경</button></td>
-                    </tr>
-                    <tr>
-                      <td>3</td>
-                      <td>오수정</td>
-                      <td>sejel11</td>
-                      <td>2018/08/11</td>
-                      <td>탈퇴</td>
-                      <td><button value="status">상태변경</button></td>
-                    </tr>
-                    <tr>
-                      <td>4</td>
-                      <td>김진수</td>
-                      <td>jinsu124</td>
-                      <td>2018/12/13</td>
-                      <td>정상</td>
-                      <td><button value="status">상태변경</button></td>
-                    </tr>
-                    <tr>
-                      <td>5</td>
-                      <td>서무권</td>
-                      <td>smj127</td>
-                      <td>2019/05/15</td>
-                      <td>정상</td>
-                      <td><button value="status">상태변경</button></td>
-                    </tr>
-                    <tr>
-                      <td>6</td>
-                      <td>복권석</td>
-                      <td>lottoSuck</td>
-                      <td>2019/07/15</td>
-                      <td>정지</td>
-                      <td><button value="status">상태변경</button></td>
-                    </tr>
-                    
-                  </tbody>
-                </table>
+
+            <!-- Donut Chart -->
+            <div class="col-xl-4 col-lg-5">
+              <div class="card shadow mb-4">
+                <!-- Card Header - Dropdown -->
+                <div class="card-header py-3">
+                  <h6 class="m-0 font-weight-bold text-primary">Donut Chart</h6>
+                </div>
+                <!-- Card Body -->
+                <div class="card-body">
+                  <div class="chart-pie pt-4">
+                    <canvas id="myPieChart"></canvas>
+                  </div>
+                  <hr>
+                  Styling for the donut chart can be found in the <code>/js/demo/chart-pie-demo.js</code> file.
+                </div>
               </div>
             </div>
           </div>
@@ -357,24 +328,25 @@
       </div>
     </div>
   </div>
-  <!-- Bootstrap core JavaScript-->
-  <script src="${pageContext.request.contextPath}/resources/vendor/jquery/jquery.min.js"></script>
-  <script src="${pageContext.request.contextPath}/resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+ <!-- Bootstrap core JavaScript-->
+   <script src="${pageContext.request.contextPath}/resources/vendor/jquery/jquery.min.js"></script>
+   <script src="${pageContext.request.contextPath}/resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
   <!-- Core plugin JavaScript-->
   <script src="${pageContext.request.contextPath}/resources/vendor/jquery-easing/jquery.easing.min.js"></script>
 
   <!-- Custom scripts for all pages-->
-  <script src="${pageContext.request.contextPath}/resources/js/sb-admin-2.min.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/js/sb-admin-2.min.js"></script>
 
   <!-- Page level plugins -->
-  <script src="${pageContext.request.contextPath}/resources/vendor/datatables/jquery.dataTables.min.js"></script>
-  <script src="${pageContext.request.contextPath}/resources/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+  <script src="${pageContext.request.contextPath}/resources/vendor/chart.js/Chart.min.js"></script>
 
   <!-- Page level custom scripts -->
-  <script src="${pageContext.request.contextPath}/resources/js/demo/datatables-demo.js"></script>
+  
+  <script src="${pageContext.request.contextPath}/resources/js/demo/chart-area-demo.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/js/demo/chart-pie-demo.js"></script>
+      <script src="${pageContext.request.contextPath}/resources/js/demo/chart-bar-demo.js"></script>
 
- 
 
 </body>
 
