@@ -92,7 +92,7 @@ document.addEventListener("scroll",fx_Floating);
  		<div class="right-box" id="navbar3" >
                 <ul class="navbar-nav">
                     <li >
-                       <a class="nav-link" href="index.html">로그인 </a>
+                       <a class="nav-link" href="myPage.me">로그인 </a>
                     </li>
                      <li >
                        <a class="nav-link" href="index.html">회원가입 </a>

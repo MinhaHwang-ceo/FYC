@@ -1,7 +1,5 @@
 package com.kh.yc.member.controller;
 
-import java.text.DateFormat;
-import java.util.Date;
 import java.util.Locale;
 
 import org.springframework.stereotype.Controller;
@@ -17,7 +15,6 @@ public class MemberController {
 		
 		return "member/loginMain";
 	}
-	
 	
 	@RequestMapping(value = "joinMain.me", method = RequestMethod.GET)
 	public String join(Locale locale, Model model) {
