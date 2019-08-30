@@ -26,14 +26,14 @@
   	width:800px;
   }
   
-  #td2{
+  .td2{
   
   	width:400px;
   	margin-left:100px;
   
   }
   
-  #td3{
+  .td3{
   	
   	width:100px;
   	margin-left:30px;
@@ -126,26 +126,23 @@
   <br>
   <!-- 회원가입 폼 -->
   <div>
-  <form action="">
+  <form action="joinInput.me" method="post">
   	<table>
   	  	
-  	  	<tr>
-  			<td>*이메일</td>
-  			<td><input type="text" name="" id="td2" required></td>
-  		</tr>
+    	
   	
   		<tr><td><br></td></tr>
   	
   		<tr>
   			<td>*이름</td>
-  			<td><input type="text" name="" id="td2" required></td>
-  		</tr>
+  			<td><input type="text" name="userName" class="td2" required></td>
+  		</tr> 
   		
   		<tr><td><br></td></tr>
   			
    		<tr>
   			<td>*아이디</td>
-  			<td><input type="text" name="" id="td2" required></td>
+  			<td><input type="text" name="userId" class="td2" required></td>
   			<td><button id="td3" class="btn btn-info">중복</button></td>
   		</tr> 		
   		
@@ -153,36 +150,36 @@
   		
   		<tr>
   			<td>*비밀번호</td>
-  			<td><input type="password" name="" id="td2" required></td>
+  			<td><input type="password" name="userPwd" class="td2" required></td>
   		</tr> 	
   		
   		<tr><td><br></td></tr>  		
-  		
-   		<tr>
+		
+  		<tr>
   			<td>*비밀번호 확인</td>
-  			<td><input type="password" name="" id="td2" required></td>
+  			<td><input type="password" name="" class="td2" required></td>
   		</tr>  		
- 
+
    		<tr><td><br></td></tr>
   		
     	<tr>
   			<td>*이메일</td>
-  			<td><input type="text" name="" id="td2" required></td>
+  			<td><input type="text" name="email" class="td2" required></td>
   			<td><button id="td3" class="btn btn-info">인증요청</button></td>
   		</tr>   		
-  		
+
   		<tr><td><br></td></tr> 
-  		
+  	
   		<tr>
   			<td>인증번호</td>
-  			<td><input type="text" name="" id="td2" required></td>
-  			<td><button id="td3" class="btn btn-info">확인</button></td>
+  			<td><input type="text" name="" class="td2" required></td>
+  			<td><button class="td3" class="btn btn-info">확인</button></td>
   		</tr>
   		
   		<tr><td><br></td></tr> 
   		<tr><td><br></td></tr> 
   		<tr><td><br></td></tr> 
-  		
+  	
   		<tr>
   			<td><b>+ 추가사항</b></td>
   			<td>(모두 입력시1000P 적립)</td>
@@ -193,9 +190,9 @@
   		<tr>
   			<td>연령대</td>
   			<td id="td4">
-  			<input type="checkbox" checked="checked">20대 미만  &nbsp; <input type="checkbox">20대 이상 ~ 30대 미만 &nbsp; <input type="checkbox">30대 이상 ~ 40대 미만
+  			<input type="checkbox" name="age"  value="10">20대 미만  &nbsp; <input type="checkbox" name="age" value="20">20대 이상 ~ 30대 미만 &nbsp; <input type="checkbox" name="age" value="30">30대 이상 ~ 40대 미만
   			<br>
-  			<input type="checkbox">40대 이상 ~ 50대 미만  &nbsp; <input type="checkbox">50대 이상 ~ 60대 미만  &nbsp; <input type="checkbox">60대 이상  			
+  			<input type="checkbox" value="40" name="age">40대 이상 ~ 50대 미만  &nbsp; <input type="checkbox" value="50" name="age">50대 이상 ~ 60대 미만  &nbsp; <input type="checkbox" value="60" name="age">60대 이상  			
   			</td>
   		</tr>
   		
@@ -204,7 +201,7 @@
   		<tr>
   			<td>성별</td>
   			<td id="td4">
-  			<input type="checkbox" value="" checked="checked">여성  &emsp;&emsp;&emsp;&emsp; <input type="checkbox" value="">남성
+  			<input type="checkbox" value="W"  name="gender">여성  &emsp;&emsp;&emsp;&emsp; <input type="checkbox" value="M" name="gender">남성
   			</td>
   		</tr>
   		
@@ -213,9 +210,9 @@
   		<tr>
   			<td>관심<br>카테고리</td>
   			<td id="td4">
-  			<input type="checkbox" value="" checked="checked">테크,가전  &emsp;&emsp; <input type="checkbox" value="">패션,잡화  &emsp;&emsp; <input type="checkbox" value="">뷰티  &emsp;&emsp; <input type="checkbox" value="">도서   <br>
-  			<input type="checkbox" value="">푸드  &emsp;&emsp; <input type="checkbox" value="">홈리빙  &emsp;&emsp; <input type="checkbox" value="">키즈  <br>
-  			<input type="checkbox" value="">여행,레저 &emsp;&emsp; <input type="checkbox" value="">스포츠   &emsp;&emsp; <input type="checkbox" value="">반려동물  &emsp;&emsp;
+  			<input type="checkbox" value="1" name="memberCategory">테크,가전  &emsp;&emsp; <input type="checkbox" name="memberCategory" value="2">패션,잡화  &emsp;&emsp; <input type="checkbox" name="memberCategory" value="3">뷰티  &emsp;&emsp; <input type="checkbox"  name="memberCategory" value="4">도서   <br>
+  			<input type="checkbox" name="memberCategory" value="5">푸드  &emsp;&emsp; <input type="checkbox"  name="memberCategory" value="6">홈리빙  &emsp;&emsp; <input type="checkbox"  name="memberCategory" value="7 ">키즈  <br>
+  			<input type="checkbox" name="memberCategory" value="8">여행,레저 &emsp;&emsp; <input type="checkbox" name="memberCategory"  value="9">스포츠   &emsp;&emsp; <input type="checkbox"  name="memberCategory" value="10">반려동물  &emsp;&emsp;
   			</td>
   		</tr>
   		
@@ -223,22 +220,26 @@
   		
   		<tr>
   			<td>이메일<br>수신동의</td>
-  			<td id="td4">
+  			<td class="td4">
   			이메일을 통해 쿠폰 및 이벤트 정보를 받아보실  수 있습니다.
   			<br>
-  			<input type="checkbox" value="">이메일 수신을 동의합니다
+  			<input type="checkbox" name="emailAgree" value="Y">이메일 수신을 동의합니다
   			</td>
   		</tr>
-  		
+
   		<tr><td><br></td></tr>  
   		
+  		<input type="hidden" name>
+  		
+  		
+  		
   	</table>
+  <button id="sumbmitbutton" class="btn btn-info">확인</button>
   </form>
   
   <br><br>
   
-  <input type="submit" value="확인" id="sumbmitbutton" class="btn btn-info">
-  
+
   
   </div>
 

@@ -41,32 +41,42 @@
 <jsp:include page="../common/customer_menubar.jsp"/>
 <br><br>
 <section class="section-1">
+
 <div class="outer">
 <h2><b>로그인</b></h2>
 <br>
-<form>
+	<form action="login.me" method="post">
    <table>
       <tr>
          <td>아이디</td>
-         <td><input type="text" id="td2" required></td>
+         <td><input type="text" id="td2"  name="userId"></td>
       </tr>
       
       <tr><td><br></td></tr>
       
       <tr>
          <td>비밀번호</td>
-         <td><input type="password" id="td2" required></td>
+         <td><input type="password" id="td2" name="userPwd" ></td>
       </tr>
       
       <tr><td><br></td></tr>
       
       <tr>
          <td></td>
-         <td><input type="button" id="btn" class="btn btn-info" value="로그인"></td>
+         <td>
+         <button id="btn" class="btn btn-info" >로그인</button>
+         </td>
       </tr>
       
       <tr><td><br></td></tr>
       
+      </table>
+      </form>
+      
+      
+      
+      
+      <table>
       <tr>
          <td></td>
          <td id="td4">&emsp;&emsp;&emsp;&emsp;&emsp;또는</td>
@@ -92,7 +102,7 @@
       <tr><td><br></td></tr>
       
    </table>
-</form>
+
 
 <br>
 </div>

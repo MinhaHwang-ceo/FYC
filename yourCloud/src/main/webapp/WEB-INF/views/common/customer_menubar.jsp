@@ -28,57 +28,57 @@
     @keyframes fade_out { from {opacity: 1} to {opacity: 0} }
 
     .right-box {
- 		  position: absolute;
-  			top: 0; right: 5%;
-		}
-		
-	#floating { 
-	background-color:white; 
-	position: fixed; 
-	right: 50%; 
-	top: 20%; 
-	margin-right: -49%; 
-	text-align:center; 
-	width: 320px;  
-	border-radius: 8px; 
-	margin-top: -6%;
-	margin-bottom: 5%; 
-	size: auto; 
-	display: none; 
-	opacity: 0; 
-	z-index: 99;
-	animation-duration: 0.5s; 
-	animation-fill-mode: forwards;
+         position: absolute;
+           top: 0; right: 5%;
+      }
+      
+   #floating { 
+   background-color:white; 
+   position: fixed; 
+   right: 50%; 
+   top: 20%; 
+   margin-right: -49%; 
+   text-align:center; 
+   width: 320px;  
+   border-radius: 8px; 
+   margin-top: -6%;
+   margin-bottom: 5%; 
+   size: auto; 
+   display: none; 
+   opacity: 0; 
+   z-index: 99;
+   animation-duration: 0.5s; 
+   animation-fill-mode: forwards;
 
-	 }
-	 
-	 .webTest {
-	 	
-	 	margin-left:100px;
-	 }
+    }
+    
+    .webTest {
+       
+       margin-left:100px;
+    }
     </style>
-	
-	 <script>
+   
+    <script>
 var Flag_clr = 0; 
 
-function hideMenu() { document.getElementById("floating").style.display = "none"; }	
+function hideMenu() { document.getElementById("floating").style.display = "none"; }   
 
 function fx_Floating() { 
-	if (  window.pageYOffset >= 1100 ) { 
-		document.getElementById("floating").style.display = "block"; 
-		document.getElementById("floating").style.animationName = "fade_in"; 
-		Flag_clr = 1; 
-		} else if ( window.pageYOffset < 1100 && Flag_clr ) {
-			Flag_clr = 0; 
-			document.getElementById("floating").style.animationName = "fade_out";
-			document.getElementById("floating").style.animationFillMode = "forwards";
+   if (  window.pageYOffset >= 1100 ) { 
+      document.getElementById("floating").style.display = "block"; 
+      document.getElementById("floating").style.animationName = "fade_in"; 
+      Flag_clr = 1; 
+      } else if ( window.pageYOffset < 1100 && Flag_clr ) {
+         Flag_clr = 0; 
+         document.getElementById("floating").style.animationName = "fade_out";
+         document.getElementById("floating").style.animationFillMode = "forwards";
 
-			setTimeout( hideMenu, 300 ); } 
-	} 
-	
+         setTimeout( hideMenu, 300 ); } 
+   } 
+   
 document.addEventListener("scroll",fx_Floating);
 
-	</script>
+   </script>
     
 
 
@@ -87,21 +87,18 @@ document.addEventListener("scroll",fx_Floating);
 <body>
 
 
-	
+   
 <nav class="navbar navbar-expand-sm " >
- 		<div class="right-box" id="navbar3" >
+       <div class="right-box" id="navbar3" >
                 <ul class="navbar-nav">
                     <li >
-                       <a class="nav-link" href="myPage.me">로그인 </a>
+                       <a class="nav-link" href="loginMain.me">로그인 </a>
                     </li>
                      <li >
-                       <a class="nav-link" href="index.html">회원가입 </a>
+                       <a class="nav-link" href="joinMain.me">회원가입 </a>
                     </li>
                     <li >
                        <a class="nav-link" href="${ contextPath }/FundingOpen.me">펀딩 오픈하기</a>
-                    </li>
-                    <li >
-                       <a class="nav-link" href="${ contextPath }/main.ad">(임시)관리자페이지</a>
                     </li>
                     
                     
@@ -110,19 +107,19 @@ document.addEventListener("scroll",fx_Floating);
                     <li>
                     
                     <i class="fa" aria-hidden="true"><img src="/yc/resources/images/hwack2.PNG"></i>
-                     	<input type="text">
+                        <input type="text">
                     </li>
                      
                     </ul>
                     <ul>
-     					<li class=" webTest">
+                    <li class=" webTest">
                         <button class="testBtn" style="background:white; border-radius:10%;">자체테스트</button>
                     </li>
                     </ul>
                     </div>
             </nav>
- 			<header>
- 		
+          <header>
+       
         <div class="container text-white">
          
             <div class="row">
@@ -133,9 +130,9 @@ document.addEventListener("scroll",fx_Floating);
                     <a class="navbar-brand" href="index.jsp"><img src="/yc/resources/images/yc-logo3.png" alt="logo"></a>
                 </div>
                <div class="col-sm-4 align-self-center text-right navbar-collapse" id="navbar3" >
-         	
+            
         
-          		  
+                  
         </div>
         <!--container end-->
                 </div>
@@ -143,8 +140,8 @@ document.addEventListener("scroll",fx_Floating);
             <!--/row-->
         <!--container-->
     </header>
-	
-	 <span class="position-absolute trigger"><!-- hidden trigger to apply 'stuck' styles --></span>
+   
+    <span class="position-absolute trigger"><!-- hidden trigger to apply 'stuck' styles --></span>
     <nav class="navbar navbar-expand-sm sticky-top navbar-dark">
     
         <div class="container">
@@ -157,7 +154,7 @@ document.addEventListener("scroll",fx_Floating);
                         <a class="nav-link active" href="index.html">리워드 홈</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="categoryOne.ca">카테고리</a>
+                        <a class="nav-link" href="#">카테고리</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="intro">회사소개</a>
@@ -169,7 +166,7 @@ document.addEventListener("scroll",fx_Floating);
                         <a class="nav-link" href="guide.bo">이용가이드</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="contact.html">오픈예정</a>
+                        <a class="nav-link" href="openExpectation.bo">오픈예정</a>
                     </li>
                    
                    
@@ -179,39 +176,36 @@ document.addEventListener("scroll",fx_Floating);
         </div>
         <!--container end-->
          <!--   플로팅 메뉴 -->
-	<div id="floating" class=" float-top "  style="border:1px solid darkgray;"> 
-		<figure class="figure"><a><img src="/yc/resources/images/rank_banner2.PNG" alt="blog" ></a></figure>
-		<div><a href="blog.html"><img src="/yc/resources/images/rank5.PNG" alt="blog">[끝판왕 등장] 스마트폰 거치대의 끝, 허킨스 스마트서포터 (마지막앵콜)</a></div> 
-		<div><a href="blog.html"><img src="/yc/resources/images/rank2.PNG" alt="blog">캐시미어 코트의 가격을 다시 쓰다ㅣ매일 입는 캐시미어 코트, 벨리에</a></div>
-		<div><a href="blog.html"><img src="/yc/resources/images/rank3.PNG" alt="blog">세상에 없던 스마트한 카메라 어시스턴트, 키노피 루미 마크원!</a></div>
-		<hr>
-		<div><a href="blog.html"><img src="/yc/resources/images/talk.PNG" alt="blog"></a></div>
-	 </div>
+   <div id="floating" class=" float-top "  style="border:1px solid darkgray;"> 
+      <figure class="figure"><a><img src="/yc/resources/images/rank_banner2.PNG" alt="blog" ></a></figure>
+      <div><a href="blog.html"><img src="/yc/resources/images/rank5.PNG" alt="blog">[끝판왕 등장] 스마트폰 거치대의 끝, 허킨스 스마트서포터 (마지막앵콜)</a></div> 
+      <div><a href="blog.html"><img src="/yc/resources/images/rank2.PNG" alt="blog">캐시미어 코트의 가격을 다시 쓰다ㅣ매일 입는 캐시미어 코트, 벨리에</a></div>
+      <div><a href="blog.html"><img src="/yc/resources/images/rank3.PNG" alt="blog">세상에 없던 스마트한 카메라 어시스턴트, 키노피 루미 마크원!</a></div>
+      <hr>
+      <div><a href="blog.html"><img src="/yc/resources/images/talk.PNG" alt="blog"></a></figure></div>
+    </div>
     </nav>
+    
     
     
     <script>
 $(function(){
 
-	$(".testBtn").click(function(){
-	
-		
-		window.open("SelfTest" ,"PopupWin","width=450,height=500","resizable=no");
-		
-		
-		
-	})
-	
-	
-	
-	
-})
-
-    
+   $(".testBtn").click(function(){
+   
+      
+      window.open("SelfTest" ,"PopupWin","width=450,height=500","resizable=no");
+      
+      
+      
+   })
+   
+   
+   
+   
+})   
     </script>
-    
-
+ 
 </body>
-
 
 </html>
