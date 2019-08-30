@@ -180,6 +180,14 @@ a {
 <title>Insert title here</title>
 </head>
 <body>
+	<script type="text/javascript">
+
+	$(function(){
+		$("html").css({"background-image":"linear-gradient('')", "background":"white"});
+		
+	})
+	</script>
+
 	<!-- 리워드 헤더 이미지  -->
 	<div class="reward-header">
 		
@@ -200,7 +208,7 @@ a {
 			<li><a href="categoryOne.ca" class="tab-link">스토리</a></li>
 			<li><a href="categoryOneFunding.ca" class="tab-link">펀딩안내</a></li>
 			<li><a href="categoryOneNews.ca" class="tab-link">새소식</a></li>
-			<li><a href="" class="tab-link">커뮤니티</a></li>
+			<li><a href="categoryOneCommunity.ca" class="tab-link">커뮤니티</a></li>
 			<li><a href="categoryOneSupporter.ca" class="tab-link">서포터</a></li>
 		</ul>
 	</div>
