@@ -31,7 +31,7 @@
 	<h4 align="center">진행하려는 프로젝트에 적합하거나 가장 유사한 카테고리를 선택하세요.<br>
 	나중에 수정할 수 있습니다.</h4>
 	<br>
-	<div align="center">   c  
+	<div align="center"> 
 	<select id="browsers" name="browsers">
 	    <option value="카테고리 선택하기">카테고리 선택하기</option>
 	    <option value="테크-가전">테크-가전</option>

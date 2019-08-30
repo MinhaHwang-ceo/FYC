@@ -179,7 +179,7 @@ input[type="checkbox"]:checked + label span {
 			<td></td>
 				<td>
 				<button>저장하기</button>
-				<a href="${ contextPath }/FundingOpen5.me"><button id="next">다음으로 ></button></a>
+				<a href="${ contextPath }/FundingOpen6.me"><button id="next">다음으로 ></button></a>
 				</td>
 			</tr>
 		</table>
