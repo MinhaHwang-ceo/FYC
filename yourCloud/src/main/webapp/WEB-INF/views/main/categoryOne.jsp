@@ -4,6 +4,21 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+<link
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"
+	rel="stylesheet">
+<link
+	href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,600,700,800"
+	rel="stylesheet">
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.3.0/ekko-lightbox.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/css/animate.css">
+<link href="${pageContext.request.contextPath}/resources/css/main.css"
+	rel="stylesheet" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>	
 <style>
 body, ul {
 	margin: 0;
@@ -40,11 +55,7 @@ a {
 	line-height: 30px;
 }
 
-.dd {
-	border: 1px solid blue;
-	width: 75%;
-	margin: 0 auto;
-}
+
 
 * {
 	word-break: break-all;
@@ -54,15 +65,21 @@ a {
 	width: 100%;
 }
 
+.dd {
+	border: 1px solid blue;
+	width: 75%;
+	margin: 0 auto;
+}
+/* 컨텐츠 영역  */
 .sub-contents {
 	float: left;
-	border: 1px solid red;
+	border: 1px solid purple;
 	width: 65%;
-	margin-right: 40px;
+	
 	margin: 0 auto;
 	margin-right: 18px;
 }
-
+/* 오른쪽 영역  */
 .opener-info {
 	float: left;
 	border: 1px solid black;
@@ -186,6 +203,16 @@ a {
 <title>Insert title here</title>
 </head>
 <body>
+<jsp:include page="../common/customer_menubar.jsp"/>
+<script type="text/javascript">
+
+	$(function(){
+		$("html").css({"background-image":"linear-gradient('')", "background":"white"});
+		
+	})
+</script>
+	
+	<div id="outer" style="background:white;">
 	<!-- 리워드 헤더 이미지  -->
 	<div class="reward-header">
 		
@@ -194,7 +221,7 @@ a {
 			<strong>#몰카탐지카드몰가가드</strong>
 			프로젝트
 		</p>
-		<h2 class="title-header">
+		<h2 class="title-header" style="color: white;">
 			[소셜캠페인 참여1위]불법촬영 두려워마세요! 간편한 몰카방지카드 몰카드
 		</h2>
 		
@@ -206,15 +233,16 @@ a {
 			<li><a href="categoryOne.ca" class="tab-link">스토리</a></li>
 			<li><a href="categoryOneFunding.ca" class="tab-link">펀딩안내</a></li>
 			<li><a href="categoryOneNews.ca" class="tab-link">새소식</a></li>
-			<li><a href="" class="tab-link">커뮤니티</a></li>
+			<li><a href="categoryOneCommunity.ca" class="tab-link">커뮤니티</a></li>
 			<li><a href="categoryOneSupporter.ca" class="tab-link">서포터</a></li>
 		</ul>
 	</div>
 	<hr />
 
 	<div class="reward-body">
-		<div class="dd">
+			<div class="dd">
 			<div class="sub-contents">
+			
 				<!-- 이미지 앤 동영상 영역 -->
 				<div class="title-img">
 					<img src="${ contextPath }/resources/images/dis.PNG" width="98%;"
@@ -328,12 +356,12 @@ a {
 								인가요?</strong> <br /> A.아닙니다. 아모플러스는 특정 질병을 치료. 진단 예방 등을 목적으로 하는 외료기기가
 							아니며, 개인용 건강강관리 ,향상(개선) 기기로 분류되는 웰니스 제품입니다.
 						</p>
-
 					</div>
-
-				</div>
+s				</div>
 			</div>
 		</div>
+		</div>
+		
 
 		<!-- 오른쪽 영역 -->
 		<div class="opener-info">
@@ -490,16 +518,6 @@ a {
 					</button>
 				</div>	
 			</div>
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
 			<!-- 신고 영역 -->
 			<div style="border:1px solid blue; font-size: 14px;">
 				<p class="">
@@ -515,22 +533,9 @@ a {
 					
 				</button>
 			</div>
-			
-			
-
-
-
-
-
-
-
-
-
-
-
-
-
 		</div>
+	
+	<div style="width:100%; float:left;"><jsp:include page="../common/customer_footer.jsp"/></div>
 	</div>
 </body>
 </html>

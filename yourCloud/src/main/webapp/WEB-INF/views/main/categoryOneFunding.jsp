@@ -23,7 +23,7 @@ button {
 	cursor: pointer;
 }
 /* 탭 영역  */
-body1, ul {
+body ul {
 	margin: 0;
 	padding: 0;
 }
@@ -76,26 +76,27 @@ a {
 }
 /* 전체 div 영역  */
 .reward-body {
-	
-	
 	width: 100%;
-	border: 3px solid red;
- 	
+	 	
 }
 
-
+.dd {
+	border: 1px solid blue;
+	width: 75%;
+	margin: 0 auto;
+}
 /* 컨텐츠 영역  */
 .funding-info {
 	float: left;
 	border: 1px solid purple;
 	width: 65%;
-	
+	margin-right: 40px;
 	margin: 0 auto;
-	
+	margin-right: 18px;
 }
 /* 오른쪽 영역  */
 .opener-info {
-	float: right;
+	float: left;
 	border: 1px solid black;
 	width: 24%;
 }
@@ -209,6 +210,7 @@ a {
 
 <body>
 	<jsp:include page="../common/customer_menubar.jsp"/>
+	
 	<div id="outer" style="background:white;">
 	<!-- 리워드 헤더 이미지  -->
 	<div class="reward-header">
@@ -228,13 +230,17 @@ a {
 			<li><a href="categoryOne.ca" class="tab-link">스토리</a></li>
 			<li><a href="categoryOneFunding.ca" class="tab-link">펀딩안내</a></li>
 			<li><a href="categoryOneNews.ca" class="tab-link">새소식</a></li>
-			<li><a href="" class="tab-link">커뮤니티</a></li>
+			<li><a href="categoryOneCommunity.ca" class="tab-link">커뮤니티</a></li>
 			<li><a href="categoryOneSupporter.ca" class="tab-link">서포터</a></li>
 		</ul>
 	</div>
 	<hr />
-
+	<div class="">
+		
+	</div>
+	
 	<div class="reward-body">
+		<div class="dd">
 		<div class="funding-info">
 			<div >
 				<h4>★반드시 확인하세요!</h4>
@@ -357,6 +363,7 @@ a {
 				</div>
 			</div>
 			
+			</div>
 		</div>
 		<!-- 오른쪽 영역 -->
 		<div class="opener-info">
@@ -538,7 +545,8 @@ a {
 					가기</button>
 			</div>
 		</div>
-	</div>
+		</div>
+	
 	<div style="width:100%; float:left;"><jsp:include page="../common/customer_footer.jsp"/></div>
 	</div>
 </body>
