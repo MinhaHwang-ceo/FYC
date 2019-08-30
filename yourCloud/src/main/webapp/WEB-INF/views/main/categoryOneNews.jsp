@@ -177,9 +177,21 @@ a {
 	
 </style>
 <meta charset="UTF-8">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <title>Insert title here</title>
 </head>
 <body>
+
+<script>
+	$(function(){
+		$("html").css({"background-image":"linear-gradient('')", "background":"white"});
+		
+	})
+</script>
+
+	<jsp:include page="../common/customer_menubar.jsp"/>
+	
+	<div id="outer" style="background:white;">
 	<!-- 리워드 헤더 이미지  -->
 	<div class="reward-header">
 		
@@ -200,7 +212,7 @@ a {
 			<li><a href="categoryOne.ca" class="tab-link">스토리</a></li>
 			<li><a href="categoryOneFunding.ca" class="tab-link">펀딩안내</a></li>
 			<li><a href="categoryOneNews.ca" class="tab-link">새소식</a></li>
-			<li><a href="" class="tab-link">커뮤니티</a></li>
+			<li><a href="categoryOneCommunity.ca" class="tab-link">커뮤니티</a></li>
 			<li><a href="categoryOneSupporter.ca" class="tab-link">서포터</a></li>
 		</ul>
 	</div>
@@ -406,15 +418,6 @@ a {
 				</div>	
 			</div>
 			
-			
-			
-			
-			
-			
-			
-			
-			
-			
 			<!-- 신고 영역 -->
 			<div style="border:1px solid blue; font-size: 14px;">
 				<p class="">
@@ -430,24 +433,11 @@ a {
 					
 				</button>
 			</div>
-			
-			
-
-
-
-
-
-
-
-
-
-
-
-
-		
 		</div>
-		
-		
+	</div>
+	
+	<div style="width:100%; float:left;"><jsp:include page="../common/customer_footer.jsp"/></div>
+	
 	</div>
 
 </body>
