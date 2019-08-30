@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Member">
+<resultMap type="com.kh.yc.member.model.vo.Member" id="memberResultSet">
+	<id property="userNo" column="MEMBER_NO"/>
+		<result property="userId" column="MEMBER_ID"/>
+		<result property="userPwd" column="MEMBER_PASSWORD"/>
+		<result property="email" column="MEMBER_NAME"/>
+		<result property="ssn" column="SSN"/>
+		<result property="companyName" column="COMPANY_NAME"/>
+		<result property="account" column="ACCOUNT"/>
+		<result property="gender" column="GENDER"/>
+		<result property="memberCategory" column="MEMBER_CATEGORY"/>
+	 	<result property="point" column="POINT"/>
+		<result property="age" column="AGE"/>
+		<result property="status" column="STATUS"/>
+		<result property="memberDiv" column="MEMBER_DIV"/>	
+		<result property="emailAgree" column="EMAIL_AGREE"/>		
+			</resultMap>
+		<select id="loginCheck" resultMap="memberResultSet" parameterType="Member">
+		SELECT *
+		FROM MEMBER
+		WHERE MEMBER_ID = #{userId}
+		AND MEMBER_PASSWORD = #{userPwd}
+	
+	</select>
+	<insert id="insertMember" parameterType="Member">
+		INSERT INTO MEMBER
+		VALUES( SEQ_MEMBER.NEXTVAL,#{userName},#{userId}, #{userPwd}, #{email},default,null,null,null,#{gender},#{memberCategory},
+		1000,#{age},default,#{emailAgree})
+	</insert>
+		<select id="selectPwd" parameterType="java.lang.String" resultType="java.lang.String">
+		SELECT MEMBER_PASSWORD
+		FROM MEMBER
+		WHERE MEMBER_ID = #{userId}
+	
+	</select>
+	
+		
+	<select id="selectLoginUser" parameterType="Member" resultMap="memberResultSet">
+		SELECT *
+		FROM MEMBER
+		WHERE MEMBER_ID = #{userId}
+
+	</select>
+	
+	
+
+	</mapper>
+	
