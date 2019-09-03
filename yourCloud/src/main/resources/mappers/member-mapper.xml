@@ -8,7 +8,8 @@
 	<id property="userNo" column="MEMBER_NO"/>
 		<result property="userId" column="MEMBER_ID"/>
 		<result property="userPwd" column="MEMBER_PASSWORD"/>
-		<result property="email" column="MEMBER_NAME"/>
+		<result property="userName" column="MEMBER_NAME"/>
+		<result property="email" column="EMAIL"/>
 		<result property="ssn" column="SSN"/>
 		<result property="companyName" column="COMPANY_NAME"/>
 		<result property="account" column="ACCOUNT"/>
@@ -46,6 +47,11 @@
 
 	</select>
 	
+	<select id="memberList" resultMap="memberResultSet">
+		SELECT *
+		FROM MEMBER
+	
+	</select>
 	
 
 	</mapper>

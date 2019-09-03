@@ -381,6 +381,83 @@
           </div>
 
         </div>
+        
+         <!-- Begin Page Content -->
+        <div class="container-fluid">
+
+          <!-- Page Heading -->
+          <h1 class="h3 mb-2 text-gray-800">신고관리</h1>
+          <!-- <p class="mb-4">회원리스트입니다.</p> -->
+
+          <!-- DataTales Example -->
+          <div class="card shadow mb-4">
+            <div class="card-header py-3">
+              <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
+            </div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                  <thead>
+                    <tr>
+                      <th>장부번호</th>
+                      <th>프로젝트명</th>
+                      <th>신고사유</th>
+                      <th>신고자</th>
+                      <th>신고수</th>
+                    </tr>
+                  </thead>
+                  <tfoot>
+                    <tr>
+                      <th>신고번호</th>
+                      <th>프로젝트명</th>
+                      <th>신고사유</th>
+                      <th>신고자</th>
+                      <th>신고수</th>
+                    </tr>
+                  </tfoot>
+                  <tbody>
+                    <tr>
+                      <td>1</td>
+                      <td>[당신의옷]너무나멋진똥간닦개</td>
+                      <td>허위사실이 기재된 프로젝트</td>
+                      <td>minhada22</td>
+                      <td>8</td>
+                    </tr>
+                    <tr>
+                      <td>2</td>
+                      <td>[당신의옷]너무나멋진똥간닦개</td>
+                      <td>허위사실이 기재된 프로젝트</td>
+                      <td>kojihyo</td>
+                      <td>8</td>
+                    </tr>
+                    
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <!-- /.container-fluid -->
+
+      </div>
+      <!-- End of Main Content -->
+
+      <!-- Footer -->
+      <footer class="sticky-footer bg-white">
+        <div class="container my-auto">
+          <div class="copyright text-center my-auto">
+            <span>Copyright &copy; Your Website 2019</span>
+          </div>
+        </div>
+      </footer>
+      <!-- End of Footer -->
+
+    </div>
+    <!-- End of Content Wrapper -->
+
+  </div>
+  <!-- End of Page Wrapper -->
         <!-- /.container-fluid -->
 
       </div>
@@ -425,6 +502,8 @@
       </div>
     </div>
   </div>
+  
+  
 
   <!-- Bootstrap core JavaScript-->
   <script src="${pageContext.request.contextPath}/resources/vendor/jquery/jquery.min.js"></script>
@@ -435,6 +514,15 @@
 
   <!-- Custom scripts for all pages-->
   <script src="${pageContext.request.contextPath}/resources/js/sb-admin-2.min.js"></script>
+
+<!-- Page level plugins -->
+  <script src="${pageContext.request.contextPath}/resources/vendor/datatables/jquery.dataTables.min.js"></script>
+  <script src="${pageContext.request.contextPath}/resources/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+  <!-- Page level custom scripts -->
+  <script src="${pageContext.request.contextPath}/resources/js/demo/datatables-demo.js"></script>
+
+
 
 </body>
 
