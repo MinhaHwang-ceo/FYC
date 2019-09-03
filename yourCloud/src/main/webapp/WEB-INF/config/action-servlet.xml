@@ -13,9 +13,9 @@
 	<annotation-driven />
 
 	<resources mapping="/css/**" location="/resources/css/" /> 
-<resources mapping="/images/**" location="/resources/images/" /> 
-<resources mapping="/js/**" location="/resources/js/" /> 
-<resources mapping="/resources/**" location="/resources/" /> 
+	<resources mapping="/images/**" location="/resources/images/" /> 
+	<resources mapping="/js/**" location="/resources/js/" /> 
+	<resources mapping="/resources/**" location="/resources/" /> 
 
 
 
@@ -29,8 +29,12 @@
 	<context:component-scan base-package="com.kh.yc" />
 	
 
+	<!-- NaverLoginBO Class에 대한 Bean설정 추가 -->
+	<beans:bean id="naverLoginBO" class="com.kh.yc.member.controller.NaverLoginBO" />
+
+
    <beans:bean id="jsonView" class="net.sf.json.spring.web.servlet.view.JsonView"/>
-   
+
 	
 	<!-- 뷰 리졸버에 대한 설정 -->
 	<!-- 위에 설정한 뷰 리졸버는 기존에 있는 jsp에 대해 view를 보여주는 템플릿 뷰 -->

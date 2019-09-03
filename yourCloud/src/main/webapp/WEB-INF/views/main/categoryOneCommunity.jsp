@@ -223,11 +223,17 @@ a {
 	padding: 0 0 0 56px;
 	border: 2px solid green;
 }
-.CommentUserWrapper_avatar.commentUserWrapper {
+.CommentUserWrapper_avatar .commentUserWrapper {
 	position: absolute;
 	top: 0;
 	left: 0;
 	
+}
+.CommentUserWrapper_avatar {
+    box-sizing: border-box;
+    position: absolute;
+    margin-left: -45px;
+   
 }
 .Avatar_wrap {
 	display: inline-block;
@@ -320,21 +326,21 @@ a {
 .wz.button.primary {
     background-color: #00c4c4;
     color: #fff;
+    border: 1px solid #00c4c4;
+    margin-left: 451px;
+  
+    
+    
+    
 }
-.wz.button.primary, .wz.button.primary-outline {
-    border-color: #00c4c4;
-}
+
 .wz.button.dense {
     padding: 0 16px;
     height: 36px;
     line-height: 34px;
     font-size: 15px;
 }
-.wz.button {
-    display: inline-block;
-    padding-top: .07em;
-    text-decoration: none;
-}
+
 
 </style>
 <meta charset="UTF-8">
@@ -469,10 +475,8 @@ a {
 											<div class="commentReplyList">
 												<div class="commentReplyForm">
 													<div class="commentUserWrapper">
-														<table>
-														<tr>
-															<td colspan="4">
-																
+														
+
 															<div class="CommentUserWrapper_avatar">
 															
 																<a href="">
@@ -483,15 +487,14 @@ a {
 																	</span>
 																</a>
 															</div>
-															</td>
 															
-															<td>
-														<div class="CommentUserWrapper_main__3QYIJ">
+															
+														<div class="CommentUserWrapper_main__3QYIJ" style="border: 4px solid red;">
 															<div class="CommunityCommentReplyWriteForm_writeForm__31Tsw">
 																<form action="CommentForm_container__2p3PN CommentForm_fold__2E1qU">
 																		<div class="wz input CommentForm_textarea__GNfAn">
 																			<textarea placeholder="답글을 입력하세요"
-																				maxlength="2000" maxheight="400" style="overflow-y: hidden; resize: nono; height: 102px; width: 86%;">
+																				maxlength="2000" maxheight="400" style="overflow-y: hidden; resize: nono; height: 110px; width: 100%;">
 																				
 																				
 																			</textarea>
@@ -503,25 +506,14 @@ a {
 																			
 																			</span>
 																				<button class="wz button CommentForm_button__fIXjR dense primary">등록</button>
-																				
-																				
 																		</div>
 																</form>
 															</div>
 														</div>
-																
-															</td>
-															
-														
 														<!-- text창 -->
-														</tr>
-														</table>
 													</div>
 													
 												</div>
-												
-												
-												
 											</div>
 										</div>
 									</div>
