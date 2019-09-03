@@ -34,4 +34,10 @@ public class CategoryContoller {
 		return "main/categoryOneSupporter";
 
 	}
+	@RequestMapping(value = "/categoryOneCommunity.ca", method = RequestMethod.GET)
+	public String categoryOneCommunity(Model model) {
+
+		return "main/categoryOneCommunity";
+
+	}
 }

@@ -13,9 +13,9 @@
 	<annotation-driven />
 
 	<resources mapping="/css/**" location="/resources/css/" /> 
-<resources mapping="/images/**" location="/resources/images/" /> 
-<resources mapping="/js/**" location="/resources/js/" /> 
-<resources mapping="/resources/**" location="/resources/" /> 
+	<resources mapping="/images/**" location="/resources/images/" /> 
+	<resources mapping="/js/**" location="/resources/js/" /> 
+	<resources mapping="/resources/**" location="/resources/" /> 
 
 
 
@@ -27,6 +27,15 @@
 	</beans:bean>
 	
 	<context:component-scan base-package="com.kh.yc" />
+	
+	<!-- NaverLoginBO Class에 대한 Bean설정 추가 -->
+	<beans:bean id="naverLoginBO" class="com.kh.yc.member.controller.NaverLoginBO" />
+
+
+	
+	
+	
+	
 	
 	
 	

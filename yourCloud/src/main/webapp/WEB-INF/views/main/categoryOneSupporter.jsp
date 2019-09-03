@@ -174,7 +174,16 @@ a {
     background: #001328!important;
     color: white;
    }
+.RewardItem {
+	border-bottom: 1px solid #e6eaed;
+	min-height: 46px;
+}
+.avatar-wrap .RewardItem {
+	position: absolute;
+	background-repeat: no-repeat;
+	background-size: cover;
 	
+}
 </style>
 <meta charset="UTF-8">
 <title>Insert title here</title>
@@ -224,15 +233,69 @@ a {
 					<strong style="color: #00c4c4">178명</strong>
 					입니다.
 				</p>
-				<br /><br />
-				<div class="rewardSupporterList">
-					<div>
-						<span style="border: 1px solid red;">
-							<span style="border: 1px solid red; width: 18%; border-radius: 50%;">
-								<img src="${ contextPath }/resources/images/dis.PNG" width="18%;"/>
+				<br /><br /><br>
+				<div class="rewardSupporterList">	
+					<div class="RewardItem" style="">
+					<table style="width: 100%;">
+							<tr>
+								<td align="center">
+									<span>
+										<img src="${ contextPath }/resources/images/tit.PNG" style="border-radius: 50%; width: 46px; height: 46px;"/>
+									</span>
+								</td>
+								<td>
+									<p>
+										<strong>이건희님이  5,8500원 펀딩으로 참여 하셨습니다.</strong>
+									</p>
+								</td>
+							</tr>
 								
-							</span>
-						</span>
+								<tr >
+									<td style="border-bottom: 1px solid #e6eaed;" colspan="2"><hr /></td>
+								</tr>
+						</table>
+					</div>
+					
+					<div class="RewardItem" style="">
+					<table style="width: 100%;">
+							<tr>
+								<td align="center">
+									<span>
+										<img src="${ contextPath }/resources/images/tit.PNG" style="border-radius: 50%; width: 46px; height: 46px;"/>
+									</span>
+								</td>
+								<td>
+									<p>
+										<strong>이건희님이  5,8500원 펀딩으로 참여 하셨습니다.</strong>
+									</p>
+								</td>
+							</tr>
+								
+								<tr >
+									<td style="border-bottom: 1px solid #e6eaed;" colspan="2"><hr /></td>
+								</tr>
+						</table>
+					</div>
+					
+					<div class="RewardItem" style="">
+					<table style="width: 100%;">
+							<tr>
+								<td align="center">
+									<span>
+										<img src="${ contextPath }/resources/images/tit.PNG" style="border-radius: 50%; width: 46px; height: 46px;"/>
+									</span>
+								</td>
+								<td>
+									<p>
+										<strong>이건희님이  5,8500원 펀딩으로 참여 하셨습니다.</strong>
+									</p>
+								</td>
+							</tr>
+								
+								<tr >
+									<td style="border-bottom: 1px solid #e6eaed;" colspan="2"><hr /></td>
+								</tr>
+						</table>
 					</div>
 				</div>
 			</div>
