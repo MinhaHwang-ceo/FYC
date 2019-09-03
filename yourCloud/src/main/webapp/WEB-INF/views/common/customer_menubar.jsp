@@ -91,14 +91,28 @@ document.addEventListener("scroll",fx_Floating);
 <nav class="navbar navbar-expand-sm " >
        <div class="right-box" id="navbar3" >
                 <ul class="navbar-nav">
+                <c:if test="${ empty sessionScope.loginUser }">
                     <li >
                        <a class="nav-link" href="loginMain.me">로그인 </a>
                     </li>
+                   
+                    
                      <li >
                        <a class="nav-link" href="joinMain.me">회원가입 </a>
                     </li>
+                     </c:if>
+                            <c:if test="${ !empty sessionScope.loginUser }">
+                                 <li >
+                       <a class="nav-link" href="logout.me">로그아웃 </a>
+                    </li>
+                   
+                    
+                     <li >
+                       <a class="nav-link" href="joinMain.me">마이페이지 </a>
+                    </li>
+                    </c:if>
                     <li >
-                       <a class="nav-link" href="${ contextPath }/FundingOpen.fd">펀딩 오픈하기</a>
+                       <a class="nav-link" href="${ contextPath }/FundingOpen.me">펀딩 오픈하기</a>
                     </li>
                     
                     
@@ -176,14 +190,14 @@ document.addEventListener("scroll",fx_Floating);
         </div>
         <!--container end-->
          <!--   플로팅 메뉴 -->
-  <!--  <div id="floating" class=" float-top "  style="border:1px solid darkgray;"> 
+   <div id="floating" class=" float-top "  style="border:1px solid darkgray;"> 
       <figure class="figure"><a><img src="/yc/resources/images/rank_banner2.PNG" alt="blog" ></a></figure>
       <div><a href="blog.html"><img src="/yc/resources/images/rank5.PNG" alt="blog">[끝판왕 등장] 스마트폰 거치대의 끝, 허킨스 스마트서포터 (마지막앵콜)</a></div> 
       <div><a href="blog.html"><img src="/yc/resources/images/rank2.PNG" alt="blog">캐시미어 코트의 가격을 다시 쓰다ㅣ매일 입는 캐시미어 코트, 벨리에</a></div>
       <div><a href="blog.html"><img src="/yc/resources/images/rank3.PNG" alt="blog">세상에 없던 스마트한 카메라 어시스턴트, 키노피 루미 마크원!</a></div>
       <hr>
       <div><a href="blog.html"><img src="/yc/resources/images/talk.PNG" alt="blog"></a></figure></div>
-    </div> -->
+    </div>
     </nav>
     
     

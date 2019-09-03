@@ -1,5 +1,7 @@
 package com.kh.yc.member.model.dao;
 
+import java.util.List;
+
 import javax.security.auth.login.LoginException;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -18,6 +20,17 @@ public interface MemberDao {
 	Member selectMember(SqlSessionTemplate sqlSession, Member m);
 
 	int insertBoard(SqlSessionTemplate sqlSession);
+	
+	
+	
+	
 
+	void GetKey(String user_id, String key);
 
+	int countId(SqlSessionTemplate sqlSession, String userId);
+	/*
+	 * String countId(SqlSessionTemplate sqlSession, Member m);
+	 */
+
+	int CheckDuplication(SqlSessionTemplate sqlSession,String inputId);
 }
