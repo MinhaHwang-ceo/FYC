@@ -1,14 +1,17 @@
 package com.kh.yc.member.model.dao;
 
+import java.util.List;
+
+import javax.inject.Inject;
 import javax.security.auth.login.LoginException;
 
+import org.apache.ibatis.session.SqlSession;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.kh.yc.member.model.vo.Member;
 @Repository
 public class MemberDaoImpl implements MemberDao{
-	
 	
 	@Override
 	public Member loginMember(SqlSessionTemplate sqlSession, Member m) throws LoginException {
@@ -46,6 +49,12 @@ public class MemberDaoImpl implements MemberDao{
 			
 			return sqlSession.insert("Member.insertBoard");
 		}
+		
+		
+		
+		
+		
+		
 	}
 	
 	
