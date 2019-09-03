@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE>
 <html>
 <head>
@@ -241,7 +242,7 @@
                       <th>회원번호</th>
                       <th>회원명</th>
                       <th>회원아이디</th>
-                      <th>가입일</th>
+                      <th>회원구분</th>
                       <th>상태</th>
                       <th>상태변경</th>
                     </tr>
@@ -251,14 +252,33 @@
                      <th>회원번호</th>
                       <th>회원명</th>
                       <th>회원아이디</th>
-                      <th>가입일</th>
+                      <th>회원구분</th>
                       <th>상태</th>
                       <th>상태변경</th>
                     </tr>
                   </tfoot>
                   <tbody>
-                    <tr>
-                      <td>1</td>
+                  <c:forEach var="row" items="${list}">
+                  <tr>
+                  	<td onclick="member_click();">${row.userNo}</td>
+                  	<td onclick="member_click();">${row.userName}</td>
+                  	<td onclick="member_click();">${row.userId}</td>
+                  	<td onclick="member_click();">${row.memberDiv}</td>
+                  	<c:set value="${row.status}" var="status" scope="session"/>
+                  		<c:choose>
+                  			<c:when test="${ status eq 'N' }">
+                  				<td>정상</td>
+                  			</c:when>
+                  			<c:otherwise>
+                  				<td>정지</td>
+                  			</c:otherwise>
+                  		</c:choose>
+                  	<td><input type="button" id="st" onclick="st_click();" value="상태변경"></td>
+                  </tr>
+                  
+                  </c:forEach>
+                    <!-- <tr>
+                      <td></td>
                       <td>황민하</td>
                       <td>minhada22</td>
                       <td>2019/03/12</td>
@@ -305,7 +325,7 @@
                       <td>정지</td>
                       <td><button value="status">상태변경</button></td>
                     </tr>
-                    
+                     -->
                   </tbody>
                 </table>
               </div>
@@ -374,7 +394,17 @@
   <!-- Page level custom scripts -->
   <script src="${pageContext.request.contextPath}/resources/js/demo/datatables-demo.js"></script>
 
- 
+  <script>
+		function st_click() {
+			alert("상태변경");
+		}
+		
+		
+		function member_click(){
+			alert("회원정보");
+			
+		}
+	</script>
 
 </body>
 

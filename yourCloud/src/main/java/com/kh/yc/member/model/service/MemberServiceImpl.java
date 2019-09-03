@@ -1,8 +1,11 @@
 package com.kh.yc.member.model.service;
 
+
 import java.io.File;
 import java.util.Random;
+import java.util.List;
 
+import javax.inject.Inject;
 
 import javax.security.auth.login.LoginException;
 
@@ -18,10 +21,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.yc.member.model.dao.MemberDao;
+import com.kh.yc.member.model.dao.MemberDaoImpl;
 import com.kh.yc.member.model.vo.Member;
 
 @Service
 public class MemberServiceImpl implements MemberService {
+
+	@Inject
+	MemberDaoImpl memberDao;
 
 	@Autowired
 	private SqlSessionTemplate sqlSession;
@@ -59,6 +66,11 @@ public class MemberServiceImpl implements MemberService {
 		
 		return md.insertMember(sqlSession, m);
 	}
+	
+	
+	
+	
+	
 
 	public int idcheck(String userId) {
 		return md.countId(sqlSession, userId);
