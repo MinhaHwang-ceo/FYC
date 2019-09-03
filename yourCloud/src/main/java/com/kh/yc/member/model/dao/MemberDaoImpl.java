@@ -49,12 +49,25 @@ public class MemberDaoImpl implements MemberDao{
 			
 			return sqlSession.insert("Member.insertBoard");
 		}
-		
-		
-		
-		
-		
-		
+
+		@Override
+		public void GetKey(String user_id, String key) {
+			// TODO Auto-generated method stub
+			
+		}
+	
+		@Override
+		public int CheckDuplication(SqlSessionTemplate sqlSession,String inputId) {
+
+			int idCount = sqlSession.selectOne("Member.countId",inputId);
+			return idCount;
+		}
+		@Override
+		public int countId(SqlSessionTemplate sqlSession, String userId) {
+			// TODO Auto-generated method stub
+			return 0;
+		}
+
 	}
 	
 	

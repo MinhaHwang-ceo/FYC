@@ -1,7 +1,9 @@
 
 package com.kh.yc.member.controller;
 
+import java.util.HashMap;
 import java.util.Locale;
+import java.util.Map;
 
 import javax.security.auth.login.LoginException;
 
@@ -9,10 +11,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.servlet.ModelAndView;
+
 
 import com.kh.yc.member.model.service.MemberServiceImpl;
 import com.kh.yc.member.model.vo.Member;
@@ -25,8 +31,11 @@ public class MemberController {
 	private MemberServiceImpl ms;
 	@Autowired
 	private BCryptPasswordEncoder passwordEncoder;
-	
-	
+	/*
+	 * @Autowired private JavaMailSenderImpl mailsender;
+	 * 
+	 */
+
 	
 	@RequestMapping(value = "loginMain.me", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
@@ -116,6 +125,7 @@ public class MemberController {
 		return "member/joinIdPw";
 	}
 	
+
 	@RequestMapping("logout.me")
 	public String logout(SessionStatus status) {
 		status.setComplete();
@@ -123,4 +133,41 @@ public class MemberController {
 		return "redirect:index.jsp";
 	}
 
+	@RequestMapping("logout.me")
+	public String logout(SessionStatus status) {
+		
+		status.setComplete();
+		
+		return "main/main";
+	}
+
+	
+	 @RequestMapping("duplicationCheck.me")
+	
+	    public ModelAndView CheckDuplication(String userId,ModelAndView model) {
+			
+		 System.out.println("userId:"+userId);
+		 
+			String checkRst="";
+			int idCnt = ms.CheckDuplication(userId);
+			System.out.println("idCnt"+idCnt);
+			if(idCnt > 0) {
+			 
+				checkRst = "F";
+				
+				}else {
+				checkRst = "S";
+			}
+			
+			System.out.println("checkRst"+checkRst);
+			
+			model.addObject("checkRst",checkRst);
+			
+			model.setViewName("jsonView");
+			
+			System.out.println(model);
+			return model;
+		}
+	
 }
+

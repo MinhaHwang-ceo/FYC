@@ -12,6 +12,7 @@ public interface MemberService {
 
 	int insertMember(Member m);
 	
-	
+	public int CheckDuplication(String inputId);
+
 
 }
