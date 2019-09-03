@@ -7,23 +7,29 @@
 <meta charset="UTF-8">
 <title>펀딩하기</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<link href="https://fonts.googleapis.com/css?family=Sunflower:300&display=swap" rel="stylesheet">
 <style>
 	body {
 		background-color: rgb(246, 249, 249);
+		font-family: 'Sunflower', sans-serif;
 	}
 	#menu {
+	font-family: 'Sunflower', sans-serif;
 	}
 	li {
 		list-style-type:none;
+		font-family: 'Sunflower', sans-serif;
 	}
 	a {
 		text-decoration:none;
 		color:inherit;
+		font-family: 'Sunflower', sans-serif;
 	}
 	#menu li {
 		float:left;
 		font-size: 10px; 
 		background-color: White;
+		font-family: 'Sunflower', sans-serif;
 	}
 	#menu a {
 		display:block;
@@ -31,14 +37,17 @@
 		line-height:35px;
 		padding:0 35px;
 		border: 1px solid rgb(246, 249, 249);
+		font-family: 'Sunflower', sans-serif;
 	}
 	#personal {
 		color:White;
+		font-family: 'Sunflower', sans-serif;
 	}
 	#textbox {
 		font-size:13px;
 		color:red;
 		border:1px solid red;
+		font-family: 'Sunflower', sans-serif;
 	}
 	#inputBox {
 		width:900px;
@@ -46,32 +55,39 @@
 		z-index:2;
 		background:White;
 		margin:0 auto;
+		font-family: 'Sunflower', sans-serif;
 	}
 	#fno {
 		width:300px;
 		height:100px; 
 		text-align:center;
+		font-family: 'Sunflower', sans-serif;
 	}
 	table {
 		border-spacing:50px;
 		margin-left:20px; 
+		font-family: 'Sunflower', sans-serif;
 
 	}
 	input {
 		background-color:Lightgray;
 		width:300px;
 		height:50px; 
+		font-family: 'Sunflower', sans-serif;
 	}
 	#browsers {
 		width:300px;
 		height:30px; 
+		font-family: 'Sunflower', sans-serif;
 	}
 	input[type="checkbox"] {
     display:none;
+    font-family: 'Sunflower', sans-serif;
 }
 
 input[type="checkbox"] + label {
     font-size:13px;
+    font-family: 'Sunflower', sans-serif;
 }
 
 input[type="checkbox"] + label span {
@@ -82,6 +98,7 @@ input[type="checkbox"] + label span {
     vertical-align:middle;
     background:url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/210284/check_radio_sheet.png) left top no-repeat;
     cursor:pointer;
+    font-family: 'Sunflower', sans-serif;
 }
 
 input[type="checkbox"]:checked + label span {
@@ -90,10 +107,12 @@ input[type="checkbox"]:checked + label span {
 td {
 		padding:10px;
 		padding-left:20px;
+		font-family: 'Sunflower', sans-serif;
 	}
 	tr{
 		padding:10px;
 		padding-right: 20px;
+		font-family: 'Sunflower', sans-serif;
 	}
 </style>
 </head>
@@ -139,31 +158,31 @@ td {
 			<tr>
 				<td style="background:White"><h3>프로젝트 번호</h3>
 				<p>구름펀딩 담당자와의 소통은<br>프로젝트 번호로 진행됩니다.</p></td>
-				<td id="fno"><input type="text" value="12345"></td>
+				<td id="fno"><input type="text" placeholder="12345"></td>
 			</tr>
 			<tr>
 				<td style="background:White"><h3>연락처</h3>
 				<p>주요 안내를 받으실 이메일<br>과 휴대폰 번호를 등록해 주세요<br>정보 변경은 회원정보설정에서<br> 가능합니다.</p></td>
 				<td id="fno">
-					<input type="text" value="연락처" id="phone">
+					<input type="text" placeholder="연락처" id="phone">
 					<br><br> 
-					<input type="email" value="이메일" id="email">
+					<input type="email" placeholder="이메일" id="email">
 				</td>
 			</tr>
 			<tr>
 				<td style="background:White"><h3>프로젝트 제목</h3>
 				<p>프로젝트 성격과 리워드를 짐작<br>할 수 있게 간결하고 직관적으로<br> 작성 해주세요.</p></td>
-				<td id="fno"><input type="text" value="예)더 가벼워진 권석이,동양 무술의 신비"></td>
+				<td id="fno"><input type="text" placeholder="예)더 가벼워진 권석이,동양 무술의 신비"></td>
 			</tr>
 			<tr>
 				<td style="background:White"><h3>짧은 제목</h3>
 				<p>검색, 알림 등에 사용되는 짧은<br>제목도 함께 작성해주세요.<br></p></td>
-				<td id="fno"><input type="text" value="예)#무술의 신비"></td>
+				<td id="fno"><input type="text" placeholder="예)#무술의 신비"></td>
 			</tr>
 			<tr>
 				<td style="background:White"><h3>목표 금액</h3>
 				<p>마감일 자정 기준 목표금액 <br>미달성 시,펀딩은 취소됩니다.<br>(평균 목표금액 : 300만원)</p></td>
-				<td id="fno"><input type="text" value="0"></td>
+				<td id="fno"><input type="text" placeholder="0"></td>
 			</tr>
 			<tr>
 				<td style="background:White"><h3>대표 이미지</h3>
@@ -254,7 +273,7 @@ td {
 			<td></td>
 				<td>
 				<button>저장하기</button>
-				<a href="${ contextPath }/FundingOpen5.me"><button id="next">다음으로 ></button></a>
+				<a href="${ contextPath }/FundingOpen5.fd"><button id="next">다음으로 ></button></a>
 				</td>
 			</tr>
 		</table>
