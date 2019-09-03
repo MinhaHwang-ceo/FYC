@@ -5,14 +5,14 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link href="https://fonts.googleapis.com/css?family=Sunflower:300&display=swap" rel="stylesheet">
 <title>펀딩하기</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<link href="https://fonts.googleapis.com/css?family=Sunflower:300&display=swap" rel="stylesheet">
 <style>
 	body{
 		font-family: 'Sunflower', sans-serif;
 	}
 	#menu {
-	font-family: 'Sunflower', sans-serif;
 	}
 	li {
 		list-style-type:none;
@@ -81,17 +81,16 @@
 	input {
 		background-color:Lightgray;
 		width:300px;
-		height:40px; 
-		font-family: 'Sunflower', sans-serif;
+		height:40px;
+		font-family: 'Sunflower', sans-serif; 
 	}
 	#browsers {
 		width:300px;
-		height:30px;
-		font-family: 'Sunflower', sans-serif; 
+		height:30px; 
+		font-family: 'Sunflower', sans-serif;
 	}
 	input[type="checkbox"] {
     display:none;
-    font-family: 'Sunflower', sans-serif;
 }
 
 input[type="checkbox"] + label {
@@ -108,11 +107,19 @@ input[type="checkbox"] + label span {
     background:url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/210284/check_radio_sheet.png) left top no-repeat;
     cursor:pointer;
     font-family: 'Sunflower', sans-serif;
+    
 }
 
 input[type="checkbox"]:checked + label span {
     background:url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/210284/check_radio_sheet.png) -19px top no-repeat;
 }
+	td {
+		padding:40px;
+		padding-left:40px;
+		padding-right:10px;
+		font-family: 'Sunflower', sans-serif;
+	}
+
 </style>
 </head>
 <body>
@@ -149,62 +156,83 @@ input[type="checkbox"]:checked + label span {
 	<br><br><br> 
 		<div id="inputBox2" align="center">
 		<br>
+		<p>'오픈예정'은 오픈예정 알림신청한 서포터에게 프로젝트 오픈 소식이 SMS으로 발송되는 서비스입니다.<br>
+			오픈예정을 신청하시면, 오픈예정 심사가 진행됩니다.</p>
 		<table style="align:center">
 			<tr>
-				<td><h4>금액</h4></td>
-				<td id="fno">&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" placeholder="12345" style = "text-align:right;">원</td>
-			</tr>
-			<tr>
-				<td><h4>리워드명</h4></td>
-				<td id="fno">
-					<input type="text" placeholder="예)ㅇㄴㅇㄴㅇ" id="">
+				<td><h5>수수료</h5></td>
+				<td style="background:white;">
+					<div>
+					<h6>리워드 오픈 수수료는 7%(VAT별도)입니다.</h6>
+					<p>- 부가 서비스 이용 시, 추가 수수료가 발생될 수 있습니다.</p>
+					<p>- 리워드가 없는 기부후원 프로젝트의 경우, 수수료가 다르게 적용됩니다.</p>
+					<p>- 자세한 내용은 니가그린 구름그림 수수료 정책을 확인해주세요.</p>
+   					 <input type="checkbox" id="c1" name="cc" />
+   					 <label for="c1"><span></span>구름펀딩 수수료 정책을 확인하였습니다.</label>
+					</div>
 				</td>
 			</tr>
 			<tr>
-				<td><h4>상세설명</h4></td>
-				<td id="fno"><input type="text" placeholder="예)더 가벼워진 권석이,동양 무술의 신비"></td>
-			</tr>
-			<tr>
-				<td><h4>옵션조건</h4></td>
-				<td id="fno">
-				<input type="checkbox" id="c3" name="cc" />
-   				<label for="c3"><span></span>옵션 입력이 필요없는 상품입니다.</label><br>
-   				<input type="checkbox" id="c4" name="cc" />
-   				<label for="c4"><span></span>옵션 입력이 필요한 상품입니다.</label>&nbsp;&nbsp;&nbsp;<br>
-   				<textarea rows="5" cols="40" style="width:300px; height:100px;"></textarea> 
-			</td>
-			</tr>
-			<tr>
-				<td><h4>배송조건</h4></td>
-				<td id="fno">
-				<input type="checkbox" id="c1" name="cc" />
-   				<label for="c1"><span></span>배송지 정보가 필요합니다.</label>
-   				<p>
+				<td><h5>계약정보-1)<br>사업자 여부 및 정보</h5></td>
+				<td style="background:white;">
+					<div>
+   					 <input type="checkbox" id="c2" name="cc" />
+   					 <label for="c2"><span></span>사업자(개인사업/법인사업)</label>
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+   					 <input type="checkbox" id="c3" name="cc" />
+   					 <label for="c3"><span></span>개인</label>
+   					 <br>
+   					 사업자 등록번호
+   					 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+   					 <input type="text">
+   					 <br><br>
+   					 사업자등록증 업로드<br>
+					 <input type='file' id="imgInput"/>
+					 <br><br>
+					 통장사본 업로드
+   					 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					 <input type='file' id="imgInput"/>
+					</div>
 				</td>
-			</tr>
+			</tr> 
 			<tr>
-				<td><h4>제한수량</h4></td>
-			<td id="fno">&nbsp;&nbsp;&nbsp;&nbsp;<input type="text">개</td>
-			</tr>
-			<tr>
-				<td><h4>발송시작일</h4></td>
-				<td id="fno"><input type="date" min="2017-08-15">
-				<script>
-				let today = new Date().toISOString().substr(0, 10);
-				document.querySelector("#today").value = today;
-
-				document.querySelector("#today2").valueAsDate = new Date();
-				</script></td>
+				<td><h5>계약정보-2)<br>대표자 정보</h5>
+				<p>전자 약정서는 대표자가<br> 직접 확인하고, 서명을 진행<br>해야함으로, 대표자의 이메일<br> 로약정서가 발송됩니다.<br> 
+				공동 대표의 경우는 모든 대표자의<br> 메일로 발송되며, 모든 대표자가<br> 확인하고 서명하여야 약정이 체결됩니다.</p></td>
+				<td style="background:white;">
+					<div>
+   					 <input type="text" placeholder="대표자 성명">
+   					 <br><br>
+					 <input type='text' placeholder="대표자 이메일 주소"/>
+					</div>
+				</td>
 			</tr>
 			<tr>
 			<td></td>
 				<td>
 				<button>저장하기</button>
-				<a href="${ contextPath }/FundingOpen6.fd"><button id="next">다음으로 ></button></a>
+				<a href="${ contextPath }/FundingOpen9.fd"><button id="next">다음으로 ></button></a>
 				</td>
 			</tr>
 		</table>
 		</div>
+		<script>
+		function readURL(input) {
+			 if (input.files && input.files[0]) {
+			  var reader = new FileReader();
+			  
+			  reader.onload = function (e) {
+			   $('#image_section').attr('src', e.target.result);  
+			  }
+			  
+			  reader.readAsDataURL(input.files[0]);
+			  }
+			}
+			  
+			$("#imgInput").change(function(){
+			   readURL(this);
+		});
+		</script>
 	
 	<jsp:include page="../common/customer_footer.jsp"/>
 </body>
