@@ -1,5 +1,8 @@
 package com.kh.yc.member.model.service;
 
+import java.util.List;
+
+import javax.inject.Inject;
 import javax.security.auth.login.LoginException;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -9,10 +12,14 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.kh.yc.member.model.dao.MemberDao;
+import com.kh.yc.member.model.dao.MemberDaoImpl;
 import com.kh.yc.member.model.vo.Member;
 
 @Service
 public class MemberServiceImpl implements MemberService {
+	@Inject
+	MemberDaoImpl memberDao;
+	
 	
 	@Autowired
 	private SqlSessionTemplate sqlSession;
@@ -44,5 +51,10 @@ public class MemberServiceImpl implements MemberService {
 		
 		return md.insertMember(sqlSession, m);
 	}
+	
+	
+	
+	
+	
 
 }
