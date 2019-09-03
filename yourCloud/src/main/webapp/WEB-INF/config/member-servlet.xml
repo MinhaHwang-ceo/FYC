@@ -28,6 +28,13 @@
 	
 	<aop:aspectj-autoproxy proxy-target-class="true"/>
 	
+		<!-- 뷰 리졸버에 대한 설정 -->
+	<!-- 위에 있는 뷰 리졸버는 기존에 있는 jsp파일에 대해 view를 보여주는 템플릿 뷰 -->
+	<!-- 밑에 있는 BeanNameViewResolver는 가상의 자원(jasonView)에 대해 논리적 이름을 가지고 view를 지정 -->
+	<beans:bean id="viewResolver" class="org.springframework.web.servlet.view.BeanNameViewResolver">
+		<beans:property name="order" value="1"/>
+	</beans:bean>
+	<beans:bean id="jsonView" class="net.sf.json.spring.web.servlet.view.JsonView"/>
 </beans:beans>
 
 

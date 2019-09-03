@@ -30,14 +30,13 @@
 	</select>
 	<insert id="insertMember" parameterType="Member">
 		INSERT INTO MEMBER
-		VALUES( SEQ_MEMBER.NEXTVAL,#{userName},#{userId}, #{userPwd}, #{email},default,null,null,null,#{gender},#{memberCategory},
+		VALUES( 35,#{userName},#{userId}, #{userPwd}, #{email},default,null,null,null,#{gender},null,
 		1000,#{age},default,#{emailAgree})
 	</insert>
 		<select id="selectPwd" parameterType="java.lang.String" resultType="java.lang.String">
 		SELECT MEMBER_PASSWORD
 		FROM MEMBER
 		WHERE MEMBER_ID = #{userId}
-	
 	</select>
 	
 		

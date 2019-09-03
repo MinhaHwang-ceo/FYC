@@ -15,9 +15,8 @@
 </head>
 
 <body>
-<% System.out.println("넘어오는중"); %>
    <jsp:include page="../common/customer_menubar.jsp"/>
-   <% System.out.println("넘어오는중2"); %>
+   <jsp:include page="../common/customer_menuList.jsp"/>
     <!--Section-1-->
     <section class="section-1">
         <div class="jumbotron d-flex align-items-center">

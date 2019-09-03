@@ -201,7 +201,7 @@
   		<tr>
   			<td>성별</td>
   			<td id="td4">
-  			<input type="checkbox" value="W"  name="gender">여성  &emsp;&emsp;&emsp;&emsp; <input type="checkbox" value="M" name="gender">남성
+  			<input type="checkbox" value="F"  name="gender">여성  &emsp;&emsp;&emsp;&emsp; <input type="checkbox" value="M" name="gender">남성
   			</td>
   		</tr>
   		
