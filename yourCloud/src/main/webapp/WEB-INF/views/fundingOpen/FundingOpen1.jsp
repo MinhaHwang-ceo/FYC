@@ -10,6 +10,7 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  <link href="https://fonts.googleapis.com/css?family=Sunflower:300&display=swap" rel="stylesheet">
 <style>
 	#img {
 		width:500px;
@@ -22,6 +23,10 @@
 		width:200px;
 		height:50px;
 		display: inline; /* the default for span */
+		font-family: 'Sunflower', sans-serif;
+	}
+	body{
+		font-family: 'Sunflower', sans-serif;
 	}
 </style>
 </head>
@@ -31,7 +36,7 @@
 			<img src="<%=request.getContextPath()%>/../yc/resources/images/banner.png" style="height:300px; width:1024px;">	
 		</div>
 		<div id="fbtn">
-			<a href="${ contextPath }/FundingOpen2.me"><button>펀딩 시작하기</button></a>
+			<a href="${ contextPath }/FundingOpen2.fd"><button>펀딩 시작하기</button></a>
 		</div>
 	</div>
 	<h2>&nbsp;니가 그린 구름 그림 리워드란?</h2>
@@ -130,7 +135,7 @@
       </div>
     </div>
   </div>
-  <a href="${ contextPath }/FundingOpen2.me"><button>펀딩 시작하기</button></a>
+  <a href="${ contextPath }/FundingOpen2.fd"><button>펀딩 시작하기</button></a>
 </div>
 <hr>
 </body>

@@ -5,6 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link href="https://fonts.googleapis.com/css?family=Sunflower:300&display=swap" rel="stylesheet">
 <title>펀딩하기</title>
 <style>
 	#box {
@@ -17,6 +18,9 @@
 		margin: 0px auto;
 		width:800px;
 		height:50px;
+	}
+	body{
+		font-family: 'Sunflower', sans-serif;
 	}
 </style>
 </head>
@@ -50,7 +54,7 @@
 		<br><br><br>
 		<hr>
 		<div align="right">
-			<a href="${ contextPath }/FundingOpen4.me"><button id="next">다음으로</button></a>
+			<a href="${ contextPath }/FundingOpen4.fd"><button id="next">다음으로</button></a>
 		</div>
 	</div>
 

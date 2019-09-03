@@ -6,21 +6,29 @@
 <head>
 <meta charset="UTF-8">
 <title>펀딩하기</title>
+<link href="https://fonts.googleapis.com/css?family=Sunflower:300&display=swap" rel="stylesheet">
 <style>
+	body{
+		font-family: 'Sunflower', sans-serif;
+	}
 	#browsers {
 		width:500px;
 		height:50px;
 		font-weight:bolder;
 		font-size: 20px; 
+		font-family: 'Sunflower', sans-serif;
 	}
 	#funding2 {
 		margin: 0px auto;
 		margin-top: 5%;
+		font-family: 'Sunflower', sans-serif;
 	}
 	#next {
 		width:300px;
 		height:40px;
 		margin-left: 35%; 
+		font-family: 'Sunflower', sans-serif;
+		
 	} 
 </style>
 </head>
@@ -47,7 +55,7 @@
 	</select>
 	</div>
 	<hr>
-	<a href="${ contextPath }/FundingOpen3.me"><button id="next">다음으로</button></a>
+	<a href="${ contextPath }/FundingOpen3.fd"><button id="next">다음으로</button></a>
 	</div>
 	<jsp:include page="../common/customer_footer.jsp"/>
 </body>

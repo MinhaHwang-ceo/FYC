@@ -1,17 +1,36 @@
 package com.kh.yc.admin.controller;
 
+import java.util.List;
 import java.util.Locale;
+
+import javax.inject.Inject;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.kh.yc.admin.model.service.AdminService;
+import com.kh.yc.member.model.vo.Member;
+
 @Controller
 public class AdminController {
+	
+	@Inject
+	AdminService AdminService;
+	
+	
+	
+	
+	
 	@RequestMapping(value = "member.ad", method = RequestMethod.GET)
 	public String admin(Locale locale, Model model) {
 		
+		System.out.println("넘어왔다~~~~~~~~~~~~~~");
+		List<Member> list = AdminService.memberList();
+		model.addAttribute("list", list);
+		
+		System.out.println("list : " +  list);
 		return "admin/memberManagement";
 	}
 	
@@ -57,6 +76,7 @@ public class AdminController {
 		
 		return "admin/report";
 	}
+	
 	
 
 }

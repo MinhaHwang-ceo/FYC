@@ -8,7 +8,8 @@
 	<id property="userNo" column="MEMBER_NO"/>
 		<result property="userId" column="MEMBER_ID"/>
 		<result property="userPwd" column="MEMBER_PASSWORD"/>
-		<result property="email" column="MEMBER_NAME"/>
+		<result property="userName" column="MEMBER_NAME"/>
+		<result property="email" column="EMAIL"/>
 		<result property="ssn" column="SSN"/>
 		<result property="companyName" column="COMPANY_NAME"/>
 		<result property="account" column="ACCOUNT"/>
@@ -28,15 +29,21 @@
 	
 	</select>
 	<insert id="insertMember" parameterType="Member">
+	<if test="gender !=null and memberCategory!=null and  age !=null and emailAgree !=null" >
 		INSERT INTO MEMBER
-		VALUES( SEQ_MEMBER.NEXTVAL,#{userName},#{userId}, #{userPwd}, #{email},default,null,null,null,#{gender},#{memberCategory},
+		VALUES( 35,#{userName},#{userId}, #{userPwd}, #{email},default,null,null,null,#{gender},null,
 		1000,#{age},default,#{emailAgree})
+</if>
+	<if test="gender ==null or memberCategory==null or age==null or emailAgree==null" >
+		INSERT INTO MEMBER
+		VALUES( SEQ_MEMBER.NEXTVAL,#{userName},#{userId}, #{userPwd}, #{email},default,null,null,null,null,null,
+		0,null,default,'N')
+</if>
 	</insert>
 		<select id="selectPwd" parameterType="java.lang.String" resultType="java.lang.String">
 		SELECT MEMBER_PASSWORD
 		FROM MEMBER
 		WHERE MEMBER_ID = #{userId}
-	
 	</select>
 	
 		
@@ -47,7 +54,20 @@
 
 	</select>
 	
+		
+	<select id="countId" parameterType="String" resultType="Integer">
+		SELECT COUNT(*)
+		FROM MEMBER
+		WHERE MEMBER_ID= #{userId}
+
+	</select>
+
+	<select id="memberList" resultMap="memberResultSet">
+		SELECT *
+		FROM MEMBER
 	
+	</select>
+
 
 	</mapper>
 	

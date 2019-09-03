@@ -1,8 +1,11 @@
 
 package com.kh.yc.member.controller;
 
+
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.Locale;
+import java.util.Map;
 
 import javax.security.auth.login.LoginException;
 import javax.servlet.http.HttpSession;
@@ -14,10 +17,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.servlet.ModelAndView;
+
 
 import com.github.scribejava.core.model.OAuth2AccessToken;
 import com.github.scribejava.core.model.OAuthRequest;
@@ -42,8 +50,11 @@ public class MemberController {
 	private MemberServiceImpl ms;
 	@Autowired
 	private BCryptPasswordEncoder passwordEncoder;
-	
-	
+	/*
+	 * @Autowired private JavaMailSenderImpl mailsender;
+	 * 
+	 */
+
 	
 	
 	
@@ -69,6 +80,7 @@ public class MemberController {
 		
 		m.setUserPwd(encPassword);
 		
+		System.out.println(m);
 	
 		System.out.println("insertMember : " + m);
 		
@@ -119,7 +131,7 @@ public class MemberController {
 			
 			model.addAttribute("loginUser", loginUser);
 			
-			return "main/main";
+			return "redirect:index.jsp";
 			
 		} catch (LoginException e) {
 			model.addAttribute("msg", e.getMessage());
@@ -135,6 +147,7 @@ public class MemberController {
 		return "member/joinIdPw";
 	}
 	
+
 	// 로그인 첫 화면 요청 메소드
 	//네이버 로그인
 	@RequestMapping(value = "naver.me", method = { RequestMethod.GET, RequestMethod.POST })
@@ -194,7 +207,48 @@ public class MemberController {
 		
 }
 
+	@RequestMapping("logout.me")
+	public String logout(SessionStatus status) {
+		status.setComplete();
+		
+		return "redirect:index.jsp";
+	}
 
+	@RequestMapping("logout.me")
+	public String logout(SessionStatus status) {
+		
+		status.setComplete();
+		
+		return "main/main";
+	}
 
 	
+	 @RequestMapping("duplicationCheck.me")
 	
+	    public ModelAndView CheckDuplication(String userId,ModelAndView model) {
+			
+		 System.out.println("userId:"+userId);
+		 
+			String checkRst="";
+			int idCnt = ms.CheckDuplication(userId);
+			System.out.println("idCnt"+idCnt);
+			if(idCnt > 0) {
+			 
+				checkRst = "F";
+				
+				}else {
+				checkRst = "S";
+			}
+			
+			System.out.println("checkRst"+checkRst);
+			
+			model.addObject("checkRst",checkRst);
+			
+			model.setViewName("jsonView");
+			
+			System.out.println(model);
+			return model;
+		}
+	
+}
+
