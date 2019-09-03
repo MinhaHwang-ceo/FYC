@@ -5,6 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>니가그린구름그림</title>
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> -->
   	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,600,700,800" rel="stylesheet">
@@ -12,6 +13,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/animate.css">
     <link href="${pageContext.request.contextPath}/resources/css/main.css" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css?family=Gothic+A1&display=swap" rel="stylesheet">
+
   <style>
   .outer{
   
@@ -50,7 +52,7 @@
   </style>
 </head>
 <body>
-<jsp:include page="../common/customer_menubar.jsp"/><br><br>
+ <jsp:include page="../common/customer_menubar.jsp"/><br><br> 
 <!-- 전체div -->
 <div class="outer">
   <h2><b>회원가입</b></h2>
@@ -142,8 +144,8 @@
   			
    		<tr>
   			<td>*아이디</td>
-  			<td><input type="text" name="userId" class="td2" required></td>
-  			<td><button id="td3" class="btn btn-info">중복</button></td>
+  			<td><input type="text" name="userId" class="td2" id="userId" required></td>
+  			<td><button onclick="return duplicationCheck();" class="btn btn-info" >중복</button></td>
   		</tr> 		
   		
   		<tr><td><br></td></tr>
@@ -164,16 +166,16 @@
   		
     	<tr>
   			<td>*이메일</td>
-  			<td><input type="text" name="email" class="td2" required></td>
-  			<td><button id="td3" class="btn btn-info">인증요청</button></td>
+  			<td><input type="text" name="email" class="td2" id="inputEmail" required></td>
+  			<td><button id="mailbtn" class="btn btn-info" >인증요청</button></td>
   		</tr>   		
 
   		<tr><td><br></td></tr> 
   	
   		<tr>
   			<td>인증번호</td>
-  			<td><input type="text" name="" class="td2" required></td>
-  			<td><button class="td3" class="btn btn-info">확인</button></td>
+  			<td><input type="text" name="" class="td2" id="randomNum" required></td>
+  			<td><button  class="btn btn-info"  id="pushNum">확인</button></td>
   		</tr>
   		
   		<tr><td><br></td></tr> 
@@ -201,7 +203,7 @@
   		<tr>
   			<td>성별</td>
   			<td id="td4">
-  			<input type="checkbox" value="W"  name="gender">여성  &emsp;&emsp;&emsp;&emsp; <input type="checkbox" value="M" name="gender">남성
+  			<input type="checkbox" value="F"  name="gender">여성  &emsp;&emsp;&emsp;&emsp; <input type="checkbox" value="M" name="gender">남성
   			</td>
   		</tr>
   		
@@ -229,7 +231,6 @@
 
   		<tr><td><br></td></tr>  
   		
-  		<input type="hidden" name>
   		
   		
   		
@@ -246,10 +247,41 @@
   
   
   
-  
   <br><br><br><br>
 
 </div>    
-<jsp:include page="../common/customer_footer.jsp"/>
+<script>
+		function duplicationCheck(){
+			var userId = $("#userId").val();
+			
+			console.log(userId);
+			
+			$.ajax({
+				url:"duplicationCheck.me",
+				type:"post",
+				data:{userId:userId},
+				success:function(data) {
+					console.log(data);
+		if(data.checkRst=="F"){
+			
+			alert('이미 존재하는 아이디 입니다 다시 입력해 주세요')
+			
+		}else{
+			
+			alert('가입 가능한 아이디 입니다. 가입을 진행해 주세요')
+		}
+					
+				},
+				error:function(err) {
+					console.log("실패!");
+				}
+			});
+			
+			
+			return false;
+		}
+	</script>
+	
+ <jsp:include page="../common/customer_footer.jsp"/>
 </body>
 </html>

@@ -19,5 +19,12 @@ public interface MemberDao {
 
 	int insertBoard(SqlSessionTemplate sqlSession);
 
+	void GetKey(String user_id, String key);
 
+	int countId(SqlSessionTemplate sqlSession, String userId);
+	/*
+	 * String countId(SqlSessionTemplate sqlSession, Member m);
+	 */
+
+	int CheckDuplication(SqlSessionTemplate sqlSession,String inputId);
 }

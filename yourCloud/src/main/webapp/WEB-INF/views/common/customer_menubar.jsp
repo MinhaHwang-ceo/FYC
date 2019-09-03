@@ -91,12 +91,26 @@ document.addEventListener("scroll",fx_Floating);
 <nav class="navbar navbar-expand-sm " >
        <div class="right-box" id="navbar3" >
                 <ul class="navbar-nav">
+                <c:if test="${ empty sessionScope.loginUser }">
                     <li >
                        <a class="nav-link" href="loginMain.me">로그인 </a>
                     </li>
+                   
+                    
                      <li >
                        <a class="nav-link" href="joinMain.me">회원가입 </a>
                     </li>
+                     </c:if>
+                            <c:if test="${ !empty sessionScope.loginUser }">
+                                 <li >
+                       <a class="nav-link" href="logout.me">로그아웃 </a>
+                    </li>
+                   
+                    
+                     <li >
+                       <a class="nav-link" href="joinMain.me">마이페이지 </a>
+                    </li>
+                    </c:if>
                     <li >
                        <a class="nav-link" href="${ contextPath }/FundingOpen.me">펀딩 오픈하기</a>
                     </li>

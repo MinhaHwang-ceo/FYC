@@ -9,5 +9,7 @@ public interface MemberService {
 	Member loginMember(Member m) throws LoginException;
 
 	int insertMember(Member m);
+	
+	public int CheckDuplication(String inputId);
 
 }

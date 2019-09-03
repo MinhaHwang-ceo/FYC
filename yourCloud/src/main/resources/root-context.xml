@@ -20,7 +20,7 @@
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
 		destroy-method="close">
 		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
-		<property name="url" value="jdbc:oracle:thin:@127.0.0.1:1521:xe"/>
+		<property name="url" value="jdbc:oracle:thin:@localhost:1521:xe"/>
 		<property name="username" value="CLOUD"/>
 		<property name="password" value="CLOUD"/>
 		<property name="defaultAutoCommit" value="false"/>
@@ -51,3 +51,6 @@
 			advice-ref="txAdvice"/>
 	</aop:config>
 </beans>
+
+
+

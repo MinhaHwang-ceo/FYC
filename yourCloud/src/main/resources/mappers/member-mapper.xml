@@ -28,9 +28,16 @@
 	
 	</select>
 	<insert id="insertMember" parameterType="Member">
+	<if test="gender !=null and memberCategory!=null and  age !=null and emailAgree !=null" >
 		INSERT INTO MEMBER
 		VALUES( SEQ_MEMBER.NEXTVAL,#{userName},#{userId}, #{userPwd}, #{email},default,null,null,null,#{gender},#{memberCategory},
 		1000,#{age},default,#{emailAgree})
+</if>
+	<if test="gender ==null or memberCategory==null or age==null or emailAgree==null" >
+		INSERT INTO MEMBER
+		VALUES( SEQ_MEMBER.NEXTVAL,#{userName},#{userId}, #{userPwd}, #{email},default,null,null,null,null,null,
+		0,null,default,'N')
+</if>
 	</insert>
 		<select id="selectPwd" parameterType="java.lang.String" resultType="java.lang.String">
 		SELECT MEMBER_PASSWORD
@@ -47,7 +54,13 @@
 
 	</select>
 	
-	
+		
+	<select id="countId" parameterType="String" resultType="Integer">
+		SELECT COUNT(*)
+		FROM MEMBER
+		WHERE MEMBER_ID= #{userId}
+
+	</select>
 
 	</mapper>
 	

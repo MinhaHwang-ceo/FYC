@@ -28,6 +28,52 @@
 	
 	<aop:aspectj-autoproxy proxy-target-class="true"/>
 	
+	<!-- 파일 업로드를 하기 위해 bean 등록 -->
+	<beans:bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<beans:property name="maxUploadSize" value="10000000"/>
+	</beans:bean>
+	
+
+	
+	   <beans:bean id="viewResolver" class="org.springframework.web.servlet.view.BeanNameViewResolver">
+      <beans:property name="order" value="1"/>
+   </beans:bean>
+   
+   
+   <beans:bean id="jsonView" class="net.sf.json.spring.web.servlet.view.JsonView"/>
+   
+	
+	<!-- 뷰 리졸버에 대한 설정 -->
+	<!-- 위에 설정한 뷰 리졸버는 기존에 있는 jsp에 대해 view를 보여주는 템플릿 뷰 -->
+	<!-- 여기 설정한 BeanNameViewResolver는 없는 자원에 대해서 논리적 이름을 가지고 view를 지정 -->
+	<beans:bean id="viewResolver"
+		class="org.springframework.web.servlet.view.BeanNameViewResolver">
+		<beans:property name="order" value="1"/>
+	</beans:bean>
+	
+	
+	
+	
+	
+<!-- <beans:bean id="javaMailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+		<beans:property name="host" value="smtp.gmail.com" />
+		<beans:property name="port" value="587" />
+		<beans:property name="username" value="dhtnwjd6350" />
+		<beans:property name="password" value="dh47733!" />
+		<beans:property name="javaMailProperties">
+			<beans:props>
+				<beans:prop key="mail.smtp.ssl.trust">smtp.gmail.com</beans:prop>
+				<beans:prop key="mail.smtp.starttls.enable">true</beans:prop>
+				<beans:prop key="mail.smtp.auth">true</beans:prop>
+			</beans:props>
+		</beans:property>
+	</beans:bean>
+	<beans:bean id="mailService" class="com.co.kr.common.mail.service.impl.MailServiceImpl">
+		<beans:property name="javaMailSender" ref="javaMailSender" />
+	</beans:bean>
+	 -->
+	
 </beans:beans>
 
 
