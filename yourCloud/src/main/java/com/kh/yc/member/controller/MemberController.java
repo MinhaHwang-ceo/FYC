@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
 
 import com.kh.yc.member.model.service.MemberServiceImpl;
 import com.kh.yc.member.model.vo.Member;
@@ -48,6 +49,7 @@ public class MemberController {
 		
 		m.setUserPwd(encPassword);
 		
+		System.out.println(m);
 	
 		System.out.println("insertMember : " + m);
 		
@@ -98,7 +100,7 @@ public class MemberController {
 			
 			model.addAttribute("loginUser", loginUser);
 			
-			return "main/main";
+			return "redirect:index.jsp";
 			
 		} catch (LoginException e) {
 			model.addAttribute("msg", e.getMessage());
@@ -114,6 +116,11 @@ public class MemberController {
 		return "member/joinIdPw";
 	}
 	
-	
+	@RequestMapping("logout.me")
+	public String logout(SessionStatus status) {
+		status.setComplete();
+		
+		return "redirect:index.jsp";
+	}
 
 }
