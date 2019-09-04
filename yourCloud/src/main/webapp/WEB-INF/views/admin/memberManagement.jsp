@@ -260,20 +260,20 @@
                   <tbody>
                   <c:forEach var="row" items="${list}">
                   <tr>
-                  	<td onclick="member_click();">${row.userNo}</td>
-                  	<td onclick="member_click();">${row.userName}</td>
-                  	<td onclick="member_click();">${row.userId}</td>
-                  	<td onclick="member_click();">${row.memberDiv}</td>
+                  	<td onclick="window.open('${pageContext.request.contextPath}/memberView.ad?userNo=${row.userNo}', 'PopupWin', 'width=500,height=600');">${row.userNo}</td>
+                  	<td>${row.userName}</td>
+                  	<td>${row.userId}</td>
+                  	<td>${row.memberDiv}</td>
                   	<c:set value="${row.status}" var="status" scope="session"/>
                   		<c:choose>
                   			<c:when test="${ status eq 'N' }">
                   				<td>정상</td>
                   			</c:when>
-                  			<c:otherwise>
+                  			<c:when test="${ status eq 'Y' }">
                   				<td>정지</td>
-                  			</c:otherwise>
+                  			</c:when>
                   		</c:choose>
-                  	<td><input type="button" id="st" onclick="st_click();" value="상태변경"></td>
+                  	<td><input type="button" id="st" onclick="window.open('${pageContext.request.contextPath}/memberStatus.ad?userNo=${row.userNo}', 'PopupWin', 'width=500,height=600');" value="상태변경"></td>
                   </tr>
                   
                   </c:forEach>
@@ -396,13 +396,14 @@
 
   <script>
 		function st_click() {
-			alert("상태변경");
+			
+			var win = window.open("${pageContext.request.contextPath}/project7.ad", "PopupWin", "width=300,height=150");
+
 		}
 		
 		
 		function member_click(){
-			alert("회원정보");
-			
+			var win = window.open("${pageContext.request.contextPath}/memberView.ad?userNo=${row.userNo}", "PopupWin", "width=500,height=600");
 		}
 	</script>
 

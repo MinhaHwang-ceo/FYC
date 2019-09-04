@@ -5,8 +5,11 @@ import java.util.Locale;
 
 import javax.inject.Inject;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -19,8 +22,7 @@ public class AdminController {
 	@Inject
 	AdminService AdminService;
 	
-	
-	
+	private static final Logger logger = LoggerFactory.getLogger(AdminController.class);
 	
 	
 	@RequestMapping(value = "member.ad", method = RequestMethod.GET)
@@ -33,6 +35,39 @@ public class AdminController {
 		System.out.println("list : " +  list);
 		return "admin/memberManagement";
 	}
+	
+	@RequestMapping(value = "memberUpdate.ad")
+	public String memberUpdate(@ModelAttribute Member vo , Model model) {
+		
+		System.out.println("memberVo : " + vo);
+		System.out.println("유저상태2222222222" + vo.getStatus());
+		
+		AdminService.updateMember(vo);
+		
+		
+		
+		return "redirect:/memberStatus.ad";
+	}
+	
+	@RequestMapping(value = "memberStatus.ad", method = RequestMethod.GET)
+	public String admin9(String userNo, Model model) {
+		
+		model.addAttribute("dto", AdminService.viewMember(userNo));
+		
+		System.out.println("유저번호" + userNo);
+		return "admin/MemberStatus";
+	}
+	
+	@RequestMapping(value = "memberView.ad", method = RequestMethod.GET)
+	public String admin1(String userNo, Model model) {
+		
+		model.addAttribute("dto", AdminService.viewMember(userNo));
+		
+		System.out.println("유저번호" + userNo);
+		return "admin/viewMember";
+	}
+	
+	
 	
 	@RequestMapping(value = "main.ad", method = RequestMethod.GET)
 	public String admin2(Locale locale, Model model) {

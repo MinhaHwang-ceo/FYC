@@ -1,17 +1,24 @@
 package com.kh.yc.funding.controller;
 
+import java.io.IOException;
 import java.util.Locale;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.kh.yc.member.model.vo.Member;
-
+import com.siot.IamportRestClient.IamportClient;
+import com.siot.IamportRestClient.exception.IamportResponseException;
+import com.siot.IamportRestClient.response.AccessToken;
+import com.siot.IamportRestClient.response.IamportResponse;
+@CrossOrigin(origins="*")
 @Controller
 public class FundingController {
+	private IamportClient client;
+
 	@RequestMapping(value = "FundingOpen.fd", method = RequestMethod.GET)
 	public String FundingOpen(Locale locale, Model model) {
 		
@@ -63,6 +70,7 @@ public class FundingController {
 	public String FundingOpen9(Locale locale, Model model) {
 		
 		return "fundingOpen/FundingOpen9";
+	}
 
 	@RequestMapping("payTest.fd")
 	public String payTest() {
@@ -70,16 +78,44 @@ public class FundingController {
 		return "fundingOpen/payTest";
 	}
 	
-	@RequestMapping("paySuccess.fd")
-	public ModelAndView paySuccess(String customer_uid, ModelAndView mv) {
-		System.out.println("Hello");
+	
+	@RequestMapping("getToken.fd")
+	public ModelAndView getToken(String imp_key, String imp_secret,ModelAndView mv) {
+		System.out.println(imp_key);
+		System.out.println(imp_secret);
 		
-		mv.addObject("customer_uid", customer_uid);
-		mv.setViewName("jsonView");
-		// view resolver에 대한 설정 해야함(서블릿에)
-		// 이거로 리턴하면 알아서 아 이건 ajax로 리턴하는구나 라고 인식하고 ajax로 보냄
-		// 406이나 이상한 에러 나면 그냥 잘라내기 붙여넣기 하고 다시 실행하면 됌.
-		return mv;
+		String api_key = imp_key;
+		String api_secret = imp_secret;
 
+		client = new IamportClient(api_key, api_secret);
+		
+		try {
+			IamportResponse<AccessToken> auth_response = client.getAuth();
+			System.out.println(auth_response);
+			
+			
+		} catch (IamportResponseException e) {
+			// TODO Auto-generated catch block
+			System.out.println(e.getMessage());
+			
+			switch(e.getHttpStatusCode()) {
+			case 401 :
+				//TODO
+				System.out.println(401);
+				break;
+			case 500 :
+				//TODO
+				System.out.println(500);
+				break;
+			}
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		mv.setViewName("jsonView");
+		
+		return mv;
 	}
 }

@@ -108,11 +108,14 @@ document.addEventListener("scroll",fx_Floating);
                    
                     
                      <li >
-                       <a class="nav-link" href="joinMain.me">마이페이지 </a>
+                       <a class="nav-link" href="myPage.me">마이페이지 </a>
                     </li>
                     </c:if>
                     <li >
-                       <a class="nav-link" href="${ contextPath }/FundingOpen.me">펀딩 오픈하기</a>
+                       <a class="nav-link" href="${ contextPath }/FundingOpen.fd">펀딩 오픈하기</a>
+                    </li>
+                    <li >
+                       <a class="nav-link" href="${ contextPath }/main.ad">(임시) 관리자페이지</a>
                     </li>
                     
                     
@@ -157,7 +160,7 @@ document.addEventListener("scroll",fx_Floating);
    
     <span class="position-absolute trigger"><!-- hidden trigger to apply 'stuck' styles --></span>
     <nav class="navbar navbar-expand-sm sticky-top navbar-dark">
-    
+
         <div class="container">
             <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbar1">
             <span class="navbar-toggler-icon"></span>
@@ -168,7 +171,7 @@ document.addEventListener("scroll",fx_Floating);
                         <a class="nav-link active" href="index.html">리워드 홈</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">카테고리</a>
+                        <a class="nav-link" href="category.bo">카테고리</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="intro">회사소개</a>
@@ -188,6 +191,7 @@ document.addEventListener("scroll",fx_Floating);
                
             </div>
         </div>
+
         <!--container end-->
          <!--   플로팅 메뉴 -->
    <div id="floating" class=" float-top "  style="border:1px solid darkgray;"> 
