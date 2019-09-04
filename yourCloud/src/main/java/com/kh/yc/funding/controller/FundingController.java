@@ -63,6 +63,7 @@ public class FundingController {
 	public String FundingOpen9(Locale locale, Model model) {
 		
 		return "fundingOpen/FundingOpen9";
+	}
 
 	@RequestMapping("payTest.fd")
 	public String payTest() {

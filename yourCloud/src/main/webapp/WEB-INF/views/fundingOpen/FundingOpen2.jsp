@@ -34,6 +34,7 @@
 </head>
 <body>
 	<jsp:include page="../common/customer_menubar.jsp"/>
+	<jsp:include page="../common/customer_menuList.jsp"/>
 	<div id="funding2">
 	<h1 align="center">어떤 분야의 프로젝트를 진행할 예정인가요?</h1>
 	<h4 align="center">진행하려는 프로젝트에 적합하거나 가장 유사한 카테고리를 선택하세요.<br>
@@ -44,14 +45,14 @@
 	    <option value="카테고리 선택하기">카테고리 선택하기</option>
 	    <option value="테크-가전">테크-가전</option>
 	    <option value="패션-잡화">패션-잡화</option>
-	    <option value="뷰티">뷰티</option>
-	    <option value="푸드">푸드</option>
-	    <option value="홈리빙">홈리빙</option>
 	    <option value="키즈">키즈</option>
 	    <option value="여행-레저">여행-레저</option>
-	    <option value="스포츠">스포츠</option>
-	    <option value="반려동물">반려동물</option>
+	    <option value="뷰티">뷰티</option>
 	    <option value="도서">도서</option>
+	    <option value="반려동물">반려동물</option>
+	    <option value="스포츠">스포츠</option>
+	    <option value="푸드">푸드</option>
+	    <option value="홈리빙">홈리빙</option>
 	</select>
 	</div>
 	<hr>

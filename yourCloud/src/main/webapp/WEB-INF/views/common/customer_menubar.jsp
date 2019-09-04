@@ -112,7 +112,7 @@ document.addEventListener("scroll",fx_Floating);
                     </li>
                     </c:if>
                     <li >
-                       <a class="nav-link" href="${ contextPath }/FundingOpen.me">펀딩 오픈하기</a>
+                       <a class="nav-link" href="${ contextPath }/FundingOpen.fd">펀딩 오픈하기</a>
                     </li>
                     
                     
@@ -168,7 +168,7 @@ document.addEventListener("scroll",fx_Floating);
                         <a class="nav-link active" href="index.html">리워드 홈</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">카테고리</a>
+                        <a class="nav-link" href="category.bo">카테고리</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="intro">회사소개</a>
