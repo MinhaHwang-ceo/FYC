@@ -1,8 +1,7 @@
-
 package com.kh.yc.member.controller;
 
-
 import java.io.IOException;
+
 import java.io.UnsupportedEncodingException;
 
 import javax.mail.Authenticator;
@@ -12,6 +11,8 @@ import javax.mail.PasswordAuthentication;
 
 import java.util.Locale;
 import java.util.Properties;
+import java.util.Locale;
+
 
 import javax.mail.Session;
 import javax.mail.Transport;
@@ -42,6 +43,7 @@ import com.kh.yc.member.model.vo.Member;
 @Controller
 @SessionAttributes("loginUser")
 public class MemberController {
+
    //네이버 로그인 BO
    private NaverLoginBO naverLoginBO;
    private String apiResult = null;
@@ -328,6 +330,7 @@ public class MemberController {
 	}
 
 
+		System.out.println("nickname nickname : " + nickname);
 
 	private String RandomNum() {
 StringBuffer buffer= new StringBuffer();
@@ -341,5 +344,5 @@ for(int i=0;i<=6;i++) {
   
     
     
-   
+ 
 }

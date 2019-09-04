@@ -17,13 +17,13 @@ public interface AdminDao {
 	public List<Member> memberList(SqlSessionTemplate sqlSession);
 	
 	//회원 정보 상세보기
-	public Member viewMember();
+	public Member viewMember(SqlSessionTemplate sqlSession, String userNo);
 	
 	// 회원 삭제
 	public void deleteMember(String userId);
 	
 	//회원 정보 수정
-	public void updateMember(Member vo);
+	public void updateMember(SqlSessionTemplate sqlSession,Member vo );
 
 	
 	

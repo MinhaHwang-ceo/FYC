@@ -160,7 +160,7 @@
                <table>
                   <tr>
                      <input type="hidden" value=""/>
-                     <td class="projectImgs"><img src="${ contextPath }/resources/images/rank1.PNG" alt="" /></td>
+                     <td class="projectImgs"><a href="${ contextPath }/categoryOne.ca"><img src="${ contextPath }/resources/images/rank1.PNG" alt=""/></a></td>
                   </tr>
                   <tr>
                      <td class="projectTitles"><c:out value="gd"/></td>
@@ -174,7 +174,7 @@
                <table>
                   <tr>
                      <input type="hidden" value=""/>
-                     <td class="projectImgs"><img src="${ contextPath }/resources/images/rank1.PNG" alt="" /></td>
+                      <td class="projectImgs"><a href="${ contextPath }/categoryOne.ca"><img src="${ contextPath }/resources/images/book.PNG" alt=""/></a></td>
                   </tr>
                   <tr>
                      <td class="projectTitles"><c:out value="gd"/></td>

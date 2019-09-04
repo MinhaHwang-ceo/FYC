@@ -377,7 +377,7 @@ s				</div>
 				</p>
 			</div>
 			<div class="">
-				<button onclick="backMoney" class="btn-funding">펀딩하기</button>
+				<a href="${ contextPath }/funding_1.bo"><button onclick="backMoney" class="btn-funding">펀딩하기</button></a>
 			</div>
 			<br />
 			<div class=btn-wrap>

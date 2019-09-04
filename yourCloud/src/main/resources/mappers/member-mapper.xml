@@ -67,6 +67,19 @@
 		FROM MEMBER
 	
 	</select>
+	
+	<select id="viewMember" resultMap="memberResultSet">
+		SELECT *
+		FROM MEMBER
+		WHERE MEMBER_NO= #{userNo}
+	
+	</select>
+	
+	<select id="updateMember" resultMap="memberResultSet">
+		UPDATE MEMBER
+		SET STATUS = #{status}
+		WHERE MEMBER_NO= #{userNo}
+	</select>
 
 
 	</mapper>

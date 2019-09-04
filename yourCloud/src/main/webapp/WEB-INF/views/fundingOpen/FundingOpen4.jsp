@@ -117,6 +117,7 @@ td {
 </style>
 </head>
 	<jsp:include page="../common/customer_menubar.jsp"/>
+	<jsp:include page="../common/customer_menuList.jsp"/>
 	<br>
 	<div>
 	<div id="menu">
