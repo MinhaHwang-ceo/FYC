@@ -135,7 +135,7 @@ h3 {
 				</c:otherwise>
 			 </c:choose>
 			<script type="text/javascript">
-				var url = $("a").atrt("href");
+				var url = $("a").attr("href");
 
 				console.log(url);
 			</script>
