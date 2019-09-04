@@ -112,7 +112,7 @@ document.addEventListener("scroll",fx_Floating);
                     </li>
                     </c:if>
                     <li >
-                       <a class="nav-link" href="${ contextPath }/FundingOpen.me">펀딩 오픈하기</a>
+                       <a class="nav-link" href="${ contextPath }/FundingOpen.fd">펀딩 오픈하기</a>
                     </li>
                     
                     
@@ -157,7 +157,38 @@ document.addEventListener("scroll",fx_Floating);
    
     <span class="position-absolute trigger"><!-- hidden trigger to apply 'stuck' styles --></span>
     <nav class="navbar navbar-expand-sm sticky-top navbar-dark">
-    
+
+        <div class="container">
+            <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbar1">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+            <div class="collapse navbar-collapse" id="navbar1">
+                <ul class="navbar-nav">
+                    <li class="nav-item active">
+                        <a class="nav-link active" href="index.html">리워드 홈</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="category.bo">카테고리</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="intro">회사소개</a>
+                    </li>
+                       <li class="nav-item">
+                        <a class="nav-link" href="notice.bo">공지사항</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="guide.bo">이용가이드</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="openExpectation.bo">오픈예정</a>
+                    </li>
+                   
+                   
+                </ul>
+               
+            </div>
+        </div>
+
         <!--container end-->
          <!--   플로팅 메뉴 -->
    <div id="floating" class=" float-top "  style="border:1px solid darkgray;"> 

@@ -71,6 +71,7 @@ public class FundingController {
 		
 		return "fundingOpen/FundingOpen9";
 	}
+
 	@RequestMapping("payTest.fd")
 	public String payTest() {
 		
