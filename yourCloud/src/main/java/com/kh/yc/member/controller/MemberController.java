@@ -57,22 +57,22 @@ public class MemberController {
 
 	
 	
-	
-	
-	
-	  @RequestMapping(value = "loginMain.me", method = RequestMethod.GET) public
-	  String home(Locale locale, Model model) {
-	  
-	  return "member/loginMain";
-	  
+	/*
+	 * @RequestMapping(value = "loginMain.me", method = RequestMethod.GET) public
+	 * String home(Locale locale, Model model) {
+	 * 
+	 * return "member/loginMain";
+	 * 
+	 * }
+	 */
+	 
+	 
+	  @RequestMapping(value = "joinMain.me", method = RequestMethod.GET)
+	  public String join(Locale locale, Model model) {
+		  
+		  return "member/joinMain";
 	  }
 	 
-	 
-	 
-	 
-	 
-	
-
 	@RequestMapping(value = "joinInput.me", method = RequestMethod.POST)
 	public String joinIdPw(Member m, Model model) {
 		String encPassword = passwordEncoder.encode(m.getUserPwd());
@@ -92,8 +92,6 @@ public class MemberController {
 			model.addAttribute("msg", "회원 가입 실패!");
 			return "common/errorPage";
 		}
-	
-		
 	
 	}
 	
@@ -121,10 +119,9 @@ public class MemberController {
 		return "member/resetPw";
 	}
 	
+	
 	@RequestMapping(value="login.me")
 	public String loginCheck(Member m, Model model) {
-		
-
 		
 		try {
 			Member loginUser = ms.loginMember(m);
@@ -147,10 +144,9 @@ public class MemberController {
 		return "member/joinIdPw";
 	}
 	
-
 	// 로그인 첫 화면 요청 메소드
 	//네이버 로그인
-	@RequestMapping(value = "naver.me", method = { RequestMethod.GET, RequestMethod.POST })
+	@RequestMapping(value = "loginMain.me", method = { RequestMethod.GET, RequestMethod.POST })
 		public String login(Model model, HttpSession session) {
 	
 	
@@ -198,14 +194,14 @@ public class MemberController {
 		//4.파싱 닉네임 세션으로 저장
 		session.setAttribute("sessionId",nickname); //세션 생성
 		model.addAttribute("result", apiResult);
-		
+		System.out.println("apiResult : "  + apiResult);
 		//네이버 로그인 성공페이지 view 호출
 		return "member/testLogin";
 	}
 	
 	
 		
-}
+
 
 	@RequestMapping("logout.me")
 	public String logout(SessionStatus status) {
@@ -214,13 +210,7 @@ public class MemberController {
 		return "redirect:index.jsp";
 	}
 
-	@RequestMapping("logout.me")
-	public String logout(SessionStatus status) {
-		
-		status.setComplete();
-		
-		return "main/main";
-	}
+	
 
 	
 	 @RequestMapping("duplicationCheck.me")

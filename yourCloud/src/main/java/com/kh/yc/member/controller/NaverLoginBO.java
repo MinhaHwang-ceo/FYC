@@ -70,6 +70,8 @@ public class NaverLoginBO {
 	/* Scribe에서 제공하는 AccessToken 획득 기능으로 네아로 Access Token을 획득 */
 
 	OAuth2AccessToken accessToken = oauthService.getAccessToken(code);
+	
+	System.out.println("accessToken : " + accessToken);
 		return accessToken;
 
 	}
