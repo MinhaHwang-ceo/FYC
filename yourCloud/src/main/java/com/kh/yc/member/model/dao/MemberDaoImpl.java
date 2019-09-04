@@ -67,7 +67,7 @@ public class MemberDaoImpl implements MemberDao{
 			// TODO Auto-generated method stub
 			return 0;
 		}
-
+	
 	}
 	
 	
