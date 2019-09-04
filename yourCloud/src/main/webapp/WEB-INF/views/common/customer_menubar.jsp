@@ -114,6 +114,9 @@ document.addEventListener("scroll",fx_Floating);
                     <li >
                        <a class="nav-link" href="${ contextPath }/FundingOpen.fd">펀딩 오픈하기</a>
                     </li>
+                    <li >
+                       <a class="nav-link" href="${ contextPath }/main.ad">(임시) 관리자페이지</a>
+                    </li>
                     
                     
                 </ul>

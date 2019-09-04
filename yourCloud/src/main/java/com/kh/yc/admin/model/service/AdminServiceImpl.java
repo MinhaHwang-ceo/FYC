@@ -38,9 +38,8 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 	@Override
-	public Member viewMember() {
-		// TODO Auto-generated method stub
-		return null;
+	public Member viewMember(String userNo) {
+		return AdminDao.viewMember(sqlSession, userNo);
 	}
 
 	@Override
@@ -51,6 +50,8 @@ public class AdminServiceImpl implements AdminService {
 	@Override
 	public void updateMember(Member vo) {
 		
+		System.out.println("memberVo3 : " + vo);
+		AdminDao.updateMember(sqlSession, vo);
 	}
 	
 	
