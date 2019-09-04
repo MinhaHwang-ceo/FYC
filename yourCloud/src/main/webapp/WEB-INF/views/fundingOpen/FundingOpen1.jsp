@@ -22,7 +22,7 @@
 		margin-bottom: 10%;
 		width:200px;
 		height:50px;
-		display: inline; /* the default for span */
+		display: inline;
 		font-family: 'Sunflower', sans-serif;
 	}
 	body{
@@ -30,8 +30,9 @@
 	}
 </style>
 </head>
-<body>
+<body> 
 	<div>
+	
 		<div id="img">
 			<img src="<%=request.getContextPath()%>/../yc/resources/images/banner.png" style="height:300px; width:1024px;">	
 		</div>
