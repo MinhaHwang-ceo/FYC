@@ -46,6 +46,23 @@ public class MemberController {
 	 * 
 	 */
 
+
+	/*
+	 * @RequestMapping(value = "loginMain.me", method = RequestMethod.GET) public
+	 * String home(Locale locale, Model model) {
+	 * 
+	 * return "member/loginMain";
+	 * 
+	 * }
+	 */
+	 
+	 
+	  @RequestMapping(value = "joinMain.me", method = RequestMethod.GET)
+	  public String join(Locale locale, Model model) {
+		  
+		  return "member/joinMain";
+	  }
+
 	@RequestMapping(value = "loginMain.me", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
 
@@ -98,9 +115,10 @@ public class MemberController {
 		return "member/resetPw";
 	}
 
-	@RequestMapping(value = "login.me")
+	
+	@RequestMapping(value="login.me")
 	public String loginCheck(Member m, Model model) {
-
+		
 		try {
 			Member loginUser = ms.loginMember(m);
 
@@ -121,11 +139,13 @@ public class MemberController {
 		return "member/joinIdPw";
 	}
 
+	
 	// 로그인 첫 화면 요청 메소드
-	// 네이버 로그인
-	@RequestMapping(value = "naver.me", method = { RequestMethod.GET, RequestMethod.POST })
-	public String login(Model model, HttpSession session) {
-
+	//네이버 로그인
+	@RequestMapping(value = "loginMain.me", method = { RequestMethod.GET, RequestMethod.POST })
+		public String login(Model model, HttpSession session) {
+	
+	
 		/* 네이버아이디로 인증 URL을 생성하기 위하여 naverLoginBO클래스의 getAuthorizationUrl메소드 호출 */
 		String naverAuthUrl = naverLoginBO.getAuthorizationUrl(session);
 		// https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=sE***************&
@@ -170,9 +190,12 @@ public class MemberController {
 		session.setAttribute("sessionId", nickname); // 세션 생성
 		model.addAttribute("result", apiResult);
 
-		// 네이버 로그인 성공페이지 view 호출
+		System.out.println("apiResult : "  + apiResult);
+		//네이버 로그인 성공페이지 view 호출
 		return "member/testLogin";
 	}
+	
+
 
 	@RequestMapping("logout.me")
 	public String logout(SessionStatus status) {
@@ -180,6 +203,7 @@ public class MemberController {
 
 		return "redirect:index.jsp";
 	}
+
 
 	@RequestMapping("duplicationCheck.me")
 
@@ -191,6 +215,7 @@ public class MemberController {
 		int idCnt = ms.CheckDuplication(userId);
 		System.out.println("idCnt" + idCnt);
 		if (idCnt > 0) {
+
 
 			checkRst = "F";
 
@@ -208,9 +233,5 @@ public class MemberController {
 		return model;
 	}
 
-	@RequestMapping(value = "joinMain.me", method = RequestMethod.GET)
-	public String join(Locale locale, Model model) {
 
-		return "member/joinMain";
-	}
 }
