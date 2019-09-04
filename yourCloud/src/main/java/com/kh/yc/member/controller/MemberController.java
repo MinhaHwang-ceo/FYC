@@ -330,7 +330,6 @@ public class MemberController {
 	}
 
 
-		System.out.println("nickname nickname : " + nickname);
 
 	private String RandomNum() {
 StringBuffer buffer= new StringBuffer();
