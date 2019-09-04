@@ -1,11 +1,8 @@
 
 package com.kh.yc.member.controller;
 
-
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.Locale;
-import java.util.Map;
 
 import javax.security.auth.login.LoginException;
 import javax.servlet.http.HttpSession;
@@ -17,18 +14,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 
-
 import com.github.scribejava.core.model.OAuth2AccessToken;
-import com.github.scribejava.core.model.OAuthRequest;
 import com.kh.yc.member.model.service.MemberServiceImpl;
 import com.kh.yc.member.model.vo.Member;
 
@@ -67,7 +60,11 @@ public class MemberController {
 	  
 	  }
 	 
-	 
+	  @RequestMapping(value = "joinMain.me", method = RequestMethod.GET)
+	   public String join(Locale locale, Model model) {
+	      
+	      return "member/joinMain";
+	   }
 	 
 	 
 	 
@@ -204,8 +201,7 @@ public class MemberController {
 	}
 	
 	
-		
-}
+	
 
 	@RequestMapping("logout.me")
 	public String logout(SessionStatus status) {
@@ -214,13 +210,7 @@ public class MemberController {
 		return "redirect:index.jsp";
 	}
 
-	@RequestMapping("logout.me")
-	public String logout(SessionStatus status) {
-		
-		status.setComplete();
-		
-		return "main/main";
-	}
+	
 
 	
 	 @RequestMapping("duplicationCheck.me")

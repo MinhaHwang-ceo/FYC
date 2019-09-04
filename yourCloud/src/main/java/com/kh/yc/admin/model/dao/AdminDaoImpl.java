@@ -13,8 +13,8 @@ import com.kh.yc.member.model.vo.Member;
 @Repository
 public class AdminDaoImpl implements AdminDao{
 	
-
-		
+		@Inject
+		SqlSession sqlsession;
 		
 		//회원목록
 		@Override
@@ -23,9 +23,9 @@ public class AdminDaoImpl implements AdminDao{
 		}
 		
 		@Override
-		public Member viewMember() {
+		public Member viewMember(SqlSessionTemplate sqlSession, String userNo) {
 			
-			return null;
+			return sqlSession.selectOne("Member.viewMember", userNo);
 		}
 		
 		@Override
@@ -34,8 +34,9 @@ public class AdminDaoImpl implements AdminDao{
 		}
 		
 		@Override
-		public void updateMember(Member vo) {
-			
+		public void updateMember(SqlSessionTemplate sqlSession,Member vo) {
+			System.out.println("memberVo 2: " + vo);
+			sqlSession.update("Member.updateMember", vo);
 			
 		}
 		
