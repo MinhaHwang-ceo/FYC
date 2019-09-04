@@ -6,6 +6,8 @@
 <meta charset="UTF-8">
 <link href="https://fonts.googleapis.com/css?family=Sunflower:300&display=swap" rel="stylesheet">
 <title>Insert title here</title>
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+
 <style>
 .content{
 	width:800px;
@@ -41,8 +43,6 @@
 	</div>
 
 
-
-출처: https://modakbull.tistory.com/8 [끄적끄적]
 <tr><h5>글제목</h5></tr>
 <br><br><br><br>
 <tr>
@@ -66,25 +66,8 @@
 
 	   $('#createBtn').click(function(){
 
-	      
 
-		// input에 입력하는 값들을 뽑아서 변수에 저장
-
-	      var m_title = $('#m_title').val();
-
-	      
-
-	      // encodeURIComponent로 인코딩 합시당. 
-
-            // 이걸로 인코딩하는 이유는 배웠었는데 까먹었다.. 검색해봐야지.
-
-	      m_title = encodeURIComponent(m_title);
-
-	      	      
-
-	      // 뒤에 코드가 길어지니까 그냥 한번 변수에 주소를 저장
-
-	      googleQRUrl = "https://chart.googleapis.com/chart?chs=177x177&cht=qr&chl=";
+	      googleQRUrl = "https://chart.googleapis.com/chart?chs=177x177&cht=qr&chl="+"http://192.168.120.5:8001/yc/noticeOne.bo";
 
 	      
 
@@ -92,9 +75,7 @@
 
              // 여기 주소 부분을 변경해주면 원하는 값을 언제든 맘대로
 
-	      	$('#qrcode').attr('src', googleQRUrl + "제목:" + m_title + "/ 감독:" + m_director
-
-	        		 + "/ 장르:" + m_genre + "/ 출연:" + m_staring + "/ 개봉날짜:" + m_opening +'&choe=UTF-8');
+	      	$('#qrcode').attr('src', googleQRUrl +'&choe=UTF-8');
 
 
 

@@ -167,7 +167,7 @@
     	<tr>
   			<td>*이메일</td>
   			<td><input type="text" name="email" class="td2" id="inputEmail" required></td>
-  			<td><button id="mailbtn" class="btn btn-info" >인증요청</button></td>
+  			<td><button id="mailbtn" class="btn btn-info" onclick="return emailCheck();">인증요청</button></td>
   		</tr>   		
 
   		<tr><td><br></td></tr> 
@@ -280,6 +280,42 @@
 			
 			return false;
 		}
+	</script>
+	
+
+	
+	
+	
+	<script>
+	var code;
+	
+	
+	function emailCheck(){
+		var email = $("#inputEmail").val();
+		
+		console.log(userId);
+		
+		$.ajax({
+			url:"emailAuth.do",
+			type:"post",
+		    async:false,
+			data:{email:email},
+			success:function(data) {
+				console.log(data);
+				code= data.authNum;
+				
+			},
+			error:function(err) {
+				console.log("실패!");
+			}
+		});
+		
+		
+		return false;
+	}
+
+	
+	
 	</script>
 	
  <jsp:include page="../common/customer_footer.jsp"/>

@@ -2,11 +2,12 @@ package com.kh.yc.member.model.service;
 
 
 import java.io.File;
+import java.io.UnsupportedEncodingException;
 import java.util.Random;
 import java.util.List;
 
 import javax.inject.Inject;
-
+import javax.mail.MessagingException;
 import javax.security.auth.login.LoginException;
 
 import org.apache.commons.logging.Log;
@@ -14,7 +15,7 @@ import org.apache.commons.logging.LogFactory;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
-
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -38,7 +39,10 @@ public class MemberServiceImpl implements MemberService {
 	private BCryptPasswordEncoder passwordEncoder;
 	@Autowired
 	private DataSourceTransactionManager transactionManager;
-
+	@Autowired
+	    private JavaMailSender mailSender;
+	    
+	
 	/*
 	 * @Autowired private JavaMailSender javaMailSender;
 	 */
@@ -83,7 +87,7 @@ public class MemberServiceImpl implements MemberService {
 	}
 	
 	
-	
+
 
  
 

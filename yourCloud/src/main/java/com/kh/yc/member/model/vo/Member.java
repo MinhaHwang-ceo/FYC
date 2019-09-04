@@ -17,6 +17,8 @@ public class Member  implements java.io.Serializable{
 	private String memberDiv;
 	private String emailAgree;
 	
+	
+	
 	public Member() {}
 
 	public int getUserNo() {
