@@ -39,6 +39,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.github.scribejava.core.model.OAuth2AccessToken;
 import com.kh.yc.member.model.service.MemberServiceImpl;
 import com.kh.yc.member.model.vo.Member;
+import com.kh.yc.member.model.vo.NaverMember;
 
 @Controller
 @SessionAttributes("loginUser")
@@ -68,13 +69,14 @@ public class MemberController {
    
    
    
-   
-     @RequestMapping(value = "loginMain.me", method = RequestMethod.GET) public
-     String home(Locale locale, Model model) {
-     
-     return "member/loginMain";
-     
-     }
+	/*
+	 * @RequestMapping(value = "loginMain.me", method = RequestMethod.GET) public
+	 * String home(Locale locale, Model model) {
+	 * 
+	 * return "member/loginMain";
+	 * 
+	 * }
+	 */
     
     
     
@@ -163,7 +165,7 @@ public class MemberController {
 
    // 로그인 첫 화면 요청 메소드
    //네이버 로그인
-   @RequestMapping(value = "naver.me", method = { RequestMethod.GET, RequestMethod.POST })
+   @RequestMapping(value = "loginMain.me", method = { RequestMethod.GET, RequestMethod.POST })
       public String login(Model model, HttpSession session) {
    
    
@@ -203,17 +205,34 @@ public class MemberController {
       JSONObject response_obj = (JSONObject)jsonObj.get("response");
       //response의 nickname값 파싱
       String nickname = (String)response_obj.get("nickname");
-      
-
       System.out.println("nickname nickname : " + nickname);
+      String naverId = (String)response_obj.get("id"); //네이버 아이디
+      String naverAge = (String) response_obj.get("age"); //연령대
+      String naverProfile = (String) response_obj.get("profile_image");
+      String naveremail = (String) response_obj.get("email");
+      String naverName = (String) response_obj.get("name");
+     // String profile = naverProfile.replaceAll("\\","");
+		
+      System.out.println("naverId => " + naverId);
+	  System.out.println("jsonObj =>" + jsonObj);
+	  System.out.println("naverage =>" + naverAge);
+	  System.out.println("naverProfile =>" + naverProfile);
+	  System.out.println("naveremail =>" + naveremail);
+	  System.out.println("naverName =>" + naverName);
+	  //System.out.println("profile =>" + profile);
+	  
+	  
+	 
+	
 
-
+	  //Member NaverUser ms.Servlet
       //4.파싱 닉네임 세션으로 저장
-      session.setAttribute("sessionId",nickname); //세션 생성
+	  model.addAttribute("loginUser", naverId);
       model.addAttribute("result", apiResult);
-      
+      System.out.println("apiResult => " + apiResult);
       //네이버 로그인 성공페이지 view 호출
-      return "member/testLogin";
+      
+      return "redirect:index.jsp";
    }
    
    
