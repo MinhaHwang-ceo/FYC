@@ -1,19 +1,13 @@
 package com.kh.yc.member.controller;
 
 import java.io.IOException;
-
 import java.io.UnsupportedEncodingException;
+import java.util.Locale;
+import java.util.Properties;
 
-import javax.mail.Authenticator;
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.PasswordAuthentication;
-
-import java.util.Locale;
-import java.util.Properties;
-import java.util.Locale;
-
-
 import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.AddressException;
@@ -45,6 +39,7 @@ import com.kh.yc.member.model.vo.Member;
 @Controller
 @SessionAttributes("loginUser")
 public class MemberController {
+
 
 	@Autowired
 	private JavaMailSender mailSender;
@@ -346,23 +341,14 @@ public class MemberController {
     	return mv;
     }
 
-
-
-	
-	
-
-
 	private String RandomNum() {
-StringBuffer buffer= new StringBuffer();
-for(int i=0;i<=6;i++) {
-	int n=(int)(Math.random()*10);
-	buffer.append(n);
-	
-}
+		StringBuffer buffer = new StringBuffer();
+		for (int i = 0; i <= 6; i++) {
+			int n = (int) (Math.random() * 10);
+			buffer.append(n);
+
+		}
 		return buffer.toString();
 	}
-  
-    
-    
- 
+
 }
