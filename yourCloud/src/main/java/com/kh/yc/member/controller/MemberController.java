@@ -16,6 +16,7 @@ import java.util.Locale;
 
 import javax.mail.Session;
 import javax.mail.Transport;
+import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeUtility;
@@ -26,6 +27,7 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -44,6 +46,9 @@ import com.kh.yc.member.model.vo.Member;
 @SessionAttributes("loginUser")
 public class MemberController {
 
+	@Autowired
+	private JavaMailSender mailSender;
+	
    //네이버 로그인 BO
    private NaverLoginBO naverLoginBO;
    private String apiResult = null;
@@ -129,10 +134,22 @@ public class MemberController {
    }
    
    @RequestMapping(value = "resetPw.me", method = RequestMethod.GET)
-   public String resetPw(Model model) {
-      
+   public String resetPw(String email,Model model) {
+      System.out.println("email::"+email);
       return "member/resetPw";
    }
+   
+   
+   @RequestMapping(value = "newPwd.me", method = RequestMethod.POST)
+   public String newPwd(Member model) {
+	  
+	   int result = ms.updatePwd(model);
+	    
+	         return "member/loginMain";
+	      
+	
+   }
+   
    
    @RequestMapping(value="login.me")
    public String loginCheck(Member m, Model model) {
@@ -225,9 +242,24 @@ public class MemberController {
       
       return "redirect:index.jsp";
    }
-
+   @RequestMapping("findId")
+   public ModelAndView find(String email,ModelAndView model) {
  
-   
+	   
+	   String userId=ms.findId(email);
+	   
+	   
+	   System.out.println("::::::::::::::::::::"+userId);
+	   
+	   model.addObject("userId",userId);
+       
+       model.setViewName("jsonView");
+       
+       System.out.println(model);
+       return model;
+   }
+
+
     @RequestMapping("duplicationCheck.me")
    
        public ModelAndView CheckDuplication(String userId,ModelAndView model) {
@@ -256,15 +288,55 @@ public class MemberController {
       }
     
     @RequestMapping("emailAuth.do")
-    public ModelAndView emailAuth(String email,ModelAndView model) {
+    public ModelAndView emailAuth(String email,String userId,ModelAndView model) throws AddressException, MessagingException {
     	
    System.out.println("email"+email);
     	String authNum="";
     	authNum=RandomNum();
+    
+
     	
-    	sendEmail(email.toString(), authNum);
+		/*
+		 * sendEmail(email.toString(), authNum);
+		 * 
+		 */
     	
     	
+    	
+    	
+    	String host = "smtp.gmail.com"; 
+    	final String username = "dhtnwjd6350";  
+    	final String password = "ferc yjaa veuk bppi"; 
+    
+    	int port=465;
+    	String recipient = email;
+    	String subject = "메일테스트";
+    	String body = authNum+"입니다"; 
+    	Properties props = System.getProperties(); // 정보를 담기 위한 객체 생성 
+    	props.put("mail.smtp.host", host);// SMTP 서버 정보 설정
+    	props.put("mail.smtp.port", port);
+    	props.put("mail.smtp.auth", "true");
+    	props.put("mail.smtp.ssl.enable", "true");
+    	props.put("mail.smtp.ssl.trust", host);
+    	//Session 생성
+    	Session session = Session.getDefaultInstance(props, new javax.mail.Authenticator()
+    	{ String un=username; String pw=password; protected javax.mail.PasswordAuthentication 
+    	getPasswordAuthentication() { return new javax.mail.PasswordAuthentication(un, pw); } });
+    	session.setDebug(true); //
+   Message mimeMessage = new MimeMessage(session); 
+    			//MimeMessage 생성
+    			mimeMessage.setFrom(new InternetAddress("dhtnwjd6350@gmail.com"));
+    			//발신자 셋팅 
+    			mimeMessage.setRecipient(Message.RecipientType.TO, new InternetAddress(recipient)); 
+    			//수신자셋팅 
+    			mimeMessage.setSubject(subject); //제목셋팅 
+    			mimeMessage.setText(body); //내용셋팅 
+    			Transport.send(mimeMessage); 
+    		
+
+   
+    	
+    
     	
     	
     	ModelAndView mv= new ModelAndView();
@@ -276,59 +348,8 @@ public class MemberController {
 
 
 
-	private void sendEmail(String email, String authNum) {
-	String host="stmt.gmail.com";
-	String subject="인증번호 전달";
-	String fromName="니가그린구름그림";
-	String from="dhtnwjd63502@gmail.com";
-	String to1=email;
-	String content="인증번호:"+authNum;
-	
-	Properties props= new Properties();
-	props.put("mail.stmt.starttls.enable","true");
-	props.put("mail.transport.protocol","stmt");
-	props.put("mail.stmt.host",host);
-	props.setProperty("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
-	props.put("mail.stmt.port","465");
-	props.put("mail.stmt.user",from);
-	props.put("mail.stmt.auth","true");
-	
-	 final String username = "dhtnwjd63502@gmail.com";//
-     final String password = "dh47733!";
-	
-	Session mailSession= Session.getInstance(props,new javax.mail.Authenticator() {
-		
-		protected javax.mail.PasswordAuthentication getPasswordAuthentication() {
-			
-			return new PasswordAuthentication( username ,  password);
-		
-	}
-		
-	});
 	
 	
-	Message msg= new MimeMessage(mailSession);
-	try {
-		msg.setFrom(new InternetAddress(from,MimeUtility.encodeText(fromName,"UTF-8","B")));
-		
-		InternetAddress[] address1= {new InternetAddress(to1)};
-		msg.setRecipients(Message.RecipientType.TO, address1);
-		msg.setSubject(subject);
-		msg.setSentDate(new java.util.Date());
-		msg.setContent(content,"text/html;charset=euc-kr");
-		
-		Transport.send(msg);
-		
-	} catch (UnsupportedEncodingException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-	} catch (MessagingException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-	}
-		
-	}
-
 
 
 	private String RandomNum() {

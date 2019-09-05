@@ -18,6 +18,7 @@ import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -85,7 +86,18 @@ public class MemberServiceImpl implements MemberService {
 		int idCnt = md.CheckDuplication(sqlSession,inputId);
 		return idCnt;
 	}
+
+	public String findId(String email) {
 	
+		String userId=md.findId(sqlSession,email);
+		
+		return userId;
+	}
+
+	public int updatePwd(Member model) {
+		return md.updatePwd(sqlSession, model);
+	}
+
 	
 
 

@@ -31,7 +31,7 @@
 	<insert id="insertMember" parameterType="Member">
 	<if test="gender !=null and memberCategory!=null and  age !=null and emailAgree !=null" >
 		INSERT INTO MEMBER
-		VALUES( 35,#{userName},#{userId}, #{userPwd}, #{email},default,null,null,null,#{gender},null,
+		VALUES( SEQ_MEMBER.NEXTVAL,#{userName},#{userId}, #{userPwd}, #{email},default,null,null,null,#{gender},null,
 		1000,#{age},default,#{emailAgree})
 </if>
 	<if test="gender ==null or memberCategory==null or age==null or emailAgree==null" >
@@ -40,6 +40,9 @@
 		0,null,default,'N')
 </if>
 	</insert>
+	
+	
+	
 		<select id="selectPwd" parameterType="java.lang.String" resultType="java.lang.String">
 		SELECT MEMBER_PASSWORD
 		FROM MEMBER
@@ -77,10 +80,23 @@
 	
 	<select id="updateMember" resultMap="memberResultSet">
 		UPDATE MEMBER
-		SET STATUS = #{status}
+		SET STATUS = #{email}
 		WHERE MEMBER_NO= #{userNo}
 	</select>
-
+	
+	<select id="findId" parameterType="String" resultType="String">
+		SELECT MEMBER_ID
+		FROM MEMBER
+		WHERE EMAIL= #{email}
+	
+	</select>
+	
+	
+		<select id="updatePwd" resultMap="memberResultSet">
+		UPDATE MEMBER
+		SET MEMBER_PASSWORD = #{userPwd}
+		WHERE EMAIL= #{email}
+	</select>
 
 	</mapper>
 	
