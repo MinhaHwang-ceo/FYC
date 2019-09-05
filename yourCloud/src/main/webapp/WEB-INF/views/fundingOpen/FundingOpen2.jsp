@@ -33,7 +33,7 @@
 </style>
 </head>
 <body>
-	<jsp:include page="../common/customer_menubar.jsp"/>
+	
 	<jsp:include page="../common/customer_menuList.jsp"/>
 	<div id="funding2">
 	<h1 align="center">어떤 분야의 프로젝트를 진행할 예정인가요?</h1>

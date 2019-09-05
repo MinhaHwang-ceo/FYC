@@ -44,7 +44,7 @@
 	<h4>&nbsp;&nbsp;펀딩한 서포터에게 제품이나 서비스를 제공하는 서비스입니다.</h4>
 	<h4>&nbsp;&nbsp;#현명한 창업가 #트렌디한 마케터 #슬기로운 디자이너</h4>
 	<hr>
-
+	<div>
 	<div class="container">
   <h2>펀딩을 하는 이유는 무엇일까요?</h2>
   <p>제품 제작 비용을 미리 확보할 수 있습니다.</p>
@@ -79,6 +79,7 @@
         </a>
       </div>
     </div>
+          </div>
     <div class="col-md-4">
       <div class="thumbnail">
         <a href="/yc/resources/images/banner.png" target="_blank">
@@ -91,9 +92,10 @@
       </div>
     </div>
   </div>
+  
   <div class="row">
   	<h4>나도 할 수 있을까 고민이세요?</h4>
-  	<h2>&nbsp;&nbsp;구름 펀딩은 모두에게 열려있습니다~</h3>
+  	<h3>&nbsp;&nbsp;구름 펀딩은 모두에게 열려있습니다~</h3>
   	<h3>&nbsp;&nbsp;스타트업, 개인부터 기업까지</h3>
     <div class="col-md-4">
       <div class="thumbnail">

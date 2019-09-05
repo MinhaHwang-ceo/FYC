@@ -123,7 +123,7 @@ input[type="checkbox"]:checked + label span {
 </style>
 </head>
 <body>
-	<jsp:include page="../common/customer_menubar.jsp"/>
+	
 	<jsp:include page="../common/customer_menuList.jsp"/>
 	<br>
 	<div id="menu">
