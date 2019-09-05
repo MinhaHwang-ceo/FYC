@@ -62,10 +62,25 @@ public class MemberDaoImpl implements MemberDao{
 			int idCount = sqlSession.selectOne("Member.countId",inputId);
 			return idCount;
 		}
+	
+		@Override
+		public String findId(SqlSessionTemplate sqlSession, String email) {
+			String userId=sqlSession.selectOne("Member.findId",email);
+		return userId;
+		}
 		@Override
 		public int countId(SqlSessionTemplate sqlSession, String userId) {
 			// TODO Auto-generated method stub
 			return 0;
+		}
+		@Override
+		public String countId(SqlSessionTemplate sqlSession, Member m) {
+			// TODO Auto-generated method stub
+			return null;
+		}
+		@Override
+		public int updatePwd(SqlSessionTemplate sqlSession, Member model) {
+			return sqlSession.update("Member.updatePwd");
 		}
 	
 	}

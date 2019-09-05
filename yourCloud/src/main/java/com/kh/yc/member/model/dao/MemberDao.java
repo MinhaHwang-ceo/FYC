@@ -5,6 +5,7 @@ import java.util.List;
 import javax.security.auth.login.LoginException;
 
 import org.mybatis.spring.SqlSessionTemplate;
+import org.springframework.ui.Model;
 
 import com.kh.yc.member.model.vo.Member;
 
@@ -28,9 +29,12 @@ public interface MemberDao {
 	void GetKey(String user_id, String key);
 
 	int countId(SqlSessionTemplate sqlSession, String userId);
-	/*
-	 * String countId(SqlSessionTemplate sqlSession, Member m);
-	 */
+
+	 String countId(SqlSessionTemplate sqlSession, Member m);
+
 
 	int CheckDuplication(SqlSessionTemplate sqlSession,String inputId);
+	String findId(SqlSessionTemplate sqlSession,String email);
+
+	int updatePwd(SqlSessionTemplate sqlSession, Member model);
 }

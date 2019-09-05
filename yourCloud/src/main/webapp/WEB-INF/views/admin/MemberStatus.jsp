@@ -34,6 +34,7 @@
 	
 	
  <style>
+
   .outer{
   
   width:350px;
@@ -137,7 +138,9 @@
   		
   		<tr>
 				<td align="center">
+
 					<select id="status">
+
 				    <option value="N">정상
 					</option>
 					<option value="Y">정지

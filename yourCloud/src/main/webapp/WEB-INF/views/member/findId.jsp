@@ -34,15 +34,30 @@
     #sumbmitbutton{
   	width:500px;
   }
+  .email{
+  	 width:230px;
+  	 margin-left:50px;
+  }
 </style>
 
 </head>
 <body>
+
+
 <jsp:include page="../common/customer_menubar.jsp"/><br><br>
+
+<div  id="checkcheck1">
+<input type="hidden" value="1" id="check1">
+</div>
+
 <div class="outer">
+
+
+
+
 <h2><b>아이디 찾기</b></h2>
 <br>
-<form>
+	<form action="findId" method="post">
 	<table>
 		<tr>
 			<td>이름</td>
@@ -53,16 +68,16 @@
 		
 		<tr>
 			<td>이메일</td>
-			<td><input type="text" id="td2" required></td>
-			<td><button id="td3" class="btn btn-info">인증요청</button></td>
+			<td><input type="text" id="email" class="email" required></td>
+			<td><button id="td3" class="btn btn-info" onclick="return emailCheck();">인증요청</button></td>
 		</tr>
 		
 		<tr><td><br></td></tr>
 		
 		<tr>
 			<td></td>
-			<td><input type="text" id="td2" placeholder="인증번호를 입력하세요"></td>
-			<td><button id="td4" class="btn btn-info">확인</button></td>
+			<td><input type="text" id="td2" class="num" placeholder="인증번호를 입력하세요"></td>
+			<td><button id="td4" class="btn btn-info" onclick="return confirm();">확인</button></td>
 		</tr>
 	
 		<tr><td><br></td></tr>
@@ -73,15 +88,100 @@
 
 	<br>
 
-  <input type="submit" value="아이디찾기" id="sumbmitbutton" onclick="findId();" class="btn btn-info">
-  
-  <script>
-  function findId(){
-	  alert("회원님의 아이디는  '내이름은오수정 거꾸로해도 오수정'입니다");
-  }
-  
-  </script>
- 
+  <button id="sumbmitbutton" onclick="findId();" class="btn btn-info">아이디 찾기</button>
+
+ <script>
+	var code;
+	
+	
+	function emailCheck(){
+		var email = $("#email").val();
+	
+		alert('인증번호를 전송했습니다!')
+		$.ajax({
+			url:"emailAuth.do",
+			type:"post",
+		    async:false,
+			data:{email:email},
+			success:function(data) {
+				
+				console.log(data);
+				code= data.authNum;
+				
+			},
+			error:function(err) {
+				console.log("실패!");
+			}
+		});
+		
+		
+		return false;
+	}
+	
+	
+	function confirm(){
+		 var $divcheck=$("#checkcheck1");
+			
+		console.log(code);
+		var num= $(".num").val();
+	
+		
+		if(code==num){
+			
+			alert('인증이 완료되었습니다.');
+			$divcheck.html("");
+			 var $input=$("<input type='hidden'  id='check1' >");
+			 $input.val("0");
+				$divcheck.append($input);
+			
+			
+		
+		}else{
+			alert('인증번호가 틀렸습니다. 다시 입력해 주세요');
+			$divcheck.html("");
+			 var $input=$("<input type='hidden'  id='check1' >");
+			 $input.val("1");
+				$divcheck.append($input);
+			
+		}
+		
+		return false;
+	}
+	
+
+	
+	function findId(){
+		console.log("뀨");
+		
+		var email=$(".email").val();
+		console.log(email);
+		var check1=$("#check1").val();
+		if(check1==0){
+		$.ajax({
+			url:"findId",
+			type:"post",
+		    async:false,
+			data:{email:email},
+			success:function(data) {
+				
+				alert('회원님의 아이디는'+data.userId+'입니다');
+				
+			},
+			error:function(err) {
+				console.log("실패!");
+			}
+		
+	});
+		
+		
+		}else{
+			
+			alert('인증 완료후 확인해주세요')
+			
+		}
+	}
+	
+	</script>
 
 </div>
 <br><br>

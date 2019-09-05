@@ -1,67 +1,68 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans:beans xmlns="http://www.springframework.org/schema/mvc"
+<beans:beans
+	xmlns="http://www.springframework.org/schema/mvc"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:beans="http://www.springframework.org/schema/beans"
 	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
 	xsi:schemaLocation="http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd
 		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
-		http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
+		http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd">
 
-	<!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
-	
+	<!-- DispatcherServlet Context: defines this servlet's request-processing 
+		infrastructure -->
+
 	<!-- Enables the Spring MVC @Controller programming model -->
 	<annotation-driven />
 
-	<resources mapping="/css/**" location="/resources/css/" /> 
-	<resources mapping="/images/**" location="/resources/images/" /> 
-	<resources mapping="/js/**" location="/resources/js/" /> 
-	<resources mapping="/resources/**" location="/resources/" /> 
+	<resources mapping="/css/**" location="/resources/css/" />
+	<resources mapping="/images/**" location="/resources/images/" />
+	<resources mapping="/js/**" location="/resources/js/" />
+	<resources mapping="/resources/**" location="/resources/" />
+
+	<context:component-scan base-package="com.kh.yc" />
+
+	<aop:aspectj-autoproxy proxy-target-class="true" />
 
 
-
-
-	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
-	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+	<!-- Resolves views selected for rendering by @Controllers to .jsp resources 
+		in the /WEB-INF/views directory -->
+	<beans:bean
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<beans:property name="prefix" value="/WEB-INF/views/" />
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
-	
+
 	<context:component-scan base-package="com.kh.yc" />
-	
+	<aop:config proxy-target-class="true">
+		<!-- 제일 앞 별 = 리턴 타입 / com.kh.tsp밑에 모든 것들 중 ServiceImpl밑의 모든 메소드(..) 은 매개변수 
+			상관 없이 -->
+		<aop:pointcut id="serviceMethod"
+			expression="execution(* com.kh.yc..*ServiceImpl.*(..))"/>
+		<aop:advisor id="transactionAdvisor"
+			pointcut-ref="serviceMethod" advice-ref="txAdvice" />
+	</aop:config>
 
 	<!-- NaverLoginBO Class에 대한 Bean설정 추가 -->
-	<beans:bean id="naverLoginBO" class="com.kh.yc.member.controller.NaverLoginBO" />
+	<beans:bean id="naverLoginBO"
+		class="com.kh.yc.member.controller.NaverLoginBO" />
 
 
-   <beans:bean id="jsonView" class="net.sf.json.spring.web.servlet.view.JsonView"/>
+	<beans:bean id="jsonView"
+		class="net.sf.json.spring.web.servlet.view.JsonView" />
 
-	
+
 	<!-- 뷰 리졸버에 대한 설정 -->
 	<!-- 위에 설정한 뷰 리졸버는 기존에 있는 jsp에 대해 view를 보여주는 템플릿 뷰 -->
 	<!-- 여기 설정한 BeanNameViewResolver는 없는 자원에 대해서 논리적 이름을 가지고 view를 지정 -->
 	<beans:bean id="viewResolver"
 		class="org.springframework.web.servlet.view.BeanNameViewResolver">
-		<beans:property name="order" value="1"/>
+		<beans:property name="order" value="1" />
 	</beans:bean>
-	
-	
-	
 
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
+
+
 
 </beans:beans>

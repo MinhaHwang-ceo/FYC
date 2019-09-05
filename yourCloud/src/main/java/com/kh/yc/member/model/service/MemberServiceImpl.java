@@ -1,25 +1,18 @@
 package com.kh.yc.member.model.service;
 
-
-import java.io.File;
-import java.io.UnsupportedEncodingException;
-import java.util.Random;
-import java.util.List;
-
 import javax.inject.Inject;
-import javax.mail.MessagingException;
 import javax.security.auth.login.LoginException;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
+
 
 import com.kh.yc.member.model.dao.MemberDao;
 import com.kh.yc.member.model.dao.MemberDaoImpl;
@@ -40,9 +33,8 @@ public class MemberServiceImpl implements MemberService {
 	@Autowired
 	private DataSourceTransactionManager transactionManager;
 	@Autowired
-	    private JavaMailSender mailSender;
-	    
-	
+	private JavaMailSender mailSender;
+
 	/*
 	 * @Autowired private JavaMailSender javaMailSender;
 	 */
@@ -51,30 +43,25 @@ public class MemberServiceImpl implements MemberService {
 	 */
 	@Override
 	public Member loginMember(Member m) throws LoginException {
-		
+
 		Member loginUser = null;
-		
+
 		String encPassword = md.selectEncPassword(sqlSession, m);
-		
-		if(!passwordEncoder.matches(m.getUserPwd(), encPassword)) {
+
+		if (!passwordEncoder.matches(m.getUserPwd(), encPassword)) {
 			throw new LoginException("로그인 실패!");
-		}else {
+		} else {
 			loginUser = md.selectMember(sqlSession, m);
 		}
-		
+
 		return loginUser;
 	}
-	
+
 	@Override
 	public int insertMember(Member m) {
-		
-		return md.insertMember(sqlSession, m);
+		int insertMember = md.insertMember(sqlSession, m);
+		return insertMember;
 	}
-	
-	
-	
-	
-	
 
 	public int idcheck(String userId) {
 		return md.countId(sqlSession, userId);
@@ -82,13 +69,21 @@ public class MemberServiceImpl implements MemberService {
 
 	public int CheckDuplication(String inputId) {
 
-		int idCnt = md.CheckDuplication(sqlSession,inputId);
+		int idCnt = md.CheckDuplication(sqlSession, inputId);
 		return idCnt;
 	}
-	
-	
 
+	public String findId(String email) {
+	
+		String userId=md.findId(sqlSession,email);
+		
+		return userId;
+	}
 
- 
+	public int updatePwd(Member model) {
+		return md.updatePwd(sqlSession, model);
+	}
+
+	
 
 }
