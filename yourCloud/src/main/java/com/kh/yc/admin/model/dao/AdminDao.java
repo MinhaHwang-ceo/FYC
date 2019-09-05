@@ -2,10 +2,10 @@ package com.kh.yc.admin.model.dao;
 
 import java.util.List;
 
-import javax.security.auth.login.LoginException;
-
 import org.mybatis.spring.SqlSessionTemplate;
 
+import com.kh.yc.admin.model.vo.Project;
+import com.kh.yc.admin.model.vo.Report;
 import com.kh.yc.member.model.vo.Member;
 
 public interface AdminDao {
@@ -22,11 +22,26 @@ public interface AdminDao {
 	// 회원 삭제
 	public void deleteMember(String userId);
 	
-	//회원 정보 수정
-	public void updateMember(SqlSessionTemplate sqlSession,Member vo );
+	//회원 상태 수정
+	public void updateMember(SqlSessionTemplate sqlSession, Member m);
+
+	// 신고 목록
+	public List<Report> reportList(SqlSessionTemplate sqlSession);
+	
+	//신고 정보 상세보기
+	public Report viewReport(SqlSessionTemplate sqlSession, String reportNo);
+	
+	//신고 프로젝트 상태 수정
+	public void updateReport(SqlSessionTemplate sqlSession, Project p);
+	
+	//프로젝트 심사중
+	public List<Project> projectList(SqlSessionTemplate sqlSession);
+	
+	//심사 프로젝트 상태 수정
+	public void updateProject(SqlSessionTemplate sqlSession, Project p);
+	
+	//심사 프로젝트 정보 상세보기
+	public Project viewProject(SqlSessionTemplate sqlSession, String projectNo);
 
 	
-	
-
-
 }

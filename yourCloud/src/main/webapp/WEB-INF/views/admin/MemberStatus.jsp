@@ -12,27 +12,29 @@
 <title>회원 상세 페이지</title>
 
 <script>
-	$(document).ready(
-		function() {
-			var option = "";
-			$("#btnUpdate").click(function() {
-				var userNo = $("#userNo").val();
-				if (confirm("수정하시겠습니까?")) {
-					option = $("#select").val();
-					alert(option);
-					location.href = "memberUpdate.ad?userNo=" + userNo + "&option=" + option;
-
-					self.close();
-				}
-			});
-		});
-	function st_close() {
-		self.close();
-	}
+      $(document).ready(function(){
+         var option = "";
+         $("#btnUpdate").click(function(){
+               
+            var userNo = $("#userNo").val();
+            if(confirm("수정하시겠습니까?")){
+            status = $("#status").val();
+               location.href = "memberUpdate.ad?userNo="+userNo+"&status="+status;
+               
+            }
+            opener.parent.location.reload();
+      	 	window.close();
+         });
+      });
+      function st_close(){
+    	  opener.parent.location.reload();
+      	  window.close();
+      }
 </script>
+	
+	
+ <style>
 
-
-<style>
   .outer{
   
   width:350px;
@@ -83,21 +85,19 @@
   			<td><input type="hidden" id="userNo" value="${ dto.userNo }" readonly="readonly"></td>
   		</tr> 
   		
-  	
-  		<tr><td><br></td></tr>
-  	
+		<tr>  	
+  			<td  align="center">회원명</td>
+  		</tr>
   		<tr>
   			<td><input type="text" value="${ dto.userName }" readonly="readonly"></td>
   		</tr> 
   		
-  		<tr><td><br></td></tr>
   			
    		<tr>
   			<td><input type="hidden" value="${ dto.userId }" readonly="readonly"></td>
   			<td><input type="hidden" value="${ dto.userPwd }" readonly="readonly"></td>
   		</tr> 
   		
-  		<tr><td><br></td></tr>
   		
   		<tr>
   			<td><input type="hidden" value="${ dto.email }" readonly="readonly"></td>
@@ -106,25 +106,21 @@
   			<td><input type="hidden" value="${ dto.account }" readonly="readonly"></td>
   		</tr> 
   		
-  		<tr><td><br></td></tr>		
 		
   		<tr>
   			<td><input type="hidden" value="${ dto.age }" readonly="readonly"></td>
   		</tr> 
   		
-  		<tr><td><br></td></tr>
   		
     	<tr>
   			<td><input type="hidden" value="${ dto.gender }" readonly="readonly"></td>
   		</tr> 
   		
-  		<tr><td><br></td></tr>
   	
   		<tr>
   			<td><input type="hidden" value="${ dto.memberCategory }" readonly="readonly"></td>
   		</tr> 
   		
-  		<tr><td><br></td></tr>
   	
   		<tr>
   			<c:set value="${ dto.emailAgree }" var="emailAgree" scope="session"/>
@@ -142,16 +138,17 @@
   		
   		<tr>
 				<td align="center">
-					<select id="select">
+
+					<select id="status">
+
 				    <option value="N">정상
 					</option>
 					<option value="Y">정지
 					</option>
    					
 					</select>
-            
 					<input type="button" value="수정" id="btnUpdate">
-  					<input type="button" onclick="st_close();" value="확인">
+  					<input type="button" onclick="st_close();" value="닫기">
 		</td>
 		</tr>
   		

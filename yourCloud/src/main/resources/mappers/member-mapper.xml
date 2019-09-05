@@ -41,6 +41,7 @@
       0,null,default,'N')
 </if>
 
+
 	</insert>
 	
 	
@@ -89,5 +90,4 @@
 	</select>
 
 	</mapper>
-	
 

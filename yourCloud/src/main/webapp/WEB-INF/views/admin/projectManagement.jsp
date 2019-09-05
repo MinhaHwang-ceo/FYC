@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE>
 <html>
 <head>
@@ -240,64 +241,51 @@
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                   <thead>
                     <tr>
-                      <th>프로젝트 순서</th>
                       <th>프로젝트 번호</th>
                       <th>신청자</th>
                       <th>회사명</th>
                       <th>카테고리</th>
                       <th>프로젝트명</th>
-                      <th>검토요청일</th>
+                      <th>오픈예정여부</th>
                       <th>검토현황</th>
                       <th>상태변경</th>
                     </tr>
                   </thead>
                   <tfoot>
                     <tr>
-                      <th>프로젝트 순서</th>
                       <th>프로젝트 번호</th>
                       <th>신청자</th>
                       <th>회사명</th>
                       <th>카테고리</th>
                       <th>프로젝트명</th>
-                      <th>검토요청일</th>
+                      <th>오픈예정여부</th>
                       <th>검토현황</th>
                       <th>상태변경</th>
                     </tr>
                   </tfoot>
                   <tbody>
-                    <tr>
-                      <td>1</td>
-                      <td>246282</td>
-                      <td>황민하</td>
-                      <td>코레컴퍼니</td>
-                      <td>패션</td>
-                      <td>[당신의옷]너무나멋진똥간닦개</td>
-                      <td>2019/06/12</td>
-                      <td>검토중</td>
-                      <td><button value="status">상태변경</button></td>
-                    </tr>
-                     <tr>
-                      <td>2</td>
-                      <td>782421</td>
-                      <td>김진수</td>
-                      <td>kh정보교육원</td>
-                      <td>테크</td>
-                      <td>준비된 인재의 마우스</td>
-                      <td>2019/05/12</td>
-                      <td>반려</td>
-                      <td><button value="status">상태변경</button></td>
-                    </tr>
-                     <tr>
-                      <td>3</td>
-                      <td>772121</td>
-                      <td>오수정</td>
-                      <td>멋진회사</td>
-                      <td>반려동물</td>
-                      <td>강아지풀</td>
-                      <td>2019/01/12</td>
-                      <td>승인</td>
-                      <td><button value="status">상태변경</button></td>
-                    </tr>
+                    <c:forEach var="row" items="${list}">
+                  <tr>
+                  	<td onclick="window.open('${pageContext.request.contextPath}/memberView.ad?userNo=${row.userNo}', 'PopupWin', 'width=520,height=600');">${row.projectNo}</td>
+                  	<td>${row.agentName}</td>
+                  	<td>${row.makerDiv}</td>
+                  	<td>${row.category}</td>
+                  	<td>${row.projectShortTitle}</td>
+                  	<c:set value="${row.expected}" var="status" scope="session"/>
+                  		<c:choose>
+                  			<c:when test="${ status eq 'N' }">
+                  				<td>오픈미정</td>
+                  			</c:when>
+                  			<c:when test="${ status eq 'Y' }">
+                  				<td>오픈예정</td>
+                  			</c:when>
+                  		</c:choose>
+                  	<td>${row.judgeStatus}</td>
+                  	
+                  	<td><input type="button" id="st" onclick="window.open('${pageContext.request.contextPath}/projectStatus.ad?projectNo=${row.projectNo}', 'PopupWin', 'width=380,height=300');" value="검토"></td>
+                  </tr>
+                  
+                  </c:forEach>
                   </tbody>
                 </table>
               </div>
