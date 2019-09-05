@@ -43,7 +43,7 @@
 	<tr>
 		<td>
 			<div>
-				<a href="${contextPath}/openExpectationDetail.bo"><img alt="" src="/yc/resources/images/yc-logo3.png"></a>
+				<img alt="" src="/yc/resources/images/yc-logo3.png">
 			</div>
 		</td>
 		<td id="td1"><input type="button" value="알림신청" id="btn" class="btn btn-info" onclick="window.open('${contextPath}/openExpectationRequest.bo','_blank', 'width=370,height=400');return false;">
