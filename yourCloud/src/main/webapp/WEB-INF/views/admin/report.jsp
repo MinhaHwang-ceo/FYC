@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE>
 <html>
 <head>
@@ -244,7 +245,9 @@
                       <th>프로젝트명</th>
                       <th>신고사유</th>
                       <th>신고자</th>
-                      <th>신고수</th>
+                      <th>신고일</th>
+                      <th>진행상태</th>
+                      <th>상태변경</th>
                     </tr>
                   </thead>
                   <tfoot>
@@ -253,24 +256,24 @@
                       <th>프로젝트명</th>
                       <th>신고사유</th>
                       <th>신고자</th>
-                      <th>신고수</th>
+                      <th>신고일</th>
+                      <th>진행상태</th>
+                      <th>상태변경</th>
                     </tr>
                   </tfoot>
                   <tbody>
-                    <tr>
-                      <td>1</td>
-                      <td>[당신의옷]너무나멋진똥간닦개</td>
-                      <td>허위사실이 기재된 프로젝트</td>
-                      <td>minhada22</td>
-                      <td>8</td>
-                    </tr>
-                    <tr>
-                      <td>2</td>
-                      <td>[당신의옷]너무나멋진똥간닦개</td>
-                      <td>허위사실이 기재된 프로젝트</td>
-                      <td>kojihyo</td>
-                      <td>8</td>
-                    </tr>
+                    <c:forEach var="row" items="${list}">
+                  <tr>
+                  	<td onclick="window.open('${pageContext.request.contextPath}/reportView.ad?reportNo=${row.reportNo}', 'PopupWin', 'width=520,height=600');">${row.reportNo}</td>
+                  	<td>${row.projectShortTitle}</td>
+                  	<td>${row.reportDetail}</td>
+                  	<td>${row.userName}</td>
+                  	<td>${row.reportDate}</td>
+                  	<td>${row.progressStatus}</td>
+                  	<td><input type="button" id="st" onclick="window.open('${pageContext.request.contextPath}/reportStatus.ad?reportNo=${row.reportNo}', 'PopupWin', 'width=380,height=300');" value="상태변경"></td>
+                  </tr>
+                  
+                  </c:forEach>
                     
                   </tbody>
                 </table>

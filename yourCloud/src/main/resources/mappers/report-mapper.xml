@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+ <mapper namespace="Report">
+<resultMap type="com.kh.yc.admin.model.vo.Report" id="ReportResultSet">
+	<id property="reportNo" column="REPORT_NO"/>
+		<result property="reportComment" column="REPORT_COMMENT"/>
+		<result property="reportDate" column="REPORT_DATE"/>
+		<result property="userNo" column="MEMBER_NO"/>
+		<result property="projectNo" column="PROJECT_NO"/>
+		<result property="reportCode" column="REPORT_CODE"/>
+		<result property="reportDetail" column="REPORT_DETAIL"/>
+		<result property="projectShortTitle" column="PROJECT_SHORT_TITLE"/>
+		<result property="userName" column="MEMBER_NAME"/>
+		<result property="progressStatus" column="PROGRESS_STATUS"/>
+		
+</resultMap>
+
+<select id="reportList" resultMap="ReportResultSet" parameterType="Report">
+		SELECT *
+		FROM REPORT A
+		INNER JOIN REPORT_CODE B ON A.REPORT_CODE = B.REPORT_CODE
+		INNER JOIN PROJECT P ON A.PROJECT_NO = P.PROJECT_NO
+		INNER JOIN MEMBER M ON A.MEMBER_NO = M.MEMBER_NO
+</select>
+
+<select id="viewReport" resultMap="ReportResultSet">
+		SELECT *
+		FROM REPORT A
+		INNER JOIN REPORT_CODE B ON A.REPORT_CODE = B.REPORT_CODE
+		INNER JOIN PROJECT P ON A.PROJECT_NO = P.PROJECT_NO
+		INNER JOIN MEMBER M ON A.MEMBER_NO = M.MEMBER_NO
+        WHERE REPORT_NO= #{reportNo}	
+ </select>
+ 
+</mapper>
+        

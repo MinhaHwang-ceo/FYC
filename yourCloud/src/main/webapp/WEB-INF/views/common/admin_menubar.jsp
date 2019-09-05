@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-        <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE>
 <html>
 <head>
@@ -65,9 +65,9 @@
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">관리</h6>
-            <a class="collapse-item" href="${ contextPath }/member.ad">회원관리</a>
-            <a class="collapse-item" href="${ contextPath }/project6.ad">신고관리</a>
-            <a class="collapse-item" href="${ contextPath }/project2.ad">장부관리</a>
+            <a class="collapse-item" href="${ pageContext.request.contextPath}/member.ad">회원관리</a>
+            <a class="collapse-item" href="${ pageContext.request.contextPath}/project6.ad">신고관리</a>
+            <a class="collapse-item" href="${ pageContext.request.contextPath}/project2.ad">장부관리</a>
           </div>
         </div>
       </li>
@@ -81,9 +81,9 @@
         <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">PROJECT:</h6>
-            <a class="collapse-item" href="${ contextPath }/project1.ad">프로젝트 심사</a>
-            <a class="collapse-item" href="${ contextPath }/project4.ad">프로젝트 현황</a>
-            <a class="collapse-item" href="${ contextPath }/project5.ad">정산관리</a>
+            <a class="collapse-item" href="${ pageContext.request.contextPath}/projectList.ad">프로젝트 심사</a>
+            <a class="collapse-item" href="${ pageContext.request.contextPath}/project4.ad">프로젝트 현황</a>
+            <a class="collapse-item" href="${ pageContext.request.contextPath}/project5.ad">정산관리</a>
           </div>
         </div>
       </li>

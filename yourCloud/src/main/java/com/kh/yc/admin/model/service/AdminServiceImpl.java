@@ -12,6 +12,8 @@ import org.springframework.stereotype.Service;
 
 import com.kh.yc.admin.model.dao.AdminDao;
 import com.kh.yc.admin.model.dao.AdminDaoImpl;
+import com.kh.yc.admin.model.vo.Project;
+import com.kh.yc.admin.model.vo.Report;
 import com.kh.yc.member.model.vo.Member;
 
 @Service
@@ -31,7 +33,7 @@ public class AdminServiceImpl implements AdminService {
 	
 	
 	
-	
+	//회원
 	@Override
 	public List<Member> memberList() {
 		return ad.memberList(sqlSession);
@@ -48,14 +50,46 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 	@Override
-	public void updateMember(Member vo) {
+	public void updateMember(Member m) {
 		
-		System.out.println("memberVo3 : " + vo);
-		AdminDao.updateMember(sqlSession, vo);
+		AdminDao.updateMember(sqlSession, m);
 	}
 	
+	//신고
+	@Override                               
+	public List<Report> reportList() {      
+    	return ad.reportList(sqlSession);   
+	}
 	
+	@Override
+	public Report viewReport(String reportNo) {
+		return AdminDao.viewReport(sqlSession, reportNo);
+	}
 	
+	@Override
+	public void updateReport(Project p) {
+		
+		AdminDao.updateReport(sqlSession, p);
+	}
+	
+	//심사프로젝트
+	@Override                               
+	public List<Project> projectList() {      
+    	return ad.projectList(sqlSession);   
+	}
+	
+	@Override
+	public Project viewProject(String projectNo) {
+		
+		return AdminDao.viewProject(sqlSession, projectNo);
+	}
+	
+	@Override
+	public void updateProject(Project p) {
+		
+		AdminDao.updateProject(sqlSession, p);
+	}
 	
 
-}
+}                                       
+                                            
