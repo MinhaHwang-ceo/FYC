@@ -37,13 +37,10 @@ public class AdminController {
 	}
 	
 	@RequestMapping(value = "memberUpdate.ad")
-	public String memberUpdate(@ModelAttribute Member vo , Model model) {
+	public String memberUpdate(String userNo, String option, Model model) {
 		
-		System.out.println("memberVo : " + vo);
-		System.out.println("유저상태2222222222" + vo.getStatus());
-		
-		AdminService.updateMember(vo);
-		
+		System.out.println(userNo+"userNo");
+		System.out.println(option+"option");
 		
 		
 		return "redirect:/memberStatus.ad";

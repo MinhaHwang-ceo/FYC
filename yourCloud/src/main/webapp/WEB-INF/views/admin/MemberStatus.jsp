@@ -12,27 +12,27 @@
 <title>회원 상세 페이지</title>
 
 <script>
-		$(document).ready(function(){
-			$("#btnUpdate").click(function(){
-				
-				
-				
-				if(confirm("수정하시겠습니까?")){
-					
-					document.form1.action = "${pageContext.request.contextPath}/memberUpdate.ad";
-					document.form1.submit();
+	$(document).ready(
+		function() {
+			var option = "";
+			$("#btnUpdate").click(function() {
+				var userNo = $("#userNo").val();
+				if (confirm("수정하시겠습니까?")) {
+					option = $("#select").val();
+					alert(option);
+					location.href = "memberUpdate.ad?userNo=" + userNo + "&option=" + option;
+
+					self.close();
 				}
 			});
 		});
-		
-		function st_close(){
-			
-			self.close();
-		}
-	</script>
-	
-	
- <style>
+	function st_close() {
+		self.close();
+	}
+</script>
+
+
+<style>
   .outer{
   
   width:350px;
@@ -80,7 +80,7 @@
   		<tr><td><br></td></tr>
     		
    		<tr>
-  			<td><input type="hidden" value="${ dto.userNo }" readonly="readonly"></td>
+  			<td><input type="hidden" id="userNo" value="${ dto.userNo }" readonly="readonly"></td>
   		</tr> 
   		
   	
@@ -142,8 +142,7 @@
   		
   		<tr>
 				<td align="center">
-					<select>
-					<option>상태</option>
+					<select id="select">
 				    <option value="N">정상
 					</option>
 					<option value="Y">정지

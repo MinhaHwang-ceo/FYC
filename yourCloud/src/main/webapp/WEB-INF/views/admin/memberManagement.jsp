@@ -260,7 +260,7 @@
                   <tbody>
                   <c:forEach var="row" items="${list}">
                   <tr>
-                  	<td onclick="window.open('${pageContext.request.contextPath}/memberView.ad?userNo=${row.userNo}', 'PopupWin', 'width=500,height=600');">${row.userNo}</td>
+                  	<td onclick="popup();window.open('${pageContext.request.contextPath}/memberView.ad?userNo=${row.userNo}', 'PopupWin', 'width=500,height=600');">${row.userNo}</td>
                   	<td>${row.userName}</td>
                   	<td>${row.userId}</td>
                   	<td>${row.memberDiv}</td>
@@ -273,9 +273,10 @@
                   				<td>정지</td>
                   			</c:when>
                   		</c:choose>
-                  	<td><input type="button" id="st" onclick="window.open('${pageContext.request.contextPath}/memberStatus.ad?userNo=${row.userNo}', 'PopupWin', 'width=500,height=600');" value="상태변경"></td>
+                  	<td><input type="button" id="st" onclick="a();" value="상태변경"></td>
                   </tr>
-                  
+                  <script>
+                  </script>
                   </c:forEach>
                     <!-- <tr>
                       <td></td>
