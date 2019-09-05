@@ -16,4 +16,6 @@ public interface MemberService {
 	
 	public int CheckDuplication(String inputId);
 
+	public String findId(String email);
+	int updatePwd(Member model);
 }

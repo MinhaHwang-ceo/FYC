@@ -55,6 +55,17 @@
  <jsp:include page="../common/customer_menubar.jsp"/><br><br> 
 <!-- 전체div -->
 <div class="outer">
+
+
+
+<div  id="checkcheck1">
+<input type="hidden" value="1" id="check1">
+</div>
+<div  id="checkcheck2">
+<input type="hidden"  value="1" id="check2">
+</div>
+
+
   <h2><b>회원가입</b></h2>
   <br>
   
@@ -152,14 +163,14 @@
   		
   		<tr>
   			<td>*비밀번호</td>
-  			<td><input type="password" name="userPwd" class="td2" required></td>
+  			<td><input type="password" name="userPwd" id="pass1" class="td2" required></td>
   		</tr> 	
   		
   		<tr><td><br></td></tr>  		
 		
   		<tr>
   			<td>*비밀번호 확인</td>
-  			<td><input type="password" name="" class="td2" required></td>
+  			<td><input type="password" id="pass2" class="td2" required></td>
   		</tr>  		
 
    		<tr><td><br></td></tr>
@@ -175,7 +186,7 @@
   		<tr>
   			<td>인증번호</td>
   			<td><input type="text" name="" class="td2" id="randomNum" required></td>
-  			<td><button  class="btn btn-info"  id="pushNum">확인</button></td>
+  			<td><button  class="btn btn-info"  id="pushNum" onclick="return confirm();">확인</button></td>
   		</tr>
   		
   		<tr><td><br></td></tr> 
@@ -235,7 +246,7 @@
   		
   		
   	</table>
-  <button id="sumbmitbutton" class="btn btn-info">확인</button>
+  <button id="sumbmitbutton" class="btn btn-info" onclick="return finalcheck();">확인</button>
   </form>
   
   <br><br>
@@ -253,7 +264,7 @@
 <script>
 		function duplicationCheck(){
 			var userId = $("#userId").val();
-			
+			 var $divcheck=$("#checkcheck1");
 			console.log(userId);
 			
 			$.ajax({
@@ -265,10 +276,18 @@
 		if(data.checkRst=="F"){
 			
 			alert('이미 존재하는 아이디 입니다 다시 입력해 주세요')
+			$divcheck.html("");
+			 var $input=$("<input type='hidden'  id='check1' >");
+			 $input.val("1");
+				$divcheck.append($input);
 			
 		}else{
 			
 			alert('가입 가능한 아이디 입니다. 가입을 진행해 주세요')
+			$divcheck.html("");
+			 var $input=$("<input type='hidden'  id='check1' >");
+			 $input.val("0");
+				$divcheck.append($input);
 		}
 					
 				},
@@ -292,9 +311,9 @@
 	
 	function emailCheck(){
 		var email = $("#inputEmail").val();
-		
+		var userId=$("#userId").val();
 		console.log(userId);
-		
+		alert('인증번호를 전송했습니다!')
 		$.ajax({
 			url:"emailAuth.do",
 			type:"post",
@@ -314,7 +333,83 @@
 		return false;
 	}
 
+
 	
+	
+	
+	</script>
+	<script>
+	function finalcheck(){
+		var check1=$("#check1").val();
+		var check2=$("#check2").val();
+
+		if(check1==0&&check2==0){
+			alert('회원가입 완료!')
+			document.getElementById('form').submit();
+
+
+			
+		}else{
+			
+			alert("중복확인이나 인증이 잘못되었습니다. 다시 확인 해주세요!");
+			return false;
+		}
+		
+		
+		
+		
+		
+	}
+	
+	
+	$(function(){
+
+		$("#pass2").keyup(function(){
+			var password = $("#pass1").val();
+			var password2 = $("#pass2").val();
+
+			if(password == password2){
+				console.log("같음!");
+				$("#pass2").css("border-color", "transparent")
+			}else{
+				console.log("틀림!");
+				$("#pass2").css("border-color", "red")
+			}
+		});
+	});
+
+	
+	
+	
+	
+	
+	</script>
+	
+	<script>
+	function confirm(){
+		var $divcheck=$("#checkcheck2");
+		console.log(code);
+		var num= $("#randomNum").val();
+		
+		
+		if(code==num){
+			
+			alert('인증이 완료되었습니다. 가입을 진행해 주세요');
+			$divcheck.html("");
+			 var $input=$("<input type='hidden'  id='check2' >");
+			 $input.val("0");
+				$divcheck.append($input);
+		}else{
+			alert('인증번호가 틀렸습니다. 다시 입력해 주세요');
+			$divcheck.html("");
+			 var $input=$("<input   type='hidden' id='check2' >");
+			 $input.val("1");
+			$divcheck.append($input);
+			
+		}
+		
+		return false;
+	}
 	
 	</script>
 	
