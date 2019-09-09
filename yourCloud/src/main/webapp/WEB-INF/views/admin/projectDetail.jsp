@@ -14,6 +14,7 @@
 <script>
       $(document).ready(function(){
          var judgeStatus = "";
+         
          $("#btnUpdate").click(function(){
                
             var projectNo = $("#projectNo").val();
@@ -98,6 +99,7 @@
   		
   		<tr><td><br></td></tr>	
   		
+  				<tr><td align="center">검토현황</td></tr>
   		<tr>
 				<td align="center">
 					<select id="judgeStatus">
@@ -107,6 +109,7 @@
 					</option>
 					<option value="반려">반려
 					</option>
+					
    					
 					</select>
 					<input type="button" value="수정" id="btnUpdate">
@@ -115,6 +118,8 @@
 		</tr>
   		
   		<tr><td><br></td></tr>	
+  		
+  		
   		
   		
   				

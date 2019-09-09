@@ -52,7 +52,7 @@
 	
 	<update id="updateJudgeProject"  parameterType="Project">
         UPDATE PROJECT
-		SET JUDGE_STATUS = #{judgeStatus}
+		SET JUDGE_STATUS = #{judgeStatus} , progressStatus = #{progressStatus}
 		WHERE PROJECT_NO= #{projectNo}
 	</update>
 
