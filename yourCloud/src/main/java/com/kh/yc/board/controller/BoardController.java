@@ -54,7 +54,7 @@ public class BoardController {
 	@RequestMapping(value = "category.bo", method = RequestMethod.GET)
 	public String category(Model model) {
 		
-		
+		 
 		return "main/category";
 	}
 

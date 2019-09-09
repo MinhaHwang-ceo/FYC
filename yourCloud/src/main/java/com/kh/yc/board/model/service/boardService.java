@@ -6,4 +6,4 @@ public interface boardService {
 
 	Board openExpectationDetail(Board b);
 
-}
+} 

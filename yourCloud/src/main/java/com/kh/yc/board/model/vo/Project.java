@@ -24,7 +24,7 @@ public class Project {
 	private String projectTitle;
 	private String projectShortTitle;
 	private int monet;
-	private int mainImg;
+	private int mainImg; 
 	private String document;
 	private String progress;
 	private String delivert;
