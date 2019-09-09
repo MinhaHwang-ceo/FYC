@@ -1,5 +1,6 @@
 package com.kh.yc.member.model.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -68,19 +69,27 @@ public class MemberDaoImpl implements MemberDao{
 			String userId=sqlSession.selectOne("Member.findId",email);
 		return userId;
 		}
+
+	
 		@Override
-		public int countId(SqlSessionTemplate sqlSession, String userId) {
-			// TODO Auto-generated method stub
-			return 0;
+		public void updatePwd(SqlSessionTemplate sqlSession, String email, String userPwd) {
+			Member m= new Member();
+			m.setEmail(email);
+			m.setUserPwd(userPwd);
+
+		sqlSession.update("Member.newPwd",m);
+			
+			
+			
+			
 		}
 		@Override
-		public String countId(SqlSessionTemplate sqlSession, Member m) {
-			// TODO Auto-generated method stub
-			return null;
-		}
-		@Override
-		public int updatePwd(SqlSessionTemplate sqlSession, Member model) {
-			return sqlSession.update("Member.updatePwd");
+		public List<Member> emailList(SqlSessionTemplate sqlSession) {
+	
+			
+			List<Member> list= sqlSession.selectList("Member.emailList");
+					
+					return list;
 		}
 	
 	}

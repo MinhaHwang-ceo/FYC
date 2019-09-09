@@ -23,7 +23,34 @@
 
 
 
+
+
+<form action="massEmail" method="post">
+
+
+<input type="text" name="title"><br>
+<textarea cols="50" rows="10" name="content"></textarea>
+
+<button>전송하기</button>
+
+</form>
+
+
+
+
+
+
+<br><br>
+
+
+
+
+
+
 <div class="content">
+
+
+
 
 <table>
 
@@ -41,8 +68,24 @@
 
 </div>
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <br><br><br><br><br>
 	<jsp:include page="../common/customer_footer.jsp"/>
+	
 
 
 </body>

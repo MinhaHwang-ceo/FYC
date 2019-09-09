@@ -17,62 +17,62 @@
 </head>
 <body>
 
-	<jsp:include page="../common/customer_menubar.jsp"/>
-	<jsp:include page="../common/myPage_menuList.jsp" />
-	<br />
-	<div id="myPageOuter">
-		<div class="project">
-			<h2 align="left"><c:out value="${ loginUser.userName }"/>님의 프로젝트</h2>
-			<br />
-			<table align="center" id="myProjectTable">
-				<tr>
-					<td class="projectImg">
-						<img src="${ contextPath }/resources/images/mail.PNG" style="width:100%;"/>
-					</td>
-				</tr>
-				<tr>
-					<td style="font-weight:bold">프로젝트제목이다아아아아아</td>
-				</tr>
-				<tr>
-					<td>진행 상황 : 검토요청 중</td>
-				</tr>
-				<tr>
-					<td>메이커명</td>
-				</tr>
-				<tr>
-					<td><button class="modifyBtn">수정, 편집하기</button></td>
-				</tr>
-				<tr>
-					<td><input type="button" class="btn btn-info" value="명세 정보 확인" onclick="location.href='receiptInfo.me'"/>&nbsp;
-						<input type="button"  class="btn btn-info" value="후원자 관리" onclick="location.href='supporterList.me'"/></td>
-				</tr>
-			</table>
-			<table align="center" id="myProjectTable">
-				<tr>
-					<td class="projectImg">
-						<img src="${ contextPath }/resources/images/mail.PNG" style="width:100%;"/>
-					</td>
-				</tr>
-				<tr>
-					<td style="font-weight:bold">프로젝트제목이다아아아아아</td>
-				</tr>
-				<tr>
-					<td>진행 상황 : 검토요청 중</td>
-				</tr>
-				<tr>
-					<td>메이커명</td>
-				</tr>
-				<tr>
-					<td><button class="modifyBtn">수정, 편집하기</button></td>
-				</tr>
-				<tr>
-					<td><input type="button" class="btn btn-info" value="명세 정보 확인" onclick="location.href='receiptInfo.me'"/>&nbsp;
-						<input type="button"  class="btn btn-info" value="후원자 관리" onclick="location.href='supporterList.me'"/></td>
-				</tr>
-			</table>
+   <jsp:include page="../common/customer_menubar.jsp"/>
+   <jsp:include page="../common/myPage_menuList.jsp" />
+   <br />
+   <div id="myPageOuter">
+      <div class="project">
+         <h2 align="left"><c:out value="${ loginUser.userName }"/>님의 프로젝트</h2>
+         <br />
+         <table align="center" id="myProjectTable">
+            <tr>
+               <td class="projectImg">
+                  <img src="${ contextPath }/resources/images/mail.PNG" style="width:100%;"/>
+               </td>
+            </tr>
+            <tr>
+               <td style="font-weight:bold">프로젝트제목이다아아아아아</td>
+            </tr>
+            <tr>
+               <td>진행 상황 : 검토요청 중</td>
+            </tr>
+            <tr>
+               <td>메이커명</td>
+            </tr>
+            <tr>
+               <td><button class="modifyBtn">수정, 편집하기</button></td>
+            </tr>
+            <tr>
+               <td><input type="button" class="btn btn-info" value="명세 정보 확인" onclick="location.href='receiptInfo.me'"/>&nbsp;
+                  <input type="button"  class="btn btn-info" value="후원자 관리" onclick="location.href='supporterList.me'"/></td>
+            </tr>
+         </table>
+         <table align="center" id="myProjectTable">
+            <tr>
+               <td class="projectImg">
+                  <img src="${ contextPath }/resources/images/mail.PNG" style="width:100%;"/>
+               </td>
+            </tr>
+            <tr>
+               <td style="font-weight:bold">프로젝트제목이다아아아아아</td>
+            </tr>
+            <tr>
+               <td>진행 상황 : 검토요청 중</td>
+            </tr>
+            <tr>
+               <td>메이커명</td>
+            </tr>
+            <tr>
+               <td><button class="modifyBtn">수정, 편집하기</button></td>
+            </tr>
+            <tr>
+               <td><input type="button" class="btn btn-info" value="명세 정보 확인" onclick="location.href='receiptInfo.me'"/>&nbsp;
+                  <input type="button"  class="btn btn-info" value="후원자 관리" onclick="location.href='supporterList.me'"/></td>
+            </tr>
+         </table>
 
-		</div>
-	</div>
-	<jsp:include page="../common/customer_footer.jsp"/>
+      </div>
+   </div>
+   <jsp:include page="../common/customer_footer.jsp"/>
 </body>
 </html>

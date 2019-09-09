@@ -43,6 +43,7 @@
 
 
    </insert>
+
    
    
    
@@ -51,12 +52,13 @@
       FROM MEMBER
       WHERE MEMBER_ID = #{userId}
    </select>
-   
+
       
    <select id="selectLoginUser" parameterType="Member" resultMap="memberResultSet">
       SELECT *
       FROM MEMBER
       WHERE MEMBER_ID = #{userId}
+      	AND STATUS = 'N'
    </select>   
 
 
@@ -83,11 +85,25 @@
       WHERE EMAIL= #{email}
    </select>
 
-      <select id="updatePwd" resultMap="memberResultSet">
+      <select id="newPwd" resultMap="memberResultSet">
       UPDATE MEMBER
       SET MEMBER_PASSWORD = #{userPwd}
       WHERE EMAIL= #{email}
    </select>
+
+	<select id="countId" parameterType="String" resultType="Integer">
+	SELECT COUNT(*)
+	FROM MEMBER
+	WHERE MEMBER_ID= #{userId} 
+	</select>
+
+
+	<select id="emailList" resultMap="memberResultSet">
+	SELECT *
+	FROM MEMBER
+	WHERE EMAIL_AGREE='Y'
+
+	</select>
 
    
 </mapper>
