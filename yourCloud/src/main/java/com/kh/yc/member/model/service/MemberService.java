@@ -1,12 +1,9 @@
 package com.kh.yc.member.model.service;
 
-import java.io.UnsupportedEncodingException;
-import java.util.List;
-
-import javax.mail.MessagingException;
 import javax.security.auth.login.LoginException;
 
 import com.kh.yc.member.model.vo.Member;
+import com.kh.yc.member.model.vo.NaverMember;
 
 public interface MemberService {
 	
@@ -18,4 +15,17 @@ public interface MemberService {
 
 	public String findId(String email);
 	int updatePwd(Member model);
+	
+	//네이버 
+	//int naverInsert(NaverMember nm);
+	
+//	//로그인 체크
+//	NaverMember naverloginCheck(NaverMember nm);
+
+	//네이버 로그인
+	int naverInsert(NaverMember nm);
+
+	int naverLoginCheck(NaverMember nm);
+	
+	
 }

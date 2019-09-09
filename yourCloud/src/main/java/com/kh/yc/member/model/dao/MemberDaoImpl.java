@@ -6,10 +6,12 @@ import javax.inject.Inject;
 import javax.security.auth.login.LoginException;
 
 import org.apache.ibatis.session.SqlSession;
+import org.json.simple.JSONObject;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.kh.yc.member.model.vo.Member;
+import com.kh.yc.member.model.vo.NaverMember;
 @Repository
 public class MemberDaoImpl implements MemberDao{
 	
@@ -81,6 +83,31 @@ public class MemberDaoImpl implements MemberDao{
 		@Override
 		public int updatePwd(SqlSessionTemplate sqlSession, Member model) {
 			return sqlSession.update("Member.updatePwd");
+		}
+		//네이버 회원 인셀트
+//		@Override
+//		public int naverInsert(SqlSessionTemplate sqlSession,  NaverMember nm) {
+//			System.out.println("********************" + nm);
+//			return sqlSession.insert("Naver.naverInsert", nm);
+//		}
+//		//네이버 로그인 체크
+//		@Override
+//		public NaverMember naverloginCheck(SqlSessionTemplate sqlSession, NaverMember nm) {
+//			System.out.println("loginCheck : " + nm);
+//			return sqlSession.selectOne("Naver.naverLoginCheck", nm);
+//		}
+		//네이버 로그인 체크
+
+		//네이버 회원 정보 인셀트
+		@Override
+		public int naverInsert(SqlSessionTemplate sqlSession, NaverMember nm) {
+			
+			System.out.println("Dao : " + nm);
+			return sqlSession.insert("Naver.naverInsert", nm);
+		}
+		@Override
+		public int naverLoginCheck(SqlSessionTemplate sqlSession, NaverMember nm) {
+			return sqlSession.selectOne("Naver.naverLoginCheck", nm);
 		}
 	
 	}
