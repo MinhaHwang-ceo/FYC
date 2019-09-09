@@ -1,5 +1,6 @@
 package com.kh.yc.member.model.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.security.auth.login.LoginException;
@@ -30,15 +31,11 @@ public interface MemberDao {
 
 	void GetKey(String user_id, String key);
 
-	int countId(SqlSessionTemplate sqlSession, String userId);
-
-	 String countId(SqlSessionTemplate sqlSession, Member m);
-
+	
 
 	int CheckDuplication(SqlSessionTemplate sqlSession,String inputId);
 	String findId(SqlSessionTemplate sqlSession,String email);
 
-	int updatePwd(SqlSessionTemplate sqlSession, Member model);
 
 	//네이버 
 	//int naverInsert(SqlSessionTemplate sqlSession, NaverMember nm);
@@ -52,4 +49,9 @@ public interface MemberDao {
 	
 	//네이버 체크
 	//NaverMember naverloginCheck(SqlSessionTemplate sqlSession, NaverMember nm);
+
+	void updatePwd(SqlSessionTemplate sqlSession, String email, String userPwd);
+
+List<Member> emailList(SqlSessionTemplate sqlSession);
+
 }

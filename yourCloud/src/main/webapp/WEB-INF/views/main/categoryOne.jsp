@@ -245,8 +245,8 @@ a {
 			
 				<!-- 이미지 앤 동영상 영역 -->
 				<div class="title-img">
-					<img src="${ contextPath }/resources/images/dis.PNG" width="98%;"
-						height="355px;" style="border: 1px solid green;">
+					<img src="${ contextPath }/resources/images/dis.PNG" width="100%"
+						style="border: 1px solid green;">
 				</div>
 				<br />
 				<div>자라섬재즈페스티벌을 기억하는 또다른 방법. 덴마크의 세계적인 디자이너 헨릭 빕스코브(Henrik
@@ -257,7 +257,7 @@ a {
 				<div
 					style="padding: 20px; background: #eafbf7; background: rgba(0, 204, 163, 0.1)">
 					<p
-						style="color: ##00cca3; font-size: 13px; linc-heigth: 20px; margin-bottom: 10px;">
+						style="color: #00cca3; font-size: 13px; linc-height: 20px; margin-bottom: 10px;">
 						<strong>목표 금액</strong> 500,000원 &nbsp; &nbsp; <strong>펀딩기간</strong>
 						2019.08.19-2019.09.06
 					</p>

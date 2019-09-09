@@ -1,5 +1,7 @@
 package com.kh.yc.member.model.service;
 
+import java.util.List;
+
 import javax.inject.Inject;
 import javax.security.auth.login.LoginException;
 import org.json.simple.JSONObject;
@@ -9,10 +11,6 @@ import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.ModelAndView;
-
 
 import com.kh.yc.member.model.dao.MemberDao;
 import com.kh.yc.member.model.dao.MemberDaoImpl;
@@ -64,9 +62,6 @@ public class MemberServiceImpl implements MemberService {
 		return insertMember;
 	}
 
-	public int idcheck(String userId) {
-		return md.countId(sqlSession, userId);
-	}
 
 	public int CheckDuplication(String inputId) {
 
@@ -81,9 +76,7 @@ public class MemberServiceImpl implements MemberService {
 		return userId;
 	}
 
-	public int updatePwd(Member model) {
-		return md.updatePwd(sqlSession, model);
-	}
+
 //	@Override
 //	public int naverInsert(NaverMember nm) {
 //		return md.naverInsert(sqlSession, nm);
@@ -111,12 +104,18 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	 
-	
+	public void updatePwd(String email, String userPwd) {
+		md.updatePwd(sqlSession, email,userPwd);
 
-	
+		
+		}
 
-	
+	public List<Member> emailList() {
 
+		List<Member> list=md.emailList(sqlSession);
+		
+		return list;
+	}
 	
 
 }

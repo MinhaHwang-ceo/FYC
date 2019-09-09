@@ -6,7 +6,6 @@
 
 <!-- Bootstrap CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,600,700,800" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.3.0/ekko-lightbox.css">
@@ -80,7 +79,7 @@ to {
 				<ul class="navbar-nav">
 					<li class="nav-item active"><a class="nav-link active"
 						href="index.jsp">리워드 홈</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">카테고리</a></li>
+					<li class="nav-item"><a class="nav-link" href="category.bo">카테고리</a></li>
 					<li class="nav-item"><a class="nav-link" href="intro">회사소개</a>
 					</li>
 					<li class="nav-item"><a class="nav-link" href="notice.bo">공지사항</a>
@@ -88,7 +87,11 @@ to {
 					<li class="nav-item"><a class="nav-link" href="guide.bo">이용가이드</a>
 					</li>
 					<li class="nav-item"><a class="nav-link"
-						href="openExpectation.bo">오픈예정</a></li>
+						href="openExpectation.bo">오픈예정</a>
+					</li>
+					<li class="nav-item"><a class="nav-link"
+						href="openBoardList.bo">사용후기</a>
+					</li>
 				</ul>
 			</div>
 		</div>

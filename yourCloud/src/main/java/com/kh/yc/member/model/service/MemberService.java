@@ -1,5 +1,9 @@
 package com.kh.yc.member.model.service;
 
+
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.security.auth.login.LoginException;
 
 import com.kh.yc.member.model.vo.Member;
@@ -14,8 +18,7 @@ public interface MemberService {
 	public int CheckDuplication(String inputId);
 
 	public String findId(String email);
-	int updatePwd(Member model);
-	
+
 	//네이버 
 	//int naverInsert(NaverMember nm);
 	
@@ -26,6 +29,10 @@ public interface MemberService {
 	int naverInsert(NaverMember nm);
 
 	int naverLoginCheck(NaverMember nm);
+
+
+	public void updatePwd(String email,String userPwd);
 	
-	
+	public List<Member> emailList();
+
 }

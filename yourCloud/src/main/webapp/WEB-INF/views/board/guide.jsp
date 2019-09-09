@@ -43,6 +43,7 @@ font-family: 'Sunflower', sans-serif;
 </head>
 <body>
 <jsp:include page="../common/customer_menubar.jsp"/>
+	<jsp:include page="../common/customer_menuList.jsp" />
 	
 	<br><br><br><br><br>
 <tr><h4 id="title">이용가이드</h4></tr>
