@@ -357,20 +357,39 @@ figure.snip1141:hover i, figure.snip1141.hover i {
 	margin: 0 auto;
 	text-align: center;
 }
-#myPageOuter .project .projectImg{
+
+#myPageOuter .project .projectImg {
 	height: 400px;
 }
+
 .modifyBtn {
-	background: white;	
+	background: white;
 	border: 1px solid black;
 	color: black;
 	height: 40px;
 }
+
 .modifyBtn:hover {
 	cursor: pointer;
 	border: 1px solid red;
 	font-weight: bold;
 }
+
 * {
 	word-break: break-all;
+}
+
+#reviewTable {
+	text-align:center;
+	width: 80%;
+}
+#reviewOuter{
+	margin: 100px auto;
+	width: 60%;
+	min-height: 1000px;
+}
+#reviewTable th{
+	border-bottom: 1px solid lightgray;
+	font-size: 1.2em;
+	line-height: 30px;
 }
