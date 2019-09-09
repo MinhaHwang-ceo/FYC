@@ -271,15 +271,7 @@
                   	<td>${row.makerDiv}</td>
                   	<td>${row.category}</td>
                   	<td>${row.projectShortTitle}</td>
-                  	<c:set value="${row.expected}" var="status" scope="session"/>
-                  		<c:choose>
-                  			<c:when test="${ status eq 'N' }">
-                  				<td>오픈미정</td>
-                  			</c:when>
-                  			<c:when test="${ status eq 'Y' }">
-                  				<td>오픈예정</td>
-                  			</c:when>
-                  		</c:choose>
+                  	<td>${row.progressStatus}</td>
                   	<td>${row.judgeStatus}</td>
                   	
                   	<td><input type="button" id="st" onclick="window.open('${pageContext.request.contextPath}/projectStatus.ad?projectNo=${row.projectNo}', 'PopupWin', 'width=380,height=300');" value="검토"></td>

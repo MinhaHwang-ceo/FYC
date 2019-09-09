@@ -12,6 +12,56 @@
 
   <title>니가 그린 구름 그림</title>
 
+	<script>
+      $(document).ready(function(){
+         var progressStatus = "";
+         $("#btnUpdate").click(function(){
+               
+            var projectNo = $("#projectNo").val();
+            if(confirm("수정하시겠습니까?")){
+            progressStatus = $("#progressStatus").val();
+               location.href = "reportUpdate.ad?projectNo="+projectNo+"&progressStatus="+progressStatus;
+               
+            }
+            opener.parent.location.reload();
+      	 	window.close();
+         });
+      });
+      function st_close(){
+    	  opener.parent.location.reload();
+      	  window.close();
+      };
+      
+      
+   // 숫자 타입에서 쓸 수 있도록 format() 함수 추가
+      Number.prototype.format = function(){
+          if(this==0) return 0;
+
+          var reg = /(^[+-]?\d+)(\d{3})/;
+          var n = (this + '');
+
+          while (reg.test(n)) n = n.replace(reg, '$1' + ',' + '$2');
+
+          return n;
+      };
+      
+   // 문자열 타입에서 쓸 수 있도록 format() 함수 추가
+      String.prototype.format = function(){
+          var num = parseFloat(this);
+          if( isNaN(num) ) return "0";
+
+          return num.format();
+      };
+      
+      
+      jQuery('.format-money').text(function() {
+    	    jQuery(this).text(
+    	        jQuery(this).text().format()
+    	    );
+    	});
+      
+      
+</script>
   <!-- Custom fonts for this template-->
    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/vendor/fontawesome-free/css/all.min.css" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
@@ -21,7 +71,38 @@
   
     <!-- Custom styles for this page -->
   <link href="${pageContext.request.contextPath}/resources/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
-
+	
+	
+	<style>
+  .outer{
+  
+  width:350px;
+  margin:auto;
+  font-family: 'Gothic A1', sans-serif;
+  
+  }
+  
+  
+  .td2{
+  
+  	width:400px;
+  	margin-left:100px;
+  
+  }
+  
+  .td3{
+  	
+  	width:100px;
+  	margin-left:30px;
+  
+  }
+  
+  #td4{
+  	
+  	padding-left:100px;
+  
+  }
+  </style>
 
 
 </head>
@@ -314,64 +395,70 @@
 
             <div class="col-lg-6">
 
-              <!-- Default Card Example -->
-              <div class="card mb-4">
-                <div class="card-header">
-                  Default Card Example
-                </div>
-                <div class="card-body">
-                  This card uses Bootstrap's default styling with no utility classes added. Global styles are the only things modifying the look and feel of this default card example.
-                </div>
-              </div>
-
-              <!-- Basic Card Example -->
-              <div class="card shadow mb-4">
-                <div class="card-header py-3">
-                  <h6 class="m-0 font-weight-bold text-primary">Basic Card Example</h6>
-                </div>
-                <div class="card-body">
-                  The styling for this basic card example is created by using default Bootstrap utility classes. By using utility classes, the style of the card component can be easily modified with no need for any custom CSS!
-                </div>
-              </div>
-
-            </div>
-
-            <div class="col-lg-6">
-
-              <!-- Dropdown Card Example -->
-              <div class="card shadow mb-4">
-                <!-- Card Header - Dropdown -->
-                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                  <h6 class="m-0 font-weight-bold text-primary">Dropdown Card Example</h6>
-                  <div class="dropdown no-arrow">
-                    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
-                      <div class="dropdown-header">Dropdown Header:</div>
-                      <a class="dropdown-item" href="#">Action</a>
-                      <a class="dropdown-item" href="#">Another action</a>
-                      <div class="dropdown-divider"></div>
-                      <a class="dropdown-item" href="#">Something else here</a>
-                    </div>
-                  </div>
-                </div>
-                <!-- Card Body -->
-                <div class="card-body">
-                  Dropdown menus can be placed in the card header in order to extend the functionality of a basic card. In this dropdown card example, the Font Awesome vertical ellipsis icon in the card header can be clicked on in order to toggle a dropdown menu.
-                </div>
-              </div>
 
               <!-- Collapsable Card Example -->
               <div class="card shadow mb-4">
                 <!-- Card Header - Accordion -->
                 <a href="#collapseCardExample" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="collapseCardExample">
-                  <h6 class="m-0 font-weight-bold text-primary">Collapsable Card Example</h6>
+                  <h6 class="m-0 font-weight-bold text-primary">입출금 입력</h6>
                 </a>
                 <!-- Card Content - Collapse -->
-                <div class="collapse show" id="collapseCardExample">
+                <div class="collapse hide" id="collapseCardExample">
                   <div class="card-body">
-                    This is a collapsable card example using Bootstrap's built in collapse functionality. <strong>Click on the card header</strong> to see the card body collapse and expand!
+                    		 <strong>입출금액관리</strong>
+                    		 <!-- 전체div -->
+<div class="outer">
+<br>
+  <!-- 회원상태 폼 -->
+  <div align="center">
+ 	 <form name="form1" method="post">
+  			<table>
+  	  	
+  		<tr><td><br></td></tr>
+    	<tr>
+  			<td><input type="hidden" id="projectNo" value="${ rpt.projectNo }" readonly="readonly"></td>
+  		</tr> 
+  		
+		<tr>  	
+  			<td  align="center">금액</td>
+  			
+  		</tr>
+  		<tr>
+  		<td>
+  			<span class="format-money"><input type="text" id="bookMoney"></span>원
+  		</td>
+  		</tr> 
+  		
+  	
+  		
+  		<tr><td><br></td></tr>	
+  		
+  		<tr>
+				<td align="center">
+					<select id="progressStatus">
+				    <option value="입금">입금
+					</option>
+					<option value="출금">출금
+					</option>
+   					
+					</select>
+					<input type="button" value="입력" id="btnUpdate">
+		</td>
+		</tr>
+  		
+  		<tr><td><br></td></tr>	
+  		
+  		
+  				
+		</table>
+  </form>
+  
+  <br><br>
+  
+  </div>
+  
+
+</div>    
                   </div>
                 </div>
               </div>
@@ -386,13 +473,13 @@
         <div class="container-fluid">
 
           <!-- Page Heading -->
-          <h1 class="h3 mb-2 text-gray-800">신고관리</h1>
+          <h1 class="h3 mb-2 text-gray-800">장부관리</h1>
           <!-- <p class="mb-4">회원리스트입니다.</p> -->
 
           <!-- DataTales Example -->
           <div class="card shadow mb-4">
             <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
+              <h6 class="m-0 font-weight-bold text-primary">장부관리</h6>
             </div>
             <div class="card-body">
               <div class="table-responsive">
@@ -401,34 +488,38 @@
                     <tr>
                       <th>장부번호</th>
                       <th>프로젝트명</th>
-                      <th>신고사유</th>
-                      <th>신고자</th>
-                      <th>신고수</th>
+                      <th>회원명</th>
+                      <th>구분</th>
+                      <th>금액</th>
+                      <th>잔고</th>
                     </tr>
                   </thead>
                   <tfoot>
                     <tr>
-                      <th>신고번호</th>
+                      <th>장부번호</th>
                       <th>프로젝트명</th>
-                      <th>신고사유</th>
-                      <th>신고자</th>
-                      <th>신고수</th>
+                      <th>회원명</th>
+                      <th>구분</th>
+                      <th>금액</th>
+                      <th>잔고</th>
                     </tr>
                   </tfoot>
                   <tbody>
                     <tr>
                       <td>1</td>
                       <td>[당신의옷]너무나멋진똥간닦개</td>
-                      <td>허위사실이 기재된 프로젝트</td>
-                      <td>minhada22</td>
-                      <td>8</td>
+                      <td>황민하</td>
+                      <td>입금</td>
+                      <td><span class="format-money">2000000</span>원</td>
+                      <td></td>
                     </tr>
                     <tr>
                       <td>2</td>
                       <td>[당신의옷]너무나멋진똥간닦개</td>
-                      <td>허위사실이 기재된 프로젝트</td>
-                      <td>kojihyo</td>
-                      <td>8</td>
+                      <td>황민하</td>
+                      <td>출금</td>
+                      <td><span class="format-money">1600000</span>원</td>
+                      <td></td>
                     </tr>
                     
                   </tbody>
