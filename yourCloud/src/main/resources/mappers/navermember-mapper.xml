@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Naver">
+	<resultMap type="com.kh.yc.member.model.vo.NaverMember"
+		id="naverResultSet">
+
+		<id property="userNo" column="MEMBER_NO" />
+		<result property="userId" column="MEMBER_ID" />
+		<result property="userPwd" column="MEMBER_PASSWORD" />
+		<result property="userName" column="MEMBER_NAME" />
+		<result property="email" column="EMAIL" />
+		<result property="ssn" column="SSN" />
+		<result property="companyName" column="COMPANY_NAME" />
+		<result property="account" column="ACCOUNT" />
+		<result property="gender" column="GENDER" />
+		<result property="memberCategory" column="MEMBER_CATEGORY" />
+		<result property="point" column="POINT" />
+		<result property="age" column="AGE" />
+		<result property="status" column="STATUS" />
+		<result property="memberDiv" column="MEMBER_DIV" />
+		<result property="emailAgree" column="EMAIL_AGREE" />
+	</resultMap>
+	
+	<insert id="naverInsert" parameterType="Naver">
+		INSERT INTO MEMBER
+		VALUES(
+		SEQ_MEMBERNO.NEXTVAL , #{userName} , #{userId} , 1234 ,
+		#{email} , default , null , null , null , #{gender} , null ,
+		1000 , #{age} , default , #{emailAgree})
+	</insert>
+	
+	<select id="naverLoginCheck" parameterType="Naver" resultType="INTEGER">
+		SELECT COUNT(*)
+		FROM MEMBER
+		WHERE MEMBER_ID = #{userId}
+		
+	</select> 
+	
+	</mapper>
+	

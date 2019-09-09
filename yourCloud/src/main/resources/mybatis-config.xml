@@ -11,6 +11,7 @@
 		<typeAlias type="com.kh.yc.member.model.vo.Member" alias="Member"/>
 		<typeAlias type="com.kh.yc.admin.model.vo.Report" alias="Report"/>
 		<typeAlias type="com.kh.yc.admin.model.vo.Project" alias="Project"/>
+		<typeAlias type="com.kh.yc.member.model.vo.NaverMember" alias="Naver"/>
 		<typeAlias type="com.kh.yc.board.model.vo.Board" alias="Board"/>
 		<typeAlias type="com.kh.yc.board.model.vo.Comment" alias="Comment"/>
 	</typeAliases>
@@ -19,6 +20,7 @@
 		<mapper resource="mappers/member-mapper.xml"/>
 		<mapper resource="mappers/report-mapper.xml"/>
 		<mapper resource="mappers/project-mapper.xml"/>
+		<mapper resource="mappers/navermember-mapper.xml"/>
 		<mapper resource="mappers/board-mapper.xml"/>
 	</mappers>
 	

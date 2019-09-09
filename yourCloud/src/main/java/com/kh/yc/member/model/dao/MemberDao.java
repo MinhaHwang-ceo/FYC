@@ -5,10 +5,12 @@ import java.util.List;
 
 import javax.security.auth.login.LoginException;
 
+import org.json.simple.JSONObject;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.ui.Model;
 
 import com.kh.yc.member.model.vo.Member;
+import com.kh.yc.member.model.vo.NaverMember;
 
 public interface MemberDao {
 	
@@ -34,7 +36,22 @@ public interface MemberDao {
 	int CheckDuplication(SqlSessionTemplate sqlSession,String inputId);
 	String findId(SqlSessionTemplate sqlSession,String email);
 
+
+	//네이버 
+	//int naverInsert(SqlSessionTemplate sqlSession, NaverMember nm);
+	
+	
+	//네이버 정보 인설트
+	int naverInsert(SqlSessionTemplate sqlSession, NaverMember nm);
+
+
+	int naverLoginCheck(SqlSessionTemplate sqlSession, NaverMember nm);
+	
+	//네이버 체크
+	//NaverMember naverloginCheck(SqlSessionTemplate sqlSession, NaverMember nm);
+
 	void updatePwd(SqlSessionTemplate sqlSession, String email, String userPwd);
 
 List<Member> emailList(SqlSessionTemplate sqlSession);
+
 }

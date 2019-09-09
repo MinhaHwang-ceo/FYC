@@ -4,7 +4,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 import javax.security.auth.login.LoginException;
-
+import org.json.simple.JSONObject;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 import com.kh.yc.member.model.dao.MemberDao;
 import com.kh.yc.member.model.dao.MemberDaoImpl;
 import com.kh.yc.member.model.vo.Member;
+import com.kh.yc.member.model.vo.NaverMember;
 
 @Service
 public class MemberServiceImpl implements MemberService {
@@ -75,6 +76,34 @@ public class MemberServiceImpl implements MemberService {
 		return userId;
 	}
 
+
+//	@Override
+//	public int naverInsert(NaverMember nm) {
+//		return md.naverInsert(sqlSession, nm);
+//	}
+	//로그인 체크
+//	@Override
+//	public NaverMember naverloginCheck(NaverMember nm) {
+//		
+//		return md.naverloginCheck(sqlSession, nm);
+//	}
+	
+	//로그인 체크
+
+	//네이버 정보 인설트
+	@Override
+	public int naverInsert(NaverMember nm) {
+		System.out.println("Service : " + nm);
+		return md.naverInsert(sqlSession, nm);
+	}
+
+	@Override
+	public int naverLoginCheck(NaverMember nm) {
+		// TODO Auto-generated method stub
+		return md.naverLoginCheck(sqlSession, nm);
+	}
+
+	 
 	public void updatePwd(String email, String userPwd) {
 		md.updatePwd(sqlSession, email,userPwd);
 
