@@ -1,13 +1,20 @@
 package com.kh.yc.board.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.kh.yc.board.model.service.boardService;
+import com.kh.yc.board.model.vo.Board;
+import com.kh.yc.project.model.vo.Project;
+
 @Controller
 public class BoardController {
-
+	@Autowired
+	private boardService bs;
+	
 	@RequestMapping(value = "openExpectation.bo", method = RequestMethod.GET)
 	public String openExpectation(Model model) {
 
@@ -46,7 +53,8 @@ public class BoardController {
 	
 	@RequestMapping(value = "category.bo", method = RequestMethod.GET)
 	public String category(Model model) {
-
+		
+		
 		return "main/category";
 	}
 
