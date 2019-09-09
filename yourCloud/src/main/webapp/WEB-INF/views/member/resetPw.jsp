@@ -37,14 +37,14 @@
 
 </head>
 <body>
-<jsp:include page="../common/customer_menubar.jsp"/><br><br>
+<jsp:include page="../common/customer_menubar.jsp"/><jsp:include page="../common/customer_menuList.jsp"/><br><br>
 <div class="outer">
 <h2><b>비밀번호 재설정</b></h2>
 <br>
 <form action="newPwd.me" method="post">
 	<table>
 		<tr>
-			<td>비밀번호 ${email}</td>
+			<td>비밀번호</td>
 			
 			<td><input type="text" class="td2" id="pass1" name="userPwd" required></td>
 		</tr>
@@ -55,7 +55,7 @@
 			<td>비밀번호 확인</td>
 			<td><input type="text" class="td2" id="pass2" required></td>
 		</tr>
-		
+	<input type="hidden" value="${email}" id="email" name="email"> 
 		<tr><td><br></td></tr>
 		
 	</table>

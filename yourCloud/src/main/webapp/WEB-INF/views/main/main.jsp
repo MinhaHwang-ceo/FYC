@@ -16,6 +16,7 @@
 
 <body>
    <jsp:include page="../common/customer_menubar.jsp"/>
+   <jsp:include page="../common/customer_menuList.jsp"/><br><br>
     <!--Section-1-->
     <section class="section-1">
         <div class="jumbotron d-flex align-items-center">
