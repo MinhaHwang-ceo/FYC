@@ -79,7 +79,7 @@ to {
 				<ul class="navbar-nav">
 					<li class="nav-item active"><a class="nav-link active"
 						href="index.jsp">리워드 홈</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">카테고리</a></li>
+					<li class="nav-item"><a class="nav-link" href="category.bo">카테고리</a></li>
 					<li class="nav-item"><a class="nav-link" href="intro">회사소개</a>
 					</li>
 					<li class="nav-item"><a class="nav-link" href="notice.bo">공지사항</a>
@@ -87,7 +87,11 @@ to {
 					<li class="nav-item"><a class="nav-link" href="guide.bo">이용가이드</a>
 					</li>
 					<li class="nav-item"><a class="nav-link"
-						href="openExpectation.bo">오픈예정</a></li>
+						href="openExpectation.bo">오픈예정</a>
+					</li>
+					<li class="nav-item"><a class="nav-link"
+						href="openBoardList.bo">사용후기</a>
+					</li>
 				</ul>
 			</div>
 		</div>

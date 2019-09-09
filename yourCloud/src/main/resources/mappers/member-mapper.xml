@@ -43,6 +43,7 @@
 
 
    </insert>
+
    
    
    
@@ -51,7 +52,7 @@
       FROM MEMBER
       WHERE MEMBER_ID = #{userId}
    </select>
-   
+
       
    <select id="selectLoginUser" parameterType="Member" resultMap="memberResultSet">
       SELECT *
@@ -89,6 +90,7 @@
       SET MEMBER_PASSWORD = #{userPwd}
       WHERE EMAIL= #{email}
    </select>
+
 	<select id="countId" parameterType="String" resultType="Integer">
 	SELECT COUNT(*)
 	FROM MEMBER
@@ -102,5 +104,6 @@
 	WHERE EMAIL_AGREE='Y'
 
 	</select>
+
    
 </mapper>
