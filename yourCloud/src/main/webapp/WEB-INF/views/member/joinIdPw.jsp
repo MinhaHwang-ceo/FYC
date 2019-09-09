@@ -52,7 +52,7 @@
   </style>
 </head>
 <body>
- <jsp:include page="../common/customer_menubar.jsp"/><br><br> 
+ <jsp:include page="../common/customer_menubar.jsp"/><jsp:include page="../common/customer_menuList.jsp"/><br><br>
 <!-- 전체div -->
 <div class="outer">
 

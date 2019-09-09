@@ -44,7 +44,8 @@
 <body>
 
 
-<jsp:include page="../common/customer_menubar.jsp"/><br><br>
+<jsp:include page="../common/customer_menubar.jsp"/>
+<jsp:include page="../common/customer_menuList.jsp"/><br><br>
 
 <div  id="checkcheck1">
 <input type="hidden" value="1" id="check1">
