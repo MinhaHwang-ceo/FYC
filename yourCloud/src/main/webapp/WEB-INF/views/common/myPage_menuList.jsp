@@ -27,7 +27,7 @@
 				<ul class="navbar-nav">
 					<li class="nav-item"><a class="nav-link" href="myPage.me">내 정보</a></li>
 					<li class="nav-item"><a class="nav-link" href="myReward.me">나의 리워드</a></li>
-					<li class="nav-item"><a class="nav-link" href="myMaker.me">나의 메이커</a>
+					<li class="nav-item"><a class="nav-link" href="myProject.me">나의 메이커</a>
 					</li>
 					<li class="nav-item"><a class="nav-link" href="messageBox.me">쪽지함</a>
 					</li>
