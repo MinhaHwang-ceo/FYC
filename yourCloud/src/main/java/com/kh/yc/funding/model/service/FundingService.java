@@ -14,8 +14,14 @@ public interface FundingService{
 	}
 	
 	//프로 젝트 번호 인설트
-	int projectNno(Project p);
+	int insertProjectNum(String ranNumranNum);
+	//프로젝트 번호 체크
+	int pNoCheck(String ranNum);
+	
+	//업데이트 첫 카테코리 
+	int updatefcategory(Project p);
 
-	List<Project> projectListInfo(int projectNo);
+	
+
 	
 }

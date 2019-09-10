@@ -29,17 +29,25 @@ public class FundingServiceImpl implements FundingService{
 	
 	//프로젝트 번호 인설트
 	@Override
-	public int projectNno(Project p) {
-		int resulut = fd.projectNno(sqlSession,p);
+	public int insertProjectNum(String ranNum) {
+		int resulut = fd.insertProjectNum(sqlSession,ranNum);
 		
 		return resulut;
 	}
 
-
+	//프로젝트 번호  체크
 	@Override
-	public List<Project> projectListInfo(int projectNo) {
-		// TODO Auto-generated method stub
-		return null;
+	public int pNoCheck(String ranNum) {
+		int check = fd.pNoCheck(sqlSession,ranNum);
+		return check;
 	}
+	//업데이트 카테고리
+	@Override
+	public int updatefcategory(Project p) {
+		int fcategory = fd.updatefcategory(sqlSession,p);
+		return fcategory;
+	}
+
+	
 	
 }

@@ -29,6 +29,7 @@ public class FundingController {
 	
 	private IamportClient client;
 
+
 	@RequestMapping(value = "FundingOpen.fd", method = RequestMethod.GET)
 	public String FundingOpen(Locale locale, Model model) {
 		
@@ -36,41 +37,55 @@ public class FundingController {
 	}
 	
 	@RequestMapping(value = "FundingOpen2.fd", method = RequestMethod.GET)
-	public String FundingOpen2(Locale locale, Model model) {
+	public String fundingInsert(Project p, Model model) {
+		String ranNum = "";
+		boolean tf= true;
+		while (tf) {
+			int ran = (int)(Math.random() * 1000000)+1;
+			ranNum = String.valueOf(ran);
+			System.out.println(ran);
+			if(ranNum.length()==6) {
+				int check =  fs.pNoCheck(ranNum);
+				System.out.println("check :" + check);
+				if(check>0) {
+					continue;
+				} else {
+					break;
+				}
+			}
+		}
+		int check = fs.insertProjectNum(ranNum);
 		
+		model.addAttribute("ranNum", ranNum);
 		return "fundingOpen/FundingOpen2";
 	}
-	
-	@RequestMapping(value = "FundingOpen3.fd" )
-	public String fundingInsert(Project p, Model model) {
-
+	@RequestMapping(value = "FundingOpen3.fd", method = RequestMethod.GET)
+	public String FundingOpen2(Project p, Model model) {
 		
-		System.out.println(p.getCategory() + "option");
+		int fcategory = fs.updatefcategory(p);
 		
-		fs.projectNno(p);
-		
-		/* List<Project> list = fs.projectListInfo(p.getProjectNo()); */
-		Random rand = new Random();
+		//int fcategory = fs.updatefcategory(p);
 		
 		
-		for(int i = 0; i <= 7; i++) {
-			int random = rand.nextInt(10);
-			System.out.println("random : " + random);
-		}
 		
-			
-		System.out.println(p + "**************");
+		
+		
 		return "fundingOpen/FundingOpen3";
 		
-		
-		
 	}
-	
-	
-	@RequestMapping(value = "FundingOpen4.fd", method = RequestMethod.GET)
-	public String FundingOpen4(@ModelAttribute Project p, Model model) {
+		//System.out.println(p.getCategory() + "option");
 		
-		System.out.println(p + "**************");
+		//p.setProjectNo(random);
+		//System.out.print(p.getProjectNo());
+		
+		
+		
+		/* List<Project> list = fs.projectListInfo(p.getProjectNo()); */
+		
+	@RequestMapping(value = "FundingOpen4.fd", method = RequestMethod.GET)
+	public String FundingOpen4(Project p, Model model) {
+		
+		
 		/* List<Project> list = fs.projectListInfo(); */
 		
 		return "fundingOpen/FundingOpen4";
