@@ -25,9 +25,9 @@ import com.siot.IamportRestClient.request.ScheduleEntry;
 public class PayController {
 	private Member m;
 
-	IamportClient iamportClient = 
-			new IamportClient("8768417829708074", "gBsllv3A3KCmuf4pIyq6ii5aAyCRzCVQenbASfaWZNiu3mTLVkRdDWodv055D0VSo6shlDdlqwQuTJfO");
-	
+	IamportClient iamportClient = new IamportClient("8768417829708074",
+			"gBsllv3A3KCmuf4pIyq6ii5aAyCRzCVQenbASfaWZNiu3mTLVkRdDWodv055D0VSo6shlDdlqwQuTJfO");
+
 	@RequestMapping("reqPay.pa")
 	public String requestPay(@ModelAttribute Card card, HttpSession session) {
 		String cardNumber = card.getCardNumber().replaceAll(",", "-");
@@ -38,13 +38,13 @@ public class PayController {
 		String merchantUid = "a/" + id;
 		m = (Member) session.getAttribute("loginUser");
 
-		String customerUid = m.getUserId() +"/"+ id;
-		
+		String customerUid = m.getUserId() + "/" + id;
+
 		ScheduleData sd = new ScheduleData(customerUid);
 		Calendar cal = Calendar.getInstance();
 		cal.add(Calendar.MINUTE, 3);
 		Date schedule = cal.getTime();
-		
+
 		ScheduleEntry se = new ScheduleEntry(customerUid, schedule, amount);
 		sd.addSchedule(se);
 		try {
@@ -62,7 +62,7 @@ public class PayController {
 	@RequestMapping("billingKey.fd")
 	public ModelAndView billingKey(String customer_uid, ModelAndView mv) {
 		// 얘는 토큰 가져오기
-		
+
 		try {
 			BigDecimal amount = new BigDecimal(1000);
 
@@ -71,7 +71,7 @@ public class PayController {
 			cal.add(Calendar.MINUTE, 3);
 			Date schedule_at = cal.getTime();
 
-			ScheduleEntry se = new ScheduleEntry("testmcscsuid", schedule_at, amount);
+			ScheduleEntry se = new ScheduleEntry("testmcscscxcuid", schedule_at, amount);
 			System.out.println(se.getScheduleAt());
 
 			sd.addSchedule(se);

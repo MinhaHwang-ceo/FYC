@@ -7,8 +7,9 @@
 	<resultMap type="Board" id="boardResultSet">
 		<id property="bNo" column="BOARD_NO" />
 		<result property="bTitle" column="BOARD_TITLE" />
-		<result property="writer" column="MEMBER_NAME" />
+		<result property="writer" column="MEMBER_ID" />
 		<result property="bCount" column="VIEW_COUNT" />
+		<result property="bcontent" column="BOARD_CONTENT" />
 		<result property="open" column="OPEN" />
 		<result property="bCategory" column="BOARD_CATEGORY" />
 		<result property="refBNo" column="REF_BOARD_NO" />
@@ -16,7 +17,7 @@
 	</resultMap>
 	<resultMap type="Comment" id="commentResultSet">
 		<id property="cNo" column="COMMENT_NO" />
-		<result property="writer" column="MEMBER_NAME" />
+		<result property="writer" column="MEMBER_ID" />
 		<result property="createDate" column="CREATE_DATE" />
 		<result property="refCNo" column="REF_COMMENT_NO" />
 		<result property="content" column="COMMENT_CONTENT" />
@@ -25,9 +26,10 @@
 	<resultMap type="Board" id="boardResultSet2">
 		<id property="bNo" column="BOARD_NO" />
 		<result property="bTitle" column="BOARD_TITLE" />
-		<result property="writer" column="MEMBER_NAME" />
+		<result property="writer" column="MEMBER_ID" />
 		<result property="bCount" column="VIEW_COUNT" />
 		<result property="open" column="OPEN" />
+		<result property="bcontent" column="BOARD_CONTENT" />
 		<result property="bCategory" column="BOARD_CATEGORY" />
 		<result property="refBNo" column="REF_BOARD_NO" />
 		<result property="createDate" column="CREATE_DATE" />
@@ -89,6 +91,8 @@
 			BOARD 
 		WHERE 
 			OPEN = 'Y'
+		AND
+			STATUS = 'N'
 	</select>
 	<select id="selectBoardList" resultMap="boardResultSet">
 		SELECT
@@ -97,6 +101,8 @@
 			BOARD B, MEMBER M
 		WHERE
 			B.WRITER = M.MEMBER_NO
+		AND
+			B.OPEN = 'Y'
 		AND
 			B.STATUS = 'N'
 		ORDER BY 
@@ -108,5 +114,56 @@
 		JOIN MEMBER M ON (P.MEMBER_NO = M.MEMBER_NO)
 		
 	</select>
-	
+	<select id="selectSearchResultCount" resultType="_int">
+		SELECT
+			COUNT(*)
+		FROM
+			BOARD B, MEMBER M, BOARD_CONTENT C
+		WHERE
+			B.BOARD_NO = C.BOARD_NO
+		AND
+			B.WRITER = M.MEMBER_NO
+		AND	
+			B.OPEN = 'Y'
+		AND
+			B.STATUS = 'N'
+		<choose>
+			<when test="writer != null">
+				AND M.MEMBER_ID = #{writer}
+			</when>
+			<when test="title != null">
+				AND BOARD_TITLE LIKE '%' || #{title} || '%'
+			</when>
+			<when test="content != null">
+				AND BOARD_CONTENT LIKE '%' || #{content} || '%'
+			</when>
+		</choose>
+	</select>
+	<select id="selectSearchResultList" resultMap="boardResultSet">
+		SELECT
+			*
+		FROM
+			BOARD B, MEMBER M, BOARD_CONTENT C
+		WHERE
+			B.BOARD_NO = C.BOARD_NO
+		AND
+			B.WRITER = M.MEMBER_NO
+		AND	
+			B.OPEN = 'Y'
+		AND
+			B.STATUS = 'N'
+		<choose>
+			<when test="writer != null">
+				AND M.MEMBER_ID = #{writer}
+			</when>
+			<when test="title != null">
+				AND BOARD_TITLE LIKE '%' || #{title} || '%'
+			</when>
+			<when test="content != null">
+				AND BOARD_CONTENT LIKE '%' || #{content} || '%'
+			</when>
+		</choose>
+		ORDER BY 
+			B.BOARD_NO DESC
+	</select>
 </mapper>

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.kh.yc.board.model.dao.BoardDao;
 import com.kh.yc.board.model.vo.Board;
 import com.kh.yc.board.model.vo.PageInfo;
+import com.kh.yc.board.model.vo.SearchCondition;
 import com.kh.yc.board.model.vo.Project;
 
 @Service
@@ -27,6 +28,19 @@ public class BoardServiceImpl implements BoardService {
 		return bd.selectBoardList(sqlSession, pi);
 	}
 	@Override
+	public int getSearchListCount(SearchCondition sc) {
+		// TODO Auto-generated method stub
+		return bd.getSearchListCount(sqlSession, sc);
+	}
+	@Override
+	public ArrayList<Board> selectSearchList(SearchCondition sc, PageInfo pi) {
+		// TODO Auto-generated method stub
+		return bd.selectSearchList(sqlSession, sc, pi);
+	}
+	@Override
+	public int insertBoard(Board b) {
+		// TODO Auto-generated method stub
+		return bd.insertBoard(sqlSession, b);
 	public ArrayList<Project> selectOpenProject(PageInfo pi) {
 		return bd.selectOpenProject(sqlSession, pi);
 	}

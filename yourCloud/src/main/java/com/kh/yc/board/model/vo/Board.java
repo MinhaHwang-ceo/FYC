@@ -3,7 +3,7 @@ package com.kh.yc.board.model.vo;
 import java.io.Serializable;
 import java.util.Date;
 
-public class Board implements Serializable{
+public class Board implements Serializable {
 	private int bNo;
 	private String bTitle;
 	private String writer;
@@ -13,6 +13,7 @@ public class Board implements Serializable{
 	private String bCategory;
 	private String refBNo;
 	private Date createDate;
+	private String bcontent;
 	private String companyName;
 	private String pTitle;
 
@@ -22,7 +23,7 @@ public class Board implements Serializable{
 	}
 
 	public Board(int bNo, String bTitle, String writer, int bCount, String open, String status, String bCategory,
-			String refBNo, Date createDate, String companyName, String pTitle) {
+			String refBNo, Date createDate, String companyName, String pTitle,  String bcontent) {
 		super();
 		this.bNo = bNo;
 		this.bTitle = bTitle;
@@ -33,6 +34,7 @@ public class Board implements Serializable{
 		this.bCategory = bCategory;
 		this.refBNo = refBNo;
 		this.createDate = createDate;
+		this.bcontent = bcontent;
 		this.companyName = companyName;
 		this.pTitle = pTitle;
 	}
@@ -109,6 +111,14 @@ public class Board implements Serializable{
 		this.createDate = createDate;
 	}
 
+
+	public String getBcontent() {
+		return bcontent;
+	}
+
+	public void setBcontent(String bcontent) {
+		this.bcontent = bcontent;
+    
 	public String getCompanyName() {
 		return companyName;
 	}
@@ -129,9 +139,8 @@ public class Board implements Serializable{
 	public String toString() {
 		return "Board [bNo=" + bNo + ", bTitle=" + bTitle + ", writer=" + writer + ", bCount=" + bCount + ", open="
 				+ open + ", status=" + status + ", bCategory=" + bCategory + ", refBNo=" + refBNo + ", createDate="
-				+ createDate + ", companyName=" + companyName + ", pTitle=" + pTitle + "]";
+				+ createDate + ", companyName=" + companyName + ", pTitle=" + pTitle + ", bcontent=" + bcontent + "]";
 	}
 
-	
-	
+
 }
