@@ -31,7 +31,7 @@ public class Project implements java.io.Serializable{
 	private Date endDate;
 	private String adult;
 	private int userNo;
-	private int reportCount
+	private int reportCount;
 	private int payNo;
 	private int adjustNo;
 	private Date adjustDate;

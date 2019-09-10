@@ -10,7 +10,7 @@ import com.kh.yc.board.model.exception.BoardException;
 import com.kh.yc.board.model.vo.Board;
 import com.kh.yc.board.model.vo.PageInfo;
 import com.kh.yc.board.model.vo.SearchCondition;
-import com.kh.yc.board.model.vo.Project;
+import com.kh.yc.project.model.vo.Project;
 
 @Repository
 public class BoardDaoImpl implements BoardDao {
