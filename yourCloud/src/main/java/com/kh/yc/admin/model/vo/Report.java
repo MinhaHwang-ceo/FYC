@@ -13,13 +13,12 @@ public class Report implements java.io.Serializable {
 	private String projectShortTitle;
 	private String userName;
 	private String progressStatus;
+	private int reportCount;
 	
 	public Report() {}
-	
-
 
 	public Report(String reportComment, Date reportDate, int reportNo, int userNo, int projectNo, int reportCode,
-			String reportDetail, String projectShortTitle, String userName, String progressStatus) {
+			String reportDetail, String projectShortTitle, String userName, String progressStatus, int reportCount) {
 		super();
 		this.reportComment = reportComment;
 		this.reportDate = reportDate;
@@ -31,9 +30,8 @@ public class Report implements java.io.Serializable {
 		this.projectShortTitle = projectShortTitle;
 		this.userName = userName;
 		this.progressStatus = progressStatus;
+		this.reportCount = reportCount;
 	}
-
-
 
 	public String getReportComment() {
 		return reportComment;
@@ -91,56 +89,49 @@ public class Report implements java.io.Serializable {
 		this.reportDetail = reportDetail;
 	}
 
-	
 	public String getProjectShortTitle() {
 		return projectShortTitle;
 	}
 
-
-	public void setProjectShortTitle(String projectTitle) {
-		this.projectShortTitle = projectTitle;
+	public void setProjectShortTitle(String projectShortTitle) {
+		this.projectShortTitle = projectShortTitle;
 	}
-	
 
 	public String getUserName() {
 		return userName;
 	}
 
-
 	public void setUserName(String userName) {
 		this.userName = userName;
 	}
-	
-
 
 	public String getProgressStatus() {
 		return progressStatus;
 	}
 
-
-
 	public void setProgressStatus(String progressStatus) {
 		this.progressStatus = progressStatus;
 	}
 
+	public int getReportCount() {
+		return reportCount;
+	}
 
+	public void setReportCount(int reportCount) {
+		this.reportCount = reportCount;
+	}
 
 	@Override
 	public String toString() {
 		return "Report [reportComment=" + reportComment + ", reportDate=" + reportDate + ", reportNo=" + reportNo
 				+ ", userNo=" + userNo + ", projectNo=" + projectNo + ", reportCode=" + reportCode + ", reportDetail="
 				+ reportDetail + ", projectShortTitle=" + projectShortTitle + ", userName=" + userName
-				+ ", progressStatus=" + progressStatus + "]";
+				+ ", progressStatus=" + progressStatus + ", reportCount=" + reportCount + "]";
 	}
-
-
-
+	
 	
 
-
 	
-
-
 
 	
 	

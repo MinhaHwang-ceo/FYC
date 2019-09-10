@@ -32,5 +32,9 @@ public interface AdminService {
 	public void updateProject(Project p);
 
 	public Project viewProject(String projectNo);
+	
+	
+	//정산프로젝트
+	public List<Project> adjustProjectList();
 
 }

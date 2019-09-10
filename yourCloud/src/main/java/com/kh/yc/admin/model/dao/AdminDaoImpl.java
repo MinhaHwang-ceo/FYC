@@ -87,7 +87,11 @@ public class AdminDaoImpl implements AdminDao{
 		}
 		
 		
-		
+		//정산중프로젝트
+			@Override
+			public List<Project> adjustProjectList(SqlSessionTemplate sqlSession){
+				return sqlSession.selectList("Project.adjustProjectList");
+			}		
 		
 		
 		
