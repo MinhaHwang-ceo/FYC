@@ -10,10 +10,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.kh.yc.board.model.service.BoardService;
+import com.kh.yc.board.model.service.BoardServiceImpl;
 import com.kh.yc.board.model.vo.Board;
 import com.kh.yc.board.model.vo.PageInfo;
+import com.kh.yc.board.model.vo.Project;
 import com.kh.yc.common.Pagination;
 import com.kh.yc.project.model.exception.ProjectSelectListException;
 import com.kh.yc.project.model.service.ProjectService;
@@ -29,8 +32,21 @@ public class BoardController {
 	ProjectService ps;
 
 	@RequestMapping(value = "openExpectation.bo", method = RequestMethod.GET)
-	public String openExpectation(Model model) {
+	public String openExpectation(HttpServletRequest request, HttpServletResponse response) {
+		int currentPage = 1;
+		
+		if (request.getParameter("currentPage") != null) {
+			currentPage = Integer.parseInt(request.getParameter("currentPage"));
+		}
+		
+		int listCount = bs.getListCount();
 
+		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
+		ArrayList<Project> openlist = bs.selectOpenProject(pi);
+		System.out.println(openlist);
+		request.setAttribute("openlist", openlist);
+		request.setAttribute("pi", pi);
+		
 		return "board/openExpectation/openExpectationMain";
 	}
 
