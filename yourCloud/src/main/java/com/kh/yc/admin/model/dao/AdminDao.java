@@ -42,6 +42,9 @@ public interface AdminDao {
 	
 	//심사 프로젝트 정보 상세보기
 	public Project viewProject(SqlSessionTemplate sqlSession, String projectNo);
+	
+	//정산 프로젝트 리스트
+	public List<Project> adjustProjectList(SqlSessionTemplate sqlSession);
 
 	
 }

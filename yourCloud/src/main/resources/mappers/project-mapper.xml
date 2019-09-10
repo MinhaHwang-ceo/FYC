@@ -32,8 +32,14 @@
 		<result property="delivery" column="DELIVERY"/>
 		<result property="endDate" column="END_DATE"/>
 		<result property="adult" column="ADULT"/>
-		<result property="expected" column="EXPECTED"/>
 		<result property="userNo" column="MEMBER_NO"/>
+		<result property="reportCount" column="REPORT_COUNT"/>
+		<result property="payNo" column="PAY_NO"/>
+		<result property="adjustNo" column="ADJUST_NO"/>
+		<result property="adjustDate" column="ADJUST_DATE"/>
+		<result property="adjustMoney" column="ADJUST_MONEY"/>
+		<result property="adminNo" column="ADMIN_NO"/>
+		<result property="companyName" column="COMPANY_NAME"/>
 		
 </resultMap>
 
@@ -52,7 +58,7 @@
 	
 	<update id="updateJudgeProject"  parameterType="Project">
         UPDATE PROJECT
-		SET JUDGE_STATUS = #{judgeStatus} , progressStatus = #{progressStatus}
+		SET JUDGE_STATUS = #{judgeStatus}
 		WHERE PROJECT_NO= #{projectNo}
 	</update>
 
@@ -62,7 +68,13 @@
 		FROM PROJECT
 		WHERE PROJECT_NO= #{projectNo}
 	</select>
-
+	
+	<select id="adjustProjectList" resultMap="ProjectResultSet">
+		SELECT *
+		FROM PROJECT P
+		INNER JOIN ADJUST A ON A.MEMBER_NO = P.MEMBER_NO
+		WHERE PROGRESS_STATUS = '성공'
+	</select>
 
 
 
