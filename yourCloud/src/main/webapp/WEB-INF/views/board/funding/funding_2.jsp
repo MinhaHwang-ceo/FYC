@@ -259,8 +259,8 @@
 			
 			IMP.request_pay({ // param
 			    pay_method: "card", // "card"만 지원됩니다
-			    merchant_uid: "issue_billingkey_monthly33", // 빌링키 발급용 주문번호
-			    customer_uid: "kjs31245", // 카드(빌링키)와 1:1로 대응하는 값
+			    merchant_uid: "today0102", // 빌링키 발급용 주문번호
+			    customer_uid: "test090001", // 카드(빌링키)와 1:1로 대응하는 값
 			    name: "최초인증결제",
 			    amount: 0, // 0 으로 설정하여 빌링키 발급만 진행합니다.
 			    buyer_email: "gildong@gmail.com",
@@ -276,9 +276,10 @@
 				          url: "billingKey.fd", // 서비스 웹서버
 				          method: "POST",
 				          data: {
-				            customer_uid: "kjs31245", // 카드(빌링키)와 1:1로 대응하는 값
+				            customer_uid: "test090001", // 카드(빌링키)와 1:1로 대응하는 값
 				          }, success:function(data){
-				        	  
+				        	  alert("결제가 예약되었습니다");
+				        	  console.log(data);
 				          }
 			    	})
 			    } else {

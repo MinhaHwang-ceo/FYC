@@ -16,6 +16,7 @@
 	<!-- Enables the Spring MVC @Controller programming model -->
 	<annotation-driven />
 
+	<resources mapping="/editor/**" location="/resources/editor/" />
 	<resources mapping="/css/**" location="/resources/css/" />
 	<resources mapping="/images/**" location="/resources/images/" />
 	<resources mapping="/js/**" location="/resources/js/" />

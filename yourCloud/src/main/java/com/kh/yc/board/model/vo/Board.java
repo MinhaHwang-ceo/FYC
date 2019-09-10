@@ -3,7 +3,7 @@ package com.kh.yc.board.model.vo;
 import java.io.Serializable;
 import java.util.Date;
 
-public class Board implements Serializable{
+public class Board implements Serializable {
 	private int bNo;
 	private String bTitle;
 	private String writer;
@@ -13,6 +13,7 @@ public class Board implements Serializable{
 	private String bCategory;
 	private String refBNo;
 	private Date createDate;
+	private String bcontent;
 
 	public Board() {
 		super();
@@ -20,8 +21,7 @@ public class Board implements Serializable{
 	}
 
 	public Board(int bNo, String bTitle, String writer, int bCount, String open, String status, String bCategory,
-			String refBNo, Date createDate) {
-		super();
+			String refBNo, Date createDate, String bcontent) {
 		this.bNo = bNo;
 		this.bTitle = bTitle;
 		this.writer = writer;
@@ -31,6 +31,7 @@ public class Board implements Serializable{
 		this.bCategory = bCategory;
 		this.refBNo = refBNo;
 		this.createDate = createDate;
+		this.bcontent = bcontent;
 	}
 
 	public int getbNo() {
@@ -105,12 +106,19 @@ public class Board implements Serializable{
 		this.createDate = createDate;
 	}
 
+	public String getBcontent() {
+		return bcontent;
+	}
+
+	public void setBcontent(String bcontent) {
+		this.bcontent = bcontent;
+	}
+
 	@Override
 	public String toString() {
 		return "Board [bNo=" + bNo + ", bTitle=" + bTitle + ", writer=" + writer + ", bCount=" + bCount + ", open="
 				+ open + ", status=" + status + ", bCategory=" + bCategory + ", refBNo=" + refBNo + ", createDate="
-				+ createDate + "]";
+				+ createDate + ", bcontent=" + bcontent + "]";
 	}
-
 
 }

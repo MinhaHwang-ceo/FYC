@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.kh.yc.board.model.vo.Board;
 import com.kh.yc.board.model.vo.PageInfo;
+import com.kh.yc.board.model.vo.SearchCondition;
 
 @Repository
 public class BoardDaoImpl implements BoardDao {
@@ -29,4 +30,30 @@ public class BoardDaoImpl implements BoardDao {
 		return list;
 	}
 
+	@Override
+	public int getSearchListCount(SqlSessionTemplate sqlSession, SearchCondition sc) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("Board.selectSearchResultCount", sc);
+	}
+
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	@Override
+	public ArrayList<Board> selectSearchList(SqlSessionTemplate sqlSession, SearchCondition sc, PageInfo pi) {
+		int offset = (pi.getCurrentPage() - 1) * pi.getLimit();
+		System.out.println(sc);
+		
+		RowBounds rowBounds = new RowBounds(offset, pi.getLimit());
+		ArrayList<Board> list = (ArrayList)sqlSession.selectList("Board.selectSearchResultList", sc, rowBounds);
+		
+		return list;
+	}
+
+	@Override
+	public int insertBoard(SqlSessionTemplate sqlSession, Board b) {
+		
+		return sqlSession.insert("Board.insertBoard", b);
+	}
+
+	
+	
 }

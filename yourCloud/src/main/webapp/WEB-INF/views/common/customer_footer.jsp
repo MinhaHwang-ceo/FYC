@@ -127,7 +127,7 @@
             <!-- Copyright -->
             <div class="footer-copyright text-center">
                 <div class="gradient"></div>
-                <p>© 2017, All Rights reserved. more theme, designed by<a href="https://www.template.net/editable/websites/html5"> tEMPLATE.net</a></p>
+                <p>© 2019, All Rights reserved. more theme, designed by<a href="http://localhost:8001/yc/index.jsp"> 니가 그린 구름 그림</a></p>
             </div>
             <!-- Copyright -->
 
