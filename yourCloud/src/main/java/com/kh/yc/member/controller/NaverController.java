@@ -119,7 +119,7 @@ public class NaverController {
 		String naverName = (String) response_obj.get("name");
 		//String profile = naverProfile.replaceAll("\\\\","");
 		// naverAge.substring(0, 2);
-
+		
 //		System.out.println("naverId => " + naverId);
 //		System.out.println("jsonObj =>" + jsonObj);
 //		System.out.println("naverage =>" + naverAge);

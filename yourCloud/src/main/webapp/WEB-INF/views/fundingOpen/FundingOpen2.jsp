@@ -6,6 +6,24 @@
 <head>
 <meta charset="UTF-8">
 <title>펀딩하기</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script>
+	 $(document).ready(function(){
+         var browsers = "";
+         $("#btnSubmit").click(function(){
+               
+            var browsers = $("#browsers").val();
+            if(confirm("선택한 카테고리로 하시겠습니까?")){
+            browsers = $("#browsers").val();
+            alert(browsers);
+               location.href = "FundingOpen3.fd?category="+browsers;
+               
+            }
+            console.log(browsers);
+           
+         });
+      });
+	</script>
 <link href="https://fonts.googleapis.com/css?family=Sunflower:300&display=swap" rel="stylesheet">
 <style>
 	body{
@@ -31,6 +49,8 @@
 		
 	} 
 </style>
+
+
 </head>
 <body>
 	
@@ -41,22 +61,24 @@
 	나중에 수정할 수 있습니다.</h4>
 	<br>
 	<div align="center"> 
-	<select id="browsers" name="browsers">
-	    <option value="카테고리 선택하기">카테고리 선택하기</option>
-	    <option value="테크-가전">테크-가전</option>
-	    <option value="패션-잡화">패션-잡화</option>
-	    <option value="키즈">키즈</option>
-	    <option value="여행-레저">여행-레저</option>
-	    <option value="뷰티">뷰티</option>
-	    <option value="도서">도서</option>
-	    <option value="반려동물">반려동물</option>
-	    <option value="스포츠">스포츠</option>
-	    <option value="푸드">푸드</option>
-	    <option value="홈리빙">홈리빙</option>
+	<select id="browsers">
+	    <option value="">카테고리 선택하기</option>
+	    <option value="A1">테크-가전</option>
+	    <option value="A2">패션-잡화</option>
+	    <option value="A3">키즈</option>
+	    <option value="A4">여행-레저</option>
+	    <option value="A5">뷰티</option>
+	    <option value="A6">도서</option>
+	    <option value="A7">반려동물</option>
+	    <option value="A8">스포츠</option>
+	    <option value="A9">푸드</option>
+	    <option value="A10">홈리빙</option>
 	</select>
+	<input type="button" id="btnSubmit" value="다음으로">
+	
 	</div>
+	<div style="c"></div>
 	<hr>
-	<a href="${ contextPath }/FundingOpen3.fd"><button id="next">다음으로</button></a>
 	</div>
 	<jsp:include page="../common/customer_footer.jsp"/>
 </body>
