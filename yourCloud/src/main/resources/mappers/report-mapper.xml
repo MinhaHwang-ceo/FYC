@@ -16,6 +16,7 @@
 		<result property="projectShortTitle" column="PROJECT_SHORT_TITLE"/>
 		<result property="userName" column="MEMBER_NAME"/>
 		<result property="progressStatus" column="PROGRESS_STATUS"/>
+		<result property="reportCount" column="REPORT_COUNT"/>
 		
 </resultMap>
 

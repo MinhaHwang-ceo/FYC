@@ -105,6 +105,8 @@
 					</option>
 					<option value="실패">실패
 					</option>
+					<option value="오픈예정">오픈예정
+					</option>
    					
 					</select>
 					<input type="button" value="수정" id="btnUpdate">

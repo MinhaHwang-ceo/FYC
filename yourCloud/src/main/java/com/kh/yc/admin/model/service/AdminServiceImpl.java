@@ -90,6 +90,12 @@ public class AdminServiceImpl implements AdminService {
 		AdminDao.updateProject(sqlSession, p);
 	}
 	
+	
+	//정산프로젝트
+	@Override                               
+	public List<Project> adjustProjectList() {      
+	   	return ad.adjustProjectList(sqlSession);   
+	}
 
 }                                       
                                             

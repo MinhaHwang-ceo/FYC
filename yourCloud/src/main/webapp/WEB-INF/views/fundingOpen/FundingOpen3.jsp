@@ -4,6 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <meta charset="UTF-8">
 <link href="https://fonts.googleapis.com/css?family=Sunflower:300&display=swap" rel="stylesheet">
 <title>펀딩하기</title>
@@ -32,32 +33,54 @@
 	</div>
 	<br>
 	<div class="checks">
-		<input type="radio" id="ex_rd" name="ex_rds"> 
+	<form action="FundingOpen4.fd" id="terms_form">
+		<input type="checkbox" id="ex_rd1" name="ex_rds"> 
 		<label for="ex_rd" id="rd">펀딩 진행 중에는 제공할 리워드를 다른 온/오프라인에서 펀딩하거나 <br>
 		&nbsp;&nbsp;&nbsp;&nbsp;판매하지 않습니다.</label> 
 		<br><br>
-		<input type="radio" id="ex_rd" name="ex_rds"> 
+		<input type="checkbox" id="ex_rd2" name="ex_rds"> 
 		<label for="ex_rd" id="rd">제공할 리워드는 현금, 지분 등의 수익이 아닌 제품 또는 서비스입니다.</label>
 		<br><br>
-		<input type="radio" id="ex_rd" name="ex_rds"> 
+		<input type="checkbox" id="ex_rd3" name="ex_rds"> 
 		<label for="ex_rd" id="rd">진행할 프로젝트가 지적 재산권을 침해하지 않습니다.</label>
 		<br><br>
-		<input type="radio" id="ex_rd" name="ex_rds"> 
+		<input type="checkbox" id="ex_rd4" name="ex_rds"> 
 		<label for="ex_rd" id="rd">서포터에게 프로젝트 진행 과정을 안내하고, 배송 약속을 지킬 수 있습니다.</label>
 		<br><br>
-		<input type="radio" id="ex_rd" name="ex_rds"> 
+		<input type="checkbox" id="ex_rd5" name="ex_rds"> 
 		<label for="ex_rd" id="rd">서포터와의 신뢰를 위해 펀딩 진행,제품 제작 배송 등 모든 과정에서 겪는 어려움들을 <br>
 		&nbsp;&nbsp;&nbsp;&nbsp;서포터에게 진솔하게 전달하고 문제를 해결합니다.</label>
 		<br><br>
-		<input type="radio" id="ex_rd" name="ex_rds"> 
-		<label for="ex_rd" id="rd">프로젝트 진행에 도움이 되는 메이커 뉴스레터를 받아보겠습니다. (선택)</label>
 		<br><br><br>
 		<hr>
-		<div align="right">
-			<a href="${ contextPath }/FundingOpen4.fd"><button id="next">다음으로</button></a>
-		</div>
-	</div>
+		 <input type="button" id="nextBtn"  class="button_big" style="margin-rief:auto;" value="다음단계로"/>
+        </form>
+    </div>
 
+	<script>
+		$(function(){
+			$("#nextBtn").click(function() {
+				if ($("#ex_rd1").is(":checked") == false) {
+					alert("모든 약관에 동의 하셔야 다음 단계로 진행 가능합니다.");
+					return;
+				} else if ($("#ex_rd2").is(":checked") == false) {
+					alert("모든 약관에 동의 하셔야 다음 단계로 진행 가능합니다..");
+					return;
+				} else if ($("#ex_rd3").is(":checked") == false) {
+					alert("모든 약관에 동의 하셔야 다음 단계로 진행 가능합니다..");
+					return;
+				} else if ($("#ex_rd4").is(":checked") == false) {
+					alert("모든 약관에 동의 하셔야 다음 단계로 진행 가능합니다..");
+					return;
+				} else if ($("#ex_rd5").is(":checked") == false) {
+					alert("모든 약관에 동의 하셔야 다음 단계로 진행 가능합니다..");
+					return;
+				} else {
+					$("#terms_form").submit();
+				}
+			});
+		});
+	</script>
 </body>
 </html>
 

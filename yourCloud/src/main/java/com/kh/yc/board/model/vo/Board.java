@@ -14,6 +14,8 @@ public class Board implements Serializable {
 	private String refBNo;
 	private Date createDate;
 	private String bcontent;
+	private String companyName;
+	private String pTitle;
 
 	public Board() {
 		super();
@@ -21,7 +23,8 @@ public class Board implements Serializable {
 	}
 
 	public Board(int bNo, String bTitle, String writer, int bCount, String open, String status, String bCategory,
-			String refBNo, Date createDate, String bcontent) {
+			String refBNo, Date createDate, String companyName, String pTitle,  String bcontent) {
+		super();
 		this.bNo = bNo;
 		this.bTitle = bTitle;
 		this.writer = writer;
@@ -32,6 +35,8 @@ public class Board implements Serializable {
 		this.refBNo = refBNo;
 		this.createDate = createDate;
 		this.bcontent = bcontent;
+		this.companyName = companyName;
+		this.pTitle = pTitle;
 	}
 
 	public int getbNo() {
@@ -106,19 +111,36 @@ public class Board implements Serializable {
 		this.createDate = createDate;
 	}
 
+
 	public String getBcontent() {
 		return bcontent;
 	}
 
 	public void setBcontent(String bcontent) {
 		this.bcontent = bcontent;
+    
+	public String getCompanyName() {
+		return companyName;
+	}
+
+	public void setCompanyName(String companyName) {
+		this.companyName = companyName;
+	}
+
+	public String getpTitle() {
+		return pTitle;
+	}
+
+	public void setpTitle(String pTitle) {
+		this.pTitle = pTitle;
 	}
 
 	@Override
 	public String toString() {
 		return "Board [bNo=" + bNo + ", bTitle=" + bTitle + ", writer=" + writer + ", bCount=" + bCount + ", open="
 				+ open + ", status=" + status + ", bCategory=" + bCategory + ", refBNo=" + refBNo + ", createDate="
-				+ createDate + ", bcontent=" + bcontent + "]";
+				+ createDate + ", companyName=" + companyName + ", pTitle=" + pTitle + ", bcontent=" + bcontent + "]";
 	}
+
 
 }

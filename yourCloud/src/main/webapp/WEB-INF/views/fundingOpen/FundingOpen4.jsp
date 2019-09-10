@@ -158,7 +158,7 @@ td {
 			<tr>
 				<td style="background:White"><h3>프로젝트 번호</h3>
 				<p>구름펀딩 담당자와의 소통은<br>프로젝트 번호로 진행됩니다.</p></td>
-				<td id="fno"><input type="text" placeholder="12345"></td>
+				<td id="fno"><input type="text" placeholder="12345" value=""></td>
 			</tr>
 			<tr>
 				<td style="background:White"><h3>연락처</h3>
@@ -279,6 +279,7 @@ td {
 		</table>
 	</div>
 	</div>
+	
 	</div>
 	<script>
 		function readURL(input) {
