@@ -32,6 +32,8 @@ public class Project {
 	private String adult;
 	private String expected;
 	private int memberNo;
+	private String companyName;
+	private int money;
 	
 	public Project() {}
 
@@ -39,7 +41,7 @@ public class Project {
 			int agreement, String reason, int adminNo, String summary, String profileImg, String social, String site,
 			String email, String phone, String fees, String makerDiv, String agentName, String agentEmail,
 			String projectTitle, String projectShortTitle, int monet, int mainImg, String document, String progress,
-			String delivert, Date endDate, String adult, String expected, int memberNo) {
+			String delivert, Date endDate, String adult, String expected, int memberNo, String companyName, int money) {
 		super();
 		this.projectNo = projectNo;
 		this.category = category;
@@ -70,6 +72,8 @@ public class Project {
 		this.adult = adult;
 		this.expected = expected;
 		this.memberNo = memberNo;
+		this.companyName = companyName;
+		this.money = money;
 	}
 
 	public int getProjectNo() {
@@ -304,6 +308,22 @@ public class Project {
 		this.memberNo = memberNo;
 	}
 
+	public String getCompanyName() {
+		return companyName;
+	}
+
+	public void setCompanyName(String companyName) {
+		this.companyName = companyName;
+	}
+
+	public int getMoney() {
+		return money;
+	}
+
+	public void setMoney(int money) {
+		this.money = money;
+	}
+
 	@Override
 	public String toString() {
 		return "Project [projectNo=" + projectNo + ", category=" + category + ", success=" + success + ", judgeStatus="
@@ -314,8 +334,9 @@ public class Project {
 				+ projectTitle + ", projectShortTitle=" + projectShortTitle + ", monet=" + monet + ", mainImg="
 				+ mainImg + ", document=" + document + ", progress=" + progress + ", delivert=" + delivert
 				+ ", endDate=" + endDate + ", adult=" + adult + ", expected=" + expected + ", memberNo=" + memberNo
-				+ "]";
+				+ ", companyName=" + companyName + ", money=" + money + "]";
 	}
+
 	
 	
 }

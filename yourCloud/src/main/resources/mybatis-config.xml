@@ -14,6 +14,7 @@
 		<typeAlias type="com.kh.yc.member.model.vo.NaverMember" alias="Naver"/>
 		<typeAlias type="com.kh.yc.board.model.vo.Board" alias="Board"/>
 		<typeAlias type="com.kh.yc.board.model.vo.Comment" alias="Comment"/>
+		<typeAlias type="com.kh.yc.project.model.vo.Project" alias="Project2"/>
 	</typeAliases>
 	
 	<mappers>
@@ -22,6 +23,7 @@
 		<mapper resource="mappers/project-mapper.xml"/>
 		<mapper resource="mappers/navermember-mapper.xml"/>
 		<mapper resource="mappers/board-mapper.xml"/>
+		<mapper resource="mappers/project2-mapper.xml"/>
 	</mappers>
 	
 	

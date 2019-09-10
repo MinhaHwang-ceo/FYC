@@ -3,8 +3,8 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-  <mapper namespace="Project">
-	<resultMap type="com.kh.yc.admin.model.vo.Project" id="ProjectResultSet">
+  <mapper namespace="Project2">
+	<resultMap type="com.kh.yc.project.model.vo.Project" id="ProjectList">
 		<id property="projectNo" column="PROJECT_NO"/>
 		<result property="category" column="CATEGORY"/>
 		<result property="success" column="SUCCESS"/>
@@ -34,37 +34,22 @@
 		<result property="adult" column="ADULT"/>
 		<result property="expected" column="EXPECTED"/>
 		<result property="userNo" column="MEMBER_NO"/>
+		<result property="companyName" column="COMPANY_NAME"/>
 	</resultMap>
-	
-	
-	
 
-	 <update id="updateProject"  parameterType="Project">
-        UPDATE PROJECT
-		SET PROGRESS_STATUS = #{progressStatus}
-		WHERE PROJECT_NO= #{projectNo}
-	</update>
-
-	<select id="judgeProjectList" resultMap="ProjectResultSet">
-		SELECT *
+	
+	<select id="selectListCount" resultType="_int">
+		SELECT COUNT(*)
 		FROM PROJECT
 	</select>
 	
-	<update id="updateJudgeProject"  parameterType="Project">
-        UPDATE PROJECT
-		SET JUDGE_STATUS = #{judgeStatus} , progressStatus = #{progressStatus}
-		WHERE PROJECT_NO= #{projectNo}
-	</update>
-
-
-	<select id="viewProject" resultMap="ProjectResultSet">
-		SELECT *
-		FROM PROJECT
-		WHERE PROJECT_NO= #{projectNo}
-	</select>
+	<select id="selectProjectList" parameterType="java.util.Map" resultMap="ProjectList">
+		SELECT  P.PROJECT_NO, P.PROJECT_TITLE,P.MONEY,M.COMPANY_NAME,P.END_DATE
+		FROM    PROJECT P
+		JOIN    MEMBER M ON (P.MEMBER_NO = M.MEMBER_NO)
+		ORDER BY PROJECT_NO DESC
+	</select> 
 	
-	
-
 
 
 </mapper>
