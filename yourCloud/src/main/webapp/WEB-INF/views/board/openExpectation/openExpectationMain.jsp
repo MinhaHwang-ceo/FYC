@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -28,36 +29,25 @@
     </style>
 </head>
 <body>
-<jsp:include page="../../common/customer_menubar.jsp"/><br><br>
+<jsp:include page="../../common/customer_menubar.jsp"/>
+<jsp:include page="../../common/customer_menuList.jsp"/>
 
 <div class="outer">
 <h4>오픈예정 둘러보기</h4>
 <br>
 <table id="table1">
-
-<% for(int i=0;i<4;i++) {%>
 	<tr>
-	<%for(int j=0;j<3;j++) {%>
-		<td>
-			<div>
-				<a href="${contextPath}/openExpectationDetail.bo"><img alt="" src="/yc/resources/images/yc-logo3.png"></a>
-			</div>
-		</td>
-	<%} %>
+		<td><b>프로젝트명</b></td>
+		<td><br>카테고리</td>
+		<td><br>회사이름</td>
 	</tr>
-	
-	
+	<c:forEach var="p" items="${ openlist }">
 	<tr>
-	<%for(int j=0;j<3;j++) {%>
-		<td><b>프로젝트명</b>
-			<br>카테고리
-			<br>회사이름
-		</td>
-	<%} %>
+		<td><c:out value="${ p.projectTitle }"/></td>
+		<td><c:out value="${ p.category }"/></td>
+		<td><c:out value="${ p.companyName }"/></td>
 	</tr>
-	
-<% } %>	
-	
+	</c:forEach>
 </table>
 
 

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.kh.yc.board.model.dao.BoardDao;
 import com.kh.yc.board.model.vo.Board;
 import com.kh.yc.board.model.vo.PageInfo;
+import com.kh.yc.board.model.vo.Project;
 
 @Service
 public class BoardServiceImpl implements BoardService {
@@ -24,6 +25,10 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public ArrayList<Board> selectBoardList(PageInfo pi) {
 		return bd.selectBoardList(sqlSession, pi);
+	}
+	@Override
+	public ArrayList<Project> selectOpenProject(PageInfo pi) {
+		return bd.selectOpenProject(sqlSession, pi);
 	}
 
 }

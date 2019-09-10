@@ -6,11 +6,15 @@ import org.mybatis.spring.SqlSessionTemplate;
 
 import com.kh.yc.board.model.vo.Board;
 import com.kh.yc.board.model.vo.PageInfo;
+import com.kh.yc.board.model.vo.Project;
 
 public interface BoardDao {
 
 	int getListCount(SqlSessionTemplate sqlSession);
 
 	ArrayList<Board> selectBoardList(SqlSessionTemplate sqlSession, PageInfo pi);
+
+	ArrayList<Project> selectOpenProject(SqlSessionTemplate sqlSession, PageInfo pi);
+	
 
 }
