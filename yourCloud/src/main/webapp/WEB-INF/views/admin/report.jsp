@@ -246,6 +246,7 @@
                       <th>신고사유</th>
                       <th>신고자</th>
                       <th>신고일</th>
+                      <th>신고수</th>
                       <th>진행상태</th>
                       <th>상태변경</th>
                     </tr>
@@ -257,6 +258,7 @@
                       <th>신고사유</th>
                       <th>신고자</th>
                       <th>신고일</th>
+                      <th>신고수</th>
                       <th>진행상태</th>
                       <th>상태변경</th>
                     </tr>
@@ -269,6 +271,7 @@
                   	<td>${row.reportDetail}</td>
                   	<td>${row.userName}</td>
                   	<td>${row.reportDate}</td>
+                  	<td>${row.reportCount}</td>
                   	<td>${row.progressStatus}</td>
                   	<td><input type="button" id="st" onclick="window.open('${pageContext.request.contextPath}/reportStatus.ad?reportNo=${row.reportNo}', 'PopupWin', 'width=380,height=300');" value="상태변경"></td>
                   </tr>

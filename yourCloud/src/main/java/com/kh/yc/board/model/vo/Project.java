@@ -1,8 +1,8 @@
-package com.kh.yc.project.model.vo;
+package com.kh.yc.board.model.vo;
 
 import java.sql.Date;
 
-public class Project {
+public class Project implements java.io.Serializable{
 	private int projectNo;
 	private String category;
 	private String success;
@@ -31,9 +31,8 @@ public class Project {
 	private Date endDate;
 	private String adult;
 	private String expected;
-	private int memberNo;
+	private int userNo;
 	private String companyName;
-	private int money;
 	
 	public Project() {}
 
@@ -41,7 +40,7 @@ public class Project {
 			int agreement, String reason, int adminNo, String summary, String profileImg, String social, String site,
 			String email, String phone, String fees, String makerDiv, String agentName, String agentEmail,
 			String projectTitle, String projectShortTitle, int monet, int mainImg, String document, String progress,
-			String delivert, Date endDate, String adult, String expected, int memberNo, String companyName, int money) {
+			String delivert, Date endDate, String adult, String expected, int userNo, String companyName) {
 		super();
 		this.projectNo = projectNo;
 		this.category = category;
@@ -71,9 +70,8 @@ public class Project {
 		this.endDate = endDate;
 		this.adult = adult;
 		this.expected = expected;
-		this.memberNo = memberNo;
+		this.userNo = userNo;
 		this.companyName = companyName;
-		this.money = money;
 	}
 
 	public int getProjectNo() {
@@ -300,12 +298,12 @@ public class Project {
 		this.expected = expected;
 	}
 
-	public int getMemberNo() {
-		return memberNo;
+	public int getUserNo() {
+		return userNo;
 	}
 
-	public void setMemberNo(int memberNo) {
-		this.memberNo = memberNo;
+	public void setUserNo(int userNo) {
+		this.userNo = userNo;
 	}
 
 	public String getCompanyName() {
@@ -314,14 +312,6 @@ public class Project {
 
 	public void setCompanyName(String companyName) {
 		this.companyName = companyName;
-	}
-
-	public int getMoney() {
-		return money;
-	}
-
-	public void setMoney(int money) {
-		this.money = money;
 	}
 
 	@Override
@@ -333,10 +323,9 @@ public class Project {
 				+ makerDiv + ", agentName=" + agentName + ", agentEmail=" + agentEmail + ", projectTitle="
 				+ projectTitle + ", projectShortTitle=" + projectShortTitle + ", monet=" + monet + ", mainImg="
 				+ mainImg + ", document=" + document + ", progress=" + progress + ", delivert=" + delivert
-				+ ", endDate=" + endDate + ", adult=" + adult + ", expected=" + expected + ", memberNo=" + memberNo
-				+ ", companyName=" + companyName + ", money=" + money + "]";
+				+ ", endDate=" + endDate + ", adult=" + adult + ", expected=" + expected + ", userNo=" + userNo
+				+ ", companyName=" + companyName + "]";
 	}
 
-	
 	
 }

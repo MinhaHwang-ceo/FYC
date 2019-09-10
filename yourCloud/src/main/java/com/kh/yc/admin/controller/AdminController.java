@@ -182,5 +182,30 @@ public class AdminController {
 
 			return "redirect:/project1.ad";
 		}
+		
+		
+		
+		
+	// 정산 프로젝트 리스트
+		@RequestMapping(value = "adjustProjectList.ad", method = RequestMethod.GET)
+		public String admin14(Locale locale, Model model) {
+
+			System.out.println("넘어왔다~~~~~~~~~~~~~~");
+			List<Project> list = AdminService.adjustProjectList();
+			model.addAttribute("list", list);
+
+			System.out.println("list : " + list);
+			return "admin/adjust";
+		}
+		
+	// 정산 프로젝트 정보 호출
+		@RequestMapping(value = "adjustProjectStatus.ad", method = RequestMethod.GET)
+		public String admin13(String projectNo, Model model) {
+
+			System.out.println("유저번호" + projectNo);
+			model.addAttribute("row", AdminService.viewProject(projectNo));
+
+			return "admin/adjust";
+		}		
 
 }

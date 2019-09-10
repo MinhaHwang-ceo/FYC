@@ -31,8 +31,12 @@ public class Project implements java.io.Serializable{
 	private Date endDate;
 	private String adult;
 	private int userNo;
-	private int reportCount;
-	
+	private int reportCount
+	private int payNo;
+	private int adjustNo;
+	private Date adjustDate;
+	private int adjustMoney;
+	private String companyName;
 	
 	public Project() {}
 
@@ -41,7 +45,9 @@ public class Project implements java.io.Serializable{
 			int agreement, String reason, int adminNo, String summary, String prifileImg, String social, String site,
 			String email, String phone, String fees, String makerDiv, String agentName, String agentEmail,
 			String projectTitle, String projectShortTitle, int money, String mainImg, String document, String progress,
-			String delivery, Date endDate, String adult, int userNo, int reportCount) {
+			String delivery, Date endDate, String adult, int userNo, int reportCount, int payNo, int adjustNo,
+			Date adjustDate, int adjustMoney, String companyName) {
+
 		super();
 		this.projectNo = projectNo;
 		this.category = category;
@@ -72,6 +78,11 @@ public class Project implements java.io.Serializable{
 		this.adult = adult;
 		this.userNo = userNo;
 		this.reportCount = reportCount;
+		this.payNo = payNo;
+		this.adjustNo = adjustNo;
+		this.adjustDate = adjustDate;
+		this.adjustMoney = adjustMoney;
+		this.companyName = companyName;
 	}
 
 
@@ -344,7 +355,6 @@ public class Project implements java.io.Serializable{
 		this.adult = adult;
 	}
 
-
 	public int getUserNo() {
 		return userNo;
 	}
@@ -354,16 +364,53 @@ public class Project implements java.io.Serializable{
 		this.userNo = userNo;
 	}
 
-
 	public int getReportCount() {
 		return reportCount;
 	}
-
 
 	public void setReportCount(int reportCount) {
 		this.reportCount = reportCount;
 	}
 
+	public int getPayNo() {
+		return payNo;
+	}
+
+	public void setPayNo(int payNo) {
+		this.payNo = payNo;
+	}
+
+	public int getAdjustNo() {
+		return adjustNo;
+	}
+
+	public void setAdjustNo(int adjustNo) {
+		this.adjustNo = adjustNo;
+	}
+
+	public Date getAdjustDate() {
+		return adjustDate;
+	}
+
+	public void setAdjustDate(Date adjustDate) {
+		this.adjustDate = adjustDate;
+	}
+
+	public int getAdjustMoney() {
+		return adjustMoney;
+	}
+
+	public void setAdjustMoney(int adjustMoney) {
+		this.adjustMoney = adjustMoney;
+	}
+
+	public String getCompanyName() {
+		return companyName;
+	}
+
+	public void setCompanyName(String companyName) {
+		this.companyName = companyName;
+	}
 
 	@Override
 	public String toString() {
@@ -375,13 +422,13 @@ public class Project implements java.io.Serializable{
 				+ projectTitle + ", projectShortTitle=" + projectShortTitle + ", money=" + money + ", mainImg="
 				+ mainImg + ", document=" + document + ", progress=" + progress + ", delivery=" + delivery
 				+ ", endDate=" + endDate + ", adult=" + adult + ", userNo=" + userNo + ", reportCount=" + reportCount
-				+ "]";
+				+ ", payNo=" + payNo + ", adjustNo=" + adjustNo + ", adjustDate=" + adjustDate + ", adjustMoney="
+				+ adjustMoney + ", companyName=" + companyName + "]";
 	}
 
-
-
 	
 	
+
 	
 	
 }
