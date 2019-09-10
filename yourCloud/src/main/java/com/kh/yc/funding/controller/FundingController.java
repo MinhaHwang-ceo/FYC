@@ -1,15 +1,21 @@
 package com.kh.yc.funding.controller;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Locale;
+import java.util.Random;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.kh.yc.admin.model.vo.Project;
+import com.kh.yc.funding.model.service.FundingService;
 import com.siot.IamportRestClient.IamportClient;
 import com.siot.IamportRestClient.exception.IamportResponseException;
 import com.siot.IamportRestClient.response.AccessToken;
@@ -17,6 +23,10 @@ import com.siot.IamportRestClient.response.IamportResponse;
 @CrossOrigin(origins="*")
 @Controller
 public class FundingController {
+	
+	@Autowired
+	private FundingService fs;
+	
 	private IamportClient client;
 
 	@RequestMapping(value = "FundingOpen.fd", method = RequestMethod.GET)
@@ -31,14 +41,37 @@ public class FundingController {
 		return "fundingOpen/FundingOpen2";
 	}
 	
-	@RequestMapping(value = "FundingOpen3.fd", method = RequestMethod.GET)
-	public String FundingOpen3(Locale locale, Model model) {
+	@RequestMapping(value = "FundingOpen3.fd" )
+	public String fundingInsert(Project p, Model model) {
+
 		
+		System.out.println(p.getCategory() + "option");
+		
+		fs.projectNno(p);
+		
+		/* List<Project> list = fs.projectListInfo(p.getProjectNo()); */
+		Random rand = new Random();
+		
+		
+		for(int i = 0; i <= 7; i++) {
+			int random = rand.nextInt(10);
+			System.out.println("random : " + random);
+		}
+		
+			
+		System.out.println(p + "**************");
 		return "fundingOpen/FundingOpen3";
+		
+		
+		
 	}
 	
+	
 	@RequestMapping(value = "FundingOpen4.fd", method = RequestMethod.GET)
-	public String FundingOpen4(Locale locale, Model model) {
+	public String FundingOpen4(@ModelAttribute Project p, Model model) {
+		
+		System.out.println(p + "**************");
+		/* List<Project> list = fs.projectListInfo(); */
 		
 		return "fundingOpen/FundingOpen4";
 	}
@@ -118,4 +151,6 @@ public class FundingController {
 		
 		return mv;
 	}
+	
+	
 }

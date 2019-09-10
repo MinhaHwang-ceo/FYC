@@ -32,7 +32,7 @@
 		<result property="delivery" column="DELIVERY"/>
 		<result property="endDate" column="END_DATE"/>
 		<result property="adult" column="ADULT"/>
-		<result property="expected" column="EXPECTED"/>
+		<result property="reportCount" column="REPORT_COUNT"/>
 		<result property="userNo" column="MEMBER_NO"/>
 		
 </resultMap>
@@ -62,6 +62,17 @@
 		FROM PROJECT
 		WHERE PROJECT_NO= #{projectNo}
 	</select>
+	
+	<!-- 프로젝트 번호 인설트 -->
+	<insert id="insertProjectNno" parameterType="Project">
+		INSERT INTO PROJECT
+	VALUES(SEQ_PROJECTNO.NEXTVAL, #{category}, #{success}, '신청전', '실패', #{agreement}, #{reason}
+		      ,#{adminNo}, #{summary}, #{prifileImg}, #{social}, #{site}, #{email}, #{phone}, #{fees}, #{makerDiv}, #{agentName}
+		      ,#{agentEmail}, #{projectTitle}, #{projectShortTitle}, #{money}, #{mainImg}, #{document}, #{progress}, #{delivery}
+		      ,#{endDate}, #{adult}, 1, #{reportCount})
+		      
+	
+	</insert>
 
 
 
