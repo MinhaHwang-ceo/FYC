@@ -56,9 +56,10 @@ input {
 	<jsp:include page="../common/customer_menuList.jsp" />
 	<br />
 	<div id="outer" style="min-height: 1000px;">
-		<form action="insertBoard.bo" method="post" id="insertBoardFrm"
+		<form action="updateBoard.bo" method="post" id="insertBoardFrm"
 			enctype="multipart/form-data">
 			<table align="center" style="width: 60%;">
+				<input type="number" id="bNo" name="bNo" value="${ b.bNo }" hidden/>
 				<tr>
 					<th>카테고리</th>
 					<td colspan="3" style="text-align:left;">
@@ -71,18 +72,18 @@ input {
 				</tr>
 				<tr>
 					<th>제목</th>
-					<td colspan="3" class="center"><input type="text" name="bTitle" style="width:100%;" id="bTitle"/></td>
+					<td colspan="3" class="center"><input type="text" name="bTitle" style="width:100%;" id="bTitle" value="${ b.bTitle }"/></td>
 				</tr>
 				<tr>
 					<th>작성자</th>
 					<input type="text" id="writer" name="writer" hidden value="${ sessionScope.loginUser.userNo }"/>
-					<td><input type="text" name="writeriD" id="writeriD" class="readonly" readonly value="${sessionScope.loginUser.userId }"/></td>
+					<td><input type="text" name="writeriD" id="writeriD" class="readonly" readonly value="${ b.bTitle }"/></td>
 					<th style="text-align:right;">현재시각</th>
 					<td><input type="text" class="readonly" value="<fmt:formatDate value="${now}" pattern="yyyy-MM-dd hh:mm:ss" />"/></td>
 				</tr>
 				<tr>
 					<th>내용</th>
-					<td colspan="3" style="width: 80%;"><textarea name="editor" id="editor" name="bcontent" style="width:100%;height: 500px;"></textarea></td>
+					<td colspan="3" style="width: 80%;"><textarea name="editor" id="editor" name="bcontent" style="width:100%;height: 500px;"><c:out value="${ b.bcontent }"/></textarea></td>
 					<textarea name="bcontent" id="bcontent" cols="10" rows="10" hidden></textarea>
 				</tr>
 				<tr style="height: 100px;">

@@ -166,4 +166,101 @@
 		ORDER BY 
 			B.BOARD_NO DESC
 	</select>
+	
+	<insert id="insertBoard">
+		INSERT INTO BOARD(BOARD_NO, BOARD_TITLE, WRITER, VIEW_COUNT, OPEN, STATUS, BOARD_CATEGORY, REF_BOARD_NO, CREATE_DATE)
+		VALUES(
+		    	SEQ_BOARDNO.NEXTVAL, #{bTitle}, #{writer}, 0, 'Y', 'N', DEFAULT, NULL, SYSDATE
+		    )
+	</insert>
+	
+	<insert id="insertBoardContent">
+		INSERT INTO BOARD_CONTENT(BOARD_CONTENT, BOARD_NO)
+		VALUES(
+				#{bcontent}, SEQ_BOARDNO.CURRVAL
+			)
+	</insert>
+	
+	<update id="updateViewCount">
+		UPDATE 
+			BOARD 
+		SET 
+			VIEW_COUNT = (SELECT VIEW_COUNT FROM BOARD WHERE BOARD_NO = #{target}) + 1 
+		WHERE
+			BOARD_NO = #{target} 
+	</update>
+	<select id="selectBoardOne" resultMap="boardResultSet">
+		SELECT
+			*
+		FROM
+			BOARD B, BOARD_CONTENT BC, MEMBER M
+		WHERE
+			B.WRITER = M.MEMBER_NO
+		AND
+			B.BOARD_NO = BC.BOARD_NO
+		AND
+			B.BOARD_NO = #{target}
+	</select>
+	<select id="selectCommentListCount" resultType="_int">
+		SELECT
+			COUNT(*)
+		FROM
+			COMMENTS
+		WHERE
+			BOARD_NO = #{target}
+		AND 
+			STATUS != 'Y'
+	</select>
+	<select id="selectCommentList" resultMap="commentResultSet">
+		SELECT
+			C.COMMENT_NO, M.MEMBER_ID, C.BOARD_NO, C.COMMENT_CONTENT, C.CREATE_DATE, C.REF_COMMENT_NO, C.STATUS
+		FROM
+			COMMENTS C, MEMBER M
+		WHERE
+			C.COMMENT_WRITER = M.MEMBER_NO
+        AND
+			C.BOARD_NO = #{target}
+        AND
+            C.STATUS IS NULL
+        OR
+            C.STATUS = 'N'
+	</select>
+	<update id="deleteBoard">
+		UPDATE
+			BOARD
+		SET
+			STATUS = 'Y'
+		WHERE
+			BOARD_NO = #{target}
+	</update>
+	<update id="updateBoard">
+		UPDATE 
+			BOARD
+		SET
+			BOARD_TITLE = #{bTitle}, WRITER = #{writer}
+		WHERE
+			BOARD_NO = #{bNo}
+	</update>
+	<update id="updateBoardContent">
+		UPDATE
+			BOARD_CONTENT
+		SET
+			BOARD_CONTENT = #{bcontent}
+		WHERE
+			BOARD_NO = #{bNo}
+	</update>
+	<insert id="insertComment">
+		INSERT INTO COMMENTS(COMMENT_NO, COMMENT_WRITER, CREATE_DATE, REF_COMMENT_NO, COMMENT_CONTENT, BOARD_NO, STATUS)
+		VALUES(
+			SEQ_COMMENTNO.NEXTVAL, #{writer}, SYSDATE, NULL, #{content}, #{bNo}, 'N'
+		)
+	</insert>	
+	<update id="deleteComment">
+		UPDATE 
+			COMMENTS
+		SET
+			STATUS = 'Y'
+		WHERE
+			COMMENT_NO = #{target}
+	</update>
 </mapper>

@@ -32,7 +32,7 @@
 				<th style="width:10%;">조회수</th>
 			</tr>
 			<c:forEach var="b" items="${ list }">
-				<tr>
+				<tr class="tr">
 					<td class="boardInfo"><c:out value="${ b.bNo }" /></td>
 					<td class="boardInfo"><c:out value="${ b.writer }" /></td>
 					<td class="boardInfo"><c:out value="${ b.bTitle }" /></td>
@@ -101,6 +101,12 @@
 				location.href="goInsertBoard.bo?userId="+id;
 			}
 		}
+		
+		$('.tr').click(function(){
+			var $target = $(this).children().eq(0).text();
+			
+			location.href="selectBoardOne.bo?target="+$target;
+		});
 	</script>
 </body>
 </html>

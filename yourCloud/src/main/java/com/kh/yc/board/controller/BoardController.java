@@ -7,6 +7,7 @@ import java.io.OutputStream;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -16,19 +17,17 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.yc.board.model.service.BoardService;
-import com.kh.yc.board.model.service.BoardServiceImpl;
 import com.kh.yc.board.model.vo.Board;
+import com.kh.yc.board.model.vo.Comment;
 import com.kh.yc.board.model.vo.PageInfo;
 import com.kh.yc.board.model.vo.SearchCondition;
 import com.kh.yc.common.CommonUtils;
-import com.kh.yc.board.model.vo.Project;
 import com.kh.yc.common.Pagination;
 import com.kh.yc.project.model.exception.ProjectSelectListException;
 import com.kh.yc.project.model.service.ProjectService;
-import com.kh.yc.project.model.service.ProjectServiceImpl;
 import com.kh.yc.project.model.vo.Project;
 
 @Controller
@@ -42,11 +41,11 @@ public class BoardController {
 	@RequestMapping(value = "openExpectation.bo", method = RequestMethod.GET)
 	public String openExpectation(HttpServletRequest request, HttpServletResponse response) {
 		int currentPage = 1;
-		
+
 		if (request.getParameter("currentPage") != null) {
 			currentPage = Integer.parseInt(request.getParameter("currentPage"));
 		}
-		
+
 		int listCount = bs.getListCount();
 
 		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
@@ -54,7 +53,7 @@ public class BoardController {
 		System.out.println(openlist);
 		request.setAttribute("openlist", openlist);
 		request.setAttribute("pi", pi);
-		
+
 		return "board/openExpectation/openExpectationMain";
 	}
 
@@ -90,32 +89,31 @@ public class BoardController {
 
 	@RequestMapping(value = "category.bo")
 	public String category(HttpServletRequest request, HttpServletResponse response) {
-		
+
 		int currentPage = 1;
-		
-		if(request.getParameter("currentPage") !=null) {
+
+		if (request.getParameter("currentPage") != null) {
 			currentPage = Integer.parseInt(request.getParameter("currentPage"));
 		}
-		
+
 		/* ProjectService ps = new ProjectServiceImpl(); */
-		
+
 		try {
-			
+
 			int listCount = ps.getListCount();
-			
+
 			PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
-			
+
 			ArrayList<Project> list = ps.selectProjectList(pi);
-			
+
 			request.setAttribute("list", list);
 			request.setAttribute("pi", pi);
-	
+
 		} catch (ProjectSelectListException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	
-		
+
 		return "main/category";
 	}
 
@@ -221,7 +219,6 @@ public class BoardController {
 		request.setAttribute("userId", id);
 
 		return "board/insertBoard";
-
 	}
 
 	@RequestMapping("uploadImg.bo")
@@ -232,7 +229,8 @@ public class BoardController {
 		String originFileName = request.getHeader("file-name");
 		String filePath = "C:\\Users\\KJS\\git\\FYC\\yourCloud\\src\\main\\webapp\\resources\\uploadFiles\\";
 		String saveName = sb.append(new SimpleDateFormat("yyyyMMddHHmmss").format(System.currentTimeMillis()))
-				.append(CommonUtils.getRandomString()).append(originFileName.substring(originFileName.lastIndexOf("."))).toString();
+				.append(CommonUtils.getRandomString()).append(originFileName.substring(originFileName.lastIndexOf(".")))
+				.toString();
 		InputStream is;
 		try {
 			is = request.getInputStream();
@@ -255,13 +253,114 @@ public class BoardController {
 		}
 		return sb.toString();
 	}
-	
+
 	@RequestMapping("insertBoard.bo")
-	public String insertBoard(Board b, String editor ,Model model) {
+	public String insertBoard(Board b, String editor, Model model) {
+		b.setBcontent(editor);
+		bs.insertBoard(b);
+
+		return "redirect:openBoardList.bo";
+	}
+
+	@RequestMapping("selectBoardOne.bo")
+	public String selectBoardOne(HttpServletRequest request, HttpServletResponse response, String target, Model model) {
+		Board b = bs.selectBoardOne(target);
+		int currentPage = 1;
+
+		if (request.getParameter("currentPage") != null) {
+			currentPage = Integer.parseInt(request.getParameter("currentPage"));
+		}
+
+		Cookie[] cookies = request.getCookies();
+		Cookie viewCookie = null;
+
+		if (cookies != null && cookies.length > 0) {
+			for (int i = 0; i < cookies.length; i++) {
+				// Cookie의 name이 cookie + reviewNo와 일치하는 쿠키를 viewCookie에 넣어줌
+				if (cookies[i].getName().equals("cookie" + target)) {
+					System.out.println("처음 쿠키가 생성한 뒤 들어옴.");
+					viewCookie = cookies[i];
+				}
+			}
+		}
+		if (viewCookie == null) {
+			System.out.println("cookie 없음");
+
+			// 쿠키 생성(이름, 값)
+			Cookie newCookie = new Cookie("cookie" + target, "|" + target + "|");
+
+			// 쿠키 추가
+			response.addCookie(newCookie);
+
+			// 쿠키를 추가 시키고 조회수 증가시킴
+			int result = bs.updateViewCount(target);
+
+			if (result > 0) {
+				System.out.println("조회수 증가");
+			} else {
+				System.out.println("조회수 증가 에러");
+			}
+		}
+		// viewCookie가 null이 아닐경우 쿠키가 있으므로 조회수 증가 로직을 처리하지 않음.
+		else {
+			System.out.println("cookie 있음");
+
+			// 쿠키 값 받아옴.
+			String value = viewCookie.getValue();
+
+			System.out.println("cookie 값 : " + value);
+		}
+
+		int listCount = bs.getCommentListCount(target);
+
+		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
+		ArrayList<Comment> c = bs.selectComment(pi, target);
+
+		model.addAttribute("b", b);
+		model.addAttribute("c", c);
+		model.addAttribute("pi", pi);
+		return "board/boardDetail";
+	}
+
+	@RequestMapping("deleteBoard.bo")
+	public String deleteBoard(String target) {
+
+		int result = bs.deleteBoard(target);
+		return "redirect:openBoardList.bo";
+	}
+
+	@RequestMapping("updateBoardFrm.bo")
+	public String updateBoardFrm(String target, Model model) {
+		Board b = bs.selectBoardOne(target);
+		model.addAttribute("b", b);
+		return "board/updateBoardFrm";
+	}
+
+	@RequestMapping("updateBoard.bo")
+	public String updateBoard(Board b, String editor, Model model) {
 		b.setBcontent(editor);
 		System.out.println(b);
-		int result = bs.insertBoard(b);
-		return"";
-		
+		int result = bs.updateBoard(b);
+		return "redirect:openBoardList.bo";
+	}
+
+	@RequestMapping("insertComment.bo")
+	public ModelAndView insertComment(String text, String target, String writer, ModelAndView mv) {
+		Comment c = new Comment();
+		c.setbNo(Integer.parseInt(target));
+		c.setContent(text);
+		c.setWriter(writer);
+		System.out.println(c);
+		int result = bs.insertComment(c);
+		mv.setViewName("jsonView");
+		return mv;
+
+	}
+
+	@RequestMapping("deleteComment.bo")
+	public ModelAndView deleteComment(String target, ModelAndView mv) {
+		int result = bs.deleteComment(target);
+		mv.setViewName("jsonView");
+		return mv;
 	}
 }

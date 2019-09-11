@@ -1,7 +1,7 @@
 package com.kh.yc.board.model.vo;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.sql.Date;
 
 public class Comment implements Serializable {
 	private int cNo;
@@ -75,7 +75,7 @@ public class Comment implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Reply [cNo=" + cNo + ", writer=" + writer + ", createDate=" + createDate + ", refCNo=" + refCNo
+		return "Comment [cNo=" + cNo + ", writer=" + writer + ", createDate=" + createDate + ", refCNo=" + refCNo
 				+ ", content=" + content + ", bNo=" + bNo + "]";
 	}
 
