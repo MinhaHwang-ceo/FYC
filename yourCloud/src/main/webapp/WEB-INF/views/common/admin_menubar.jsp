@@ -68,6 +68,7 @@
             <a class="collapse-item" href="${ pageContext.request.contextPath}/member.ad">회원관리</a>
             <a class="collapse-item" href="${ pageContext.request.contextPath}/project6.ad">신고관리</a>
             <a class="collapse-item" href="${ pageContext.request.contextPath}/project2.ad">장부관리</a>
+            <a class="collapse-item" href="${ pageContext.request.contextPath}/excelView.ad">엑셀테스트</a>
           </div>
         </div>
       </li>
