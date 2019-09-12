@@ -37,7 +37,7 @@
 			<img src="<%=request.getContextPath()%>/../yc/resources/images/banner.png" style="height:300px; width:1024px;">	
 		</div>
 		<div id="fbtn">
-			<a href="${ contextPath }/FundingOpen2.fd"><button>펀딩 시작하기</button></a>
+			<a href="Funding1.fd"><button>펀딩 시작하기</button></a>
 		</div>
 	</div>
 	<h2>&nbsp;니가 그린 구름 그림 리워드란?</h2>
@@ -138,7 +138,7 @@
       </div>
     </div>
   </div>
-  <a href="${ contextPath }/FundingOpen2.fd"><button>펀딩 시작하기</button></a>
+  <a href="Funding1.fd"><button onclick="btn_next();">펀딩 시작하기</button></a>
 </div>
 <hr>
 </body>

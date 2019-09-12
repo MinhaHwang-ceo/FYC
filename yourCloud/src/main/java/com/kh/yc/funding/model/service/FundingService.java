@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.kh.yc.admin.model.vo.Project;
+import com.kh.yc.member.model.vo.Member;
 
 @Service
 public interface FundingService{
@@ -14,8 +15,15 @@ public interface FundingService{
 	}
 	
 	//프로 젝트 번호 인설트
-	int projectNno(Project p);
+	int insertProjectNum(Project pro);
+	//프로젝트 번호 체크
+	int pNoCheck(String ranNum);
+	
+	///업데이트 첫 카테코리
+	int updateCategory(String category);
 
-	List<Project> projectListInfo(int projectNo);
+
+	
+
 	
 }
