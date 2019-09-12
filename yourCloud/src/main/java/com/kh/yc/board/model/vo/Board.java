@@ -1,7 +1,8 @@
 package com.kh.yc.board.model.vo;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.sql.Date;
+import java.util.ArrayList;
 
 public class Board implements Serializable {
 	private int bNo;
@@ -16,6 +17,7 @@ public class Board implements Serializable {
 	private String bcontent;
 	private String companyName;
 	private String pTitle;
+	private ArrayList<Comment> commentList;
 
 	public Board() {
 		super();
@@ -23,8 +25,8 @@ public class Board implements Serializable {
 	}
 
 	public Board(int bNo, String bTitle, String writer, int bCount, String open, String status, String bCategory,
-			String refBNo, Date createDate, String companyName, String pTitle,  String bcontent) {
-		super();
+			String refBNo, Date createDate, String bcontent, String companyName, String pTitle,
+			ArrayList<Comment> commentList) {
 		this.bNo = bNo;
 		this.bTitle = bTitle;
 		this.writer = writer;
@@ -37,6 +39,7 @@ public class Board implements Serializable {
 		this.bcontent = bcontent;
 		this.companyName = companyName;
 		this.pTitle = pTitle;
+		this.commentList = commentList;
 	}
 
 	public int getbNo() {
@@ -111,16 +114,13 @@ public class Board implements Serializable {
 		this.createDate = createDate;
 	}
 
-
 	public String getBcontent() {
 		return bcontent;
 	}
 
 	public void setBcontent(String bcontent) {
 		this.bcontent = bcontent;
-		
 	}
-    
 	public String getCompanyName() {
 		return companyName;
 	}
@@ -137,12 +137,22 @@ public class Board implements Serializable {
 		this.pTitle = pTitle;
 	}
 
+	public ArrayList<Comment> getCommentList() {
+		return commentList;
+	}
+
+	public void setCommentList(ArrayList<Comment> commentList) {
+		this.commentList = commentList;
+	}
+
 	@Override
 	public String toString() {
 		return "Board [bNo=" + bNo + ", bTitle=" + bTitle + ", writer=" + writer + ", bCount=" + bCount + ", open="
 				+ open + ", status=" + status + ", bCategory=" + bCategory + ", refBNo=" + refBNo + ", createDate="
-				+ createDate + ", companyName=" + companyName + ", pTitle=" + pTitle + ", bcontent=" + bcontent + "]";
+				+ createDate + ", bcontent=" + bcontent + ", companyName=" + companyName + ", pTitle=" + pTitle
+				+ ", commentList=" + commentList + "]";
 	}
+
 
 
 }

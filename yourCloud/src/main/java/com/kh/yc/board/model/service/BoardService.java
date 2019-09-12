@@ -3,6 +3,7 @@ package com.kh.yc.board.model.service;
 import java.util.ArrayList;
 
 import com.kh.yc.board.model.vo.Board;
+import com.kh.yc.board.model.vo.Comment;
 import com.kh.yc.board.model.vo.PageInfo;
 import com.kh.yc.board.model.vo.SearchCondition;
 import com.kh.yc.project.model.vo.Project;
@@ -20,5 +21,23 @@ public interface BoardService {
 	int insertBoard(Board b);
   
 	ArrayList<Project> selectOpenProject(PageInfo pi);
+
+	Board selectBoardOne(String target);
+
+	int deleteBoard(String target);
+
+	int updateBoard(Board b);
+
+	int insertComment(Comment c);
+
+	int getCommentListCount(String target);
+
+	ArrayList<Comment> selectComment(PageInfo pi, String target);
+
+	int deleteComment(String target);
+
+	int updateViewCount(String target);
+
+
 
 }

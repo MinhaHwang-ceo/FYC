@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.kh.yc.board.model.dao.BoardDao;
 import com.kh.yc.board.model.vo.Board;
+import com.kh.yc.board.model.vo.Comment;
 import com.kh.yc.board.model.vo.PageInfo;
 import com.kh.yc.board.model.vo.SearchCondition;
 import com.kh.yc.project.model.vo.Project;
@@ -39,12 +40,45 @@ public class BoardServiceImpl implements BoardService {
 	}
 	@Override
 	public int insertBoard(Board b) {
-		// TODO Auto-generated method stub
 		return bd.insertBoard(sqlSession, b);
-				
+
 	}
 	public ArrayList<Project> selectOpenProject(PageInfo pi) {
 		return bd.selectOpenProject(sqlSession, pi);
+	}
+	@Override
+	public Board selectBoardOne(String target) {
+
+		
+		return bd.selectBoardOne(sqlSession, target);
+	}
+	@Override
+	public int updateViewCount(String target) {
+		return bd.updateViewCount(sqlSession, target);
+	}
+	@Override
+	public int deleteBoard(String target) {
+		return bd.deleteBoard(sqlSession, target);
+	}
+	@Override
+	public int updateBoard(Board b) {
+		return bd.updateBoard(sqlSession, b);
+	}
+	@Override
+	public int insertComment(Comment c) {
+		return bd.insertComment(sqlSession, c);
+	}
+	@Override
+	public int getCommentListCount(String target) {
+		return bd.getCommentListCount(sqlSession, target);
+	}
+	@Override
+	public ArrayList<Comment> selectComment(PageInfo pi, String target) {
+		return bd.selectComment(sqlSession, pi, target);
+	}
+	@Override
+	public int deleteComment(String target) {
+		return bd.deleteComment(sqlSession, target);
 	}
 
 }
