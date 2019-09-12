@@ -13,7 +13,6 @@ import com.kh.yc.board.model.vo.PageInfo;
 import com.kh.yc.board.model.vo.SearchCondition;
 import com.kh.yc.project.model.vo.Project;
 
-
 @Service
 public class BoardServiceImpl implements BoardService {
 
@@ -42,6 +41,7 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public int insertBoard(Board b) {
 		return bd.insertBoard(sqlSession, b);
+
 	}
 	public ArrayList<Project> selectOpenProject(PageInfo pi) {
 		return bd.selectOpenProject(sqlSession, pi);

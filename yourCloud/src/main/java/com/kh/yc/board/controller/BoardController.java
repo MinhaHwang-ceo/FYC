@@ -23,6 +23,7 @@ import com.kh.yc.board.model.service.BoardService;
 import com.kh.yc.board.model.vo.Board;
 import com.kh.yc.board.model.vo.Comment;
 import com.kh.yc.board.model.vo.PageInfo;
+import com.kh.yc.project.model.vo.Project;
 import com.kh.yc.board.model.vo.SearchCondition;
 import com.kh.yc.common.CommonUtils;
 import com.kh.yc.common.Pagination;
@@ -37,6 +38,7 @@ public class BoardController {
 	@Autowired
 	SearchCondition sc;
 	ProjectService ps;
+	
 
 	@RequestMapping(value = "openExpectation.bo", method = RequestMethod.GET)
 	public String openExpectation(HttpServletRequest request, HttpServletResponse response) {

@@ -121,7 +121,6 @@ public class Board implements Serializable {
 	public void setBcontent(String bcontent) {
 		this.bcontent = bcontent;
 	}
-
 	public String getCompanyName() {
 		return companyName;
 	}
