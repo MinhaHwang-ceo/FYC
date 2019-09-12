@@ -16,7 +16,7 @@
             if(confirm("선택한 카테고리로 하시겠습니까?")){
             browsers = $("#browsers").val();
             alert(browsers);
-               location.href = "FundingOpen4.fd?category="+browsers;
+               location.href = "FundingOpen3.fd?category="+browsers;
                
             }
             console.log(browsers);
@@ -61,7 +61,7 @@
 	나중에 수정할 수 있습니다.</h4>
 	<br>
 	<div align="center"> 
-	<select id="browsers">
+	 <select id="browsers">
 	    <option value="">카테고리 선택하기</option>
 	    <option value="A1">테크-가전</option>
 	    <option value="A2">패션-잡화</option>

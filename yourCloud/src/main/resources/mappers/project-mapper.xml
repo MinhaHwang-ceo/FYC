@@ -85,18 +85,19 @@
 	
 	<!-- 프로젝트 번호 인설트 -->
 	<insert id="insertProjectNno" parameterType="Project">
-		INSERT INTO PROJECT VALUES(#{ranNum}, null, null, '신청전', '실패', null, null
+		INSERT INTO PROJECT VALUES(#{projectNo}, null, null, '신청전', '실패', null, null
 		      ,null, null, null, null, null, null, null, null, null, null
 		      ,null, null, null, null, null, null, null, null
-		      ,null, null, 1, null)
+		      ,null, null, #{userNo}, null)
 	</insert>
 	
-	<!-- 카테코리 인설트같은 업데이트 -->
-	<update id="fcategoryUpdate" parameterType="Project">
+	<!--  카테코리 인설트같은 업데이트 -->
+	<!-- <update id="fcategoryUpdate" parameterType="Project" resultMap="ProjectResultSet">
 		UPDATE PROJECT
-		SET CATEGORY = #{category}
+		SET CATEGORY = #{category} = (SELECT * FROM PROJECT WHERE PROJECT_NO = #{projectNo} AND MEMBER_NO = #{userNo})
+		WHERE PROJECT_NO = ?
 	</update>
-
+ -->
 </mapper>
 
 

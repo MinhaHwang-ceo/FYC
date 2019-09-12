@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import com.kh.yc.admin.model.vo.Project;
 import com.kh.yc.funding.model.dao.FundingDao;
 import com.kh.yc.funding.model.dao.FundingDaoImpl;
+import com.kh.yc.member.model.vo.Member;
 
 
 @Service
@@ -29,11 +30,13 @@ public class FundingServiceImpl implements FundingService{
 	
 	//프로젝트 번호 인설트
 	@Override
-	public int insertProjectNum(String ranNum) {
-		int resulut = fd.insertProjectNum(sqlSession,ranNum);
+	public int insertProjectNum(Project pro) {
+		int resulut = fd.insertProjectNum(sqlSession,pro);
 		
 		return resulut;
 	}
+	
+	
 
 	//프로젝트 번호  체크
 	@Override
@@ -41,12 +44,16 @@ public class FundingServiceImpl implements FundingService{
 		int check = fd.pNoCheck(sqlSession,ranNum);
 		return check;
 	}
-	//업데이트 카테고리
+	///업데이트 카테고리
 	@Override
-	public int updatefcategory(Project p) {
-		int fcategory = fd.updatefcategory(sqlSession,p);
+	public int updateCategory(String category) {
+		int fcategory = fd.updatefcategory(sqlSession,category);
+		
 		return fcategory;
+		
 	}
+
+
 
 	
 	

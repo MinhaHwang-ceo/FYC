@@ -9,7 +9,7 @@
 <link href="https://fonts.googleapis.com/css?family=Sunflower:300&display=swap" rel="stylesheet">
 <title>펀딩하기</title>
 <style>
-	#box {
+	 #box {
 		margin-top:10%;
 	}
 	#rd {
@@ -33,7 +33,7 @@
 	</div>
 	<br>
 	<div class="checks">
-	<form action="FundingOpen3.fd" id="terms_form">
+	<form action="Funding2.fd" id="terms_form">
 		<input type="checkbox" id="ex_rd1" name="ex_rds"> 
 		<label for="ex_rd" id="rd">펀딩 진행 중에는 제공할 리워드를 다른 온/오프라인에서 펀딩하거나 <br>
 		&nbsp;&nbsp;&nbsp;&nbsp;판매하지 않습니다.</label> 
