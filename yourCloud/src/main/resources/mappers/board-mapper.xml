@@ -219,11 +219,9 @@
 		WHERE
 			C.COMMENT_WRITER = M.MEMBER_NO
         AND
-			C.BOARD_NO = #{target}
+			C.BOARD_NO = 21
         AND
-            C.STATUS IS NULL
-        OR
-            C.STATUS = 'N'
+            (C.STATUS = 'N' OR C.STATUS IS NULL)
 	</select>
 	<update id="deleteBoard">
 		UPDATE

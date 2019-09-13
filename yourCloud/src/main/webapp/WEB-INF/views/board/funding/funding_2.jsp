@@ -184,35 +184,6 @@
 			</table>
 		</div>
 		<br> <br>
-		<form action="reqPay.pa" id="payForm" method="post">
-			<div>
-				<b>결제정보 입력</b>
-				<table>
-					<tr>
-						<td>신용(체크)카드 번호</td>
-					</tr>
-					<tr>
-						<td><input type="text" name="cardNumber" class="cardNumber" maxlength="4"></td>
-						<td><input type="password" name="cardNumber" class="cardNumber" maxlength="4"></td>
-						<td><input type="password" name="cardNumber" class="cardNumber" maxlength="4"></td>
-						<td><input type="text" name="cardNumber" class="cardNumber" maxlength="4"></td>
-					</tr>
-					<tr>
-						<td>유호기간</td>
-						<td>카드 비밀번호(앞 두자리)</td>
-					</tr>
-					<tr>
-						<td><input type="text" name="expirationDate" id="expirationDate" placeholder="YYYY-MM" maxlength="6"></td>
-						<td><input type="password" name="cardDigit" id="cardDigit" maxlength="2" placeholder="****"></td>
-					</tr>
-					<tr>
-						<td>생년월일(주민번호 앞 6자리)</td>
-					</tr>
-					<tr>
-						<td><input type="text" name="birth" id="birth" maxlength="6"></td>
-					</tr>
-				</table>
-			</div>
 			<div>
 				<br> <br> <b>약관동의</b>
 				<div class="panel-group" id="accordion">
@@ -248,19 +219,31 @@
 					<input type="checkbox" required>약관에 동의합니다. <br> <br>
 				</div>
 			</div>
+			<input type="button" value="결제 예약" class="btn btn-success" id="payInfoBtn" />
 			<input type="button" value="다음 단계로  >" class="btn btn-info" id="payBtn">
 	</div>
-	</form>
 	<script>
-		$("#payBtn").click(function(){
-			alert("개시발");
+		function today(){
+		    var dt = new Date();
+		 
+		    var recentYear = dt.getFullYear();
+		    var recentMonth = dt.getMonth() + 1;
+		    var recentDay = dt.getDate();
+		    if(recentMonth < 10) recentMonth = "0" + recentMonth;
+		    if(recentDay < 10) recentDay = "0" + recentDay;
+		 
+		    return recentYear + recentMonth + recentDay;
+		}
+			var today = today();
+		$("#payInfoBtn").click(function(){
 			var IMP = window.IMP;
+			console.log(today);
 			IMP.init('imp24001024');
 			
 			IMP.request_pay({ // param
 			    pay_method: "card", // "card"만 지원됩니다
-			    merchant_uid: "today0102", // 빌링키 발급용 주문번호
-			    customer_uid: "test090001", // 카드(빌링키)와 1:1로 대응하는 값
+			    merchant_uid: today+"0102", // 빌링키 발급용 주문번호
+			    customer_uid: today+"090001", // 카드(빌링키)와 1:1로 대응하는 값
 			    name: "최초인증결제",
 			    amount: 0, // 0 으로 설정하여 빌링키 발급만 진행합니다.
 			    buyer_email: "gildong@gmail.com",
@@ -270,13 +253,15 @@
 			    buyer_postcode: "01181"
 			  }, function (rsp) { // callback
 			    if (rsp.success) {
+			    	var userNo= '${ sessionScope.loginUser.userNo}';
 			    	 // jQuery로 HTTP 요청
 			    	 alert("빌링키 발급 성공");
 			    	 jQuery.ajax({
 				          url: "billingKey.fd", // 서비스 웹서버
 				          method: "POST",
 				          data: {
-				            customer_uid: "test090001", // 카드(빌링키)와 1:1로 대응하는 값
+				            customer_uid: customer_uid // 카드(빌링키)와 1:1로 대응하는 값
+				            , userNo : userNo
 				          }, success:function(data){
 				        	  alert("결제가 예약되었습니다");
 				        	  console.log(data);

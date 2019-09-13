@@ -17,6 +17,7 @@
    <jsp:include page="../common/customer_menubar.jsp"/>
    <jsp:include page="../common/customer_menuList.jsp"/>
     <!--Section-1-->
+    <input type="button" onclick="location.href='funding_2.bo'"/>
     <section class="section-1">
         <div class="jumbotron d-flex align-items-center">
             <div class="gradient"></div>
