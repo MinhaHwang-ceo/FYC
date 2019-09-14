@@ -37,8 +37,8 @@ public class BoardController {
 	BoardService bs;
 	@Autowired
 	SearchCondition sc;
+	@Autowired
 	ProjectService ps;
-	
 
 	@RequestMapping(value = "openExpectation.bo", method = RequestMethod.GET)
 	public String openExpectation(HttpServletRequest request, HttpServletResponse response) {
@@ -98,12 +98,10 @@ public class BoardController {
 			currentPage = Integer.parseInt(request.getParameter("currentPage"));
 		}
 
-		/* ProjectService ps = new ProjectServiceImpl(); */
-
 		try {
 
 			int listCount = ps.getListCount();
-
+			System.out.println(listCount);
 			PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
 
 			ArrayList<Project> list = ps.selectProjectList(pi);

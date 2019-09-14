@@ -11,29 +11,27 @@ import com.kh.yc.project.model.exception.ProjectSelectListException;
 import com.kh.yc.project.model.vo.Project;
 
 @Repository
-public class ProjectDaoImpl implements ProjectDao{
+public class ProjectDaoImpl implements ProjectDao {
 
 	@Override
-	public int getListCount(SqlSessionTemplate sqlSession) throws ProjectSelectListException{
-		
-		int result = 0;
-		result = sqlSession.selectOne("Project2.selectListCount");
-		
-		return result;
+	public int getListCount(SqlSessionTemplate sqlSession) throws ProjectSelectListException {
+
+		return sqlSession.selectOne("Project2.selectListCount");
 	}
 
 	@Override
 	@SuppressWarnings({ "unchecked", "rawtypes" })
-	public ArrayList<Project> selectBoardList(SqlSessionTemplate sqlSession, PageInfo pi) throws ProjectSelectListException {
+	public ArrayList<Project> selectBoardList(SqlSessionTemplate sqlSession, PageInfo pi)
+			throws ProjectSelectListException {
 
-		ArrayList<Project> list =null;
-		
-		int offset = (pi.getCurrentPage()-1)*pi.getLimit();
-		
+		ArrayList<Project> list = null;
+
+		int offset = (pi.getCurrentPage() - 1) * pi.getLimit();
+
 		RowBounds rowBounds = new RowBounds(offset, pi.getLimit());
-		
-		list = (ArrayList) sqlSession.selectList("Project2.selectProjectList",null,rowBounds);
-		
+
+		list = (ArrayList) sqlSession.selectList("Project2.selectProjectList", null, rowBounds);
+
 		return list;
 	}
 

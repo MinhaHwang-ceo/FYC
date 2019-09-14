@@ -6,8 +6,9 @@
 <meta charset="UTF-8">
  <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/animate.css">
 <title>Insert title here</title>
+<style>
+</style>
 </head>
-
 <body>
     <section class="section-7">
         <!-- Footer -->

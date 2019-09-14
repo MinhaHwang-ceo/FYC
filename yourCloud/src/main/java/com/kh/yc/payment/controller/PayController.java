@@ -60,9 +60,12 @@ public class PayController {
 	}
 
 	@RequestMapping("billingKey.fd")
-	public ModelAndView billingKey(String customer_uid, ModelAndView mv) {
+	public ModelAndView billingKey(String customer_uid, String userNo, ModelAndView mv) {
 		// 얘는 토큰 가져오기
-
+		
+		System.out.println(customer_uid);
+		System.out.println(userNo);
+		
 		try {
 			BigDecimal amount = new BigDecimal(1000);
 
@@ -71,7 +74,7 @@ public class PayController {
 			cal.add(Calendar.MINUTE, 3);
 			Date schedule_at = cal.getTime();
 
-			ScheduleEntry se = new ScheduleEntry("testmcscscxcuid", schedule_at, amount);
+			ScheduleEntry se = new ScheduleEntry(schedule_at + "userNo", schedule_at, amount);
 			System.out.println(se.getScheduleAt());
 
 			sd.addSchedule(se);

@@ -35,8 +35,8 @@
 	rel="stylesheet">
 <style>
 .outer {
-	width: 800px;
-	margin-left: 500px;
+	width: 700px;
+	margin: 0 auto;
 	font-family: 'Gothic A1', sans-serif;
 }
 
@@ -47,17 +47,12 @@
 
 #td2 {
 	width: 300px;
-	margin-left: 80px;
 }
 
 #td4 {
 	padding-left: 140px;
 }
 
-html, div, body, h3 {
-	margin: 0;
-	padding: 0;
-}
 
 h3 {
 	display: inline-block;
@@ -67,7 +62,9 @@ h3 {
 
 </head>
 <body>
-	<jsp:include page="../common/customer_menubar.jsp" /><jsp:include page="../common/customer_menuList.jsp"/><br><br>
+	<jsp:include page="../common/customer_menubar.jsp" /><jsp:include
+		page="../common/customer_menuList.jsp" /><br>
+	<br>
 	<br>
 	<br>
 	<section class="section-1">
@@ -78,10 +75,10 @@ h3 {
 			</h2>
 			<br>
 			<form action="login.me" method="post">
-				<table>
+				<table align="center">
 					<tr>
-						<td>아이디</td>
-						<td><input type="text" id="td2" name="userId"></td>
+						<td>아이디 </td>
+						<td>&nbsp;<input type="text" id="td2" name="userId"></td>
 					</tr>
 
 					<tr>
@@ -89,8 +86,8 @@ h3 {
 					</tr>
 
 					<tr>
-						<td>비밀번호</td>
-						<td><input type="password" id="td2" name="userPwd"></td>
+						<td>비밀번호 </td>
+						<td>&nbsp;<input type="password" id="td2" name="userPwd"></td>
 					</tr>
 
 					<tr>
@@ -110,30 +107,38 @@ h3 {
 
 				</table>
 			</form>
-		 	<c:choose>
+			<c:choose>
 				<c:when test="${sessionId != null}">
 					<h2>네이버 아이디 로그인 성공하셨습니다!!</h2>
 					<h3>'${sessionId}' 님 환영합니다!</h3>
 					<h3>
 						<a href="logout">로그아웃</a>
 					</h3>
-				</c:when> 
-				
+				</c:when>
+
 				<c:otherwise>
-				
-				<%-- 	<div>
+
+					<%-- 	<div>
 					<button>
 						<a href="${url}"> <img style="margin: 0 auto;" width="223"></a>
 					</button>
 					</div> --%>
 					<!-- 네이버 로그인 창으로 이동 -->
-					 <div id="naver_id_login" style="text-align: center;">
-						<a href="${ url }"> <img style="margin: 0 auto;" width="223"
-							src="https://developers.naver.com/doc/review_201802/CK_bEFnWMeEBjXpQ5o8N_20180202_7aot50.png" /></a>
-					</div>
+					<table align="center">
+						<tr>
+							<td></td>
+							<td>
+								<div id="naver_id_login" style="text-align: center;">
+									<a href="${ url }"> <img style="margin: 0 auto;" width="30%"
+									src="https://developers.naver.com/doc/review_201802/CK_bEFnWMeEBjXpQ5o8N_20180202_7aot50.png" /></a>
+								</div>
+							</td>
+						</tr>
+					</table>
+
 					<br>
 				</c:otherwise>
-			 </c:choose>
+			</c:choose>
 			<script type="text/javascript">
 				var url = $("a").attr("href");
 
@@ -141,20 +146,6 @@ h3 {
 			</script>
 
 			<table>
-				<tr>
-					<td></td>
-					<td id="td4">&emsp;&emsp;&emsp;&emsp;&emsp;또는</td>
-				</tr>
-
-				<tr>
-					<td><br></td>
-				</tr>
-
-
-				<tr>
-					<td><br></td>
-				</tr>
-
 				<tr>
 					<td></td>
 					<td id="td4"><a href="${contextPath}/findId.me">아이디찾기</a>
