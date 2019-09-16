@@ -11,9 +11,12 @@ public interface FundingDao {
 
 	//프로젝트 번호 인설트
 	int insertProjectNum(SqlSessionTemplate sqlSession, Project pro);
-	
+
 	// 첫 카테고리 업데이트
-	int updatefcategory(SqlSessionTemplate sqlSession, String category);
+	int updatefcategory(SqlSessionTemplate sqlSession,Project p);
+	
+	//업데이트 기본정보
+	int UpdateInfo(SqlSessionTemplate sqlSession, Project p);
 
 	
 

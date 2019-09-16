@@ -1,5 +1,6 @@
 package com.kh.yc.funding.model.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -36,22 +37,37 @@ public class FundingServiceImpl implements FundingService{
 		return resulut;
 	}
 	
-	
-
 	//프로젝트 번호  체크
 	@Override
 	public int pNoCheck(String ranNum) {
 		int check = fd.pNoCheck(sqlSession,ranNum);
 		return check;
 	}
+	
 	///업데이트 카테고리
 	@Override
-	public int updateCategory(String category) {
-		int fcategory = fd.updatefcategory(sqlSession,category);
+	public int updateCategory(Project p) {
+		int fcategory = fd.updatefcategory(sqlSession,p);
 		
 		return fcategory;
-		
 	}
+
+	//펀딩오픈 기본정보 업데이트
+	@Override
+	public int UpdateInfo(Project p) {
+		int result = 0;
+		
+		int result1 = fd.UpdateInfo(sqlSession,p);
+			
+		if(result1 > 0) {
+			result = 1;
+		}
+		return result;
+	}
+
+	
+	
+	
 
 
 

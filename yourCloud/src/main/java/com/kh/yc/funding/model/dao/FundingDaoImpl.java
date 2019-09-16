@@ -26,9 +26,15 @@ public  class FundingDaoImpl implements FundingDao{
 	
 	//첫 카테코리 업데이트
 	@Override
-	public int updatefcategory(SqlSessionTemplate sqlSession, String category) {
+	public int updatefcategory(SqlSessionTemplate sqlSession, Project p) {
 		
-		return sqlSession.update("Project.fcategoryUpdate",category);
+		return sqlSession.update("Project.fcategoryUpdate",p);
+	}
+	//업데이트 기본정보
+	@Override
+	public int UpdateInfo(SqlSessionTemplate sqlSession, Project p) {
+		
+		return sqlSession.update("Project.basicInfo",p);
 	}
 
 	
