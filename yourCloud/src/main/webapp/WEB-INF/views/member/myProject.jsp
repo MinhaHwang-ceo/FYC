@@ -6,6 +6,17 @@
 <head>
 <meta charset="UTF-8">
 <title>나의 프로젝트</title>
+
+<style>
+.hidden{
+
+opacity:0;
+}
+
+</style>
+
+
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <link rel="stylesheet" href="${contextPath }/resources/css/myPage.css" />
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -22,57 +33,127 @@
    <br />
    <div id="myPageOuter">
       <div class="project">
-         <h2 align="left"><c:out value="${ loginUser.userName }"/>님의 프로젝트</h2>
+         <h2 align="left"><c:out value="${ loginUser.userName }"/>  님의 프로젝트</h2>
+       
          <br />
+         
+            <c:forEach var="b" items="${ list }">
+            	<c:if test="${loginUser.userNo==b.memberNo  }">
          <table align="center" id="myProjectTable">
             <tr>
                <td class="projectImg">
                   <img src="${ contextPath }/resources/images/mail.PNG" style="width:100%;"/>
                </td>
             </tr>
+            
+          
+            
             <tr>
-               <td style="font-weight:bold">프로젝트제목이다아아아아아</td>
+               <td style="font-weight:bold"><c:out value="${ b.projectTitle }"/></td>
             </tr>
+                	<c:if test="${b.judgeStatus !='통과' }">
             <tr>
-               <td>진행 상황 : 검토요청 중</td>
+               <td>진행 상황 : <c:out value="${ b.judgeStatus }"/>
+           </td>
             </tr>
+            </c:if>
+                   	<c:if test="${b.judgeStatus =='통과' }">
             <tr>
-               <td>메이커명</td>
+               <td>진행 상황 : <c:out value="${ b.progressStatus }"/></td>
             </tr>
+            </c:if>
+            
+            
             <tr>
-               <td><button class="modifyBtn">수정, 편집하기</button></td>
-            </tr>
-            <tr>
-               <td><input type="button" class="btn btn-info" value="명세 정보 확인" onclick="location.href='receiptInfo.me'"/>&nbsp;
-                  <input type="button"  class="btn btn-info" value="후원자 관리" onclick="location.href='supporterList.me'"/></td>
-            </tr>
-         </table>
-         <table align="center" id="myProjectTable">
-            <tr>
-               <td class="projectImg">
-                  <img src="${ contextPath }/resources/images/mail.PNG" style="width:100%;"/>
-               </td>
-            </tr>
-            <tr>
-               <td style="font-weight:bold">프로젝트제목이다아아아아아</td>
-            </tr>
-            <tr>
-               <td>진행 상황 : 검토요청 중</td>
-            </tr>
-            <tr>
-               <td>메이커명</td>
+               <td><c:out value="${ b.companyName }"/></td>
             </tr>
             <tr>
                <td><button class="modifyBtn">수정, 편집하기</button></td>
             </tr>
+            <c:if test="${b.progressStatus=='성공'}">
             <tr>
                <td><input type="button" class="btn btn-info" value="명세 정보 확인" onclick="location.href='receiptInfo.me'"/>&nbsp;
-                  <input type="button"  class="btn btn-info" value="후원자 관리" onclick="location.href='supporterList.me'"/></td>
+                  <input type="button"  class="btn btn-info" value="후원자 관리" onclick="supportList();"/>
+                     <input type="hidden" name="bNum"  id="bNum"   value="${b.projectNo }"> </td>
             </tr>
+            </c:if>
+             <c:if test="${b.progressStatus=='실패'}">
+            <tr>
+               <td><input type="button" class="btn btn-info hidden" value="명세 정보 확인" />&nbsp;
+                  <input type="button"  class="btn btn-info hidden" value="후원자 관리" />
+                     <input type="hidden" name="bNum"  id="bNum"   value="${b.projectNo }"> </td>
+            </tr>
+            </c:if>
+            
+            
          </table>
-
+         </c:if>
+     
+            			</c:forEach>
+ 
       </div>
+      		<br><br><br><br><br>
+		<div id="paginArea" align="center">
+			<c:if test="${ pi.currentPage <= 1 }">
+				[이전] &nbsp;
+			</c:if>
+			<c:if test="${ pi.currentPage > 1 }">
+				<c:url var="blistBack" value="/selectList.bo">
+					<c:param name="currentPage" value="${ pi.currentPage - 1 }"/>
+				</c:url>
+				<a href="${ blistBack }">[이전]</a>&nbsp;
+			</c:if>
+			
+			<c:forEach var="p" begin="${ pi.startPage }" end="${ pi.endPage }">
+				<c:if test="${ p eq pi.currentPage }">
+					<font color="red" size="4"><b>[${ p }]</b></font>
+				</c:if>
+				<c:if test="${ p ne pi.currentPage }">
+					<c:url var="blistCheck" value="selectList.bo">
+						<c:param name="currentPage" value="${ p }"/>
+					</c:url>
+					<a href="${ blistCheck }">${ p }</a>
+				</c:if>
+			</c:forEach>
+			
+			
+			<c:if test="${ pi.currentPage < pi.maxPage }">
+				<c:url var="blistEnd" value="selectList.bo">
+					<c:param name="currentPage" value="${ pi.currentPage + 1 }"/>
+				</c:url>
+				<a href="${ blistEnd }">&nbsp; [다음]</a>
+			</c:if>
+			<c:if test="${ pi.currentPage >= pi.maxPage }">
+				&nbsp; [다음]
+			</c:if>
+		</div>
    </div>
    <jsp:include page="../common/customer_footer.jsp"/>
+   
+   
+   
+   
+   <script>
+   
+   function supportList(){
+		var bNum = $("#bNum").val();
+	   
+		location.href = "supporterList.me?bNum=" + bNum;
+	   
+   }
+   
+   </script>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
 </body>
 </html>
