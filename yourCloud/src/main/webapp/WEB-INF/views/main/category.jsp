@@ -79,6 +79,16 @@ td {
 	font-weight: bold;
 }
 
+.caption{
+      text-align:left;
+   }
+   
+   .col-md-4{
+
+   padding:40px;
+   
+   }
+
 </style>
 
 
@@ -120,64 +130,27 @@ td {
 		<br>
 	
 		<!-- 프로젝트 출력 -->
-
-	<table id="table1">
-		<c:forEach var="p" items="${ list }">
-			<tr>
-				<td><c:out value="${ p.projectNo }"/></td>
-				<td>&nbsp;</td>
-				<td><a href="${contextPath}/openExpectationDetail.bo"><img alt="" src="/yc/resources/images/yc-logo3.png"></a></td>
-				<td>&nbsp;</td>
-				<td><c:out value="${ p.projectTitle }"/>
-					<br>
-					<c:out value="${ p.money }"/>원
-				</td>
-				<td><c:out value="${ p.companyName }"/></td>
-				<td><c:out value="${ p.endDate }"/>에 마감</td>	
-			</tr>
-			
-			<tr><td>&nbsp;</td></tr>
-		</c:forEach>
-	</table>
-	
-	
-	
-      <div class="projects">
-         <table>
-         <c:forEach var="p" items="${ list }">
-            <tr>
-               <td class="projectImgs"><a href="${ contextPath }/categoryOne.ca">
-               <img src="${ contextPath }/resources/images/rank1.PNG" alt="" /></a>
-               </td>
-            </tr>
-            
-            <tr>
-               <td class="projectTitles"><c:out value="${ p.projectNo }"/></td>
-            </tr>
-            
-            <tr>
-               <td class="projectCategories"><c:out value="gd" /></td>
-            </tr>
-            </c:forEach>
-         </table>
+	<div class="row">
+  <c:forEach var="p" items="${ list }">
+    <div class="col-md-4">
+      <div class="thumbnail">
+      	<input type="hidden" value='<c:out value="${ p.projectNo }"></c:out>'>
+         <a href="categoryOne.ca?projectNo=${ p.projectNo }">
+          <img src="/yc/resources/images/dog.PNG" alt="Lights" style="width:100%; height:75%;">
+          <div class="caption">
+            <h6>[<c:out value="${ p.projectNo }"/>]&emsp;<c:out value="${ p.projectTitle }"/></h6>
+            <p>목표금액 : <c:out value="${ p.money }"/>원<br>
+            	이 리워드는 <c:out value="${ p.endDate }"/> 에 마감됩니다</p>
+          </div>
+        </a>
       </div>
-   
+    </div>
+    </c:forEach>
+  </div>
+</div>
 	
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-
 
 
 	<br><br><br>	

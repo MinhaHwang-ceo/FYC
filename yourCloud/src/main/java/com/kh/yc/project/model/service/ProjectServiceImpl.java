@@ -1,6 +1,7 @@
 package com.kh.yc.project.model.service;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.mybatis.spring.SqlSessionTemplate;
@@ -32,6 +33,15 @@ public class ProjectServiceImpl implements ProjectService {
 		ArrayList<Project> list = pd.selectBoardList(sqlSession, pi);
 
 		return list;
+	}
+
+	//게시판 상세보기 메소드
+	@Override
+	public Map<String, Project> detailProject() {
+
+		Map<String,Project> detail = pd.detailBoard(sqlSession);
+		
+		return detail;
 	}
 
 }
