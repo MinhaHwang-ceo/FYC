@@ -1,13 +1,33 @@
 package com.kh.yc.member.controller;
 
+import java.util.ArrayList;
+
+import javax.security.auth.login.LoginException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.kh.yc.member.model.service.MemberServiceImpl;
 import com.kh.yc.member.model.vo.Member;
+import com.kh.yc.project.model.exception.ProjectSelectListException;
+import com.kh.yc.project.model.service.ProjectService;
+import com.kh.yc.project.model.vo.Project;
+import com.kh.yc.board.model.vo.PageInfo;
+import com.kh.yc.common.Pagination;
 
 @Controller
 public class MyPageController {
+
+	@Autowired
+	private ProjectService ps;
+	
+	@Autowired
+	private MemberServiceImpl ms;
+	
 	public MyPageController() {
 	}
 
@@ -59,8 +79,32 @@ public class MyPageController {
 	}
 
 	@RequestMapping("myProject.me")
-	public String myProject(@ModelAttribute Member m) {
-
+	public String myProject(@ModelAttribute Member m,HttpServletRequest request, HttpServletResponse response) {
+	
+		
+		int currentPage = 1;
+		if(request.getParameter("currentPage") !=null) {
+			currentPage = Integer.parseInt(request.getParameter("currentPage"));
+		}
+		
+		try {
+		int count=	ps.getListCount();
+		System.out.println("count::::::"+count );
+		PageInfo pi = Pagination.getPageInfo(currentPage, count);
+	
+System.out.println("m:::::;;"+m);
+		
+		ArrayList<Project> list= ps.selectProjectList2(pi,m);
+		System.out.println("list:::"+list);
+		System.out.println("listsize"+list.size());
+		request.setAttribute("list", list);
+		request.setAttribute("pi", pi);
+		} catch (ProjectSelectListException e) {
+			e.printStackTrace();
+		}
+		
+		
+		
 		return "member/myProject";
 	}
 
@@ -71,8 +115,14 @@ public class MyPageController {
 	}
 
 	@RequestMapping("supporterList.me")
-	public String supporterList(@ModelAttribute Member m) {
+	public String supporterList(@ModelAttribute Member m,int bNum,HttpServletRequest request, HttpServletResponse response) {
+		
+		ArrayList<Project> list= ps.selectSupportList(bNum);
+		System.out.println("list:::"+list);
+		System.out.println("listsize"+list.size());
+		request.setAttribute("list", list);
 
+		
 		return "member/supporterList";
 	}
 }
