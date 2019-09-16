@@ -5,6 +5,7 @@ import java.util.List;
 import com.kh.yc.admin.model.vo.Project;
 import com.kh.yc.admin.model.vo.Report;
 import com.kh.yc.member.model.vo.Member;
+import com.kh.yc.reward.model.vo.Reward;
 
 public interface AdminService {
 	
@@ -36,5 +37,6 @@ public interface AdminService {
 	
 	//정산프로젝트
 	public List<Project> adjustProjectList();
+
 
 }
