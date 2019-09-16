@@ -124,7 +124,34 @@ public class BoardDaoImpl implements BoardDao {
 		return sqlSession.update("Board.deleteComment", target);
 	}
 
+	@Override
+	public int updateComment(SqlSessionTemplate sqlSession, Comment c) {
+		return sqlSession.update("Board.updateComment", c);
+	}
 
+	@SuppressWarnings({ "rawtypes", "unchecked" })
+	@Override
+	public ArrayList<Comment> selectReComment(SqlSessionTemplate sqlSession, PageInfo pi, String target) {
+		ArrayList<Comment> list = null;
+		int offset = (pi.getCurrentPage() - 1) * pi.getLimit();
 
+		RowBounds rowBounds = new RowBounds(offset, pi.getLimit());
+		list = (ArrayList) sqlSession.selectList("Board.selectReComment", target, rowBounds);
+		return list;
+	}
+
+	@Override
+	public int insertReComment(SqlSessionTemplate sqlSession, Comment c) {
+		return sqlSession.insert("Board.insertReComment", c);
+	}
+
+	@Override
+	public ArrayList<Project> getProject(SqlSessionTemplate sqlSession) {
+		ArrayList<Project> list = null;
+
+		list = (ArrayList) sqlSession.selectList("Project2.getProject");
+
+		return list;
+	}
 
 }

@@ -81,6 +81,21 @@
 		JOIN    MEMBER M ON (P.MEMBER_NO = M.MEMBER_NO)
 		ORDER BY PROJECT_NO DESC
 	</select> 
+	<select id="getProject" resultMap="ProjectList">
+	    SELECT
+	        *
+	    FROM (
+	        SELECT
+				PROJECT_NO, CATEGORY, SUMMARY, PROJECT_TITLE, RANK() OVER (ORDER BY PROJECT_NO DESC) RANK
+			FROM
+				PROJECT P
+			WHERE
+				JUDGE_STATUS = '통과')
+		<!-- [CDATA[
+		WHERE
+			RANK < 5
+		]]-->
+	</select>
 
 	<select id="detailBoard" resultType="hashmap" resultMap="ProjectDetail">
 		SELECT * 
@@ -101,6 +116,5 @@
 	JOIN MEMBER M ON (P.MEMBER_NO = M.MEMBER_NO)
 	WHERE P.PROJECT_NO=#{projectNo}
 	</select>
-
 
 </mapper>

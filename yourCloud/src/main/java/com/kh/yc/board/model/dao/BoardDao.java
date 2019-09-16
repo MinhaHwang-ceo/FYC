@@ -4,11 +4,11 @@ import java.util.ArrayList;
 
 import org.mybatis.spring.SqlSessionTemplate;
 
+import com.kh.yc.project.model.vo.Project;
 import com.kh.yc.board.model.vo.Board;
 import com.kh.yc.board.model.vo.Comment;
 import com.kh.yc.board.model.vo.PageInfo;
 import com.kh.yc.board.model.vo.SearchCondition;
-import com.kh.yc.project.model.vo.Project;
 
 public interface BoardDao {
 
@@ -39,6 +39,14 @@ public interface BoardDao {
 	ArrayList<Comment> selectComment(SqlSessionTemplate sqlSession, PageInfo pi, String target);
 
 	int deleteComment(SqlSessionTemplate sqlSession, String target);
+
+	int updateComment(SqlSessionTemplate sqlSession, Comment c);
+
+	ArrayList<Comment> selectReComment(SqlSessionTemplate sqlSession, PageInfo pi, String target);
+
+	int insertReComment(SqlSessionTemplate sqlSession, Comment c);
+
+	ArrayList<Project> getProject(SqlSessionTemplate sqlSession);
 
 
 

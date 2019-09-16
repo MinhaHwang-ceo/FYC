@@ -112,6 +112,8 @@
 </head>
 <body>
 	<jsp:include page="../../common/customer_menubar.jsp" /><br>
+	<jsp:include page="../../common/customer_menuList.jsp" /><br>
+	
 	<br>
 
 	<div class="outer">
@@ -220,7 +222,6 @@
 				</div>
 			</div>
 			<input type="button" value="결제 예약" class="btn btn-success" id="payInfoBtn" />
-			<input type="button" value="다음 단계로  >" class="btn btn-info" id="payBtn">
 	</div>
 	<script>
 		function today(){
@@ -237,20 +238,18 @@
 			var today = today();
 		$("#payInfoBtn").click(function(){
 			var IMP = window.IMP;
+			var id = '${ sessionScope.loginUser.userId }';
+			var customer_uid = id + today;
 			console.log(today);
 			IMP.init('imp24001024');
 			
 			IMP.request_pay({ // param
 			    pay_method: "card", // "card"만 지원됩니다
-			    merchant_uid: today+"0102", // 빌링키 발급용 주문번호
-			    customer_uid: today+"090001", // 카드(빌링키)와 1:1로 대응하는 값
+			    merchant_uid: id+today+"1", // 빌링키 발급용 주문번호
+			    customer_uid: id+customer_uid, // 카드(빌링키)와 1:1로 대응하는 값
 			    name: "최초인증결제",
 			    amount: 0, // 0 으로 설정하여 빌링키 발급만 진행합니다.
-			    buyer_email: "gildong@gmail.com",
 			    buyer_name: "홍길동",
-			    buyer_tel: "010-4242-4242",
-			    buyer_addr: "서울특별시 강남구 신사동",
-			    buyer_postcode: "01181"
 			  }, function (rsp) { // callback
 			    if (rsp.success) {
 			    	var userNo= '${ sessionScope.loginUser.userNo}';
@@ -265,6 +264,7 @@
 				          }, success:function(data){
 				        	  alert("결제가 예약되었습니다");
 				        	  console.log(data);
+				        	  
 				          }
 			    	})
 			    } else {

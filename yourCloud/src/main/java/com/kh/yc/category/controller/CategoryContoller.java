@@ -11,6 +11,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
+
+import com.kh.yc.category.model.service.CategoryService;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.kh.yc.project.model.service.ProjectService;
@@ -18,6 +21,12 @@ import com.kh.yc.project.model.vo.Project;
 
 @Controller
 public class CategoryContoller {
+	@Autowired
+	CategoryService cs;
+	
+	@RequestMapping(value = "/categoryOne.ca", method = RequestMethod.GET)
+	public String categoryOne(Model model) {
+		
 	
 	@Autowired
 	ProjectService ps;
@@ -30,7 +39,7 @@ public class CategoryContoller {
 		Map<String, Project> detail = ps.detailProject();
 		System.out.println(detail);
 		request.setAttribute("detail", detail);
-	
+
 		return "main/categoryOne";
 
 	}
@@ -60,5 +69,12 @@ public class CategoryContoller {
 
 		return "main/categoryOneCommunity";
 
+	}
+	@RequestMapping("memberCategory.ca")
+	public ModelAndView memberCategory(ModelAndView mv, String category) {
+		ArrayList<Project> pList;
+		
+		mv.setViewName("jsonView");
+		return mv;
 	}
 }

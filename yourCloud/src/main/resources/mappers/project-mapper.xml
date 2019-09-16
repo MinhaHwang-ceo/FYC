@@ -3,86 +3,92 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-  <mapper namespace="Project">
-	<resultMap type="com.kh.yc.admin.model.vo.Project" id="ProjectResultSet">
-		<id property="projectNo" column="PROJECT_NO"/>
-		<result property="category" column="CATEGORY"/>
-		<result property="success" column="SUCCESS"/>
-		<result property="judgeStatus" column="JUDGE_STATUS"/>
-		<result property="progressStatus" column="PROGRESS_STATUS"/>
-		<result property="agreement" column="AGREEMENT"/>
-		<result property="reason" column="REASON"/>
-		<result property="adminNo" column="ADMIN_NO"/>
-		<result property="summary" column="SUMMARY"/>
-		<result property="prifileImg" column="PROFILE_IMG"/>
-		<result property="social" column="SOCIAL"/>
-		<result property="site" column="SITE"/>
-		<result property="email" column="EMAIL"/>
-		<result property="phone" column="PHONE"/>
-		<result property="fees" column="FEES"/>
-		<result property="makerDiv" column="MAKER_DIV"/>
-		<result property="agentName" column="AGENT_NAME"/>
-		<result property="agentEmail" column="AGENT_EMAIL"/>
-		<result property="projectTitle" column="PROJECT_TITLE"/>
-		<result property="projectShortTitle" column="PROJECT_SHORT_TITLE"/>
-		<result property="money" column="MONEY"/>
-		<result property="mainImg" column="MAIN_IMG"/>
-		<result property="document" column="DOCUMENT"/>
-		<result property="progress" column="PROGRESS"/>
-		<result property="delivery" column="DELIVERY"/>
-		<result property="endDate" column="END_DATE"/>
-		<result property="adult" column="ADULT"/>
-		<result property="userNo" column="MEMBER_NO"/>
-		<result property="reportCount" column="REPORT_COUNT"/>
-		<result property="payNo" column="PAY_NO"/>
-		<result property="adjustNo" column="ADJUST_NO"/>
-		<result property="adjustDate" column="ADJUST_DATE"/>
-		<result property="adjustMoney" column="ADJUST_MONEY"/>
-		<result property="adminNo" column="ADMIN_NO"/>
-		<result property="companyName" column="COMPANY_NAME"/>
-		
-</resultMap>
+<mapper namespace="Project">
+	<resultMap type="com.kh.yc.admin.model.vo.Project"
+		id="ProjectResultSet">
+		<id property="projectNo" column="PROJECT_NO" />
+		<result property="category" column="CATEGORY" />
+		<result property="success" column="SUCCESS" />
+		<result property="judgeStatus" column="JUDGE_STATUS" />
+		<result property="progressStatus" column="PROGRESS_STATUS" />
+		<result property="agreement" column="AGREEMENT" />
+		<result property="reason" column="REASON" />
+		<result property="adminNo" column="ADMIN_NO" />
+		<result property="summary" column="SUMMARY" />
+		<result property="prifileImg" column="PROFILE_IMG" />
+		<result property="social" column="SOCIAL" />
+		<result property="site" column="SITE" />
+		<result property="email" column="EMAIL" />
+		<result property="phone" column="PHONE" />
+		<result property="fees" column="FEES" />
+		<result property="makerDiv" column="MAKER_DIV" />
+		<result property="agentName" column="AGENT_NAME" />
+		<result property="agentEmail" column="AGENT_EMAIL" />
+		<result property="projectTitle" column="PROJECT_TITLE" />
+		<result property="projectShortTitle" column="PROJECT_SHORT_TITLE" />
+		<result property="money" column="MONEY" />
+		<result property="mainImg" column="MAIN_IMG" />
+		<result property="document" column="DOCUMENT" />
+		<result property="progress" column="PROGRESS" />
+		<result property="delivery" column="DELIVERY" />
+		<result property="endDate" column="END_DATE" />
+		<result property="adult" column="ADULT" />
+		<result property="userNo" column="MEMBER_NO" />
+		<result property="reportCount" column="REPORT_COUNT" />
+		<result property="payNo" column="PAY_NO" />
+		<result property="adjustNo" column="ADJUST_NO" />
+		<result property="adjustDate" column="ADJUST_DATE" />
+		<result property="adjustMoney" column="ADJUST_MONEY" />
+		<result property="adminNo" column="ADMIN_NO" />
+		<result property="companyName" column="COMPANY_NAME" />
+
+	</resultMap>
 
 
-	 <update id="updateProject"  parameterType="Project">
-        UPDATE PROJECT
+	<update id="updateProject" parameterType="Project">
+		UPDATE PROJECT
 		SET PROGRESS_STATUS = #{progressStatus}
-		WHERE PROJECT_NO= #{projectNo}
+		WHERE PROJECT_NO=
+		#{projectNo}
 	</update>
 
 	<select id="judgeProjectList" resultMap="ProjectResultSet">
 		SELECT *
 		FROM PROJECT
 	</select>
-	
-	<update id="updateJudgeProject"  parameterType="Project">
-        UPDATE PROJECT
+
+	<update id="updateJudgeProject" parameterType="Project">
+		UPDATE PROJECT
 		SET JUDGE_STATUS = #{judgeStatus}
-		WHERE PROJECT_NO= #{projectNo}
+		WHERE PROJECT_NO=
+		#{projectNo}
 	</update>
 
 
 	<select id="viewProject" resultMap="ProjectResultSet">
 		SELECT *
 		FROM PROJECT
-		WHERE PROJECT_NO= #{projectNo}
+		WHERE
+		PROJECT_NO= #{projectNo}
 	</select>
 
 	<select id="adjustProjectList" resultMap="ProjectResultSet">
 		SELECT *
 		FROM PROJECT P
 		INNER JOIN ADJUST A ON A.MEMBER_NO = P.MEMBER_NO
-		WHERE PROGRESS_STATUS = '성공'
+		WHERE PROGRESS_STATUS
+		= '성공'
 	</select>
-	
+
 	<!-- 프로젝트 번호 체크 -->
-	<select id="checkPNo" resultType="_int" >
+	<select id="checkPNo" resultType="_int">
 		SELECT COUNT(*)
-		FROM PROJECT
+		FROM
+		PROJECT
 		WHERE PROJECT_NO = #{ranNum}
 	</select>
-	
-	
+
+
 	<!-- 프로젝트 번호 인설트 -->
 	<insert id="insertProjectNno" parameterType="Project">
 		INSERT INTO PROJECT VALUES(#{projectNo}, null, null, '신청전', '실패', null, null

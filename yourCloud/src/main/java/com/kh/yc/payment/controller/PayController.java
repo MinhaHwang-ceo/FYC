@@ -67,7 +67,7 @@ public class PayController {
 		System.out.println(userNo);
 		
 		try {
-			BigDecimal amount = new BigDecimal(1000);
+			BigDecimal amount = new BigDecimal(1000000);
 
 			ScheduleData sd = new ScheduleData(customer_uid);
 			Calendar cal = Calendar.getInstance();
