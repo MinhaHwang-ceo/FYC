@@ -6,12 +6,12 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.kh.yc.project.model.vo.Project;
 import com.kh.yc.board.model.dao.BoardDao;
 import com.kh.yc.board.model.vo.Board;
 import com.kh.yc.board.model.vo.Comment;
 import com.kh.yc.board.model.vo.PageInfo;
 import com.kh.yc.board.model.vo.SearchCondition;
-import com.kh.yc.project.model.vo.Project;
 
 @Service
 public class BoardServiceImpl implements BoardService {
@@ -79,6 +79,22 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public int deleteComment(String target) {
 		return bd.deleteComment(sqlSession, target);
+	}
+	@Override
+	public int updateComment(Comment c) {
+		return bd.updateComment(sqlSession, c);
+	}
+	@Override
+	public ArrayList<Comment> selectReComment(PageInfo pi, String target) {
+		return bd.selectReComment(sqlSession, pi, target);
+	}
+	@Override
+	public int insertReComment(Comment c) {
+		return bd.insertReComment(sqlSession, c);
+	}
+	@Override
+	public ArrayList<Project> getProject() {
+		return bd.getProject(sqlSession);
 	}
 
 }

@@ -2,9 +2,9 @@ package com.kh.yc.project.model.service;
 
 import java.util.ArrayList;
 
+import com.kh.yc.project.model.vo.Project;
 import com.kh.yc.board.model.vo.PageInfo;
 import com.kh.yc.project.model.exception.ProjectSelectListException;
-import com.kh.yc.project.model.vo.Project;
 
 public interface ProjectService {
 

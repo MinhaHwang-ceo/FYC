@@ -90,7 +90,7 @@
 </head>
 <body>
 <jsp:include page="../../common/customer_menubar.jsp"/><br><br>
-
+<jsp:include page="../../common/customer_menuList.jsp" /><br>
 <div id="top">프로젝트 이름입니다</div><br>
 
 <div class="outer">

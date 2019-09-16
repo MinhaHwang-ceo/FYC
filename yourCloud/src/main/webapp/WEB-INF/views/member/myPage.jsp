@@ -37,11 +37,11 @@
 				</tr>
 				<tr>
 					<th><label>아이디&nbsp;</label></th>
-					<td colspan="3" class="input" ><input type="text" name="userId" disabled></td>
+					<td colspan="3" class="input" ><input type="text" name="userId" value="${ sessionScope.loginUser.userId }" disabled></td>
 				</tr>
 				<tr>
 					<th><label>이름&nbsp;</label></th>
-					<td colspan="3" class="input" ><input type="text" name="userName" disabled /></td>
+					<td colspan="3" class="input" ><input type="text" name="userName" value="${ sessionScope.loginUser.userName }"disabled /></td>
 				</tr>
 				<tr>
 					<th><label>이메일&nbsp;</label></th>
@@ -57,7 +57,7 @@
 				</tr>
 				<tr>
 					<th><label>포인트&nbsp;</label></th>
-					<td colspan="3" class="input" ><input type="number" disabled placeholder=""/></td>
+					<td colspan="3" class="input" ><input type="number" disabled value="${ sessionScope.loginUser.point }"/></td>
 				</tr>
 				<tr>
 					<th rowspan="3"><label>연령대&nbsp;</label></th>

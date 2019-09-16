@@ -2,11 +2,11 @@ package com.kh.yc.board.model.service;
 
 import java.util.ArrayList;
 
+import com.kh.yc.project.model.vo.Project;
 import com.kh.yc.board.model.vo.Board;
 import com.kh.yc.board.model.vo.Comment;
 import com.kh.yc.board.model.vo.PageInfo;
 import com.kh.yc.board.model.vo.SearchCondition;
-import com.kh.yc.project.model.vo.Project;
 
 public interface BoardService {
 
@@ -37,6 +37,14 @@ public interface BoardService {
 	int deleteComment(String target);
 
 	int updateViewCount(String target);
+
+	int updateComment(Comment c);
+
+	ArrayList<Comment> selectReComment(PageInfo pi, String target);
+
+	int insertReComment(Comment c);
+
+	ArrayList<Project> getProject();
 
 
 

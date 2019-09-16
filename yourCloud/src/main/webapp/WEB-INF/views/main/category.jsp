@@ -161,25 +161,6 @@ td {
             </c:forEach>
          </table>
       </div>
-   
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-
-
-
 	<br><br><br>	
 	<!-- 페이징 -->
 	<div id="paginArea" align="center">

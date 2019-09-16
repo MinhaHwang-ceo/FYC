@@ -219,9 +219,10 @@
 		WHERE
 			C.COMMENT_WRITER = M.MEMBER_NO
         AND
-			C.BOARD_NO = 21
+			C.BOARD_NO = #{target}
         AND
             (C.STATUS = 'N' OR C.STATUS IS NULL)
+        ORDER BY C.COMMENT_NO DESC
 	</select>
 	<update id="deleteBoard">
 		UPDATE
@@ -261,4 +262,33 @@
 		WHERE
 			COMMENT_NO = #{target}
 	</update>
+	<update id="updateComment">
+		UPDATE
+			COMMENTS
+		SET
+			COMMENT_CONTENT = #{content}, CREATE_DATE = SYSDATE
+		WHERE
+			COMMENT_NO = #{cNo}
+	</update>
+	<select id="selectReComment" resultMap="commentResultSet">
+		SELECT
+			C.COMMENT_NO, M.MEMBER_ID, C.BOARD_NO, C.COMMENT_CONTENT, C.CREATE_DATE, C.REF_COMMENT_NO, C.STATUS
+		FROM
+			COMMENTS C, MEMBER M
+		WHERE
+			C.COMMENT_WRITER = M.MEMBER_NO
+        AND
+			C.BOARD_NO = #{target}
+        AND
+            (C.STATUS = 'N' OR C.STATUS IS NULL)
+        AND
+        	C.REF_COMMENT_NO IS NOT NULL
+	</select>
+	
+	<insert id="insertReComment">
+			INSERT INTO COMMENTS(COMMENT_NO, COMMENT_WRITER, CREATE_DATE, REF_COMMENT_NO, COMMENT_CONTENT, BOARD_NO, STATUS)
+		VALUES(
+			SEQ_COMMENTNO.NEXTVAL, #{writer}, SYSDATE, #{refCNo}, #{content}, #{bNo}, 'N'
+		)
+	</insert>
 </mapper>

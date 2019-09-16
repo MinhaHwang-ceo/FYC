@@ -6,6 +6,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -17,13 +18,14 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.yc.board.model.service.BoardService;
 import com.kh.yc.board.model.vo.Board;
 import com.kh.yc.board.model.vo.Comment;
 import com.kh.yc.board.model.vo.PageInfo;
-import com.kh.yc.project.model.vo.Project;
 import com.kh.yc.board.model.vo.SearchCondition;
 import com.kh.yc.common.CommonUtils;
 import com.kh.yc.common.Pagination;
@@ -52,7 +54,6 @@ public class BoardController {
 
 		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
 		ArrayList<Project> openlist = bs.selectOpenProject(pi);
-		System.out.println(openlist);
 		request.setAttribute("openlist", openlist);
 		request.setAttribute("pi", pi);
 
@@ -101,7 +102,6 @@ public class BoardController {
 		try {
 
 			int listCount = ps.getListCount();
-			System.out.println(listCount);
 			PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
 
 			ArrayList<Project> list = ps.selectProjectList(pi);
@@ -169,7 +169,6 @@ public class BoardController {
 		}
 
 		int listCount = bs.getListCount();
-		System.out.println(listCount);
 
 		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
 		ArrayList<Board> list = bs.selectBoardList(pi);
@@ -270,7 +269,6 @@ public class BoardController {
 		if (request.getParameter("currentPage") != null) {
 			currentPage = Integer.parseInt(request.getParameter("currentPage"));
 		}
-
 		Cookie[] cookies = request.getCookies();
 		Cookie viewCookie = null;
 
@@ -278,13 +276,11 @@ public class BoardController {
 			for (int i = 0; i < cookies.length; i++) {
 				// Cookie의 name이 cookie + reviewNo와 일치하는 쿠키를 viewCookie에 넣어줌
 				if (cookies[i].getName().equals("cookie" + target)) {
-					System.out.println("처음 쿠키가 생성한 뒤 들어옴.");
 					viewCookie = cookies[i];
 				}
 			}
 		}
 		if (viewCookie == null) {
-			System.out.println("cookie 없음");
 
 			// 쿠키 생성(이름, 값)
 			Cookie newCookie = new Cookie("cookie" + target, "|" + target + "|");
@@ -295,20 +291,11 @@ public class BoardController {
 			// 쿠키를 추가 시키고 조회수 증가시킴
 			int result = bs.updateViewCount(target);
 
-			if (result > 0) {
-				System.out.println("조회수 증가");
-			} else {
-				System.out.println("조회수 증가 에러");
-			}
 		}
 		// viewCookie가 null이 아닐경우 쿠키가 있으므로 조회수 증가 로직을 처리하지 않음.
 		else {
-			System.out.println("cookie 있음");
-
 			// 쿠키 값 받아옴.
 			String value = viewCookie.getValue();
-
-			System.out.println("cookie 값 : " + value);
 		}
 
 		int listCount = bs.getCommentListCount(target);
@@ -316,8 +303,11 @@ public class BoardController {
 		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
 		ArrayList<Comment> c = bs.selectComment(pi, target);
 
+		
+		ArrayList<Comment> rc = bs.selectReComment(pi, target);
 		model.addAttribute("b", b);
 		model.addAttribute("c", c);
+		model.addAttribute("rc", rc);
 		model.addAttribute("pi", pi);
 		return "board/boardDetail";
 	}
@@ -339,7 +329,6 @@ public class BoardController {
 	@RequestMapping("updateBoard.bo")
 	public String updateBoard(Board b, String editor, Model model) {
 		b.setBcontent(editor);
-		System.out.println(b);
 		int result = bs.updateBoard(b);
 		return "redirect:openBoardList.bo";
 	}
@@ -350,7 +339,6 @@ public class BoardController {
 		c.setbNo(Integer.parseInt(target));
 		c.setContent(text);
 		c.setWriter(writer);
-		System.out.println(c);
 		int result = bs.insertComment(c);
 		mv.setViewName("jsonView");
 		return mv;
@@ -362,5 +350,35 @@ public class BoardController {
 		int result = bs.deleteComment(target);
 		mv.setViewName("jsonView");
 		return mv;
+	}
+	
+	@RequestMapping("updateComment.bo")
+	public ModelAndView updateComment(String text, String target, ModelAndView mv) {
+		
+		Comment c = new Comment();
+		
+		c.setcNo(Integer.parseInt(target));
+		c.setContent(text);
+		
+		int result = bs.updateComment(c);
+		
+		mv.setViewName("jsonView");
+		return mv;
+		
+	}
+	
+	@RequestMapping("insertReComment.bo")
+	public ModelAndView insertReComment(Comment c, ModelAndView mv) {
+		int result = bs.insertReComment(c);
+		
+		mv.setViewName("jsonView");
+		return mv;
+	}
+
+	@RequestMapping("main.bo")
+	public String main(Model model) {
+		ArrayList<Project> list = bs.getProject();
+		model.addAttribute("list", list);
+		return "main/main";
 	}
 }

@@ -12,7 +12,9 @@
 	<c:set var="contextPath" value="${ pageContext.servletContext.contextPath }"
 		scope="application"/>
 		<% System.out.println("넘어가는중"); %>
-	<jsp:forward page="WEB-INF/views/main/main.jsp"/>
+	<jsp:forward page="main.bo"/>
+	
+	
 	
 </body>
 </html>
