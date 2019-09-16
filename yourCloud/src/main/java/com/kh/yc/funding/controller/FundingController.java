@@ -1,10 +1,14 @@
 package com.kh.yc.funding.controller;
 
+import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 import java.util.Random;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,9 +18,12 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.yc.admin.model.vo.Project;
+import com.kh.yc.common.CommonUtils;
 import com.kh.yc.funding.model.service.FundingService;
 import com.kh.yc.member.model.vo.Member;
 import com.siot.IamportRestClient.IamportClient;
@@ -71,7 +78,7 @@ public class FundingController {
 		
 		int check = fs.insertProjectNum(pro);
 		
-		model.addAttribute("ranNum", ranNum);
+		model.addAttribute("pro", pro);
 		
 		return "fundingOpen/FundingOpen3";
 
@@ -84,22 +91,51 @@ public class FundingController {
 	/* List<Project> list = fs.projectListInfo(p.getProjectNo()); */
 
 	@RequestMapping(value = "FundingOpen3.fd", method = RequestMethod.GET)
-	public String FundingOpen4(Project p, String category, Model model) {
-
-		System.out.println(p);
-		int fcategory = fs.updateCategory(category);
+	public String FundingOpen4(HttpSession session, HttpServletRequest request, HttpServletResponse response, Project p, String category, Model model) {
+		String projectNo = request.getParameter("projectNo");
+		String userNo = request.getParameter("userNo");
+		Member m = (Member) session.getAttribute("loginUser");
+		
+		int fcategory = fs.updateCategory(p);
+		
+		System.out.println("카테코리 와라 제발 : " + p);
+		model.addAttribute("p", p);
+		model.addAttribute("loginUser" +  m);
 		
 
 		return "fundingOpen/FundingOpen4";
 	}
 
-	@RequestMapping(value = "FundingOpen5.fd", method = RequestMethod.GET)
-	public String FundingOpen5(Locale locale, Model model) {
-
-		return "fundingOpen/FundingOpen5";
+	@RequestMapping(value = "FundingOpen4.fd", method = RequestMethod.POST )
+	public String FundingOpen5(Model model, Project p, HttpServletRequest request,
+			@RequestParam(name="photo", required=false) MultipartFile photo) {
+		
+		//System.out.println("이미지 : " + photo.getName());
+		System.out.println(p);
+		
+//		String root = request.getSession().getServletContext().getRealPath("resources");
+//		
+//		System.out.println(root);
+//		
+//		String filePath = root + "\\uploadFiles";
+//		
+//		String origunFileName = photo.getOriginalFilename();
+//		String ext = origunFileName.substring(origunFileName.lastIndexOf("."));
+//		String changeName = CommonUtils.getRandomString();
+//		
+		try {
+//			photo.transferTo(new File(filePath + "\\" + changeName + ext));
+			int result = fs.UpdateInfo(p);
+//		
+		} catch (Exception e) {
+//			new File(filePath + "\\" + changeName + ext).delete();
+//			
+		}
+		
+		return "fundingOpen/FundingOpen4";
 	}
 
-	@RequestMapping(value = "FundingOpen6.fd", method = RequestMethod.GET)
+	@RequestMapping(value = "FundingOpen6.fd", method = RequestMethod.POST)
 	public String FundingOpen6(Locale locale, Model model) {
 
 		return "fundingOpen/FundingOpen6";
