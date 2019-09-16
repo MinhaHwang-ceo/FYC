@@ -215,9 +215,20 @@ public class AdminController {
 		
 		
 		
+		// 홍보메일
+		@RequestMapping(value = "project01.ad", method = RequestMethod.GET)
+		public String admin13(Locale locale, Model model) {
+
+			return "admin/email";
+		}
 		
 		
 		
+		// 엑셀
+		@RequestMapping(value = "excel.ad", method = RequestMethod.GET)
+		public String excel2(Locale locale, Model model) {
+				return "admin/excel";
+		}		
 		
 		
 		
@@ -229,6 +240,7 @@ public class AdminController {
 		public void excel(Locale locale, Model model) {
 			 
 	        try {
+	        	
 	            FileInputStream file = new FileInputStream("C:/excel/excelTest2.xlsx");
 	            XSSFWorkbook workbook = new XSSFWorkbook(file);
 	 

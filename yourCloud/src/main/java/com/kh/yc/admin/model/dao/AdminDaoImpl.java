@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 import com.kh.yc.admin.model.vo.Project;
 import com.kh.yc.admin.model.vo.Report;
 import com.kh.yc.member.model.vo.Member;
+import com.kh.yc.reward.model.vo.Reward;
 @Repository
 public class AdminDaoImpl implements AdminDao{
 	
@@ -92,8 +93,8 @@ public class AdminDaoImpl implements AdminDao{
 			public List<Project> adjustProjectList(SqlSessionTemplate sqlSession){
 				return sqlSession.selectList("Project.adjustProjectList");
 			}		
-		
-		
+			
+			
 		
 		
 	}
