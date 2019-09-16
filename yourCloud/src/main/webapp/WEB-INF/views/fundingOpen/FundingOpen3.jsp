@@ -11,12 +11,15 @@
 	 $(document).ready(function(){
          var browsers = "";
          $("#btnSubmit").click(function(){
+        	 
+        	 var projectNo = $('#projectNo').val();
+        	 var userNo = $('#userNo').val();
                
             var browsers = $("#browsers").val();
             if(confirm("선택한 카테고리로 하시겠습니까?")){
             browsers = $("#browsers").val();
             alert(browsers);
-               location.href = "FundingOpen3.fd?category="+browsers;
+               location.href = "FundingOpen3.fd?category="+browsers + "&userNo=" + userNo + "&projectNo=" +projectNo;
                
             }
             console.log(browsers);
@@ -53,7 +56,20 @@
 
 </head>
 <body>
-	
+	<input type="hidden" id="projectNo" value="${pro.projectNo}" name="projectNo" />
+	<input type="hidden" id="userNo" value="${pro.userNo}" name="userNo" />
+	<input type='button' onclick='input_Text()' value='버튼'/>
+	<input type='text' id='test' value='test용'/>
+
+
+	<script type="text/javascript">
+		function input_Text(){
+	    document.getElementById("test").value = ${pro.projectNo};
+			//console.log(input);
+	}
+
+		
+	</script>
 	<jsp:include page="../common/customer_menuList.jsp"/>
 	<div id="funding2">
 	<h1 align="center">어떤 분야의 프로젝트를 진행할 예정인가요?</h1>

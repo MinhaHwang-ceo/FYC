@@ -33,8 +33,40 @@
 		<result property="endDate" column="END_DATE"/>
 		<result property="adult" column="ADULT"/>
 		<result property="expected" column="EXPECTED"/>
-		<result property="userNo" column="MEMBER_NO"/>
+		<result property="memberNo" column="MEMBER_NO"/>
 		<result property="companyName" column="COMPANY_NAME"/>
+	</resultMap>
+	
+	<resultMap type="com.kh.yc.project.model.vo.Project" id="ProjectDetail">
+		<id property="projectNo" column="PROJECT_NO"/>
+		<result property="category" column="CATEGORY"/>
+		<result property="success" column="SUCCESS"/>
+		<result property="judgeStatus" column="JUDGE_STATUS"/>
+		<result property="progressStatus" column="PROGRESS_STATUS"/>
+		<result property="agreement" column="AGREEMENT"/>
+		<result property="reason" column="REASON"/>
+		<result property="adminNo" column="ADMIN_NO"/>
+		<result property="summary" column="SUMMARY"/>
+		<result property="prifileImg" column="PROFILE_IMG"/>
+		<result property="social" column="SOCIAL"/>
+		<result property="site" column="SITE"/>
+		<result property="email" column="EMAIL"/>
+		<result property="phone" column="PHONE"/>
+		<result property="fees" column="FEES"/>
+		<result property="makerDiv" column="MAKER_DIV"/>
+		<result property="agentName" column="AGENT_NAME"/>
+		<result property="agentEmail" column="AGENT_EMAIL"/>
+		<result property="projectTitle" column="PROJECT_TITLE"/>
+		<result property="projectShortTitle" column="PROJECT_SHORT_TITLE"/>
+		<result property="money" column="MONEY"/>
+		<result property="mainImg" column="MAIN_IMG"/>
+		<result property="document" column="DOCUMENT"/>
+		<result property="progress" column="PROGRESS"/>
+		<result property="delivery" column="DELIVERY"/>
+		<result property="endDate" column="END_DATE"/>
+		<result property="adult" column="ADULT"/>
+		<result property="expected" column="EXPECTED"/>
+		<result property="userNo" column="MEMBER_NO"/>
 	</resultMap>
 
 	
@@ -65,5 +97,24 @@
 		]]-->
 	</select>
 
+	<select id="detailBoard" resultType="hashmap" resultMap="ProjectDetail">
+		SELECT * 
+		FROM PROJECT
+		WHERE PROJECT_NO = #{projectNo}
+	</select>
+	
+	<select id="selectProjectList2" resultMap="ProjectList" parameterType="java.util.Map">
+	SELECT P.PROJECT_NO, P.PROJECT_TITLE,P.MONEY,M.COMPANY_NAME,P.END_DATE,P.MEMBER_NO,P.JUDGE_STATUS,P.PROGRESS_STATUS
+	FROM PROJECT P
+	JOIN MEMBER M ON (P.MEMBER_NO = M.MEMBER_NO)
+	ORDER BY PROJECT_NO DESC 
+	</select>
+
+	<select id="selectSupportList" resultMap="ProjectList" parameterType="java.util.Map">
+	SELECT P.PROJECT_NO, P.PROJECT_TITLE,P.MONEY,M.COMPANY_NAME,P.END_DATE,M.MEMBER_NO
+	FROM PROJECT P
+	JOIN MEMBER M ON (P.MEMBER_NO = M.MEMBER_NO)
+	WHERE P.PROJECT_NO=#{projectNo}
+	</select>
 
 </mapper>

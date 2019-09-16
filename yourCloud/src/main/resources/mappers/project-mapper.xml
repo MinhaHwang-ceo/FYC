@@ -91,18 +91,28 @@
 
 	<!-- 프로젝트 번호 인설트 -->
 	<insert id="insertProjectNno" parameterType="Project">
-		INSERT INTO PROJECT
-		VALUES(#{projectNo}, null, null, '신청전', '실패', null, null
-		,null, null, null, null, null, null, null, null, null, null
-		,null, null, null, null, null, null, null, null
-		,null, null, #{userNo}, null)
+		INSERT INTO PROJECT VALUES(#{projectNo}, null, null, '신청전', '실패', null, null
+		      ,SEQ_ADMINNO.NEXTVAL, null, null, null, null, null, null, null, null, null
+		      ,null, null, null, null, null, null, null, null
+		      ,null, null, #{userNo}, null, null)
 	</insert>
-
-	<!-- 카테코리 인설트같은 업데이트 -->
-	<!-- <update id="fcategoryUpdate" parameterType="Project" resultMap="ProjectResultSet"> 
-		UPDATE PROJECT SET CATEGORY = #{category} = (SELECT * FROM PROJECT WHERE 
-		PROJECT_NO = #{projectNo} AND MEMBER_NO = #{userNo}) WHERE PROJECT_NO = ? 
-		</update> -->
+	
+	<!--  카테코리 인설트같은 업데이트 -->
+	<update id="fcategoryUpdate" parameterType="Project">
+		UPDATE PROJECT
+		SET CATEGORY = #{category}
+		WHERE PROJECT_NO = #{projectNo} AND MEMBER_NO = #{userNo}
+	</update>
+	
+	<update id="basicInfo" parameterType="Project">
+		UPDATE PROJECT
+		SET PHONE = #{phone}, PROJECT_TITLE = #{projectTitle}, PROJECT_SHORT_TITLE = #{projectShortTitle}
+		   ,MONEY = #{money}, CATEGORY = ${category}, PROGRESS = #{progress}, DELIVERY = #{delivery}
+		   ,END_DATE = #{endDate}, ADULT = #{adult}, OVEN_COMING = #{ovenComing}
+		   WHERE WHERE PROJECT_NO = #{projectNo} AND MEMBER_NO = #{userNo}
+		   
+	</update>
+ 
 </mapper>
 
 

@@ -1,5 +1,6 @@
 package com.kh.yc.admin.model.dao;
 
+import java.sql.Statement;
 import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -7,6 +8,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import com.kh.yc.admin.model.vo.Project;
 import com.kh.yc.admin.model.vo.Report;
 import com.kh.yc.member.model.vo.Member;
+import com.kh.yc.reward.model.vo.Reward;
 
 public interface AdminDao {
 	
@@ -45,6 +47,7 @@ public interface AdminDao {
 	
 	//정산 프로젝트 리스트
 	public List<Project> adjustProjectList(SqlSessionTemplate sqlSession);
+
 
 	
 }

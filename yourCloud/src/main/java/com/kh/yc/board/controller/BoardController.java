@@ -50,7 +50,18 @@ public class BoardController {
 			currentPage = Integer.parseInt(request.getParameter("currentPage"));
 		}
 
-		int listCount = bs.getListCount();
+		int listCount;
+		try {
+			listCount = ps.getListCount();
+			PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
+			ArrayList<Project> openlist = bs.selectOpenProject(pi);
+			System.out.println(openlist);
+			
+			request.setAttribute("openlist", openlist);
+			request.setAttribute("pi", pi);
+		} catch (ProjectSelectListException e) {
+			e.printStackTrace();
+		}
 
 		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
 		ArrayList<Project> openlist = bs.selectOpenProject(pi);

@@ -215,17 +215,15 @@ a {
 	<div id="outer" style="background:white;">
 	<!-- 리워드 헤더 이미지  -->
 	<div class="reward-header">
-		
 		<p class="title-info">
 			<em style="color:#5cdede;">소셜.캠페인</em>
 			<strong>#몰카탐지카드몰가가드</strong>
-			프로젝트
+			프로젝트 
 		</p>
 		<h2 class="title-header" style="color: white;">
 			[소셜캠페인 참여1위]불법촬영 두려워마세요! 간편한 몰카방지카드 몰카드
 		</h2>
-		
-	</div>
+	</div>\
 	<br />
 
 	<div class="tab-list">
@@ -357,11 +355,10 @@ a {
 							아니며, 개인용 건강강관리 ,향상(개선) 기기로 분류되는 웰니스 제품입니다.
 						</p>
 					</div>
-s				</div>
+				</div>
 			</div>
 		</div>
 		</div>
-		
 
 		<!-- 오른쪽 영역 -->
 		<div class="opener-info">
