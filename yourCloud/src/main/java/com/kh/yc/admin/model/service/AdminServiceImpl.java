@@ -15,6 +15,7 @@ import com.kh.yc.admin.model.dao.AdminDaoImpl;
 import com.kh.yc.admin.model.vo.Project;
 import com.kh.yc.admin.model.vo.Report;
 import com.kh.yc.member.model.vo.Member;
+import com.kh.yc.reward.model.vo.Reward;
 
 @Service
 public class AdminServiceImpl implements AdminService {

@@ -1,5 +1,6 @@
 package com.kh.yc.funding.model.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -20,7 +21,10 @@ public interface FundingService{
 	int pNoCheck(String ranNum);
 	
 	///업데이트 첫 카테코리
-	int updateCategory(String category);
+	int updateCategory(Project p);
+	
+	//펀딩오븐 기본 정보 저장하기
+	int UpdateInfo(Project p);
 
 
 	

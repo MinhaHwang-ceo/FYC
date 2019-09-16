@@ -66,6 +66,7 @@ public class BoardDaoImpl implements BoardDao {
 		RowBounds rowBounds = new RowBounds(offset, pi.getLimit());
 
 		list = (ArrayList) sqlSession.selectList("Board.selectOpenProject", null, rowBounds);
+		System.out.println(list);
 
 		return list;
 	}

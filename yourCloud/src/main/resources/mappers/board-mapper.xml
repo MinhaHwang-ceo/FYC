@@ -36,7 +36,7 @@
 		<collection property="commentList"
 			javaType="java.util.ArrayList" resultMap="commentResultSet" />
 	</resultMap>
-	<resultMap type="Project" id="projectResultSet">
+	<resultMap type="com.kh.yc.admin.model.vo.Project" id="projectResultSet">
 		<id property="projectNo" column="PROJECT_NO"/>
 		<result property="category" column="CATEGORY"/>
 		<result property="success" column="SUCCESS"/>
@@ -108,10 +108,11 @@
 		ORDER BY 
 			BOARD_NO DESC
 	</select>
-	<select id="selectOpenProject" resultMap="projectResultSet">
+	<select id="selectOpenProject" parameterType="java.util.Map" resultMap="projectResultSet">
 		SELECT *
-		FROM PROJECT P
-		JOIN MEMBER M ON (P.MEMBER_NO = M.MEMBER_NO)
+		FROM    PROJECT P
+	    JOIN    MEMBER M ON (P.MEMBER_NO = M.MEMBER_NO)
+	    ORDER BY PROJECT_NO DESC
 		
 	</select>
 	<select id="selectSearchResultCount" resultType="_int">
