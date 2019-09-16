@@ -1,6 +1,7 @@
 package com.kh.yc.project.model.dao;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
@@ -63,6 +64,16 @@ public class ProjectDaoImpl implements ProjectDao{
 		return list;
 	}
 
+	//게시판 상세보기
+	@Override
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	public Map<String, Project> detailBoard(SqlSessionTemplate sqlSession) {
 
+		Map<String, Project> detail = null;
+		detail = (Map<String, Project>) sqlSession.selectOne("Project2.detailBoard");
+		
+		return detail;
+	}
 
 }
+

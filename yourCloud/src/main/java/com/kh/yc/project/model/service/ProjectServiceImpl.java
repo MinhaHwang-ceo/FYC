@@ -1,6 +1,7 @@
 package com.kh.yc.project.model.service;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,6 +51,15 @@ public class ProjectServiceImpl implements ProjectService{
 	public ArrayList<Project> selectSupportList(int projectNo) {
 		ArrayList<Project> list = pd.selectSupportList(sqlSession,projectNo); 
 		return list;
+	}
+
+//게시판 상세보기 메소드
+	@Override
+	public Map<String, Project> detailProject() {
+
+		Map<String,Project> detail = pd.detailBoard(sqlSession);
+		
+		return detail;
 	}
 
 }
