@@ -35,6 +35,8 @@
 		<result property="expected" column="EXPECTED"/>
 		<result property="memberNo" column="MEMBER_NO"/>
 		<result property="companyName" column="COMPANY_NAME"/>
+		<result property="categoryDiv" column="CATEGORY_DIV"/>
+		<result property="projectOpen" column="PROJECT_OPEN"/>
 	</resultMap>
 	
 	<resultMap type="com.kh.yc.project.model.vo.Project" id="ProjectDetail">
@@ -68,7 +70,16 @@
 		<result property="expected" column="EXPECTED"/>
 		<result property="userNo" column="MEMBER_NO"/>
 	</resultMap>
-
+	<resultMap type="com.kh.yc.category.model.vo.Category" id="CategoryList">
+		<id property="category" column="CATEGORY"/>
+			<result property="categoryDiv" column="CATEGORY_DIV"/>
+	</resultMap>
+	<resultMap type="com.kh.yc.project.model.vo.OpenAlarm" id="OpenAlarmList">
+		<id property="memberNo" column="MEMBER_NO"/>
+			<result property="memberPhone" column="MEMBER_PHONE"/>
+			<result property="projectOpen" column="PROJECT_OPEN"/>
+			<result property="projectNo" column="PROJECT_NO"/> 
+	</resultMap>
 	
 	<select id="selectListCount" resultType="_int">
 		SELECT COUNT(*)
@@ -115,6 +126,20 @@
 	FROM PROJECT P
 	JOIN MEMBER M ON (P.MEMBER_NO = M.MEMBER_NO)
 	WHERE P.PROJECT_NO=#{projectNo}
+	</select>
+	<select id="selectOpenProject" resultMap="ProjectList" parameterType="java.util.Map">
+		SELECT P.PROJECT_NO, P.PROJECT_TITLE,P.MAIN_IMG, P.CATEGORY, P.PROJECT_SHORT_TITLE, M.COMPANY_NAME, C.CATEGORY_DIV
+		FROM PROJECT P
+	    LEFT JOIN CATEGORY C ON (P.CATEGORY = C.CATEGORY)
+	    LEFT JOIN MEMBER M ON (P.MEMBER_NO = M.MEMBER_NO)
+	    ORDER BY PROJECT_NO DESC
+	</select>
+	<select id="selectDetailProject" resultMap="ProjectList" parameterType="java.util.Map">
+		SELECT P.PROJECT_NO, P.PROJECT_TITLE, p.SUMMARY, M.COMPANY_NAME, O.PROJECT_OPEN
+		FROM PROJECT P
+		LEFT JOIN MEMBER M ON(P.MEMBER_NO = M.MEMBER_NO)
+		LEFT JOIN OPEN_ALARM O ON(M.MEMBER_NO = O.MEMBER_NO)
+		WHERE P.PROJECT_NO = #{projectNo}
 	</select>
 
 </mapper>

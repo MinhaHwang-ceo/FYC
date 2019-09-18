@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -29,8 +30,10 @@ import com.kh.yc.board.model.vo.PageInfo;
 import com.kh.yc.board.model.vo.SearchCondition;
 import com.kh.yc.common.CommonUtils;
 import com.kh.yc.common.Pagination;
+import com.kh.yc.member.model.vo.Member;
 import com.kh.yc.project.model.exception.ProjectSelectListException;
 import com.kh.yc.project.model.service.ProjectService;
+import com.kh.yc.project.model.vo.OpenAlarm;
 import com.kh.yc.project.model.vo.Project;
 
 @Controller
@@ -55,6 +58,7 @@ public class BoardController {
 			listCount = ps.getListCount();
 			PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
 			ArrayList<Project> openlist = bs.selectOpenProject(pi);
+			/* ArrayList<Member> mlist = */
 			System.out.println(openlist);
 			
 			request.setAttribute("openlist", openlist);
@@ -63,23 +67,27 @@ public class BoardController {
 			e.printStackTrace();
 		}
 
-		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
-		ArrayList<Project> openlist = bs.selectOpenProject(pi);
-		request.setAttribute("openlist", openlist);
-		request.setAttribute("pi", pi);
-
 		return "board/openExpectation/openExpectationMain";
 	}
 
 	@RequestMapping(value = "openExpectationDetail.bo", method = RequestMethod.GET)
-	public String openExpectationDetail(Model model) {
-
+	public String openExpectationDetail(HttpServletRequest request, Model model) {
+		String projectNo = request.getParameter("projectNo");
+		int projectNoInt = Integer.parseInt(projectNo);
+		
+		Project pj = new Project();
+		
+		pj = bs.selectDetailProject(projectNoInt);
+		System.out.println(pj);
+		request.setAttribute("pj", pj);
+		
 		return "board/openExpectation/openExpectationDetail";
 	}
 
 	@RequestMapping(value = "openExpectationRequest.bo", method = RequestMethod.GET)
-	public String openExpectationRequest(Model model) {
-
+	public String openExpectationRequest(Model model, OpenAlarm o, HttpServletRequest request) {
+		System.out.println(o);
+		
 		return "board/openExpectation/openExpectationRequest";
 	}
 
@@ -391,5 +399,11 @@ public class BoardController {
 		ArrayList<Project> list = bs.getProject();
 		model.addAttribute("list", list);
 		return "main/main";
+	}
+	@RequestMapping(value = "insertPhone.bo", method = RequestMethod.GET)
+	public String insertPhone(Model model, OpenAlarm o, HttpServletRequest request) {
+		System.out.println(o);
+		
+		return "board/openExpectation/openExpectationDetail";
 	}
 }

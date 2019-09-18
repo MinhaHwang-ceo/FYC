@@ -46,6 +46,10 @@ public interface BoardService {
 
 	ArrayList<Project> getProject();
 
+	Project selectDetailProject(int projectNoInt);
+
+	
+
 
 
 }

@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
@@ -37,7 +38,7 @@
 <br><br>
 
 <h3>* 핸드폰번호</h3>
-<input type="text" id="number">
+<input type="text" id="memberPhone">
 
 <br><br><br>
 
@@ -45,7 +46,22 @@
 &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
 <input type="button" value="닫기" onClick="window.close()" class="btn btn-default">
 
-
 </div>
+	<script>
+
+	</script>
+
+
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
