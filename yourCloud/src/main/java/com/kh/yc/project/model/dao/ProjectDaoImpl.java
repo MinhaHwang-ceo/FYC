@@ -65,14 +65,11 @@ public class ProjectDaoImpl implements ProjectDao{
 	}
 
 	//게시판 상세보기
+	@SuppressWarnings("unchecked")
 	@Override
-	@SuppressWarnings({ "unchecked", "rawtypes" })
-	public Map<String, Project> detailBoard(SqlSessionTemplate sqlSession) {
+	public Project detailProject(SqlSessionTemplate sqlSession, int projectNo) {
 
-		Map<String, Project> detail = null;
-		detail = (Map<String, Project>) sqlSession.selectOne("Project2.detailBoard");
-		
-		return detail;
+		return sqlSession.selectOne("Project2.detailProject",projectNo);
 	}
 
 	@Override

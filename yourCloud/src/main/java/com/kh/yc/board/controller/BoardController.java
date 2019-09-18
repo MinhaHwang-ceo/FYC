@@ -34,6 +34,7 @@ import com.kh.yc.project.model.vo.Project;
 
 @Controller
 public class BoardController {
+	
 	@Autowired
 	BoardService bs;
 	@Autowired

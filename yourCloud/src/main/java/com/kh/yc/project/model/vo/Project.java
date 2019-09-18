@@ -305,13 +305,15 @@ public class Project implements java.io.Serializable {
 		this.adult = adult;
 	}
 
-	public int getUserNo() {
-		return userNo;
+	public int getMemberNo() {
+		return memberNo;
 	}
 
-	public void setUserNo(int userNo) {
-		this.userNo = userNo;
+	public void setMemberNo(int memberNo) {
+		this.memberNo = memberNo;
+
 	}
+
 
 	public int getReportCount() {
 		return reportCount;
@@ -394,7 +396,7 @@ public class Project implements java.io.Serializable {
 				+ makerDiv + ", agentName=" + agentName + ", agentEmail=" + agentEmail + ", projectTitle="
 				+ projectTitle + ", projectShortTitle=" + projectShortTitle + ", money=" + money + ", mainImg="
 				+ mainImg + ", document=" + document + ", progress=" + progress + ", delivery=" + delivery
-				+ ", endDate=" + endDate + ", adult=" + adult + ", userNo=" + userNo + ", reportCount=" + reportCount
+				+ ", endDate=" + endDate + ", adult=" + adult + ", memberNo=" + memberNo + ", reportCount=" + reportCount
 				+ ", payNo=" + payNo + ", adjustNo=" + adjustNo + ", adjustDate=" + adjustDate + ", adjustMoney="
 				+ adjustMoney + ", companyName=" + companyName + ", categoryDiv=" + categoryDiv + ", projectOpen="
 				+ projectOpen + ", memberNo=" + memberNo + "]";

@@ -110,10 +110,20 @@
 		<!-- [CDATA[ WHERE RANK < 5 ]] -->
 	</select>
 
+
+	<select id="detailProject" resultMap="ProjectList" parameterType="java.lang.Integer">
+		SELECT P.PROJECT_NO, P.CATEGORY ,P.SUMMARY , P.PROFILE_IMG , P.SOCIAL,
+		P.SITE, P.EMAIL, P.PHONE, P.FEES, P.MAKER_DIV, P.AGENT_NAME, P.AGENT_EMAIL,
+		P.PROJECT_TITLE, P.PROJECT_SHORT_TITLE, P.MONEY, P.MAIN_IMG, P.DELIVERY,
+		M.COMPANY_NAME,P.END_DATE,P.MEMBER_NO,P.JUDGE_STATUS,P.PROGRESS_STATUS
+		FROM PROJECT P
+		JOIN MEMBER M ON (P.MEMBER_NO = M.MEMBER_NO)
+
 	<select id="detailBoard" resultType="hashmap"
 		resultMap="ProjectDetail">
 		SELECT *
 		FROM PROJECT
+
 		WHERE PROJECT_NO = #{projectNo}
 	</select>
 

@@ -101,55 +101,56 @@ td {
 	<div style="text-align:center;">
 		<!-- 검색 div  -->
 		<div class="projectDiv">
-			<hr>
-			<table>
-				<tr>
-					<td class="title"><c:out value="전체" /></td>
-				</tr>
-				<tr>
-					<td class="td2"><select name="">
-							<option value="pop">인기순</option>
-							<option value="">마감임박순</option>
-							<option value="">최신순</option>
-							<option value="">펀딩액순</option>
-					</select></td>
-					<td class="td2"><select name="">
-							<option value="pop">펀딩진행중</option>
-							<option value="">펀딩종료</option>
-							<option value="">오픈예정</option>
-					</select></td>
-				</tr>
-			</table>
-			<hr>
-			<br>
+		<hr>
+		<table>
+			<tr>
+				<td class="title"><c:out value="전체"/></td>
+			</tr>
+			<tr>
+				<td class="td2"><select name="">
+						<option value="pop">인기순</option>
+						<option value="">마감임박순</option>
+						<option value="">최신순</option>
+						<option value="">펀딩액순</option>
+				</select></td>
+				<td class="td2"><select name="">
+						<option value="pop">펀딩진행중</option>
+						<option value="">펀딩종료</option>
+						<option value="">오픈예정</option>
+				</select></td>
+			</tr>
+		</table>
+		<hr>
+		<br>
+	
+		<!-- 프로젝트 출력 -->
+	<div class="row">
+  <c:forEach var="p" items="${ list }">
+    <div class="col-md-4">
+      <div class="thumbnail">
+      	<input type="hidden" value='<c:out value="${ p.projectNo }"></c:out>'>
+         <a href="categoryOne.ca?projectNo=${ p.projectNo }" 
+         onclick= <c:if test="${ empty sessionScope.loginUser }">
+ 					"alert('로그인 후 이용해주세요'); return false;" 
+ 					</c:if>> 
+          <img src="/yc/resources/images/dog.PNG" alt="Lights" style="width:100%; height:75%;">
+          <div class="caption">
+            <h6>[<c:out value="${ p.projectNo }"/>]&emsp;<c:out value="${ p.projectTitle }"/></h6>
+            <p>목표금액 : <c:out value="${ p.money }"/>원 <br>
+            	이 리워드는 <c:out value="${ p.endDate }"/> 에 마감됩니다</p>
+          </div>
+       
+        </a>
+      </div>
+    </div>
+    </c:forEach>
+  </div>
+   ${loginUser.userNo}
+</div>
 
-			<!-- 프로젝트 출력 -->
-			<div class="row">
-				<c:forEach var="p" items="${ list }">
-					<div class="col-md-4">
-						<div class="thumbnail">
-							<input type="hidden" value='<c:out value="${ p.projectNo }"></c:out>'> 
-							<a href="categoryOne.ca?projectNo=${ p.projectNo }"> 
-								<img src="/yc/resources/images/dog.PNG" alt="Lights" style="width: 100%; height: 75%;">
-								<div class="caption">
-									<h6>
-										[ <c:out value="${ p.projectNo }" /> ]&emsp; 
-										<c:out value="${ p.projectTitle }" />
-									</h6>
-									<p>목표금액 :<c:out value="${ p.money }" /> 원<br> 
-									이 리워드는 <c:out value="${ p.endDate }" /> 에 마감됩니다
-									</p>
-								</div>
-							</a>
-						</div>
-					</div>
-				</c:forEach>
-			</div>
-		</div>
-
-		<br> <br> <br>
-		<!-- 페이징 -->
-		<div id="paginArea" align="center">
+	<br><br><br>	
+	<!-- 페이징 -->
+	<div id="paginArea" align="center">
 			<c:if test="${ pi.currentPage <= 1 }">
 				이전 &emsp;
 			</c:if>
