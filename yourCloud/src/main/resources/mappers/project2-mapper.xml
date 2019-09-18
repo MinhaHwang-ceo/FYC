@@ -138,6 +138,7 @@
 		M.COMPANY_NAME,P.END_DATE,P.MEMBER_NO,P.JUDGE_STATUS,P.PROGRESS_STATUS
 		FROM PROJECT P
 		JOIN MEMBER M ON (P.MEMBER_NO = M.MEMBER_NO)
+	</select>
 
 	<select id="detailBoard" resultType="hashmap"
 		resultMap="ProjectDetail">
@@ -250,9 +251,7 @@ join delivery_status d2 on(d2.delivery_no=d.delivery_no)
 	</select>
 	
 	
-				<select id="receipt" resultMap="SupportList" parameterType="java.util.Map">
-
-	
+	<select id="receipt" resultMap="SupportList" parameterType="java.util.Map">
 	  SELECT  SUM((DECODE(P.PAY_STATUS, '결제완료', 1, 0))) AS REWARD_COUNT, re.reward_name, re.reward_money
 
     FROM    PROJECT PRO
@@ -266,20 +265,6 @@ join delivery_status d2 on(d2.delivery_no=d.delivery_no)
 	</select>
 	
 		
-
-	
-	
-	
-	
-
-	<select id="selectSupportList" resultMap="ProjectList"
-		parameterType="java.util.Map">
-		SELECT P.PROJECT_NO,
-		P.PROJECT_TITLE,P.MONEY,M.COMPANY_NAME,P.END_DATE,M.MEMBER_NO
-		FROM PROJECT P
-		JOIN MEMBER M ON (P.MEMBER_NO = M.MEMBER_NO)
-		WHERE P.PROJECT_NO=#{projectNo}
-	</select>
 	<select id="memberCategory" resultMap="ProjectList">
 		SELECT
 			*
@@ -306,4 +291,6 @@ join delivery_status d2 on(d2.delivery_no=d.delivery_no)
 		SEQ_ATTACHMENTNO.NEXTVAL, #{originFileName}, #{fileSrc}, #{newFileName}, SYSDATE, '프로젝트', NULL, #{projectNo}, 1
 	)
 	</insert>
+	
 </mapper>
+

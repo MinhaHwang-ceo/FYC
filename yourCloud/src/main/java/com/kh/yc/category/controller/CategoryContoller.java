@@ -80,31 +80,6 @@ public class CategoryContoller {
 		return pList;
 	}
 	
-	@RequestMapping(value = "/likeUpdate.ca", method = RequestMethod.GET)
-	 public int heart(HttpServletRequest httpRequest) throws Exception {
-
-        int heart = Integer.parseInt(httpRequest.getParameter("heart"));
-        int projectNo = Integer.parseInt(httpRequest.getParameter("projectNo"));
-        int memberNo = ((Member) httpRequest.getSession().getAttribute("login")).getUserNo();
-
-        Interest interest = new Interest();
-
-        interest.setProjectNo(projectNo);
-        interest.setMemberNo(memberNo);
-
-        System.out.println(heart);
-
-        if(heart >= 1) {
-            ps.deleteBoardLike(interest);
-            heart=0;
-        } else {
-            ps.insertBoardLike(interest);
-            heart=1;
-        }
-
-        return heart;
-
-    }
 	
 	
 }
