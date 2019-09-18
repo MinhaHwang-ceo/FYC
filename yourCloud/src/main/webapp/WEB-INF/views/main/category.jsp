@@ -6,12 +6,12 @@
 <head>
 <meta charset="UTF-8">
 <title>니가그린구름그림</title>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>  
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
 .outer {
 	width: 800px;
-	
 }
 
 .circle {
@@ -28,18 +28,15 @@
 }
 
 .projectDiv {
-   width: 70%;
-   display: inline-block;
-   margin-left: 300px;
+	width: 70%;
+	display: inline-block;
+	margin: 0 auto;
 }
 
 .projects {
-   margin: 50px 1%;
-   width: 30%;
-   display: inline-block;
+	width: 30%;
+	display: inline-block;
 }
-
-
 
 .projects table {
 	text-align: center;
@@ -79,16 +76,13 @@ td {
 	font-weight: bold;
 }
 
-.caption{
-      text-align:left;
-   }
-   
-   .col-md-4{
+.caption {
+	text-align: left;
+}
 
-   padding:40px;
-   
-   }
-
+.col-md-4 {
+	padding: 40px;
+}
 </style>
 
 
@@ -97,14 +91,14 @@ td {
 <body>
 	<jsp:include page="../common/customer_menubar.jsp" />
 	<jsp:include page="../common/customer_menuList.jsp" />
-	
-	<br><br>
+
+	<br>
+	<br>
 	<div id="includeCategory">
-	<jsp:include page="../common/projectCategory.jsp" />
+		<jsp:include page="../common/projectCategory.jsp" />
 	</div>
 	<br>
-	<div>
-
+	<div style="text-align:center;">
 		<!-- 검색 div  -->
 		<div class="projectDiv">
 		<hr>
@@ -162,27 +156,28 @@ td {
 			</c:if>
 			<c:if test="${ pi.currentPage > 1 }">
 				<c:url var="blistBack" value="category.bo">
-					<c:param name="currentPage" value="${ pi.currentPage - 1 }"/>
+					<c:param name="currentPage" value="${ pi.currentPage - 1 }" />
 				</c:url>
-				<a href="${ blistBack }">이전</a>&emsp;
+				<a href="${ blistBack }">이전</a>
+				&emsp;
 			</c:if>
-			
+
 			<c:forEach var="p" begin="${ pi.startPage }" end="${ pi.endPage }">
 				<c:if test="${ p eq pi.currentPage }">
 					<font color="#6CC0FF" size="4"><b>[${ p }]</b></font>
 				</c:if>
 				<c:if test="${ p ne pi.currentPage }">
 					<c:url var="blistCheck" value="category.bo">
-						<c:param name="currentPage" value="${ p }"/>
+						<c:param name="currentPage" value="${ p }" />
 					</c:url>
 					<a href="${ blistCheck }">${ p }</a>
 				</c:if>
 			</c:forEach>
-			
-			
+
+
 			<c:if test="${ pi.currentPage < pi.maxPage }">
 				<c:url var="blistEnd" value="category.bo">
-					<c:param name="currentPage" value="${ pi.currentPage + 1 }"/>
+					<c:param name="currentPage" value="${ pi.currentPage + 1 }" />
 				</c:url>
 				<a href="${ blistEnd }">&emsp; 다음</a>
 			</c:if>
@@ -190,12 +185,10 @@ td {
 				&emsp; 다음
 			</c:if>
 		</div>
-		
 
-		</div>
-	
-	
+
 	</div>
+
 	<br>
 	<br>
 	<br>

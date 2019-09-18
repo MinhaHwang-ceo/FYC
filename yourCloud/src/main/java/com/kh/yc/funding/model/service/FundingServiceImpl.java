@@ -13,7 +13,9 @@ import org.springframework.stereotype.Service;
 import com.kh.yc.admin.model.vo.Project;
 import com.kh.yc.funding.model.dao.FundingDao;
 import com.kh.yc.funding.model.dao.FundingDaoImpl;
+import com.kh.yc.funding.model.vo.Attachment;
 import com.kh.yc.member.model.vo.Member;
+import com.kh.yc.project.model.vo.Sign;
 
 
 @Service
@@ -63,6 +65,18 @@ public class FundingServiceImpl implements FundingService{
 			result = 1;
 		}
 		return result;
+	}
+
+	@Override
+	public int signUser(Sign s) {
+		// TODO Auto-generated method stub
+		return fd.signUser(sqlSession, s);
+	}
+
+	@Override
+	public int signFile(Attachment a) {
+		// TODO Auto-generated method stub
+		return fd.signFile(sqlSession, a);
 	}
 
 	

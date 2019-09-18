@@ -37,6 +37,9 @@ public interface AdminService {
 	
 	//정산프로젝트
 	public List<Project> adjustProjectList();
+	
+	//엑셀
+	int downExcel(String projectNo);
 
 
 }

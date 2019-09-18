@@ -25,7 +25,7 @@ public interface ProjectService {
 	public void deleteBoardLike(Interest interest);
 	
 	public void insertBoardLike(Interest interest);
-	
-	
+
+	ArrayList<Project> memberCategory(String category);;
 
 }

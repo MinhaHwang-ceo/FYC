@@ -14,6 +14,7 @@ import com.kh.yc.admin.model.dao.AdminDao;
 import com.kh.yc.admin.model.dao.AdminDaoImpl;
 import com.kh.yc.admin.model.vo.Project;
 import com.kh.yc.admin.model.vo.Report;
+import com.kh.yc.member.model.dao.MemberDao;
 import com.kh.yc.member.model.vo.Member;
 import com.kh.yc.reward.model.vo.Reward;
 
@@ -21,7 +22,7 @@ import com.kh.yc.reward.model.vo.Reward;
 public class AdminServiceImpl implements AdminService {
 	@Inject
 	AdminDaoImpl AdminDao;
-	
+
 	
 	@Autowired
 	private SqlSessionTemplate sqlSession;
@@ -96,6 +97,14 @@ public class AdminServiceImpl implements AdminService {
 	@Override                               
 	public List<Project> adjustProjectList() {      
 	   	return ad.adjustProjectList(sqlSession);   
+	}
+	
+	
+	//엑셀
+	@Override
+	public int downExcel(String projectNo) {
+		int downExcel = ad.downExcel(sqlSession, projectNo);
+		return downExcel;
 	}
 
 }                                       

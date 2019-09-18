@@ -5,7 +5,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   <mapper namespace="Reward">
 	<resultMap type="com.kh.yc.reward.model.vo.Reward" id="RewardResultSet">
-		<id property="rewardNo" column="PROJECT_NO"/>
+		<id property="rewardNo" column="REWARD_NO"/>
 		<result property="rewardMoney" column="REWARD_MONEY"/>
 		<result property="sortNo" column="SORT_NO"/>
 		<result property="rewardName" column="REWARD_NAME"/>
@@ -23,16 +23,13 @@
 		
 		
 </resultMap>
-
-
-<select id="rewardList" resultMap="RewardResultSet" parameterType="Reward">
-		SELECT R.PROJECT_NO, P.PROJECT_SHORT_TITLE, M.MEMBER_NAME, R.REWARD_MONEY, R.REWARD_NAME, R.OPTIONS, R.DELIVERY_REQUEST, R.DELIVERY_MONEY, R.START_DATE
-		FROM REWARD R
-		INNER JOIN PROJECT P ON R.PROJECT_NO = P.PROJECT_NO
-		INNER JOIN MEMBER M ON P.MEMBER_NO = M.MEMBER_NO
-		WHERE R.PROJECT_NO = 500;
-</select>
-
+	
+	<select id="viewReward" resultMap="RewardResultSet">
+		SELECT *
+		FROM REWARD
+		WHERE
+		PROJECT_NO= #{projectNo}
+	</select>
 </mapper>
 
 

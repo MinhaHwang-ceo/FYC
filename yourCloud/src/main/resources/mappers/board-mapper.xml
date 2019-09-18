@@ -78,7 +78,7 @@
 	      <result property="account" column="ACCOUNT"/>
 	      <result property="gender" column="GENDER"/>
 	      <result property="memberCategory" column="MEMBER_CATEGORY"/>
-	       <result property="point" column="POINT"/>
+	      <result property="point" column="POINT"/>
 	      <result property="age" column="AGE"/>
 	      <result property="status" column="STATUS"/>
 	      <result property="memberDiv" column="MEMBER_DIV"/>   
@@ -108,13 +108,14 @@
 		ORDER BY 
 			BOARD_NO DESC
 	</select>
-	<select id="selectOpenProject" parameterType="java.util.Map" resultMap="projectResultSet">
+	<!-- <select id="selectOpenProject" parameterType="java.util.Map" resultMap="projectResultSet">
 		SELECT *
-		FROM    PROJECT P
-	    JOIN    MEMBER M ON (P.MEMBER_NO = M.MEMBER_NO)
+		FROM PROJECT P
+	    LEFT JOIN MEMBER M ON (P.MEMBER_NO = M.MEMBER_NO)
+	    LEFT JOIN CATEGORY C ON (P.CATEGORY = C.CATEGORY)
 	    ORDER BY PROJECT_NO DESC
 		
-	</select>
+	</select> -->
 	<select id="selectSearchResultCount" resultType="_int">
 		SELECT
 			COUNT(*)
@@ -155,7 +156,7 @@
 			B.STATUS = 'N'
 		<choose>
 			<when test="writer != null">
-				AND M.MEMBER_ID = #{writer}
+				AND M.MEMBER_ID LIKE '%' || #{writer} || '%'
 			</when>
 			<when test="title != null">
 				AND BOARD_TITLE LIKE '%' || #{title} || '%'

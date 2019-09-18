@@ -62,4 +62,10 @@ public class ProjectServiceImpl implements ProjectService{
 		return pd.detailProject(sqlSession, (Integer.parseInt(projectNo1)));
 	}
 
+	@Override
+	public ArrayList<Project> memberCategory(String category) {
+		// TODO Auto-generated method stub
+		return pd.memberCategory(sqlSession, category);
+	}
+
 }

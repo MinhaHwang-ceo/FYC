@@ -65,7 +65,7 @@ public class BoardDaoImpl implements BoardDao {
 
 		RowBounds rowBounds = new RowBounds(offset, pi.getLimit());
 
-		list = (ArrayList) sqlSession.selectList("Board.selectOpenProject", null, rowBounds);
+		list = (ArrayList) sqlSession.selectList("Project2.selectOpenProject", null, rowBounds);
 		System.out.println(list);
 
 		return list;
@@ -153,5 +153,12 @@ public class BoardDaoImpl implements BoardDao {
 
 		return list;
 	}
+
+	@Override
+	public Project selectDetailProject(SqlSessionTemplate sqlSession, int projectNoInt) {
+		
+		return sqlSession.selectOne("Project2.selectDetailProject", projectNoInt);
+	}
+
 
 }

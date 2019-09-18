@@ -47,7 +47,9 @@ public interface AdminDao {
 	
 	//정산 프로젝트 리스트
 	public List<Project> adjustProjectList(SqlSessionTemplate sqlSession);
-
+	
+	//엑셀
+	int downExcel(SqlSessionTemplate sqlSession,  String projectNo);
 
 	
 }
