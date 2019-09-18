@@ -156,7 +156,7 @@
 			B.STATUS = 'N'
 		<choose>
 			<when test="writer != null">
-				AND M.MEMBER_ID = #{writer}
+				AND M.MEMBER_ID LIKE '%' || #{writer} || '%'
 			</when>
 			<when test="title != null">
 				AND BOARD_TITLE LIKE '%' || #{title} || '%'

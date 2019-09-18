@@ -2,7 +2,7 @@ package com.kh.yc.project.model.vo;
 
 import java.sql.Date;
 
-public class Project implements java.io.Serializable{
+public class Project implements java.io.Serializable {
 	private int projectNo;
 	private String category;
 	private String success;
@@ -30,7 +30,6 @@ public class Project implements java.io.Serializable{
 	private String delivery;
 	private Date endDate;
 	private String adult;
-	private int userNo;
 	private int reportCount;
 	private int payNo;
 	private int adjustNo;
@@ -39,7 +38,8 @@ public class Project implements java.io.Serializable{
 	private String companyName;
 	private String categoryDiv;
 	private Date projectOpen;
-	
+  private int memberNo;
+  
 	public Project() {}
 
 	public Project(int projectNo, String category, String success, String judgeStatus, String progressStatus,
@@ -47,8 +47,9 @@ public class Project implements java.io.Serializable{
 			String email, String phone, String fees, String makerDiv, String agentName, String agentEmail,
 			String projectTitle, String projectShortTitle, int money, String mainImg, String document, String progress,
 			String delivery, Date endDate, String adult, int userNo, int reportCount, int payNo, int adjustNo,
-			Date adjustDate, int adjustMoney, String companyName, String categoryDiv, Date projectOpen) {
+			Date adjustDate, int adjustMoney, String companyName, String categoryDiv, Date projectOpen, int memberNo) {
 		super();
+
 		this.projectNo = projectNo;
 		this.category = category;
 		this.success = success;
@@ -76,7 +77,6 @@ public class Project implements java.io.Serializable{
 		this.delivery = delivery;
 		this.endDate = endDate;
 		this.adult = adult;
-		this.userNo = userNo;
 		this.reportCount = reportCount;
 		this.payNo = payNo;
 		this.adjustNo = adjustNo;
@@ -85,6 +85,8 @@ public class Project implements java.io.Serializable{
 		this.companyName = companyName;
 		this.categoryDiv = categoryDiv;
 		this.projectOpen = projectOpen;
+    this.memberNo = memberNo;
+
 	}
 
 	public int getProjectNo() {
@@ -373,6 +375,14 @@ public class Project implements java.io.Serializable{
 
 	public void setProjectOpen(Date projectOpen) {
 		this.projectOpen = projectOpen;
+
+	public int getMemberNo() {
+		return memberNo;
+	}
+
+	public void setMemberNo(int memberNo) {
+		this.memberNo = memberNo;
+
 	}
 
 	@Override
@@ -387,9 +397,9 @@ public class Project implements java.io.Serializable{
 				+ ", endDate=" + endDate + ", adult=" + adult + ", userNo=" + userNo + ", reportCount=" + reportCount
 				+ ", payNo=" + payNo + ", adjustNo=" + adjustNo + ", adjustDate=" + adjustDate + ", adjustMoney="
 				+ adjustMoney + ", companyName=" + companyName + ", categoryDiv=" + categoryDiv + ", projectOpen="
-				+ projectOpen + "]";
+				+ projectOpen + ", memberNo=" + memberNo + "]";
 	}
 
 	
-	
+
 }

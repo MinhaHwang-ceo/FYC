@@ -75,5 +75,11 @@ public class ProjectDaoImpl implements ProjectDao{
 		return detail;
 	}
 
+	@Override
+	public ArrayList<Project> memberCategory(SqlSessionTemplate sqlSession, String category) {
+		
+		return (ArrayList)sqlSession.selectList("Project2.memberCategory", category);
+	}
+
 }
 

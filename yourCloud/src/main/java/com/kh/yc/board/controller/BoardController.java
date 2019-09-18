@@ -6,21 +6,18 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.List;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.yc.board.model.service.BoardService;
@@ -33,7 +30,6 @@ import com.kh.yc.common.Pagination;
 import com.kh.yc.member.model.vo.Member;
 import com.kh.yc.project.model.exception.ProjectSelectListException;
 import com.kh.yc.project.model.service.ProjectService;
-import com.kh.yc.project.model.vo.OpenAlarm;
 import com.kh.yc.project.model.vo.Project;
 
 @Controller
@@ -45,7 +41,7 @@ public class BoardController {
 	@Autowired
 	ProjectService ps;
 
-	@RequestMapping(value = "openExpectation.bo", method = RequestMethod.GET)
+		@RequestMapping(value = "openExpectation.bo", method = RequestMethod.GET)
 	public String openExpectation(HttpServletRequest request, HttpServletResponse response) {
 		int currentPage = 1;
 
@@ -222,7 +218,6 @@ public class BoardController {
 		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
 
 		ArrayList<Board> list = bs.selectSearchList(sc, pi);
-
 		if (list != null) {
 			request.setAttribute("pi", pi);
 			request.setAttribute("list", list);
@@ -243,9 +238,10 @@ public class BoardController {
 	@ResponseBody
 	public String uploadImg(HttpServletRequest request) {
 		StringBuffer sb = new StringBuffer();
-		String root = request.getSession().getServletContext().getRealPath("resources");
 		String originFileName = request.getHeader("file-name");
-		String filePath = "C:\\Users\\KJS\\git\\FYC\\yourCloud\\src\\main\\webapp\\resources\\uploadFiles\\";
+		String root = request.getSession().getServletContext().getRealPath("resources/uploadFiles");
+        String attachPath = "\\";
+		String filePath = root + attachPath;
 		String saveName = sb.append(new SimpleDateFormat("yyyyMMddHHmmss").format(System.currentTimeMillis()))
 				.append(CommonUtils.getRandomString()).append(originFileName.substring(originFileName.lastIndexOf(".")))
 				.toString();
@@ -322,7 +318,6 @@ public class BoardController {
 		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
 		ArrayList<Comment> c = bs.selectComment(pi, target);
 
-		
 		ArrayList<Comment> rc = bs.selectReComment(pi, target);
 		model.addAttribute("b", b);
 		model.addAttribute("c", c);
@@ -370,40 +365,47 @@ public class BoardController {
 		mv.setViewName("jsonView");
 		return mv;
 	}
-	
+
 	@RequestMapping("updateComment.bo")
 	public ModelAndView updateComment(String text, String target, ModelAndView mv) {
-		
+
 		Comment c = new Comment();
-		
+
 		c.setcNo(Integer.parseInt(target));
 		c.setContent(text);
-		
+
 		int result = bs.updateComment(c);
-		
+
 		mv.setViewName("jsonView");
 		return mv;
-		
+
 	}
-	
+
 	@RequestMapping("insertReComment.bo")
 	public ModelAndView insertReComment(Comment c, ModelAndView mv) {
 		int result = bs.insertReComment(c);
-		
+
 		mv.setViewName("jsonView");
 		return mv;
 	}
 
 	@RequestMapping("main.bo")
-	public String main(Model model) {
-		ArrayList<Project> list = bs.getProject();
+	public String main(Model model, HttpSession session, HttpServletRequest request) {
+
+		Member m = (Member) session.getAttribute("loginUser");
+		ArrayList<Project> list = null;
+		try {
+			if ((m == null) || (m.getMemberCategory().length() == 0)) {
+				list = bs.getProject();
+			} else {
+				String category = m.getMemberCategory();
+				list = ps.memberCategory(category);
+			}
+		} catch (Exception e) {
+			list = bs.getProject();
+		}
 		model.addAttribute("list", list);
 		return "main/main";
 	}
-	@RequestMapping(value = "insertPhone.bo", method = RequestMethod.GET)
-	public String insertPhone(Model model, OpenAlarm o, HttpServletRequest request) {
-		System.out.println(o);
-		
-		return "board/openExpectation/openExpectationDetail";
-	}
 }
+
