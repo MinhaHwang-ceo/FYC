@@ -524,6 +524,7 @@ public class Project implements java.io.Serializable{
 
 	public void setAdjustStatus(String adjustStatus) {
 		this.adjustStatus = adjustStatus;
+	}
 
 	public String getCategoryDiv() {
 		return categoryDiv;
@@ -543,7 +544,7 @@ public class Project implements java.io.Serializable{
 				+ projectTitle + ", projectShortTitle=" + projectShortTitle + ", money=" + money + ", mainImg="
 				+ mainImg + ", document=" + document + ", progress=" + progress + ", delivery=" + delivery
 				+ ", endDate=" + endDate + ", adult=" + adult + ", userNo=" + userNo + ", reportCount=" + reportCount
-				+ ", ovenComing=" + ovenComing + ", payNo=" + payNo + ", adjustNo=" + adjustNo + ", adjustDate="
+				+ ", payNo=" + payNo + ", adjustNo=" + adjustNo + ", adjustDate="
 				+ adjustDate + ", adjustMoney=" + adjustMoney + ", companyName=" + companyName + ", adjustStatus="
 				+ adjustStatus + categoryDiv  + ", attachment=" + attachment + "]";
 	}

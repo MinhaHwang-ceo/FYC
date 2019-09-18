@@ -24,10 +24,10 @@ public class Project implements java.io.Serializable {
 	private String projectTitle;
 	private String projectShortTitle;
 	private int money;
-	private int mainImg;
+	private String mainImg;
 	private String document;
 	private String progress;
-	private String delivert;
+	private String delivery;
 	private Date endDate;
 	private String adult;
 	private int reportCount;
@@ -70,11 +70,11 @@ public class Project implements java.io.Serializable {
 		this.agentEmail = agentEmail;
 		this.projectTitle = projectTitle;
 		this.projectShortTitle = projectShortTitle;
-		this.monet = monet;
+		this.money = money;
 		this.mainImg = mainImg;
 		this.document = document;
 		this.progress = progress;
-		this.delivert = delivert;
+		this.delivery = delivery;
 		this.endDate = endDate;
 		this.adult = adult;
 		this.reportCount = reportCount;
@@ -322,14 +322,6 @@ public class Project implements java.io.Serializable {
 	}
 
 
-	public int getMemberNo() {
-		return memberNo;
-	}
-
-	public void setMemberNo(int memberNo) {
-		this.memberNo = memberNo;
-	}
-
 	public String getCompanyName() {
 		return companyName;
 	}
@@ -352,14 +344,6 @@ public class Project implements java.io.Serializable {
 
 	public void setProjectOpen(Date projectOpen) {
 		this.projectOpen = projectOpen;
-
-	public int getMemberNo() {
-		return memberNo;
-	}
-
-	public void setMemberNo(int memberNo) {
-		this.memberNo = memberNo;
-
 	}
 
 	@Override

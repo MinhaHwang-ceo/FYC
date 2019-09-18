@@ -2,6 +2,7 @@ package com.kh.yc.funding.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 import java.util.Locale;
 
 import javax.servlet.http.HttpServletRequest;
@@ -22,6 +23,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.yc.admin.model.vo.Project;
+import com.kh.yc.common.CommonUtils;
 import com.kh.yc.funding.model.service.FundingService;
 import com.kh.yc.funding.model.vo.Attachment;
 import com.kh.yc.member.model.vo.Member;
@@ -171,9 +173,6 @@ public class FundingController {
 		}
 		int result = fs.UpdateInfo(p);
 		
-		  List<Project> ProjectList = fs.selectbasicInfo();
-		  
-		  System.out.println("ProjectList : " + ProjectList);
 		  model.addAttribute("p",p);
 		 
 		return "fundingOpen/FundingOpen4";

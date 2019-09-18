@@ -30,10 +30,7 @@ public interface ProjectService {
 	ArrayList<Project> receipt(int bNum);
 	//리워드 count출력
 	ArrayList<Integer> receipt2(int bNum);
-	
-	public void deleteBoardLike(Interest interest);
-	
-	public void insertBoardLike(Interest interest);
+
 
 	ArrayList<Project> memberCategory(String category);;
 
