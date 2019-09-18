@@ -242,11 +242,11 @@
                   <thead>
                     <tr>
                       <th>정산번호</th>
-                      <th>신청자</th>
                       <th>회사명</th>
                       <th>프로젝트명</th>
                       <th>펀딩종료일</th>
                       <th>정산현황</th>
+                      <th>정산금</th>
                       <th>정산</th>
                       <th>모금액 명세</th>
                     </tr>
@@ -254,11 +254,11 @@
                   <tfoot>
                     <tr>
                       <th>정산번호</th>
-                      <th>신청자</th>
                       <th>회사명</th>
                       <th>프로젝트명</th>
                       <th>펀딩종료일</th>
                       <th>정산현황</th>
+                      <th>정산금</th>
                       <th>정산</th>
                       <th>모금액 명세</th>
                     </tr>
@@ -266,15 +266,16 @@
                   <tbody>
                     <c:forEach var="row" items="${list}">
                   <tr>
-                  	<td onclick="window.open('${pageContext.request.contextPath}/memberView.ad?userNo=${row.userNo}', 'PopupWin', 'width=520,height=600');">${row.adjustNo}</td>
-                  	<td>${row.agentName}</td>
+                  	<td onclick="window.open('${pageContext.request.contextPath}/memberView.ad?userNo=${row.adjustNo}', 'PopupWin', 'width=520,height=600');">${row.adjustNo}</td>
                   	<td>${row.companyName}</td>
                   	<td>${row.projectShortTitle}</td>
                   	<td>${row.endDate}</td>
-                  	<td>${row.progressStatus}</td>
-                  	<td>${row.judgeStatus}</td>
+                  	<td>${row.adjustStatus}</td>
+                  	<td>${row.adjustMoney}</td>
+                  	<td><input type="button" id="st" onclick="window.open('${pageContext.request.contextPath}/projectStatus.ad?projectNo=${row.projectNo}', 'PopupWin', 'width=380,height=300');" value="상태변경"></td>
                   	
-                  	<td><input type="button" id="st" onclick="window.open('${pageContext.request.contextPath}/projectStatus.ad?projectNo=${row.projectNo}', 'PopupWin', 'width=380,height=300');" value="검토"></td>
+                  	
+                  	<td><input type="button" id="st" onclick="window.open('${pageContext.request.contextPath}/excel.ad?projectNo=${row.projectNo}');" value="내역확인"></td>
                   </tr>
                   
                   </c:forEach>

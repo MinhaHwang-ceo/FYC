@@ -9,6 +9,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script>
 	 $(document).ready(function(){
+		 
          var browsers = "";
          $("#btnSubmit").click(function(){
         	 
@@ -19,7 +20,7 @@
             if(confirm("선택한 카테고리로 하시겠습니까?")){
             browsers = $("#browsers").val();
             alert(browsers);
-               location.href = "FundingOpen3.fd?category="+browsers + "&userNo=" + userNo + "&projectNo=" +projectNo;
+               location.href = "FundingOpen4.fd?category="+browsers + "&userNo=" + userNo + "&projectNo=" +projectNo;
                
             }
             console.log(browsers);
@@ -56,6 +57,7 @@
 
 </head>
 <body>
+	<input id="pp" type="hidden" value="${p.category }" />
 	<input type="hidden" id="projectNo" value="${pro.projectNo}" name="projectNo" />
 	<input type="hidden" id="userNo" value="${pro.userNo}" name="userNo" />
 	<input type='button' onclick='input_Text()' value='버튼'/>

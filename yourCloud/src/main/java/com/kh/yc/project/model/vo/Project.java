@@ -2,7 +2,7 @@ package com.kh.yc.project.model.vo;
 
 import java.sql.Date;
 
-public class Project {
+public class Project implements java.io.Serializable {
 	private int projectNo;
 	private String category;
 	private String success;
@@ -23,26 +23,33 @@ public class Project {
 	private String agentEmail;
 	private String projectTitle;
 	private String projectShortTitle;
-	private int monet;
+	private int money;
 	private int mainImg;
 	private String document;
 	private String progress;
 	private String delivert;
 	private Date endDate;
 	private String adult;
-	private String expected;
-	private int memberNo;
+	private int reportCount;
+	private int payNo;
+	private int adjustNo;
+	private Date adjustDate;
+	private int adjustMoney;
 	private String companyName;
-	private int money;
-	
+	private String categoryDiv;
+	private Date projectOpen;
+  private int memberNo;
+
 	public Project() {}
 
 	public Project(int projectNo, String category, String success, String judgeStatus, String progressStatus,
 			int agreement, String reason, int adminNo, String summary, String profileImg, String social, String site,
 			String email, String phone, String fees, String makerDiv, String agentName, String agentEmail,
-			String projectTitle, String projectShortTitle, int monet, int mainImg, String document, String progress,
-			String delivert, Date endDate, String adult, String expected, int memberNo, String companyName, int money) {
+			String projectTitle, String projectShortTitle, int money, String mainImg, String document, String progress,
+			String delivery, Date endDate, String adult, int userNo, int reportCount, int payNo, int adjustNo,
+			Date adjustDate, int adjustMoney, String companyName, String categoryDiv, Date projectOpen, int memberNo) {
 		super();
+
 		this.projectNo = projectNo;
 		this.category = category;
 		this.success = success;
@@ -70,10 +77,16 @@ public class Project {
 		this.delivert = delivert;
 		this.endDate = endDate;
 		this.adult = adult;
-		this.expected = expected;
-		this.memberNo = memberNo;
+		this.reportCount = reportCount;
+		this.payNo = payNo;
+		this.adjustNo = adjustNo;
+		this.adjustDate = adjustDate;
+		this.adjustMoney = adjustMoney;
 		this.companyName = companyName;
-		this.money = money;
+		this.categoryDiv = categoryDiv;
+		this.projectOpen = projectOpen;
+    this.memberNo = memberNo;
+
 	}
 
 	public int getProjectNo() {
@@ -236,19 +249,20 @@ public class Project {
 		this.projectShortTitle = projectShortTitle;
 	}
 
-	public int getMonet() {
-		return monet;
+	public int getMoney() {
+		return money;
 	}
 
-	public void setMonet(int monet) {
-		this.monet = monet;
+	public void setMoney(int money) {
+		this.money = money;
 	}
 
-	public int getMainImg() {
+	public String getMainImg() {
 		return mainImg;
 	}
 
-	public void setMainImg(int mainImg) {
+	public void setMainImg(String mainImg) {
+
 		this.mainImg = mainImg;
 	}
 
@@ -268,12 +282,12 @@ public class Project {
 		this.progress = progress;
 	}
 
-	public String getDelivert() {
-		return delivert;
+	public String getDelivery() {
+		return delivery;
 	}
 
-	public void setDelivert(String delivert) {
-		this.delivert = delivert;
+	public void setDelivery(String delivery) {
+		this.delivery = delivery;
 	}
 
 	public Date getEndDate() {
@@ -292,13 +306,21 @@ public class Project {
 		this.adult = adult;
 	}
 
-	public String getExpected() {
-		return expected;
+  
+	public int getMemberNo() {
+		return memberNo;
 	}
 
-	public void setExpected(String expected) {
-		this.expected = expected;
+	public void setMemberNo(int memberNo) {
+		this.memberNo = memberNo;
+
 	}
+
+
+	public int getReportCount() {
+		return reportCount;
+	}
+
 
 	public int getMemberNo() {
 		return memberNo;
@@ -316,12 +338,28 @@ public class Project {
 		this.companyName = companyName;
 	}
 
-	public int getMoney() {
-		return money;
+	public String getCategoryDiv() {
+		return categoryDiv;
 	}
 
-	public void setMoney(int money) {
-		this.money = money;
+	public void setCategoryDiv(String categoryDiv) {
+		this.categoryDiv = categoryDiv;
+	}
+
+	public Date getProjectOpen() {
+		return projectOpen;
+	}
+
+	public void setProjectOpen(Date projectOpen) {
+		this.projectOpen = projectOpen;
+
+	public int getMemberNo() {
+		return memberNo;
+	}
+
+	public void setMemberNo(int memberNo) {
+		this.memberNo = memberNo;
+
 	}
 
 	@Override
@@ -331,12 +369,14 @@ public class Project {
 				+ ", adminNo=" + adminNo + ", summary=" + summary + ", profileImg=" + profileImg + ", social=" + social
 				+ ", site=" + site + ", email=" + email + ", phone=" + phone + ", fees=" + fees + ", makerDiv="
 				+ makerDiv + ", agentName=" + agentName + ", agentEmail=" + agentEmail + ", projectTitle="
-				+ projectTitle + ", projectShortTitle=" + projectShortTitle + ", monet=" + monet + ", mainImg="
-				+ mainImg + ", document=" + document + ", progress=" + progress + ", delivert=" + delivert
-				+ ", endDate=" + endDate + ", adult=" + adult + ", expected=" + expected + ", memberNo=" + memberNo
-				+ ", companyName=" + companyName + ", money=" + money + "]";
+				+ projectTitle + ", projectShortTitle=" + projectShortTitle + ", money=" + money + ", mainImg="
+				+ mainImg + ", document=" + document + ", progress=" + progress + ", delivery=" + delivery
+				+ ", endDate=" + endDate + ", adult=" + adult + ", memberNo=" + memberNo + ", reportCount=" + reportCount
+				+ ", payNo=" + payNo + ", adjustNo=" + adjustNo + ", adjustDate=" + adjustDate + ", adjustMoney="
+				+ adjustMoney + ", companyName=" + companyName + ", categoryDiv=" + categoryDiv + ", projectOpen="
+				+ projectOpen + ", memberNo=" + memberNo + "]";
 	}
 
 	
-	
+
 }

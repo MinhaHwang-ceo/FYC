@@ -95,6 +95,13 @@ public class AdminDaoImpl implements AdminDao{
 			}		
 			
 			
+		//엑셀
+			@Override
+			public int downExcel(SqlSessionTemplate sqlSession, String projectNo) {
+				
+				return sqlSession.selectOne("Reward.downExcel", projectNo);
+			}
+			
 		
 		
 	}

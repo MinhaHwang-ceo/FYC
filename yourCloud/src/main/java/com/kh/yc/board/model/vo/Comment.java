@@ -6,7 +6,7 @@ import java.sql.Date;
 public class Comment implements Serializable {
 	private int cNo;
 	private String writer;
-	private Date createDate;
+	private String createDate;
 	private int refCNo;
 	private String content;
 	private int bNo;
@@ -16,7 +16,7 @@ public class Comment implements Serializable {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Comment(int cNo, String writer, Date createDate, int refCNo, String content, int bNo) {
+	public Comment(int cNo, String writer, String createDate, int refCNo, String content, int bNo) {
 		this.cNo = cNo;
 		this.writer = writer;
 		this.createDate = createDate;
@@ -41,11 +41,11 @@ public class Comment implements Serializable {
 		this.writer = writer;
 	}
 
-	public Date getCreateDate() {
+	public String getCreateDate() {
 		return createDate;
 	}
 
-	public void setCreateDate(Date createDate) {
+	public void setCreateDate(String createDate) {
 		this.createDate = createDate;
 	}
 

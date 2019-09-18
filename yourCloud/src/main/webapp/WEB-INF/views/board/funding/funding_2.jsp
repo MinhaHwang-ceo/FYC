@@ -14,7 +14,8 @@
 	rel="stylesheet">
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.3.0/ekko-lightbox.css">
-	<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+<script type="text/javascript"
+	src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/animate.css">
 <link href="${pageContext.request.contextPath}/resources/css/main.css"
@@ -24,7 +25,8 @@
 	rel="stylesheet">
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/payment.js"></script>
-<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
+<script type="text/javascript"
+	src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 <title>니가그린구름그림</title>
 <style>
 .outer {
@@ -111,11 +113,9 @@
 </style>
 </head>
 <body>
-	<jsp:include page="../../common/customer_menubar.jsp" /><br>
+	<jsp:include page="../../common/customer_menubar.jsp" />
 	<jsp:include page="../../common/customer_menuList.jsp" /><br>
-	
 	<br>
-
 	<div class="outer">
 
 		<div id="step">
@@ -186,87 +186,79 @@
 			</table>
 		</div>
 		<br> <br>
-			<div>
-				<br> <br> <b>약관동의</b>
-				<div class="panel-group" id="accordion">
-					<div class="panel panel-default">
-						<div class="panel-heading">
-							<h4 class="panel-title">
-								<a data-toggle="collapse" data-parent="#accordion"
-									href="#collapse1"><h6>제 3자에 대한 개인정보 제공 동의 &emsp; [보기]</h6></a>
-							</h4>
-						</div>
-						<div id="collapse1" class="panel-collapse collapse in">
-							<div class="panel-body">'펀딩하기'를 통한 결제 및 리워드 전달 서비스를 제공하기
-								위해, 이용자의 사전 동의 아래 제3자(프로젝트 메이커)에게 제공합니다. 메이커에게 전달되는 개인 정보는 기재된
-								목적 달성 후 파기에 대한 책임이 메이커에게 있으며, 파기하지 않아 생기는 문제에 대한 법적 책임은 메이커에게
-								있습니다. 아래 내용에 대하여 동의를 거부하실 수 있으며, 거부 시 서비스 이용이 제한됩니다.</div>
-						</div>
+		<div>
+			<br> <br> <b>약관동의</b>
+			<div class="panel-group" id="accordion">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h4 class="panel-title">
+							<a data-toggle="collapse" data-parent="#accordion"
+								href="#collapse1"><h6>제 3자에 대한 개인정보 제공 동의 &emsp; [보기]</h6></a>
+						</h4>
 					</div>
-					<input type="checkbox" required>약관에 동의합니다. <br> <br>
-					<div class="panel panel-default">
-						<div class="panel-heading">
-							<h4 class="panel-title">
-								<a data-toggle="collapse" data-parent="#accordion"
-									href="#collapse2"><h6>책임 규정에 대한 동의 &emsp; [보기]</h6></a>
-							</h4>
-						</div>
-						<div id="collapse2" class="panel-collapse collapse">
-							<div class="panel-body">니가그린구름그림은(는) 플랫폼을 제공하는 중개자로 크라우드펀딩을
-								받는 당사자가 아닙니다. 보상품 제공 등에 관한 지연, 제품의 하자 등으로 인한 일체의 법적책임은 펀딩을 받는
-								프로젝트 개설자가 부담합니다. 하지만, 니가그린구름그림은 프로젝트 진행자와 후원자간의 원활한 의사소통을 위해 최선의
-								노력을 다하고 있습니다.</div>
-						</div>
+					<div id="collapse1" class="panel-collapse collapse in">
+						<div class="panel-body">'펀딩하기'를 통한 결제 및 리워드 전달 서비스를 제공하기 위해,
+							이용자의 사전 동의 아래 제3자(프로젝트 메이커)에게 제공합니다. 메이커에게 전달되는 개인 정보는 기재된 목적 달성
+							후 파기에 대한 책임이 메이커에게 있으며, 파기하지 않아 생기는 문제에 대한 법적 책임은 메이커에게 있습니다. 아래
+							내용에 대하여 동의를 거부하실 수 있으며, 거부 시 서비스 이용이 제한됩니다.</div>
 					</div>
-					<input type="checkbox" required>약관에 동의합니다. <br> <br>
 				</div>
+				<input type="checkbox" required>약관에 동의합니다. <br> <br>
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h4 class="panel-title">
+							<a data-toggle="collapse" data-parent="#accordion"
+								href="#collapse2"><h6>책임 규정에 대한 동의 &emsp; [보기]</h6></a>
+						</h4>
+					</div>
+					<div id="collapse2" class="panel-collapse collapse">
+						<div class="panel-body">니가그린구름그림은(는) 플랫폼을 제공하는 중개자로 크라우드펀딩을
+							받는 당사자가 아닙니다. 보상품 제공 등에 관한 지연, 제품의 하자 등으로 인한 일체의 법적책임은 펀딩을 받는
+							프로젝트 개설자가 부담합니다. 하지만, 니가그린구름그림은 프로젝트 진행자와 후원자간의 원활한 의사소통을 위해 최선의
+							노력을 다하고 있습니다.</div>
+					</div>
+				</div>
+				<input type="checkbox" required>약관에 동의합니다. <br> <br>
 			</div>
-			<input type="button" value="결제 예약" class="btn btn-success" id="payInfoBtn" />
+		</div>
+		<input type="button" value="다음 단계로  >" class="btn btn-info"
+			id="payBtn">
 	</div>
 	<script>
-		function today(){
-		    var dt = new Date();
-		 
-		    var recentYear = dt.getFullYear();
-		    var recentMonth = dt.getMonth() + 1;
-		    var recentDay = dt.getDate();
-		    if(recentMonth < 10) recentMonth = "0" + recentMonth;
-		    if(recentDay < 10) recentDay = "0" + recentDay;
-		 
-		    return recentYear + recentMonth + recentDay;
-		}
-			var today = today();
-		$("#payInfoBtn").click(function(){
+		$("#payBtn").click(function(){
+			var userNo = '${ sessionScope.loginUser.userNo }';
+			var email = '${ sessionScope.loginUser.email }';
+			var userName = '${ sessionScope.loginUser.userName }';
+			
+			var merchantUid = "test" + Math.floor(Math.random() * 100000) + 1;;
+			
+			alert(merchantUid);
+			
+			
 			var IMP = window.IMP;
-			var id = '${ sessionScope.loginUser.userId }';
-			var customer_uid = id + today;
-			console.log(today);
 			IMP.init('imp24001024');
 			
 			IMP.request_pay({ // param
 			    pay_method: "card", // "card"만 지원됩니다
-			    merchant_uid: id+today+"1", // 빌링키 발급용 주문번호
-			    customer_uid: id+customer_uid, // 카드(빌링키)와 1:1로 대응하는 값
+			    merchant_uid: merchantUid, // 빌링키 발급용 주문번호
+			    customer_uid: userNo, // 카드(빌링키)와 1:1로 대응하는 값
 			    name: "최초인증결제",
 			    amount: 0, // 0 으로 설정하여 빌링키 발급만 진행합니다.
-			    buyer_name: "홍길동",
+			    buyer_email: email,
+			    buyer_name: userName,
+			    buyer_tel: "010-4242-4242",
 			  }, function (rsp) { // callback
 			    if (rsp.success) {
-			    	var userNo= '${ sessionScope.loginUser.userNo}';
 			    	 // jQuery로 HTTP 요청
-			    	 alert("빌링키 발급 성공");
 			    	 jQuery.ajax({
 				          url: "billingKey.fd", // 서비스 웹서버
 				          method: "POST",
 				          data: {
-				            customer_uid: customer_uid // 카드(빌링키)와 1:1로 대응하는 값
-				            , userNo : userNo
+				        	  customer_uid:userNo
 				          }, success:function(data){
 				        	  alert("결제가 예약되었습니다");
-				        	  console.log(data);
-				        	  
 				          }
-			    	})
+			    	});
 			    } else {
 			    	
 			    }

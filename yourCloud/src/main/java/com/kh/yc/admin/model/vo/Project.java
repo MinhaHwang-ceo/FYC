@@ -1,6 +1,9 @@
 package com.kh.yc.admin.model.vo;
 
 import java.sql.Date;
+import java.util.List;
+
+import com.kh.yc.funding.model.vo.Attachment;
 
 public class Project implements java.io.Serializable{
 	private int projectNo;         //프로젝트 번호
@@ -32,21 +35,29 @@ public class Project implements java.io.Serializable{
 	private String adult;          //19세 이상
 	private int userNo;            //메이커 번호
 	private int reportCount;       //신고수 
-	private String ovenComing;     //오픈 예정 여부
   	private int payNo;
 	private int adjustNo;
 	private Date adjustDate;
 	private int adjustMoney;
 	private String companyName;
+	private String adjustStatus;
+	private String categoryDiv;
+	
+	private List<Attachment> attachment;
+	 
+	
 	
 	public Project() {}
+
+
 
 	public Project(int projectNo, String category, String success, String judgeStatus, String progressStatus,
 			int agreement, String reason, int adminNo, String summary, String prifileImg, String social, String site,
 			String email, String phone, String fees, String makerDiv, String agentName, String agentEmail,
 			String projectTitle, String projectShortTitle, int money, String mainImg, String document, String progress,
 			String delivery, Date endDate, String adult, int userNo, int reportCount, String ovenComing, int payNo,
-			int adjustNo, Date adjustDate, int adjustMoney, String companyName) {
+			int adjustNo, Date adjustDate, int adjustMoney, String companyName, String adjustStatus, String categoryDiv, List<Attachment> attachment) {
+
 		super();
 		this.projectNo = projectNo;
 		this.category = category;
@@ -77,292 +88,449 @@ public class Project implements java.io.Serializable{
 		this.adult = adult;
 		this.userNo = userNo;
 		this.reportCount = reportCount;
-		this.ovenComing = ovenComing;
 		this.payNo = payNo;
 		this.adjustNo = adjustNo;
 		this.adjustDate = adjustDate;
 		this.adjustMoney = adjustMoney;
 		this.companyName = companyName;
+		this.attachment = attachment;
+		this.adjustStatus = adjustStatus;
+		this.categoryDiv = categoryDiv;
+
 	}
+
+
 
 	public int getProjectNo() {
 		return projectNo;
 	}
 
+
+
 	public void setProjectNo(int projectNo) {
 		this.projectNo = projectNo;
 	}
+
+
 
 	public String getCategory() {
 		return category;
 	}
 
+
+
 	public void setCategory(String category) {
 		this.category = category;
 	}
+
+
 
 	public String getSuccess() {
 		return success;
 	}
 
+
+
 	public void setSuccess(String success) {
 		this.success = success;
 	}
+
+
 
 	public String getJudgeStatus() {
 		return judgeStatus;
 	}
 
+
+
 	public void setJudgeStatus(String judgeStatus) {
 		this.judgeStatus = judgeStatus;
 	}
+
+
 
 	public String getProgressStatus() {
 		return progressStatus;
 	}
 
+
+
 	public void setProgressStatus(String progressStatus) {
 		this.progressStatus = progressStatus;
 	}
+
+
 
 	public int getAgreement() {
 		return agreement;
 	}
 
+
+
 	public void setAgreement(int agreement) {
 		this.agreement = agreement;
 	}
+
+
 
 	public String getReason() {
 		return reason;
 	}
 
+
+
 	public void setReason(String reason) {
 		this.reason = reason;
 	}
+
+
 
 	public int getAdminNo() {
 		return adminNo;
 	}
 
+
+
 	public void setAdminNo(int adminNo) {
 		this.adminNo = adminNo;
 	}
+
+
 
 	public String getSummary() {
 		return summary;
 	}
 
+
+
 	public void setSummary(String summary) {
 		this.summary = summary;
 	}
+
+
 
 	public String getPrifileImg() {
 		return prifileImg;
 	}
 
+
+
 	public void setPrifileImg(String prifileImg) {
 		this.prifileImg = prifileImg;
 	}
+
+
 
 	public String getSocial() {
 		return social;
 	}
 
+
+
 	public void setSocial(String social) {
 		this.social = social;
 	}
+
+
 
 	public String getSite() {
 		return site;
 	}
 
+
+
 	public void setSite(String site) {
 		this.site = site;
 	}
+
+
 
 	public String getEmail() {
 		return email;
 	}
 
+
+
 	public void setEmail(String email) {
 		this.email = email;
 	}
+
+
 
 	public String getPhone() {
 		return phone;
 	}
 
+
+
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
+
+
 
 	public String getFees() {
 		return fees;
 	}
 
+
+
 	public void setFees(String fees) {
 		this.fees = fees;
 	}
+
+
 
 	public String getMakerDiv() {
 		return makerDiv;
 	}
 
+
+
 	public void setMakerDiv(String makerDiv) {
 		this.makerDiv = makerDiv;
 	}
+
+
 
 	public String getAgentName() {
 		return agentName;
 	}
 
+
+
 	public void setAgentName(String agentName) {
 		this.agentName = agentName;
 	}
+
+
 
 	public String getAgentEmail() {
 		return agentEmail;
 	}
 
+
+
 	public void setAgentEmail(String agentEmail) {
 		this.agentEmail = agentEmail;
 	}
+
+
 
 	public String getProjectTitle() {
 		return projectTitle;
 	}
 
+
+
 	public void setProjectTitle(String projectTitle) {
 		this.projectTitle = projectTitle;
 	}
+
+
 
 	public String getProjectShortTitle() {
 		return projectShortTitle;
 	}
 
+
+
 	public void setProjectShortTitle(String projectShortTitle) {
 		this.projectShortTitle = projectShortTitle;
 	}
+
+
 
 	public int getMoney() {
 		return money;
 	}
 
+
+
 	public void setMoney(int money) {
 		this.money = money;
 	}
+
+
 
 	public String getMainImg() {
 		return mainImg;
 	}
 
+
+
 	public void setMainImg(String mainImg) {
 		this.mainImg = mainImg;
 	}
+
+
 
 	public String getDocument() {
 		return document;
 	}
 
+
+
 	public void setDocument(String document) {
 		this.document = document;
 	}
+
+
 
 	public String getProgress() {
 		return progress;
 	}
 
+
+
 	public void setProgress(String progress) {
 		this.progress = progress;
 	}
+
+
 
 	public String getDelivery() {
 		return delivery;
 	}
 
+
+
 	public void setDelivery(String delivery) {
 		this.delivery = delivery;
 	}
+
+
 
 	public Date getEndDate() {
 		return endDate;
 	}
 
+
+
 	public void setEndDate(Date endDate) {
 		this.endDate = endDate;
 	}
+
+
 
 	public String getAdult() {
 		return adult;
 	}
 
+
+
 	public void setAdult(String adult) {
 		this.adult = adult;
 	}
+
+
 
 	public int getUserNo() {
 		return userNo;
 	}
 
+
+
 	public void setUserNo(int userNo) {
 		this.userNo = userNo;
 	}
+
+
 
 	public int getReportCount() {
 		return reportCount;
 	}
 
+
+
 	public void setReportCount(int reportCount) {
 		this.reportCount = reportCount;
 	}
 
-	public String getOvenComing() {
-		return ovenComing;
-	}
 
-	public void setOvenComing(String ovenComing) {
-		this.ovenComing = ovenComing;
-	}
 
 	public int getPayNo() {
 		return payNo;
 	}
 
+
+
 	public void setPayNo(int payNo) {
 		this.payNo = payNo;
 	}
+
+
 
 	public int getAdjustNo() {
 		return adjustNo;
 	}
 
+
+
 	public void setAdjustNo(int adjustNo) {
 		this.adjustNo = adjustNo;
 	}
+
+
 
 	public Date getAdjustDate() {
 		return adjustDate;
 	}
 
+
+
 	public void setAdjustDate(Date adjustDate) {
 		this.adjustDate = adjustDate;
 	}
+
+
 
 	public int getAdjustMoney() {
 		return adjustMoney;
 	}
 
+
+
 	public void setAdjustMoney(int adjustMoney) {
 		this.adjustMoney = adjustMoney;
 	}
+
+
 
 	public String getCompanyName() {
 		return companyName;
 	}
 
+
+
 	public void setCompanyName(String companyName) {
 		this.companyName = companyName;
+	}
+
+
+	public List<Attachment> getAttachment() {
+		return attachment;
+	}
+
+
+
+	public void setAttachment(List<Attachment> attachment) {
+		this.attachment = attachment;
+	}
+
+	public String getAdjustStatus() {
+		return adjustStatus;
+	}
+
+	public void setAdjustStatus(String adjustStatus) {
+		this.adjustStatus = adjustStatus;
+
+	public String getCategoryDiv() {
+		return categoryDiv;
+	}
+
+	public void setCategoryDiv(String categoryDiv) {
+		this.categoryDiv = categoryDiv;
 	}
 
 	@Override
@@ -376,14 +544,8 @@ public class Project implements java.io.Serializable{
 				+ mainImg + ", document=" + document + ", progress=" + progress + ", delivery=" + delivery
 				+ ", endDate=" + endDate + ", adult=" + adult + ", userNo=" + userNo + ", reportCount=" + reportCount
 				+ ", ovenComing=" + ovenComing + ", payNo=" + payNo + ", adjustNo=" + adjustNo + ", adjustDate="
-				+ adjustDate + ", adjustMoney=" + adjustMoney + ", companyName=" + companyName + "]";
+				+ adjustDate + ", adjustMoney=" + adjustMoney + ", companyName=" + companyName + ", adjustStatus="
+				+ adjustStatus + categoryDiv  + ", attachment=" + attachment + "]";
 	}
-
-
-	
-	
-	
-
-	
 	
 }

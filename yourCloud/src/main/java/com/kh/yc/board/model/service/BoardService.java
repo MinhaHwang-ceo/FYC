@@ -19,7 +19,7 @@ public interface BoardService {
 	ArrayList<Board> selectSearchList(SearchCondition sc, PageInfo pi);
 
 	int insertBoard(Board b);
-  
+
 	ArrayList<Project> selectOpenProject(PageInfo pi);
 
 	Board selectBoardOne(String target);
@@ -46,6 +46,6 @@ public interface BoardService {
 
 	ArrayList<Project> getProject();
 
-
+	Project selectDetailProject(int projectNoInt);
 
 }

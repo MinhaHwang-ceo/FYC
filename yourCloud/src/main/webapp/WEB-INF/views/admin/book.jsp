@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE>
 <html>
 <head>
@@ -33,33 +35,7 @@
       };
       
       
-   // 숫자 타입에서 쓸 수 있도록 format() 함수 추가
-      Number.prototype.format = function(){
-          if(this==0) return 0;
-
-          var reg = /(^[+-]?\d+)(\d{3})/;
-          var n = (this + '');
-
-          while (reg.test(n)) n = n.replace(reg, '$1' + ',' + '$2');
-
-          return n;
-      };
-      
-   // 문자열 타입에서 쓸 수 있도록 format() 함수 추가
-      String.prototype.format = function(){
-          var num = parseFloat(this);
-          if( isNaN(num) ) return "0";
-
-          return num.format();
-      };
-      
-      
-      jQuery('.format-money').text(function() {
-    	    jQuery(this).text(
-    	        jQuery(this).text().format()
-    	    );
-    	});
-      
+  
       
 </script>
   <!-- Custom fonts for this template-->
@@ -487,8 +463,9 @@
                   <thead>
                     <tr>
                       <th>장부번호</th>
+                      <th>프로젝트번호</th>
                       <th>프로젝트명</th>
-                      <th>회원명</th>
+                      <th>대표자명</th>
                       <th>구분</th>
                       <th>금액</th>
                       <th>잔고</th>
@@ -497,8 +474,9 @@
                   <tfoot>
                     <tr>
                       <th>장부번호</th>
+                      <th>프로젝트번호</th>
                       <th>프로젝트명</th>
-                      <th>회원명</th>
+                      <th>대표자명</th>
                       <th>구분</th>
                       <th>금액</th>
                       <th>잔고</th>
@@ -507,18 +485,20 @@
                   <tbody>
                     <tr>
                       <td>1</td>
+                      <td>1</td>
                       <td>[당신의옷]너무나멋진똥간닦개</td>
                       <td>황민하</td>
                       <td>입금</td>
-                      <td><span class="format-money">2000000</span>원</td>
+                      <td><fmt:formatNumber value="2000000" type="currency"/>원</td>
                       <td></td>
                     </tr>
                     <tr>
                       <td>2</td>
+                      <td>1</td>
                       <td>[당신의옷]너무나멋진똥간닦개</td>
                       <td>황민하</td>
                       <td>출금</td>
-                      <td><span class="format-money">1600000</span>원</td>
+                      <td><fmt:formatNumber value="2000000" type="currency"/>원</td>
                       <td></td>
                     </tr>
                     

@@ -4,20 +4,19 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-<link
-	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"
-	rel="stylesheet">
-<link
-	href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,600,700,800"
-	rel="stylesheet">
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.3.0/ekko-lightbox.css">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/animate.css">
-<link href="${pageContext.request.contextPath}/resources/css/main.css"
-	rel="stylesheet" />
+<%@ page import="java.util.Date" %>
+<%@ page import="java.text.SimpleDateFormat" %>
+<%
+	Date nowTime = new Date();
+	SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd");
+%>
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,600,700,800" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.3.0/ekko-lightbox.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/animate.css">
+<link href="${pageContext.request.contextPath}/resources/css/main.css" rel="stylesheet"/>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>	
 <style>
 body, ul {
@@ -55,8 +54,6 @@ a {
 	line-height: 30px;
 }
 
-
-
 * {
 	word-break: break-all;
 }
@@ -66,7 +63,7 @@ a {
 }
 
 .dd {
-	border: 1px solid blue;
+	
 	width: 75%;
 	margin: 0 auto;
 }
@@ -107,9 +104,10 @@ a {
 
 .btn-like {
 	width: 28%;
-	border: 1px solid skyblue;
 	background: white;
 	height: 34.6px;
+	border:0;
+	outline:0;
 }
 .btn-meker-question {
 	
@@ -239,7 +237,7 @@ a {
 
 </style>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>니가 그린 구름 그림</title>
 </head>
 <body>
 <jsp:include page="../common/customer_menubar.jsp"/>
@@ -250,20 +248,31 @@ a {
 		
 	})
 </script>
-	
 	<div id="outer" style="background:white;">
 	<!-- 리워드 헤더 이미지  -->
 	<div class="reward-header">
 		<p class="title-info">
-			<em style="color:#5cdede;">소셜.캠페인</em>
-			<strong>#몰카탐지카드몰가가드</strong>
-			프로젝트 
+			<h6 style="color:#5cdede;">
+				<c:choose>
+					<c:when test="${detail.category eq 'A1' }"> 테크,가전</c:when>
+					<c:when test="${detail.category eq 'A2' }"> 패션,잡화</c:when>
+					<c:when test="${detail.category eq 'A3' }"> 키즈</c:when>
+					<c:when test="${detail.category eq 'A4' }"> 여행,레저</c:when>
+					<c:when test="${detail.category eq 'A5' }"> 뷰티</c:when>
+					<c:when test="${detail.category eq 'A6' }"> 도서</c:when>
+					<c:when test="${detail.category eq 'A7' }"> 반려동물</c:when>
+					<c:when test="${detail.category eq 'A8' }"> 스포츠</c:when>
+					<c:when test="${detail.category eq 'A9' }"> 푸드</c:when>
+					<c:when test="${detail.category eq 'A10' }"> 홈리빙</c:when>
+					<c:otherwise>카테고리 미정</c:otherwise>
+				</c:choose> &emsp;
+			<strong style="color:white">${ detail.projectShortTitle }</strong>
+			</h6> 
+		<h2 class="title-header" style="color: white;"> ${ detail.projectTitle } </h2>
 		</p>
-		<h2 class="title-header" style="color: white;">
-			[소셜캠페인 참여1위]불법촬영 두려워마세요! 간편한 몰카방지카드 몰카드
-		</h2>
-	</div>\
-	<br />
+	</div>
+	
+	<br/>
 
 	<div class="tab-list">
 		<ul class="tab-story">
@@ -274,7 +283,8 @@ a {
 			<li><a href="categoryOneSupporter.ca" class="tab-link">서포터</a></li>
 		</ul>
 	</div>
-	<hr />
+	<hr/>
+	
 
 	<div class="reward-body">
 			<div class="dd">
@@ -291,16 +301,15 @@ a {
 				<br />
 				<br />
 
-				<div
-					style="padding: 20px; background: #eafbf7; background: rgba(0, 204, 163, 0.1)">
-					<p
-						style="color: #00cca3; font-size: 13px; linc-height: 20px; margin-bottom: 10px;">
-						<strong>목표 금액</strong> 500,000원 &nbsp; &nbsp; <strong>펀딩기간</strong>
-						2019.08.19-2019.09.06
+				<div style="padding: 20px; background: #eafbf7; background: rgba(0, 204, 163, 0.1)">
+					<p style="color: #00cca3; font-size: 13px; linc-height: 20px; margin-bottom: 10px;">
+						<strong>목표 금액</strong> ${ detail.money }원  &nbsp; &nbsp; 
+						<strong>펀딩 마감일</strong> ${ detail.endDate }까지
 					</p>
+					
 					<p style="color: #4a4a4a; font-size: 12px; line-height: 19px;">
-						<strong>100% 이상 모이면 펀딩이 성공되는 프로젝트</strong> <br /> 이 프로젝트는 펀딩
-						마감일까지 목표 금액이 100% 모이지 않으면 결제가 진행되지 않습니다.
+						<strong>100% 이상 모이면 펀딩이 성공되는 프로젝트</strong> <br /> 
+						이 프로젝트는 펀딩 마감일까지 목표 금액이 100% 모이지 않으면 결제가 진행되지 않습니다.
 					</p>
 				</div>
 				<!-- 스토리 영역 -->
@@ -388,6 +397,7 @@ a {
 							<strong>FAQ</strong> <br />
 						</p>
 						<p>
+
 							A.아닙니다. 아모플러스는 밤에 잠자기 전이나 자는 동안 착용하는 불편함이 없습니다. 낮에 학업, 가사 할동 그리고
 							근무하시면서 최소 30분 정도 착용하시면 됩니다. <br /> <br /> <strong>Q.의료기기
 								인가요?</strong> <br /> A.아닙니다. 아모플러스는 특정 질병을 치료. 진단 예방 등을 목적으로 하는 외료기기가
@@ -398,11 +408,20 @@ a {
 			</div>
 		</div>
 		</div>
+		
 
 		<!-- 오른쪽 영역 -->
 		<div class="opener-info">
 			<div class=state-box>
-				<p class="remin-day" style="font-size: 28px;">26일 남음</p>
+				<p class="remin-day"> 
+					<script>
+  	 					var now = new Date();
+  						var then = new Date('${ detail.endDate }');
+   						var gap = now.getTime() - then.getTime();
+   						gap = Math.floor(gap / (1000 * 60 * 60 * 24)) * -1;
+   						document.write('<div id="dday" style="font-size:34px;">D-<span style="font-size:34px;">' + gap+ "일 남음" + '</span></div>');
+					</script>
+				</p>
 				<hr />
 				<strong style="font-size: 24px;">100</strong> %달성
 				<p class="total-money" style="font-size: 24px;">
@@ -418,8 +437,10 @@ a {
 			<br />
 			<div class=btn-wrap>
 				<div class="btn-wrap-flex">
-					<button class="btn-like">
-						<i></i> 100
+												
+												<!-- 좋아요 기능 -->
+					<button class="btn-like" id="parcleup">
+						<img src="/yc/resources/images/empty_heart.png" style="width: 40px; height: auto;" id="heart">
 					</button>
 					<button class="btn-question">문의</button>
 
@@ -432,6 +453,54 @@ a {
 
 	</div>
 			</div>
+
+	
+   <div style="text-align: right;">
+       <a class="btn btn-outline-dark heart">좋아요
+           <img id="heart" src="">
+       </a>
+   </div>
+			
+	<script>
+    $(document).ready(function (){
+
+        var heartval = ${heart};
+
+        if(heartval>0) {
+            console.log(heartval);
+            $("#heart").prop("src", "yc/resources/images/empty_heart.png");
+            $(".heart").prop('name',heartval)
+        }
+        else {
+            console.log(heartval);
+            $("#heart").prop("src", "yc/resources/images/like_heart.png");
+            $(".heart").prop('name',heartval)
+        }
+
+        $(".heart").on("click", function () {
+
+            var that = $(".heart");
+
+            var sendData = {'projectNo' : '${detail.projectNo}','heart' : that.prop('name')};
+            $.ajax({
+                url :'likeUpdate.ca',
+                type :'POST',
+                data : sendData,
+                success : function(data){
+                    that.prop('name',data);
+                    if(data==1) {
+                        $('#heart').prop("src","yc/resources/images/empty_heart.png");
+                    }
+                    else{
+                        $('#heart').prop("src","yc/resources/images/like_heart.png");
+                    }
+
+
+                }
+            });
+        });
+    });
+</script>		
 			<hr />
 			<div class="project-meker-info">
 				<h3>메이커 정보</h3>
@@ -440,15 +509,10 @@ a {
 						<tr>
 							<td><button
 									style="border: 1px solid black; border-radius: 50%; background: white; width: 100px; height: 100px; margin-left: 10px;"></button></td>
-							<td style="">진수네 농산</td>
+							<td style="">${ detail.companyName }</td>
 						</tr>
 						<tr>
-							<td><br /></td>
-						</tr>
-						<tr>
-							<td colspan="2">메이커 평점 : 4.7
-								<hr />
-							</td>
+							<td><br/></td>
 						</tr>
 	
 						<tr>
@@ -463,9 +527,7 @@ a {
 						<tr>
 							<td colspan="2">
 								<p style="font-size: 12x;">
-									메이커 연락처 : 010-4231-5232
-				
-								</p>
+									메이커 연락처 : ${ detail.phone }</p>
 								
 							</td>
 						</tr>
@@ -562,26 +624,18 @@ a {
 			</div>
 			<!-- 신고 영역 -->
 			<div style="border:1px solid blue; font-size: 14px;">
-				<p class="">
-					신고하기란?
-				</p>
-				<p>
-					해당 프로젝트에 허위내용 및 지적재산권
-					<br />
-					을 침해하는 내용이 있다면 제보해주세요.
-				</p>
+				<p class=""> 신고하기란? </p>
+				<p> 해당 프로젝트에 허위내용 및 지적재산권 <br/> 을 침해하는 내용이 있다면 제보해주세요. </p>
 				<button onclick="showLyPop()" class="btn-declaration"  >
 					신고하러 가기
-					
 				</button>
 			</div>
 		</div>
 	
+
+	
 	<div style="width:100%; float:left;"><jsp:include page="../common/customer_footer.jsp"/></div>
 	</div>
-	
-	
-	
 	
 	
 <script type="text/javascript">
@@ -611,5 +665,6 @@ a {
 	});
 
 </script>
+
 </body>
 </html>

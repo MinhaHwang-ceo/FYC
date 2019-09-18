@@ -87,7 +87,7 @@
             <h6 class="collapse-header">PROJECT:</h6>
             <a class="collapse-item" href="${ pageContext.request.contextPath}/projectList.ad">프로젝트 심사</a>
             <a class="collapse-item" href="${ pageContext.request.contextPath}/project4.ad">프로젝트 현황</a>
-            <a class="collapse-item" href="${ pageContext.request.contextPath}/project5.ad">정산관리</a>
+            <a class="collapse-item" href="${ pageContext.request.contextPath}/adjustProjectList.ad">정산관리</a>
           </div>
         </div>
       </li>
