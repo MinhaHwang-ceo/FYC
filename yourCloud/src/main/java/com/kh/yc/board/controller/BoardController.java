@@ -63,10 +63,7 @@ public class BoardController {
 			e.printStackTrace();
 		}
 
-		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
-		ArrayList<Project> openlist = bs.selectOpenProject(pi);
-		request.setAttribute("openlist", openlist);
-		request.setAttribute("pi", pi);
+	
 
 		return "board/openExpectation/openExpectationMain";
 	}

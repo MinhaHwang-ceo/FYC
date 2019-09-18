@@ -4,6 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <meta charset="UTF-8">
 <link href="https://fonts.googleapis.com/css?family=Sunflower:300&display=swap" rel="stylesheet">
 <title>펀딩하기</title>
@@ -114,9 +115,90 @@ input[type="checkbox"]:checked + label span {
     background:url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/210284/check_radio_sheet.png) -19px top no-repeat;
 }
 </style>
+<script type="text/javascript">
+function addTable() {
+	
+	var html = "";
+	
+	html += '<table style="align:center; border: 1px solid red;" border="1">';
+	html += '    <tr>';
+	html += '        <td>';
+	html += '            <h6>금액</h6>';
+	html += '        </td>';
+	html += '        <td id="fno">&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" placeholder="12345" style="text-align:right;">원</td>';
+	html += '    </tr>';
+	html += '    <tr>';
+	html += '        <td>';
+	html += '            <h4>리워드명</h4>';
+	html += '        </td>';
+	html += '        <td id="fno">';
+	html += '            <input type="text" placeholder="예)ㅇㄴㅇㄴㅇ" id="">';
+	html += '        </td>';
+	html += '    </tr>';
+	html += '    <tr>';
+	html += '        <td>';
+	html += '            <h4>상세설명</h4>';
+	html += '        </td>';
+	html += '        <td id="fno"><input type="text" placeholder="예)더 가벼워진 권석이,동양 무술의 신비"></td>';
+	html += '    </tr>';
+	html += '    <tr>';
+	html += '        <td>';
+	html += '            <h4>옵션조건</h4>';
+	html += '        </td>';
+	html += '        <td id="fno">';
+	html += '            <input type="checkbox" id="c3" name="cc" />';
+	html += '            <label for="c3"><span></span>옵션 입력이 필요없는 상품입니다.</label><br>';
+	html += '            <input type="checkbox" id="c4" name="cc" />';
+	html += '            <label for="c4"><span></span>옵션 입력이 필요한 상품입니다.</label>&nbsp;&nbsp;&nbsp;<br>';
+	html += '            <textarea rows="5" cols="40" style="width:300px; height:100px;"></textarea>';
+	html += '        </td>';
+	html += '    </tr>';
+	html += '    <tr>';
+	html += '        <td>';
+	html += '            <h4>배송조건</h4>';
+	html += '        </td>';
+	html += '        <td id="fno">';
+	html += '            <input type="checkbox" id="c1" name="cc" />';
+	html += '            <label for="c1"><span></span>배송지 정보가 필요합니다.</label>';
+	html += '            <p>';
+	html += '        </td>';
+	html += '    </tr>';
+	html += '    <tr>';
+	html += '        <td>';
+	html += '            <h4>제한수량</h4>';
+	html += '        </td>';
+	html += '        <td id="fno">&nbsp;&nbsp;&nbsp;&nbsp;<input type="text">개</td>';
+	html += '    </tr>';
+	html += '    <tr>';
+	html += '        <td>';
+	html += '            <h4>발송시작일</h4>';
+	html += '        </td>';
+	html += '        <td id="fno"><input type="date" min="2017-08-15">';
+	html += '        </td>';
+	html += '    </tr>';
+	html += '    <tr>';
+	html += '        <td></td>';
+	html += '        <td>';
+	html += '            <button>저장하기</button>';
+	html += '            <a href="$FundingOpen6.fd"><button id="next">다음으로 ></button></a>';
+	html += '        </td>';
+	html += '    </tr>';
+	html += '</table>';
+	html += '<hr/>';
+	
+	
+	$("#inputBox2").html($("#inputBox2").html() + html);
+}
+</script>
 </head>
 <body>
 	
+	            <script>
+	                let today = new Date().toISOString().substr(0, 10);
+	                document.querySelector("#today").value = today;
+	
+	                document.querySelector("#today2").valueAsDate = new Date();
+	            </script>
 	<jsp:include page="../common/customer_menuList.jsp"/>
 	<br>
 	<div id="menu">
@@ -150,61 +232,7 @@ input[type="checkbox"]:checked + label span {
 	<br><br><br> 
 		<div id="inputBox2" align="center">
 		<br>
-		<table style="align:center">
-			<tr>
-				<td><h4>금액</h4></td>
-				<td id="fno">&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" placeholder="12345" style = "text-align:right;">원</td>
-			</tr>
-			<tr>
-				<td><h4>리워드명</h4></td>
-				<td id="fno">
-					<input type="text" placeholder="예)ㅇㄴㅇㄴㅇ" id="">
-				</td>
-			</tr>
-			<tr>
-				<td><h4>상세설명</h4></td>
-				<td id="fno"><input type="text" placeholder="예)더 가벼워진 권석이,동양 무술의 신비"></td>
-			</tr>
-			<tr>
-				<td><h4>옵션조건</h4></td>
-				<td id="fno">
-				<input type="checkbox" id="c3" name="cc" />
-   				<label for="c3"><span></span>옵션 입력이 필요없는 상품입니다.</label><br>
-   				<input type="checkbox" id="c4" name="cc" />
-   				<label for="c4"><span></span>옵션 입력이 필요한 상품입니다.</label>&nbsp;&nbsp;&nbsp;<br>
-   				<textarea rows="5" cols="40" style="width:300px; height:100px;"></textarea> 
-			</td>
-			</tr>
-			<tr>
-				<td><h4>배송조건</h4></td>
-				<td id="fno">
-				<input type="checkbox" id="c1" name="cc" />
-   				<label for="c1"><span></span>배송지 정보가 필요합니다.</label>
-   				<p>
-				</td>
-			</tr>
-			<tr>
-				<td><h4>제한수량</h4></td>
-			<td id="fno">&nbsp;&nbsp;&nbsp;&nbsp;<input type="text">개</td>
-			</tr>
-			<tr>
-				<td><h4>발송시작일</h4></td>
-				<td id="fno"><input type="date" min="2017-08-15">
-				<script>
-				let today = new Date().toISOString().substr(0, 10);
-				document.querySelector("#today").value = today;
-
-				document.querySelector("#today2").valueAsDate = new Date();
-				</script></td>
-			</tr>
-			<tr>
-			<td></td>
-				<td>
-				<button>저장하기</button>
-				<a href="${ contextPath }/FundingOpen6.fd"><button id="next">다음으로 ></button></a>
-				</td>
-			</tr>
-		</table>
+		
 		</div>
 	
 	<jsp:include page="../common/customer_footer.jsp"/>

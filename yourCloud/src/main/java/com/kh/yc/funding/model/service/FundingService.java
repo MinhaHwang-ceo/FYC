@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.kh.yc.admin.model.vo.Project;
+import com.kh.yc.funding.model.vo.Attachment;
 import com.kh.yc.member.model.vo.Member;
 
 @Service
@@ -25,9 +26,24 @@ public interface FundingService{
 	
 	//펀딩오븐 기본 정보 저장하기
 	int UpdateInfo(Project p);
+	
+	//파일인설트
+	int insertFile(Attachment fileVO);
+	
+	//기본정보 입력
+	List<Project>selectbasicInfo();
 
+	String selectFile(Project p);
+
+	int updateFile(Attachment fileVO);
+
+	int selectFileList(Project p);
+	
+	
 
 	
 
+	
+		
 	
 }
