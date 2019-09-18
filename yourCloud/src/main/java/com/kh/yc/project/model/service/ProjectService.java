@@ -19,6 +19,7 @@ public interface ProjectService {
 	//나의 메이커 게시글조회용
 	public ArrayList<Project> selectProjectList2(PageInfo pi, Member m) throws ProjectSelectListException;
 	//서포터 정보 조회
-	ArrayList<Project> selectSupportList(int projectNo);;
+	ArrayList<Project> selectSupportList(int projectNo);
+	ArrayList<Project> memberCategory(String category);;
 
 }

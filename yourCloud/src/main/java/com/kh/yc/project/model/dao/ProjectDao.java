@@ -21,5 +21,6 @@ public interface ProjectDao {
 	public ArrayList<Project> selectBoardList2(SqlSessionTemplate sqlSession, PageInfo pi, Member m) throws ProjectSelectListException;
 	//서포트 조회용
 	ArrayList<Project> selectSupportList(SqlSessionTemplate sqlSession, int projectNo);
+	ArrayList<Project> memberCategory(SqlSessionTemplate sqlSession, String category);
 
 }

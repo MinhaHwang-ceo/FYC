@@ -1,15 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
 </head>
 <body>
 
-<div class="outer" style="margin-left: 400px">
-		<table class="table1">
+	<div class="outer" style="width: 100%;">
+		<table class="table1" align="center">
 			<tr>
 				<td><input type="button" class="circle"
 					onclick="location.href='#'" name=""
