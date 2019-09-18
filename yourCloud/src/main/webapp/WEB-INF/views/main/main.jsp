@@ -1,9 +1,9 @@
 <%@page import="com.kh.yc.project.model.vo.Project"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8" import="java.util.*"%>
+   pageEncoding="UTF-8" import="java.util.*"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%
-	ArrayList<Project> list = (ArrayList) request.getAttribute("list");
+   ArrayList<Project> list = (ArrayList) request.getAttribute("list");
 %>
 <html>
 
@@ -12,17 +12,33 @@
 <meta charset="utf-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/animate.css">
+   href="${pageContext.request.contextPath}/resources/css/animate.css">
 <link href="${pageContext.request.contextPath}/resources/css/main.css"
-	rel="stylesheet" />
+   rel="stylesheet" />
 
 <title>more</title>
 </head>
 <body>
 	<jsp:include page="../common/customer_menubar.jsp" />
 	<jsp:include page="../common/customer_menuList.jsp" />
+	<button type="button" onclick="sign();">서명하기</button>
+	<script>
+		function sign() {
+			var userNo = '${ sessionScope.loginUser.userNo }';
+			
+			$.ajax({
+				url:"getPayStatus.fd",
+				type:"GET",
+				data:{userNo:userNo},
+				success:function(data){
+					console.log(data);
+				},error:function(err){
+					console.log(err);
+				}
+			});
+		}
+	</script>
 	<!--Section-1-->
 	<input type="button" onclick="location.href='funding_2.bo'" />
 	<section class="section-1">
@@ -97,106 +113,102 @@
 		</div>
 	</section>
 	<hr>
-	<c:choose>
-	<c:when test="${  sessionScope.loginUser.memberCategory eq 'NULL' }">
-		<section class="section-4">
-			<div class="container">
-				<div class="row heading">
-					<div class="col-sm-6 col-12">
-						<h3>
-							회원님께 추천하는 <span>프로젝트 입니다</span>
-						</h3>
-					</div>
-					<div class="col-sm-6 col-12">
-						<a href="category.bo" class="btn btn-success">더 많은 프로젝트 보러가기</a>
-					</div>
+	<section class="section-4">
+		<div class="container">
+			<div class="row heading">
+				<div class="col-sm-6 col-12">
+					<h3>
+						회원님께 추천하는 <span>프로젝트 입니다</span>
+					</h3>
 				</div>
-				<div class="row">
-					<div class="col-lg-4 col-sm-12 col-12 box-1" data-aos="fade-right"
-						data-aos-delay="300">
-						<figure class="figure">
-							<a href="blog.html"><img src="/yc/resources/images/phan.PNG"
-								class="figure-img img-fluid" alt="blog"></a>
-							<figcaption class="figure-caption">
-								<h2>
-									<a href="blog.html"> <%=list.get(0).getProjectTitle()%>
-									</a>
-								</h2>
-								<p><%=list.get(0).getSummary()%></p>
-								<a href="blog_single.html" class="btn btn-success">+ more</a>
-							</figcaption>
-						</figure>
-					</div>
-					<div class="col-lg-8 col-sm-12 col-12" data-aos="fade-left"
-						data-aos-delay="300">
-						<div class="row">
-							<div class="col-sm-6 col-12 box-2">
-								<figure class="figure">
-									<a href="blog.html"><img
-										src="/y/resources/images/hwnag.PNG"
-										class="figure-img img-fluid" alt="blog"></a>
-								</figure>
-							</div>
-							<div class="col-sm-6 col-12 box-3">
-								<h4>
-									<a href="blog.html"><%=list.get(1).getProjectTitle()%></a>
-								</h4>
-								<h5><%=list.get(1).getSummary()%></h5>
-								<a href="blog_single.html" class="btn btn-success">+ more</a>
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-sm-6 col-12 box-4">
-								<figure class="figure">
-									<a href="blog.html"><img
-										src="/yc/resources/images/holding.PNG"
-										class="figure-img img-fluid" alt="blog"></a>
-								</figure>
-							</div>
-							<div class="col-sm-6 col-12 box-5">
-								<h4>
-									<a href="blog.html"><%=list.get(2).getProjectTitle()%></a>
-								</h4>
-								<h5><%=list.get(2).getSummary()%></h5>
-								<a href="blog_single.html" class="btn btn-success">+ more</a>
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-sm-6 col-12 box-6">
-								<figure class="figure">
-									<a href="blog.html"><img src="/yc/resources/images/chi.PNG"
-										class="figure-img img-fluid" alt="blog"></a>
-								</figure>
-							</div>
-							<div class="col-sm-6 col-12 box-7">
-								<h4>
-									<a href="blog.html"><%=list.get(3).getProjectTitle()%></a>
-								</h4>
-								<h5><%=list.get(3).getSummary()%></h5>
-								<a href="blog_single.html" class="btn btn-success">+ more</a>
-							</div>
-						</div>
-					</div>
+				<div class="col-sm-6 col-12">
+					<a href="category.bo" class="btn btn-success">더 많은 프로젝트 보러가기</a>
 				</div>
 			</div>
-		</section>
-	</c:when>
-	<c:otherwise>
-		<script>
-		$(function(){
-			var category = '${sessionScope.loginUser.memberCategory}';
-			$.ajax(){
-				url:"memberCategory.ca",
-				data:{"category":category},
-				type:"GET",
-				success:function(data){
-					alert(data);
-				}
-			};
-		});
-		</script>
-	</c:otherwise>
-	</c:choose>
+			<div class="row">
+				<div class="col-lg-4 col-sm-12 col-12 box-1" data-aos="fade-right"
+					data-aos-delay="300">
+					<figure class="figure">
+						<a href="blog.html"><img src="/yc/resources/images/phan.PNG"
+							class="figure-img img-fluid" alt="blog"></a>
+						<figcaption class="figure-caption">
+							<h2>
+								<a href="blog.html"> <%=list.get(0).getProjectTitle()%>
+								</a>
+							</h2>
+							<p><%=list.get(0).getSummary()%></p>
+							<a href="blog_single.html" class="btn btn-success">+ more</a>
+						</figcaption>
+					</figure>
+				</div>
+				<%
+					if (list.size() >= 2) {
+				%>
+				<div class="col-lg-8 col-sm-12 col-12" data-aos="fade-left"
+					data-aos-delay="300">
+					<div class="row">
+						<div class="col-sm-6 col-12 box-2">
+							<figure class="figure">
+								<a href="blog.html"><img src="/y/resources/images/hwnag.PNG"
+									class="figure-img img-fluid" alt="blog"></a>
+							</figure>
+						</div>
+						<div class="col-sm-6 col-12 box-3">
+							<h4>
+								<a href="blog.html"><%=list.get(1).getProjectTitle()%></a>
+							</h4>
+							<h5><%=list.get(1).getSummary()%></h5>
+							<a href="blog_single.html" class="btn btn-success">+ more</a>
+						</div>
+					</div>
+					<%
+						if (list.size() >= 3) {
+					%>
+					<div class="row">
+						<div class="col-sm-6 col-12 box-4">
+							<figure class="figure">
+								<a href="blog.html"><img
+									src="/yc/resources/images/holding.PNG"
+									class="figure-img img-fluid" alt="blog"></a>
+							</figure>
+						</div>
+						<div class="col-sm-6 col-12 box-5">
+							<h4>
+								<a href="blog.html"><%=list.get(2).getProjectTitle()%></a>
+							</h4>
+							<h5><%=list.get(2).getSummary()%></h5>
+							<a href="blog_single.html" class="btn btn-success">+ more</a>
+						</div>
+					</div>
+					<%
+						}
+							if (list.size() >= 4) {
+					%>
+					<div class="row">
+						<div class="col-sm-6 col-12 box-6">
+							<figure class="figure">
+								<a href="blog.html"><img src="/yc/resources/images/chi.PNG"
+									class="figure-img img-fluid" alt="blog"></a>
+							</figure>
+						</div>
+						<div class="col-sm-6 col-12 box-7">
+							<h4>
+								<a href="blog.html"><%=list.get(3).getProjectTitle()%></a>
+							</h4>
+							<h5><%=list.get(3).getSummary()%></h5>
+							<a href="blog_single.html" class="btn btn-success">+ more</a>
+						</div>
+					</div>
+					<%
+						}
+					%>
+				</div>
+				<%
+					}
+				%>
+			</div>
+		</div>
+	</section>
 	<hr>
 	<section class="section-4">
 		<div class="container">

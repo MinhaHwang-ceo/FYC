@@ -3,7 +3,7 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-  <mapper namespace="Project2">
+<mapper namespace="Project2">
 	<resultMap type="com.kh.yc.project.model.vo.Project" id="ProjectList">
 		<id property="projectNo" column="PROJECT_NO"/>
 		<result property="category" column="CATEGORY"/>
@@ -35,86 +35,153 @@
 		<result property="expected" column="EXPECTED"/>
 		<result property="memberNo" column="MEMBER_NO"/>
 		<result property="companyName" column="COMPANY_NAME"/>
-	</resultMap>
-	
-	<resultMap type="com.kh.yc.project.model.vo.Project" id="ProjectDetail">
-		<id property="projectNo" column="PROJECT_NO"/>
-		<result property="category" column="CATEGORY"/>
-		<result property="success" column="SUCCESS"/>
-		<result property="judgeStatus" column="JUDGE_STATUS"/>
-		<result property="progressStatus" column="PROGRESS_STATUS"/>
-		<result property="agreement" column="AGREEMENT"/>
-		<result property="reason" column="REASON"/>
-		<result property="adminNo" column="ADMIN_NO"/>
-		<result property="summary" column="SUMMARY"/>
-		<result property="prifileImg" column="PROFILE_IMG"/>
-		<result property="social" column="SOCIAL"/>
-		<result property="site" column="SITE"/>
-		<result property="email" column="EMAIL"/>
-		<result property="phone" column="PHONE"/>
-		<result property="fees" column="FEES"/>
-		<result property="makerDiv" column="MAKER_DIV"/>
-		<result property="agentName" column="AGENT_NAME"/>
-		<result property="agentEmail" column="AGENT_EMAIL"/>
-		<result property="projectTitle" column="PROJECT_TITLE"/>
-		<result property="projectShortTitle" column="PROJECT_SHORT_TITLE"/>
-		<result property="money" column="MONEY"/>
-		<result property="mainImg" column="MAIN_IMG"/>
-		<result property="document" column="DOCUMENT"/>
-		<result property="progress" column="PROGRESS"/>
-		<result property="delivery" column="DELIVERY"/>
-		<result property="endDate" column="END_DATE"/>
-		<result property="adult" column="ADULT"/>
-		<result property="expected" column="EXPECTED"/>
-		<result property="userNo" column="MEMBER_NO"/>
+		<result property="categoryDiv" column="CATEGORY_DIV"/>
+		<result property="projectOpen" column="PROJECT_OPEN"/>
 	</resultMap>
 
-	
+	<resultMap type="com.kh.yc.project.model.vo.Project" id="ProjectDetail">
+		<id property="projectNo" column="PROJECT_NO" />
+		<result property="category" column="CATEGORY" />
+		<result property="success" column="SUCCESS" />
+		<result property="judgeStatus" column="JUDGE_STATUS" />
+		<result property="progressStatus" column="PROGRESS_STATUS" />
+		<result property="agreement" column="AGREEMENT" />
+		<result property="reason" column="REASON" />
+		<result property="adminNo" column="ADMIN_NO" />
+		<result property="summary" column="SUMMARY" />
+		<result property="prifileImg" column="PROFILE_IMG" />
+		<result property="social" column="SOCIAL" />
+		<result property="site" column="SITE" />
+		<result property="email" column="EMAIL" />
+		<result property="phone" column="PHONE" />
+		<result property="fees" column="FEES" />
+		<result property="makerDiv" column="MAKER_DIV" />
+		<result property="agentName" column="AGENT_NAME" />
+		<result property="agentEmail" column="AGENT_EMAIL" />
+		<result property="projectTitle" column="PROJECT_TITLE" />
+		<result property="projectShortTitle" column="PROJECT_SHORT_TITLE" />
+		<result property="money" column="MONEY" />
+		<result property="mainImg" column="MAIN_IMG" />
+		<result property="document" column="DOCUMENT" />
+		<result property="progress" column="PROGRESS" />
+		<result property="delivery" column="DELIVERY" />
+		<result property="endDate" column="END_DATE" />
+		<result property="adult" column="ADULT" />
+		<result property="expected" column="EXPECTED" />
+		<result property="userNo" column="MEMBER_NO" />
+	</resultMap>
+	<resultMap type="com.kh.yc.category.model.vo.Category" id="CategoryList">
+		<id property="category" column="CATEGORY"/>
+			<result property="categoryDiv" column="CATEGORY_DIV"/>
+	</resultMap>
+	<resultMap type="com.kh.yc.project.model.vo.OpenAlarm" id="OpenAlarmList">
+		<id property="memberNo" column="MEMBER_NO"/>
+			<result property="memberPhone" column="MEMBER_PHONE"/>
+			<result property="projectOpen" column="PROJECT_OPEN"/>
+			<result property="projectNo" column="PROJECT_NO"/> 
+	</resultMap>
+
 	<select id="selectListCount" resultType="_int">
 		SELECT COUNT(*)
-		FROM PROJECT
-	</select>
-	
-	<select id="selectProjectList" parameterType="java.util.Map" resultMap="ProjectList">
-		SELECT  P.PROJECT_NO, P.PROJECT_TITLE,P.MONEY,M.COMPANY_NAME,P.END_DATE
-		FROM    PROJECT P
-		JOIN    MEMBER M ON (P.MEMBER_NO = M.MEMBER_NO)
-		ORDER BY PROJECT_NO DESC
-	</select> 
-	<select id="getProject" resultMap="ProjectList">
-	    SELECT
-	        *
-	    FROM (
-	        SELECT
-				PROJECT_NO, CATEGORY, SUMMARY, PROJECT_TITLE, RANK() OVER (ORDER BY PROJECT_NO DESC) RANK
-			FROM
-				PROJECT P
-			WHERE
-				JUDGE_STATUS = '통과')
-		<!-- [CDATA[
-		WHERE
-			RANK < 5
-		]]-->
+		FROM
+		PROJECT
 	</select>
 
-	<select id="detailBoard" resultType="hashmap" resultMap="ProjectDetail">
-		SELECT * 
+	<select id="selectProjectList" parameterType="java.util.Map"
+		resultMap="ProjectList">
+		SELECT P.PROJECT_NO,
+		P.PROJECT_TITLE,P.MONEY,M.COMPANY_NAME,P.END_DATE
+		FROM PROJECT P
+		JOIN
+		MEMBER M ON (P.MEMBER_NO = M.MEMBER_NO)
+		ORDER BY PROJECT_NO DESC
+	</select>
+	<select id="getProject" resultMap="ProjectList">
+		SELECT
+		*
+		FROM (
+		SELECT
+		PROJECT_NO, CATEGORY, SUMMARY, PROJECT_TITLE, RANK() OVER (ORDER BY PROJECT_NO
+		DESC) RANK
+		FROM
+		PROJECT P
+		WHERE
+		JUDGE_STATUS = '통과')
+		<!-- [CDATA[ WHERE RANK < 5 ]] -->
+	</select>
+
+
+	<select id="detailProject" resultMap="ProjectList" parameterType="java.lang.Integer">
+		SELECT P.PROJECT_NO, P.CATEGORY ,P.SUMMARY , P.PROFILE_IMG , P.SOCIAL,
+		P.SITE, P.EMAIL, P.PHONE, P.FEES, P.MAKER_DIV, P.AGENT_NAME, P.AGENT_EMAIL,
+		P.PROJECT_TITLE, P.PROJECT_SHORT_TITLE, P.MONEY, P.MAIN_IMG, P.DELIVERY,
+		M.COMPANY_NAME,P.END_DATE,P.MEMBER_NO,P.JUDGE_STATUS,P.PROGRESS_STATUS
+		FROM PROJECT P
+		JOIN MEMBER M ON (P.MEMBER_NO = M.MEMBER_NO)
+
+	<select id="detailBoard" resultType="hashmap"
+		resultMap="ProjectDetail">
+		SELECT *
 		FROM PROJECT
+
 		WHERE PROJECT_NO = #{projectNo}
 	</select>
-	
-	<select id="selectProjectList2" resultMap="ProjectList" parameterType="java.util.Map">
-	SELECT P.PROJECT_NO, P.PROJECT_TITLE,P.MONEY,M.COMPANY_NAME,P.END_DATE,P.MEMBER_NO,P.JUDGE_STATUS,P.PROGRESS_STATUS
-	FROM PROJECT P
-	JOIN MEMBER M ON (P.MEMBER_NO = M.MEMBER_NO)
-	ORDER BY PROJECT_NO DESC 
+
+	<select id="selectProjectList2" resultMap="ProjectList"
+		parameterType="java.util.Map">
+		SELECT P.PROJECT_NO,
+		P.PROJECT_TITLE,P.MONEY,M.COMPANY_NAME,P.END_DATE,P.MEMBER_NO,P.JUDGE_STATUS,P.PROGRESS_STATUS
+		FROM PROJECT P
+		JOIN MEMBER M ON (P.MEMBER_NO = M.MEMBER_NO)
+		ORDER BY PROJECT_NO DESC
+	</select>
+	<select id="selectOpenProject" resultMap="ProjectList" parameterType="java.util.Map">
+		SELECT P.PROJECT_NO, P.PROJECT_TITLE,P.MAIN_IMG, P.CATEGORY, P.PROJECT_SHORT_TITLE, M.COMPANY_NAME, C.CATEGORY_DIV
+		FROM PROJECT P
+	    LEFT JOIN CATEGORY C ON (P.CATEGORY = C.CATEGORY)
+	    LEFT JOIN MEMBER M ON (P.MEMBER_NO = M.MEMBER_NO)
+	    ORDER BY PROJECT_NO DESC
+	</select>
+	<select id="selectDetailProject" resultMap="ProjectList" parameterType="java.util.Map">
+		SELECT P.PROJECT_NO, P.PROJECT_TITLE, p.SUMMARY, M.COMPANY_NAME, O.PROJECT_OPEN
+		FROM PROJECT P
+		LEFT JOIN MEMBER M ON(P.MEMBER_NO = M.MEMBER_NO)
+		LEFT JOIN OPEN_ALARM O ON(M.MEMBER_NO = O.MEMBER_NO)
+		WHERE P.PROJECT_NO = #{projectNo}
 	</select>
 
-	<select id="selectSupportList" resultMap="ProjectList" parameterType="java.util.Map">
-	SELECT P.PROJECT_NO, P.PROJECT_TITLE,P.MONEY,M.COMPANY_NAME,P.END_DATE,M.MEMBER_NO
-	FROM PROJECT P
-	JOIN MEMBER M ON (P.MEMBER_NO = M.MEMBER_NO)
-	WHERE P.PROJECT_NO=#{projectNo}
+	<select id="selectSupportList" resultMap="ProjectList"
+		parameterType="java.util.Map">
+		SELECT P.PROJECT_NO,
+		P.PROJECT_TITLE,P.MONEY,M.COMPANY_NAME,P.END_DATE,M.MEMBER_NO
+		FROM PROJECT P
+		JOIN MEMBER M ON (P.MEMBER_NO = M.MEMBER_NO)
+		WHERE P.PROJECT_NO=#{projectNo}
 	</select>
-
+	<select id="memberCategory" resultMap="ProjectList">
+		SELECT
+			*
+		FROM
+			PROJECT
+		WHERE
+			CATEGORY = #{category}
+	</select>
+	<update id="signUser" parameterType="_int">
+		UPDATE
+			PROJECT
+		SET
+			PROGRESS_STATUS = '성공'
+		WHERE
+			PROJECT_NO = #{bNo}
+		AND
+			MEMBER_NO = #{userNo}
+	</update>
+	<insert id="signFile">
+	INSERT INTO
+	ATTACHMENT(ATTACHMENT_NO, ORIGIN_FILE_NAME, FILE_SRC, NEW_FILE_NAME
+			 , SAVE_DATE, ATTACHMENT_DIV, BOARD_NO, PROJECT_NO, FILE_LEVEL)
+	VALUES(
+		SEQ_ATTACHMENTNO.NEXTVAL, #{originFileName}, #{fileSrc}, #{newFileName}, SYSDATE, '프로젝트', NULL, #{projectNo}, 1
+	)
+	</insert>
 </mapper>

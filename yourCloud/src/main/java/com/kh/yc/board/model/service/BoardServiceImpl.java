@@ -96,5 +96,10 @@ public class BoardServiceImpl implements BoardService {
 	public ArrayList<Project> getProject() {
 		return bd.getProject(sqlSession);
 	}
+	@Override
+	public Project selectDetailProject(int projectNoInt) {
+
+		return bd.selectDetailProject(sqlSession, projectNoInt);
+	}
 
 }

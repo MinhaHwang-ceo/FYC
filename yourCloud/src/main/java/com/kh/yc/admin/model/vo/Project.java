@@ -40,6 +40,8 @@ public class Project implements java.io.Serializable{
 	private Date adjustDate;
 	private int adjustMoney;
 	private String companyName;
+	private String adjustStatus;
+	private String categoryDiv;
 	
 	private List<Attachment> attachment;
 	 
@@ -53,8 +55,9 @@ public class Project implements java.io.Serializable{
 			int agreement, String reason, int adminNo, String summary, String prifileImg, String social, String site,
 			String email, String phone, String fees, String makerDiv, String agentName, String agentEmail,
 			String projectTitle, String projectShortTitle, int money, String mainImg, String document, String progress,
-			String delivery, Date endDate, String adult, int userNo, int reportCount, int payNo, int adjustNo,
-			Date adjustDate, int adjustMoney, String companyName, List<Attachment> attachment) {
+			String delivery, Date endDate, String adult, int userNo, int reportCount, String ovenComing, int payNo,
+			int adjustNo, Date adjustDate, int adjustMoney, String companyName, String adjustStatus, String categoryDiv, List<Attachment> attachment) {
+
 		super();
 		this.projectNo = projectNo;
 		this.category = category;
@@ -91,6 +94,9 @@ public class Project implements java.io.Serializable{
 		this.adjustMoney = adjustMoney;
 		this.companyName = companyName;
 		this.attachment = attachment;
+		this.adjustStatus = adjustStatus;
+		this.categoryDiv = categoryDiv;
+
 	}
 
 
@@ -502,7 +508,6 @@ public class Project implements java.io.Serializable{
 	}
 
 
-
 	public List<Attachment> getAttachment() {
 		return attachment;
 	}
@@ -513,7 +518,20 @@ public class Project implements java.io.Serializable{
 		this.attachment = attachment;
 	}
 
+	public String getAdjustStatus() {
+		return adjustStatus;
+	}
 
+	public void setAdjustStatus(String adjustStatus) {
+		this.adjustStatus = adjustStatus;
+
+	public String getCategoryDiv() {
+		return categoryDiv;
+	}
+
+	public void setCategoryDiv(String categoryDiv) {
+		this.categoryDiv = categoryDiv;
+	}
 
 	@Override
 	public String toString() {
@@ -525,13 +543,9 @@ public class Project implements java.io.Serializable{
 				+ projectTitle + ", projectShortTitle=" + projectShortTitle + ", money=" + money + ", mainImg="
 				+ mainImg + ", document=" + document + ", progress=" + progress + ", delivery=" + delivery
 				+ ", endDate=" + endDate + ", adult=" + adult + ", userNo=" + userNo + ", reportCount=" + reportCount
-				+ ", payNo=" + payNo + ", adjustNo=" + adjustNo + ", adjustDate=" + adjustDate + ", adjustMoney="
-				+ adjustMoney + ", companyName=" + companyName + ", attachment=" + attachment + "]";
+				+ ", ovenComing=" + ovenComing + ", payNo=" + payNo + ", adjustNo=" + adjustNo + ", adjustDate="
+				+ adjustDate + ", adjustMoney=" + adjustMoney + ", companyName=" + companyName + ", adjustStatus="
+				+ adjustStatus + categoryDiv  + ", attachment=" + attachment + "]";
 	}
-	
-
-
-	
-
 	
 }

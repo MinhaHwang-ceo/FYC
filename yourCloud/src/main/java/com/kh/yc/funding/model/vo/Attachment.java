@@ -7,17 +7,16 @@ public class Attachment implements java.io.Serializable {
 	private String originFileName;
 	private String fileSrc;
 	private String newFileName;
-	private Date  saveDate;
+	private Date saveDate;
 	private String attachmentDiv;
 	private int boardNo;
 	private int projectNo;
 	private String fileLevel;
-	
+
 	public Attachment() {}
 
 	public Attachment(int attachmentNo, String originFileName, String fileSrc, String newFileName, Date saveDate,
 			String attachmentDiv, int boardNo, int projectNo, String fileLevel) {
-		super();
 		this.attachmentNo = attachmentNo;
 		this.originFileName = originFileName;
 		this.fileSrc = fileSrc;
@@ -108,8 +107,5 @@ public class Attachment implements java.io.Serializable {
 				+ attachmentDiv + ", boardNo=" + boardNo + ", projectNo=" + projectNo + ", fileLevel=" + fileLevel
 				+ "]";
 	}
-	
 
-	
-	
 }

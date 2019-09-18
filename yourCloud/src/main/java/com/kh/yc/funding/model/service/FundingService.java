@@ -1,13 +1,11 @@
 package com.kh.yc.funding.model.service;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.springframework.stereotype.Service;
 
 import com.kh.yc.admin.model.vo.Project;
 import com.kh.yc.funding.model.vo.Attachment;
 import com.kh.yc.member.model.vo.Member;
+import com.kh.yc.project.model.vo.Sign;
 
 @Service
 public interface FundingService{
@@ -38,8 +36,11 @@ public interface FundingService{
 	int updateFile(Attachment fileVO);
 
 	int selectFileList(Project p);
-	
-	
+
+	int signUser(Sign s);
+
+	int signFile(Attachment a);
+
 
 	
 
