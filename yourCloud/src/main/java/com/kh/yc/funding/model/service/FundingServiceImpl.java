@@ -66,6 +66,46 @@ public class FundingServiceImpl implements FundingService{
 		}
 		return result;
 	}
+	
+	//이미지 파일 업로드
+	@Override
+	public int insertFile(Attachment fileVO) {
+		
+		int filePath = fd.insertFile(sqlSession,fileVO);
+		
+		return filePath;
+	}
+	
+	//기본정보
+	@Override
+	public List<Project> selectbasicInfo() {
+		
+		return fd.selectbasicInfo(sqlSession);
+	}
+
+	@Override
+	public String selectFile(Project p) {
+		// TODO Auto-generated method stub
+		return fd.selectFile(sqlSession, p);
+	}
+
+	@Override
+	public int updateFile(Attachment fileVO) {
+		// TODO Auto-generated method stub
+		return fd.updateFile(sqlSession, fileVO);
+	}
+
+	@Override
+	public int selectFileList(Project p) {
+		// TODO Auto-generated method stub
+		return fd.selectFileList(sqlSession, p);
+	}
+
+	
+
+	
+
+	
 
 	@Override
 	public int signUser(Sign s) {

@@ -185,7 +185,7 @@ input[type="checkbox"]:checked + label span {
 			<td></td>
 				<td>
 				<button>저장하기</button>
-				<a href="${ contextPath }/FundingOpen8.fd"><button id="next">다음으로 ></button></a>
+				<a href="FundingOpen8.fd"><button id="next">다음으로 ></button></a>
 				</td>
 			</tr>
 		</table>

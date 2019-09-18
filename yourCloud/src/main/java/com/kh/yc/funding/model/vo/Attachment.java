@@ -13,10 +13,7 @@ public class Attachment implements java.io.Serializable {
 	private int projectNo;
 	private String fileLevel;
 
-	public Attachment() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
+	public Attachment() {}
 
 	public Attachment(int attachmentNo, String originFileName, String fileSrc, String newFileName, Date saveDate,
 			String attachmentDiv, int boardNo, int projectNo, String fileLevel) {

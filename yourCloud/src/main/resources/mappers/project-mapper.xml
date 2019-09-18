@@ -2,7 +2,10 @@
 
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  
+  "http://mybatis.o
+  rg/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="Project">
 	<resultMap type="com.kh.yc.admin.model.vo.Project"
 		id="ProjectResultSet">
@@ -41,11 +44,61 @@
 		<result property="adjustMoney" column="ADJUST_MONEY" />
 		<result property="adminNo" column="ADMIN_NO" />
 		<result property="companyName" column="COMPANY_NAME" />
-		<result property="adjustStatus" column="ADJUST_STATE" />
-
+		
 	</resultMap>
-
-
+	
+	<resultMap type="com.kh.yc.funding.model.vo.Attachment" id="AttachmentResultSet">
+		<id property="rid" column="RID"/>
+		<result property="rContent" column="RCONTENT"/>
+		<result property="refBid" column="REF_BID"/>
+		<result property="rWriter" column="RWRITER"/>
+		<result property="userName" column="USER_NAME"/>
+		<result property="createDate" column="CREATE_DATE"/>
+		<result property="modifyDate" column="MODIFY_DATE"/>
+		<result property="status" column="STATUS"/>
+	</resultMap>
+	
+	<resultMap type="com.kh.yc.admin.model.vo.Project"
+		id="ProjectResultSet2">
+		<id property="projectNo" column="PROJECT_NO" />
+		<result property="category" column="CATEGORY" />
+		<result property="success" column="SUCCESS" />
+		<result property="judgeStatus" column="JUDGE_STATUS" />
+		<result property="progressStatus" column="PROGRESS_STATUS" />
+		<result property="agreement" column="AGREEMENT" />
+		<result property="reason" column="REASON" />
+		<result property="adminNo" column="ADMIN_NO" />
+		<result property="summary" column="SUMMARY" />
+		<result property="prifileImg" column="PROFILE_IMG" />
+		<result property="social" column="SOCIAL" />
+		<result property="site" column="SITE" />
+		<result property="email" column="EMAIL" />
+		<result property="phone" column="PHONE" />
+		<result property="fees" column="FEES" />
+		<result property="makerDiv" column="MAKER_DIV" />
+		<result property="agentName" column="AGENT_NAME" />
+		<result property="agentEmail" column="AGENT_EMAIL" />
+		<result property="projectTitle" column="PROJECT_TITLE" />
+		<result property="projectShortTitle" column="PROJECT_SHORT_TITLE" />
+		<result property="money" column="MONEY" />
+		<result property="mainImg" column="MAIN_IMG" />
+		<result property="document" column="DOCUMENT" />
+		<result property="progress" column="PROGRESS" />
+		<result property="delivery" column="DELIVERY" />
+		<result property="endDate" column="END_DATE" />
+		<result property="adult" column="ADULT" />
+		<result property="userNo" column="MEMBER_NO" />
+		<result property="reportCount" column="REPORT_COUNT" />
+		<result property="payNo" column="PAY_NO" />
+		<result property="adjustNo" column="ADJUST_NO" />
+		<result property="adjustDate" column="ADJUST_DATE" />
+		<result property="adjustMoney" column="ADJUST_MONEY" />
+		<result property="adminNo" column="ADMIN_NO" />
+		<result property="companyName" column="COMPANY_NAME" />
+		
+	<collection property="Attachment" javaType="java.util.List" resultMap="AttachmentResultSet"/>
+	</resultMap>
+	
 	<update id="updateProject" parameterType="Project">
 		UPDATE PROJECT
 		SET PROGRESS_STATUS = #{progressStatus}
@@ -77,8 +130,8 @@
 		SELECT *
 		FROM PROJECT P
 		INNER JOIN ADJUST A ON A.MEMBER_NO = P.MEMBER_NO
-		INNER JOIN MEMBER M ON M.MEMBER_NO = P.MEMBER_NO
-		WHERE PROGRESS_STATUS = '성공' AND JUDGE_STATUS = '통과'
+		WHERE PROGRESS_STATUS
+		= '성공'
 	</select>
 
 	<!-- 프로젝트 번호 체크 -->
@@ -92,10 +145,10 @@
 
 	<!-- 프로젝트 번호 인설트 -->
 	<insert id="insertProjectNno" parameterType="Project">
-		INSERT INTO PROJECT VALUES(#{projectNo}, null, null, '신청전', '실패', null, null
+		INSERT INTO PROJECT VALUES(#{projectNo}, null, null, '신청전', '오픈', null, null
 		      ,SEQ_ADMINNO.NEXTVAL, null, null, null, null, null, null, null, null, null
 		      ,null, null, null, null, null, null, null, null
-		      ,null, null, #{userNo}, null, null)
+		      ,null, null, #{userNo}, null)
 	</insert>
 	
 	<!--  카테코리 인설트같은 업데이트 -->
@@ -106,14 +159,79 @@
 	</update>
 	
 	<update id="basicInfo" parameterType="Project">
+	
+		  <!--  <if test="progressStatus.equals('오픈예정')"> -->
 		UPDATE PROJECT
-		SET PHONE = #{phone}, PROJECT_TITLE = #{projectTitle}, PROJECT_SHORT_TITLE = #{projectShortTitle}
-		   ,MONEY = #{money}, CATEGORY = ${category}, PROGRESS = #{progress}, DELIVERY = #{delivery}
-		   ,END_DATE = #{endDate}, ADULT = #{adult}, OVEN_COMING = #{ovenComing}
-		   WHERE WHERE PROJECT_NO = #{projectNo} AND MEMBER_NO = #{userNo}
+		SET PHONE = #{phone}
+		  ,PROJECT_TITLE = #{projectTitle}
+		  ,PROJECT_SHORT_TITLE = #{projectShortTitle}
+		  ,MONEY = TO_NUMBER(#{money})
+		  ,CATEGORY = #{category}
+		  ,PROGRESS = #{progress}
+		  ,DELIVERY = #{delivery}
+		  ,END_DATE = #{endDate}
+		  ,ADULT = #{adult}
+		  ,MAIN_IMG = #{mainImg}
+		  ,PROGRESS_STATUS = #{progressStatus}
+		   WHERE PROJECT_NO = #{projectNo} 
+		     AND MEMBER_NO = #{userNo}	
+		  <!--  </if> -->
 		   
+		   <!-- <if test="progressStatus.equals('오픈')">
+		   		UPDATE PROJECT
+				SET PHONE = #{phone}
+		 		   ,PROJECT_TITLE = #{projectTitle}
+		  		   ,PROJECT_SHORT_TITLE = #{projectShortTitle}
+		  		   ,MONEY = TO_NUMBER(#{money})
+		   		   ,CATEGORY = #{category}
+		  	       ,PROGRESS = #{progress}
+		  	       ,DELIVERY = #{delivery}
+		  	       ,END_DATE = #{endDate}
+		           ,ADULT = #{adult}
+		           ,PROGRESS_STATUS = '오픈'
+		           WHERE PROJECT_NO = #{projectNo} 
+		             AND MEMBER_NO = #{userNo}	
+		   </if> -->
 	</update>
+	
+	<select id="selectbasicInfo" parameterType="Project" resultMap="ProjectResultSet2">
+		SELECT *
+		FROM PROJECT P
+		LEFT OUTER JOIN ATTACHMENT A ON (P.PROJECT_NO = A.PROJECT_NO)
+		LEFT OUTER JOIN MEMBER M ON (P.MEMBER_NO = M.MEMBER_NO)
+		WHERE P.PROJECT_NO = #{projectNo}
+		AND M.MEMBER_NO = #{userNo}
+	</select>
+	<select id="selectFile" resultType="String">
+		SELECT 
+			ORIGIN_FILE_NAME 
+		FROM 
+			ATTACHMENT 
+		WHERE 
+			PROJECT_NO = #{projectNo}
+	</select>
+	<update id="updateFile">
+		UPDATE
+			ATTACHMENT
+		SET
+ 			ORIGIN_FILE_NAME = #{originFileName}
+			, NEW_FILE_NAME = #{newFileName}
+			, SAVE_DATE = SYSDATE
+		WHERE
+			PROJECT_NO = #{projectNo}
+	</update>
+	<select id="selectFileList" resultType="_int">
+		SELECT
+			COUNT(*)
+		FROM
+			ATTACHMENT
+		WHERE
+			PROJECT_NO = #{projectNo}
+		AND
+			FILE_LEVEL = 0
+	</select>
+	
+	
  
 </mapper>
-
 

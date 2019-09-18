@@ -130,9 +130,8 @@ td {
 	}
 </style>
 </head>
-	<jsp:include page="../common/customer_menubar.jsp"/>
-	<jsp:include page="../common/customer_menuList.jsp"/>
 	 <input id="pp" type="hidden" value="${p.category }" />
+	<jsp:include page="../common/customer_menuList.jsp"/>
 	<br>
 	<div>
 	<div id="menu">
@@ -170,7 +169,7 @@ td {
 	<br> 
 	
 	<div id="inputBox" align="center">
-		<form id="saveForm" action="FundingOpen5.fd" method="post" enctype="multipart/form-data">
+		<form id="saveForm" action="${ contextPath }/fundingOpen/FundingOpen5.fd" method="post" enctype="multipart/form-data">
 	<input type="hidden" id="projectNo" value="${p.projectNo}" name="projectNo" />
 	<input type="hidden" id="userNo" value="${p.userNo}" name="userNo" />
 		<div id="inputBox2" align="center">
@@ -184,7 +183,7 @@ td {
 				<td style="background:White"><h3>연락처</h3>
 				<p>주요 안내를 받으실 이메일<br>과 휴대폰 번호를 등록해 주세요<br>정보 변경은 회원정보설정에서<br> 가능합니다.</p></td>
 				<td id="fno">
-					<input type="text" placeholder="연락처" id="phone" name="phone" value="${p.phone}"> 
+					<input type="text" value="${p.phone}" id="phone" name="phone"> 
 					<br><br> 
 					<input type="email" value="${ loginUser.email }" id="email" readonly="readonly">
 				</td>
@@ -192,17 +191,17 @@ td {
 			<tr>
 				<td style="background:White"><h3>프로젝트 제목</h3>
 				<p>프로젝트 성격과 리워드를 짐작<br>할 수 있게 간결하고 직관적으로<br> 작성 해주세요.</p></td>
-				<td id="fno"><input type="text" placeholder="예)더 가벼워진 권석이,동양 무술의 신비" value="${p.projectTitle}" name="projectTitle"></td>
+				<td id="fno"><input type="text" value="${p.projectTitle}" name="projectTitle"></td>
 			</tr>
 			<tr>
 				<td style="background:White"><h3>짧은 제목</h3>
 				<p>검색, 알림 등에 사용되는 짧은<br>제목도 함께 작성해주세요.<br></p></td>
-				<td id="fno"><input type="text" placeholder="예)#무술의 신비" value="${p.projectShortTitle}" name="projectShortTitle"></td>
+				<td id="fno"><input type="text" value="${p.projectShortTitle}" name="projectShortTitle"></td>
 			</tr>
 			<tr>
 				<td style="background:White"><h3>목표 금액</h3>
 				<p>마감일 자정 기준 목표금액 <br>미달성 시,펀딩은 취소됩니다.<br>(평균 목표금액 : 300만원)</p></td>
-				<td id="fno"><input type="text" placeholder="0" name="money" value="${p.money}" style="text-align: right;">
+				<td id="fno"><input type="text" value="${p.money}" name="money" style="text-align: right;">
 				<em>원</em>
 				</td>
 			</tr>
@@ -211,8 +210,7 @@ td {
 				<p>메이커와 리워드가 함께<br>있거나,프로젝트의 성격이<br>한눈에 드러나는 사진이 좋습니다.</p></td>
 				<td id="fno">
 				<div id="contentImgArea1">
-				
-					<img src="${fileVO.originFileName}" id="contentImg1" width="302" height="160" >
+					<img id="contentImg1" width="302" height="160" name="">
 				</div>
 					<!-- <form id="form" runat="server" style="background:Lightgray">
 					   <img id="image_section" src="#" alt="your image"/>
@@ -295,11 +293,11 @@ td {
    				<br><br>
    				<h4>Q2.현재 진행된 리워드의 상태 및 앞으로의 진행계획을 일정과 함께 구체적으로 <br>설명해주세요.</h4>
    				<!-- <input type="text" placeholder="ex)현재 금형 제작 진행 중 / 2018.03.30" style="background:white; height:80px;"> -->
-   				<textarea class="wz-textarea large" name="progress" placeholder="ex) 현재 금형 제작 진행 중 / 2018.03.30 샘플 완료 예정, 2018.04.15 테스트 진행 예정, 2018.04.18 본품 생산 완료 예정" rows="3" data-maxlength="400" style="overflow-y: auto; resize: none; width: 350px;">${p.progress}</textarea>
+   				<textarea class="wz-textarea large" name="progress"rows="3" data-maxlength="400" style="overflow-y: auto; resize: none; width: 350px;">${p.progress}</textarea>
    				<h4>Q3.리워드의 배송 계획을 알려주세요.</h4>
    				<p>1)리워드의 전달방법(택배 or SMS)을 이용<br>
 				2)택배의 경우 이용 예정인 발송 업체 및 일일 최대 발송 가능량을 입력해주세요.</p> 
-				<textarea class="wz-textarea large" name="delivery" placeholder="ex) 택배를 이용하여 리워드를 전달할 예정 / OOO택배사 / 일일 최대 OOO개 발송 가능" rows="3" data-maxlength="400" style="overflow-y: auto; resize: none; width: 350px;">${p.delivery}</textarea>
+				<textarea class="wz-textarea large" name="delivery" rows="3" data-maxlength="400" style="overflow-y: auto; resize: none; width: 350px;">${p.delivery}</textarea>
 				</td>
 			</tr>
 			<tr>
