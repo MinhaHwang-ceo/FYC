@@ -135,18 +135,23 @@ td {
     <div class="col-md-4">
       <div class="thumbnail">
       	<input type="hidden" value='<c:out value="${ p.projectNo }"></c:out>'>
-         <a href="categoryOne.ca?projectNo=${ p.projectNo }">
+         <a href="categoryOne.ca?projectNo=${ p.projectNo }" 
+         onclick= <c:if test="${ empty sessionScope.loginUser }">
+ 					"alert('로그인 후 이용해주세요'); return false;" 
+ 					</c:if>> 
           <img src="/yc/resources/images/dog.PNG" alt="Lights" style="width:100%; height:75%;">
           <div class="caption">
             <h6>[<c:out value="${ p.projectNo }"/>]&emsp;<c:out value="${ p.projectTitle }"/></h6>
-            <p>목표금액 : <c:out value="${ p.money }"/>원<br>
+            <p>목표금액 : <c:out value="${ p.money }"/>원 <br>
             	이 리워드는 <c:out value="${ p.endDate }"/> 에 마감됩니다</p>
           </div>
+       
         </a>
       </div>
     </div>
     </c:forEach>
   </div>
+   ${loginUser.userNo}
 </div>
 
 	<br><br><br>	

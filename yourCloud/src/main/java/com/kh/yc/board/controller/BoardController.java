@@ -35,6 +35,7 @@ import com.kh.yc.project.model.vo.Project;
 
 @Controller
 public class BoardController {
+	
 	@Autowired
 	BoardService bs;
 	@Autowired
@@ -62,11 +63,6 @@ public class BoardController {
 		} catch (ProjectSelectListException e) {
 			e.printStackTrace();
 		}
-
-		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
-		ArrayList<Project> openlist = bs.selectOpenProject(pi);
-		request.setAttribute("openlist", openlist);
-		request.setAttribute("pi", pi);
 
 		return "board/openExpectation/openExpectationMain";
 	}

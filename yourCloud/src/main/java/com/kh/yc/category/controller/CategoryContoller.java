@@ -14,20 +14,19 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.yc.category.model.service.CategoryService;
+import com.kh.yc.member.model.vo.Member;
+
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.kh.yc.project.model.service.ProjectService;
+import com.kh.yc.project.model.vo.Interest;
 import com.kh.yc.project.model.vo.Project;
 
 @Controller
 public class CategoryContoller {
+	
 	@Autowired
 	CategoryService cs;
-	
-	@RequestMapping(value = "/categoryOne.ca", method = RequestMethod.GET)
-	public String categoryOne(Model model) {
-		
-	
 	@Autowired
 	ProjectService ps;
 	
@@ -36,7 +35,7 @@ public class CategoryContoller {
 	public String categoryOne(@RequestParam int projectNo,HttpServletRequest request, HttpServletResponse response) {
 		
 		//글의 상세 조회를 위한 서비스를 호출. 글 상세정보는 한 줄만 가져오면 되기때문에 map 형식
-		Map<String, Project> detail = ps.detailProject();
+		Project detail = ps.detailProject(projectNo);
 		System.out.println(detail);
 		request.setAttribute("detail", detail);
 
@@ -77,4 +76,32 @@ public class CategoryContoller {
 		mv.setViewName("jsonView");
 		return mv;
 	}
+	
+	@RequestMapping(value = "/likeUpdate.ca", method = RequestMethod.GET)
+	 public int heart(HttpServletRequest httpRequest) throws Exception {
+
+        int heart = Integer.parseInt(httpRequest.getParameter("heart"));
+        int projectNo = Integer.parseInt(httpRequest.getParameter("projectNo"));
+        int memberNo = ((Member) httpRequest.getSession().getAttribute("login")).getUserNo();
+
+        Interest interest = new Interest();
+
+        interest.setProjectNo(projectNo);
+        interest.setMemberNo(memberNo);
+
+        System.out.println(heart);
+
+        if(heart >= 1) {
+            ps.deleteBoardLike(interest);
+            heart=0;
+        } else {
+            ps.insertBoardLike(interest);
+            heart=1;
+        }
+
+        return heart;
+
+    }
+	
+	
 }

@@ -3,6 +3,8 @@ package com.kh.yc.project.model.service;
 import java.util.ArrayList;
 import java.util.Map;
 
+import javax.security.auth.message.callback.PrivateKeyCallback.Request;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -45,21 +47,19 @@ public class ProjectServiceImpl implements ProjectService{
 		return list;
 	}
 
-	
-
 	@Override
 	public ArrayList<Project> selectSupportList(int projectNo) {
 		ArrayList<Project> list = pd.selectSupportList(sqlSession,projectNo); 
 		return list;
 	}
 
-//게시판 상세보기 메소드
+	//게시판 상세보기 메소드
 	@Override
-	public Map<String, Project> detailProject() {
+	public Project detailProject(int projectNo) {
 
-		Map<String,Project> detail = pd.detailBoard(sqlSession);
+		String projectNo1 = Integer.toString(projectNo);
 		
-		return detail;
+		return pd.detailProject(sqlSession, (Integer.parseInt(projectNo1)));
 	}
 
 }

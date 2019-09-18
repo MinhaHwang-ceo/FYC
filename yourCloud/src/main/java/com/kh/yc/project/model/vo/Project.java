@@ -30,7 +30,7 @@ public class Project implements java.io.Serializable{
 	private String delivery;
 	private Date endDate;
 	private String adult;
-	private int userNo;
+	private int memberNo;
 	private int reportCount;
 	private int payNo;
 	private int adjustNo;
@@ -45,7 +45,7 @@ public class Project implements java.io.Serializable{
 			int agreement, String reason, int adminNo, String summary, String prifileImg, String social, String site,
 			String email, String phone, String fees, String makerDiv, String agentName, String agentEmail,
 			String projectTitle, String projectShortTitle, int money, String mainImg, String document, String progress,
-			String delivery, Date endDate, String adult, int userNo, int reportCount, int payNo, int adjustNo,
+			String delivery, Date endDate, String adult, int memberNo, int reportCount, int payNo, int adjustNo,
 			Date adjustDate, int adjustMoney, String companyName) {
 
 		super();
@@ -76,7 +76,7 @@ public class Project implements java.io.Serializable{
 		this.delivery = delivery;
 		this.endDate = endDate;
 		this.adult = adult;
-		this.userNo = userNo;
+		this.memberNo = memberNo;
 		this.reportCount = reportCount;
 		this.payNo = payNo;
 		this.adjustNo = adjustNo;
@@ -355,14 +355,15 @@ public class Project implements java.io.Serializable{
 		this.adult = adult;
 	}
 
-	public int getUserNo() {
-		return userNo;
+	public int getMemberNo() {
+		return memberNo;
 	}
 
 
-	public void setUserNo(int userNo) {
-		this.userNo = userNo;
+	public void setMemberNo(int memberNo) {
+		this.memberNo = memberNo;
 	}
+
 
 	public int getReportCount() {
 		return reportCount;
@@ -421,7 +422,7 @@ public class Project implements java.io.Serializable{
 				+ makerDiv + ", agentName=" + agentName + ", agentEmail=" + agentEmail + ", projectTitle="
 				+ projectTitle + ", projectShortTitle=" + projectShortTitle + ", money=" + money + ", mainImg="
 				+ mainImg + ", document=" + document + ", progress=" + progress + ", delivery=" + delivery
-				+ ", endDate=" + endDate + ", adult=" + adult + ", userNo=" + userNo + ", reportCount=" + reportCount
+				+ ", endDate=" + endDate + ", adult=" + adult + ", memberNo=" + memberNo + ", reportCount=" + reportCount
 				+ ", payNo=" + payNo + ", adjustNo=" + adjustNo + ", adjustDate=" + adjustDate + ", adjustMoney="
 				+ adjustMoney + ", companyName=" + companyName + "]";
 	}
