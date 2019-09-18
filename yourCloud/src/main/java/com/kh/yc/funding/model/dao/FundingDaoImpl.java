@@ -7,7 +7,9 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.kh.yc.admin.model.vo.Project;
+import com.kh.yc.funding.model.vo.Attachment;
 import com.kh.yc.member.model.vo.Member;
+import com.kh.yc.project.model.vo.Sign;
 
 @Repository
 public  class FundingDaoImpl implements FundingDao{
@@ -35,6 +37,16 @@ public  class FundingDaoImpl implements FundingDao{
 	public int UpdateInfo(SqlSessionTemplate sqlSession, Project p) {
 		
 		return sqlSession.update("Project.basicInfo",p);
+	}
+	@Override
+	public int signUser(SqlSessionTemplate sqlSession, Sign s) {
+		// TODO Auto-generated method stub
+		return sqlSession.update("Project2.signUser", s);
+	}
+	@Override
+	public int signFile(SqlSessionTemplate sqlSession, Attachment a) {
+		// TODO Auto-generated method stub
+		return sqlSession.insert("Project2.signFile", a);
 	}
 
 	

@@ -42,12 +42,12 @@
   <c:forEach var="p" items="${ openlist }">
     <div class="col-md-4">
       <div class="thumbnail">
-      	<a href="openExpectationDetail.bo">
-          <img src="/yc/resources/images/blog-1.jpg" alt="Lights" style="width:100%; height:75%;">
+      	<a href="openExpectationDetail.bo?projectNo=${ p.projectNo }">
+          <img src="/yc/resources/images/blog-1.jpg" alt="Lights" style="width:100%; height:70%;">
           <div class="caption">
-            <h6>[<c:out value="${ p.projectShortTitle }"/>]<c:out value="${ p.projectTitle }"/></h6>
-            <p><c:out value="${ p.category }"/></p>
-            <p><c:out value="${ p.companyName }"/></p>
+            <h6>&nbsp;[<c:out value="${ p.projectShortTitle }"/>]<c:out value="${ p.projectTitle }"/></h6>
+            <p>&nbsp;<c:out value="${ p.categoryDiv}"/></p>
+            <p>&nbsp;<c:out value="${ p.companyName }"/></p>
           </div>
         </a>
       </div>

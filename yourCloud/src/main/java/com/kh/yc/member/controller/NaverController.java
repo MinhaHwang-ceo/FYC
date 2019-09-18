@@ -130,7 +130,7 @@ public class NaverController {
 		
 		naverAge = naverAge.split("-")[0];
 		
-		NaverMember nm = new NaverMember();
+		Member nm = new Member();
 		//nm.setProfile(profile);
 		nm.setUserName(naverName);
 		nm.setUserId(naverId);

@@ -48,6 +48,10 @@ public interface BoardDao {
 
 	ArrayList<Project> getProject(SqlSessionTemplate sqlSession);
 
+	Project selectDetailProject(SqlSessionTemplate sqlSession, int projectNoInt);
+	
+
+
 
 
 
