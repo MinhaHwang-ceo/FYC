@@ -38,6 +38,7 @@ public class Project implements java.io.Serializable{
 	private Date adjustDate;
 	private int adjustMoney;
 	private String companyName;
+	private String adjustStatus;
 	
 	public Project() {}
 
@@ -46,7 +47,7 @@ public class Project implements java.io.Serializable{
 			String email, String phone, String fees, String makerDiv, String agentName, String agentEmail,
 			String projectTitle, String projectShortTitle, int money, String mainImg, String document, String progress,
 			String delivery, Date endDate, String adult, int userNo, int reportCount, String ovenComing, int payNo,
-			int adjustNo, Date adjustDate, int adjustMoney, String companyName) {
+			int adjustNo, Date adjustDate, int adjustMoney, String companyName, String adjustStatus) {
 		super();
 		this.projectNo = projectNo;
 		this.category = category;
@@ -83,6 +84,7 @@ public class Project implements java.io.Serializable{
 		this.adjustDate = adjustDate;
 		this.adjustMoney = adjustMoney;
 		this.companyName = companyName;
+		this.adjustStatus = adjustStatus;
 	}
 
 	public int getProjectNo() {
@@ -365,6 +367,14 @@ public class Project implements java.io.Serializable{
 		this.companyName = companyName;
 	}
 
+	public String getAdjustStatus() {
+		return adjustStatus;
+	}
+
+	public void setAdjustStatus(String adjustStatus) {
+		this.adjustStatus = adjustStatus;
+	}
+
 	@Override
 	public String toString() {
 		return "Project [projectNo=" + projectNo + ", category=" + category + ", success=" + success + ", judgeStatus="
@@ -376,13 +386,9 @@ public class Project implements java.io.Serializable{
 				+ mainImg + ", document=" + document + ", progress=" + progress + ", delivery=" + delivery
 				+ ", endDate=" + endDate + ", adult=" + adult + ", userNo=" + userNo + ", reportCount=" + reportCount
 				+ ", ovenComing=" + ovenComing + ", payNo=" + payNo + ", adjustNo=" + adjustNo + ", adjustDate="
-				+ adjustDate + ", adjustMoney=" + adjustMoney + ", companyName=" + companyName + "]";
+				+ adjustDate + ", adjustMoney=" + adjustMoney + ", companyName=" + companyName + ", adjustStatus="
+				+ adjustStatus + "]";
 	}
-
-
-	
-	
-	
 
 	
 	

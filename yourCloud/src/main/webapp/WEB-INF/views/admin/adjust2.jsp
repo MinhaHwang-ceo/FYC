@@ -1,9 +1,44 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ page import="java.io.*" %>
+<%@ page import="com.kh.yc.admin.controller.Excel" %>
+<%@ page import="com.kh.yc.admin.model.vo.Project" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%
+ request.setCharacterEncoding("UTF-8");
+ response.setCharacterEncoding("UTF-8");
+
+%>
+
+
 <!DOCTYPE>
 <html>
+<meta charset="UTF-8">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<title>회원 상세 페이지</title> 
+
+<script>
+    
+$(document).ready(function(){
+    
+    $(".btnUpdate").click(function(){
+          
+       var projectNo = $(this).parent().siblings().eq(3).text();
+       console.log(projectNo);
+       
+       if(confirm("수정하시겠습니까?")){
+       	location.href = "excel.ad?projectNo="+projectNo;
+          
+       }
+       opener.parent.location.reload();
+    });
+ });
+ function st_close(){
+	  opener.parent.location.reload();
+ }
+
+</script>
 <head>
 
   <meta charset="utf-8">
@@ -14,30 +49,6 @@
 
   <title>니가 그린 구름 그림</title>
 
-	<script>
-      $(document).ready(function(){
-         var progressStatus = "";
-         $("#btnUpdate").click(function(){
-               
-            var projectNo = $("#projectNo").val();
-            if(confirm("수정하시겠습니까?")){
-            progressStatus = $("#progressStatus").val();
-               location.href = "reportUpdate.ad?projectNo="+projectNo+"&progressStatus="+progressStatus;
-               
-            }
-            opener.parent.location.reload();
-      	 	window.close();
-         });
-      });
-      function st_close(){
-    	  opener.parent.location.reload();
-      	  window.close();
-      };
-      
-      
-  
-      
-</script>
   <!-- Custom fonts for this template-->
    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/vendor/fontawesome-free/css/all.min.css" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
@@ -47,38 +58,7 @@
   
     <!-- Custom styles for this page -->
   <link href="${pageContext.request.contextPath}/resources/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
-	
-	
-	<style>
-  .outer{
-  
-  width:350px;
-  margin:auto;
-  font-family: 'Gothic A1', sans-serif;
-  
-  }
-  
-  
-  .td2{
-  
-  	width:400px;
-  	margin-left:100px;
-  
-  }
-  
-  .td3{
-  	
-  	width:100px;
-  	margin-left:30px;
-  
-  }
-  
-  #td4{
-  	
-  	padding-left:100px;
-  
-  }
-  </style>
+
 
 
 </head>
@@ -95,8 +75,9 @@
 
       <!-- Main Content -->
       <div id="content">
+      
 
-         <!-- Topbar -->
+        <!-- Topbar -->
         <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 
           <!-- Sidebar Toggle (Topbar) -->
@@ -283,225 +264,61 @@
         <div class="container-fluid">
 
           <!-- Page Heading -->
-          <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">장부관리</h1>
-          </div>
-
-          <div class="row">
-
-            <!-- Earnings (Monthly) Card Example -->
-            <div class="col-xl-3 col-md-6 mb-4">
-              <div class="card border-left-primary shadow h-100 py-2">
-                <div class="card-body">
-                  <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">총 매출 (월)</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">12,000,000 원</div>
-                    </div>
-                    <div class="col-auto">
-                      <i class="fas fa-calendar fa-2x text-gray-300"></i>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Earnings (Monthly) Card Example -->
-            <div class="col-xl-3 col-md-6 mb-4">
-              <div class="card border-left-success shadow h-100 py-2">
-                <div class="card-body">
-                  <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-success text-uppercase mb-1">총 매출 (전체)</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">124,221,000 원</div>
-                    </div>
-                    <div class="col-auto">
-                      <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Earnings (Monthly) Card Example -->
-            <div class="col-xl-3 col-md-6 mb-4">
-              <div class="card border-left-info shadow h-100 py-2">
-                <div class="card-body">
-                  <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Tasks</div>
-                      <div class="row no-gutters align-items-center">
-                        <div class="col-auto">
-                          <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">50%</div>
-                        </div>
-                        <div class="col">
-                          <div class="progress progress-sm mr-2">
-                            <div class="progress-bar bg-info" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-auto">
-                      <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Pending Requests Card Example -->
-            <div class="col-xl-3 col-md-6 mb-4">
-              <div class="card border-left-warning shadow h-100 py-2">
-                <div class="card-body">
-                  <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Pending Requests</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
-                    </div>
-                    <div class="col-auto">
-                      <i class="fas fa-comments fa-2x text-gray-300"></i>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="row">
-
-            <div class="col-lg-6">
-
-
-              <!-- Collapsable Card Example -->
-              <div class="card shadow mb-4">
-                <!-- Card Header - Accordion -->
-                <a href="#collapseCardExample" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="collapseCardExample">
-                  <h6 class="m-0 font-weight-bold text-primary">입출금 입력</h6>
-                </a>
-                <!-- Card Content - Collapse -->
-                <div class="collapse hide" id="collapseCardExample">
-                  <div class="card-body">
-                    		 <strong>입출금액관리</strong>
-                    		 <!-- 전체div -->
-<div class="outer">
-<br>
-  <!-- 회원상태 폼 -->
-  <div align="center">
- 	 <form name="form1" method="post">
-  			<table>
-  	  	
-  		<tr><td><br></td></tr>
-    	<tr>
-  			<td><input type="hidden" id="projectNo" value="${ rpt.projectNo }" readonly="readonly"></td>
-  		</tr> 
-  		
-		<tr>  	
-  			<td  align="center">금액</td>
-  			
-  		</tr>
-  		<tr>
-  		<td>
-  			<span class="format-money"><input type="text" id="bookMoney"></span>원
-  		</td>
-  		</tr> 
-  		
-  	
-  		
-  		<tr><td><br></td></tr>	
-  		
-  		<tr>
-				<td align="center">
-					<select id="progressStatus">
-				    <option value="입금">입금
-					</option>
-					<option value="출금">출금
-					</option>
-   					
-					</select>
-					<input type="button" value="입력" id="btnUpdate">
-		</td>
-		</tr>
-  		
-  		<tr><td><br></td></tr>	
-  		
-  		
-  				
-		</table>
-  </form>
-  
-  <br><br>
-  
-  </div>
-  
-
-</div>    
-                  </div>
-                </div>
-              </div>
-
-            </div>
-
-          </div>
-
-        </div>
-        
-         <!-- Begin Page Content -->
-        <div class="container-fluid">
-
-          <!-- Page Heading -->
-          <h1 class="h3 mb-2 text-gray-800">장부관리</h1>
+          <h1 class="h3 mb-2 text-gray-800">정산관리</h1>
           <!-- <p class="mb-4">회원리스트입니다.</p> -->
 
           <!-- DataTales Example -->
           <div class="card shadow mb-4">
             <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary">장부관리</h6>
+              <h6 class="m-0 font-weight-bold text-primary">정산관리</h6>
             </div>
             <div class="card-body">
               <div class="table-responsive">
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                   <thead>
                     <tr>
-                      <th>장부번호</th>
-                      <th>프로젝트번호</th>
+                      <th>정산번호</th>
+                      <th>회사명</th>
                       <th>프로젝트명</th>
-                      <th>대표자명</th>
-                      <th>구분</th>
-                      <th>금액</th>
-                      <th>잔고</th>
+                      <th>프로젝트번호</th>
+                      <th>펀딩종료일</th>
+                      <th>정산현황</th>
+                      <th>정산금</th>
+                      <th>정산</th>
+                      <th>모금액 명세</th>
                     </tr>
                   </thead>
                   <tfoot>
                     <tr>
-                      <th>장부번호</th>
-                      <th>프로젝트번호</th>
+                      <th>정산번호</th>
+                      <th>회사명</th>
                       <th>프로젝트명</th>
-                      <th>대표자명</th>
-                      <th>구분</th>
-                      <th>금액</th>
-                      <th>잔고</th>
+                      <th>프로젝트번호</th>
+                      <th>펀딩종료일</th>
+                      <th>정산현황</th>
+                      <th>정산금</th>
+                      <th>정산</th>
+                      <th>모금액 명세</th>
                     </tr>
                   </tfoot>
                   <tbody>
-                    <tr>
-                      <td>1</td>
-                      <td>1</td>
-                      <td>[당신의옷]너무나멋진똥간닦개</td>
-                      <td>황민하</td>
-                      <td>입금</td>
-                      <td><fmt:formatNumber value="2000000" type="currency"/>원</td>
-                      <td></td>
-                    </tr>
-                    <tr>
-                      <td>2</td>
-                      <td>1</td>
-                      <td>[당신의옷]너무나멋진똥간닦개</td>
-                      <td>황민하</td>
-                      <td>출금</td>
-                      <td><fmt:formatNumber value="2000000" type="currency"/>원</td>
-                      <td></td>
-                    </tr>
-                    
+                    <c:forEach var="row" items="${list}">
+                  <tr>
+                  	<td>${row.adjustNo}</td>
+                  	<td>${row.companyName}</td>
+                  	<td>${row.projectShortTitle}</td>
+                  	<td>${row.projectNo}</td>
+                  	<td>${row.endDate}</td>
+                  	<td>${row.adjustStatus}</td>
+                  	<td>${row.adjustMoney}</td>
+                  	<td><input type="button" id="st" onclick="window.open('${pageContext.request.contextPath}/projectStatus.ad?projectNo=${row.projectNo}', 'PopupWin', 'width=380,height=300');" value="상태변경"></td>
+                  	
+                  	<input type="hidden" class="projectNo" value="${row.projectNo}" readonly="readonly">
+                  	
+                  	<td><input type="button" class="btnUpdate" value="내역확인"></td>
+                  </tr>
+                  
+                  </c:forEach>
                   </tbody>
                 </table>
               </div>
@@ -509,26 +326,6 @@
           </div>
 
         </div>
-        <!-- /.container-fluid -->
-
-      </div>
-      <!-- End of Main Content -->
-
-      <!-- Footer -->
-      <footer class="sticky-footer bg-white">
-        <div class="container my-auto">
-          <div class="copyright text-center my-auto">
-            <span>Copyright &copy; Your Website 2019</span>
-          </div>
-        </div>
-      </footer>
-      <!-- End of Footer -->
-
-    </div>
-    <!-- End of Content Wrapper -->
-
-  </div>
-  <!-- End of Page Wrapper -->
         <!-- /.container-fluid -->
 
       </div>
@@ -572,10 +369,9 @@
         </div>
       </div>
     </div>
+    
+                  	
   </div>
-  
-  
-
   <!-- Bootstrap core JavaScript-->
   <script src="${pageContext.request.contextPath}/resources/vendor/jquery/jquery.min.js"></script>
   <script src="${pageContext.request.contextPath}/resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -586,14 +382,14 @@
   <!-- Custom scripts for all pages-->
   <script src="${pageContext.request.contextPath}/resources/js/sb-admin-2.min.js"></script>
 
-<!-- Page level plugins -->
+  <!-- Page level plugins -->
   <script src="${pageContext.request.contextPath}/resources/vendor/datatables/jquery.dataTables.min.js"></script>
   <script src="${pageContext.request.contextPath}/resources/vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
   <!-- Page level custom scripts -->
   <script src="${pageContext.request.contextPath}/resources/js/demo/datatables-demo.js"></script>
 
-
+ 
 
 </body>
 

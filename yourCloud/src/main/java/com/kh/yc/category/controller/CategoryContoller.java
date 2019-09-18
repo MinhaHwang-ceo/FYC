@@ -21,15 +21,10 @@ import com.kh.yc.project.model.vo.Project;
 
 @Controller
 public class CategoryContoller {
-	@Autowired
-	CategoryService cs;
-	
-	@RequestMapping(value = "/categoryOne.ca", method = RequestMethod.GET)
-	public String categoryOne(Model model) {
-		
-	
-	@Autowired
-	ProjectService ps;
+	   @Autowired
+	   CategoryService cs;
+	   @Autowired
+	   ProjectService ps;
 	
 	
 	@RequestMapping(value = "/categoryOne.ca", method = RequestMethod.GET)

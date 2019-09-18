@@ -41,6 +41,7 @@
 		<result property="adjustMoney" column="ADJUST_MONEY" />
 		<result property="adminNo" column="ADMIN_NO" />
 		<result property="companyName" column="COMPANY_NAME" />
+		<result property="adjustStatus" column="ADJUST_STATE" />
 
 	</resultMap>
 
@@ -76,8 +77,8 @@
 		SELECT *
 		FROM PROJECT P
 		INNER JOIN ADJUST A ON A.MEMBER_NO = P.MEMBER_NO
-		WHERE PROGRESS_STATUS
-		= '성공'
+		INNER JOIN MEMBER M ON M.MEMBER_NO = P.MEMBER_NO
+		WHERE PROGRESS_STATUS = '성공' AND JUDGE_STATUS = '통과'
 	</select>
 
 	<!-- 프로젝트 번호 체크 -->
