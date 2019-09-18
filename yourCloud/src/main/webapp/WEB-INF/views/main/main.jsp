@@ -1,9 +1,9 @@
 <%@page import="com.kh.yc.project.model.vo.Project"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8" import="java.util.*"%>
+   pageEncoding="UTF-8" import="java.util.*"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%
-	ArrayList<Project> list = (ArrayList) request.getAttribute("list");
+   ArrayList<Project> list = (ArrayList) request.getAttribute("list");
 %>
 <html>
 
@@ -13,9 +13,9 @@
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/animate.css">
+   href="${pageContext.request.contextPath}/resources/css/animate.css">
 <link href="${pageContext.request.contextPath}/resources/css/main.css"
-	rel="stylesheet" />
+   rel="stylesheet" />
 
 <title>more</title>
 </head>

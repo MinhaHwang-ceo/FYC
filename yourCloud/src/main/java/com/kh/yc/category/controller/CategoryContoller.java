@@ -21,6 +21,7 @@ import com.kh.yc.project.model.vo.Project;
 
 @Controller
 public class CategoryContoller {
+
 	@Autowired
 	CategoryService cs;
 	@Autowired
