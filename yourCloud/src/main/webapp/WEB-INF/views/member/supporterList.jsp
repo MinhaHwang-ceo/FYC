@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>후원자 관리</title>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> -->
 <link rel="stylesheet" href="${contextPath }/resources/css/myPage.css" />
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
@@ -21,6 +21,7 @@
       <jsp:include page="../common/customer_menuList.jsp" />
    <br />
 
+       
    <div id="outer">
       <div class="tableDiv">
          <h2>후원자 관리</h2>
@@ -36,20 +37,19 @@
                <option value="before">결제상태-결제전</option>
                <option value="complete">결제상태-결제완료</option>
             </select>
-            <select name="changeDeliveryStatus" id="changeDeliveryStatus">
-               <option value="toBefore">미발송</option>
-               <option value="toComplete">발송완료</option>
-            </select>
+       
          </div>
          <br />
+
          <table class="table" style="text-align:center;font-size: 0.9em;">
              <thead>
                <tr>
-                  <th></th>
+  
                  <th>후원자 이름</th>
                  <th>리워드 이름</th>
                  <th>리워드수</th>
                  <th>배송지 정보</th>
+                 <th>연락처</th>
                  <th>펀딩 참여일</th>
                  <th>결제 상황</th>
                  <th>발송 예정일</th>
@@ -57,19 +57,34 @@
                  <th>펀딩 금액</th>
                </tr>
              </thead>
-             <tbody>
+             <tbody id="order">
+                  <c:forEach var="b" items="${ list }">
                   <tr>
-                     <td class="checkBoxTd"><input type="checkbox" class="check" /></td>
-                     <td>김진수</td>
-                     <td>구기자기자</td>
-                     <td>2</td>
-                     <td>충남 청양군 화성면 하매길 79-13</td>
-                     <td>2019-01-10</td>
-                     <td>결제 완료</td>
-                     <td>2020-01-01</td>
-                     <td>미발송</td>
-                     <td>890000</td>
+                    
+                     <td> <c:out value="${ b.memberName }"/></td>
+                     <td> <c:out value="${ b.rewardName }"/></td>
+                     <td> <c:out value="${ b.rewardNumber }"/></td>
+                     <td> <c:out value="${ b.deliverySite }"/></td>
+                     <td> <c:out value="${ b.phone }"/></td>
+                     <td> <c:out value="${ b.fundDate }"/></td>
+                     <td> <c:out value="${ b.payState }"/></td>
+                     <td> <c:out value="${ b.startDate }"/></td>
+                     
+                     
+                      	<c:if test="${b.status =='배송전' }">
+                     <td>배송전</td>
+                     </c:if>
+                     
+                      	<c:if test="${b.status =='배송완료' }">
+                     <td><c:out value="${ b.status }"/>(<c:out value="${ b.invoiceNum }"/>)</td>
+                     </c:if>
+                     
+                     
+                     
+                     <td> <c:out value="${ b.fundMoney }"/></td>
                   </tr>
+                  <input type="hidden" value="${b.projectNo}" id="projectNo" > 
+                     </c:forEach>
              </tbody>
            </table>
            <br />
@@ -78,12 +93,168 @@
            </div>
       </div>
    </div>
+
    <script>
-      $(".checkBoxTd").click(function(){
-         $(this).children().prop("checked", function(){
-            return !$(this).prop('checked');
-         });
+   var bNum=$("#projectNo").val();
+      
+      
+      $("#deliveryStatus").change(function(){
+    	  var standard=$("#deliveryStatus").val();
+    	
+    
+    	  console.log(standard);
+    	  console.log(bNum);
+     	$.ajax({
+    		
+    		url:"supporterList2.me",
+    		data:{bNum:bNum,standard:standard},
+    		type:"get",
+    		 dataType:"json",
+    		success:function(data){
+				console.log(data.list);
+				
+				var $div =$("#order");
+				
+				$div.html("");
+		/* 		var $tbody=$("<tbody>");
+				$div.append($tbody); */
+				
+				for(var i=0;i<=data.list.length-1;i++){
+					console.log(data.list.length);
+					
+		
+				var $tr=$("<tr>");
+				
+				var $td1=$("<td>");
+				var $td2=$("<td>");
+				var $td3=$("<td>");
+				var $td4=$("<td>");
+				var $td5=$("<td>");
+				var $td6=$("<td>");
+				var $td7=$("<td>");
+				var $td8=$("<td>");
+				var $td9=$("<td>");
+				var $td10=$("<td>");
+				var $td11=$("<td>");
+				
+				$td1.text(data.list[i].memberName);
+				$td2.text(data.list[i].rewardName);
+				$td3.text(data.list[i].rewardNumber);
+				$td4.text(data.list[i].deliverySite);
+				$td5.text(data.list[i].phone);
+				$td6.text(data.list[i].fundDate);
+				$td7.text(data.list[i].payState);
+				$td8.text(data.list[i].startDate);
+				if(data.list[i].invoiceNum!=""){
+				$td9.text(data.list[i].status+"("+data.list[i].invoiceNum+")");
+				}else{
+					$td9.text(data.list[i].status);
+				}
+				$td10.text(data.list[i].fundMoney);
+				
+				
+				$tr.append($td1,$td2,$td3,$td4,$td5,$td6,$td7,$td8,$td9
+						,$td10);
+				
+				
+				
+				$div.append($tr);
+				}
+				
+				
+				
+				
+    		}
+    		
+    	}); 
+ 	  
+    	  
+    	  
       });
+      
+      
+      
+      
+      $("#payStatus").change(function(){
+    	  var standard=$("#payStatus").val();
+    	
+    
+    	  console.log(standard);
+    	  console.log(bNum);
+     	$.ajax({
+    		
+    		url:"supporterList3.me",
+    		data:{bNum:bNum,standard:standard},
+    		type:"get",
+    		 dataType:"json",
+    		success:function(data){
+				console.log(data.list);
+				
+				var $div =$("#order");
+				
+				$div.html("");
+
+				
+				for(var i=0;i<=data.list.length-1;i++){
+					console.log(data.list.length);
+					
+		
+				var $tr=$("<tr>");
+				
+				var $td1=$("<td>");
+				var $td2=$("<td>");
+				var $td3=$("<td>");
+				var $td4=$("<td>");
+				var $td5=$("<td>");
+				var $td6=$("<td>");
+				var $td7=$("<td>");
+				var $td8=$("<td>");
+				var $td9=$("<td>");
+				var $td10=$("<td>");
+				var $td11=$("<td>");
+				
+				$td1.text(data.list[i].memberName);
+				$td2.text(data.list[i].rewardName);
+				$td3.text(data.list[i].rewardNumber);
+				$td4.text(data.list[i].deliverySite);
+				$td5.text(data.list[i].phone);
+				$td6.text(data.list[i].fundDate);
+				$td7.text(data.list[i].payState);
+				$td8.text(data.list[i].startDate);
+				if(data.list[i].invoiceNum!=""){
+				$td9.text(data.list[i].status+"("+data.list[i].invoiceNum+")");
+				}else{
+					$td9.text(data.list[i].status);
+				}
+				$td10.text(data.list[i].fundMoney);
+				
+				
+				$tr.append($td1,$td2,$td3,$td4,$td5,$td6,$td7,$td8,$td9
+						,$td10);
+				
+				
+				
+				$div.append($tr);
+				}
+				
+				
+				
+				
+    		}
+    		
+    	}); 
+ 	  
+    	  
+    	  
+      });
+      
+      
+      
+      
+      
+      
+      
+      
    </script>
 </body>
 </html>

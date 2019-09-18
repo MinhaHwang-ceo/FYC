@@ -33,15 +33,7 @@
 <tr><h3>공지사항</h3></tr>
 <br>
 
-	<div><button id="createBtn">QR생성테스트</button></div>
 
-	
-
-	<div>
-
-	<img id="qrcode" src='' />
-
-	</div>
 
 
 <tr><h5>글제목</h5></tr>
@@ -61,32 +53,7 @@
 <%-- 	<jsp:include page="../common/customer_footer.jsp"/>
  --%>
 
-<script type="text/javascript">
 
-   $(document).ready(function(){
-
-	   $('#createBtn').click(function(){
-
-
-	      googleQRUrl = "https://chart.googleapis.com/chart?chs=177x177&cht=qr&chl="+"http://192.168.120.5:8001/yc/noticeOne.bo";
-
-	      
-
-	      	 // 이미지가 나타날 영역에 원하는 내용을 넣은 QR code의 이미지를 출력합니다.
-
-             // 여기 주소 부분을 변경해주면 원하는 값을 언제든 맘대로
-
-	      	$('#qrcode').attr('src', googleQRUrl +'&choe=UTF-8');
-
-
-
-	   });
-
-	 
-
-	});
-
-</script>
 
 </body>
 </html>

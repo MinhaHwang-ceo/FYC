@@ -2,7 +2,7 @@ package com.kh.yc.project.model.vo;
 
 import java.sql.Date;
 
-public class Project implements java.io.Serializable{
+public class Project {
 	private int projectNo;
 	private String category;
 	private String success;
@@ -12,7 +12,7 @@ public class Project implements java.io.Serializable{
 	private String reason;
 	private int adminNo;
 	private String summary;
-	private String prifileImg;
+	private String profileImg;
 	private String social;
 	private String site;
 	private String email;
@@ -23,31 +23,25 @@ public class Project implements java.io.Serializable{
 	private String agentEmail;
 	private String projectTitle;
 	private String projectShortTitle;
-	private int money;
-	private String mainImg;
+	private int monet;
+	private int mainImg;
 	private String document;
 	private String progress;
-	private String delivery;
+	private String delivert;
 	private Date endDate;
 	private String adult;
-	private int userNo;
-	private int reportCount;
-	private int payNo;
-	private int adjustNo;
-	private Date adjustDate;
-	private int adjustMoney;
+	private String expected;
+	private int memberNo;
 	private String companyName;
+	private int money;
 	
 	public Project() {}
 
-
 	public Project(int projectNo, String category, String success, String judgeStatus, String progressStatus,
-			int agreement, String reason, int adminNo, String summary, String prifileImg, String social, String site,
+			int agreement, String reason, int adminNo, String summary, String profileImg, String social, String site,
 			String email, String phone, String fees, String makerDiv, String agentName, String agentEmail,
-			String projectTitle, String projectShortTitle, int money, String mainImg, String document, String progress,
-			String delivery, Date endDate, String adult, int userNo, int reportCount, int payNo, int adjustNo,
-			Date adjustDate, int adjustMoney, String companyName) {
-
+			String projectTitle, String projectShortTitle, int monet, int mainImg, String document, String progress,
+			String delivert, Date endDate, String adult, String expected, int memberNo, String companyName, int money) {
 		super();
 		this.projectNo = projectNo;
 		this.category = category;
@@ -58,7 +52,7 @@ public class Project implements java.io.Serializable{
 		this.reason = reason;
 		this.adminNo = adminNo;
 		this.summary = summary;
-		this.prifileImg = prifileImg;
+		this.profileImg = profileImg;
 		this.social = social;
 		this.site = site;
 		this.email = email;
@@ -69,339 +63,249 @@ public class Project implements java.io.Serializable{
 		this.agentEmail = agentEmail;
 		this.projectTitle = projectTitle;
 		this.projectShortTitle = projectShortTitle;
-		this.money = money;
+		this.monet = monet;
 		this.mainImg = mainImg;
 		this.document = document;
 		this.progress = progress;
-		this.delivery = delivery;
+		this.delivert = delivert;
 		this.endDate = endDate;
 		this.adult = adult;
-		this.userNo = userNo;
-		this.reportCount = reportCount;
-		this.payNo = payNo;
-		this.adjustNo = adjustNo;
-		this.adjustDate = adjustDate;
-		this.adjustMoney = adjustMoney;
+		this.expected = expected;
+		this.memberNo = memberNo;
 		this.companyName = companyName;
+		this.money = money;
 	}
-
 
 	public int getProjectNo() {
 		return projectNo;
 	}
 
-
 	public void setProjectNo(int projectNo) {
 		this.projectNo = projectNo;
 	}
-
 
 	public String getCategory() {
 		return category;
 	}
 
-
 	public void setCategory(String category) {
 		this.category = category;
 	}
-
 
 	public String getSuccess() {
 		return success;
 	}
 
-
 	public void setSuccess(String success) {
 		this.success = success;
 	}
-
 
 	public String getJudgeStatus() {
 		return judgeStatus;
 	}
 
-
 	public void setJudgeStatus(String judgeStatus) {
 		this.judgeStatus = judgeStatus;
 	}
-
 
 	public String getProgressStatus() {
 		return progressStatus;
 	}
 
-
 	public void setProgressStatus(String progressStatus) {
 		this.progressStatus = progressStatus;
 	}
-
 
 	public int getAgreement() {
 		return agreement;
 	}
 
-
 	public void setAgreement(int agreement) {
 		this.agreement = agreement;
 	}
-
 
 	public String getReason() {
 		return reason;
 	}
 
-
 	public void setReason(String reason) {
 		this.reason = reason;
 	}
-
 
 	public int getAdminNo() {
 		return adminNo;
 	}
 
-
 	public void setAdminNo(int adminNo) {
 		this.adminNo = adminNo;
 	}
-
 
 	public String getSummary() {
 		return summary;
 	}
 
-
 	public void setSummary(String summary) {
 		this.summary = summary;
 	}
 
-
-	public String getPrifileImg() {
-		return prifileImg;
+	public String getProfileImg() {
+		return profileImg;
 	}
 
-
-	public void setPrifileImg(String prifileImg) {
-		this.prifileImg = prifileImg;
+	public void setProfileImg(String profileImg) {
+		this.profileImg = profileImg;
 	}
-
 
 	public String getSocial() {
 		return social;
 	}
 
-
 	public void setSocial(String social) {
 		this.social = social;
 	}
-
 
 	public String getSite() {
 		return site;
 	}
 
-
 	public void setSite(String site) {
 		this.site = site;
 	}
-
 
 	public String getEmail() {
 		return email;
 	}
 
-
 	public void setEmail(String email) {
 		this.email = email;
 	}
-
 
 	public String getPhone() {
 		return phone;
 	}
 
-
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
-
 
 	public String getFees() {
 		return fees;
 	}
 
-
 	public void setFees(String fees) {
 		this.fees = fees;
 	}
-
 
 	public String getMakerDiv() {
 		return makerDiv;
 	}
 
-
 	public void setMakerDiv(String makerDiv) {
 		this.makerDiv = makerDiv;
 	}
-
 
 	public String getAgentName() {
 		return agentName;
 	}
 
-
 	public void setAgentName(String agentName) {
 		this.agentName = agentName;
 	}
-
 
 	public String getAgentEmail() {
 		return agentEmail;
 	}
 
-
 	public void setAgentEmail(String agentEmail) {
 		this.agentEmail = agentEmail;
 	}
-
 
 	public String getProjectTitle() {
 		return projectTitle;
 	}
 
-
 	public void setProjectTitle(String projectTitle) {
 		this.projectTitle = projectTitle;
 	}
-
 
 	public String getProjectShortTitle() {
 		return projectShortTitle;
 	}
 
-
 	public void setProjectShortTitle(String projectShortTitle) {
 		this.projectShortTitle = projectShortTitle;
 	}
 
-
-	public int getMoney() {
-		return money;
+	public int getMonet() {
+		return monet;
 	}
 
-
-	public void setMoney(int money) {
-		this.money = money;
+	public void setMonet(int monet) {
+		this.monet = monet;
 	}
 
-
-	public String getMainImg() {
+	public int getMainImg() {
 		return mainImg;
 	}
 
-
-	public void setMainImg(String mainImg) {
+	public void setMainImg(int mainImg) {
 		this.mainImg = mainImg;
 	}
-
 
 	public String getDocument() {
 		return document;
 	}
 
-
 	public void setDocument(String document) {
 		this.document = document;
 	}
-
 
 	public String getProgress() {
 		return progress;
 	}
 
-
 	public void setProgress(String progress) {
 		this.progress = progress;
 	}
 
-
-	public String getDelivery() {
-		return delivery;
+	public String getDelivert() {
+		return delivert;
 	}
 
-
-	public void setDelivery(String delivery) {
-		this.delivery = delivery;
+	public void setDelivert(String delivert) {
+		this.delivert = delivert;
 	}
-
 
 	public Date getEndDate() {
 		return endDate;
 	}
 
-
 	public void setEndDate(Date endDate) {
 		this.endDate = endDate;
 	}
-
 
 	public String getAdult() {
 		return adult;
 	}
 
-
 	public void setAdult(String adult) {
 		this.adult = adult;
 	}
 
-	public int getUserNo() {
-		return userNo;
+	public String getExpected() {
+		return expected;
 	}
 
-
-	public void setUserNo(int userNo) {
-		this.userNo = userNo;
+	public void setExpected(String expected) {
+		this.expected = expected;
 	}
 
-	public int getReportCount() {
-		return reportCount;
+	public int getMemberNo() {
+		return memberNo;
 	}
 
-	public void setReportCount(int reportCount) {
-		this.reportCount = reportCount;
-	}
-
-	public int getPayNo() {
-		return payNo;
-	}
-
-	public void setPayNo(int payNo) {
-		this.payNo = payNo;
-	}
-
-	public int getAdjustNo() {
-		return adjustNo;
-	}
-
-	public void setAdjustNo(int adjustNo) {
-		this.adjustNo = adjustNo;
-	}
-
-	public Date getAdjustDate() {
-		return adjustDate;
-	}
-
-	public void setAdjustDate(Date adjustDate) {
-		this.adjustDate = adjustDate;
-	}
-
-	public int getAdjustMoney() {
-		return adjustMoney;
-	}
-
-	public void setAdjustMoney(int adjustMoney) {
-		this.adjustMoney = adjustMoney;
+	public void setMemberNo(int memberNo) {
+		this.memberNo = memberNo;
 	}
 
 	public String getCompanyName() {
@@ -412,22 +316,26 @@ public class Project implements java.io.Serializable{
 		this.companyName = companyName;
 	}
 
+	public int getMoney() {
+		return money;
+	}
+
+	public void setMoney(int money) {
+		this.money = money;
+	}
+
 	@Override
 	public String toString() {
 		return "Project [projectNo=" + projectNo + ", category=" + category + ", success=" + success + ", judgeStatus="
 				+ judgeStatus + ", progressStatus=" + progressStatus + ", agreement=" + agreement + ", reason=" + reason
-				+ ", adminNo=" + adminNo + ", summary=" + summary + ", prifileImg=" + prifileImg + ", social=" + social
+				+ ", adminNo=" + adminNo + ", summary=" + summary + ", profileImg=" + profileImg + ", social=" + social
 				+ ", site=" + site + ", email=" + email + ", phone=" + phone + ", fees=" + fees + ", makerDiv="
 				+ makerDiv + ", agentName=" + agentName + ", agentEmail=" + agentEmail + ", projectTitle="
-				+ projectTitle + ", projectShortTitle=" + projectShortTitle + ", money=" + money + ", mainImg="
-				+ mainImg + ", document=" + document + ", progress=" + progress + ", delivery=" + delivery
-				+ ", endDate=" + endDate + ", adult=" + adult + ", userNo=" + userNo + ", reportCount=" + reportCount
-				+ ", payNo=" + payNo + ", adjustNo=" + adjustNo + ", adjustDate=" + adjustDate + ", adjustMoney="
-				+ adjustMoney + ", companyName=" + companyName + "]";
+				+ projectTitle + ", projectShortTitle=" + projectShortTitle + ", monet=" + monet + ", mainImg="
+				+ mainImg + ", document=" + document + ", progress=" + progress + ", delivert=" + delivert
+				+ ", endDate=" + endDate + ", adult=" + adult + ", expected=" + expected + ", memberNo=" + memberNo
+				+ ", companyName=" + companyName + ", money=" + money + "]";
 	}
-
-	
-	
 
 	
 	

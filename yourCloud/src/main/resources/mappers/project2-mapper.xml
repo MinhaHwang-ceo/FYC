@@ -67,8 +67,30 @@
 		<result property="adult" column="ADULT"/>
 		<result property="expected" column="EXPECTED"/>
 		<result property="userNo" column="MEMBER_NO"/>
+	
 	</resultMap>
 
+	
+		<resultMap type="com.kh.yc.project.model.vo.SupportList" id="SupportList">
+		<id property="memberName" column="MEMBER_NAME"/>
+		<result property="projectTitle" column="PROJECT_TITLE"/>
+		<result property="fundMoney" column="FUND_MONEY"/>
+		<result property="rewardName" column="REWARD_NAME"/>
+		<result property="fundDate" column="FUND_DATE"/>
+		<result property="deliverySite" column="DELIVERY_SITE"/>
+		<result property="phone" column="PHONE"/>
+		<result property="startDate" column="START_DATE"/>
+		<result property="payState" column="PAY_STATUS"/>
+		<result property="invoiceNum" column="INVOICE_NUMBER"/>
+		<result property="projectNo" column="PROJECT_NO"/>
+		<result property="rewardNumber" column="REWARD_NUMBER"/>
+		<result property="rewardMoney" column="REWARD_MONEY"/>
+		<result property="rewardCount" column="REWARD_COUNT"/>
+<result property="status" column="STATUS"/>
+
+	</resultMap>
+	
+	
 	
 	<select id="selectListCount" resultType="_int">
 		SELECT COUNT(*)
@@ -110,11 +132,104 @@
 	ORDER BY PROJECT_NO DESC 
 	</select>
 
-	<select id="selectSupportList" resultMap="ProjectList" parameterType="java.util.Map">
-	SELECT P.PROJECT_NO, P.PROJECT_TITLE,P.MONEY,M.COMPANY_NAME,P.END_DATE,M.MEMBER_NO
+	<select id="selectSupportList" resultMap="SupportList" parameterType="java.util.Map">
+SELECT  P.PROJECT_TITLE,f.fund_money,f.reward_number,r.reward_name,F.FUND_DATE,M.MEMBER_NAME,d.delivery_site,d.phone,r.start_date,p.pay_status
+,d2.invoice_number,p.project_no,d.status
 	FROM PROJECT P
-	JOIN MEMBER M ON (P.MEMBER_NO = M.MEMBER_NO)
+JOIN SPONSORED S ON(p.PROJECT_NO=S.PROJECT_NO)
+Join member m on(s.member_no=m.member_no)
+JOIN FUND F ON(F.MEMBER_NO = M.MEMBER_NO)
+join reward r on(r.reward_no=f.reward_no)
+join delivery d on(d.member_no=m.member_no)
+join payment p on(p.fund_no=f.fund_no)
+join delivery_status d2 on(d2.delivery_no=d.delivery_no)
 	WHERE P.PROJECT_NO=#{projectNo}
 	</select>
+	
+	
+	
+		<select id="orderList1" resultMap="SupportList" parameterType="java.util.Map">
+SELECT  P.PROJECT_TITLE,f.fund_money,f.reward_number,r.reward_name,F.FUND_DATE,M.MEMBER_NAME,d.delivery_site,d.phone,r.start_date,p.pay_status
+,d2.invoice_number,p.project_no,d.status
+	FROM PROJECT P
+JOIN SPONSORED S ON(p.PROJECT_NO=S.PROJECT_NO)
+Join member m on(s.member_no=m.member_no)
+JOIN FUND F ON(F.MEMBER_NO = M.MEMBER_NO)
+join reward r on(r.reward_no=f.reward_no)
+join delivery d on(d.member_no=m.member_no)
+join payment p on(p.fund_no=f.fund_no)
+join delivery_status d2 on(d2.delivery_no=d.delivery_no)
+	WHERE P.PROJECT_NO=#{projectNo}
+	AND D.status='배송전'
+	</select>
+	
+		<select id="orderList2" resultMap="SupportList" parameterType="java.util.Map">
+SELECT  P.PROJECT_TITLE,f.fund_money,f.reward_number,r.reward_name,F.FUND_DATE,M.MEMBER_NAME,d.delivery_site,d.phone,r.start_date,p.pay_status
+,d2.invoice_number,p.project_no,d.status
+	FROM PROJECT P
+JOIN SPONSORED S ON(p.PROJECT_NO=S.PROJECT_NO)
+Join member m on(s.member_no=m.member_no)
+JOIN FUND F ON(F.MEMBER_NO = M.MEMBER_NO)
+join reward r on(r.reward_no=f.reward_no)
+join delivery d on(d.member_no=m.member_no)
+join payment p on(p.fund_no=f.fund_no)
+join delivery_status d2 on(d2.delivery_no=d.delivery_no)
+	WHERE P.PROJECT_NO=#{projectNo}
+	AND D.status='배송완료'
+	</select>
+	
+			<select id="orderList3" resultMap="SupportList" parameterType="java.util.Map">
+SELECT  P.PROJECT_TITLE,f.fund_money,f.reward_number,r.reward_name,F.FUND_DATE,M.MEMBER_NAME,d.delivery_site,d.phone,r.start_date,p.pay_status
+,d2.invoice_number,p.project_no,d.status
+	FROM PROJECT P
+JOIN SPONSORED S ON(p.PROJECT_NO=S.PROJECT_NO)
+Join member m on(s.member_no=m.member_no)
+JOIN FUND F ON(F.MEMBER_NO = M.MEMBER_NO)
+join reward r on(r.reward_no=f.reward_no)
+join delivery d on(d.member_no=m.member_no)
+join payment p on(p.fund_no=f.fund_no)
+join delivery_status d2 on(d2.delivery_no=d.delivery_no)
+	WHERE P.PROJECT_NO=#{projectNo}
+	AND p.pay_status='결제전'
+	</select>
+	
+	
+			<select id="orderList4" resultMap="SupportList" parameterType="java.util.Map">
+SELECT  P.PROJECT_TITLE,f.fund_money,f.reward_number,r.reward_name,F.FUND_DATE,M.MEMBER_NAME,d.delivery_site,d.phone,r.start_date,p.pay_status
+,d2.invoice_number,p.project_no,d.status
+	FROM PROJECT P
+JOIN SPONSORED S ON(p.PROJECT_NO=S.PROJECT_NO)
+Join member m on(s.member_no=m.member_no)
+JOIN FUND F ON(F.MEMBER_NO = M.MEMBER_NO)
+join reward r on(r.reward_no=f.reward_no)
+join delivery d on(d.member_no=m.member_no)
+join payment p on(p.fund_no=f.fund_no)
+join delivery_status d2 on(d2.delivery_no=d.delivery_no)
+	WHERE P.PROJECT_NO=#{projectNo}
+	AND p.pay_status='결제완료'
+	</select>
+	
+	
+				<select id="receipt" resultMap="SupportList" parameterType="java.util.Map">
+
+	
+	  SELECT  SUM((DECODE(P.PAY_STATUS, '결제완료', 1, 0))) AS REWARD_COUNT, re.reward_name, re.reward_money
+
+    FROM    PROJECT PRO
+    INNER JOIN FUND FU ON (PRO.PROJECT_NO = FU.PROJECT_NO)
+    INNER JOIN REWARD RE ON (FU.REWARD_NO = RE.REWARD_NO)
+    INNER JOIN fund_success FS ON (FU.FUND_NO = FS.FUND_NO)
+    INNER JOIN PAYMENT P ON (FS.FUND_NO = P.FUND_NO)
+    WHERE   PRO.PROJECT_NO = #{projectNo}
+    GROUP BY RE.REWARD_NO, RE.REWARD_NAME, P.PAY_STATUS, re.reward_money
+	
+	</select>
+	
+		
+
+	
+	
+	
+	
 
 </mapper>

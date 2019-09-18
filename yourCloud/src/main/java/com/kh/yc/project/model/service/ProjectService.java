@@ -7,6 +7,7 @@ import com.kh.yc.board.model.vo.PageInfo;
 import com.kh.yc.member.model.vo.Member;
 import com.kh.yc.project.model.exception.ProjectSelectListException;
 import com.kh.yc.project.model.vo.Project;
+import com.kh.yc.project.model.vo.SupportList;
 
 public interface ProjectService {
 
@@ -19,6 +20,17 @@ public interface ProjectService {
 	//나의 메이커 게시글조회용
 	public ArrayList<Project> selectProjectList2(PageInfo pi, Member m) throws ProjectSelectListException;
 	//서포터 정보 조회
-	ArrayList<Project> selectSupportList(int projectNo);;
+	ArrayList<Project> selectSupportList(int bNum);
+	//서포터 정렬
+	ArrayList<Project> selectSupportList2(SupportList sl);
+	ArrayList<Project> selectSupportList3(SupportList sl);
+	
+	//프로젝트의 리워드 종류 출력
+	ArrayList<Project> receipt(int bNum);
+	//리워드 count출력
+	ArrayList<Integer> receipt2(int bNum);
 
+	
+	
+	
 }

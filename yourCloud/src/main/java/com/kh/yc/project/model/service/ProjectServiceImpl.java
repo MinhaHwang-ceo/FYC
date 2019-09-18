@@ -12,6 +12,7 @@ import com.kh.yc.member.model.vo.Member;
 import com.kh.yc.project.model.dao.ProjectDao;
 import com.kh.yc.project.model.exception.ProjectSelectListException;
 import com.kh.yc.project.model.vo.Project;
+import com.kh.yc.project.model.vo.SupportList;
 
 @Service
 public class ProjectServiceImpl implements ProjectService{
@@ -61,5 +62,33 @@ public class ProjectServiceImpl implements ProjectService{
 		
 		return detail;
 	}
+
+	@Override
+	public ArrayList<Project> selectSupportList2(SupportList sl) {
+		ArrayList<Project> list = pd.selectSupportList2(sqlSession,sl); 
+		return list;
+	}
+
+	@Override
+	public ArrayList<Project> selectSupportList3(SupportList sl) {
+		ArrayList<Project> list = pd.selectSupportList3(sqlSession,sl); 
+		return list;
+	}
+
+	
+	//프로젝트 리워드 종류 출력 메소드
+	@Override
+	public ArrayList<Project> receipt(int bNum) {
+		ArrayList<Project> list = pd.receipt(sqlSession,bNum); 
+		return list;
+	}
+
+	@Override
+	public ArrayList<Integer> receipt2(int bNum) {
+		ArrayList<Integer> count = pd.receipt2(sqlSession,bNum); 
+		return count;
+	}
+
+	
 
 }

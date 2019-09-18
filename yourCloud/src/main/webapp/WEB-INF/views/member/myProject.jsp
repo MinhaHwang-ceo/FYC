@@ -72,16 +72,16 @@ opacity:0;
             </tr>
             <c:if test="${b.progressStatus=='성공'}">
             <tr>
-               <td><input type="button" class="btn btn-info" value="명세 정보 확인" onclick="location.href='receiptInfo.me'"/>&nbsp;
-                  <input type="button"  class="btn btn-info" value="후원자 관리" onclick="supportList();"/>
-                     <input type="hidden" name="bNum"  id="bNum"   value="${b.projectNo }"> </td>
+               <td><input type="button" class="btn btn-info receipt" value="명세 정보 확인" />&nbsp;
+                  <input type="button"  class="btn btn-info support" value="후원자 관리"  />
+                  <label hidden><c:out value="${ b.projectNo }"/></label></td>
+          
             </tr>
             </c:if>
-             <c:if test="${b.progressStatus=='실패'}">
+             <c:if test="${b.progressStatus!='성공'}">
             <tr>
                <td><input type="button" class="btn btn-info hidden" value="명세 정보 확인" />&nbsp;
-                  <input type="button"  class="btn btn-info hidden" value="후원자 관리" />
-                     <input type="hidden" name="bNum"  id="bNum"   value="${b.projectNo }"> </td>
+                  <input type="button"  class="btn btn-info hidden" value="후원자 관리" /></td>
             </tr>
             </c:if>
             
@@ -135,13 +135,28 @@ opacity:0;
    
    <script>
    
-   function supportList(){
-		var bNum = $("#bNum").val();
+   $(".support").click(function(){
+
+	   var bNum=$(this).siblings().eq(1).text();
+	   console.log(bNum);
 	   
 		location.href = "supporterList.me?bNum=" + bNum;
 	   
-   }
+
+   });
    
+   
+   $(".receipt").click(function(){
+
+	   var bNum=$(this).siblings().eq(1).text();
+	   console.log(bNum);
+	   
+		location.href = "receiptInfo.me?bNum=" + bNum;
+	   
+
+   });
+   
+
    </script>
    
    
