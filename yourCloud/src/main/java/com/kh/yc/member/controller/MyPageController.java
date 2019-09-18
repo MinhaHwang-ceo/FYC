@@ -2,7 +2,6 @@ package com.kh.yc.member.controller;
 
 import java.util.ArrayList;
 
-import javax.security.auth.login.LoginException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -10,14 +9,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
+import com.kh.yc.board.model.vo.PageInfo;
+import com.kh.yc.common.Pagination;
 import com.kh.yc.member.model.service.MemberServiceImpl;
 import com.kh.yc.member.model.vo.Member;
 import com.kh.yc.project.model.exception.ProjectSelectListException;
 import com.kh.yc.project.model.service.ProjectService;
 import com.kh.yc.project.model.vo.Project;
-import com.kh.yc.board.model.vo.PageInfo;
-import com.kh.yc.common.Pagination;
+import com.kh.yc.project.model.vo.SupportList;
 
 @Controller
 public class MyPageController {
@@ -33,6 +34,8 @@ public class MyPageController {
 
 	@RequestMapping("myPage.me")
 	public String goMyPage(@ModelAttribute Member m) {
+		
+
 		return "member/myPage";
 	}
 
@@ -109,14 +112,25 @@ System.out.println("m:::::;;"+m);
 	}
 
 	@RequestMapping("receiptInfo.me")
-	public String receiptInfo(@ModelAttribute Member m) {
+	public String receiptInfo(@ModelAttribute Member m,int bNum,HttpServletRequest request, HttpServletResponse response) {
 
+		System.out.println("bNum"+bNum);
+		ArrayList<Project> list= ps.receipt(bNum);
+		System.out.println("list:::"+list);
+		System.out.println("listsize"+list.size());
+		
+		
+		request.setAttribute("list", list);
+		
+		
+		
 		return "member/receiptInfo";
 	}
 
 	@RequestMapping("supporterList.me")
+
 	public String supporterList(@ModelAttribute Member m,int bNum,HttpServletRequest request, HttpServletResponse response) {
-		
+		System.out.println("bNum"+bNum);
 		ArrayList<Project> list= ps.selectSupportList(bNum);
 		System.out.println("list:::"+list);
 		System.out.println("listsize"+list.size());
@@ -125,4 +139,52 @@ System.out.println("m:::::;;"+m);
 		
 		return "member/supporterList";
 	}
+	
+	@RequestMapping("supporterList2.me")
+	public ModelAndView  supporterList2(ModelAndView mv, @ModelAttribute Member m,int bNum,String standard,HttpServletRequest request, HttpServletResponse response) {
+	System.out.println("bNum"+bNum);
+		System.out.println("standard"+standard);
+		
+	SupportList sl= new SupportList();
+	sl.setStatus(standard);
+	sl.setProjectNo(bNum);
+
+		ArrayList<Project> list= ps.selectSupportList2(sl);
+		System.out.println("list:::"+list);
+		System.out.println("listsize"+list.size());
+
+		
+		mv.setViewName("jsonView");
+		mv.addObject("list", list);
+	
+		return mv;
+		
+	}
+	
+	
+	
+
+	@RequestMapping("supporterList3.me")
+	public ModelAndView  supporterList3(ModelAndView mv, @ModelAttribute Member m,int bNum,String standard,HttpServletRequest request, HttpServletResponse response) {
+	System.out.println("bNum"+bNum);
+		System.out.println("standard"+standard);
+		
+	SupportList sl= new SupportList();
+	sl.setStatus(standard);
+	sl.setProjectNo(bNum);
+
+		ArrayList<Project> list= ps.selectSupportList3(sl);
+		System.out.println("list:::"+list);
+		System.out.println("listsize"+list.size());
+
+		
+		mv.setViewName("jsonView");
+		mv.addObject("list", list);
+	
+		return mv;
+		
+	}
+	
+	
+	
 }

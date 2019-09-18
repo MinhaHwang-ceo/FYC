@@ -1,6 +1,7 @@
 package com.kh.yc.project.model.dao;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.session.RowBounds;
@@ -11,6 +12,7 @@ import com.kh.yc.board.model.vo.PageInfo;
 import com.kh.yc.member.model.vo.Member;
 import com.kh.yc.project.model.exception.ProjectSelectListException;
 import com.kh.yc.project.model.vo.Project;
+import com.kh.yc.project.model.vo.SupportList;
 
 @Repository
 public class ProjectDaoImpl implements ProjectDao{
@@ -49,7 +51,7 @@ public class ProjectDaoImpl implements ProjectDao{
 		
 		RowBounds rowBounds = new RowBounds(offset, pi.getLimit());
 		
-		list = (ArrayList) sqlSession.selectList("Project2.selectProjectList2",m,rowBounds);
+		list = (ArrayList) sqlSession.selectList("Project2.selectProjectList2",rowBounds);
 		
 		return list;
 	}
@@ -76,6 +78,65 @@ public class ProjectDaoImpl implements ProjectDao{
 	public ArrayList<Project> memberCategory(SqlSessionTemplate sqlSession, String category) {
 		
 		return (ArrayList)sqlSession.selectList("Project2.memberCategory", category);
+	}
+
+	@Override
+	public ArrayList<Project> selectSupportList2(SqlSessionTemplate sqlSession, SupportList sl) {
+		ArrayList<Project> list =null;
+		System.out.println("SL:::::::::"+sl);
+		if(sl.getStatus().equals("before")) {
+		list = (ArrayList) sqlSession.selectList("Project2.orderList1",sl);
+		}
+		if(sl.getStatus().equals("complete")){
+			list = (ArrayList) sqlSession.selectList("Project2.orderList2",sl);
+		}if(sl.getStatus().equals("all")) {
+			
+			list = (ArrayList) sqlSession.selectList("Project2.selectSupportList",sl);
+			
+		}
+		
+		
+		
+		return list;
+	}
+
+	
+	@Override
+	public ArrayList<Project> selectSupportList3(SqlSessionTemplate sqlSession, SupportList sl) {
+		ArrayList<Project> list =null;
+		System.out.println("SL:::::::::"+sl);
+		if(sl.getStatus().equals("before")) {
+		list = (ArrayList) sqlSession.selectList("Project2.orderList3",sl);
+		}
+		if(sl.getStatus().equals("complete")){
+			list = (ArrayList) sqlSession.selectList("Project2.orderList4",sl);
+		}if(sl.getStatus().equals("all")) {
+			
+			list = (ArrayList) sqlSession.selectList("Project2.selectSupportList",sl);
+			
+		}
+		
+		
+		
+		return list;
+	}
+
+	@Override
+	public ArrayList<Project> receipt(SqlSessionTemplate sqlSession, int bNum) {
+		ArrayList<Project> list =null;
+		
+		list = (ArrayList) sqlSession.selectList("Project2.receipt",bNum);
+		
+		return list;
+	}
+
+	@Override
+	public ArrayList<Integer> receipt2(SqlSessionTemplate sqlSession, int bNum) {
+		ArrayList<Integer> count =null;
+		
+		count = (ArrayList) sqlSession.selectList("Project2.receipt2",bNum);
+		
+		return count;
 	}
 
 }

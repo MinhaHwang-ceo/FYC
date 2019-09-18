@@ -33,14 +33,19 @@
 			      </tr>
 			    </thead>
 			    <tbody>
+			     <c:forEach var="b" items="${ list }">
+			    
 			      	<tr>
-			      		<td>A</td>
-			      		<td>88</td>
-			      		<td>150000</td>
-			      		<td>400000</td>
+			      		<td><c:out value="${ b.rewardName }"/></td>
+			      		<td><c:out value="${ b.rewardCount }"/></td>
+			      		<td><c:out value="${ b.rewardMoney }"/></td>
+			      		<td id="sum"><c:out value="${ b.rewardCount * b.rewardMoney }"/></td>
 			      	</tr>
+		
+			      		</c:forEach>
 			    </tbody>
   			</table>
+  			
 			<p align="right">총 금액 : 400000원</p>  			
 		</div>
 	</div>

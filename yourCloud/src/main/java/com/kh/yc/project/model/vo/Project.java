@@ -12,7 +12,7 @@ public class Project implements java.io.Serializable {
 	private String reason;
 	private int adminNo;
 	private String summary;
-	private String prifileImg;
+	private String profileImg;
 	private String social;
 	private String site;
 	private String email;
@@ -24,10 +24,10 @@ public class Project implements java.io.Serializable {
 	private String projectTitle;
 	private String projectShortTitle;
 	private int money;
-	private String mainImg;
+	private int mainImg;
 	private String document;
 	private String progress;
-	private String delivery;
+	private String delivert;
 	private Date endDate;
 	private String adult;
 	private int reportCount;
@@ -39,11 +39,11 @@ public class Project implements java.io.Serializable {
 	private String categoryDiv;
 	private Date projectOpen;
   private int memberNo;
-  
+
 	public Project() {}
 
 	public Project(int projectNo, String category, String success, String judgeStatus, String progressStatus,
-			int agreement, String reason, int adminNo, String summary, String prifileImg, String social, String site,
+			int agreement, String reason, int adminNo, String summary, String profileImg, String social, String site,
 			String email, String phone, String fees, String makerDiv, String agentName, String agentEmail,
 			String projectTitle, String projectShortTitle, int money, String mainImg, String document, String progress,
 			String delivery, Date endDate, String adult, int userNo, int reportCount, int payNo, int adjustNo,
@@ -59,7 +59,7 @@ public class Project implements java.io.Serializable {
 		this.reason = reason;
 		this.adminNo = adminNo;
 		this.summary = summary;
-		this.prifileImg = prifileImg;
+		this.profileImg = profileImg;
 		this.social = social;
 		this.site = site;
 		this.email = email;
@@ -70,11 +70,11 @@ public class Project implements java.io.Serializable {
 		this.agentEmail = agentEmail;
 		this.projectTitle = projectTitle;
 		this.projectShortTitle = projectShortTitle;
-		this.money = money;
+		this.monet = monet;
 		this.mainImg = mainImg;
 		this.document = document;
 		this.progress = progress;
-		this.delivery = delivery;
+		this.delivert = delivert;
 		this.endDate = endDate;
 		this.adult = adult;
 		this.reportCount = reportCount;
@@ -161,12 +161,12 @@ public class Project implements java.io.Serializable {
 		this.summary = summary;
 	}
 
-	public String getPrifileImg() {
-		return prifileImg;
+	public String getProfileImg() {
+		return profileImg;
 	}
 
-	public void setPrifileImg(String prifileImg) {
-		this.prifileImg = prifileImg;
+	public void setProfileImg(String profileImg) {
+		this.profileImg = profileImg;
 	}
 
 	public String getSocial() {
@@ -262,6 +262,7 @@ public class Project implements java.io.Serializable {
 	}
 
 	public void setMainImg(String mainImg) {
+
 		this.mainImg = mainImg;
 	}
 
@@ -305,6 +306,7 @@ public class Project implements java.io.Serializable {
 		this.adult = adult;
 	}
 
+  
 	public int getMemberNo() {
 		return memberNo;
 	}
@@ -319,40 +321,13 @@ public class Project implements java.io.Serializable {
 		return reportCount;
 	}
 
-	public void setReportCount(int reportCount) {
-		this.reportCount = reportCount;
+
+	public int getMemberNo() {
+		return memberNo;
 	}
 
-	public int getPayNo() {
-		return payNo;
-	}
-
-	public void setPayNo(int payNo) {
-		this.payNo = payNo;
-	}
-
-	public int getAdjustNo() {
-		return adjustNo;
-	}
-
-	public void setAdjustNo(int adjustNo) {
-		this.adjustNo = adjustNo;
-	}
-
-	public Date getAdjustDate() {
-		return adjustDate;
-	}
-
-	public void setAdjustDate(Date adjustDate) {
-		this.adjustDate = adjustDate;
-	}
-
-	public int getAdjustMoney() {
-		return adjustMoney;
-	}
-
-	public void setAdjustMoney(int adjustMoney) {
-		this.adjustMoney = adjustMoney;
+	public void setMemberNo(int memberNo) {
+		this.memberNo = memberNo;
 	}
 
 	public String getCompanyName() {
@@ -391,7 +366,7 @@ public class Project implements java.io.Serializable {
 	public String toString() {
 		return "Project [projectNo=" + projectNo + ", category=" + category + ", success=" + success + ", judgeStatus="
 				+ judgeStatus + ", progressStatus=" + progressStatus + ", agreement=" + agreement + ", reason=" + reason
-				+ ", adminNo=" + adminNo + ", summary=" + summary + ", prifileImg=" + prifileImg + ", social=" + social
+				+ ", adminNo=" + adminNo + ", summary=" + summary + ", profileImg=" + profileImg + ", social=" + social
 				+ ", site=" + site + ", email=" + email + ", phone=" + phone + ", fees=" + fees + ", makerDiv="
 				+ makerDiv + ", agentName=" + agentName + ", agentEmail=" + agentEmail + ", projectTitle="
 				+ projectTitle + ", projectShortTitle=" + projectShortTitle + ", money=" + money + ", mainImg="

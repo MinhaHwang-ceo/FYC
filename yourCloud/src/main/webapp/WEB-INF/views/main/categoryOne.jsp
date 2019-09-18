@@ -196,6 +196,45 @@ a {
 .starR.on {
 	background-position: 0 0;
 } */
+
+
+
+.dropbtn {
+  background-color: #ea2129;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {background-color: #ddd;}
+
+.dropdown:hover .dropdown-content {display: block;}
+
+.dropdown:hover .dropbtn {background-color: #3e8e41;}
+
+
 </style>
 <meta charset="UTF-8">
 <title>니가 그린 구름 그림</title>
@@ -405,8 +444,14 @@ a {
 					</button>
 					<button class="btn-question">문의</button>
 
-					<button class="btn-share">공유하기</button>
+					<button class="btn-share" id="createBtn">QR코드</button>
+			
 				</div>
+					<div>
+
+	<img id="qrcode" src='' />
+
+	</div>
 			</div>
 
 	
@@ -592,5 +637,34 @@ a {
 	<div style="width:100%; float:left;"><jsp:include page="../common/customer_footer.jsp"/></div>
 	</div>
 	
+	
+<script type="text/javascript">
+
+   $(document).ready(function(){
+
+	   var bNum=$("#bNum");
+	   
+	   $('#createBtn').on('click',function(){
+
+
+	      googleQRUrl = "https://chart.googleapis.com/chart?chs=177x177&cht=qr&chl="+"http://192.168.120.5:8001/yc/categoryOne.ca?projectNo="+bNum;
+
+	      
+
+	      	 // 이미지가 나타날 영역에 원하는 내용을 넣은 QR code의 이미지를 출력합니다.
+
+             // 여기 주소 부분을 변경해주면 원하는 값을 언제든 맘대로
+
+	      	$('#qrcode').attr('src', googleQRUrl +'&choe=UTF-8');
+
+
+	   });
+
+	 
+
+	});
+
+</script>
+
 </body>
 </html>
