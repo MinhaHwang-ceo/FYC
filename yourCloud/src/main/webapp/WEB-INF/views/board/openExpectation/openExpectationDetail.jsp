@@ -48,7 +48,7 @@
 				<img alt="" src="/yc/resources/images/yc-logo3.png">
 			</div>
 		</td>
-		<td id="td1"><input type="button" value="알림신청" id="btn" class="btn btn-info" onclick="window.open('${contextPath}/openExpectationRequest.bo','_blank', 'width=370,height=400');return false;">
+		<td id="td1"><input type="button" value="알림신청" id="btn" class="btn btn-info" onclick="window.open('openExpectationRequest.bo','_blank', 'width=370,height=400');return false;">
 			<br><br>
 			<input type="button" value="공유하기" id="btn" class="btn btn-info">
 			<br><br>
@@ -57,14 +57,14 @@
 	</tr>
 
 	<tr>
-		<td><b>프로젝트 이름</b></td>
+		<td><b><c:out value="${ pj.projectTitle }"/></b></td>
 	</tr>
 	
 	
 	<tr>
 		<td>
 			<div>
-				프로젝트 내용 프로젝트 내용 프로젝트 내용 프로젝트 내용 프로젝트 내용 프로젝트 내용 프로젝트 내용 프로젝트 내용 프로젝트 내용
+				<c:out value="${ pj.summary }"/>
 			</div>	
 		</td>
 	</tr>
@@ -72,15 +72,15 @@
 	<tr><td><br></td></tr>
 	
 	<tr>
-		<td>9월초 오픈예정</td>
-		<td>메이커:<c:out value="${ agentName }"/></td>
+		<td><c:out value="${ pj.projectOpen }"/>오픈예정</td>
+		<td>메이커:<c:out value="${ pj.companyName }"/></td>
 	</tr>
 
 
 </table>
 
 <!-- 임시버튼 -->
-<input type="button" onclick="location.href='${contextPath}/funding_1.bo'" value="펀딩하기 임시버튼">
+<input type="button" onclick="location.href='funding_1.bo'" value="펀딩하기 임시버튼">
 
 </div>
 

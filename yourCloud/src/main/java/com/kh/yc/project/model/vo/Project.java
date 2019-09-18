@@ -36,17 +36,20 @@ public class Project implements java.io.Serializable {
 	private Date adjustDate;
 	private int adjustMoney;
 	private String companyName;
-	private int memberNo;
-
-	public Project() {
-	}
+	private String categoryDiv;
+	private Date projectOpen;
+  private int memberNo;
+  
+	public Project() {}
 
 	public Project(int projectNo, String category, String success, String judgeStatus, String progressStatus,
 			int agreement, String reason, int adminNo, String summary, String prifileImg, String social, String site,
 			String email, String phone, String fees, String makerDiv, String agentName, String agentEmail,
 			String projectTitle, String projectShortTitle, int money, String mainImg, String document, String progress,
-			String delivery, Date endDate, String adult, int reportCount, int payNo, int adjustNo, Date adjustDate,
-			int adjustMoney, String companyName, int memberNo) {
+			String delivery, Date endDate, String adult, int userNo, int reportCount, int payNo, int adjustNo,
+			Date adjustDate, int adjustMoney, String companyName, String categoryDiv, Date projectOpen, int memberNo) {
+		super();
+
 		this.projectNo = projectNo;
 		this.category = category;
 		this.success = success;
@@ -80,7 +83,10 @@ public class Project implements java.io.Serializable {
 		this.adjustDate = adjustDate;
 		this.adjustMoney = adjustMoney;
 		this.companyName = companyName;
-		this.memberNo = memberNo;
+		this.categoryDiv = categoryDiv;
+		this.projectOpen = projectOpen;
+    this.memberNo = memberNo;
+
 	}
 
 	public int getProjectNo() {
@@ -299,6 +305,14 @@ public class Project implements java.io.Serializable {
 		this.adult = adult;
 	}
 
+	public int getUserNo() {
+		return userNo;
+	}
+
+	public void setUserNo(int userNo) {
+		this.userNo = userNo;
+	}
+
 	public int getReportCount() {
 		return reportCount;
 	}
@@ -347,12 +361,28 @@ public class Project implements java.io.Serializable {
 		this.companyName = companyName;
 	}
 
+	public String getCategoryDiv() {
+		return categoryDiv;
+	}
+
+	public void setCategoryDiv(String categoryDiv) {
+		this.categoryDiv = categoryDiv;
+	}
+
+	public Date getProjectOpen() {
+		return projectOpen;
+	}
+
+	public void setProjectOpen(Date projectOpen) {
+		this.projectOpen = projectOpen;
+
 	public int getMemberNo() {
 		return memberNo;
 	}
 
 	public void setMemberNo(int memberNo) {
 		this.memberNo = memberNo;
+
 	}
 
 	@Override
@@ -364,9 +394,12 @@ public class Project implements java.io.Serializable {
 				+ makerDiv + ", agentName=" + agentName + ", agentEmail=" + agentEmail + ", projectTitle="
 				+ projectTitle + ", projectShortTitle=" + projectShortTitle + ", money=" + money + ", mainImg="
 				+ mainImg + ", document=" + document + ", progress=" + progress + ", delivery=" + delivery
-				+ ", endDate=" + endDate + ", adult=" + adult + ", reportCount=" + reportCount + ", payNo=" + payNo
-				+ ", adjustNo=" + adjustNo + ", adjustDate=" + adjustDate + ", adjustMoney=" + adjustMoney
-				+ ", companyName=" + companyName + ", memberNo=" + memberNo + "]";
+				+ ", endDate=" + endDate + ", adult=" + adult + ", userNo=" + userNo + ", reportCount=" + reportCount
+				+ ", payNo=" + payNo + ", adjustNo=" + adjustNo + ", adjustDate=" + adjustDate + ", adjustMoney="
+				+ adjustMoney + ", companyName=" + companyName + ", categoryDiv=" + categoryDiv + ", projectOpen="
+				+ projectOpen + ", memberNo=" + memberNo + "]";
 	}
+
+	
 
 }

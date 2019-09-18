@@ -41,7 +41,7 @@ public class BoardController {
 	@Autowired
 	ProjectService ps;
 
-	@RequestMapping(value = "openExpectation.bo", method = RequestMethod.GET)
+		@RequestMapping(value = "openExpectation.bo", method = RequestMethod.GET)
 	public String openExpectation(HttpServletRequest request, HttpServletResponse response) {
 		int currentPage = 1;
 
@@ -54,8 +54,9 @@ public class BoardController {
 			listCount = ps.getListCount();
 			PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
 			ArrayList<Project> openlist = bs.selectOpenProject(pi);
+			/* ArrayList<Member> mlist = */
 			System.out.println(openlist);
-
+			
 			request.setAttribute("openlist", openlist);
 			request.setAttribute("pi", pi);
 		} catch (ProjectSelectListException e) {
@@ -66,14 +67,23 @@ public class BoardController {
 	}
 
 	@RequestMapping(value = "openExpectationDetail.bo", method = RequestMethod.GET)
-	public String openExpectationDetail(Model model) {
-
+	public String openExpectationDetail(HttpServletRequest request, Model model) {
+		String projectNo = request.getParameter("projectNo");
+		int projectNoInt = Integer.parseInt(projectNo);
+		
+		Project pj = new Project();
+		
+		pj = bs.selectDetailProject(projectNoInt);
+		System.out.println(pj);
+		request.setAttribute("pj", pj);
+		
 		return "board/openExpectation/openExpectationDetail";
 	}
 
 	@RequestMapping(value = "openExpectationRequest.bo", method = RequestMethod.GET)
-	public String openExpectationRequest(Model model) {
-
+	public String openExpectationRequest(Model model, OpenAlarm o, HttpServletRequest request) {
+		System.out.println(o);
+		
 		return "board/openExpectation/openExpectationRequest";
 	}
 
@@ -398,3 +408,4 @@ public class BoardController {
 		return "main/main";
 	}
 }
+
