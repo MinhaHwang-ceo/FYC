@@ -138,6 +138,7 @@
 		M.COMPANY_NAME,P.END_DATE,P.MEMBER_NO,P.JUDGE_STATUS,P.PROGRESS_STATUS
 		FROM PROJECT P
 		JOIN MEMBER M ON (P.MEMBER_NO = M.MEMBER_NO)
+		WHERE PROJECT_NO = #{projectNo}
 	</select>
 
 	<select id="detailBoard" resultType="hashmap"
@@ -149,17 +150,17 @@
 	</select>
 
 	<select id="selectSupportList" resultMap="SupportList" parameterType="java.util.Map">
-SELECT  P.PROJECT_TITLE,f.fund_money,f.reward_number,r.reward_name,F.FUND_DATE,M.MEMBER_NAME,d.delivery_site,d.phone,r.start_date,p.pay_status
-,d2.invoice_number,p.project_no,d.status
-	FROM PROJECT P
-JOIN SPONSORED S ON(p.PROJECT_NO=S.PROJECT_NO)
-Join member m on(s.member_no=m.member_no)
-JOIN FUND F ON(F.MEMBER_NO = M.MEMBER_NO)
-join reward r on(r.reward_no=f.reward_no)
-join delivery d on(d.member_no=m.member_no)
-join payment p on(p.fund_no=f.fund_no)
-join delivery_status d2 on(d2.delivery_no=d.delivery_no)
-	WHERE P.PROJECT_NO=#{projectNo}
+		SELECT  P.PROJECT_TITLE,f.fund_money,f.reward_number,r.reward_name,F.FUND_DATE,M.MEMBER_NAME,d.delivery_site,d.phone,r.start_date,p.pay_status
+		,d2.invoice_number,p.project_no,d.status
+		FROM PROJECT P
+		JOIN SPONSORED S ON(p.PROJECT_NO=S.PROJECT_NO)
+		Join member m on(s.member_no=m.member_no)
+		JOIN FUND F ON(F.MEMBER_NO = M.MEMBER_NO)
+		join reward r on(r.reward_no=f.reward_no)
+		join delivery d on(d.member_no=m.member_no)
+		join payment p on(p.fund_no=f.fund_no)
+		join delivery_status d2 on(d2.delivery_no=d.delivery_no)
+		WHERE P.PROJECT_NO=#{projectNo}
 	</select>
     
 	<select id="selectProjectList2" resultMap="ProjectList"
@@ -291,6 +292,26 @@ join delivery_status d2 on(d2.delivery_no=d.delivery_no)
 		SEQ_ATTACHMENTNO.NEXTVAL, #{originFileName}, #{fileSrc}, #{newFileName}, SYSDATE, '프로젝트', NULL, #{projectNo}, 1
 	)
 	</insert>
+	
+	<insert id="insertLike">
+		INSERT INTO INTEREST(PROJECT_NO, MEMBER_NO)
+		VALUES (#{projectNo} , #{memberNo} )
+	</insert>
+	
+	<delete id="deleteLike">
+		DELETE FROM INTEREST
+		WHERE PROJECT_NO = #{projectNo} 
+		AND MEMBER_NO = #{memberNo}
+	</delete>
+	
+	<select id="likeCount" resultType="int">
+		SELECT COUNT(*) 
+		FROM INTEREST 
+		WHERE PROJECT_NO = #{projectNo}
+		AND MEMBER_NO = #{memberNo}
+	</select>
+	
+
 	
 </mapper>
 

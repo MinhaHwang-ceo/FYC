@@ -8,6 +8,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import com.kh.yc.board.model.vo.PageInfo;
 import com.kh.yc.member.model.vo.Member;
 import com.kh.yc.project.model.exception.ProjectSelectListException;
+import com.kh.yc.project.model.vo.Interest;
 import com.kh.yc.project.model.vo.Project;
 import com.kh.yc.project.model.vo.SupportList;
 
@@ -31,5 +32,13 @@ public interface ProjectDao {
 	//리워드 수 count
 	ArrayList<Integer> receipt2(SqlSessionTemplate sqlSession, int bNum);
 	ArrayList<Project> memberCategory(SqlSessionTemplate sqlSession, String category);
+	//좋아요 기능
+	int insertLike(SqlSessionTemplate sqlSession, Interest inter);
+	//좋아요 취소 기능
+	int deleteLike(SqlSessionTemplate sqlSession, Interest inter);
+	//좋이요 유무
+	int likeCount(SqlSessionTemplate sqlSession, Interest inter);
+	
+	
 
 }

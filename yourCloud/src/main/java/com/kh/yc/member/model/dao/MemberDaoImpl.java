@@ -114,6 +114,8 @@ public class MemberDaoImpl implements MemberDao{
 			System.out.println("Dao : " + nm);
 			return sqlSession.insert("Naver.naverInsert", nm);
 		}
+		
+		//좋아요 기능
 		@Override
 		public int naverLoginCheck(SqlSessionTemplate sqlSession, Member nm) {
 			return sqlSession.selectOne("Naver.naverLoginCheck", nm);

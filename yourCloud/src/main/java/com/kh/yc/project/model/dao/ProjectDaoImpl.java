@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 import com.kh.yc.board.model.vo.PageInfo;
 import com.kh.yc.member.model.vo.Member;
 import com.kh.yc.project.model.exception.ProjectSelectListException;
+import com.kh.yc.project.model.vo.Interest;
 import com.kh.yc.project.model.vo.Project;
 import com.kh.yc.project.model.vo.SupportList;
 
@@ -138,6 +139,29 @@ public class ProjectDaoImpl implements ProjectDao{
 		
 		return count;
 	}
+	
+	//좋아요 기능
+	@Override
+	public int insertLike(SqlSessionTemplate sqlSession,Interest inter) {
+		
+		return sqlSession.insert("Project2.insertLike",inter);
+	}
+
+	//좋아요 취소 기능
+	@Override
+	public int deleteLike(SqlSessionTemplate sqlSession, Interest inter) {
+		
+		return sqlSession.delete("Project2.deleteLike",inter);
+	}
+
+	//좋아요 유무 
+	@Override
+	public int likeCount(SqlSessionTemplate sqlSession, Interest inter) {
+		
+		return sqlSession.selectOne("Project2.likeCount",inter);
+	}
+
+
 
 }
 
