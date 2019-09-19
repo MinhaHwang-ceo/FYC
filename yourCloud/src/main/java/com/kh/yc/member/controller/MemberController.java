@@ -330,7 +330,7 @@ public class MemberController {
 		 * ModelAndView mv= new ModelAndView(); mv.setViewName("jsonView");
 		 * mv.addObject("email",email); mv.addObject("authNum",authNum);
 		 */
-	    	return "redirect:index.jsp";
+	    	return "admin/email";
 	    }
 
 }

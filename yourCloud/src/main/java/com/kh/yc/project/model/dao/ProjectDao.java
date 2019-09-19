@@ -39,6 +39,7 @@ public interface ProjectDao {
 	//좋이요 유무
 	int likeCount(SqlSessionTemplate sqlSession, Interest inter);
 	
-	
+	ArrayList<SupportList> selectSupportListExcel(SqlSessionTemplate sqlSession, int bNum);
+
 
 }

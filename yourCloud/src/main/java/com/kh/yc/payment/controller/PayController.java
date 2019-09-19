@@ -9,19 +9,25 @@ import java.util.Random;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.kh.yc.payment.model.service.PayService;
+import com.kh.yc.payment.model.vo.Payment;
 import com.siot.IamportRestClient.IamportClient;
 import com.siot.IamportRestClient.exception.IamportResponseException;
 import com.siot.IamportRestClient.request.ScheduleData;
 import com.siot.IamportRestClient.request.ScheduleEntry;
-import com.siot.IamportRestClient.response.Payment;
 
 @RestController()
 public class PayController {
+
+	@Autowired
+	PayService ps;
+
 	IamportClient iamportClient = new IamportClient("8768417829708074",
 			"xZUSL0NpyUxc1GBMg0lYT41iQYv8hFgOFbGqcuQKonXq4yclyyjsCkKsjgBAVRoB351fzSZYfXojvBE4");
 
@@ -33,17 +39,26 @@ public class PayController {
 
 			String merchantUid = "fund" + random.nextInt(100000);
 
-			BigDecimal amount = new BigDecimal(1000);
+			BigDecimal amount = new BigDecimal(100000);
 			ScheduleData sd = new ScheduleData(customer_uid);
 			Calendar cal = Calendar.getInstance();
-			cal.add(Calendar.MINUTE, 3);
+			cal.add(Calendar.MINUTE, 1);
 			Date schedule_at = cal.getTime();
 
 			ScheduleEntry se = new ScheduleEntry(merchantUid, schedule_at, amount);
+
+			Payment pay = new Payment();
+
+			pay.setUserNo(Integer.parseInt(customer_uid));
+			pay.setPayNo(merchantUid);
+			pay.setPayStatus("결제전");
+			int price = amount.intValue();
+			pay.setAmount(price);
+			ps.insertPayment(pay);
+
 			sd.addSchedule(se);
 
 			iamportClient.subscribeSchedule(sd);
-
 			/*
 			 * BigDecimal amount = new BigDecimal(1000); AgainPaymentData ad = new
 			 * AgainPaymentData("kjs3124", "0900132", amount);
@@ -59,24 +74,39 @@ public class PayController {
 		mv.setViewName("jsonView");
 		return mv;
 	}
-	
-	@RequestMapping("getPayStatus.fd")
-	public String getPayStatus(Model model) {
-		try {
-			System.out.println("this is getPayStatus");
-			List<Payment> status = iamportClient.paymentsByStatus("all").getResponse().getList();
-			for (Payment pay : status) {
-				System.out.println(pay.getName() + pay.getStatus());
-			}
 
-		} catch (IamportResponseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+	public void RePay(String merchantUid) {
+		try {
+			Payment p = ps.selectRePay(merchantUid);
+			System.out.println(p);
+			merchantUid = p.getPayNo();
+			Random random = new Random();
+
+			String merchantUid2 = "fund" + random.nextInt(100000);
+			String customer_uid = String.valueOf(p.getUserNo());
+
+			BigDecimal amount = new BigDecimal(p.getAmount());
+			ScheduleData sd = new ScheduleData(customer_uid);
+			Calendar cal = Calendar.getInstance();
+			cal.add(Calendar.MINUTE, 1);
+			Date schedule_at = cal.getTime();
+
+			ScheduleEntry se = new ScheduleEntry(merchantUid2, schedule_at, amount);
+
+			Payment pay = new Payment();
+			pay.setUserNo(Integer.parseInt(customer_uid));
+			pay.setPayNo(merchantUid);
+			pay.setPayStatus("결제실패");
+			int price = amount.intValue();
+			pay.setAmount(price);
+			ps.updatePayStatus(pay);
+			sd.addSchedule(se);
+			if (p.getCount() < 5) {
+				iamportClient.subscribeSchedule(sd);
+			}
+		} catch (Exception e) {
+
 		}
-		return "main/main";
+
 	}
-	
 }

@@ -16,6 +16,7 @@ import com.kh.yc.funding.model.dao.FundingDaoImpl;
 import com.kh.yc.funding.model.vo.Attachment;
 import com.kh.yc.member.model.vo.Member;
 import com.kh.yc.project.model.vo.Sign;
+import com.kh.yc.reward.model.vo.Reward;
 
 
 @Service
@@ -101,12 +102,6 @@ public class FundingServiceImpl implements FundingService{
 		return fd.selectFileList(sqlSession, p);
 	}
 
-	
-
-	
-
-	
-
 	@Override
 	public int signUser(Sign s) {
 		// TODO Auto-generated method stub
@@ -115,8 +110,15 @@ public class FundingServiceImpl implements FundingService{
 
 	@Override
 	public int signFile(Attachment a) {
-		// TODO Auto-generated method stub
+		
 		return fd.signFile(sqlSession, a);
+	}
+	
+	//리워드 인설트
+	@Override
+	public int rewardInest(Reward r) {
+		
+		return fd.rewardInest(sqlSession,r);
 	}
 
 	

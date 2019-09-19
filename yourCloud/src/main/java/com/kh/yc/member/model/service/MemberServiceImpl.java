@@ -1,5 +1,6 @@
 package com.kh.yc.member.model.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -12,10 +13,12 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.kh.yc.board.model.vo.PageInfo;
 import com.kh.yc.member.model.dao.MemberDao;
 import com.kh.yc.member.model.dao.MemberDaoImpl;
 import com.kh.yc.member.model.vo.Member;
 import com.kh.yc.member.model.vo.NaverMember;
+import com.kh.yc.reward.model.vo.Reward;
 
 @Service
 public class MemberServiceImpl implements MemberService {
@@ -116,6 +119,15 @@ public class MemberServiceImpl implements MemberService {
 		
 		return list;
 	}
+
+	@Override
+	public ArrayList<Member> selectMyReward(PageInfo pi, Member m) {
+		
+		return md.selectMyReward(sqlSession, m, pi);
+	}
+
+
+
 	
 
 }

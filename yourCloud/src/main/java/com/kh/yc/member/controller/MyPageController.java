@@ -5,6 +5,16 @@ import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.hssf.util.HSSFColor.HSSFColorPredefined;
+import org.apache.poi.ss.usermodel.BorderStyle;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellStyle;
+import org.apache.poi.ss.usermodel.FillPatternType;
+import org.apache.poi.ss.usermodel.HorizontalAlignment;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -13,12 +23,16 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.yc.board.model.vo.PageInfo;
 import com.kh.yc.common.Pagination;
+import com.kh.yc.member.model.service.MemberService;
 import com.kh.yc.member.model.service.MemberServiceImpl;
 import com.kh.yc.member.model.vo.Member;
 import com.kh.yc.project.model.exception.ProjectSelectListException;
 import com.kh.yc.project.model.service.ProjectService;
 import com.kh.yc.project.model.vo.Project;
 import com.kh.yc.project.model.vo.SupportList;
+import com.kh.yc.reward.model.vo.Reward;
+
+
 
 @Controller
 public class MyPageController {
@@ -27,7 +41,7 @@ public class MyPageController {
 	private ProjectService ps;
 	
 	@Autowired
-	private MemberServiceImpl ms;
+	private MemberService ms;
 	
 	public MyPageController() {
 	}
@@ -65,8 +79,23 @@ public class MyPageController {
 	}
 
 	@RequestMapping("myReward.me")
-	public String myReward(@ModelAttribute Member m) {
-
+	public String myReward(@ModelAttribute Member m, HttpServletRequest request, HttpServletResponse response) {
+		int currentPage = 1;
+		
+		if(request.getParameter("currentPage") != null) {
+			currentPage = Integer.parseInt(request.getParameter("currentPage"));
+		}
+		int listCount;
+		try {
+			listCount = ps.getListCount();
+			PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
+			ArrayList<Member> list = ms.selectMyReward(pi, m);
+			
+		} catch (ProjectSelectListException e) {
+			e.printStackTrace();
+		}
+		
+		
 		return "member/myReward";
 	}
 	@RequestMapping("myMaker.me")
@@ -135,7 +164,7 @@ System.out.println("m:::::;;"+m);
 		System.out.println("list:::"+list);
 		System.out.println("listsize"+list.size());
 		request.setAttribute("list", list);
-
+		request.setAttribute("bNum", bNum);
 		
 		return "member/supporterList";
 	}
@@ -184,6 +213,163 @@ System.out.println("m:::::;;"+m);
 		return mv;
 		
 	}
+	
+	
+	
+	@RequestMapping(value = "excelDown.do")
+
+	public void excelDown(int bNum,HttpServletResponse response) throws Exception {
+
+
+
+	    // 후원자 목록조회
+
+		ArrayList<SupportList> list= ps.selectSupportListExcel(bNum);
+
+		System.out.println("list출력:::::"+list);
+
+	    // 워크북 생성
+
+	    Workbook wb = new HSSFWorkbook();
+
+	    Sheet sheet = wb.createSheet("DeliveryDown");
+
+	    Row row = null;
+
+	    Cell cell = null;
+
+	    int rowNo = 0;
+
+
+
+	    // 테이블 헤더용 스타일
+
+	    CellStyle headStyle = wb.createCellStyle();
+
+	    // 가는 경계선을 가집니다.
+
+	    headStyle.setBorderLeft(BorderStyle.THIN);
+
+	    headStyle.setBorderLeft(BorderStyle.THIN);
+
+	    headStyle.setBorderRight(BorderStyle.THIN);
+
+	    headStyle.setBorderTop(BorderStyle.THIN);
+
+
+
+	    headStyle.setFillForegroundColor(HSSFColorPredefined.YELLOW.getIndex());
+
+	    headStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
+
+
+
+	    // 데이터는 가운데 정렬합니다.
+
+	    headStyle.setAlignment(HorizontalAlignment.CENTER);
+
+
+
+	    // 데이터용 경계 스타일 테두리만 지정
+
+	    CellStyle bodyStyle = wb.createCellStyle();
+
+	    bodyStyle.setBorderTop(BorderStyle.THIN);
+
+	    bodyStyle.setBorderBottom(BorderStyle.THIN);
+
+	    bodyStyle.setBorderLeft(BorderStyle.THIN);
+
+	    bodyStyle.setBorderRight(BorderStyle.THIN);
+
+
+
+	    // 헤더 생성
+
+	    row = sheet.createRow(rowNo++);
+
+	    cell = row.createCell(0);
+
+	    cell.setCellStyle(headStyle);
+
+	    cell.setCellValue("후원자이름");
+
+	    cell = row.createCell(1);
+
+	    cell.setCellStyle(headStyle);
+
+	    cell.setCellValue("결제현황");
+
+	    cell = row.createCell(2);
+
+	    cell.setCellStyle(headStyle);
+
+	    cell.setCellValue("배송현황");
+
+	    cell = row.createCell(3);
+
+	    cell.setCellStyle(headStyle);
+
+	    cell.setCellValue("운송장 번호");
+
+
+
+	    // 데이터 부분 생성
+
+	    for(SupportList vo : list) {
+
+	        row = sheet.createRow(rowNo++);
+
+	        cell = row.createCell(0);
+
+	        cell.setCellStyle(bodyStyle);
+
+	        cell.setCellValue(vo.getMemberName());
+	        
+	        cell = row.createCell(1);
+
+	        cell.setCellStyle(bodyStyle);
+
+	        cell.setCellValue(vo.getPayState());
+	        
+
+	        cell = row.createCell(2);
+
+	        cell.setCellStyle(bodyStyle);
+
+	        cell.setCellValue(vo.getStatus());
+
+	        cell = row.createCell(3);
+
+	        cell.setCellStyle(bodyStyle);
+
+	        cell.setCellValue(vo.getInvoiceNum());
+	        
+
+	    }
+
+
+
+	    // 컨텐츠 타입과 파일명 지정
+
+	    response.setContentType("ms-vnd/excel");
+
+	    response.setHeader("Content-Disposition", "attachment;filename=supportListDown.xls");
+
+
+
+	    // 엑셀 출력
+
+	    wb.write(response.getOutputStream());
+
+	    wb.close();
+
+	}
+
+
+
+	
+	
 	
 	
 	

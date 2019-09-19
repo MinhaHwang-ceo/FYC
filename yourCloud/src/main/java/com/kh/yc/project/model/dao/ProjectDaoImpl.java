@@ -163,5 +163,14 @@ public class ProjectDaoImpl implements ProjectDao{
 
 
 
+	@Override
+	public ArrayList<SupportList> selectSupportListExcel(SqlSessionTemplate sqlSession, int bNum) {
+		ArrayList<SupportList> list =null;
+		
+		list = (ArrayList) sqlSession.selectList("Project2.selectSupportListExcel",bNum);
+		
+		return list;
+	}
+
 }
 
