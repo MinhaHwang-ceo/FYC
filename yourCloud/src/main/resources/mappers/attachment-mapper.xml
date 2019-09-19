@@ -35,9 +35,26 @@
         SELECT SEQ_ATTACHMENTNO.CURRVAL FROM DUAL        
     </selectKey>
 	</insert>
-	
-	
- 
+	<select id="selectFileNo" resultMap="AttachmentResultSet">
+		SELECT
+			ATTACHMENT_NO
+		FROM
+			ATTACHMENT
+		WHERE
+			PROJECT_NO = #{projectNo}
+		AND
+			FILE_LEVEL = 1
+	</select>
+	<select id="selectAttach" resultMap="AttachmentResultSet">
+		SELECT
+			*
+		FROM
+			ATTACHMENT
+		WHERE
+			PROJECT_NO = #{projectNo}
+		AND
+			FILE_LEVEL = 1
+	</select>
 </mapper>
 
 

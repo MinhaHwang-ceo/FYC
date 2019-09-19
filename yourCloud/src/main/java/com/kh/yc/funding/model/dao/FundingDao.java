@@ -10,6 +10,7 @@ import com.kh.yc.funding.model.vo.Attachment;
 import com.kh.yc.member.model.vo.Member;
 import com.kh.yc.project.model.vo.Sign;
 import com.kh.yc.reward.model.vo.Reward;
+import com.kh.yc.reward.model.vo.RewardInfo;
 
 public interface FundingDao {
 	//프로젝트 번호 check
@@ -40,6 +41,25 @@ public interface FundingDao {
 	int signFile(SqlSessionTemplate sqlSession, Attachment a);
 	//리워드 인설트
 	int rewardInest(SqlSessionTemplate sqlSession, Reward r);
+
+	void updateProject6(SqlSessionTemplate sqlSession, Project p);
+
+	void insertRewardInfo(SqlSessionTemplate sqlSession, RewardInfo ri);
+
+	int selectProfileImg(SqlSessionTemplate sqlSession, Project p);
+
+	Attachment selectFileNo(SqlSessionTemplate sqlSession, Project p);
+
+	int insertProfileImg(SqlSessionTemplate sqlSession, Attachment attach);
+
+	Attachment selectAttach(SqlSessionTemplate sqlSession, Project p);
+
+	int updateAdjust(SqlSessionTemplate sqlSession, Member m);
+
+	int openProject(SqlSessionTemplate sqlSession, Project p);
+
+
+
 
 	
 

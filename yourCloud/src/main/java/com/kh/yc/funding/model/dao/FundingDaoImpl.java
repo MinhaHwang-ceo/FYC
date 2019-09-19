@@ -14,6 +14,7 @@ import com.kh.yc.funding.model.vo.Attachment;
 import com.kh.yc.member.model.vo.Member;
 import com.kh.yc.project.model.vo.Sign;
 import com.kh.yc.reward.model.vo.Reward;
+import com.kh.yc.reward.model.vo.RewardInfo;
 
 @Repository
 public  class FundingDaoImpl implements FundingDao{
@@ -86,7 +87,41 @@ public  class FundingDaoImpl implements FundingDao{
 		
 		return sqlSession.insert("Reward.insertReward",r);
 	}
-
+	@Override
+	public void updateProject6(SqlSessionTemplate sqlSession, Project p) {
+		sqlSession.update("Project2.updateProject6", p);
+		
+	}
+	@Override
+	public void insertRewardInfo(SqlSessionTemplate sqlSession, RewardInfo ri) {
+		sqlSession.insert("Project2.insertReward", ri);
+	}
+	@Override
+	public int selectProfileImg(SqlSessionTemplate sqlSession, Project p) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("Project2.selectProfileImg", p);
+	}
+	@Override
+	public Attachment selectFileNo(SqlSessionTemplate sqlSession, Project p) {
+		return sqlSession.selectOne("Project2.selectFileNo", p);
+	}
+	@Override
+	public int insertProfileImg(SqlSessionTemplate sqlSession, Attachment attach) {
+		return sqlSession.insert("Project2.insertProfileImg", attach);
+	}
+	@Override
+	public Attachment selectAttach(SqlSessionTemplate sqlSession, Project p) {
+		return sqlSession.selectOne("Attachment.selectAttach", p);
+	}
+	@Override
+	public int updateAdjust(SqlSessionTemplate sqlSession, Member m) {
+		return sqlSession.update("Member.updateAdjust", m);
+		
+	}
+	@Override
+	public int openProject(SqlSessionTemplate sqlSession, Project p) {
+		return sqlSession.update("Project2.openProject", p);
+	}
 	
 	
 }

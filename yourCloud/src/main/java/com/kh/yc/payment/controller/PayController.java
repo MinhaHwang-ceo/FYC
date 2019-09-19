@@ -4,13 +4,11 @@ import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.List;
 import java.util.Random;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
@@ -59,16 +57,9 @@ public class PayController {
 			sd.addSchedule(se);
 
 			iamportClient.subscribeSchedule(sd);
-			/*
-			 * BigDecimal amount = new BigDecimal(1000); AgainPaymentData ad = new
-			 * AgainPaymentData("kjs3124", "0900132", amount);
-			 * iamportClient.againPayment(ad);
-			 */
 		} catch (IamportResponseException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		mv.setViewName("jsonView");
@@ -101,11 +92,11 @@ public class PayController {
 			pay.setAmount(price);
 			ps.updatePayStatus(pay);
 			sd.addSchedule(se);
-			if (p.getCount() < 5) {
-				iamportClient.subscribeSchedule(sd);
-			}
-		} catch (Exception e) {
-
+			iamportClient.subscribeSchedule(sd);
+		} catch (IamportResponseException | IOException e) {
+			e.printStackTrace();
+		} catch (NullPointerException e) {
+			
 		}
 
 	}

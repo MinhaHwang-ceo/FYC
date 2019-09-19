@@ -25,8 +25,7 @@
 		<result property="agentName" column="AGENT_NAME" />
 		<result property="agentEmail" column="AGENT_EMAIL" />
 		<result property="projectTitle" column="PROJECT_TITLE" />
-		<result property="projectShortTitle"
-			column="PROJECT_SHORT_TITLE" />
+		<result property="projectShortTitle" column="PROJECT_SHORT_TITLE" />
 		<result property="money" column="MONEY" />
 		<result property="mainImg" column="MAIN_IMG" />
 		<result property="document" column="DOCUMENT" />
@@ -39,6 +38,8 @@
 		<result property="companyName" column="COMPANY_NAME" />
 		<result property="categoryDiv" column="CATEGORY_DIV" />
 		<result property="projectOpen" column="PROJECT_OPEN" />
+		<result property="story" column="STORY" />
+		<result property="rules" column="RULES" />
 	</resultMap>
 
 	<resultMap type="com.kh.yc.project.model.vo.Project"
@@ -73,6 +74,8 @@
 		<result property="adult" column="ADULT" />
 		<result property="expected" column="EXPECTED" />
 		<result property="userNo" column="MEMBER_NO" />
+		<result property="story" column="STORY" />
+		<result property="rules" column="RULES" />
 	</resultMap>
 	<resultMap type="com.kh.yc.category.model.vo.Category"
 		id="CategoryList">
@@ -120,7 +123,20 @@
 		<result property="fundNo" column="FUND_NO" />
 		<result property="payStatus" column="PAY_STATUS" />
 		<result property="count" column="COUNT" />
-		<result property="amount" column="AMOUNT"/>
+		<result property="amount" column="AMOUNT" />
+	</resultMap>
+	<resultMap type="RewardInfo" id="rewardInfoList">
+		<id property="projectNo" column="PROJECT_NO"/>
+		<result property="rewardNo" column="REWARD_NO" />
+		<result property="modelName" column="MODEL_NAME" />
+		<result property="modelType" column="MODEL_TYPE" />
+		<result property="modelMat" column="MODEL_MAT" />
+		<result property="modelSize" column="MODEL_SIZE" />
+		<result property="manufacturer" column="MANUFACTURER" />
+		<result property="manufacturerNation" column="MANUFACTURER_NATION" />
+		<result property="modelNotice" column="MODEL_NOTICE" />
+		<result property="modelWarranty" column="MODEL_WARRANTY" />
+		<result property="modelAdmin" column="MODEL_ADMIN" />
 	</resultMap>
 
 	<select id="selectListCount" resultType="_int">
@@ -165,7 +181,8 @@
 		M.COMPANY_NAME,P.END_DATE,P.MEMBER_NO,P.JUDGE_STATUS,P.PROGRESS_STATUS
 		FROM PROJECT P
 		JOIN MEMBER M ON (P.MEMBER_NO = M.MEMBER_NO)
-		WHERE PROJECT_NO = #{projectNo}
+		WHERE
+		PROJECT_NO = #{projectNo}
 	</select>
 
 	<select id="detailBoard" resultType="hashmap"
@@ -182,34 +199,42 @@
 		P.PROJECT_TITLE,f.fund_money,f.reward_number,r.reward_name,F.FUND_DATE,M.MEMBER_NAME,d.delivery_site,d.phone,r.start_date,p.pay_status
 		,d2.invoice_number,p.project_no,d.status
 		FROM PROJECT P
-		JOIN SPONSORED S ON(p.PROJECT_NO=S.PROJECT_NO)
+		JOIN SPONSORED S
+		ON(p.PROJECT_NO=S.PROJECT_NO)
 		Join member m on(s.member_no=m.member_no)
 		JOIN FUND F ON(F.MEMBER_NO = M.MEMBER_NO)
-		join reward r on(r.reward_no=f.reward_no)
+		join reward r
+		on(r.reward_no=f.reward_no)
 		join delivery d on(d.member_no=m.member_no)
 		join payment p on(p.fund_no=f.fund_no)
-		join delivery_status d2 on(d2.delivery_no=d.delivery_no)
+		join delivery_status d2
+		on(d2.delivery_no=d.delivery_no)
 		WHERE P.PROJECT_NO=#{projectNo}
 	</select>
-    
-    
-    
-    
-    	<select id="selectSupportListExcel" resultMap="SupportList" parameterType="java.util.Map">
-SELECT  P.PROJECT_TITLE,f.fund_money,f.reward_number,r.reward_name,F.FUND_DATE,M.MEMBER_NAME,d.delivery_site,d.phone,r.start_date,p.pay_status
-,d2.invoice_number,p.project_no,d.status
-	FROM PROJECT P
-JOIN SPONSORED S ON(p.PROJECT_NO=S.PROJECT_NO)
-Join member m on(s.member_no=m.member_no)
-JOIN FUND F ON(F.MEMBER_NO = M.MEMBER_NO)
-join reward r on(r.reward_no=f.reward_no)
-join delivery d on(d.member_no=m.member_no)
-join payment p on(p.fund_no=f.fund_no)
-join delivery_status d2 on(d2.delivery_no=d.delivery_no)
-	WHERE P.PROJECT_NO=#{projectNo}
+
+
+
+
+	<select id="selectSupportListExcel" resultMap="SupportList"
+		parameterType="java.util.Map">
+		SELECT
+		P.PROJECT_TITLE,f.fund_money,f.reward_number,r.reward_name,F.FUND_DATE,M.MEMBER_NAME,d.delivery_site,d.phone,r.start_date,p.pay_status
+		,d2.invoice_number,p.project_no,d.status
+		FROM PROJECT P
+		JOIN SPONSORED S
+		ON(p.PROJECT_NO=S.PROJECT_NO)
+		Join member m on(s.member_no=m.member_no)
+		JOIN FUND F ON(F.MEMBER_NO = M.MEMBER_NO)
+		join reward r
+		on(r.reward_no=f.reward_no)
+		join delivery d on(d.member_no=m.member_no)
+		join payment p on(p.fund_no=f.fund_no)
+		join delivery_status d2
+		on(d2.delivery_no=d.delivery_no)
+		WHERE P.PROJECT_NO=#{projectNo}
 	</select>
-    
-   
+
+
 	<select id="selectProjectList2" resultMap="ProjectList"
 		parameterType="java.util.Map">
 		SELECT P.PROJECT_NO,
@@ -309,38 +334,51 @@ join delivery_status d2 on(d2.delivery_no=d.delivery_no)
 		p.pay_status='결제전'
 	</select>
 
-	
-			<select id="orderList4" resultMap="SupportList" parameterType="java.util.Map">
-SELECT  P.PROJECT_TITLE,f.fund_money,f.reward_number,r.reward_name,F.FUND_DATE,M.MEMBER_NAME,d.delivery_site,d.phone,r.start_date,p.pay_status
-,d2.invoice_number,p.project_no,d.status
-	FROM PROJECT P
-JOIN SPONSORED S ON(p.PROJECT_NO=S.PROJECT_NO)
-Join member m on(s.member_no=m.member_no)
-JOIN FUND F ON(F.MEMBER_NO = M.MEMBER_NO)
-join reward r on(r.reward_no=f.reward_no)
-join delivery d on(d.member_no=m.member_no)
-join payment p on(p.fund_no=f.fund_no)
-join delivery_status d2 on(d2.delivery_no=d.delivery_no)
-	WHERE P.PROJECT_NO=#{projectNo}
-	AND p.pay_status='결제성공'
+
+	<select id="orderList4" resultMap="SupportList"
+		parameterType="java.util.Map">
+		SELECT
+		P.PROJECT_TITLE,f.fund_money,f.reward_number,r.reward_name,F.FUND_DATE,M.MEMBER_NAME,d.delivery_site,d.phone,r.start_date,p.pay_status
+		,d2.invoice_number,p.project_no,d.status
+		FROM PROJECT P
+		JOIN SPONSORED S
+		ON(p.PROJECT_NO=S.PROJECT_NO)
+		Join member m on(s.member_no=m.member_no)
+		JOIN FUND F ON(F.MEMBER_NO = M.MEMBER_NO)
+		join reward r
+		on(r.reward_no=f.reward_no)
+		join delivery d on(d.member_no=m.member_no)
+		join payment p on(p.fund_no=f.fund_no)
+		join delivery_status d2
+		on(d2.delivery_no=d.delivery_no)
+		WHERE P.PROJECT_NO=#{projectNo}
+		AND
+		p.pay_status='결제성공'
 	</select>
-	
-	
-	<select id="receipt" resultMap="SupportList" parameterType="java.util.Map">
-	  SELECT  SUM((DECODE(P.PAY_STATUS, '결제성공', 1, 0))) AS REWARD_COUNT, re.reward_name, re.reward_money
+
+
+	<select id="receipt" resultMap="SupportList"
+		parameterType="java.util.Map">
+		SELECT SUM((DECODE(P.PAY_STATUS, '결제성공', 1, 0))) AS
+		REWARD_COUNT,
+		re.reward_name, re.reward_money
 
 		FROM PROJECT PRO
 		INNER JOIN
-		FUND FU ON (PRO.PROJECT_NO = FU.PROJECT_NO)
+		FUND FU ON
+		(PRO.PROJECT_NO = FU.PROJECT_NO)
 		INNER JOIN REWARD RE ON
-		(FU.REWARD_NO = RE.REWARD_NO)
+		(FU.REWARD_NO =
+		RE.REWARD_NO)
 		INNER JOIN fund_success FS ON (FU.FUND_NO
 		= FS.FUND_NO)
 		INNER JOIN PAYMENT P ON (FS.FUND_NO = P.FUND_NO)
 		WHERE
-		PRO.PROJECT_NO = #{projectNo}
+		PRO.PROJECT_NO =
+		#{projectNo}
 		GROUP BY RE.REWARD_NO, RE.REWARD_NAME,
-		P.PAY_STATUS, re.reward_money
+		P.PAY_STATUS,
+		re.reward_money
 
 	</select>
 
@@ -376,21 +414,22 @@ join delivery_status d2 on(d2.delivery_no=d.delivery_no)
 		#{projectNo}, 1
 		)
 	</insert>
-	
+
 	<insert id="insertLike">
 		INSERT INTO INTEREST(PROJECT_NO, MEMBER_NO)
-		VALUES (#{projectNo} , #{memberNo} )
+		VALUES
+		(#{projectNo} , #{memberNo} )
 	</insert>
-	
+
 	<delete id="deleteLike">
 		DELETE FROM INTEREST
-		WHERE PROJECT_NO = #{projectNo} 
+		WHERE PROJECT_NO = #{projectNo}
 		AND MEMBER_NO = #{memberNo}
 	</delete>
-	
+
 	<select id="likeCount" resultType="int">
-		SELECT COUNT(*) 
-		FROM INTEREST 
+		SELECT COUNT(*)
+		FROM INTEREST
 		WHERE PROJECT_NO = #{projectNo}
 		AND MEMBER_NO = #{memberNo}
 	</select>
@@ -403,7 +442,8 @@ join delivery_status d2 on(d2.delivery_no=d.delivery_no)
 		PROGRESS_STATUS = '성공'
 		WHERE
 		PROJECT_NO IN (
-		SELECT PROJECT_NO FROM
+		SELECT
+		PROJECT_NO FROM
 		PROJECT P
 		where
 		<![CDATA[
@@ -414,7 +454,8 @@ join delivery_status d2 on(d2.delivery_no=d.delivery_no)
 		FROM
 		FUND
 		GROUP BY PROJECT_NO
-		having project_no = p.project_no))
+		having project_no =
+		p.project_no))
 	</update>
 	<select id="fundSuccessProject" resultMap="ProjectList">
 		SELECT
@@ -424,7 +465,8 @@ join delivery_status d2 on(d2.delivery_no=d.delivery_no)
 		WHERE
 		P.PROGRESS_STATUS = '오픈'
 		AND
-		to_char(end_date, 'yyyy-mm-dd') = to_char(sysdate, 'yyyy-mm-dd')
+		to_char(end_date, 'yyyy-mm-dd') =
+		to_char(sysdate, 'yyyy-mm-dd')
 	</select>
 	<select id="fundingList" resultMap="FundingList"
 		parameterType="java.util.ArrayList">
@@ -444,7 +486,8 @@ join delivery_status d2 on(d2.delivery_no=d.delivery_no)
 		<foreach collection="list" item="p" open="INSERT ALL"
 			close="SELECT * FROM DUAL" separator=" ">
 			INTO
-			FUND_SUCCESS(PROJECT_NO, FUND_NO)
+			FUND_SUCCESS(PROJECT_NO,
+			FUND_NO)
 			VALUES
 			(
 			#{p.projectNo}, #{p.fundNo}
@@ -454,9 +497,11 @@ join delivery_status d2 on(d2.delivery_no=d.delivery_no)
 	</insert>
 	<insert id="insertPayment">
 		INSERT INTO
-		PAYMENT(PAY_NO, MEMBER_NO, FUND_NO, PAY_STATUS, COUNT, AMOUNT)
+		PAYMENT(PAY_NO, MEMBER_NO, FUND_NO,
+		PAY_STATUS, COUNT, AMOUNT)
 		VALUES(
-		#{payNo}, #{userNo}, 3, #{payStatus}, 1, #{amount}
+		#{payNo}, #{userNo}, 3, #{payStatus},
+		1, #{amount}
 		)
 	</insert>
 	<select id="selectRePay" resultMap="PaymentList">
@@ -470,13 +515,127 @@ join delivery_status d2 on(d2.delivery_no=d.delivery_no)
 	<update id="updatePayStatus">
 		UPDATE PAYMENT
 		SET
-			PAY_STATUS = #{payStatus}
-			<if test="payStatus == '결제실패'">
-		AND
-			COUNT = (SELECT COUNT FROM PAYMENT WHERE PAY_NO = #{payNo}) + 1
-			</if>
+		PAY_STATUS = #{payStatus}
+		<if test="payStatus == '결제실패'">
+			, COUNT = (SELECT COUNT FROM PAYMENT WHERE PAY_NO =
+			#{payNo}) + 1
+		</if>
 		WHERE
-			PAY_NO = #{payNo}
+		PAY_NO = #{payNo}
+	</update>
+
+	<update id="updateProject6">
+		UPDATE PROJECT
+		<set>
+			<if test="category != null">
+				CATEGORY = #{category},
+			</if>
+			<if test="summary != null">
+				SUMMARY = #{summary},
+			</if>
+			<if test="prifileImg != null">
+				PROFILE_IMG = #{prifileImg},
+			</if>
+			<if test="progressStatus != null">
+				PROGRESS_STATUS = #{progressStatus},
+			</if>
+			<if test="social != null">
+				SOCIAL = #{social},
+			</if>
+			<if test="site != null">
+				SITE = #{site},
+			</if>
+			<if test="email != null">
+				EMAIL = #{email},
+			</if>
+			<if test="phone != null">
+				PHONE = #{phone},
+			</if>
+			<if test="fees != null">
+				FEES = #{fees},
+			</if>
+			<if test="makerDiv != null">
+				MAKER_DIV = #{makerDiv},
+			</if>
+			<if test="agentName != null">
+				AGENT_NAME = #{agentName},
+			</if>
+			<if test="agentEmail != null">
+				AGENT_EMAIL = #{agentEmail},
+			</if>
+			<if test="projectTitle != null">
+				PROJECT_TITLE = #{projectTitle},
+			</if>
+			<if test="projectShortTitle != null">
+				PROJECT_SHORT_TITLE = #{projectShortTitle},
+			</if>
+			<if test="money != 0">
+				MONEY = #{money},
+			</if>
+			<if test="mainImg != 0">
+				MAIN_IMG = #{mainImg},
+			</if>
+			<if test="document != null">
+				DOCUMENT = #{document},
+			</if>
+			<if test="progress != null">
+				PROGRESS = #{progress},
+			</if>
+			<if test="delivery != null">
+				DELIVERY = #{delivery},
+			</if>
+			<if test="endDate != null">
+				END_DATE = #{endDate},
+			</if>
+			<if test="adult != null">
+				ADULT = #{adult},
+			</if>
+			<if test="userNo != 0">
+				MEMBER_NO = #{userNo},
+			</if>
+			<if test="reportCount != 0">
+				REPORT_COUNT = #{reportCount},
+			</if>
+			<if test="story != null">
+				STORY = #{story},
+			</if>
+			<if test="rules != null">
+				RULES = #{rules}
+			</if>
+		</set>
+		WHERE PROJECT_NO = #{projectNo}
+	</update>
+	<insert id="insertRewardInfo">
+		INSERT INTO 
+			REWARD_INFO
+		VALUES(
+			#{projectNo}, #{rewardNo}, #{modelName}, #{modelMat}, #{manufacturer}, #{menufacturerNation}, #{modelNotice}, #{modelWarranty}, #{modelAdmin}
+		)
+	</insert>
+	<select id="selectProfileImg" resultType="_int">
+		SELECT
+			COUNT(*)
+		FROM
+			ATTACHMENT
+		WHERE
+			PROJECT_NO = #{projectNo}
+		AND
+			FILE_LEVEL = 1
+	</select>
+	<insert id="insertProfileImg">
+		INSERT INTO
+			ATTACHMENT
+		VALUES(
+			SEQ_ATTACHMENTNO.NEXTVAL, #{originFileName}, #{fileSrc}, #{newFileName}, sysdate, #{attachmentDiv}, null, #{projectNo}, #{fileLevel}
+		)
+	</insert>
+	<update id="openProject">
+		UPDATE
+			PROJECT
+		SET
+			JUDGE_STATUS = '심사중'
+		WHERE
+			PROJECT_NO = #{projectNo}
 	</update>
 </mapper>
 

@@ -262,7 +262,6 @@ public class BoardController {
 			sb = new StringBuffer();
 			sb.append("&bNewLine=true").append("&sFileName=").append(originFileName).append("&sFileURL=")
 					.append("http://localhost:8001/yc/resources/uploadFiles/").append(saveName);
-			System.out.println(sb.toString());
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
