@@ -4,19 +4,32 @@ import java.sql.Date;
 
 public class Reward {
 	
-	private int rewardNo;
 	private int rewardMoney;
 	private String sortNo;
 	private String rewardName;
 	private String option;
 	private String deliveryRequest;
-	private int deliveryMoney;
 	private int limitCount;
-	private Date startDate;
-	private int projectNo;
 	private String projectShortTitle;
 	private String memberName;
 	private int money;
+	private int userNo;				//회원번호
+	private Date fundDate;			//펀딩시작일
+	private int fundNo;				//펀딩번호
+	private int projectNo;			//프로젝트번호
+	private int fundMoney;			//펀딩금액
+	private int rewardNo;			//리워드번호
+	private String account;			//계좌번호
+	private String category;		//카테고리 코드
+	private String categoryDiv;		//카테고리 이름
+	private Date endDate;			//종료일
+	private String projectTitle;	//프로젝트제목
+	private String companyName;		//메이커(법인명)
+	private String deliverySite;	//주소
+	private int deliveryMoney;		//배송비
+	private Date startDate;			//발송시작일
+	private String options;			//옵션 조건
+	private String payStatus;		//결제정보
 	
 	
 	
@@ -24,35 +37,38 @@ public class Reward {
 
 
 
-	public Reward(int rewardNo, int rewardMoney, String sortNo, String rewardName, String option,
-			String deliveryRequest, int deliveryMoney, int limitCount, Date startDate, int projectNo,
-			String projectShortTitle, String memberName, int money) {
+	public Reward(int rewardMoney, String sortNo, String rewardName, String option, String deliveryRequest,
+			int limitCount, String projectShortTitle, String memberName, int money, int userNo, Date fundDate,
+			int fundNo, int projectNo, int fundMoney, int rewardNo, String account, String category, String categoryDiv,
+			Date endDate, String projectTitle, String companyName, String deliverySite, int deliveryMoney,
+			Date startDate, String options, String payStatus) {
 		super();
-		this.rewardNo = rewardNo;
 		this.rewardMoney = rewardMoney;
 		this.sortNo = sortNo;
 		this.rewardName = rewardName;
 		this.option = option;
 		this.deliveryRequest = deliveryRequest;
-		this.deliveryMoney = deliveryMoney;
 		this.limitCount = limitCount;
-		this.startDate = startDate;
-		this.projectNo = projectNo;
 		this.projectShortTitle = projectShortTitle;
 		this.memberName = memberName;
 		this.money = money;
-	}
-
-
-
-	public int getRewardNo() {
-		return rewardNo;
-	}
-
-
-
-	public void setRewardNo(int rewardNo) {
+		this.userNo = userNo;
+		this.fundDate = fundDate;
+		this.fundNo = fundNo;
+		this.projectNo = projectNo;
+		this.fundMoney = fundMoney;
 		this.rewardNo = rewardNo;
+		this.account = account;
+		this.category = category;
+		this.categoryDiv = categoryDiv;
+		this.endDate = endDate;
+		this.projectTitle = projectTitle;
+		this.companyName = companyName;
+		this.deliverySite = deliverySite;
+		this.deliveryMoney = deliveryMoney;
+		this.startDate = startDate;
+		this.options = options;
+		this.payStatus = payStatus;
 	}
 
 
@@ -117,18 +133,6 @@ public class Reward {
 
 
 
-	public int getDeliveryMoney() {
-		return deliveryMoney;
-	}
-
-
-
-	public void setDeliveryMoney(int deliveryMoney) {
-		this.deliveryMoney = deliveryMoney;
-	}
-
-
-
 	public int getLimitCount() {
 		return limitCount;
 	}
@@ -137,30 +141,6 @@ public class Reward {
 
 	public void setLimitCount(int limitCount) {
 		this.limitCount = limitCount;
-	}
-
-
-
-	public Date getStartDate() {
-		return startDate;
-	}
-
-
-
-	public void setStartDate(Date startDate) {
-		this.startDate = startDate;
-	}
-
-
-
-	public int getProjectNo() {
-		return projectNo;
-	}
-
-
-
-	public void setProjectNo(int projectNo) {
-		this.projectNo = projectNo;
 	}
 
 
@@ -201,14 +181,223 @@ public class Reward {
 
 
 
-	@Override
-	public String toString() {
-		return "Reward [rewardNo=" + rewardNo + ", rewardMoney=" + rewardMoney + ", sortNo=" + sortNo + ", rewardName="
-				+ rewardName + ", option=" + option + ", deliveryRequest=" + deliveryRequest + ", deliveryMoney="
-				+ deliveryMoney + ", limitCount=" + limitCount + ", startDate=" + startDate + ", projectNo=" + projectNo
-				+ ", projectShortTitle=" + projectShortTitle + ", memberName=" + memberName + ", money=" + money + "]";
+	public int getUserNo() {
+		return userNo;
 	}
 
+
+
+	public void setUserNo(int userNo) {
+		this.userNo = userNo;
+	}
+
+
+
+	public Date getFundDate() {
+		return fundDate;
+	}
+
+
+
+	public void setFundDate(Date fundDate) {
+		this.fundDate = fundDate;
+	}
+
+
+
+	public int getFundNo() {
+		return fundNo;
+	}
+
+
+
+	public void setFundNo(int fundNo) {
+		this.fundNo = fundNo;
+	}
+
+
+
+	public int getProjectNo() {
+		return projectNo;
+	}
+
+
+
+	public void setProjectNo(int projectNo) {
+		this.projectNo = projectNo;
+	}
+
+
+
+	public int getFundMoney() {
+		return fundMoney;
+	}
+
+
+
+	public void setFundMoney(int fundMoney) {
+		this.fundMoney = fundMoney;
+	}
+
+
+
+	public int getRewardNo() {
+		return rewardNo;
+	}
+
+
+
+	public void setRewardNo(int rewardNo) {
+		this.rewardNo = rewardNo;
+	}
+
+
+
+	public String getAccount() {
+		return account;
+	}
+
+
+
+	public void setAccount(String account) {
+		this.account = account;
+	}
+
+
+
+	public String getCategory() {
+		return category;
+	}
+
+
+
+	public void setCategory(String category) {
+		this.category = category;
+	}
+
+
+
+	public String getCategoryDiv() {
+		return categoryDiv;
+	}
+
+
+
+	public void setCategoryDiv(String categoryDiv) {
+		this.categoryDiv = categoryDiv;
+	}
+
+
+
+	public Date getEndDate() {
+		return endDate;
+	}
+
+
+
+	public void setEndDate(Date endDate) {
+		this.endDate = endDate;
+	}
+
+
+
+	public String getProjectTitle() {
+		return projectTitle;
+	}
+
+
+
+	public void setProjectTitle(String projectTitle) {
+		this.projectTitle = projectTitle;
+	}
+
+
+
+	public String getCompanyName() {
+		return companyName;
+	}
+
+
+
+	public void setCompanyName(String companyName) {
+		this.companyName = companyName;
+	}
+
+
+
+	public String getDeliverySite() {
+		return deliverySite;
+	}
+
+
+
+	public void setDeliverySite(String deliverySite) {
+		this.deliverySite = deliverySite;
+	}
+
+
+
+	public int getDeliveryMoney() {
+		return deliveryMoney;
+	}
+
+
+
+	public void setDeliveryMoney(int deliveryMoney) {
+		this.deliveryMoney = deliveryMoney;
+	}
+
+
+
+	public Date getStartDate() {
+		return startDate;
+	}
+
+
+
+	public void setStartDate(Date startDate) {
+		this.startDate = startDate;
+	}
+
+
+
+	public String getOptions() {
+		return options;
+	}
+
+
+
+	public void setOptions(String options) {
+		this.options = options;
+	}
+
+
+
+	public String getPayStatus() {
+		return payStatus;
+	}
+
+
+
+	public void setPayStatus(String payStatus) {
+		this.payStatus = payStatus;
+	}
+
+
+
+	@Override
+	public String toString() {
+		return "Reward [rewardMoney=" + rewardMoney + ", sortNo=" + sortNo + ", rewardName=" + rewardName + ", option="
+				+ option + ", deliveryRequest=" + deliveryRequest + ", limitCount=" + limitCount
+				+ ", projectShortTitle=" + projectShortTitle + ", memberName=" + memberName + ", money=" + money
+				+ ", userNo=" + userNo + ", fundDate=" + fundDate + ", fundNo=" + fundNo + ", projectNo=" + projectNo
+				+ ", fundMoney=" + fundMoney + ", rewardNo=" + rewardNo + ", account=" + account + ", category="
+				+ category + ", categoryDiv=" + categoryDiv + ", endDate=" + endDate + ", projectTitle=" + projectTitle
+				+ ", companyName=" + companyName + ", deliverySite=" + deliverySite + ", deliveryMoney=" + deliveryMoney
+				+ ", startDate=" + startDate + ", options=" + options + ", payStatus=" + payStatus + "]";
+	}
+
+	
 
 	
 	
