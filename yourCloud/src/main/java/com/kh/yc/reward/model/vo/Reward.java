@@ -3,7 +3,7 @@ package com.kh.yc.reward.model.vo;
 import java.sql.Date;
 
 public class Reward {
-	
+	private int rewardNo;
 	private int rewardMoney;
 	private String sortNo;
 	private String rewardName;
@@ -35,8 +35,6 @@ public class Reward {
 	
 	public Reward () {}
 
-
-
 	public Reward(int rewardMoney, String sortNo, String rewardName, String option, String deliveryRequest,
 			int limitCount, String projectShortTitle, String memberName, int money, int userNo, Date fundDate,
 			int fundNo, int projectNo, int fundMoney, int rewardNo, String account, String category, String categoryDiv,
@@ -57,7 +55,7 @@ public class Reward {
 		this.fundNo = fundNo;
 		this.projectNo = projectNo;
 		this.fundMoney = fundMoney;
-		this.rewardNo = rewardNo;
+    this.rewardNo = rewardNo;
 		this.account = account;
 		this.category = category;
 		this.categoryDiv = categoryDiv;
@@ -71,67 +69,53 @@ public class Reward {
 		this.payStatus = payStatus;
 	}
 
+	public int getRewardNo() {
+		return rewardNo;
+	}
 
+	public void setRewardNo(int rewardNo) {
+		
+	}
 
 	public int getRewardMoney() {
 		return rewardMoney;
 	}
 
-
-
 	public void setRewardMoney(int rewardMoney) {
 		this.rewardMoney = rewardMoney;
 	}
-
-
 
 	public String getSortNo() {
 		return sortNo;
 	}
 
-
-
 	public void setSortNo(String sortNo) {
 		this.sortNo = sortNo;
 	}
-
-
 
 	public String getRewardName() {
 		return rewardName;
 	}
 
-
-
 	public void setRewardName(String rewardName) {
 		this.rewardName = rewardName;
 	}
-
-
 
 	public String getOption() {
 		return option;
 	}
 
-
-
 	public void setOption(String option) {
 		this.option = option;
 	}
-
-
 
 	public String getDeliveryRequest() {
 		return deliveryRequest;
 	}
 
-
-
 	public void setDeliveryRequest(String deliveryRequest) {
 		this.deliveryRequest = deliveryRequest;
 	}
-
-
 
 	public int getLimitCount() {
 		return limitCount;
@@ -213,20 +197,39 @@ public class Reward {
 
 	public void setFundNo(int fundNo) {
 		this.fundNo = fundNo;
+  }
+    
+	public int getDeliveryMoney() {
+		return deliveryMoney;
 	}
 
+	public void setDeliveryMoney(int deliveryMoney) {
+		this.deliveryMoney = deliveryMoney;
+	}
 
+	public int getLimitCount() {
+		return limitCount;
+	}
+
+	public void setLimitCount(int limitCount) {
+		this.limitCount = limitCount;
+	}
+
+	public Date getStartDate() {
+		return startDate;
+	}
+
+	public void setStartDate(Date startDate) {
+		this.startDate = startDate;
+	}
 
 	public int getProjectNo() {
 		return projectNo;
 	}
 
-
-
 	public void setProjectNo(int projectNo) {
 		this.projectNo = projectNo;
 	}
-
 
 
 	public int getFundMoney() {
@@ -381,9 +384,32 @@ public class Reward {
 
 	public void setPayStatus(String payStatus) {
 		this.payStatus = payStatus;
+  }
+  
+	public String getProjectShortTitle() {
+		return projectShortTitle;
 	}
 
+	public void setProjectShortTitle(String projectShortTitle) {
+		this.projectShortTitle = projectShortTitle;
+	}
 
+	public String getMemberName() {
+		return memberName;
+	}
+
+	public void setMemberName(String memberName) {
+		this.memberName = memberName;
+	}
+
+	public int getMoney() {
+		return money;
+	}
+
+	public void setMoney(int money) {
+		this.money = money;
+
+	}
 
 	@Override
 	public String toString() {
@@ -397,8 +423,4 @@ public class Reward {
 				+ ", startDate=" + startDate + ", options=" + options + ", payStatus=" + payStatus + "]";
 	}
 
-	
-
-	
-	
 }

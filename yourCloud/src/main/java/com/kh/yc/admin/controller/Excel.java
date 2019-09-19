@@ -66,6 +66,15 @@ public static Excel getInstance(){
    rs = pstmt.executeQuery();
    System.out.println(col.length);
    
+   
+   row = sheet.createRow(0);
+   for(int i = 0; i < col.length; i++){
+    row.createCell(i).setCellValue(col[i].toString());
+    System.out.println("맨위[" + i +  "] = "  + col[i].toString());
+   }
+
+
+   
    while(rs.next()){
     row = sheet.createRow(rs.getRow());
     for(int i = 0; i < col.length; i++){
