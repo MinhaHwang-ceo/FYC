@@ -13,6 +13,7 @@ import com.kh.yc.admin.model.vo.Project;
 import com.kh.yc.funding.model.vo.Attachment;
 import com.kh.yc.member.model.vo.Member;
 import com.kh.yc.project.model.vo.Sign;
+import com.kh.yc.reward.model.vo.Reward;
 
 @Repository
 public  class FundingDaoImpl implements FundingDao{
@@ -78,6 +79,12 @@ public  class FundingDaoImpl implements FundingDao{
 	public int signFile(SqlSessionTemplate sqlSession, Attachment a) {
 		// TODO Auto-generated method stub
 		return sqlSession.insert("Project2.signFile", a);
+	}
+	//리워드 인설트
+	@Override
+	public int rewardInest(SqlSessionTemplate sqlSession, Reward r) {
+		
+		return sqlSession.insert("Reward.insertReward",r);
 	}
 
 	

@@ -19,9 +19,7 @@
 		<result property="projectShortTitle" column="PROJECT_SHORT_TITLE"/>
 		<result property="memberName" column="MEMBER_NAME"/>
 		<result property="money" column="MONEY"/>
-		
-		
-		
+		<result property="description" column="DESCRIPTION"/>
 </resultMap>
 	
 	<select id="viewReward" resultMap="RewardResultSet">
@@ -30,6 +28,23 @@
 		WHERE
 		PROJECT_NO= #{projectNo}
 	</select>
+	
+	<insert id="insertReward" parameterType="Reward">
+		INSERT INTO REWARD 
+		VALUES (
+				SEQ_REWARDNO.NEXTVAL,
+				#{rewardMoney},
+				#{sortNo},
+				#{rewardName},
+				#{option},
+				#{deliveryRequest},
+				#{deliveryMoney},
+				#{limitCount},
+				#{startDate},
+				#{projectNo},
+				#{description}
+			   )
+	</insert>
 </mapper>
 
 
