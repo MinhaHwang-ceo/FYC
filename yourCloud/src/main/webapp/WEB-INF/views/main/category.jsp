@@ -129,10 +129,8 @@ td {
     <div class="col-md-4">
       <div class="thumbnail">
       	<input type="hidden" value='<c:out value="${ p.projectNo }"></c:out>'>
-         <a href="categoryOne.ca?projectNo=${ p.projectNo }" 
-         onclick= <c:if test="${ empty sessionScope.loginUser }">
- 					"alert('로그인 후 이용해주세요'); return false;" 
- 					</c:if>> 
+      	<input type="hidden" value="${ sessionScope.loginUser }">
+         <a href="categoryOne.ca?projectNo=${ p.projectNo }" > 
           <img src="/yc/resources/images/dog.PNG" alt="Lights" style="width:100%; height:75%;">
           <div class="caption">
             <h6>[<c:out value="${ p.projectNo }"/>]&emsp;<c:out value="${ p.projectTitle }"/></h6>
@@ -145,8 +143,8 @@ td {
     </div>
     </c:forEach>
   </div>
-   ${loginUser.userNo}
 </div>
+
 
 	<br><br><br>	
 	<!-- 페이징 -->
