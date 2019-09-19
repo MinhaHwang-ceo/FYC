@@ -18,7 +18,6 @@ import com.kh.yc.project.model.vo.SupportList;
 
 @Service
 public class ProjectServiceImpl implements ProjectService{
-
 	//게시물 목록 갯수 조회용 메소드
 	@Autowired
 	SqlSessionTemplate sqlSession;
@@ -93,6 +92,12 @@ public class ProjectServiceImpl implements ProjectService{
 	public ArrayList<Integer> receipt2(int bNum) {
 		ArrayList<Integer> count = pd.receipt2(sqlSession,bNum); 
 		return count;
+	}
+
+	@Override
+	public ArrayList<SupportList> selectSupportListExcel(int bNum) {
+		ArrayList<SupportList> list = pd.selectSupportListExcel(sqlSession,bNum); 
+		return list;
 	}
 
 	

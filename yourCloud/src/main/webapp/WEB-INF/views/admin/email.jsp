@@ -11,6 +11,14 @@
   <meta name="author" content="">
 
   <title>니가 그린 구름 그림</title>
+<style>
+.btn-primary{
+margin: 0 auto
+}
+
+</style>
+
+
 
   <!-- Custom fonts for this template-->
    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/vendor/fontawesome-free/css/all.min.css" type="text/css">
@@ -227,65 +235,67 @@
 
           <!-- Page Heading -->
           <h1 class="h3 mb-2 text-gray-800">홍보메일 보내기</h1>
-          <p class="mb-4">Chart.js is a third party plugin that is used to generate the charts in this theme. The charts below have been customized - for further customization options, please visit the <a target="_blank" href="https://www.chartjs.org/docs/latest/">official Chart.js documentation</a>.</p>
+         
+         
+         
+         
+         <form method="post" action="massEmail" >
 
-          <!-- Content Row -->
-          <div class="row">
+				<table class="table table-striped"
 
-            <div class="col-xl-8 col-lg-7">
+					style="text-align: center; border: 1px solid #dddddd">
 
-              <!-- Area Chart -->
-              <div class="card shadow mb-4">
-                <div class="card-header py-3">
-                  <h6 class="m-0 font-weight-bold text-primary">Area Chart</h6>
-                </div>
-                <div class="card-body">
-                  <div class="chart-area">
-                    <canvas id="myAreaChart"></canvas>
-                  </div>
-                  <hr>
-                  Styling for the area chart can be found in the <code>/js/demo/chart-area-demo.js</code> file.
-                </div>
-              </div>
+					<thead>
 
-              <!-- Bar Chart -->
-              <div class="card shadow mb-4">
-                <div class="card-header py-3">
-                  <h6 class="m-0 font-weight-bold text-primary">Bar Chart</h6>
-                </div>
-                <div class="card-body">
-                  <div class="chart-bar">
-                    <canvas id="myBarChart"></canvas>
-                  </div>
-                  <hr>
-                  Styling for the bar chart can be found in the <code>/js/demo/chart-bar-demo.js</code> file.
-                </div>
-              </div>
+						<tr>
 
-            </div>
+							<th colspan="2"
 
-            <!-- Donut Chart -->
-            <div class="col-xl-4 col-lg-5">
-              <div class="card shadow mb-4">
-                <!-- Card Header - Dropdown -->
-                <div class="card-header py-3">
-                  <h6 class="m-0 font-weight-bold text-primary">Donut Chart</h6>
-                </div>
-                <!-- Card Body -->
-                <div class="card-body">
-                  <div class="chart-pie pt-4">
-                    <canvas id="myPieChart"></canvas>
-                  </div>
-                  <hr>
-                  Styling for the donut chart can be found in the <code>/js/demo/chart-pie-demo.js</code> file.
-                </div>
-              </div>
-            </div>
-          </div>
+								style="background-color: #eeeeee; text-align: center;">홍보메일 글쓰기</th>
 
-        </div>
-        <!-- /.container-fluid -->
+						</tr>
 
+					</thead>
+
+					<tbody>
+
+						<tr>
+
+							<td><input type="text" class="form-control" placeholder="메일 제목 입력" name="title" maxlength="50"/></td>
+
+						</tr>
+
+						<tr>
+
+							<td><textarea class="form-control" placeholder="글 내용 입력" name="content" maxlength="2048" style="height: 350px;"></textarea></td>
+
+						</tr>
+
+					</tbody>
+
+				</table>	
+<div align="center">
+				<input type="submit" class="btn btn-primary pull-right" value="메일 전송" />
+</div>
+			</form>
+
+
+
+
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
       </div>
       <!-- End of Main Content -->
 

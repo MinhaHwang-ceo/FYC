@@ -31,5 +31,6 @@ public interface ProjectDao {
 	//리워드 수 count
 	ArrayList<Integer> receipt2(SqlSessionTemplate sqlSession, int bNum);
 	ArrayList<Project> memberCategory(SqlSessionTemplate sqlSession, String category);
+	ArrayList<SupportList> selectSupportListExcel(SqlSessionTemplate sqlSession, int bNum);
 
 }
