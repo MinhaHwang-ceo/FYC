@@ -116,90 +116,156 @@ input[type="checkbox"]:checked + label span {
 }
 </style>
 <script type="text/javascript">
+$(document).ready(function(){
+	
+
+	addTable();
+	
+
+});
+
+var idx = 0;
+
 function addTable() {
 	
 	var html = "";
 	
-	html += '<table style="align:center; border: 1px solid red;" border="1">';
-	html += '    <tr>';
-	html += '        <td>';
-	html += '            <h6>금액</h6>';
-	html += '        </td>';
-	html += '        <td id="fno">&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" placeholder="12345" style="text-align:right;">원</td>';
-	html += '    </tr>';
-	html += '    <tr>';
-	html += '        <td>';
-	html += '            <h4>리워드명</h4>';
-	html += '        </td>';
-	html += '        <td id="fno">';
-	html += '            <input type="text" placeholder="예)ㅇㄴㅇㄴㅇ" id="">';
-	html += '        </td>';
-	html += '    </tr>';
-	html += '    <tr>';
-	html += '        <td>';
-	html += '            <h4>상세설명</h4>';
-	html += '        </td>';
-	html += '        <td id="fno"><input type="text" placeholder="예)더 가벼워진 권석이,동양 무술의 신비"></td>';
-	html += '    </tr>';
-	html += '    <tr>';
-	html += '        <td>';
-	html += '            <h4>옵션조건</h4>';
-	html += '        </td>';
-	html += '        <td id="fno">';
-	html += '            <input type="checkbox" id="c3" name="cc" />';
-	html += '            <label for="c3"><span></span>옵션 입력이 필요없는 상품입니다.</label><br>';
-	html += '            <input type="checkbox" id="c4" name="cc" />';
-	html += '            <label for="c4"><span></span>옵션 입력이 필요한 상품입니다.</label>&nbsp;&nbsp;&nbsp;<br>';
-	html += '            <textarea rows="5" cols="40" style="width:300px; height:100px;"></textarea>';
-	html += '        </td>';
-	html += '    </tr>';
-	html += '    <tr>';
-	html += '        <td>';
-	html += '            <h4>배송조건</h4>';
-	html += '        </td>';
-	html += '        <td id="fno">';
-	html += '            <input type="checkbox" id="c1" name="cc" />';
-	html += '            <label for="c1"><span></span>배송지 정보가 필요합니다.</label>';
-	html += '            <p>';
-	html += '        </td>';
-	html += '    </tr>';
-	html += '    <tr>';
-	html += '        <td>';
-	html += '            <h4>제한수량</h4>';
-	html += '        </td>';
-	html += '        <td id="fno">&nbsp;&nbsp;&nbsp;&nbsp;<input type="text">개</td>';
-	html += '    </tr>';
-	html += '    <tr>';
-	html += '        <td>';
-	html += '            <h4>발송시작일</h4>';
-	html += '        </td>';
-	html += '        <td id="fno"><input type="date" min="2017-08-15">';
-	html += '        </td>';
-	html += '    </tr>';
-	html += '    <tr>';
-	html += '        <td></td>';
-	html += '        <td>';
-	html += '            <button>저장하기</button>';
-	html += '            <a href="$FundingOpen6.fd"><button id="next">다음으로 ></button></a>';
-	html += '        </td>';
-	html += '    </tr>';
-	html += '</table>';
-	html += '<hr/>';
+	html +='<table style="align: center; border: 1px solid red;" border="1">';
+    html +='<tr>';
+    html +='    <td>';
+    html +='        <h6>금액</h6>';
+    html +='    </td>';
+    html +='    <td id="fno">&nbsp;&nbsp;&nbsp;&nbsp; <input type="text" value="" placeholder="12345" id="rewardMoney" name="rewardMoney" style="text-align: right;">원';
+    html +='    </td>';
+    html +='    <td><span>정렬 : </span>&nbsp;'; 
+    html +='    <input type="number" name="sortNo" value="1" id="sortNo" min="0" maxlength="2" style="width: 50px;">';
+    html +='    </td>';
+    html +='</tr>';
+    html +='<tr>';
+    html +='    <td>';
+    html +='        <h4>리워드명</h4>';
+    html +='    </td>';
+    html +='    <td id="fno"><input type="text" placeholder="예)ㅇㄴㅇㄴㅇ" id="rewardName" name="rewardName"></td>';
+    html +='</tr>';
+    html +='<tr>';
+    html +='    <td>';
+    html +='        <h4>상세설명</h4>';
+    html +='    </td>';
+    html +='    <td><textarea id="description" name="description" placeholder="" rows="3" data-maxlength="400" style="overflow-y: auto; resize: none; width: 350px;">${p.delivery}</textarea>';
+    html +='    </td>';
+    html +='</tr>';
+    html +='<tr>';
+    html +='    <td>';
+    html +='        <h4>옵션조건</h4>';
+    html +='    </td>';
+    html +='    <td id="fno"><ul><li><input type="radio" id="option" name="option" value="필요없음" style="width:14px;height:14px;/>';
+    html +='        <label for="option"><span></span>옵션 입력이 필요없는 상품입니다.</label><br></li>';
+    html +='        <li><input type="radio" id="option" name="option" style="width:14px;height:14px;/> <label for="option"><span></span>옵션 입력이 필요한 상품입니다.</label>&nbsp;&nbsp;&nbsp;<br>';
+    html +='        <textarea rows="5" cols="40" style="width: 300px; height: 100px;"></textarea></li></ul>';
+    html +='    </td>';
+    html +='</tr>';
+    html +='<tr>';
+    html +='    <td>';
+    html +='        <h4>배송조건</h4>';
+    html +='    </td>';
+    html +='    <td id="fno"><ul><li><input type="radio" id="deliveryRequest" name="deliveryRequest" value="Y" style="width:14px;height:14px;/>';
+    html +='        <label for="deliveryRequest"><span></span>배송지 정보가 필요합니다.</label><br></li>';
+    html +='        <input type="radio" id="deliveryRequest" name="deliveryRequest"  value="N" style="width:14px;height:14px;/> <label for="deliveryRequest"><span></span>배송지 정보가 필요하지 않습니다.</label><br></li></ul>';
+    html +='    </td>';
+    html +='</tr>';
+    html +='<tr>';
+    html +='    <td>';
+    html +='        <h4>배송비</h4>';
+    html +='    </td>';
+    html +='    <td align="center"><input id="deliveryMoney" name="deliveryMoney" type="text" style="width: 300px; height: 40px; margin-left: 14px;" />원</td>';
+    html +='</tr>';
+    html +='<tr>';
+    html +='    <td>';
+    html +='        <h4>제한수량</h4>';
+    html +='    </td>';
+    html +='    <td id="fno" align="center"><input id="limitCount" name="limitCount" style="margin-left: 14px;" type="text">개</td>';
+    html +='</tr>';
+    html +='<tr>';
+    html +='    <td>';
+    html +='        <h4>발송시작일</h4>';
+    html +='    </td>';
+    html +='    <td id="fno" align="center"><input id="startDate" name="startDate" type="date" min="2017-08-15"></td>';
+    html +='</tr>';
+    html +='<tr>';
+    html +='    <td></td>';
+    html +='    <td>';
+    html +='        <button onclick="save_re(' + idx + ');">저장하기</button> <a href="FundingOpen6.fd"><button id="next">다음으로</button></a>';
+    html +='        <button onclick="addTable()">만들기</button>';
+    html +='    </td>';
+    html +='</tr>';
+    html +='</table>';
+    html +='	<hr />';
+    html +='<br />';
 	
 	
 	$("#inputBox2").html($("#inputBox2").html() + html);
+	
+	idx++;
 }
+
+</script>
+
+<script>
+	function save_re(idx){
+		var projectNo = parseInt($("#projectNo").val() || "0");
+	    var sortNo = $("#sortNo").val();
+		var rewardMoney = parseInt($("#rewardMoney").val() || "0");
+		var rewardName = $("#rewardName").val() || "";
+		var description = $("#description").val() || "";
+		var option = $('input[name="option"]:checked').val();
+		var deliveryRequest = $('input[name="deliveryRequest"]:checked').val();
+		//alert(option);
+		var deliveryMoney = parseInt($("#deliveryMoney").val() || "0");
+		//                  alert(deliveryRequest);
+		var limitCount = parseInt($("#limitCount").val() || "0");
+		var startDate = $("#startDate").val() || "";
+		
+		var param = {
+			projectNo:projectNo,
+			sortNo:sortNo,
+			rewardMoney:rewardMoney,
+		  	rewardName:rewardName,
+		  	description:description,
+		  	option:option,
+		  	deliveryRequest:deliveryRequest,
+		  	deliveryMoney:deliveryMoney,
+		  	limitCount:limitCount,
+		  	startDate:startDate
+     	};
+		
+		console.log(param);
+		
+		$.ajax({
+			url:"insertreReward.fd",
+			type:"post",
+			data : param,
+			success:function(data){
+				console.log(data);
+			},
+			error:function(err) {
+				console.log("실패!");
+			}
+		});
+	} 
 </script>
 </head>
 <body>
-	
-	            <script>
+	          <!--   <script>
 	                let today = new Date().toISOString().substr(0, 10);
 	                document.querySelector("#today").value = today;
 	
 	                document.querySelector("#today2").valueAsDate = new Date();
-	            </script>
+	            </script> -->
+	 <input type="hidden" value="${p.projectNo}"  id="projectNo" name="projectNo"/>           
 	<jsp:include page="../common/customer_menuList.jsp"/>
+	
+	
+
 	<br>
 	<div id="menu">
 	<ul>
@@ -231,9 +297,9 @@ function addTable() {
 	</div>
 	<br><br><br> 
 		<div id="inputBox2" align="center">
-		<br>
-		
-		</div>
+	
+	</div>
+	
 	
 	<jsp:include page="../common/customer_footer.jsp"/>
 </body>

@@ -170,7 +170,7 @@ td {
 	<br> 
 	
 	<div id="inputBox" align="center">
-		<form id="saveForm" action="FundingOpen5.fd" method="post" enctype="multipart/form-data">
+		<form id="saveForm" method="post" enctype="multipart/form-data">
 	<input type="hidden" id="projectNo" value="${p.projectNo}" name="projectNo" />
 	<input type="hidden" id="userNo" value="${p.userNo}" name="userNo" />
 		<div id="inputBox2" align="center">
@@ -212,7 +212,7 @@ td {
 				<td id="fno">
 				<div id="contentImgArea1">
 				
-					<img src="${fileVO.originFileName}" id="contentImg1" width="302" height="160" >
+					<img src="${contextPath}/resources/uploadFiles/${fileVO.newFileName}" id="contentImg1" width="302" height="160" >
 				</div>
 					<!-- <form id="form" runat="server" style="background:Lightgray">
 					   <img id="image_section" src="#" alt="your image"/>
@@ -279,7 +279,7 @@ td {
 			</tr>
 			<tr>
 				<td>
-					<br />
+					<br/>
 				</td>
 			</tr>
 			<tr>
@@ -334,11 +334,11 @@ td {
 
 					}); */
 					
-					function save(){
+				/* 	function save(){
 						$("#saveForm").submit();
 								
 					
-						}
+						} */
 					//$("input:checkbox[id=adult]:checked").val() || "N"; 
 				
 						
@@ -361,10 +361,11 @@ td {
 			<tr>
 			<td></td>
 				<td>
-				<button id="btn_save" type="button" onclick="save();">저장하기</button>
-				<button id="next">다음으로 ></button>
+				<button id="btn_save" onclick="save();">저장하기</button>
+				<button id="next" onclick="btn_Next();">다음으로 </button>
 				</td>
 			</tr>
+			
 		</table>
 	</div>
 	</form>
@@ -396,6 +397,13 @@ td {
 				}
 				reader.readAsDataURL(value.files[0]);
 			}
+		}
+		
+		function save(){
+			$("#saveForm").attr("action","FundingOpen5.fd");
+		}
+		function btn_Next(){
+			$("#saveForm").attr("action","FundingOpenNext5.fd");
 		}
 		
 		

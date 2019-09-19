@@ -9,8 +9,10 @@ import org.json.simple.JSONObject;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.ui.Model;
 
+import com.kh.yc.board.model.vo.PageInfo;
 import com.kh.yc.member.model.vo.Member;
 import com.kh.yc.member.model.vo.NaverMember;
+import com.kh.yc.reward.model.vo.Reward;
 
 public interface MemberDao {
 	
@@ -53,5 +55,8 @@ public interface MemberDao {
 	void updatePwd(SqlSessionTemplate sqlSession, String email, String userPwd);
 
 List<Member> emailList(SqlSessionTemplate sqlSession);
+
+ArrayList<Member> selectMyReward(SqlSessionTemplate sqlSession, Member m, PageInfo pi);
+
 
 }
