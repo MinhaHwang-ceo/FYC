@@ -105,5 +105,16 @@
 
 	</select>
 
-   
+   	<select id="paySuccessMember" resultMap="memberResultSet">
+		select 
+			f.member_no 
+		from 
+			project P, FUND F
+		where
+		    P.PROJECT_NO = F.PROJECT_NO
+		AND
+		    to_char(end_date, 'yyyy-mm-dd') =  to_char(sysdate, 'yyyy-mm-dd')
+		and
+		    p.progress_status = '성공'
+	</select>
 </mapper>

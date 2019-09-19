@@ -13,12 +13,14 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.yc.board.model.vo.PageInfo;
 import com.kh.yc.common.Pagination;
+import com.kh.yc.member.model.service.MemberService;
 import com.kh.yc.member.model.service.MemberServiceImpl;
 import com.kh.yc.member.model.vo.Member;
 import com.kh.yc.project.model.exception.ProjectSelectListException;
 import com.kh.yc.project.model.service.ProjectService;
 import com.kh.yc.project.model.vo.Project;
 import com.kh.yc.project.model.vo.SupportList;
+import com.kh.yc.reward.model.vo.Reward;
 
 @Controller
 public class MyPageController {
@@ -27,7 +29,7 @@ public class MyPageController {
 	private ProjectService ps;
 	
 	@Autowired
-	private MemberServiceImpl ms;
+	private MemberService ms;
 	
 	public MyPageController() {
 	}
@@ -65,8 +67,23 @@ public class MyPageController {
 	}
 
 	@RequestMapping("myReward.me")
-	public String myReward(@ModelAttribute Member m) {
-
+	public String myReward(@ModelAttribute Member m, HttpServletRequest request, HttpServletResponse response) {
+		int currentPage = 1;
+		
+		if(request.getParameter("currentPage") != null) {
+			currentPage = Integer.parseInt(request.getParameter("currentPage"));
+		}
+		int listCount;
+		try {
+			listCount = ps.getListCount();
+			PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
+			ArrayList<Member> list = ms.selectMyReward(pi, m);
+			
+		} catch (ProjectSelectListException e) {
+			e.printStackTrace();
+		}
+		
+		
 		return "member/myReward";
 	}
 	@RequestMapping("myMaker.me")

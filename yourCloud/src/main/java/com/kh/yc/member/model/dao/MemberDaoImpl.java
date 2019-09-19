@@ -6,13 +6,16 @@ import java.util.List;
 import javax.inject.Inject;
 import javax.security.auth.login.LoginException;
 
+import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
 import org.json.simple.JSONObject;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
+import com.kh.yc.board.model.vo.PageInfo;
 import com.kh.yc.member.model.vo.Member;
 import com.kh.yc.member.model.vo.NaverMember;
+import com.kh.yc.reward.model.vo.Reward;
 @Repository
 public class MemberDaoImpl implements MemberDao{
 	
@@ -117,6 +120,18 @@ public class MemberDaoImpl implements MemberDao{
 		@Override
 		public int naverLoginCheck(SqlSessionTemplate sqlSession, Member nm) {
 			return sqlSession.selectOne("Naver.naverLoginCheck", nm);
+		}
+		@SuppressWarnings({ "unchecked", "rawtypes" })
+		@Override
+		public ArrayList<Member> selectMyReward(SqlSessionTemplate sqlSession, Member m, PageInfo pi) {
+			ArrayList<Member> list = null;
+			int offset = (pi.getCurrentPage() -1) * pi.getLimit();
+			
+			RowBounds rowBounds = new RowBounds(offset, pi.getLimit());
+			
+			list = (ArrayList) sqlSession.selectList("Reward.selectMyReward", null, rowBounds);
+			System.out.println(list);
+			return list;
 		}
 	
 	}

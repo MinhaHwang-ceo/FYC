@@ -20,6 +20,22 @@
 		<result property="memberName" column="MEMBER_NAME"/>
 		<result property="money" column="MONEY"/>
 		<result property="description" column="DESCRIPTION"/>
+
+		
+		<result property="fundDate" column="FUND_DATE"/>
+      	<result property="fundNo" column="FUND_NO"/>
+      	<result property="fundMoney" column="FUND_MONEY"/>
+      	<result property="account" column="ACCOUNT"/>
+      	<result property="category" column="CATEGORY"/>
+      	<result property="categoryDiv" column="CATEGORY_DIV"/>
+    	<result property="endDate" column="END_DATE"/>
+     	<result property="projectTitle" column="PROJECT_TITLE"/>
+     	<result property="companyName" column="COMPANY_NAME"/>
+     	<result property="deliverySite" column="DELIVERY_SITE"/>
+      	<result property="deliveryMoney" column="DELIVERY_MONEY"/>
+      	<result property="options" column="OPTIONS"/>
+      	<result property="payStatus" column="PAY_STATUS"/>
+		
 </resultMap>
 	
 	<select id="viewReward" resultMap="RewardResultSet">
@@ -28,6 +44,7 @@
 		WHERE
 		PROJECT_NO= #{projectNo}
 	</select>
+
 	
 	<insert id="insertReward" parameterType="Reward">
 		INSERT INTO REWARD 
@@ -45,6 +62,19 @@
 				#{description}
 			   )
 	</insert>
+	<select id="selectMyReward" resultMap="RewardResultSet" parameterType="java.util.Map">
+		SELECT M.MEMBER_NO, F.FUND_DATE, F.FUND_NO, PJ.PROJECT_NO, R.REWARD_NO, M.ACCOUNT,
+				PJ.CATEGORY, C.CATEGORY_DIV, PJ.END_DATE, PJ.PROJECT_TITLE, M.COMPANY_NAME,
+				D.DELIVERY_SITE, R.DELIVERY_MONEY, R.START_DATE, R.OPTIONS, R.REWARD_MONEY
+		FROM MEMBER M
+		LEFT JOIN PAYMENT PA ON(M.MEMBER_NO = PA.MEMBER_NO)
+		LEFT JOIN FUND F ON(PA.MEMBER_NO = F.MEMBER_NO)
+		LEFT JOIN PROJECT PJ ON(F.MEMBER_NO = PJ.MEMBER_NO)
+		LEFT JOIN CATEGORY C ON(PJ.CATEGORY = C.CATEGORY)
+		LEFT JOIN REWARD R ON(PJ.PROJECT_NO = R.PROJECT_NO)
+		LEFT JOIN DELIVERY D ON(M.MEMBER_NO = D.MEMBER_NO)
+		WHERE M.MEMBER_NO = #{userNo}
+	</select>
 </mapper>
 
 

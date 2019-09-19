@@ -247,6 +247,26 @@ public class AdminController {
 
 		return "admin/excel";
 	}
+	
+	
+	// 엑셀 업로더ㅡ
+		@RequestMapping(value = "excel2.ad", method = RequestMethod.GET)
+		public String exUp(Locale locale, Model model) {
+			
+			
+			return "admin/excelupTest";
+		}
+		
+		// 엑셀 업로더ㅡ
+				@RequestMapping(value = "excel3.ad", method = RequestMethod.GET)
+				public String exUp(Reward r, Model model) {
+					
+					
+					System.out.println("객체를 불러라 새기야" + r);
+
+					return "admin/excelupTest";
+				}
+
 
 	/*
 	 * // 엑셀
