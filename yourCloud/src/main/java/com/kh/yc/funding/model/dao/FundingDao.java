@@ -9,6 +9,7 @@ import com.kh.yc.admin.model.vo.Project;
 import com.kh.yc.funding.model.vo.Attachment;
 import com.kh.yc.member.model.vo.Member;
 import com.kh.yc.project.model.vo.Sign;
+import com.kh.yc.reward.model.vo.Reward;
 
 public interface FundingDao {
 	//프로젝트 번호 check
@@ -37,6 +38,8 @@ public interface FundingDao {
 	int signUser(SqlSessionTemplate sqlSession, Sign s);
 
 	int signFile(SqlSessionTemplate sqlSession, Attachment a);
+	//리워드 인설트
+	int rewardInest(SqlSessionTemplate sqlSession, Reward r);
 
 	
 

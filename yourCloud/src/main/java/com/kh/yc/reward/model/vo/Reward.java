@@ -2,7 +2,10 @@ package com.kh.yc.reward.model.vo;
 
 import java.sql.Date;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 public class Reward {
+	
 	private int rewardNo;
 	private int rewardMoney;
 	private String sortNo;
@@ -18,7 +21,6 @@ public class Reward {
 	private int fundNo;				//펀딩번호
 	private int projectNo;			//프로젝트번호
 	private int fundMoney;			//펀딩금액
-	private int rewardNo;			//리워드번호
 	private String account;			//계좌번호
 	private String category;		//카테고리 코드
 	private String categoryDiv;		//카테고리 이름
@@ -27,20 +29,25 @@ public class Reward {
 	private String companyName;		//메이커(법인명)
 	private String deliverySite;	//주소
 	private int deliveryMoney;		//배송비
+	@JsonFormat(pattern = "yyyy-MM-dd")
 	private Date startDate;			//발송시작일
 	private String options;			//옵션 조건
 	private String payStatus;		//결제정보
+	private String description;
 	
 	
 	
 	public Reward () {}
 
-	public Reward(int rewardMoney, String sortNo, String rewardName, String option, String deliveryRequest,
-			int limitCount, String projectShortTitle, String memberName, int money, int userNo, Date fundDate,
-			int fundNo, int projectNo, int fundMoney, int rewardNo, String account, String category, String categoryDiv,
-			Date endDate, String projectTitle, String companyName, String deliverySite, int deliveryMoney,
-			Date startDate, String options, String payStatus) {
+
+
+	public Reward(int rewardNo, int rewardMoney, String sortNo, String rewardName, String option,
+			String deliveryRequest, int limitCount, String projectShortTitle, String memberName, int money, int userNo,
+			Date fundDate, int fundNo, int projectNo, int fundMoney, String account, String category,
+			String categoryDiv, Date endDate, String projectTitle, String companyName, String deliverySite,
+			int deliveryMoney, Date startDate, String options, String payStatus, String description) {
 		super();
+		this.rewardNo = rewardNo;
 		this.rewardMoney = rewardMoney;
 		this.sortNo = sortNo;
 		this.rewardName = rewardName;
@@ -55,7 +62,6 @@ public class Reward {
 		this.fundNo = fundNo;
 		this.projectNo = projectNo;
 		this.fundMoney = fundMoney;
-    this.rewardNo = rewardNo;
 		this.account = account;
 		this.category = category;
 		this.categoryDiv = categoryDiv;
@@ -67,55 +73,82 @@ public class Reward {
 		this.startDate = startDate;
 		this.options = options;
 		this.payStatus = payStatus;
+		this.description = description;
 	}
+
+
 
 	public int getRewardNo() {
 		return rewardNo;
 	}
 
+
+
 	public void setRewardNo(int rewardNo) {
-		
+		this.rewardNo = rewardNo;
 	}
+
+
 
 	public int getRewardMoney() {
 		return rewardMoney;
 	}
 
+
+
 	public void setRewardMoney(int rewardMoney) {
 		this.rewardMoney = rewardMoney;
 	}
+
+
 
 	public String getSortNo() {
 		return sortNo;
 	}
 
+
+
 	public void setSortNo(String sortNo) {
 		this.sortNo = sortNo;
 	}
+
+
 
 	public String getRewardName() {
 		return rewardName;
 	}
 
+
+
 	public void setRewardName(String rewardName) {
 		this.rewardName = rewardName;
 	}
+
+
 
 	public String getOption() {
 		return option;
 	}
 
+
+
 	public void setOption(String option) {
 		this.option = option;
 	}
+
+
 
 	public String getDeliveryRequest() {
 		return deliveryRequest;
 	}
 
+
+
 	public void setDeliveryRequest(String deliveryRequest) {
 		this.deliveryRequest = deliveryRequest;
 	}
+
+
 
 	public int getLimitCount() {
 		return limitCount;
@@ -197,39 +230,20 @@ public class Reward {
 
 	public void setFundNo(int fundNo) {
 		this.fundNo = fundNo;
-  }
-    
-	public int getDeliveryMoney() {
-		return deliveryMoney;
 	}
 
-	public void setDeliveryMoney(int deliveryMoney) {
-		this.deliveryMoney = deliveryMoney;
-	}
 
-	public int getLimitCount() {
-		return limitCount;
-	}
-
-	public void setLimitCount(int limitCount) {
-		this.limitCount = limitCount;
-	}
-
-	public Date getStartDate() {
-		return startDate;
-	}
-
-	public void setStartDate(Date startDate) {
-		this.startDate = startDate;
-	}
 
 	public int getProjectNo() {
 		return projectNo;
 	}
 
+
+
 	public void setProjectNo(int projectNo) {
 		this.projectNo = projectNo;
 	}
+
 
 
 	public int getFundMoney() {
@@ -240,18 +254,6 @@ public class Reward {
 
 	public void setFundMoney(int fundMoney) {
 		this.fundMoney = fundMoney;
-	}
-
-
-
-	public int getRewardNo() {
-		return rewardNo;
-	}
-
-
-
-	public void setRewardNo(int rewardNo) {
-		this.rewardNo = rewardNo;
 	}
 
 
@@ -384,43 +386,37 @@ public class Reward {
 
 	public void setPayStatus(String payStatus) {
 		this.payStatus = payStatus;
-  }
-  
-	public String getProjectShortTitle() {
-		return projectShortTitle;
 	}
 
-	public void setProjectShortTitle(String projectShortTitle) {
-		this.projectShortTitle = projectShortTitle;
+
+
+	public String getDescription() {
+		return description;
 	}
 
-	public String getMemberName() {
-		return memberName;
+
+
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
-	public void setMemberName(String memberName) {
-		this.memberName = memberName;
-	}
 
-	public int getMoney() {
-		return money;
-	}
-
-	public void setMoney(int money) {
-		this.money = money;
-
-	}
 
 	@Override
 	public String toString() {
-		return "Reward [rewardMoney=" + rewardMoney + ", sortNo=" + sortNo + ", rewardName=" + rewardName + ", option="
-				+ option + ", deliveryRequest=" + deliveryRequest + ", limitCount=" + limitCount
-				+ ", projectShortTitle=" + projectShortTitle + ", memberName=" + memberName + ", money=" + money
-				+ ", userNo=" + userNo + ", fundDate=" + fundDate + ", fundNo=" + fundNo + ", projectNo=" + projectNo
-				+ ", fundMoney=" + fundMoney + ", rewardNo=" + rewardNo + ", account=" + account + ", category="
-				+ category + ", categoryDiv=" + categoryDiv + ", endDate=" + endDate + ", projectTitle=" + projectTitle
+		return "Reward [rewardNo=" + rewardNo + ", rewardMoney=" + rewardMoney + ", sortNo=" + sortNo + ", rewardName="
+				+ rewardName + ", option=" + option + ", deliveryRequest=" + deliveryRequest + ", limitCount="
+				+ limitCount + ", projectShortTitle=" + projectShortTitle + ", memberName=" + memberName + ", money="
+				+ money + ", userNo=" + userNo + ", fundDate=" + fundDate + ", fundNo=" + fundNo + ", projectNo="
+				+ projectNo + ", fundMoney=" + fundMoney + ", account=" + account + ", category=" + category
+				+ ", categoryDiv=" + categoryDiv + ", endDate=" + endDate + ", projectTitle=" + projectTitle
 				+ ", companyName=" + companyName + ", deliverySite=" + deliverySite + ", deliveryMoney=" + deliveryMoney
-				+ ", startDate=" + startDate + ", options=" + options + ", payStatus=" + payStatus + "]";
+				+ ", startDate=" + startDate + ", options=" + options + ", payStatus=" + payStatus + ", description="
+				+ description + "]";
 	}
 
+
+
+	
+	
 }

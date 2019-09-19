@@ -8,6 +8,7 @@ import com.kh.yc.admin.model.vo.Project;
 import com.kh.yc.funding.model.vo.Attachment;
 import com.kh.yc.member.model.vo.Member;
 import com.kh.yc.project.model.vo.Sign;
+import com.kh.yc.reward.model.vo.Reward;
 
 @Service
 public interface FundingService{
@@ -42,6 +43,9 @@ public interface FundingService{
 	int signUser(Sign s);
 
 	int signFile(Attachment a);
+	
+	//리워드 인설트
+	int rewardInest(Reward r);
 
 
 	

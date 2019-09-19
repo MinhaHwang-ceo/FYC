@@ -19,6 +19,8 @@
 		<result property="projectShortTitle" column="PROJECT_SHORT_TITLE"/>
 		<result property="memberName" column="MEMBER_NAME"/>
 		<result property="money" column="MONEY"/>
+		<result property="description" column="DESCRIPTION"/>
+
 		
 		<result property="fundDate" column="FUND_DATE"/>
       	<result property="fundNo" column="FUND_NO"/>
@@ -34,8 +36,6 @@
       	<result property="options" column="OPTIONS"/>
       	<result property="payStatus" column="PAY_STATUS"/>
 		
-		
-		
 </resultMap>
 	
 	<select id="viewReward" resultMap="RewardResultSet">
@@ -44,6 +44,24 @@
 		WHERE
 		PROJECT_NO= #{projectNo}
 	</select>
+
+	
+	<insert id="insertReward" parameterType="Reward">
+		INSERT INTO REWARD 
+		VALUES (
+				SEQ_REWARDNO.NEXTVAL,
+				#{rewardMoney},
+				#{sortNo},
+				#{rewardName},
+				#{option},
+				#{deliveryRequest},
+				#{deliveryMoney},
+				#{limitCount},
+				#{startDate},
+				#{projectNo},
+				#{description}
+			   )
+	</insert>
 	<select id="selectMyReward" resultMap="RewardResultSet" parameterType="java.util.Map">
 		SELECT M.MEMBER_NO, F.FUND_DATE, F.FUND_NO, PJ.PROJECT_NO, R.REWARD_NO, M.ACCOUNT,
 				PJ.CATEGORY, C.CATEGORY_DIV, PJ.END_DATE, PJ.PROJECT_TITLE, M.COMPANY_NAME,
