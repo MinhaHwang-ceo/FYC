@@ -32,7 +32,9 @@ public interface ProjectService {
 	ArrayList<Integer> receipt2(int bNum);
 
 
-	ArrayList<Project> memberCategory(String category);;
+	ArrayList<Project> memberCategory(String category);
+	//서포트리스트 출력
+	ArrayList<SupportList> selectSupportListExcel(int bNum);;
 
 	
 	

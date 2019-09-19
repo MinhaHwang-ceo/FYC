@@ -86,7 +86,7 @@
 	</resultMap>
 	<select id="selectListCount" resultType="_int">
 		SELECT 
-			COUNT(*) 
+			COUNT(*)
 		FROM 
 			BOARD 
 		WHERE 

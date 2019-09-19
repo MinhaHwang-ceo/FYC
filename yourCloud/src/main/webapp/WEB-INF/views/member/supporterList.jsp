@@ -40,6 +40,8 @@
        
          </div>
          <br />
+         
+         <input type="hidden" value="${bNum}" id="bNum">
 
          <table class="table" style="text-align:center;font-size: 0.9em;">
              <thead>
@@ -89,7 +91,9 @@
            </table>
            <br />
            <div id="btnDiv" align="right">
-              <button class="btn btn-success">배송지 관리</button>
+            <button class="btn btn-success excelDown">결제/배송현황 내려받기</button>
+            <br><br>
+              <button class="btn btn-success excelInsert">결제/배송현황 올리기</button>
            </div>
       </div>
    </div>
@@ -253,6 +257,15 @@
       
       
       
+      $(".excelDown").click(function(){
+
+   	   var bNum=$('#bNum').val();
+   	   console.log(bNum);
+   	   
+ 		location.href = "excelDown.do?bNum=" + bNum;
+  	   
+
+      });
       
       
    </script>
