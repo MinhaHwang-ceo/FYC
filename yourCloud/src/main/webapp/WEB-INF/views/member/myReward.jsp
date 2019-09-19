@@ -31,7 +31,7 @@
 			<br />
 			<div class="rewards">
 				<div class="left">
-					<p class="category">리워드/ 반려동물</p>	
+					<p class="category"><c:out value="${ categoryDiv }"/></p>	
 					<p class="status">종료</p>
 					<br />
 					<p class="projectTitle">진수네 구기자기자</p>
@@ -49,26 +49,7 @@
 					<a href="#">상세보기</a>
 				</div>
 			</div>
-			<div class="rewards">
-				<div class="left">
-					<p class="category">리워드/ 반려동물</p>	
-					<p class="status">종료</p>
-					<br />
-					<p class="projectTitle">진수네 구기자기자</p>
-					<p class="maker">진수</p>
-					<p class="payStatus">결제완료</p>
-				</div>				
-				<div class="right">
-					<p>2019-09-01 펀딩</p>	
-					<br />
-					<br />
-					<label>메이커 만족도</label>
-					<br />
-					<label class="stars">★★★★☆</label>
-					<br />
-					<a href="#">상세보기</a>
-				</div>
-			</div>
+			
 		</div>
 		
 	</div>

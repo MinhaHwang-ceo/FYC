@@ -6,8 +6,10 @@ import java.util.List;
 
 import javax.security.auth.login.LoginException;
 
+import com.kh.yc.board.model.vo.PageInfo;
 import com.kh.yc.member.model.vo.Member;
 import com.kh.yc.member.model.vo.NaverMember;
+import com.kh.yc.reward.model.vo.Reward;
 
 public interface MemberService {
 	
@@ -34,5 +36,9 @@ public interface MemberService {
 	public void updatePwd(String email,String userPwd);
 	
 	public List<Member> emailList();
+
+	ArrayList<Member> selectMyReward(PageInfo pi, Member m);
+
+	
 
 }
