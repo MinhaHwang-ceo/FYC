@@ -1,6 +1,7 @@
 package com.kh.yc.project.model.service;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import com.kh.yc.board.model.vo.PageInfo;
@@ -44,6 +45,10 @@ public interface ProjectService {
 
 	//서포트리스트 출력
 	ArrayList<SupportList> selectSupportListExcel(int bNum);
+
+	//업로드 엑셀 위치파악 메소드
+	List<SupportList> getExcelUpload(String string);;
+
 	
 	//신고하기 기능
 	public int insertReport(Report report);

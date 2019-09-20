@@ -173,6 +173,7 @@ public class ProjectDaoImpl implements ProjectDao{
 		return list;
 	}
 
+
 	//신고하기 기능
 	@Override
 	public int insertReport(SqlSessionTemplate sqlSession, Report report) {
@@ -186,6 +187,23 @@ public class ProjectDaoImpl implements ProjectDao{
 	public int reportCount(SqlSessionTemplate sqlSession, Interest inter) {
 		
 		return sqlSession.selectOne("Report.reportCount",inter);
+
+	@Override
+	public void updateDB(SqlSessionTemplate sqlSession,Map<String, Object> map) {
+	
+	 sqlSession.update("Project2.updateDb",map);
+	 
+	 
+	}
+
+	@Override
+	public List<SupportList> testDbList(SqlSessionTemplate sqlSession,Map<String, Object> map) {
+	ArrayList<SupportList> list =null;
+		
+		list = (ArrayList) sqlSession.selectList("Project2.selectSupportListExcel",map);
+		
+		return list;
+
 	}
 
 }

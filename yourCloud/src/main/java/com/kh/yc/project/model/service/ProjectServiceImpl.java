@@ -1,10 +1,13 @@
 package com.kh.yc.project.model.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
-import javax.security.auth.message.callback.PrivateKeyCallback.Request;
-
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,6 +17,7 @@ import com.kh.yc.category.model.vo.Report;
 import com.kh.yc.member.model.vo.Member;
 import com.kh.yc.project.model.dao.ProjectDao;
 import com.kh.yc.project.model.exception.ProjectSelectListException;
+import com.kh.yc.project.model.vo.ExcelUtil;
 import com.kh.yc.project.model.vo.Interest;
 import com.kh.yc.project.model.vo.Project;
 import com.kh.yc.project.model.vo.SupportList;
@@ -120,6 +124,7 @@ public class ProjectServiceImpl implements ProjectService{
 		return pd.likeCount(sqlSession, inter);
 	}
 
+
 	@Override
 	public ArrayList<SupportList> selectSupportListExcel(int bNum) {
 		ArrayList<SupportList> list = pd.selectSupportListExcel(sqlSession,bNum); 
@@ -138,6 +143,50 @@ public class ProjectServiceImpl implements ProjectService{
 	public int reportCount(Interest inter) {
 		
 		return pd.reportCount(sqlSession,inter);
+	}
+
+	@Override
+	public List<SupportList>  getExcelUpload(String excelFile) {
+		  
+        Map<String, Object> map = new HashMap<String, Object>();
+        List<SupportList> list = null;
+        System.out.println("excelFile:::"+excelFile);
+        try {
+            System.out.println("excelFile:::"+excelFile);
+            Workbook wbs = ExcelUtil.getWorkbook(excelFile);
+            System.out.println("wbs:::"+wbs);
+            Sheet sheet = (Sheet) wbs.getSheetAt(0);
+            System.out.println("sheet:::"+sheet);
+            
+            
+            //excel file 두번쨰줄부터 시작
+            for (int i = sheet.getFirstRowNum() + 1; i <= sheet.getLastRowNum(); i++) {
+                
+                System.out.println("222222222222");
+                
+                Row row = sheet.getRow(i);
+                
+                //map.put("IDCOL", ""+ExcelUtil.cellValue(row.getCell(0)));
+                map.put("NAMECOL", ""+ExcelUtil.cellValue(row.getCell(1)));
+                map.put("VALUECOL", ""+ExcelUtil.cellValue(row.getCell(2)));
+                System.out.println("map"+map);
+                //신규삽입
+                pd.updateDB(sqlSession,map);
+                System.out.println("3333333");
+            }
+ 
+          
+            //데이터가져옵니다.
+            list = pd.testDbList(sqlSession,map);
+            
+        }catch(Exception e){
+         
+        }
+        
+        return list;
+
+
+		
 	}
 
 	

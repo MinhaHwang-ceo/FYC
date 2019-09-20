@@ -121,6 +121,24 @@ public class FundingServiceImpl implements FundingService{
 		return fd.rewardInest(sqlSession,r);
 	}
 
+	@Override
+	public List<Reward> rewardSelect(Reward r) {
+		
+		return fd.rewardSelect(sqlSession,r);
+	}
+	
+	//리워드 업데이트
+	@Override
+	public int rewardUpdate(Reward r) {
+		
+		int rewardUP = fd.rewardUpdate(sqlSession,r);
+		
+		return rewardUP;
+	}
+	
+
+	 
+
 	
 	
 	
