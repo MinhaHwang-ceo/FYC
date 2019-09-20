@@ -11,10 +11,10 @@
 		<table class="table1" align="center">
 			<tr>
 				<td><input type="button" class="circle"
-					onclick="location.href='#'" name=""
+					onclick="location.href='category.bo'" name=""
 					style="background-image: url(/yc/resources/images/all.jpeg); background-size: 60px 60px;"></td>
 				<td><input type="button" class="circle"
-					onclick="location.href='#'" name=""
+					onclick="location.href='category.ca'" name=""
 					style="background-image: url(/yc/resources/images/electronic.png); background-size: 60px 60px;"></td>
 				<td><input type="button" class="circle"
 					onclick="location.href='#'" name=""

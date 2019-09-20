@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Map;
 
 import com.kh.yc.board.model.vo.PageInfo;
+import com.kh.yc.category.model.vo.Report;
 import com.kh.yc.member.model.vo.Member;
 import com.kh.yc.project.model.exception.ProjectSelectListException;
 import com.kh.yc.project.model.vo.Interest;
@@ -42,10 +43,11 @@ public interface ProjectService {
 	public int likeCount(Interest inter);
 
 	//서포트리스트 출력
-	ArrayList<SupportList> selectSupportListExcel(int bNum);;
+	ArrayList<SupportList> selectSupportListExcel(int bNum);
+	
+	//신고하기 기능
+	public int insertReport(Report report);
+	//신고 여부
+	public int reportCount(Interest inter);;
 
-
-	
-	
-	
 }

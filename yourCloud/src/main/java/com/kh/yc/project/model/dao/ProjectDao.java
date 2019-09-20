@@ -6,6 +6,7 @@ import java.util.Map;
 import org.mybatis.spring.SqlSessionTemplate;
 
 import com.kh.yc.board.model.vo.PageInfo;
+import com.kh.yc.category.model.vo.Report;
 import com.kh.yc.member.model.vo.Member;
 import com.kh.yc.project.model.exception.ProjectSelectListException;
 import com.kh.yc.project.model.vo.Interest;
@@ -40,6 +41,11 @@ public interface ProjectDao {
 	int likeCount(SqlSessionTemplate sqlSession, Interest inter);
 	
 	ArrayList<SupportList> selectSupportListExcel(SqlSessionTemplate sqlSession, int bNum);
+	
+	//신고하기 기능
+	int insertReport(SqlSessionTemplate sqlSession, Report report);
+	//신고여부
+	int reportCount(SqlSessionTemplate sqlSession, Interest inter);
 
 
 }

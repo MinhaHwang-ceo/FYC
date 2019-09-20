@@ -3,14 +3,14 @@ package com.kh.yc.project.model.vo;
 public class Interest implements java.io.Serializable{
 	
 	private int projectNo;
-	private int memberNo;
+	private int userNo;
 	
 	public Interest() {}
 
-	public Interest(int projectNo, int memberNo) {
+	public Interest(int projectNo, int userNo) {
 		super();
 		this.projectNo = projectNo;
-		this.memberNo = memberNo;
+		this.userNo = userNo;
 	}
 
 	public int getProjectNo() {
@@ -21,18 +21,19 @@ public class Interest implements java.io.Serializable{
 		this.projectNo = projectNo;
 	}
 
-	public int getMemberNo() {
-		return memberNo;
+	public int getUserNo() {
+		return userNo;
 	}
 
-	public void setMemberNo(int memberNo) {
-		this.memberNo = memberNo;
+	public void setUserNo(int userNo) {
+		this.userNo = userNo;
 	}
 
 	@Override
 	public String toString() {
-		return "Interest [projectNo=" + projectNo + ", memberNo=" + memberNo + "]";
+		return "Interest [projectNo=" + projectNo + ", userNo=" + userNo + "]";
 	}
+
 	
 	 
 

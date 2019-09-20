@@ -17,7 +17,6 @@
 		<result property="userName" column="MEMBER_NAME"/>
 		<result property="progressStatus" column="PROGRESS_STATUS"/>
 		<result property="reportCount" column="REPORT_COUNT"/>
-		
 </resultMap>
 
 <select id="reportList" resultMap="ReportResultSet" parameterType="Report">
@@ -36,6 +35,23 @@
 		INNER JOIN MEMBER M ON A.MEMBER_NO = M.MEMBER_NO
         WHERE REPORT_NO= #{reportNo}	
  </select>
+ 
+ <insert id="insertReport">
+ 		INSERT INTO
+		REPORT (REPORT_COMMENT, REPORT_DATE, REPORT_NO ,MEMBER_NO, PROJECT_NO, REPORT_CODE)
+		VALUES( 
+		#{reportComment}, SYSDATE , SEQ_REPORTNO.NEXTVAL, #{userNo} , #{projectNo} , #{reportCode}
+		)
+ </insert>
+ 
+ <select id="reportCount" resultType="int">
+ 		SELECT COUNT(*) 
+		FROM REPORT
+		WHERE PROJECT_NO = #{projectNo}
+		AND MEMBER_NO = #{userNo}
+ </select>
+ 
+ 
  
 </mapper>
         

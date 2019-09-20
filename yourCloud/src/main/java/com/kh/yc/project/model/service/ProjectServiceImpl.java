@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.kh.yc.board.model.vo.PageInfo;
+import com.kh.yc.category.model.vo.Report;
 import com.kh.yc.member.model.vo.Member;
 import com.kh.yc.project.model.dao.ProjectDao;
 import com.kh.yc.project.model.exception.ProjectSelectListException;
@@ -19,12 +20,13 @@ import com.kh.yc.project.model.vo.SupportList;
 
 @Service
 public class ProjectServiceImpl implements ProjectService{
-	//게시물 목록 갯수 조회용 메소드
+	
 	@Autowired
 	SqlSessionTemplate sqlSession;
 	@Autowired
 	ProjectDao pd;
 	
+	//게시물 목록 갯수 조회용 메소드
 	@Override
 	public int getListCount() throws ProjectSelectListException {
 
@@ -113,13 +115,29 @@ public class ProjectServiceImpl implements ProjectService{
 	@Override
 	public int likeCount(Interest inter) {
 		
+		System.out.println("service에서"+inter);
+		
 		return pd.likeCount(sqlSession, inter);
+	}
 
 	@Override
 	public ArrayList<SupportList> selectSupportListExcel(int bNum) {
 		ArrayList<SupportList> list = pd.selectSupportListExcel(sqlSession,bNum); 
 		return list;
 
+	}
+	
+	//신고하기
+	@Override
+	public int insertReport(Report report) {
+		
+		return pd.insertReport(sqlSession,report);
+	}
+	//신고여부
+	@Override
+	public int reportCount(Interest inter) {
+		
+		return pd.reportCount(sqlSession,inter);
 	}
 
 	
