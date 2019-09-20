@@ -478,5 +478,10 @@ join delivery_status d2 on(d2.delivery_no=d.delivery_no)
 		WHERE
 			PAY_NO = #{payNo}
 	</update>
+	
+	
+		<update id="updateDb" parameterType="java.util.Map">
+update  delivery set status=#{VALUECOL};
+	</update>
 </mapper>
 

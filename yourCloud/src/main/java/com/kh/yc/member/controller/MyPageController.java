@@ -1,6 +1,11 @@
 package com.kh.yc.member.controller;
 
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -21,19 +26,20 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.yc.board.model.vo.PageInfo;
 import com.kh.yc.common.Pagination;
 import com.kh.yc.member.model.service.MemberService;
-import com.kh.yc.member.model.service.MemberServiceImpl;
 import com.kh.yc.member.model.vo.Member;
 import com.kh.yc.project.model.exception.ProjectSelectListException;
 import com.kh.yc.project.model.service.ProjectService;
 import com.kh.yc.project.model.vo.Project;
 import com.kh.yc.project.model.vo.SupportList;
-import com.kh.yc.reward.model.vo.Reward;
 
 
 
@@ -386,9 +392,56 @@ System.out.println("m:::::;;"+m);
 	}
 
 
+	
+	
+	
+	
+	
 
 	
-	
+	@RequestMapping(value = "/excelUp.do", method = RequestMethod.POST)
+    public void ExcelUp(HttpServletRequest req, HttpServletResponse rep){
+      
+        Map returnObject = new HashMap(); 
+        
+        
+        System.out.println("1111111");
+        try { // MultipartHttpServletRequest 생성 
+            MultipartHttpServletRequest mhsr = (MultipartHttpServletRequest) req; 
+            Iterator<String> iter = mhsr.getFileNames(); 
+            MultipartFile mfile = null; 
+            String fieldName = ""; 
+        	System.out.println("???!!!!!!?????");
+            // 값이 나올때까지
+            while (iter.hasNext()) {
+            	System.out.println("?????????");
+                fieldName = iter.next().toString(); // 내용을 가져와서 
+                mfile = mhsr.getFile(fieldName); 
+                String origName; 
+                origName = new String(mfile.getOriginalFilename().getBytes("8859_1"), "UTF-8"); //한글꺠짐 방지 // 파일명이 없다면 
+                
+                returnObject.put("params", mhsr.getParameterMap()); 
+                
+                
+                System.out.println("origName"+origName);
+                String path="C:\\User\\3214\\Downloads\\"+origName;
+                System.out.println("path:::"+path);
+                //위치 및 파일
+                ps.getExcelUpload(".\\"+origName);
+            }
+            
+            } catch (UnsupportedEncodingException e) { // TODO Auto-generated catch block 
+                e.printStackTrace(); 
+            }catch (IllegalStateException e) { // TODO Auto-generated catch block 
+                e.printStackTrace(); 
+            } catch (IOException e) { // TODO Auto-generated catch block 
+                e.printStackTrace(); 
+            }
+ 
+        
+    }
+
+
 	
 	
 	
