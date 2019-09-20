@@ -47,6 +47,14 @@ public interface FundingService{
 	//리워드 인설트
 	int rewardInest(Reward r);
 
+	//리워드 셀렉트
+	List<Reward> rewardSelect(Reward r);
+	
+	//리워드 업데이트
+	int rewardUpdate(Reward r);
+	
+	
+
 
 	
 
