@@ -86,6 +86,18 @@ public  class FundingDaoImpl implements FundingDao{
 		
 		return sqlSession.insert("Reward.insertReward",r);
 	}
+	@Override
+	public List<Reward> rewardSelect(SqlSessionTemplate sqlSession, Reward r) {
+		
+		System.out.println("DAO r :" + r);
+		return sqlSession.selectList("Reward.selectReward",r);
+	}
+	//리워드 업데이트
+	@Override
+	public int rewardUpdate(SqlSessionTemplate sqlSession, Reward r) {
+		
+		return sqlSession.update("Reward.updateReward",r);
+	}
 
 	
 	

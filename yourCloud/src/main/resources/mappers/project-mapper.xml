@@ -7,8 +7,7 @@
   "http://mybatis.o
   rg/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="Project">
-   <resultMap type="com.kh.yc.admin.model.vo.Project"
-      id="ProjectResultSet">
+   <resultMap type="com.kh.yc.admin.model.vo.Project" id="ProjectResultSet">
       <id property="projectNo" column="PROJECT_NO" />
       <result property="category" column="CATEGORY" />
       <result property="success" column="SUCCESS" />
@@ -98,13 +97,13 @@
       
    <collection property="Attachment" javaType="java.util.List" resultMap="AttachmentResultSet"/>
    </resultMap>
-   
-   <update id="updateProject" parameterType="Project">
-      UPDATE PROJECT
-      SET PROGRESS_STATUS = #{progressStatus}
-      WHERE PROJECT_NO=
-      #{projectNo}
-   </update>
+	<update id="updateProject" parameterType="Project">
+		UPDATE PROJECT
+		SET PROGRESS_STATUS = #{progressStatus}
+		WHERE PROJECT_NO=
+		#{projectNo}
+	</update>
+
 
    <select id="judgeProjectList" resultMap="ProjectResultSet">
       SELECT *
@@ -143,94 +142,93 @@
    </select>
 
 
-   <!-- 프로젝트 번호 인설트 -->
-   <insert id="insertProjectNno" parameterType="Project">
-      INSERT INTO PROJECT VALUES(#{projectNo}, null, null, '신청전', '오픈', null, null
-            ,SEQ_ADMINNO.NEXTVAL, null, null, null, null, null, null, null, null, null
-            ,null, null, null, null, null, null, null, null
-            ,null, null, #{userNo}, null, null, null)
-   </insert>
-   
-   <!--  카테코리 인설트같은 업데이트 -->
-   <update id="fcategoryUpdate" parameterType="Project">
-      UPDATE PROJECT
-      SET CATEGORY = #{category}
-      WHERE PROJECT_NO = #{projectNo} AND MEMBER_NO = #{userNo}
-   </update>
-   
-   <update id="basicInfo" parameterType="Project">
-   
-        <!--  <if test="progressStatus.equals('오픈예정')"> -->
-      UPDATE PROJECT
-      SET PHONE = #{phone}
-        ,PROJECT_TITLE = #{projectTitle}
-        ,PROJECT_SHORT_TITLE = #{projectShortTitle}
-        ,MONEY = TO_NUMBER(#{money})
-        ,CATEGORY = #{category}
-        ,PROGRESS = #{progress}
-        ,DELIVERY = #{delivery}
-        ,END_DATE = #{endDate}
-        ,ADULT = #{adult}
-        ,MAIN_IMG = #{mainImg}
-        ,PROGRESS_STATUS = #{progressStatus}
-         WHERE PROJECT_NO = #{projectNo} 
-           AND MEMBER_NO = #{userNo}   
-        <!--  </if> -->
-         
-         <!-- <if test="progressStatus.equals('오픈')">
-               UPDATE PROJECT
-            SET PHONE = #{phone}
-                ,PROJECT_TITLE = #{projectTitle}
-                 ,PROJECT_SHORT_TITLE = #{projectShortTitle}
-                 ,MONEY = TO_NUMBER(#{money})
-                  ,CATEGORY = #{category}
-                  ,PROGRESS = #{progress}
-                  ,DELIVERY = #{delivery}
-                  ,END_DATE = #{endDate}
-                 ,ADULT = #{adult}
-                 ,PROGRESS_STATUS = '오픈'
-                 WHERE PROJECT_NO = #{projectNo} 
-                   AND MEMBER_NO = #{userNo}   
-         </if> -->
-   </update>
-   
-   <select id="selectbasicInfo" parameterType="Project" resultMap="ProjectResultSet2">
-      SELECT *
-      FROM PROJECT P
-      LEFT OUTER JOIN ATTACHMENT A ON (P.PROJECT_NO = A.PROJECT_NO)
-      LEFT OUTER JOIN MEMBER M ON (P.MEMBER_NO = M.MEMBER_NO)
-      WHERE P.PROJECT_NO = #{projectNo}
-      AND M.MEMBER_NO = #{userNo}
-   </select>
-   <select id="selectFile" resultType="String">
-      SELECT 
-         ORIGIN_FILE_NAME 
-      FROM 
-         ATTACHMENT 
-      WHERE 
-         PROJECT_NO = #{projectNo}
-   </select>
-   <update id="updateFile">
-      UPDATE
-         ATTACHMENT
-      SET
-          ORIGIN_FILE_NAME = #{originFileName}
-         , NEW_FILE_NAME = #{newFileName}
-         , SAVE_DATE = SYSDATE
-      WHERE
-         PROJECT_NO = #{projectNo}
-   </update>
-   <select id="selectFileList" resultType="_int">
-      SELECT
-         COUNT(*)
-      FROM
-         ATTACHMENT
-      WHERE
-         PROJECT_NO = #{projectNo}
-      AND
-         FILE_LEVEL = 0
-   </select>
-   
-   
- 
+	<!-- 프로젝트 번호 인설트 -->
+	<insert id="insertProjectNno" parameterType="Project">
+		INSERT INTO PROJECT VALUES(#{projectNo}, null, null, '신청전', '오픈', null, null
+		      ,SEQ_ADMINNO.NEXTVAL, null, null, null, null, null, null, null, null, null
+		      ,null, null, null, null, null, null, null, null
+		      ,null, null, #{userNo}, null,null,null)
+	</insert>
+	
+	<!--  카테코리 인설트같은 업데이트 -->
+	<update id="fcategoryUpdate" parameterType="Project">
+		UPDATE PROJECT
+		SET CATEGORY = #{category}
+		WHERE PROJECT_NO = #{projectNo} AND MEMBER_NO = #{userNo}
+	</update>
+	
+	<update id="basicInfo" parameterType="Project">
+	
+		  <!--  <if test="progressStatus.equals('오픈예정')"> -->
+		UPDATE PROJECT
+		SET PHONE = #{phone}
+		  ,PROJECT_TITLE = #{projectTitle}
+		  ,PROJECT_SHORT_TITLE = #{projectShortTitle}
+		  ,MONEY = TO_NUMBER(#{money})
+		  ,CATEGORY = #{category}
+		  ,PROGRESS = #{progress}
+		  ,DELIVERY = #{delivery}
+		  ,END_DATE = #{endDate}
+		  ,ADULT = #{adult}
+		  ,MAIN_IMG = #{mainImg}
+		  ,PROGRESS_STATUS = #{progressStatus}
+		   WHERE PROJECT_NO = #{projectNo} 
+		     AND MEMBER_NO = #{userNo}	
+		  <!--  </if> -->
+		   
+		   <!-- <if test="progressStatus.equals('오픈')">
+		   		UPDATE PROJECT
+				SET PHONE = #{phone}
+		 		   ,PROJECT_TITLE = #{projectTitle}
+		  		   ,PROJECT_SHORT_TITLE = #{projectShortTitle}
+		  		   ,MONEY = TO_NUMBER(#{money})
+		   		   ,CATEGORY = #{category}
+		  	       ,PROGRESS = #{progress}
+		  	       ,DELIVERY = #{delivery}
+		  	       ,END_DATE = #{endDate}
+		           ,ADULT = #{adult}
+		           ,PROGRESS_STATUS = '오픈'
+		           WHERE PROJECT_NO = #{projectNo} 
+		             AND MEMBER_NO = #{userNo}	
+		   </if> -->
+	</update>
+	
+	<select id="selectbasicInfo" parameterType="Project" resultMap="ProjectResultSet2">
+		SELECT *
+		FROM PROJECT P
+		LEFT OUTER JOIN ATTACHMENT A ON (P.PROJECT_NO = A.PROJECT_NO)
+		LEFT OUTER JOIN MEMBER M ON (P.MEMBER_NO = M.MEMBER_NO)
+		WHERE P.PROJECT_NO = #{projectNo}
+		AND M.MEMBER_NO = #{userNo}
+	</select>
+	<select id="selectFile" resultType="String">
+		SELECT 
+			ORIGIN_FILE_NAME 
+		FROM 
+			ATTACHMENT 
+		WHERE 
+			PROJECT_NO = #{projectNo}
+	</select>
+	<update id="updateFile">
+		UPDATE
+			ATTACHMENT
+		SET
+ 			ORIGIN_FILE_NAME = #{originFileName}
+			, NEW_FILE_NAME = #{newFileName}
+			, SAVE_DATE = SYSDATE
+		WHERE
+			PROJECT_NO = #{projectNo}
+	</update>
+	<select id="selectFileList" resultType="_int">
+		SELECT
+			COUNT(*)
+		FROM
+			ATTACHMENT
+		WHERE
+			PROJECT_NO = #{projectNo}
+		AND
+			FILE_LEVEL = 0
+	</select>
+	
+	
 </mapper>
