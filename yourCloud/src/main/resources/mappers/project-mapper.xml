@@ -7,8 +7,7 @@
   "http://mybatis.o
   rg/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="Project">
-	  <resultMap type="com.kh.yc.admin.model.vo.Project"
-      id="ProjectResultSet">
+   <resultMap type="com.kh.yc.admin.model.vo.Project" id="ProjectResultSet">
       <id property="projectNo" column="PROJECT_NO" />
       <result property="category" column="CATEGORY" />
       <result property="success" column="SUCCESS" />
@@ -98,8 +97,6 @@
       
    <collection property="Attachment" javaType="java.util.List" resultMap="AttachmentResultSet"/>
    </resultMap>
-
-	
 	<update id="updateProject" parameterType="Project">
 		UPDATE PROJECT
 		SET PROGRESS_STATUS = #{progressStatus}
@@ -107,41 +104,42 @@
 		#{projectNo}
 	</update>
 
-	<select id="judgeProjectList" resultMap="ProjectResultSet">
-		SELECT *
-		FROM PROJECT
-	</select>
 
-	<update id="updateJudgeProject" parameterType="Project">
-		UPDATE PROJECT
-		SET JUDGE_STATUS = #{judgeStatus}
-		WHERE PROJECT_NO=
-		#{projectNo}
-	</update>
+   <select id="judgeProjectList" resultMap="ProjectResultSet">
+      SELECT *
+      FROM PROJECT
+   </select>
+
+   <update id="updateJudgeProject" parameterType="Project">
+      UPDATE PROJECT
+      SET JUDGE_STATUS = #{judgeStatus}
+      WHERE PROJECT_NO=
+      #{projectNo}
+   </update>
 
 
-	<select id="viewProject" resultMap="ProjectResultSet">
-		SELECT *
-		FROM PROJECT
-		WHERE
-		PROJECT_NO= #{projectNo}
-	</select>
+   <select id="viewProject" resultMap="ProjectResultSet">
+      SELECT *
+      FROM PROJECT
+      WHERE
+      PROJECT_NO= #{projectNo}
+   </select>
 
-	<select id="adjustProjectList" resultMap="ProjectResultSet">
-		SELECT *
-		FROM PROJECT P
-		INNER JOIN ADJUST A ON A.MEMBER_NO = P.MEMBER_NO
-		WHERE PROGRESS_STATUS
-		= '성공'
-	</select>
+   <select id="adjustProjectList" resultMap="ProjectResultSet">
+      SELECT *
+      FROM PROJECT P
+      INNER JOIN ADJUST A ON A.MEMBER_NO = P.MEMBER_NO
+      WHERE PROGRESS_STATUS
+      = '성공'
+   </select>
 
-	<!-- 프로젝트 번호 체크 -->
-	<select id="checkPNo" resultType="_int">
-		SELECT COUNT(*)
-		FROM
-		PROJECT
-		WHERE PROJECT_NO = #{ranNum}
-	</select>
+   <!-- 프로젝트 번호 체크 -->
+   <select id="checkPNo" resultType="_int">
+      SELECT COUNT(*)
+      FROM
+      PROJECT
+      WHERE PROJECT_NO = #{ranNum}
+   </select>
 
 
 	<!-- 프로젝트 번호 인설트 -->
@@ -233,6 +231,4 @@
 	</select>
 	
 	
- 
 </mapper>
-

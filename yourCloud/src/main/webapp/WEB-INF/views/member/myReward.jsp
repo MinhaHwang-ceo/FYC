@@ -25,34 +25,73 @@
 	<div id="outer">
 		<div id="myReward">
 			<h2><c:out value="${ loginUser.userName }"/>님의 리워드</h2>
+			
 			<hr />
 			<br />
 			<h4>펀딩내역</h4>
 			<br />
+			<c:forEach var="m" items="${ list }">
+			<a href="showMyRewardDetail.me?rewardNo=${ m.rewardNo }">
 			<div class="rewards">
 				<div class="left">
-					<p class="category"><c:out value="${ categoryDiv }"/></p>	
-					<p class="status">종료</p>
+					<p class="category"><c:out value="${ m.categoryDiv }"/></p>	
+					<p class="status"><c:out value="${ m.endDate }"/> 종료</p>
 					<br />
-					<p class="projectTitle">진수네 구기자기자</p>
-					<p class="maker">진수</p>
-					<p class="payStatus">결제완료</p>
+					<p class="projectTitle"><c:out value="${ m.projectTitle }"/></p>
+					<p class="maker"><c:out value="${ m.companyName }"/></p>
+					<p class="payStatus"><c:out value="${ m.payStatus }"/></p>
 				</div>				
 				<div class="right">
-					<p>2019-09-01 펀딩</p>	
+					<p><c:out value="${ m.fundDate }"/> 펀딩</p>	
 					<br />
 					<br />
-					<label>메이커 만족도</label>
+					<label>메이커 만족도</label> 
 					<br />
 					<label class="stars">★★★★☆</label>
 					<br />
-					<a href="#">상세보기</a>
+					<a href="showMyRewardDetail.me?rewardNo=${ m.rewardNo }">상세보기</a>
 				</div>
 			</div>
-			
+			</a>
+			</c:forEach>
 		</div>
 		
 	</div>
+	<div id="paginArea" align="center">
+			<c:if test="${ pi.currentPage <= 1 }">
+				이전 &emsp;
+			</c:if>
+			<c:if test="${ pi.currentPage > 1 }">
+				<c:url var="blistBack" value="myReward.me">
+					<c:param name="currentPage" value="${ pi.currentPage - 1 }"/>
+				</c:url>
+				<a href="${ blistBack }">이전</a>&emsp;
+			</c:if>
+			
+			<c:forEach var="p" begin="${ pi.startPage }" end="${ pi.endPage }">
+				<c:if test="${ p eq pi.currentPage }">
+					<font color="#6CC0FF" size="4"><b>[${ p }]</b></font>
+				</c:if>
+				<c:if test="${ p ne pi.currentPage }">
+					<c:url var="blistCheck" value="myReward.me">
+						<c:param name="currentPage" value="${ p }"/>
+					</c:url>
+					<a href="${ blistCheck }">${ p }</a>
+				</c:if>
+			</c:forEach>
+			
+			
+			<c:if test="${ pi.currentPage < pi.maxPage }">
+				<c:url var="blistEnd" value="openExpectation.bo">
+					<c:param name="currentPage" value="${ pi.currentPage + 1 }"/>
+				</c:url>
+				<a href="${ blistEnd }">&emsp; 다음</a>
+			</c:if>
+			<c:if test="${ pi.currentPage >= pi.maxPage }">
+				&emsp; 다음
+			</c:if>
+		</div>
+	
 	
 	<jsp:include page="../common/customer_footer.jsp"/>
 	<script>

@@ -27,16 +27,16 @@
 				<hr />
 				<br />
 				<h4>펀딩내역</h4>
-				<br />
+				<br /> 
 				<div class="rewards">
 					<div class="left">
-						<p class="category">리워드/ 반려동물</p>	
-						<p class="status smallText">종료</p>
-						<p class="projectTitle">진수네 구기자기자</p>
-						<p class="maker smallText" style="color:black">진수</p>
+						<p class="category"><c:out value="${ r.categoryDiv }"/></p>	
+						<p class="status smallText"><c:out value="${ r.endDate }"/> 종료</p>
+						<p class="projectTitle"><c:out value="${ r.projectTitle }"/></p>
+						<p class="maker smallText" style="color:black"><c:out value="${ r.companyName }"/></p>
 					</div>				
 					<div class="right">
-						<p>2019-09-01 펀딩</p>	
+						<p><c:out value="${ r.fundDate }"/> 펀딩</p>	
 					</div>
 				</div>
 				<div class="rewards">
@@ -46,14 +46,14 @@
 						<p>펀딩 마감일</p>
 					</div>
 					<div class="right">
-						<p>20193020</p>
-						<p>2019.11.11 13:02</p>
-						<p>2019.11.13</p>
+						<p><c:out value="${ r.fundNo }"/></p>
+						<p><c:out value="${ r.fundDate }"/></p>
+						<p><c:out value="${ r.endDate }"/></p>
 					</div>
 				</div>
 				<div class="payStatusForm rewards">
 					<label style="color:lightgray" class="smallText">펀딩 상태</label>
-					<p class="payStatus">결제실패</p>
+					<p class="payStatus"><c:out value="${ r.payStatus  }"/>결제실패</p>
 					<p class="smallNotice">프로젝트가 실패하여, 결제가 진행되지 않습니다.</p>
 				</div>
 				<p>&nbsp;</p>
@@ -68,8 +68,8 @@
 					</div>
 					<div class="right">
 						<p class="smallText">&nbsp;</p>
-						<p class="projectTitle">&nbsp;</p>
-						<p>30000원</p>
+						<p class="projectTitle"><c:out value="${ r.projectTitle }"/></p>
+						<p><c:out value="${ r.rewardMoney }"/> 원</p>
 					</div>
 				</div>
 				<div class="rewards" style="background:#D4EAE5">
@@ -82,12 +82,12 @@
 						<p>펀딩 마감일</p>
 					</div>
 					<div class="right">
-						<p>30000원</p>
+						<p><c:out value="${ r.rewardMoney }"/> 원</p>
 						<p>- 0원</p>
 						<p>0원</p>
 						<p>0원</p>
 						<hr />
-						<p style="font-size:1.1em;font-weight:bold">30,000원</p>
+						<p style="font-size:1.1em;font-weight:bold"><c:out value="${ r.rewardMoney }"/> 원</p>
 					</div>
 				</div>
 				<div class="rewards">
@@ -99,7 +99,7 @@
 					<div class="right">
 						<p>&nbsp;</p>
 						<p>신한카드</p>
-						<p>????-????-????-8235</p>
+						<p><c:out value="${ r.account }"/></p>
 					</div>					
 				</div>
 				<div class="rewards">
