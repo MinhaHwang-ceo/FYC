@@ -117,4 +117,22 @@
 		and
 		    p.progress_status = '성공'
 	</select>
+	
+	<update id="updateAdjust">
+		UPDATE
+			MEMBER
+		<set>
+			<if test="ssn != null">
+				SSN = #{ssn},
+			</if>
+<!-- 			<if test="agentName != null">
+				AGENT_NAME = #{agentName},
+			</if>
+			<if test="agentEmail != null">
+				AGENT_EMAIL = #{agentEmail}
+			</if> -->
+		</set>
+		WHERE
+			MEMBER_NO = #{userNo}
+	</update>
 </mapper>

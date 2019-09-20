@@ -12,7 +12,6 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import com.kh.yc.funding.model.vo.Funding;
-import com.kh.yc.member.model.vo.Member;
 import com.kh.yc.payment.controller.PayController;
 import com.kh.yc.payment.model.dao.PayDao;
 import com.kh.yc.project.model.vo.Project;
@@ -54,6 +53,7 @@ public class PayServiceImpl implements PayService {
 				
 				if(payStatus.equals("failed")) {
 					String merchantUid = pay.getMerchantUid();
+					System.out.println(payStatus);
 					pc.RePay(merchantUid);
 				} else if(payStatus.equals("paid")) {
 					payment.setPayNo(pay.getMerchantUid());

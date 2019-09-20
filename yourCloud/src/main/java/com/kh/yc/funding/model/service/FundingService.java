@@ -9,6 +9,7 @@ import com.kh.yc.funding.model.vo.Attachment;
 import com.kh.yc.member.model.vo.Member;
 import com.kh.yc.project.model.vo.Sign;
 import com.kh.yc.reward.model.vo.Reward;
+import com.kh.yc.reward.model.vo.RewardInfo;
 
 @Service
 public interface FundingService{
@@ -47,13 +48,27 @@ public interface FundingService{
 	//리워드 인설트
 	int rewardInest(Reward r);
 
+	void updateProject(Project p);
+
+	void insertRewardInfo(RewardInfo ri);
+
+	int selectProfileImg(Project p);
+
+	Attachment selectFileNo(Project p);
+
+	int insertProfileImg(Attachment attach);
+
+	Attachment selectAttach(Project p);
+
+	int updateAdjust(Member m);
+
+	int openProject(Project p);
+
 	//리워드 셀렉트
 	List<Reward> rewardSelect(Reward r);
 	
 	//리워드 업데이트
 	int rewardUpdate(Reward r);
-	
-	
 
 
 	

@@ -16,6 +16,7 @@
 		<typeAlias type="com.kh.yc.board.model.vo.Comment" alias="Comment"/>
 		<typeAlias type="com.kh.yc.project.model.vo.Project" alias="Project2"/>
 		<typeAlias type="com.kh.yc.reward.model.vo.Reward" alias="Reward"/>
+		<typeAlias type="com.kh.yc.reward.model.vo.RewardInfo" alias="RewardInfo"/>
 		<typeAlias type="com.kh.yc.funding.model.vo.Attachment" alias="Attachment"/>
 		<typeAlias type="com.kh.yc.funding.model.vo.Funding" alias="Funding"/>
 		<typeAlias type="com.kh.yc.payment.model.vo.Payment" alias="Payment"/>

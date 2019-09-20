@@ -17,6 +17,7 @@ import com.kh.yc.funding.model.vo.Attachment;
 import com.kh.yc.member.model.vo.Member;
 import com.kh.yc.project.model.vo.Sign;
 import com.kh.yc.reward.model.vo.Reward;
+import com.kh.yc.reward.model.vo.RewardInfo;
 
 
 @Service
@@ -122,6 +123,50 @@ public class FundingServiceImpl implements FundingService{
 	}
 
 	@Override
+	public void updateProject(Project p) {
+		fd.updateProject6(sqlSession, p);
+		
+	}
+
+	@Override
+	public void insertRewardInfo(RewardInfo ri) {
+		fd.insertRewardInfo(sqlSession, ri);
+		
+	}
+
+	@Override
+	public int selectProfileImg(Project p) {
+		return fd.selectProfileImg(sqlSession, p);
+	}
+
+	@Override
+	public Attachment selectFileNo(Project p) {
+		return fd.selectFileNo(sqlSession, p);
+	}
+
+	@Override
+	public int insertProfileImg(Attachment attach) {
+		return fd.insertProfileImg(sqlSession, attach);
+	}
+
+	@Override
+	public Attachment selectAttach(Project p) {
+		return fd.selectAttach(sqlSession, p);
+	}
+
+	@Override
+	public int updateAdjust(Member m) {
+		return fd.updateAdjust(sqlSession, m);
+		
+	}
+
+	@Override
+	public int openProject(Project p) {
+		// TODO Auto-generated method stub
+		return fd.openProject(sqlSession, p);
+	}
+
+  @Override
 	public List<Reward> rewardSelect(Reward r) {
 		
 		return fd.rewardSelect(sqlSession,r);
@@ -136,9 +181,6 @@ public class FundingServiceImpl implements FundingService{
 		return rewardUP;
 	}
 	
-
-	 
-
 	
 	
 	

@@ -147,7 +147,7 @@
 		INSERT INTO PROJECT VALUES(#{projectNo}, null, null, '신청전', '오픈', null, null
 		      ,SEQ_ADMINNO.NEXTVAL, null, null, null, null, null, null, null, null, null
 		      ,null, null, null, null, null, null, null, null
-		      ,null, null, #{userNo}, null,null,null)
+		      ,null, null, #{userNo}, null, null, null)
 	</insert>
 	
 	<!--  카테코리 인설트같은 업데이트 -->
