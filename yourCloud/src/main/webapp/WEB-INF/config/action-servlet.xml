@@ -53,6 +53,9 @@
 
 	<beans:bean id="jsonView"
 		class="net.sf.json.spring.web.servlet.view.JsonView" />
+	<!-- 권석이꺼 -->
+	<beans:bean id="jsonView2"
+		class="org.springframework.web.servlet.view.json.MappingJackson2JsonView" />
 	
 	<!-- 파일 업로드를 하기 위해 bean 등록  권석 -->
 	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
@@ -70,8 +73,6 @@
 		<beans:property name="order" value="1" />
 	</beans:bean>
 	
-	
-
 
 
 

@@ -4,10 +4,28 @@ import java.util.ArrayList;
 
 import org.mybatis.spring.SqlSessionTemplate;
 
+import com.kh.yc.funding.model.vo.Funding;
 import com.kh.yc.member.model.vo.Member;
+import com.kh.yc.payment.model.vo.Payment;
+import com.kh.yc.project.model.vo.Project;
 
 public interface PayDao {
 
-	ArrayList<Member> updateProjectSuccess(SqlSessionTemplate sqlSession);
+	void updateProjectSuccess(SqlSessionTemplate sqlSession);
+
+	ArrayList<Member> paySuccessMember(SqlSessionTemplate sqlSession);
+
+	ArrayList<Project> fundSuccessProject(SqlSessionTemplate sqlSession);
+
+	ArrayList<Funding> fundingList(SqlSessionTemplate sqlSession, ArrayList<Project> fundSuccessProject);
+
+	void insertFundingSuccess(SqlSessionTemplate sqlSession, ArrayList<Funding> fundingList);
+
+	void insertPayment(SqlSessionTemplate sqlSession, Payment pay);
+
+	Payment selectRePay(SqlSessionTemplate sqlSession, String merchantUid);
+
+	void updatePayStatus(SqlSessionTemplate sqlSession, Payment pay);
+
 
 }

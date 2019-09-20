@@ -32,7 +32,18 @@ public interface ProjectService {
 	ArrayList<Integer> receipt2(int bNum);
 
 
-	ArrayList<Project> memberCategory(String category);;
+	ArrayList<Project> memberCategory(String category);
+
+	//좋아요 기능
+	public int insertLike(Interest inter);
+	//좋아요 취소 기능
+	public int deleteLike(Interest inter);
+	//좋아요 여부
+	public int likeCount(Interest inter);
+
+	//서포트리스트 출력
+	ArrayList<SupportList> selectSupportListExcel(int bNum);;
+
 
 	
 	

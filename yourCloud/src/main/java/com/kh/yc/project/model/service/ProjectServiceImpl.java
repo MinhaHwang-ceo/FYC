@@ -13,12 +13,12 @@ import com.kh.yc.board.model.vo.PageInfo;
 import com.kh.yc.member.model.vo.Member;
 import com.kh.yc.project.model.dao.ProjectDao;
 import com.kh.yc.project.model.exception.ProjectSelectListException;
+import com.kh.yc.project.model.vo.Interest;
 import com.kh.yc.project.model.vo.Project;
 import com.kh.yc.project.model.vo.SupportList;
 
 @Service
 public class ProjectServiceImpl implements ProjectService{
-
 	//게시물 목록 갯수 조회용 메소드
 	@Autowired
 	SqlSessionTemplate sqlSession;
@@ -93,6 +93,34 @@ public class ProjectServiceImpl implements ProjectService{
 	public ArrayList<Integer> receipt2(int bNum) {
 		ArrayList<Integer> count = pd.receipt2(sqlSession,bNum); 
 		return count;
+	}
+
+
+	//좋아요 기능
+	@Override
+	public int insertLike(Interest inter) {
+		
+		return pd.insertLike(sqlSession, inter);
+	}
+
+	@Override
+	public int deleteLike(Interest inter) {
+		
+		return pd.deleteLike(sqlSession,inter);
+	}
+
+	//좋아요 유무
+	@Override
+	public int likeCount(Interest inter) {
+		
+		return pd.likeCount(sqlSession, inter);
+	}
+
+	@Override
+	public ArrayList<SupportList> selectSupportListExcel(int bNum) {
+		ArrayList<SupportList> list = pd.selectSupportListExcel(sqlSession,bNum); 
+		return list;
+
 	}
 
 	

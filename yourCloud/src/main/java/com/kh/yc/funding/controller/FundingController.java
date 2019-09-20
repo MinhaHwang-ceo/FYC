@@ -28,6 +28,7 @@ import com.kh.yc.funding.model.service.FundingService;
 import com.kh.yc.funding.model.vo.Attachment;
 import com.kh.yc.member.model.vo.Member;
 import com.kh.yc.project.model.vo.Sign;
+import com.kh.yc.reward.model.vo.Reward;
 import com.siot.IamportRestClient.IamportClient;
 import com.siot.IamportRestClient.exception.IamportResponseException;
 import com.siot.IamportRestClient.response.AccessToken;
@@ -115,7 +116,7 @@ public class FundingController {
 		System.out.println("photo:" + photo.getSize() + ":");
 		
 		
-		if(photo != null && photo.getOriginalFilename().length() != 0) {
+		if(photo!= null && photo.getOriginalFilename().length() != 0) {
 			
 			String root = request.getSession().getServletContext().getRealPath("resources");
 			
@@ -146,6 +147,8 @@ public class FundingController {
 				System.out.println(fileName + "fn");
 				int file = fs.selectFileList(p);
 				
+		
+				
 				if(file == 0) {
 					file = fs.insertFile(fileVO);
 				} else if(file > 0) {
@@ -155,10 +158,6 @@ public class FundingController {
 						file = fs.updateFile(fileVO);
 					}
 				}
-				
-				
-				
-				
 				System.out.println("fileVO : " + fileVO.getAttachmentNo());
 				
 				p.setMainImg(String.valueOf(fileVO.getAttachmentNo()));
@@ -177,10 +176,41 @@ public class FundingController {
 		 
 		return "fundingOpen/FundingOpen4";
 	}
+	
+	//다음으로 가기 기본정보에서 ~ 리워드로
+	@RequestMapping(value = "FundingOpenNext5.fd", method = RequestMethod.POST)
+	public String FundingOpenNext5(Project p, Model model,HttpServletRequest request) {
+		System.out.println("p1 : " + p);
+		System.out.println("프로젝트 번호? : " + p.getProjectNo());
+		
+		request.setAttribute("p",p);
+		return "fundingOpen/FundingOpen5";
+	}
+	
+	//리워드 저장부분
+	@RequestMapping("insertreReward.fd")
+	public ModelAndView RewardSave(Project p,HttpServletRequest request, HttpServletResponse response, Reward r) {
+		
+		ModelAndView mv = new ModelAndView("jsonView2");
+		
+		System.out.println("리워드 : " + r);
+		
+		int reward = fs.rewardInest(r);
+		
+		//List<Reward> list = fs.rewardSelect();
+		
+		//mv.addObject("r", );
 
+		return mv;
+		
+	}
+	
+	
+	
 	@RequestMapping(value = "FundingOpen6.fd", method = RequestMethod.GET)
 	public String FundingOpen6(Locale locale, Model model) {
-
+		
+		
 		return "fundingOpen/FundingOpen6";
 	}
 
@@ -301,4 +331,5 @@ public class FundingController {
 
 		return "fundingOpen/signProject";
 	}
+	
 }

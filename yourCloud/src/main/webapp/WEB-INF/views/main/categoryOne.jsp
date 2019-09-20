@@ -285,7 +285,6 @@ a {
 	</div>
 	<hr/>
 	
-
 	<div class="reward-body">
 			<div class="dd">
 			<div class="sub-contents">
@@ -325,19 +324,16 @@ a {
 								style="width: 92%" />
 						</p>
 
+						<p> <br/> </p>
+						
 						<p>
-							<br />
+							<img src="${ contextPath }/resources/images/tit.PNG" style="width: 92%" />
 						</p>
+						
+						<p> <br/> </p>
+						
 						<p>
-							<img src="${ contextPath }/resources/images/tit.PNG"
-								style="width: 92%" />
-						</p>
-						<p>
-							<br />
-						</p>
-						<p>
-							<img src="${ contextPath }/resources/images/tit.PNG"
-								style="width: 92%" />
+							<img src="${ contextPath }/resources/images/tit.PNG" style="width: 92%" />
 						</p>
 
 						<blockquote>
@@ -411,7 +407,7 @@ a {
 		
 
 		<!-- 오른쪽 영역 -->
-		<div class="opener-info">
+		<div class="opener-info" style="text-align:center;">
 			<div class=state-box>
 				<p class="remin-day"> 
 					<script>
@@ -437,75 +433,97 @@ a {
 			<br />
 			<div class=btn-wrap>
 				<div class="btn-wrap-flex">
-												
-												<!-- 좋아요 기능 -->
-					<button class="btn-like" id="parcleup">
-						<img src="/yc/resources/images/empty_heart.png" style="width: 40px; height: auto;" id="heart">
-					</button>
+											
+						<!-------------------- 좋아요 기능 19.9.19 완성---------------------->
+		<a onclick= 
+			 	<c:if test="${ empty sessionScope.loginUser }"> "alert('로그인 후 이용가능합니다'); return false;" 
+			 		<button class="btn-like" id="like">
+			 			<img src="/yc/resources/images/empty_heart.png" style="width: 40px; height: auto;" id="heart">
+			 		</button>	
+ 				</c:if>>
+ 							
+ 				<c:if test= "${ !empty sessionScope.loginUser }">
+ 					<c:if test="${likeCount == 0 }">
+						<button class="btn-like" id="like">
+							<img src="/yc/resources/images/empty_heart.png" style="width: 40px; height: auto;" id="heart">
+						</button>
+					</c:if>						
+					
+					<c:if test="${likeCount == 1 }">
+						<button class="btn-like" id="like">
+							<img src="/yc/resources/images/like_heart.png" style="width: 40px; height: auto;" id="heart">	
+						</button>
+					</c:if>
+				</c:if>
+		</a>		
+					<!------------------------------------------------------------------>
+					
 					<button class="btn-question">문의</button>
 
 					<button class="btn-share" id="createBtn">QR코드</button>
 			
 				</div>
 					<div>
-
 	<img id="qrcode" src='' />
-
 	</div>
-			</div>
+	</div>
 
-	
-   <div style="text-align: right;">
-       <a class="btn btn-outline-dark heart">좋아요
-           <img id="heart" src="">
-       </a>
-   </div>
-			
 	<script>
-    $(document).ready(function (){
-
-        var heartval = ${heart};
-
-        if(heartval>0) {
-            console.log(heartval);
-            $("#heart").prop("src", "yc/resources/images/empty_heart.png");
-            $(".heart").prop('name',heartval)
-        }
-        else {
-            console.log(heartval);
-            $("#heart").prop("src", "yc/resources/images/like_heart.png");
-            $(".heart").prop('name',heartval)
-        }
-
-        $(".heart").on("click", function () {
-
-            var that = $(".heart");
-
-            var sendData = {'projectNo' : '${detail.projectNo}','heart' : that.prop('name')};
-            $.ajax({
-                url :'likeUpdate.ca',
-                type :'POST',
-                data : sendData,
-                success : function(data){
-                    that.prop('name',data);
-                    if(data==1) {
-                        $('#heart').prop("src","yc/resources/images/empty_heart.png");
-                    }
-                    else{
-                        $('#heart').prop("src","yc/resources/images/like_heart.png");
-                    }
-
-
-                }
-            });
-        });
-    });
-</script>		
+	cnt = ${ likeCount };
+	$(function(){
+		
+		$('#like').click(function(){
+			
+			var pNo = ${ detail.projectNo };
+			var mNo = ${ loginUser.userNo };
+			
+			cnt++;
+			$.ajax({
+				url : "like.ca",
+				type:"get",
+				dataType:"json",
+				data:{ pNo : pNo, mNo : mNo, cnt : cnt},
+				success: function(data){
+					
+					var cnt2 = data.cnt;
+					console.log(cnt)
+					if(cnt2 == 0) {
+				 		
+						var $like = $('#like');
+						var $heart = $('#heart');
+						
+						$heart.remove();
+					
+						var $heart2 = ('<img src="/yc/resources/images/like_heart.png" style="width: 40px; height: auto;" id="heart">');
+						
+						$like.append($heart2); 
+				
+					}else {
+						
+						var $like = $('#like');
+						var $heart = $('#heart');
+						
+						$heart.remove();
+						var $heart2 = ('<img src="/yc/resources/images/empty_heart.png" style="width: 40px; height: auto;" id="heart">');
+						
+						$like.append($heart2); 
+					}
+					
+					console.log("ajax 넘어오는지 확인  2단계");
+				},
+				error : function(data){
+					alert("에러");
+				}
+			});
+		});
+	})
+	</script>	
 			<hr />
+			
 			<div class="project-meker-info">
 				<h3>메이커 정보</h3>
 				<div class="maker-box">
-					<table style="border: 1px solid black; width: 100%;">
+					<table style="width: 100%;">
 						<tr>
 							<td><button
 									style="border: 1px solid black; border-radius: 50%; background: white; width: 100px; height: 100px; margin-left: 10px;"></button></td>
@@ -528,7 +546,6 @@ a {
 							<td colspan="2">
 								<p style="font-size: 12x;">
 									메이커 연락처 : ${ detail.phone }</p>
-								
 							</td>
 						</tr>
 						
@@ -537,8 +554,8 @@ a {
 			</div>
 			<br />
 			<div class="moveRewards">
-				<div class="wd-gift" style="border: 1px solid red;">
-					<h3 class="projectTitle">리워드 선택</h3>
+				<div class="wd-gift">
+					<h3 class="projectTitle"><b>리워드 선택</b></h3>
 					<button class="reward-list">
 						<div class="reward-info">
 						<!-- 	<dl>
@@ -580,8 +597,8 @@ a {
 				</div>	
 			</div>
 			<div class="moveRewards">
-				<div class="wd-gift" style="border: 1px solid red;">
-					<h3 class="projectTitle">리워드 선택</h3>
+				<div class="wd-gift">
+					<h3 class="projectTitle"><b>리워드 선택</b></h3>
 					<button class="reward-list">
 						<div class="reward-info">
 						<!-- 	<dl>
@@ -592,8 +609,6 @@ a {
 									<p>[슈퍼얼리버드] 싱글팩 (30% 혜택)</p>
 									<p>
 										남성용 / 씬타입(단목) Thin. / 4켤레 (4가지 칼라. 각 1켤레씩)
-										<br />
-										[블랙&레드] , [화이트&블랙] , [블루&화이트] , [그레이&화이트]
 									</p>
 							<!-- 	</dd>
 							</dl> -->
@@ -614,26 +629,34 @@ a {
 									<em>현재 1144개 남음</em>
 								</p>
 								<p class="reward-soldcount">
-									총
-									<strong>76</strong>
-									개 펀딩 완료
+									총 <strong>76</strong> 개 펀딩 완료
 								</p>
 						</div>
 					</button>
 				</div>	
 			</div>
 			<!-- 신고 영역 -->
-			<div style="border:1px solid blue; font-size: 14px;">
-				<p class=""> 신고하기란? </p>
+			<div style="font-size: 14px;">
+				<p style="font-size:20px"><b>신고하기란?</b></p>
 				<p> 해당 프로젝트에 허위내용 및 지적재산권 <br/> 을 침해하는 내용이 있다면 제보해주세요. </p>
-				<button onclick="showLyPop()" class="btn-declaration"  >
-					신고하러 가기
-				</button>
+				
+				<a onclick=  
+					<c:if test="${ empty sessionScope.loginUser }"> "alert('로그인 후 이용가능합니다'); return false;" 
+						<button>
+							<img src="/yc/resources/images/alarm.png" style="width: 40px; height: auto;">	
+						</button>
+ 					</c:if>>
+ 				
+ 					<c:if test= "${ !empty sessionScope.loginUser }">
+						<button onclick="window.open('reportProject.ca','_blank', 'width=600,height=500');return false;" style="border:0; background:white;">
+							<img src="/yc/resources/images/alarm.png" style="width:40px; height: auto;">	
+						</button>
+					</c:if>
+				</a>
 			</div>
 		</div>
 	
 
-	
 	<div style="width:100%; float:left;"><jsp:include page="../common/customer_footer.jsp"/></div>
 	</div>
 	
@@ -648,9 +671,7 @@ a {
 
 
 	      googleQRUrl = "https://chart.googleapis.com/chart?chs=177x177&cht=qr&chl="+"http://192.168.120.5:8001/yc/categoryOne.ca?projectNo="+bNum;
-
 	      
-
 	      	 // 이미지가 나타날 영역에 원하는 내용을 넣은 QR code의 이미지를 출력합니다.
 
              // 여기 주소 부분을 변경해주면 원하는 값을 언제든 맘대로
@@ -659,12 +680,12 @@ a {
 
 
 	   });
-
 	 
 
 	});
 
 </script>
+
 
 </body>
 </html>
