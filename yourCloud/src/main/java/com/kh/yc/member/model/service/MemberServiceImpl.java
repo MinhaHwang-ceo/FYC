@@ -47,7 +47,7 @@ public class MemberServiceImpl implements MemberService {
 	public Member loginMember(Member m) throws LoginException {
 
 		Member loginUser = null;
-
+ 
 		String encPassword = md.selectEncPassword(sqlSession, m);
 
 		if (!passwordEncoder.matches(m.getUserPwd(), encPassword)) {

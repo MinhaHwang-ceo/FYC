@@ -117,12 +117,12 @@
 			if(password == password2){
 				console.log("같음!");
 				$("#pass2").css("border-color", "transparent")
-			}else{
+			}else{ 
 				console.log("틀림!");
 				$("#pass2").css("border-color", "red")
 			}
 		});
-	});
+	}); 
 		function secession(){
 			location.href="supporterList.me";	
 		};

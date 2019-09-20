@@ -98,7 +98,7 @@ public class MyPageController {
 
 		return "member/myMaker";
 	}
-
+ 
 	@RequestMapping("showMyRewardDetail.me")
 	public String showMyRewardDetail(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
 		

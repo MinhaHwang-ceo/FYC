@@ -46,7 +46,7 @@ public interface MemberDao {
 	//네이버 정보 인설트
 	int naverInsert(SqlSessionTemplate sqlSession, Member nm);
 
-
+ 
 	int naverLoginCheck(SqlSessionTemplate sqlSession, Member nm);
 	
 	//네이버 체크

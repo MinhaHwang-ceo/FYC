@@ -27,7 +27,7 @@
 				<hr />
 				<br />
 				<h4>펀딩내역</h4>
-				<br />
+				<br /> 
 				<div class="rewards">
 					<div class="left">
 						<p class="category"><c:out value="${ r.categoryDiv }"/></p>	

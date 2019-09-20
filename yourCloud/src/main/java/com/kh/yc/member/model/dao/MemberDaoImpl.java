@@ -132,7 +132,7 @@ public class MemberDaoImpl implements MemberDao{
 			list = (ArrayList) sqlSession.selectList("Reward.selectMyReward", mse, rowBounds);
 			System.out.println(list);
 			return list;
-		}
+		} 
 		@Override
 		public Reward selectMyRewardDetail(SqlSessionTemplate sqlSession, int rewardNoInt) {
 			

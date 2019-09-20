@@ -35,7 +35,7 @@ public interface MemberService {
 
 	public void updatePwd(String email,String userPwd);
 	
-	public List<Member> emailList();
+	public List<Member> emailList(); 
 
 	ArrayList<Reward> selectMyReward(PageInfo pi, Member mse);
 
