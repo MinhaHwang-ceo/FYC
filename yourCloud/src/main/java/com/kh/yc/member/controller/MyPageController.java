@@ -4,11 +4,14 @@ import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.yc.board.model.vo.PageInfo;
@@ -67,8 +70,11 @@ public class MyPageController {
 	}
 
 	@RequestMapping("myReward.me")
-	public String myReward(@ModelAttribute Member m, HttpServletRequest request, HttpServletResponse response) {
+	public String myReward(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
 		int currentPage = 1;
+		
+		Member mse = (Member) session.getAttribute("loginUser");
+		System.out.println(mse);
 		
 		if(request.getParameter("currentPage") != null) {
 			currentPage = Integer.parseInt(request.getParameter("currentPage"));
@@ -77,8 +83,9 @@ public class MyPageController {
 		try {
 			listCount = ps.getListCount();
 			PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
-			ArrayList<Member> list = ms.selectMyReward(pi, m);
-			
+			ArrayList<Reward> list = ms.selectMyReward(pi, mse);
+			request.setAttribute("list", list);
+			request.setAttribute("pi", pi);
 		} catch (ProjectSelectListException e) {
 			e.printStackTrace();
 		}
@@ -93,8 +100,20 @@ public class MyPageController {
 	}
 
 	@RequestMapping("showMyRewardDetail.me")
-	public String showMyRewardDetail(@ModelAttribute Member m) {
-
+	public String showMyRewardDetail(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
+		
+		String rewardNo = request.getParameter("rewardNo");
+		int rewardNoInt = Integer.parseInt(rewardNo);
+		System.out.println(rewardNoInt);
+		
+		Reward r = new Reward();
+		
+		
+		r = ms.selectMyRewardDetail(rewardNoInt); 
+		request.setAttribute("r", r);
+		 
+		
+		
 		return "member/myRewardDetail";
 	}
 

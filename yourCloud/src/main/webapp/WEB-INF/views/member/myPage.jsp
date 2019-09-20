@@ -33,7 +33,7 @@
 		<form action="changeInfo.me" method="post">
 			<table align="center" id="myPageTable">
 				<tr>
-					<th colspan="4"><label id="header"><c:out value="김진수"/>님의 프로필</label></th>
+					<th colspan="4"><label id="header"><c:out value="${ loginUser.userName }"/>님의 프로필</label></th>
 				</tr>
 				<tr>
 					<th><label>아이디&nbsp;</label></th>
@@ -49,11 +49,11 @@
 				</tr>
 				<tr>
 					<th><label>비밀번호&nbsp;</label></th>
-					<td colspan="3" class="input" ><input type="password" name="userPass" placeholder="특수문자 포함 9자 이상" /></td>
+					<td colspan="3" class="input" ><input type="password" id="pass1"name="userPass" placeholder="특수문자 포함 9자 이상" /></td>
 				</tr>
 				<tr>
 					<th><label>비밀번호 확인&nbsp;</label></th>
-					<td colspan="3" class="input" ><input type="password"/></td>
+					<td colspan="3" class="input" ><input type="password" id="pass2"/></td>
 				</tr>
 				<tr>
 					<th><label>포인트&nbsp;</label></th>
@@ -108,10 +108,23 @@
 	</div>
 	<jsp:include page="../common/customer_footer.jsp"/>
 	<script>
+	$(function(){
 
-	
+		$("#pass2").keyup(function(){
+			var password = $("#pass1").val();
+			var password2 = $("#pass2").val();
+
+			if(password == password2){
+				console.log("같음!");
+				$("#pass2").css("border-color", "transparent")
+			}else{
+				console.log("틀림!");
+				$("#pass2").css("border-color", "red")
+			}
+		});
+	});
 		function secession(){
-			location.href="supporterList.me";
+			location.href="supporterList.me";	
 		};
 	</script>
 </body>

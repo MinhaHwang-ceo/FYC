@@ -37,7 +37,12 @@ public interface MemberService {
 	
 	public List<Member> emailList();
 
-	ArrayList<Member> selectMyReward(PageInfo pi, Member m);
+	ArrayList<Reward> selectMyReward(PageInfo pi, Member mse);
+
+	Reward selectMyRewardDetail(int rewardNoInt);
+	
+
+	
 
 	
 

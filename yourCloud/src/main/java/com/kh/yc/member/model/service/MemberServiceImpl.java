@@ -121,10 +121,18 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public ArrayList<Member> selectMyReward(PageInfo pi, Member m) {
+	public ArrayList<Reward> selectMyReward(PageInfo pi, Member mse) {
 		
-		return md.selectMyReward(sqlSession, m, pi);
+		return md.selectMyReward(sqlSession, mse, pi);
 	}
+
+	@Override
+	public Reward selectMyRewardDetail(int rewardNoInt) {
+		
+		return md.selectMyRewardDetail(sqlSession, rewardNoInt);
+	}
+
+
 
 
 

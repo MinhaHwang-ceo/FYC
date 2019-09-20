@@ -56,7 +56,12 @@ public interface MemberDao {
 
 List<Member> emailList(SqlSessionTemplate sqlSession);
 
-ArrayList<Member> selectMyReward(SqlSessionTemplate sqlSession, Member m, PageInfo pi);
+ArrayList<Reward> selectMyReward(SqlSessionTemplate sqlSession, Member mse, PageInfo pi);
+
+Reward selectMyRewardDetail(SqlSessionTemplate sqlSession, int rewardNoInt);
+
+
+
 
 
 }
