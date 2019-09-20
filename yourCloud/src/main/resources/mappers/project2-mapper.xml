@@ -35,7 +35,7 @@
 		<result property="endDate" column="END_DATE" />
 		<result property="adult" column="ADULT" />
 		<result property="expected" column="EXPECTED" />
-		<result property="memberNo" column="MEMBER_NO" />
+		<result property="userNo" column="MEMBER_NO" />
 		<result property="companyName" column="COMPANY_NAME" />
 		<result property="categoryDiv" column="CATEGORY_DIV" />
 		<result property="projectOpen" column="PROJECT_OPEN" />
@@ -379,20 +379,20 @@ join delivery_status d2 on(d2.delivery_no=d.delivery_no)
 	
 	<insert id="insertLike">
 		INSERT INTO INTEREST(PROJECT_NO, MEMBER_NO)
-		VALUES (#{projectNo} , #{memberNo} )
+		VALUES (#{projectNo} , #{userNo} )
 	</insert>
 	
 	<delete id="deleteLike">
 		DELETE FROM INTEREST
 		WHERE PROJECT_NO = #{projectNo} 
-		AND MEMBER_NO = #{memberNo}
+		AND MEMBER_NO = #{userNo}
 	</delete>
 	
 	<select id="likeCount" resultType="int">
 		SELECT COUNT(*) 
 		FROM INTEREST 
 		WHERE PROJECT_NO = #{projectNo}
-		AND MEMBER_NO = #{memberNo}
+		AND MEMBER_NO = #{userNo}
 	</select>
 
 

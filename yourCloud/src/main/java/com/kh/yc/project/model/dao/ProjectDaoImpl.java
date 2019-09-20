@@ -9,6 +9,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.kh.yc.board.model.vo.PageInfo;
+import com.kh.yc.category.model.vo.Report;
 import com.kh.yc.member.model.vo.Member;
 import com.kh.yc.project.model.exception.ProjectSelectListException;
 import com.kh.yc.project.model.vo.Interest;
@@ -158,10 +159,10 @@ public class ProjectDaoImpl implements ProjectDao{
 	@Override
 	public int likeCount(SqlSessionTemplate sqlSession, Interest inter) {
 		
+		System.out.println("dao에서 좋아요 유무 "+inter);
+		
 		return sqlSession.selectOne("Project2.likeCount",inter);
 	}
-
-
 
 	@Override
 	public ArrayList<SupportList> selectSupportListExcel(SqlSessionTemplate sqlSession, int bNum) {
@@ -171,6 +172,21 @@ public class ProjectDaoImpl implements ProjectDao{
 		
 		return list;
 	}
+
+
+	//신고하기 기능
+	@Override
+	public int insertReport(SqlSessionTemplate sqlSession, Report report) {
+
+		
+		return sqlSession.insert("Report.insertReport",report);
+	}
+
+	//신고여부
+	@Override
+	public int reportCount(SqlSessionTemplate sqlSession, Interest inter) {
+		
+		return sqlSession.selectOne("Report.reportCount",inter);
 
 	@Override
 	public void updateDB(SqlSessionTemplate sqlSession,Map<String, Object> map) {
@@ -187,6 +203,7 @@ public class ProjectDaoImpl implements ProjectDao{
 		list = (ArrayList) sqlSession.selectList("Project2.selectSupportListExcel",map);
 		
 		return list;
+
 	}
 
 }

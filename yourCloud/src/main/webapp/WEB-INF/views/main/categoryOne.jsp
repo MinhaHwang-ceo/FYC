@@ -419,7 +419,7 @@ a {
 					</script>
 				</p>
 				<hr />
-				<strong style="font-size: 24px;">100</strong> %달성
+				<strong style="font-size: 24px;">100</strong> %달성  
 				<p class="total-money" style="font-size: 24px;">
 					<strong>100,000,000</strong> 원 펀딩
 				</p>
@@ -433,6 +433,8 @@ a {
 			<br />
 			<div class=btn-wrap>
 				<div class="btn-wrap-flex">
+				
+				<input type="text" id="userNo" value="${ loginUser.userNo }" hidden>
 											
 						<!-------------------- 좋아요 기능 19.9.19 완성---------------------->
 		<a onclick= 
@@ -464,18 +466,18 @@ a {
 			
 				</div>
 					<div>
-	<img id="qrcode" src='' />
+							<img id="qrcode" src='' />
 	</div>
 	</div>
-
 	<script>
 	cnt = ${ likeCount };
+	
 	$(function(){
 		
 		$('#like').click(function(){
 			
 			var pNo = ${ detail.projectNo };
-			var mNo = ${ loginUser.userNo };
+			var mNo = ${ param.userNo };
 			
 			cnt++;
 			$.ajax({
@@ -499,7 +501,6 @@ a {
 						$like.append($heart2); 
 				
 					}else {
-						
 						var $like = $('#like');
 						var $heart = $('#heart');
 						
@@ -635,31 +636,63 @@ a {
 					</button>
 				</div>	
 			</div>
-			<!-- 신고 영역 -->
+						<!-------------------------- 신고 영역 --------------------------------->
 			<div style="font-size: 14px;">
-				<p style="font-size:20px"><b>신고하기란?</b></p>
+				<p style="font-size:20px"><b>신고하기란?</b></p> 
 				<p> 해당 프로젝트에 허위내용 및 지적재산권 <br/> 을 침해하는 내용이 있다면 제보해주세요. </p>
 				
-				<a onclick=  
-					<c:if test="${ empty sessionScope.loginUser }"> "alert('로그인 후 이용가능합니다'); return false;" 
+				<a onclick=
+					<c:if test="${ empty sessionScope.loginUser }"> "alert('로그인 후 이용가능합니다'); return false;"
 						<button>
 							<img src="/yc/resources/images/alarm.png" style="width: 40px; height: auto;">	
 						</button>
  					</c:if>>
  				
  					<c:if test= "${ !empty sessionScope.loginUser }">
-						<button onclick="window.open('reportProject.ca','_blank', 'width=600,height=500');return false;" style="border:0; background:white;">
-							<img src="/yc/resources/images/alarm.png" style="width:40px; height: auto;">	
-						</button>
+ 						<c:if test="${ reportCount == 0 }">
+							<button onclick="window.open('reportProject.ca?pNo=${detail.projectNo}','_blank', 'width=600,height=500');return false;" style="border:0; background:white;">
+								<img src="/yc/resources/images/alarm.png" style="width:40px; height: auto;"> 
+							</button>
+						</c:if>
+					
+						<c:if test="${ reportCount == 1 }"> 
+							<button onclick="successReport()" style="background:white; border:0;">
+								<img src="/yc/resources/images/alarm.png" style="width:40px; height: auto;"> 
+							</button>
+						</c:if>
+					
 					</c:if>
 				</a>
 			</div>
 		</div>
+		<script type="text/javascript">
+			function successReport(){
+				alert("이미 신고한 게시물입니다");
+			}
+		</script>
 	
+		<script>
+		$(function(){			
+			$('#report').click(function(){
+
+				var pNo = ${ detail.projectNo };
+				
+				$.ajax({
+					
+					url: "reportProject.ca",
+					type : "get",
+					data : {pNo : pNo},
+					success : function(data){
+						
+					}
+				})
+			})
+		})
+		</script> 
+					<!-------------------------- 신고 영역 --------------------------------->
 
 	<div style="width:100%; float:left;"><jsp:include page="../common/customer_footer.jsp"/></div>
 	</div>
-	
 	
 <script type="text/javascript">
 

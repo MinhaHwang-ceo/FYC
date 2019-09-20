@@ -3,6 +3,7 @@ package com.kh.yc.project.model.vo;
 import java.sql.Date;
 
 public class Project implements java.io.Serializable {
+	
 	private int projectNo;
 	private String category;
 	private String success;
@@ -38,7 +39,7 @@ public class Project implements java.io.Serializable {
 	private String companyName;
 	private String categoryDiv;
 	private Date projectOpen;
-  private int memberNo;
+	private int userNo;
 
 	public Project() {}
 
@@ -46,10 +47,9 @@ public class Project implements java.io.Serializable {
 			int agreement, String reason, int adminNo, String summary, String profileImg, String social, String site,
 			String email, String phone, String fees, String makerDiv, String agentName, String agentEmail,
 			String projectTitle, String projectShortTitle, int money, String mainImg, String document, String progress,
-			String delivery, Date endDate, String adult, int userNo, int reportCount, int payNo, int adjustNo,
-			Date adjustDate, int adjustMoney, String companyName, String categoryDiv, Date projectOpen, int memberNo) {
+			String delivery, Date endDate, String adult, int reportCount, int payNo, int adjustNo, Date adjustDate,
+			int adjustMoney, String companyName, String categoryDiv, Date projectOpen, int userNo) {
 		super();
-
 		this.projectNo = projectNo;
 		this.category = category;
 		this.success = success;
@@ -85,8 +85,7 @@ public class Project implements java.io.Serializable {
 		this.companyName = companyName;
 		this.categoryDiv = categoryDiv;
 		this.projectOpen = projectOpen;
-    this.memberNo = memberNo;
-
+		this.userNo = userNo;
 	}
 
 	public int getProjectNo() {
@@ -262,7 +261,6 @@ public class Project implements java.io.Serializable {
 	}
 
 	public void setMainImg(String mainImg) {
-
 		this.mainImg = mainImg;
 	}
 
@@ -306,21 +304,45 @@ public class Project implements java.io.Serializable {
 		this.adult = adult;
 	}
 
-  
-	public int getMemberNo() {
-		return memberNo;
-	}
-
-	public void setMemberNo(int memberNo) {
-		this.memberNo = memberNo;
-
-	}
-
-
 	public int getReportCount() {
 		return reportCount;
 	}
 
+	public void setReportCount(int reportCount) {
+		this.reportCount = reportCount;
+	}
+
+	public int getPayNo() {
+		return payNo;
+	}
+
+	public void setPayNo(int payNo) {
+		this.payNo = payNo;
+	}
+
+	public int getAdjustNo() {
+		return adjustNo;
+	}
+
+	public void setAdjustNo(int adjustNo) {
+		this.adjustNo = adjustNo;
+	}
+
+	public Date getAdjustDate() {
+		return adjustDate;
+	}
+
+	public void setAdjustDate(Date adjustDate) {
+		this.adjustDate = adjustDate;
+	}
+
+	public int getAdjustMoney() {
+		return adjustMoney;
+	}
+
+	public void setAdjustMoney(int adjustMoney) {
+		this.adjustMoney = adjustMoney;
+	}
 
 	public String getCompanyName() {
 		return companyName;
@@ -346,6 +368,14 @@ public class Project implements java.io.Serializable {
 		this.projectOpen = projectOpen;
 	}
 
+	public int getUserNo() {
+		return userNo;
+	}
+
+	public void setUserNo(int userNo) {
+		this.userNo = userNo;
+	}
+
 	@Override
 	public String toString() {
 		return "Project [projectNo=" + projectNo + ", category=" + category + ", success=" + success + ", judgeStatus="
@@ -355,12 +385,10 @@ public class Project implements java.io.Serializable {
 				+ makerDiv + ", agentName=" + agentName + ", agentEmail=" + agentEmail + ", projectTitle="
 				+ projectTitle + ", projectShortTitle=" + projectShortTitle + ", money=" + money + ", mainImg="
 				+ mainImg + ", document=" + document + ", progress=" + progress + ", delivery=" + delivery
-				+ ", endDate=" + endDate + ", adult=" + adult + ", memberNo=" + memberNo + ", reportCount=" + reportCount
-				+ ", payNo=" + payNo + ", adjustNo=" + adjustNo + ", adjustDate=" + adjustDate + ", adjustMoney="
-				+ adjustMoney + ", companyName=" + companyName + ", categoryDiv=" + categoryDiv + ", projectOpen="
-				+ projectOpen + ", memberNo=" + memberNo + "]";
+				+ ", endDate=" + endDate + ", adult=" + adult + ", reportCount=" + reportCount + ", payNo=" + payNo
+				+ ", adjustNo=" + adjustNo + ", adjustDate=" + adjustDate + ", adjustMoney=" + adjustMoney
+				+ ", companyName=" + companyName + ", categoryDiv=" + categoryDiv + ", projectOpen=" + projectOpen
+				+ ", userNo=" + userNo + "]";
 	}
-
-	
 
 }

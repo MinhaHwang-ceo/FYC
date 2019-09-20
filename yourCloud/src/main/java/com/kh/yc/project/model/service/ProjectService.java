@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.kh.yc.board.model.vo.PageInfo;
+import com.kh.yc.category.model.vo.Report;
 import com.kh.yc.member.model.vo.Member;
 import com.kh.yc.project.model.exception.ProjectSelectListException;
 import com.kh.yc.project.model.vo.Interest;
@@ -44,11 +45,14 @@ public interface ProjectService {
 
 	//서포트리스트 출력
 	ArrayList<SupportList> selectSupportListExcel(int bNum);
+
 	//업로드 엑셀 위치파악 메소드
 	List<SupportList> getExcelUpload(String string);;
 
+	
+	//신고하기 기능
+	public int insertReport(Report report);
+	//신고 여부
+	public int reportCount(Interest inter);;
 
-	
-	
-	
 }

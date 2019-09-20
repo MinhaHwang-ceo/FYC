@@ -6,6 +6,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.yc.category.model.service.CategoryService;
+import com.kh.yc.category.model.vo.Report;
 import com.kh.yc.member.model.vo.Member;
 
 import org.springframework.web.bind.annotation.RequestParam;
@@ -36,26 +38,31 @@ public class CategoryContoller {
 	@RequestMapping(value = "/categoryOne.ca", method = RequestMethod.GET)
 	public String categoryOne(@RequestParam int projectNo,HttpServletRequest request, HttpServletResponse response) {
 		
+
 		//글의 상세 조회를 위한 서비스를 호출. 글 상세정보는 한 줄만 가져오면 되기때문에 map 형식
 		Project detail = ps.detailProject(projectNo);
 		//System.out.println(detail);
 		request.setAttribute("detail", detail);
 		
-		Member loginUser = new Member();
-		
-		int mNo = loginUser.getUserNo();
+		//jsp에서 넘겨준 값
+		int mNo = Integer.parseInt(request.getParameter("userNo"));
 		int pNo = projectNo;
 		
 		Interest inter = new Interest();
 		
 		inter.setProjectNo(pNo);
-		inter.setMemberNo(mNo);
+		inter.setUserNo(mNo);
 		
 		int likeCount =  ps.likeCount(inter);
 		
-		//System.out.println("컨트롤러에서 좋아요 수 카운트 ?"+likeCount);
 		
 		request.setAttribute("likeCount", likeCount);
+		
+		int reportCount =  ps.reportCount(inter);
+		
+		//System.out.println("컨트롤러에서 신고수 카운트 ?"+reportCount);
+		
+		request.setAttribute("reportCount", reportCount);
 		
 		return "main/categoryOne";
 
@@ -103,12 +110,12 @@ public class CategoryContoller {
 		
 		int pNo = Integer.parseInt(request.getParameter("pNo"));
 		int mNo = Integer.parseInt(request.getParameter("mNo"));
-		int cnt = Integer.parseInt(request.getParameter("cnt"));
+		//int cnt = Integer.parseInt(request.getParameter("cnt"));
 		
 		Interest inter = new Interest();
 		
 		inter.setProjectNo(pNo);
-		inter.setMemberNo(mNo);
+		inter.setUserNo(mNo);
 		
 		int cnt2 = ps.likeCount(inter);
 		
@@ -128,13 +135,23 @@ public class CategoryContoller {
 
 	}
 	
+	//신고하기 view
 	@RequestMapping(value = "/reportProject.ca", method = RequestMethod.GET)
-	public String reportProject(Model model) {
+	public String reportProject(HttpServletRequest request, HttpServletResponse response) {
 
 		return "main/reportProject";
-
 	}
 	
+	//신고하기
+	@ResponseBody
+	@RequestMapping(value = "/submitReport.ca", method = RequestMethod.POST)
+	public int submitReport(Report report,Model model,HttpServletRequest request, HttpServletResponse response) {
+		
+		System.out.println(report);
+		
+		return ps.insertReport(report);
+	}
 	
+
 	
 }
