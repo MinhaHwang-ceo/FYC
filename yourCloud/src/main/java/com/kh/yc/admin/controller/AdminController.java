@@ -1,48 +1,40 @@
 package com.kh.yc.admin.controller;
 
-import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.poi.hssf.usermodel.HSSFRow;
-import org.apache.poi.hssf.usermodel.HSSFSheet;
-import org.apache.poi.hssf.usermodel.HSSFWorkbook;
-import org.apache.poi.xssf.usermodel.XSSFCell;
-import org.apache.poi.xssf.usermodel.XSSFRow;
-import org.apache.poi.xssf.usermodel.XSSFSheet;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
-import com.kh.yc.admin.model.dao.ConnectionDao;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.kh.yc.admin.model.service.AdminService;
 import com.kh.yc.admin.model.service.AdminServiceImpl;
 import com.kh.yc.admin.model.vo.Project;
 import com.kh.yc.admin.model.vo.Report;
-import com.kh.yc.common.CommonUtils;
-import com.kh.yc.member.model.service.MemberServiceImpl;
 import com.kh.yc.member.model.vo.Member;
-import com.kh.yc.reward.model.vo.Reward;
+import com.kh.yc.reward.model.vo.ExcelReward;
+
+import net.sf.jasperreports.engine.JRDataSource;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 
 @Controller
 public class AdminController {
@@ -258,94 +250,55 @@ public class AdminController {
 		}
 		
 		// 엑셀 업로더ㅡ
-				@RequestMapping(value = "excel3.ad", method = RequestMethod.GET)
-				public String exUp(Reward r, Model model) {
-					
-					
-					System.out.println("객체를 불러라 새기야" + r);
+		@RequestMapping(value="excel3.ad")
+	    @ResponseBody
+	    public ModelAndView insertReqItem(@RequestBody String httpParam) throws Exception{
+			
+			Gson gson = new Gson();
+			
+	        ModelAndView mav = new ModelAndView();
+	        
+	       			
+			JSONParser jsonParser = new JSONParser();
+			
+			JSONArray insertParam = (JSONArray) jsonParser.parse(httpParam);
 
-					return "admin/excelupTest";
-				}
+	        Map map = new HashMap();
+	        List arr = new ArrayList();
+			for(int i=0; i<insertParam.size(); i++){
+				map.put(i,((JSONObject) insertParam.get(i)));
+			}
+		
+	        //map = (Map<Stringd,String>) gson.fromJson(gson.toJson(insertParam), map.getClass());
+	   
+	        System.out.println(map);
+	        mav.setViewName("jsonView");
+			return mav;
+	        
+	        
+		}
 
 
-	/*
-	 * // 엑셀
-	 * 
-	 * @RequestMapping(value = "excelView.ad", method = RequestMethod.GET) public
-	 * void excel(Locale locale, Model model) {
-	 * 
-	 * try {
-	 * 
-	 * FileInputStream file = new
-	 * FileInputStream("C:/Users/Minha/Downloads/adjust.xlsx");
-	 * 
-	 * XSSFWorkbook workbook = new XSSFWorkbook(file);
-	 * 
-	 * int rowindex = 0; int columnindex = 0; // 시트 수 (첫번째에만 존재하므로 0을 준다) // 만약 각
-	 * 시트를 읽기위해서는 FOR문을 한번더 돌려준다 XSSFSheet sheet = workbook.getSheetAt(0); // 행의 수
-	 * int rows = sheet.getPhysicalNumberOfRows(); for (rowindex = 0; rowindex <
-	 * rows; rowindex++) { // 행을읽는다 XSSFRow row = sheet.getRow(rowindex); if (row !=
-	 * null) { // 셀의 수 int cells = row.getPhysicalNumberOfCells(); for (columnindex
-	 * = 0; columnindex <= cells; columnindex++) { // 셀값을 읽는다 XSSFCell cell =
-	 * row.getCell(columnindex); String value = ""; // 셀이 빈값일경우를 위한 널체크 if (cell ==
-	 * null) { continue; } else { // 타입별로 내용 읽기 switch (cell.getCellType()) { case
-	 * XSSFCell.CELL_TYPE_FORMULA: value = cell.getCellFormula(); break; case
-	 * XSSFCell.CELL_TYPE_NUMERIC: value = cell.getNumericCellValue() + ""; break;
-	 * case XSSFCell.CELL_TYPE_STRING: value = cell.getStringCellValue() + "";
-	 * break; case XSSFCell.CELL_TYPE_BLANK: value = cell.getBooleanCellValue() +
-	 * ""; break; case XSSFCell.CELL_TYPE_ERROR: value = cell.getErrorCellValue() +
-	 * ""; break; } } System.out.println(rowindex + "번 행 : " + columnindex +
-	 * "번 열 값은: " + value); }
-	 * 
-	 * } }
-	 * 
-	 * } catch (Exception e) { e.printStackTrace(); }
-	 * 
-	 * }
-	 * 
-	 * 
-	 * @RequestMapping(value = "excelUp.ad", method = RequestMethod.POST ) public
-	 * String excelUp(Model model, Project p, HttpServletRequest request,
-	 * 
-	 * @RequestParam(name="excel", required=false) MultipartFile excel) {
-	 * 
-	 * //System.out.println("이미지 : " + photo.getName()); System.out.println(p);
-	 * 
-	 * String root =
-	 * request.getSession().getServletContext().getRealPath("resources");
-	 * 
-	 * System.out.println(root);
-	 * 
-	 * String filePath = root + "\\uploadFiles";
-	 * 
-	 * String origunFileName = excel.getOriginalFilename(); String ext =
-	 * origunFileName.substring(origunFileName.lastIndexOf(".")); String changeName
-	 * = CommonUtils.getRandomString();
-	 * 
-	 * String fullFilePath = filePath + "\\" + changeName + ext;
-	 * 
-	 * try {
-	 * 
-	 * System.out.println("fullFilePath : " + fullFilePath);
-	 * 
-	 * excel.transferTo(new File(fullFilePath));
-	 * 
-	 * Reward fileVO = new Reward();
-	 * 
-	 * fileVO.setOriginFileName(origunFileName); fileVO.setFileSrc(fullFilePath);
-	 * fileVO.setNewFileName(changeName); fileVO.setProjectNo(p.getProjectNo());
-	 * fileVO.setFileLevel("0");
-	 * 
-	 * 
-	 * }catch (Exception e) {
-	 * 
-	 * e.printStackTrace(); new File(fullFilePath).delete();
-	 * 
-	 * }
-	 * 
-	 * return "fundingOpen/FundingOpen5";
-	 * 
-	 * }
-	 */
-	 
+	//ireport
+		@RequestMapping(value = "reportTest.ad" , method = RequestMethod.GET)
+        public ModelAndView generatePDFreport(ModelAndView modelAndView) {
+              
+              Map<String,Object> parameterMap = new HashMap<String,Object>();
+              
+              
+              List<Project> list = AdminService.adjustProjectList();
+              
+              
+        JRDataSource JRdataSource = new JRBeanCollectionDataSource(list);
+ 
+        parameterMap.put( "datasource", JRdataSource);
+ 
+        //pdfReport bean has ben declared in the jasper-views.xml file
+        modelAndView = new ModelAndView("pdfReport" , parameterMap);
+ 
+        return modelAndView;
+}
+
+
+		
 }

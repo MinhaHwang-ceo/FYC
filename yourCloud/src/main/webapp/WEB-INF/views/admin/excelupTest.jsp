@@ -31,22 +31,55 @@ function excelExportCommon(event, callback){
 function handleExcelDataAll(sheet){
 	console.log("4");
 	handleExcelDataJson(sheet); // json 형태
-	 console.log("데이터 json 2222 " + handleExcelDataJson(sheet));
+	// console.log("데이터 json 2222 " + handleExcelDataJson(sheet));
 }
 
 function handleExcelDataJson(sheet){
-		JSONArray =  XLSX.utils.sheet_to_json (sheet);
+	console.log("5");
+		var JSONArray =  XLSX.utils.sheet_to_json (sheet);
 	   console.log(JSONArray);
 	   $("#displayExcelJson").html(JSON.stringify(XLSX.utils.sheet_to_json (sheet)));
-	   var person = JSON.stringify(JSONArray);
-	   var oPerson = JSON.parse(person);
+	   var reward = JSON.stringify(JSONArray);
 	   
-	   alert(person);
+	   
+	   requestDataJson("excel3.ad", JSON.stringify(JSONArray));
+	
+}
+function requestDataJson(url, formData){
 
+	$.ajax({
 
-	    alert(oPerson);
+		url: url,
+
+		type: "POST",
+
+		dataType: 'json',
+
+//		processData : false,
+
+		data : formData,
+
+		async : false,
+		
+
+		contentType : "application/json",
+
+		success: function(data) {
+
+			results= data;
+
+		},
+
+		error: function(xhr) {
+
+		  console.log('실패 - ', xhr);
+
+		}
+
+	});
 
 }
+
 
 // 출처 : https://github.com/SheetJS/js-xlsx/issues/214
 // 시트 헤더
@@ -70,6 +103,8 @@ function get_header_row(sheet) {
     return headers;
 }
 
+
+
 </script>
 </head>
 <body>
@@ -78,3 +113,8 @@ function get_header_row(sheet) {
 <div id="displayExcelJson"></div>
 </body>
 </html>
+
+
+
+
+
