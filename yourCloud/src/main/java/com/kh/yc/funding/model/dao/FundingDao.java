@@ -41,6 +41,10 @@ public interface FundingDao {
 	int signFile(SqlSessionTemplate sqlSession, Attachment a);
 	//리워드 인설트
 	int rewardInest(SqlSessionTemplate sqlSession, Reward r);
+	//리워드 리스트
+	List<Reward> rewardSelect(SqlSessionTemplate sqlSession, Reward r);
+	//리워드 업데이트
+	int rewardUpdate(SqlSessionTemplate sqlSession, Reward r);
 
 	void updateProject6(SqlSessionTemplate sqlSession, Project p);
 

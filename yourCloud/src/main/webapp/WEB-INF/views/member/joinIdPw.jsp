@@ -242,22 +242,14 @@
 
   		<tr><td><br></td></tr>  
   		
-  		
-  		
-  		
   	</table>
   <button id="sumbmitbutton" class="btn btn-info" onclick="return finalcheck();">확인</button>
   </form>
   
   <br><br>
   
-
-  
   </div>
 
-  
-  
-  
   <br><br><br><br>
 
 </div>    

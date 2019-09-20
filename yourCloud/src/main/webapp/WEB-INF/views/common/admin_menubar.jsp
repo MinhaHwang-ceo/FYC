@@ -69,7 +69,8 @@
             <a class="collapse-item" href="${ pageContext.request.contextPath}/project6.ad">신고관리</a>
             <a class="collapse-item" href="${ pageContext.request.contextPath}/project2.ad">장부관리</a>
             <a class="collapse-item" href="${ pageContext.request.contextPath}/excel2.ad">엑셀테스트</a>
-            <a class="collapse-item" href="${ pageContext.request.contextPath}/excel.ad">엑셀테스트2</a> 
+            <a class="collapse-item" href="${ pageContext.request.contextPath}/excel.ad">엑셀테스트2</a>
+            <a class="collapse-item" href="${ pageContext.request.contextPath}/reportTest2.ad">리포트테스트</a> 
             <a class="collapse-item" href="${ pageContext.request.contextPath}/project01.ad">홍보메일</a>
              
           </div>

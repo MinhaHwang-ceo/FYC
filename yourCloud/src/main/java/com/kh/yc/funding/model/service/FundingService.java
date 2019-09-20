@@ -64,7 +64,11 @@ public interface FundingService{
 
 	int openProject(Project p);
 
-
+	//리워드 셀렉트
+	List<Reward> rewardSelect(Reward r);
+	
+	//리워드 업데이트
+	int rewardUpdate(Reward r);
 
 
 	

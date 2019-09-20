@@ -47,7 +47,7 @@ public class MemberServiceImpl implements MemberService {
 	public Member loginMember(Member m) throws LoginException {
 
 		Member loginUser = null;
-
+ 
 		String encPassword = md.selectEncPassword(sqlSession, m);
 
 		if (!passwordEncoder.matches(m.getUserPwd(), encPassword)) {
@@ -121,10 +121,18 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public ArrayList<Member> selectMyReward(PageInfo pi, Member m) {
+	public ArrayList<Reward> selectMyReward(PageInfo pi, Member mse) {
 		
-		return md.selectMyReward(sqlSession, m, pi);
+		return md.selectMyReward(sqlSession, mse, pi);
 	}
+
+	@Override
+	public Reward selectMyRewardDetail(int rewardNoInt) {
+		
+		return md.selectMyRewardDetail(sqlSession, rewardNoInt);
+	}
+
+
 
 
 

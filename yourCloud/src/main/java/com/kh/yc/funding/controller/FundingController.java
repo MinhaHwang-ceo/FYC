@@ -20,6 +20,8 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttribute;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
@@ -41,6 +43,7 @@ import com.siot.IamportRestClient.response.IamportResponse;
 
 @CrossOrigin(origins = "*")
 @Controller
+@SessionAttributes("RewardNo2")
 public class FundingController {
 
 	@Autowired
@@ -162,6 +165,8 @@ public class FundingController {
 					}
 				}
 
+				System.out.println("fileVO : " + fileVO.getAttachmentNo());
+
 				p.setMainImg(String.valueOf(fileVO.getAttachmentNo()));
 
 				model.addAttribute("fileVO", fileVO);
@@ -189,23 +194,70 @@ public class FundingController {
 
 	// 리워드 저장부분
 	@RequestMapping("insertreReward.fd")
-	public ModelAndView RewardSave(Project p, HttpServletRequest request, HttpServletResponse response, Reward r) {
+	public ModelAndView RewardSave(String idx, Project p, HttpServletRequest request, HttpServletResponse response,
+			Reward r) {
 
 		ModelAndView mv = new ModelAndView("jsonView2");
 
+		System.out.println("리워드 : " + r);
+
 		int reward = fs.rewardInest(r);
 
-		// List<Reward> list = fs.rewardSelect();
+		System.out.println("idx : " + idx);
+		
+		System.out.println("리워드 번호 : " + r.getRewardNo());
+		
+		int RewardNo2 = r.getRewardNo();
+		
+		mv.addObject("RewardNo2",RewardNo2);
+		mv.addObject("r", r);
+		//mv.setViewName("mvReward");
+		/*
+		 * List<Reward> list = fs.rewardSelect(r);
+		 * 
+		 * System.out.println("list : " + list);
+		 * 
+		 * mv.addObject("r",list );
+		 */
+		return mv;
+	}
+	
+	// 리워드 업데이트
+	@RequestMapping("updateReward.fd")
+	public ModelAndView RewardUpdate(String idx, Project p, HttpServletRequest request, HttpServletResponse response,
+			@SessionAttribute("RewardNo2") int RewardNo2, Reward r) {
+		
+		System.out.println("잘받아 오나 확인 : " + r);
+		
+		ModelAndView mv = new ModelAndView("jsonView2");
+		//System.out.println("************************"+mv.getViewName());
+		//System.out.println("********************************" + mv);
+		
+		System.out.println("리워드업데이트 전 : " + r);
+		System.out.println("업데이트  키 : " + r.getRewardNo());
+		r.setRewardNo(RewardNo2);
+		int rewardUP = fs.rewardUpdate(r);
+		System.out.println(rewardUP);
+		System.out.println("idx : " + idx);
 
-		// mv.addObject("r", );
+		mv.addObject("r", r);
+		System.out.println("리워드업데이트 후 : " +r);
 
+		//List<Reward> list = fs.rewardSelect(r);
+
+		//System.out.println("list : " + list);
+
+		//mv.addObject("r", list);
+		
 		return mv;
 
 	}
+	 
 
-	@RequestMapping(value = "FundingOpen6.fd")
+		@RequestMapping(value = "FundingOpen6.fd")
 	public String FundingOpen6(String projectNo, Model model) {
 		model.addAttribute("projectNo", projectNo);
+
 		return "fundingOpen/FundingOpen6";
 	}
 

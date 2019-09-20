@@ -471,6 +471,14 @@
 			<artifactId>poi-ooxml-schemas</artifactId>
 			<version>3.17</version>
 		</dependency>
+		
+		 <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi-contrib</artifactId>
+            <version>3.7-beta3</version>
+        </dependency>
+
+		
 
 		<!-- https://mvnrepository.com/artifact/org.apache.xmlbeans/xmlbeans -->
 		<dependency>
@@ -517,6 +525,36 @@
 			<artifactId>iamport-rest-client-java</artifactId>
 			<version>0.2.4</version>
 		</dependency>
+		
+		<!-- google gson -->
+	<dependency>
+    	<groupId>com.google.code.gson</groupId>
+    	<artifactId>gson</artifactId>
+    	<version>2.8.5</version>
+	</dependency>
+	
+		<!-- jasperreports -->
+		<!-- https://mvnrepository.com/artifact/net.sf.jasperreports/jasperreports -->
+<dependency>
+    <groupId>net.sf.jasperreports</groupId>
+    <artifactId>jasperreports</artifactId>
+    <version>5.6.0</version>
+</dependency>
+		<!-- https://mvnrepository.com/artifact/org.codehaus.groovy/groovy-all -->
+<dependency>
+    <groupId>org.codehaus.groovy</groupId>
+    <artifactId>groovy-all</artifactId>
+    <version>2.5.7</version>
+    <type>pom</type>
+</dependency>
+		<!-- https://mvnrepository.com/artifact/com.lowagie/itext -->
+<dependency>
+    <groupId>com.lowagie</groupId>
+    <artifactId>itext</artifactId>
+    <version>4.2.1</version>
+</dependency>
+		
+		
 
 		<!-- https://mvnrepository.com/artifact/javax.mail/mail -->
 		<dependency>

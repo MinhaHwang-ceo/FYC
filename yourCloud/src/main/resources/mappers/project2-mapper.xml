@@ -34,7 +34,7 @@
 		<result property="endDate" column="END_DATE" />
 		<result property="adult" column="ADULT" />
 		<result property="expected" column="EXPECTED" />
-		<result property="memberNo" column="MEMBER_NO" />
+		<result property="userNo" column="MEMBER_NO" />
 		<result property="companyName" column="COMPANY_NAME" />
 		<result property="categoryDiv" column="CATEGORY_DIV" />
 		<result property="projectOpen" column="PROJECT_OPEN" />
@@ -431,7 +431,7 @@
 		SELECT COUNT(*)
 		FROM INTEREST
 		WHERE PROJECT_NO = #{projectNo}
-		AND MEMBER_NO = #{memberNo}
+		AND MEMBER_NO = #{userNo}
 	</select>
 
 
@@ -636,6 +636,11 @@
 			JUDGE_STATUS = '심사중'
 		WHERE
 			PROJECT_NO = #{projectNo}
+	</update>
+	
+	
+		<update id="updateDb" parameterType="java.util.Map">
+update  delivery set status=#{VALUECOL};
 	</update>
 </mapper>
 
