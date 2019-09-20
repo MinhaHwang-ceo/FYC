@@ -1,6 +1,7 @@
 package com.kh.yc.project.model.dao;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -39,7 +40,13 @@ public interface ProjectDao {
 	//좋이요 유무
 	int likeCount(SqlSessionTemplate sqlSession, Interest inter);
 	
+	//엑셀 다운로드 메소드
 	ArrayList<SupportList> selectSupportListExcel(SqlSessionTemplate sqlSession, int bNum);
+	
+	//엑셀 데이터 삽입
+void   updateDB(SqlSessionTemplate sqlSession,Map<String, Object> map);
+	//엑셀 데이터 가져오기
+	List<SupportList> testDbList(SqlSessionTemplate sqlSession,Map<String, Object> map);
 
 
 }

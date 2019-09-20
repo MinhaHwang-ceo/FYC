@@ -172,5 +172,22 @@ public class ProjectDaoImpl implements ProjectDao{
 		return list;
 	}
 
+	@Override
+	public void updateDB(SqlSessionTemplate sqlSession,Map<String, Object> map) {
+	
+	 sqlSession.update("Project2.updateDb",map);
+	 
+	 
+	}
+
+	@Override
+	public List<SupportList> testDbList(SqlSessionTemplate sqlSession,Map<String, Object> map) {
+	ArrayList<SupportList> list =null;
+		
+		list = (ArrayList) sqlSession.selectList("Project2.selectSupportListExcel",map);
+		
+		return list;
+	}
+
 }
 

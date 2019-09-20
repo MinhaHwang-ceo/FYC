@@ -95,6 +95,13 @@
             <br><br>
               <button class="btn btn-success excelInsert">결제/배송현황 올리기</button>
            </div>
+           
+           <form name="excelUpForm" id="excelUpload" >
+    <input type="file" id="excelFile" name="excleFile" value="엑셀 업로드" />
+    <input type="submit" class="click">
+</form>
+
+
       </div>
    </div>
 
@@ -267,6 +274,83 @@
 
       });
       
+      
+      
+      
+      
+      
+      $("#payStatus").change(function(){
+    	  var standard=$("#payStatus").val();
+    	
+    
+    	  console.log(standard);
+    	  console.log(bNum);
+     	$.ajax({
+    		
+    		url:"supporterList3.me",
+    		data:{bNum:bNum,standard:standard},
+    		type:"get",
+    		 dataType:"json",
+    		success:function(data){
+				console.log(data.list);
+      
+      
+      
+				
+				$(".click").click(function (){
+					   var form = $("#excelUpload")[0];
+						console.log("들와쩌염")
+							console.log(form)
+					          var data = new FormData(form);
+					          $.ajax({
+					             enctype:"multipart/form-data",
+					             method:"POST",
+					             url: './excelUp.do',
+					             processData: false,   
+					             contentType: false,
+					             cache: false,
+					             data: data,
+					             success: function(result){  
+					                 alert("업로드 성공!!");
+					             }
+					          });
+				})
+				
+				
+				
+				
+				
+				
+				
+      
+      
+      $("#excelUpload").change(function(){
+ 
+    	  var form = $("#excelUpload")[0];
+			console.log("들와쩌염")
+				console.log(form)
+		          var data = new FormData(form);
+		          $.ajax({
+		             enctype:"multipart/form-data",
+		             method:"POST",
+		             url: './excelUp.do',
+		             processData: false,   
+		             contentType: false,
+		             cache: false,
+		             data: data,
+		             success: function(result){  
+		                 alert("업로드 성공!!");
+		             }
+		          });
+      });
+	  
+    	  
+    	  
+    	  
+    	  
+    	  
+
+
       
    </script>
 </body>

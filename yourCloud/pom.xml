@@ -471,6 +471,14 @@
 			<artifactId>poi-ooxml-schemas</artifactId>
 			<version>3.17</version>
 		</dependency>
+		
+		 <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi-contrib</artifactId>
+            <version>3.7-beta3</version>
+        </dependency>
+
+		
 
 		<!-- https://mvnrepository.com/artifact/org.apache.xmlbeans/xmlbeans -->
 		<dependency>
