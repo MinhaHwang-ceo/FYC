@@ -196,7 +196,7 @@ function addTable() {
     html +='    <td></td>';
     html +='    <td>';
     html +='        <button onclick="save_re(' + idx+ ');">저장하기</button> <button id="nextProject" onclick="nextProject()">다음으로</button>';
-    html += '        <button onclick="addTable()">만들기</button>';
+    html += '        <button value="" onclick="addTable()">만들기</button>';
     html += '    </td>';
     html += '</tr>';
     html += '</table>';
