@@ -125,16 +125,22 @@ public class MemberDaoImpl implements MemberDao{
 		}
 		@SuppressWarnings({ "unchecked", "rawtypes" })
 		@Override
-		public ArrayList<Member> selectMyReward(SqlSessionTemplate sqlSession, Member m, PageInfo pi) {
-			ArrayList<Member> list = null;
+		public ArrayList<Reward> selectMyReward(SqlSessionTemplate sqlSession, Member mse, PageInfo pi) {
+			ArrayList<Reward> list = null;
 			int offset = (pi.getCurrentPage() -1) * pi.getLimit();
 			
 			RowBounds rowBounds = new RowBounds(offset, pi.getLimit());
 			
-			list = (ArrayList) sqlSession.selectList("Reward.selectMyReward", null, rowBounds);
+			list = (ArrayList) sqlSession.selectList("Reward.selectMyReward", mse, rowBounds);
 			System.out.println(list);
 			return list;
+		} 
+		@Override
+		public Reward selectMyRewardDetail(SqlSessionTemplate sqlSession, int rewardNoInt) {
+			
+			return sqlSession.selectOne("Reward.selectMyRewardDetail", rewardNoInt);
 		}
+
 	
 	}
 	

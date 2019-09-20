@@ -117,7 +117,9 @@ public class ProjectServiceImpl implements ProjectService{
 	@Override
 	public int likeCount(Interest inter) {
 		
-		return pd.likeCount(sqlSession, inter);}
+		return pd.likeCount(sqlSession, inter);
+  }
+
 
 	@Override
 	public ArrayList<SupportList> selectSupportListExcel(int bNum) {

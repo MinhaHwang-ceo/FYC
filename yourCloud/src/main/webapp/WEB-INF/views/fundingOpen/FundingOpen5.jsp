@@ -126,6 +126,7 @@ $(document).ready(function(){
 
 var idx = 0;
 
+
 function addTable() {
 	
 	var html = "";
@@ -135,10 +136,10 @@ function addTable() {
     html +='    <td>';
     html +='        <h6>금액</h6>';
     html +='    </td>';
-    html +='    <td id="fno">&nbsp;&nbsp;&nbsp;&nbsp; <input type="text" value="" placeholder="12345" id="rewardMoney" name="rewardMoney" style="text-align: right;">원';
+    html +='    <td id="fno">&nbsp;&nbsp;&nbsp;&nbsp; <input type="text" placeholder="12345" id="rewardMoney" name="rewardMoney" style="text-align: right;">원';
     html +='    </td>';
     html +='    <td><span>정렬 : </span>&nbsp;'; 
-    html +='    <input type="number" name="sortNo" value="1" id="sortNo" min="0" maxlength="2" style="width: 50px;">';
+    html +='    <input type="number" name="sortNo" value="'+ (idx +1) +'" id="sortNo" min="0" maxlength="2" style="width: 50px;">';
     html +='    </td>';
     html +='</tr>';
     html +='<tr>';
@@ -160,7 +161,7 @@ function addTable() {
     html +='    </td>';
     html +='    <td id="fno"><ul><li><input type="radio" id="option" name="option" value="필요없음" style="width:14px;height:14px;/>';
     html +='        <label for="option"><span></span>옵션 입력이 필요없는 상품입니다.</label><br></li>';
-    html +='        <li><input type="radio" id="option" name="option" style="width:14px;height:14px;/> <label for="option"><span></span>옵션 입력이 필요한 상품입니다.</label>&nbsp;&nbsp;&nbsp;<br>';
+    html +='        <li><input type="radio" id="option" name="option" value="선택옵션" style="width:14px;height:14px;/> <label for="option"><span></span>옵션 입력이 필요한 상품입니다.</label>&nbsp;&nbsp;&nbsp;<br>';
     html +='        <textarea rows="5" cols="40" style="width: 300px; height: 100px;"></textarea></li></ul>';
     html +='    </td>';
     html +='</tr>';
@@ -194,24 +195,33 @@ function addTable() {
     html +='<tr>';
     html +='    <td></td>';
     html +='    <td>';
-    html +='        <button onclick="save_re(' + idx + ');">저장하기</button> <a href="FundingOpen6.fd"><button id="next">다음으로</button></a>';
-    html +='        <button onclick="addTable()">만들기</button>';
-    html +='    </td>';
-    html +='</tr>';
-    html +='</table>';
-    html +='	<hr />';
-    html +='<br />';
+    html +='        <button onclick="save_re(' + idx+ ');">저장하기</button> <button id="nextProject" onclick="nextProject()">다음으로</button>';
+    html += '        <button value="" onclick="addTable()">만들기</button>';
+    html += '    </td>';
+    html += '</tr>';
+    html += '</table>';
+    html += '   <hr />';
+    html += '<br />';	
 	
-	
-	$("#inputBox2").html($("#inputBox2").html() + html);
-	
+	//alert(idx);
 	idx++;
+	$(".reward_SaveBtn").html($(".reward_SaveBtn").html() + html);
+	//alert(idx);
 }
 
 </script>
 
 <script>
+	
+	var dataArr = {};
+	
+	function nextProject(){
+	    location.href="FundingOpen6.fd?projectNo="+'${p.projectNo}';
+	 }
+	
 	function save_re(idx){
+		var idx = idx;
+		var category = $("#category").val();
 		var projectNo = parseInt($("#projectNo").val() || "0");
 	    var sortNo = $("#sortNo").val();
 		var rewardMoney = parseInt($("#rewardMoney").val() || "0");
@@ -224,8 +234,12 @@ function addTable() {
 		//                  alert(deliveryRequest);
 		var limitCount = parseInt($("#limitCount").val() || "0");
 		var startDate = $("#startDate").val() || "";
+		var rewardNo = parseInt($("#rewardNo").val() || "0");
 		
 		var param = {
+			idx:idx,
+			rewardNo:rewardNo,
+			category:category,
 			projectNo:projectNo,
 			sortNo:sortNo,
 			rewardMoney:rewardMoney,
@@ -238,20 +252,43 @@ function addTable() {
 		  	startDate:startDate
      	};
 		
-		console.log(param);
+		//console.log(param);
 		
-		$.ajax({
-			url:"insertreReward.fd",
-			type:"post",
-			data : param,
-			success:function(data){
-				console.log(data);
-			},
-			error:function(err) {
-				console.log("실패!");
-			}
-		});
-	} 
+		if(dataArr[idx] == null) {
+			
+			$.ajax({
+				url:"insertreReward.fd",
+				type:"post",
+				data : param,
+				success:function(data){
+					console.log(data);
+					dataArr[idx] = data.r.rewardNo;
+				},
+				error:function(err) {
+					console.log("실패!");
+				}
+			});
+			
+		} else {
+			$.ajax({
+				url:"updateReward.fd",
+				type:"post",
+				data : param,
+				success:function(data){
+					console.log(data);
+					alert("업데이트해야함");
+					
+				},
+				error:function(arr){
+					console.log("업데이트 실패!");
+				}
+			});
+			
+			
+		}
+		
+		
+	}
 </script>
 </head>
 <body>
@@ -261,7 +298,9 @@ function addTable() {
 	
 	                document.querySelector("#today2").valueAsDate = new Date();
 	            </script> -->
-	 <input type="hidden" value="${p.projectNo}"  id="projectNo" name="projectNo"/>           
+	 <input type="hidden" value="${p.projectNo}"  id="projectNo" name="projectNo"/>       
+	  <input type="hidden" value="${p.category}"  id="category" name="category"/>
+	  <input type="hidden" value="${r.rewardNo}"  id="rewardNo" name="rewardNo"/>    
 	<jsp:include page="../common/customer_menuList.jsp"/>
 	
 	
@@ -296,8 +335,8 @@ function addTable() {
 	</ul>
 	</div>
 	<br><br><br> 
-		<div id="inputBox2" align="center">
-	
+		<div id="inputBox2" class="reward_SaveBtn" align="center">
+		
 	</div>
 	
 	

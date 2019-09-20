@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+		
+<bean id= "pdfReport"
+          class="org.springframework.web.servlet.view.jasperreports.JasperReportsPdfView"
+          p:url= "classpath:first-report.jrxml"
+          p:reportDataKey="datasource" />
+ 
+
+
