@@ -19,7 +19,7 @@
 <style>
 .btn {
 	width: 50%;
-	height: 40px;
+	height: 40px; 
 	font-size: 50px;
 }
 </style>
@@ -45,7 +45,7 @@
 				</tr>
 				<tr>
 					<th><label>이메일&nbsp;</label></th>
-					<td colspan="3" class="input" ><input type="email" name="email" placeholder="yourCloud@cloud.net" /></td>
+					<td colspan="3" class="input" ><input type="email" name="email" value="${ sessionScope.loginUser.email }"disabled /></td>
 				</tr>
 				<tr>
 					<th><label>비밀번호&nbsp;</label></th>
@@ -108,21 +108,6 @@
 	</div>
 	<jsp:include page="../common/customer_footer.jsp"/>
 	<script>
-	$(function(){
-
-		$("#pass2").keyup(function(){
-			var password = $("#pass1").val();
-			var password2 = $("#pass2").val();
-
-			if(password == password2){
-				console.log("같음!");
-				$("#pass2").css("border-color", "transparent")
-			}else{ 
-				console.log("틀림!");
-				$("#pass2").css("border-color", "red")
-			}
-		});
-	}); 
 		function secession(){
 			location.href="supporterList.me";	
 		};

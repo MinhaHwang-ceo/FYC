@@ -28,7 +28,7 @@
 				<br />
 				<h4>펀딩내역</h4>
 				<br /> 
-				<div class="rewards">
+				<div class="rewards"> 
 					<div class="left">
 						<p class="category"><c:out value="${ r.categoryDiv }"/></p>	
 						<p class="status smallText"><c:out value="${ r.endDate }"/> 종료</p>

@@ -116,7 +116,7 @@ public class MemberServiceImpl implements MemberService {
 
 	public List<Member> emailList() {
 
-		List<Member> list=md.emailList(sqlSession);
+		List<Member> list=md.emailList(sqlSession); 
 		
 		return list;
 	}

@@ -76,7 +76,7 @@ public class MyPageController {
 		Member mse = (Member) session.getAttribute("loginUser");
 		System.out.println(mse);
 		
-		ArrayList<Project> list = ms.interestProject(mse);
+		ArrayList<Project> list = ms.interestProject(mse); 
 		
 		return "member/interestProject";
 	}

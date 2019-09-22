@@ -121,7 +121,7 @@ public class MemberDaoImpl implements MemberDao{
 		
 		//좋아요 기능
 		@Override
-		public int naverLoginCheck(SqlSessionTemplate sqlSession, Member nm) {
+		public int naverLoginCheck(SqlSessionTemplate sqlSession, Member nm) { 
 			return sqlSession.selectOne("Naver.naverLoginCheck", nm);
 		}
 		@SuppressWarnings({ "unchecked", "rawtypes" })

@@ -39,7 +39,7 @@
 					<br />
 					<p class="projectTitle"><c:out value="${ m.projectTitle }"/></p>
 					<p class="maker"><c:out value="${ m.companyName }"/></p>
-					<p class="payStatus"><c:out value="${ m.payStatus }"/></p>
+					<p class="payStatus"><c:out value="${ m.payStatus }"/></p> 
 				</div>				
 				<div class="right">
 					<p><c:out value="${ m.fundDate }"/> 펀딩</p>	

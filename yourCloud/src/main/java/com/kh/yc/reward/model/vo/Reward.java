@@ -24,7 +24,7 @@ public class Reward {
 	private String account; // 계좌번호
 	private String category; // 카테고리 코드
 	private String categoryDiv; // 카테고리 이름
-	private Date endDate; // 종료일
+	private Date endDate; // 종료일 
 	private String projectTitle; // 프로젝트제목
 	private String companyName; // 메이커(법인명)
 	private String deliverySite; // 주소

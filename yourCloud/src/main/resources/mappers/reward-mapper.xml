@@ -94,7 +94,7 @@
 				#{description},
 				#{category}
 			   )
-	<selectKey resultType="integer" keyProperty="rewardNo" order="AFTER">
+	<selectKey resultType="integer" keyProperty="rewardNo" order="AFTER"> 
         SELECT SEQ_REWARDNO.CURRVAL FROM DUAL        
     </selectKey>
 	</insert>

@@ -34,7 +34,7 @@ public interface MemberService {
 	int naverLoginCheck(Member nm);
 
 
-	public void updatePwd(String email,String userPwd);
+	public void updatePwd(String email,String userPwd); 
 	
 	public List<Member> emailList(); 
 

@@ -36,7 +36,7 @@ public interface MemberDao {
 
 	
 
-	int CheckDuplication(SqlSessionTemplate sqlSession,String inputId);
+	int CheckDuplication(SqlSessionTemplate sqlSession,String inputId); 
 	String findId(SqlSessionTemplate sqlSession,String email);
 
 
