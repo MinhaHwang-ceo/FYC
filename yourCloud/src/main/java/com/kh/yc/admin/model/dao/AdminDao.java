@@ -52,7 +52,9 @@ public interface AdminDao {
 	//엑셀
 	int downExcel(SqlSessionTemplate sqlSession,  String projectNo);
 
-	public Object updateReward(SqlSessionTemplate sqlSession, Map map);
+	public void updateReward(SqlSessionTemplate sqlSession, Map map);
+
+	public void adjustUpdate(SqlSessionTemplate sqlSession, Project p);
 
 	
 }
