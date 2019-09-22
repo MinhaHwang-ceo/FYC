@@ -34,6 +34,7 @@ public class Reward {
 	private String options; // 옵션 조건
 	private String payStatus; // 결제정보
 	private String rewardCategory;
+	private String rewardDetail;
 
 	public Reward() {
 	}
@@ -74,7 +75,6 @@ public class Reward {
 		this.payStatus = payStatus;
 		this.rewardDetail = rewardDetail;
 		this.rewardCategory = rewardCategory;
-		this.rewardDetail = rewardDetail;
 	}
 
 	public int getRewardNo() {

@@ -150,6 +150,7 @@ public class MemberDaoImpl implements MemberDao{
 			list = (ArrayList) sqlSession.selectList("Project2.interestProject5", mse);
 			
 			return list;
+		}
 
 		@Override
 		public Member selectMemberInfo(SqlSessionTemplate sqlSession, String userNo) {
