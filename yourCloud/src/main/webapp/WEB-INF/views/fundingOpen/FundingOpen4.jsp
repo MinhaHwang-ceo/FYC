@@ -120,12 +120,58 @@ td {
 #contentImgArea1:hover {
 	cursor: pointer;
 }
+#menu li {
+	float: left;
+	font-size: 25px;
+	font-family: 'Sunflower', sans-serif;
+}
+
+#menu a {
+	display: block;
+	height: 40px;
+	line-height: 35px;
+	padding: 0 35px;
+}
+#menu {
+	border: 1px solid black;
+}
+
+
+#menu a:hover {
+	cursor: pointer;
+	background: lightgreen;
+}
+
 </style>
 </head>
 <jsp:include page="../common/customer_menubar.jsp" />
+<jsp:include page="../common/customer_menuList.jsp"/>	
 <div id="top" style="width: 100%;">
-<jsp:include page="../common/fundOpenMenu.jsp"/>
+<%-- <jsp:include page="../common/fundOpenMenu.jsp"/> --%>
+<br /><br /><br />
+<div id="menu" style="width: 55%;height: 40px; margin: 0 auto;">
+		<ul>
+			<li><a onclick="basicInfo();" id="basic">기본정보</a></li>
+			<li><a  onclick="rewardList();" id="reward">리워드</a></li>
+			<li><a id="story">스토리</a></li>
+			<li><a id="aboutyou">메이커정보</a></li>
+			<li><a id="cominhsoon">오픈예정</a></li>
+			<li><a id="account">정산</a></li>
+		</ul>
+	</div>
 </div>
+<script>
+	function basicInfo(){
+		var projectNo = $("#projectNo").val();
+		location.href = "baseInfoList.fd?projectNo=" + projectNo;
+	}
+	
+	function rewardList(){
+		var projectNo = $("#projectNo").val();
+		location.href = "rewardList.fd?projectNo=" + projectNo;
+	}
+	
+</script>
 <br />
 <br />
 <input id="pp" type="hidden" value="${p.category }" />
@@ -313,9 +359,19 @@ td {
 								제공할 리워드가 19세 이상 <br>이용가능한 제품/서비스(주류, 티켓)<br>인 경우,
 								체크해주세요.
 							</p></td>
-						<td id="fno" style="background: Lightgray;"><input
-							type="checkbox" id="adult" name="adult" value="Y" /> <label
-							for="adult"><span></span> 19세 이상 펀딩 가능한 리워드입니다.</label> <script>
+						<td id="fno" style="background: Lightgray;">
+							<c:choose>
+								<c:when test="${p.adult == 'Y'}">
+									<input type="checkbox" id="adult" name="adult" value="Y" checked="checked" />
+								</c:when>
+								<c:otherwise>
+									<input type="checkbox" id="adult" name="adult" value="N" />
+								</c:otherwise>
+							</c:choose>
+							 
+							<label
+							for="adult"><span></span> 19세 이상 펀딩 가능한 리워드입니다.</label> 
+							<script>
 								/* $("#adult").change(function() {
 								alert($(this).val());
 								

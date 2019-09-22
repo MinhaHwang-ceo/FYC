@@ -2,6 +2,7 @@ package com.kh.yc.member.model.vo;
 
 public class NaverMember implements java.io.Serializable {
 	
+	private static final long serialVersionUID = 1L;
 	private int userNo;
 	private String userId;
 	private String userPwd;

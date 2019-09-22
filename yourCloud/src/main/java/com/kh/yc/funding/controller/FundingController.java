@@ -26,6 +26,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.itextpdf.text.log.SysoCounter;
 import com.kh.yc.admin.model.vo.Project;
 import com.kh.yc.board.model.service.BoardService;
 import com.kh.yc.common.CommonUtils;
@@ -166,6 +167,7 @@ public class FundingController {
 				}
 
 				System.out.println("fileVO : " + fileVO.getAttachmentNo());
+				
 
 				p.setMainImg(String.valueOf(fileVO.getAttachmentNo()));
 
@@ -178,7 +180,7 @@ public class FundingController {
 			}
 		}
 		int result = fs.UpdateInfo(p);
-
+		System.out.println("아아아아 ================" + p);
 		model.addAttribute("p", p);
 
 		return "fundingOpen/FundingOpen4";
@@ -200,18 +202,18 @@ public class FundingController {
 		ModelAndView mv = new ModelAndView("jsonView2");
 
 		System.out.println("리워드 : " + r);
-
+		r.setProjectNo(p.getProjectNo());
 		int reward = fs.rewardInest(r);
 
 		System.out.println("idx : " + idx);
-		
+
 		System.out.println("리워드 번호 : " + r.getRewardNo());
-		
+
 		int RewardNo2 = r.getRewardNo();
-		
-		mv.addObject("RewardNo2",RewardNo2);
+
+		mv.addObject("RewardNo2", RewardNo2);
 		mv.addObject("r", r);
-		//mv.setViewName("mvReward");
+		// mv.setViewName("mvReward");
 		/*
 		 * List<Reward> list = fs.rewardSelect(r);
 		 * 
@@ -226,13 +228,13 @@ public class FundingController {
 	@RequestMapping("updateReward.fd")
 	public ModelAndView RewardUpdate(String idx, Project p, HttpServletRequest request, HttpServletResponse response,
 			@SessionAttribute("RewardNo2") int RewardNo2, Reward r) {
-		
+
 		System.out.println("잘받아 오나 확인 : " + r);
-		
+
 		ModelAndView mv = new ModelAndView("jsonView2");
-		//System.out.println("************************"+mv.getViewName());
-		//System.out.println("********************************" + mv);
-		
+		// System.out.println("************************"+mv.getViewName());
+		// System.out.println("********************************" + mv);
+
 		System.out.println("리워드업데이트 전 : " + r);
 		System.out.println("업데이트  키 : " + r.getRewardNo());
 		r.setRewardNo(RewardNo2);
@@ -241,20 +243,37 @@ public class FundingController {
 		System.out.println("idx : " + idx);
 
 		mv.addObject("r", r);
-		System.out.println("리워드업데이트 후 : " +r);
+		System.out.println("리워드업데이트 후 : " + r);
 
-		//List<Reward> list = fs.rewardSelect(r);
+		// List<Reward> list = fs.rewardSelect(r);
 
-		//System.out.println("list : " + list);
+		// System.out.println("list : " + list);
 
-		//mv.addObject("r", list);
-		
+		// mv.addObject("r", list);
+
 		return mv;
 
 	}
+	
+	@RequestMapping("deleteReward.fd")
+	public ModelAndView deleteReward(Reward r, ModelAndView mv, HttpServletRequest request, HttpServletResponse response, 
+			@SessionAttribute("RewardNo2") int RewardNo2) {
+		System.out.println(mv);
+	
+		r.setRewardNo(RewardNo2);
+		
+		System.out.println("리워드 번호 : ========================== " + r);
+		
+		int del = fs.deleteReward(r);
+		
+		mv.addObject("r", r);
+		mv.setViewName("jsonView");
+		
+		return mv;
+	}
 	 
 
-		@RequestMapping(value = "FundingOpen6.fd")
+	@RequestMapping(value = "FundingOpen6.fd")
 	public String FundingOpen6(String projectNo, Model model) {
 		model.addAttribute("projectNo", projectNo);
 
@@ -263,6 +282,7 @@ public class FundingController {
 
 	@RequestMapping(value = "FundingOpen7.fd")
 	public String FundingOpen7(Project p, Reward r, RewardInfo ri, Model model) {
+		System.out.println("실행");
 
 		fs.updateProject(p);
 
@@ -279,14 +299,15 @@ public class FundingController {
 		Attachment attach = new Attachment();
 		
 		attach = fs.selectAttach(p);
-		if(attach.getAttachmentNo() == 0) {
+		if(attach == null || attach.equals(null)) {
 				
 			String root = request.getSession().getServletContext().getRealPath("resources");
+			attach = new Attachment();
 			String filePath = root + "\\uploadfiles";
 			String originFileName = photo.getOriginalFilename();
 			String ext = originFileName.substring(originFileName.lastIndexOf("."));
 			String newFileName = CommonUtils.getRandomString();
-			System.out.println(p);
+			
 			try {
 				photo.transferTo(new File(filePath + "\\" + newFileName + ext));
 				
@@ -311,6 +332,8 @@ public class FundingController {
 				new File(filePath + "\\" + newFileName + ext).delete();
 			}
 		}
+		System.out.println(p);
+		System.out.println(attach);
 		model.addAttribute("p", p);
 		return "fundingOpen/FundingOpen8";
 	}
@@ -451,5 +474,38 @@ public class FundingController {
 
 		return "fundingOpen/signProject";
 	}
+	//기본정보 조회
+		@RequestMapping("baseInfoList.fd")
+		public String baseInfoList(Model model, HttpServletRequest request, Project p, Attachment a) {
+			
+			List<Project> list = fs.baseInfoList(p);
+			System.out.println("list : " + list);
+			List<Attachment> listAttachment = fs.baseInfoListAt(a);
+			System.out.println("사진 사진  :" + listAttachment);
+			
+			
+			model.addAttribute("p",list.get(0));
+			model.addAttribute("fileVO",listAttachment.get(0));
+			
+			
+			
+			return "fundingOpen/FundingOpen4";
+		}
+	
+	
+	  
+	 //리워드 
+	@RequestMapping("rewardList.fd")
+	public String rewardList(Model model, HttpServletRequest request, Reward r) {
+
+		List<Reward> rewardList = fs.rewardList(r);
+		System.out.println(rewardList);
+		
+		model.addAttribute("r",rewardList.get(0));
+		
+		return "fundingOpen/FundingOpen5";
+	}
+	
+
 
 }

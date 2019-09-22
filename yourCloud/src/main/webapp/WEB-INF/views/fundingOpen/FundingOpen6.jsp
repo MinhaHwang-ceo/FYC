@@ -134,6 +134,8 @@ h4 {
 		});
 	</script>
 	<jsp:include page="../common/customer_menubar.jsp" />
+	<jsp:include page="../common/customer_menuList.jsp"/>
+	
 	<div id="menu" style="width: 55%; height: 35px; margin: 0 auto;">
 		<ul>
 			<li><a id="basic">기본정보</a></li>
@@ -151,8 +153,8 @@ h4 {
 		<br>
 		<form action="FundingOpen7.fd" id="mainForm" method="POST"
 			encType="multipart/form-data">
-			<input type="hidden" id="projectNo" name="projectNo" value="${projectNo }" />
-			<input type="hidden" id="rewardNo" name="rewardNo" value="${ rewardNo }"/>	
+			<input type="text" id="projectNo" name="projectNo" value="${projectNo }" />
+			<%-- <input type="text" id="rewardNo" name="rewardNo" value="${ rewardNo }"/>--%>
 			<table style="align: center; width: 100%;">
 				<tr>
 					<td><h5>프로젝트 요약</h5>- 서포터가 제품의 장점이나<br> 특징을 잘 이해할 수 있도록<br>

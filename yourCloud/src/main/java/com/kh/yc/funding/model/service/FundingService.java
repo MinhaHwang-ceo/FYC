@@ -69,6 +69,15 @@ public interface FundingService{
 	
 	//리워드 업데이트
 	int rewardUpdate(Reward r);
+	//리워드 삭제
+	int deleteReward(Reward r);
+	
+	//기본정보 조회
+	List<Project> baseInfoList(Project p);
+	//기본정보 사진조회
+	List<Attachment> baseInfoListAt(Attachment a);
+	//리워드 조회
+	List<Reward> rewardList(Reward r);
 
 
 	
