@@ -43,6 +43,7 @@
       <result property="adjustMoney" column="ADJUST_MONEY" />
       <result property="adminNo" column="ADMIN_NO" />
       <result property="companyName" column="COMPANY_NAME" />
+      <result property="ssn" column="SSN" />
       
    </resultMap>
    

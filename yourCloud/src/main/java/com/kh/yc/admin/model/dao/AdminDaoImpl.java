@@ -1,6 +1,7 @@
 package com.kh.yc.admin.model.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -100,6 +101,14 @@ public class AdminDaoImpl implements AdminDao{
 			public int downExcel(SqlSessionTemplate sqlSession, String projectNo) {
 				
 				return sqlSession.selectOne("Reward.downExcel", projectNo);
+			}
+			
+			
+			//리워드업데이트
+			@Override
+			public Object updateReward(SqlSessionTemplate sqlSession, Map map) {
+				
+				return sqlSession.selectOne("ExcelReward.updateExcel", map);
 			}
 			
 		

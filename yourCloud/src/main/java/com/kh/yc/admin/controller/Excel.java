@@ -56,9 +56,9 @@ public static Excel getInstance(){
    System.out.println("conn????????????????????????/" + conn);
 //미리 만들어 놓은 db connection
    if(query == null || query == "" || query.equals("")){
-    sql = "SELECT " + col2 + query + projectNo + ")";
+    sql = "SELECT DISTINCT " + col2 + query + projectNo + ")  ORDER BY  FUND_NO ASC ";
    }else{
-    sql = "SELECT " + col2 + query  + projectNo + ")";
+    sql = "SELECT DISTINCT " + col2 + query + projectNo + ")  ORDER BY  FUND_NO ASC ";
    }
    
    System.out.println("sql ==============" + sql);

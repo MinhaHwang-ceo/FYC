@@ -2,6 +2,7 @@ package com.kh.yc.admin.model.dao;
 
 import java.sql.Statement;
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 
@@ -50,6 +51,8 @@ public interface AdminDao {
 	
 	//엑셀
 	int downExcel(SqlSessionTemplate sqlSession,  String projectNo);
+
+	public Object updateReward(SqlSessionTemplate sqlSession, Map map);
 
 	
 }

@@ -1,6 +1,7 @@
 package com.kh.yc.admin.model.service;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -105,6 +106,10 @@ public class AdminServiceImpl implements AdminService {
 	public int downExcel(String projectNo) {
 		int downExcel = ad.downExcel(sqlSession, projectNo);
 		return downExcel;
+	}
+
+	public void updateReward(Map map) {
+		ad.updateReward(sqlSession, map);
 	}
 
 }                                       
