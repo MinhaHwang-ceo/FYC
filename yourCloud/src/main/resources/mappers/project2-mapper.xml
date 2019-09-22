@@ -84,7 +84,7 @@
 	</resultMap>
 	<resultMap type="com.kh.yc.project.model.vo.OpenAlarm"
 		id="OpenAlarmList">
-		<id property="memberNo" column="MEMBER_NO" />
+		<id property="userNo" column="MEMBER_NO" />
 		<result property="memberPhone" column="MEMBER_PHONE" />
 		<result property="projectOpen" column="PROJECT_OPEN" />
 		<result property="projectNo" column="PROJECT_NO" />
@@ -419,13 +419,13 @@
 	<insert id="insertLike">
 		INSERT INTO INTEREST(PROJECT_NO, MEMBER_NO)
 		VALUES
-		(#{projectNo} , #{memberNo} )
+		(#{projectNo} , #{userNo} )
 	</insert>
 
 	<delete id="deleteLike">
 		DELETE FROM INTEREST
 		WHERE PROJECT_NO = #{projectNo}
-		AND MEMBER_NO = #{memberNo}
+		AND MEMBER_NO = #{userNo}
 	</delete>
 
 	<select id="likeCount" resultType="int">

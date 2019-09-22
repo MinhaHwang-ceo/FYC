@@ -197,6 +197,21 @@ public class AdminController {
 
 		return "redirect:/project1.ad";
 	}
+	
+	
+	// 정산현황
+		@RequestMapping(value = "adjustUpdate.ad")
+		public String adjustUpdate(Project p, Model model) {
+
+			System.out.println(p.getProjectNo() + "projectNo");
+			System.out.println(p.getJudgeStatus() + "option");
+
+			AdminService.adjustUpdate(p);
+
+			return "redirect:/adjustStatus.ad";
+		}
+	
+	
 
 	// 정산 프로젝트 리스트
 	@RequestMapping(value = "adjustProjectList.ad", method = RequestMethod.GET)
@@ -213,9 +228,11 @@ public class AdminController {
 
 	// 정산 프로젝트 정보 호출
 	@RequestMapping(value = "adjustProjectStatus.ad", method = RequestMethod.GET)
-	public String admin15(Locale locale, Model model) {
-
-		return "admin/adjust";
+	public String admin15(String projectNo, Model model) {
+		
+		model.addAttribute("rpt", AdminService.viewProject(projectNo));
+		
+		return "admin/adjustStatus";
 	}
 
 	// 홍보메일
@@ -262,19 +279,18 @@ public class AdminController {
 	        List arr = new ArrayList();
 			
 	        for(int i=0; i<insertParam.size(); i++){
-				map.put(i,((JSONObject) insertParam.get(i)));
+	        	arr.add(i,((JSONObject) insertParam.get(i)));
 			
 	        }
 			
-			
-			
-			
+	        
+	        
+	        
 			
 		
 	        //map = (Map<Stringd,String>) gson.fromJson(gson.toJson(insertParam), map.getClass());
 	   
-	        System.out.println(map);
-	        ap.updateReward(map);
+	        System.out.println(arr);
 			return mav;
 	        
 	        
