@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import org.mybatis.spring.SqlSessionTemplate;
 
 import com.kh.yc.project.model.vo.Project;
+import com.kh.yc.reward.model.vo.Reward;
 import com.kh.yc.board.model.vo.Board;
 import com.kh.yc.board.model.vo.Comment;
 import com.kh.yc.board.model.vo.PageInfo;
@@ -49,6 +50,12 @@ public interface BoardDao {
 	ArrayList<Project> getProject(SqlSessionTemplate sqlSession);
 
 	Project selectDetailProject(SqlSessionTemplate sqlSession, int projectNoInt);
+
+	Project selectProject(SqlSessionTemplate sqlSession, int pNo);
+
+	ArrayList<Reward> selectRewardList(SqlSessionTemplate sqlSession, int pNo);
+
+
 	
 
 

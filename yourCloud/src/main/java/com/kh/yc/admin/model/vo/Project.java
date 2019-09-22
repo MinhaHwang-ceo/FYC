@@ -15,7 +15,7 @@ public class Project implements java.io.Serializable {
 	private String reason; // 사유
 	private int adminNo; // 담당자 번호 스퀀스
 	private String summary; // 프로젝트 요약
-	private String prifileImg; // 프로필 이미지
+	private String profileImg; // 프로필 이미지
 	private String social; // 소셜 네트워크
 	private String site; // 웹사이트 주소
 	private String email; // 문의 이메일
@@ -45,17 +45,18 @@ public class Project implements java.io.Serializable {
 	private String story;
 	private List<Attachment> attachment;
 	private String rules;
+	private int ssn;
 
 	public Project() {
 	}
 
 	public Project(int projectNo, String category, String success, String judgeStatus, String progressStatus,
-			int agreement, String reason, int adminNo, String summary, String prifileImg, String social, String site,
+			int agreement, String reason, int adminNo, String summary, String profileImg, String social, String site,
 			String email, String phone, String fees, String makerDiv, String agentName, String agentEmail,
 			String projectTitle, String projectShortTitle, int money, String mainImg, String document, String progress,
 			String delivery, Date endDate, String adult, int userNo, int reportCount, int payNo, int adjustNo,
 			Date adjustDate, int adjustMoney, String companyName, String adjustStatus, String categoryDiv, String story,
-			List<Attachment> attachment, String rules) {
+			List<Attachment> attachment, String rules, int ssn) {
 		this.projectNo = projectNo;
 		this.category = category;
 		this.success = success;
@@ -65,7 +66,7 @@ public class Project implements java.io.Serializable {
 		this.reason = reason;
 		this.adminNo = adminNo;
 		this.summary = summary;
-		this.prifileImg = prifileImg;
+		this.profileImg = profileImg;
 		this.social = social;
 		this.site = site;
 		this.email = email;
@@ -95,6 +96,7 @@ public class Project implements java.io.Serializable {
 		this.story = story;
 		this.attachment = attachment;
 		this.rules = rules;
+		this.ssn = ssn;
 	}
 
 	public int getProjectNo() {
@@ -169,12 +171,12 @@ public class Project implements java.io.Serializable {
 		this.summary = summary;
 	}
 
-	public String getPrifileImg() {
-		return prifileImg;
+	public String getProfileImg() {
+		return profileImg;
 	}
 
-	public void setPrifileImg(String prifileImg) {
-		this.prifileImg = prifileImg;
+	public void setProfileImg(String profileImg) {
+		this.profileImg = profileImg;
 	}
 
 	public String getSocial() {
@@ -409,11 +411,19 @@ public class Project implements java.io.Serializable {
 		this.rules = rules;
 	}
 
+	public int getSsn() {
+		return ssn;
+	}
+
+	public void setSsn(int ssn) {
+		this.ssn = ssn;
+	}
+
 	@Override
 	public String toString() {
 		return "Project [projectNo=" + projectNo + ", category=" + category + ", success=" + success + ", judgeStatus="
 				+ judgeStatus + ", progressStatus=" + progressStatus + ", agreement=" + agreement + ", reason=" + reason
-				+ ", adminNo=" + adminNo + ", summary=" + summary + ", prifileImg=" + prifileImg + ", social=" + social
+				+ ", adminNo=" + adminNo + ", summary=" + summary + ", profileImg=" + profileImg + ", social=" + social
 				+ ", site=" + site + ", email=" + email + ", phone=" + phone + ", fees=" + fees + ", makerDiv="
 				+ makerDiv + ", agentName=" + agentName + ", agentEmail=" + agentEmail + ", projectTitle="
 				+ projectTitle + ", projectShortTitle=" + projectShortTitle + ", money=" + money + ", mainImg="
@@ -421,7 +431,8 @@ public class Project implements java.io.Serializable {
 				+ ", endDate=" + endDate + ", adult=" + adult + ", userNo=" + userNo + ", reportCount=" + reportCount
 				+ ", payNo=" + payNo + ", adjustNo=" + adjustNo + ", adjustDate=" + adjustDate + ", adjustMoney="
 				+ adjustMoney + ", companyName=" + companyName + ", adjustStatus=" + adjustStatus + ", categoryDiv="
-				+ categoryDiv + ", story=" + story + ", attachment=" + attachment + ", rules=" + rules + "]";
+				+ categoryDiv + ", story=" + story + ", attachment=" + attachment + ", rules=" + rules + ", ssn=" + ssn
+				+ "]";
 	}
 
 }

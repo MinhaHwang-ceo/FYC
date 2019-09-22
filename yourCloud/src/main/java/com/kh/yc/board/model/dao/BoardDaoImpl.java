@@ -11,6 +11,7 @@ import com.kh.yc.board.model.vo.Comment;
 import com.kh.yc.board.model.vo.PageInfo;
 import com.kh.yc.board.model.vo.SearchCondition;
 import com.kh.yc.project.model.vo.Project;
+import com.kh.yc.reward.model.vo.Reward;
 
 @Repository
 public class BoardDaoImpl implements BoardDao {
@@ -158,6 +159,18 @@ public class BoardDaoImpl implements BoardDao {
 	public Project selectDetailProject(SqlSessionTemplate sqlSession, int projectNoInt) {
 		
 		return sqlSession.selectOne("Project2.selectDetailProject", projectNoInt);
+	}
+
+	@Override
+	public Project selectProject(SqlSessionTemplate sqlSession, int pNo) {
+		return sqlSession.selectOne("Project2.selectProject", pNo);
+	}
+
+	@Override
+	public ArrayList<Reward> selectRewardList(SqlSessionTemplate sqlSession, int pNo) {
+		ArrayList<Reward> r = null;
+		r = (ArrayList)sqlSession.selectList("Reward.selectRewardList", pNo);
+		return r;
 	}
 
 

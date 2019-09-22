@@ -28,11 +28,14 @@ import com.kh.yc.board.model.vo.PageInfo;
 import com.kh.yc.board.model.vo.SearchCondition;
 import com.kh.yc.common.CommonUtils;
 import com.kh.yc.common.Pagination;
+import com.kh.yc.funding.model.vo.Funding;
+import com.kh.yc.member.model.service.MemberService;
 import com.kh.yc.member.model.vo.Member;
 import com.kh.yc.project.model.exception.ProjectSelectListException;
 import com.kh.yc.project.model.service.ProjectService;
 import com.kh.yc.project.model.vo.OpenAlarm;
 import com.kh.yc.project.model.vo.Project;
+import com.kh.yc.reward.model.vo.Reward;
 
 @Controller
 public class BoardController {
@@ -43,7 +46,8 @@ public class BoardController {
 	SearchCondition sc;
 	@Autowired
 	ProjectService ps;
-
+	@Autowired
+	MemberService ms;
 		@RequestMapping(value = "openExpectation.bo", method = RequestMethod.GET)
 	public String openExpectation(HttpServletRequest request, HttpServletResponse response) {
 		int currentPage = 1;
@@ -91,18 +95,52 @@ public class BoardController {
 	}
 
 	@RequestMapping(value = "funding_1.bo", method = RequestMethod.GET)
-	public String fundingRequest1(Model model) {
-
+	public String fundingRequest1(String projectNo, String userNo, Model model) {
+		int pNo = Integer.parseInt(projectNo);
+		Project p = bs.selectProject(pNo);
+		
+		Member m = ms.selectMember(userNo);
+		ArrayList<Reward> r = bs.selectRewardList(pNo);
+		
+		String makerNo = p.getUserNo()+"";
+		
+		Member maker = ms.selectMember(makerNo);
+		
+		System.out.println(maker);
+		model.addAttribute("maker", maker);
+		model.addAttribute("p", p);
+		model.addAttribute("m", m);
+		model.addAttribute("r", r);
 		return "board/funding/funding_1";
 	}
-
-	@RequestMapping(value = "funding_2.bo", method = RequestMethod.GET)
+	@RequestMapping("reqFund.bo")
+	public ModelAndView reqFund(String projectNo, String userNo, String target, String targetCnt, ModelAndView mv) {
+		System.out.println("projectNo" + projectNo + "userNo" + userNo + "target" + target + "targetCnt" + targetCnt);
+		
+		String[] rewardNo1 = target.split("$");
+		
+		String[] rewardNumber1 = targetCnt.split("$");
+		
+		String[] rewardNo2 = new String[rewardNo1.length];
+		
+		String[] rewardNumber2 = new String[rewardNumber1.length];
+		
+		for(int i = 0; i < rewardNo1.length; i++) {
+			rewardNo2[i] = rewardNo1[i].replace("$", "");
+			rewardNumber1[i] = rewardNumber2[i].replace("$", "");
+			System.out.println(rewardNo2[i]);
+		}
+		
+		mv.setViewName("jsonView");
+		return mv;
+	}
+	@RequestMapping(value = "funding_2.bo")
 	public String fundingRequest2(Model model) {
-
+		
 		return "board/funding/funding_2";
 	}
 
-	@RequestMapping(value = "funding_3.bo", method = RequestMethod.GET)
+	@RequestMapping(value = "funding_3.bo")
 	public String fundingRequest3(Model model) {
 
 		return "board/funding/funding_3";
