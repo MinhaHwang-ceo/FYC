@@ -132,6 +132,12 @@ public class MemberServiceImpl implements MemberService {
 		return md.selectMyRewardDetail(sqlSession, rewardNoInt);
 	}
 
+	@Override
+	public Member selectMember(String userNo) {
+		// TODO Auto-generated method stub
+		return md.selectMemberInfo(sqlSession, userNo);
+	}
+
 
 
 

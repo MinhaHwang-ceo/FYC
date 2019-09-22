@@ -35,6 +35,7 @@ public class Reward {
 	private String payStatus; // 결제정보
 	private String rewardDetail; // 상세설명
 	private String rewardCategory;
+	private String rewardDetail;
 
 	public Reward() {
 	}
@@ -43,9 +44,10 @@ public class Reward {
 			String deliveryRequest, int limitCount, String projectShortTitle, String memberName, int money, int userNo,
 			Date fundDate, int fundNo, int projectNo, int fundMoney, String account, String category,
 			String categoryDiv, Date endDate, String projectTitle, String companyName, String deliverySite,
-			int deliveryMoney, Date startDate, String options, String payStatus, String rewardDetail,
-			String rewardCategory) {
+      int deliveryMoney, Date startDate, String options, String payStatus, String description,
+			String rewardCategory, String rewardDetail) {
 		super();
+
 		this.rewardNo = rewardNo;
 		this.rewardMoney = rewardMoney;
 		this.sortNo = sortNo;
@@ -74,6 +76,7 @@ public class Reward {
 		this.payStatus = payStatus;
 		this.rewardDetail = rewardDetail;
 		this.rewardCategory = rewardCategory;
+		this.rewardDetail = rewardDetail;
 	}
 
 	public int getRewardNo() {
@@ -300,6 +303,14 @@ public class Reward {
 		this.rewardCategory = rewardCategory;
 	}
 
+	public String getRewardDetail() {
+		return rewardDetail;
+	}
+
+	public void setRewardDetail(String rewardDetail) {
+		this.rewardDetail = rewardDetail;
+	}
+
 	@Override
 	public String toString() {
 		return "Reward [rewardNo=" + rewardNo + ", rewardMoney=" + rewardMoney + ", sortNo=" + sortNo + ", rewardName="
@@ -309,8 +320,8 @@ public class Reward {
 				+ projectNo + ", fundMoney=" + fundMoney + ", account=" + account + ", category=" + category
 				+ ", categoryDiv=" + categoryDiv + ", endDate=" + endDate + ", projectTitle=" + projectTitle
 				+ ", companyName=" + companyName + ", deliverySite=" + deliverySite + ", deliveryMoney=" + deliveryMoney
-				+ ", startDate=" + startDate + ", options=" + options + ", payStatus=" + payStatus + ", rewardDetail="
-				+ rewardDetail + ", rewardCategory=" + rewardCategory + "]";
+				+ ", startDate=" + startDate + ", options=" + options + ", payStatus=" + payStatus + ", description="
+				+ description + ", rewardCategory=" + rewardCategory + ", rewardDetail=" + rewardDetail + "]";
 	}
 
 }

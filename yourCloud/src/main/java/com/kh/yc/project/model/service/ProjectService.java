@@ -53,6 +53,8 @@ public interface ProjectService {
 	//신고하기 기능
 	public int insertReport(Report report);
 	//신고 여부
-	public int reportCount(Interest inter);;
+	public int reportCount(Interest inter);
+	//카제고리 분류
+	ArrayList<Project> sortProjectList(PageInfo pi, String category);;
 
 }

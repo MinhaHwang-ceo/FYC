@@ -17,7 +17,7 @@
       <result property="reason" column="REASON" />
       <result property="adminNo" column="ADMIN_NO" />
       <result property="summary" column="SUMMARY" />
-      <result property="prifileImg" column="PROFILE_IMG" />
+      <result property="profileImg" column="PROFILE_IMG" />
       <result property="social" column="SOCIAL" />
       <result property="site" column="SITE" />
       <result property="email" column="EMAIL" />
@@ -68,7 +68,7 @@
       <result property="reason" column="REASON" />
       <result property="adminNo" column="ADMIN_NO" />
       <result property="summary" column="SUMMARY" />
-      <result property="prifileImg" column="PROFILE_IMG" />
+      <result property="profileImg" column="PROFILE_IMG" />
       <result property="social" column="SOCIAL" />
       <result property="site" column="SITE" />
       <result property="email" column="EMAIL" />

@@ -213,6 +213,7 @@ public class FundingController {
 
 		mv.addObject("RewardNo2", RewardNo2);
 		mv.addObject("r", r);
+
 		// mv.setViewName("mvReward");
 		/*
 		 * List<Reward> list = fs.rewardSelect(r);
@@ -221,6 +222,7 @@ public class FundingController {
 		 * 
 		 * mv.addObject("r",list );
 		 */
+
 		return mv;
 	}
 	
@@ -237,10 +239,9 @@ public class FundingController {
 
 		System.out.println("리워드업데이트 전 : " + r);
 		System.out.println("업데이트  키 : " + r.getRewardNo());
+
 		r.setRewardNo(RewardNo2);
 		int rewardUP = fs.rewardUpdate(r);
-		System.out.println(rewardUP);
-		System.out.println("idx : " + idx);
 
 		mv.addObject("r", r);
 		System.out.println("리워드업데이트 후 : " + r);
@@ -322,7 +323,7 @@ public class FundingController {
 				int result = fs.insertProfileImg(attach);
 				if(result > 0) {
 					attach = fs.selectAttach(p);
-					p.setPrifileImg(attach.getAttachmentNo()+"");
+					p.setProfileImg(attach.getAttachmentNo()+"");
 					fs.updateProject(p);
 				} else {
 					throw new Exception();

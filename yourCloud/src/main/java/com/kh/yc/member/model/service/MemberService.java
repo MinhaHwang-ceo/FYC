@@ -40,6 +40,8 @@ public interface MemberService {
 	ArrayList<Reward> selectMyReward(PageInfo pi, Member mse);
 
 	Reward selectMyRewardDetail(int rewardNoInt);
+
+	Member selectMember(String userNo);
 	
 
 	

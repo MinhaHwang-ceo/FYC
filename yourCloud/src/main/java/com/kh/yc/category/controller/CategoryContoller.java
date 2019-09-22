@@ -1,12 +1,10 @@
 package com.kh.yc.category.controller;
 
 import java.util.ArrayList;
-import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,15 +12,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.yc.category.model.service.CategoryService;
 import com.kh.yc.category.model.vo.Report;
-import com.kh.yc.member.model.vo.Member;
-
-import org.springframework.web.bind.annotation.RequestParam;
-
 import com.kh.yc.project.model.service.ProjectService;
 import com.kh.yc.project.model.vo.Interest;
 import com.kh.yc.project.model.vo.Project;
@@ -38,7 +31,6 @@ public class CategoryContoller {
 	@RequestMapping(value = "/categoryOne.ca", method = RequestMethod.GET)
 	public String categoryOne(@RequestParam int projectNo,HttpServletRequest request, HttpServletResponse response) {
 		
-
 		//글의 상세 조회를 위한 서비스를 호출. 글 상세정보는 한 줄만 가져오면 되기때문에 map 형식
 		Project detail = ps.detailProject(projectNo);
 		//System.out.println(detail);
@@ -63,7 +55,7 @@ public class CategoryContoller {
 		//System.out.println("컨트롤러에서 신고수 카운트 ?"+reportCount);
 		
 		request.setAttribute("reportCount", reportCount);
-		
+		request.setAttribute("projectNo", projectNo);
 		return "main/categoryOne";
 
 	}

@@ -223,6 +223,10 @@ function addTable() {
 	//alert(idx);
 }
 
+</script>
+
+<script>
+	
 	var dataArr = {};
 	
  	function nextProject(){

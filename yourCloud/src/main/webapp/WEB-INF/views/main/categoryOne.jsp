@@ -404,8 +404,8 @@ a {
 			</div>
 		</div>
 		</div>
+	<input type="hidden" value="${ projectNo }" />
 		
-
 		<!-- 오른쪽 영역 -->
 		<div class="opener-info" style="text-align:center;">
 			<div class=state-box>
@@ -428,9 +428,19 @@ a {
 				</p>
 			</div>
 			<div class="">
-				<a href="${ contextPath }/funding_1.bo"><button onclick="backMoney" class="btn-funding">펀딩하기</button></a>
+				<button type="button" onclick="goFunding();" class="btn-funding">펀딩하기</button>
 			</div>
 			<br />
+			<script>
+				function goFunding(){
+					var userNo = '${ sessionScope.loginUser.userNo}';
+					if(userNo == 0){
+						alert("로그인이 필요한 기능입니다.");
+					} else {
+						location.href="funding_1.bo?projectNo="+'${projectNo}'+"&userNo="+'${sessionScope.loginUser.userNo}';
+					}
+				}
+			</script>
 			<div class=btn-wrap>
 				<div class="btn-wrap-flex">
 				
@@ -443,7 +453,6 @@ a {
 			 			<img src="/yc/resources/images/empty_heart.png" style="width: 40px; height: auto;" id="heart">
 			 		</button>	
  				</c:if>>
- 							
  				<c:if test= "${ !empty sessionScope.loginUser }">
  					<c:if test="${likeCount == 0 }">
 						<button class="btn-like" id="like">

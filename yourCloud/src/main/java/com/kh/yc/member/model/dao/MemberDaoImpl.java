@@ -140,6 +140,11 @@ public class MemberDaoImpl implements MemberDao{
 			
 			return sqlSession.selectOne("Reward.selectMyRewardDetail", rewardNoInt);
 		}
+		@Override
+		public Member selectMemberInfo(SqlSessionTemplate sqlSession, String userNo) {
+			// TODO Auto-generated method stub
+			return sqlSession.selectOne("Member.selectMemberInfo", userNo);
+		}
 
 	
 	}
