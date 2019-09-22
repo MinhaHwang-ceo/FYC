@@ -21,6 +21,8 @@
 <link
 	href="https://fonts.googleapis.com/css?family=Gothic+A1&display=swap"
 	rel="stylesheet">
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <title>니가그린구름그림</title>
 <style>
 .outer {
@@ -31,9 +33,8 @@
 
 #top {
 	font-family: 'Gothic A1', sans-serif;
-	background: #EAEAEA;
-	color: #6C6C6C;
-	height: 100px;
+	background: brown;
+	height: 80px;
 	font-size: xx-large;
 	text-align: center;
 	padding-top: 20px;
@@ -43,7 +44,7 @@
 	color: #2478FF;
 }
 
-#div1 {
+.div1 {
 	background: #EAEAEA;
 	width: 50%;
 	margin: 0 auto;
@@ -75,8 +76,9 @@
 	font-size: 14px;
 	text-align: center;
 }
-.rewardInfo{
-	width: 800px;
+
+#goBack:hover {
+	pointer: cursor;
 }
 </style>
 </head>
@@ -84,7 +86,14 @@
 	<jsp:include page="../../common/customer_menubar.jsp" /><br>
 	<br>
 	<jsp:include page="../../common/customer_menuList.jsp" /><br>
-	<div id="top">프로젝트 이름입니다</div>
+	<div id="top" style="color: white;">
+		<input type="button" id="goBack"
+			style="background: brown; color: white; border: none; float: left; font-size: x-large;"
+			value="< 뒤로가기 "> <label id="projectTitle" name="projectTitle"><c:out
+				value="${ p.projectTitle }" /></label> <label style="font-size: 20px;">&nbsp;by&nbsp;
+		</label> <label style="font-size: x-large;"><c:out
+				value="${ maker.companyName }" /></label>
+	</div>
 	<br>
 
 	<div class="outer">
@@ -110,67 +119,150 @@
 
 		<br>
 
-		<div id="div1">
-			<br>
-			<table class="rewardInfo" align="center" style="text-align:left;">
-				<tr>
-					<td rowspan="4"><input type="checkbox"></td>
-					<td>100,000원 펀딩합니다</td>
-				</tr>
-
-				<tr>
-					<td>[슈퍼얼리버드]상품명</td>
-				</tr>
-
-				<tr>
-					<td>상세설명</td>
-				</tr>
-
-				<tr>
-					<td>배송비 : 3000원 | 리워드 발송 예상일 : 2019년 초(1~10)일 예정</td>
-				</tr>
-			</table>
-		</div>
+		<c:forEach var="r" items="${ r }">
+			<div class="div1" style="padding-left: 50px;">
+				<table class="rewardInfo" style="width: 100%; text-align: left;">
+					<tr style="border-top: 1px solid lightgray;">
+						<td rowspan="6" style="width: 100px;"><input type="checkbox" class="check"><input type="hidden" class="rewardNo" name="rewardNo" value="${ r.rewardNo }" /></td>
+						<td><label><fmt:formatNumber value="${ r.rewardMoney }" /></label>원 펀딩합니다</td>
+					</tr>
+					<tr>
+						<td><h3>
+								<c:out value="${r.rewardName }" />
+							</h3>
+						</td>
+					</tr>
+					<tr>
+						<td><c:out value="${r.rewardDetail }" /></td>
+					</tr>
+					<tr>
+						<td>배송비 : <label class="deliveryMoney"><c:out value="${ r.deliveryMoney }" /></label>&nbsp;&nbsp;&nbsp;&nbsp;
+							<c:out value="발송 예정일 : ${ r.startDate }" /></td>
+					</tr>
+					<tr class="hidden">
+						<td>수량</td>
+					</tr>
+					<tr class="hidden">
+						<td><input type='number' class="rewardNumber" name='rewardNumber' /></td>
+					</tr>
+					<tr>
+						<td>&nbsp;</td>
+					</tr>
+				</table>
+			</div>
+		</c:forEach>
 
 		<br> <br>
 
 		<div>
-			<form>
-				<table align="center" style="border: 1px solid red">
-					<tr>
-						<td rowspan="4"><b>공개여부(선택)</b></td>
-						<td colspan="2" style="text-align:left;">&emsp;서포터 목록에 서포터 이름과 펀딩 금액이 공개됩니다. 조용히 펀딩하고 싶으시다면, 비공개로
-							선택해주세요.</td>
-					</tr>
+			<table align="center" style="border: 1px solid red">
+				<tr>
+					<td rowspan="4"><b>공개여부(선택)</b></td>
+					<td colspan="2" style="text-align: left;">&emsp;서포터 목록에 서포터
+						이름과 펀딩 금액이 공개됩니다. 조용히 펀딩하고 싶으시다면, 비공개로 선택해주세요.</td>
+				</tr>
 
-					<tr>
-						<td colspan="2" style="text-align:left;">&emsp;커뮤니티, 새소식 댓글 작성 시에는 비공개 여부와 상관없이 펀딩 참여자 표시가 노출됩니다.</td>
-					</tr>
+				<tr>
+					<td colspan="2" style="text-align: left;">&emsp;커뮤니티, 새소식 댓글
+						작성 시에는 비공개 여부와 상관없이 펀딩 참여자 표시가 노출됩니다.</td>
+				</tr>
 
-					<tr>
-						<td>
-							<input type="checkbox" value="">이름 비공개
-						</td>
-						<td>
-							<input type="checkbox" value="">펀딩금액 비공개
-						</td>
-					</tr>
+				<tr>
+					<td><input type="checkbox" id="name" name="blind" value="name"><label for="name">이름 비공개</label></td>
+					<td><input type="checkbox" id="money" name="blind" value="money"><label for="blind">펀딩금액 비공개</label></td>
+				</tr>
 
-					<tr>
-						<td colspan="2"><img alt="" src="/yc/resources/images/funding_1_1.PNG" class="img2"></td>
-					</tr>
-				</table>
-			</form>
+				<tr>
+					<td colspan="2"><img alt=""
+						src="/yc/resources/images/funding_1_1.PNG" class="img2"></td>
+				</tr>
+			</table>
 		</div>
 		<br> <br>
+		
 		<div class="div2">
-			<h6>(프로젝트명)에 100,000을 펀딩합니다</h6>
-			<br> <br> <input type="button" onclick="location.href='${contextPath}/funding_2.bo'" value="다음 단계로  >" class="btn btn-info" id="btn1">
+			<h6>
+				<label name="projectTitle"></label><c:out value="${ p.projectTitle }" /> 에 <label id="price" name="price"></label> 원을 펀딩합니다
+			</h6>
+			<br> <br> 
+				<input type="button" value="다음 단계로  >" class="btn btn-info" id="btn1">
 		</div>
 		<br>
 	</div>
 	<br>
 	<br>
 	<jsp:include page="../../common/customer_footer.jsp" />
+
+	<script>
+	
+		$(".rewardNumber").keyup(function(){
+			var cnt = $(this).val();
+			var price = $(this).parent();
+		});
+		
+		$("#goBack").click(function() {
+			if (confirm("뒤로 가시겠습니까? 내용은 저장되지 않습니다.")) {
+				history.go(-1);
+			}
+		});
+		$("#projectTitle").click(
+				function() {
+					var projectNo = '${p.projectNo}';
+					var userNo = '${ sessionScope.loginUser.userNo}';
+					location.href = "categoryOne.ca?projectNo=" + projectNo + "&userNo=" + userNo;
+				});
+		$("#projectTitle").mouseover(function() {
+			$(this).css("cursor", "pointer");
+		});
+		$(".div1").mouseover(function(){
+			$(this).css({"cursor":"pointer","background":"#1DE9B6"});
+		}).mouseout(function(){
+			$(this).css("background","#EAEAEA");
+		});
+		$(function(){
+			$(".div1").click(function(){
+				var table = $(this).children().eq(0);
+				
+				var target = table.children().eq(0).children().eq(0).children().eq(0).children().eq(0);
+				var target1 = table.children().eq(0).children().eq(4);
+				var target2 = table.children().eq(0).children().eq(5);
+				
+				var a = $(table).children().eq(0);
+				
+				if(target.prop("checked", function(){
+					return !$(this).prop('checked');
+				}));
+			});
+
+		});
+		
+		$("#btn1").click(function(){
+			var target ="";
+			var targetCnt = "";
+			var projectNo = '${p.projectNo}';
+			var userNo = '${ m.userNo}';
+			
+			$(".check:checked").each(function(){
+				target +=  $(this).siblings().eq(0).val();
+				target += "$";
+				
+				targetCnt = $(this).parent().parent().siblings().eq(4).children().eq(0).children().eq(0).val();
+				targetCnt += "$";
+			});
+			
+			$.ajax({
+				url: "reqFund.bo",
+				type: "POST",
+				data:{"projectNo":projectNo, "userNo":userNo, "target":target, "targetCnt":targetCnt},
+				success:function(data){
+					console.log("gd");
+				}
+			});
+			
+		});
+		
+		
+	</script>
+
 </body>
 </html>

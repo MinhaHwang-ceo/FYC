@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.kh.yc.project.model.vo.Project;
+import com.kh.yc.reward.model.vo.Reward;
 import com.kh.yc.board.model.dao.BoardDao;
 import com.kh.yc.board.model.vo.Board;
 import com.kh.yc.board.model.vo.Comment;
@@ -100,6 +101,14 @@ public class BoardServiceImpl implements BoardService {
 	public Project selectDetailProject(int projectNoInt) {
 
 		return bd.selectDetailProject(sqlSession, projectNoInt);
+	}
+	@Override
+	public Project selectProject(int pNo) {
+		return bd.selectProject(sqlSession, pNo);
+	}
+	@Override
+	public ArrayList<Reward> selectRewardList(int pNo) {
+		return bd.selectRewardList(sqlSession, pNo);
 	}
 
 }

@@ -15,7 +15,7 @@
 		<result property="reason" column="REASON" />
 		<result property="adminNo" column="ADMIN_NO" />
 		<result property="summary" column="SUMMARY" />
-		<result property="prifileImg" column="PROFILE_IMG" />
+		<result property="profileImg" column="PROFILE_IMG" />
 		<result property="social" column="SOCIAL" />
 		<result property="site" column="SITE" />
 		<result property="email" column="EMAIL" />
@@ -53,7 +53,7 @@
 		<result property="reason" column="REASON" />
 		<result property="adminNo" column="ADMIN_NO" />
 		<result property="summary" column="SUMMARY" />
-		<result property="prifileImg" column="PROFILE_IMG" />
+		<result property="profileImg" column="PROFILE_IMG" />
 		<result property="social" column="SOCIAL" />
 		<result property="site" column="SITE" />
 		<result property="email" column="EMAIL" />
@@ -116,6 +116,7 @@
 		<result property="fundMoney" column="FUND_MONEY" />
 		<result property="rewardNo" column="REWARD_NO" />
 		<result property="rewardCount" column="REWARD_NUMBER" />
+		<result property="blind" column="BLIND"/>
 	</resultMap>
 	<resultMap type="Payment" id="PaymentList">
 		<id property="payNo" column="PAY_NO" />
@@ -533,8 +534,8 @@
 			<if test="summary != null">
 				SUMMARY = #{summary},
 			</if>
-			<if test="prifileImg != null">
-				PROFILE_IMG = #{prifileImg},
+			<if test="profileImg != null">
+				PROFILE_IMG = #{profileImg},
 			</if>
 			<if test="progressStatus != null">
 				PROGRESS_STATUS = #{progressStatus},
@@ -642,5 +643,13 @@
 		<update id="updateDb" parameterType="java.util.Map">
 update  delivery set status=#{VALUECOL};
 	</update>
+	<select id="selectProject" resultMap="ProjectList">
+		SELECT
+			*
+		FROM
+			PROJECT
+		WHERE
+			PROJECT_NO = #{pNo}
+	</select>
 </mapper>
 

@@ -35,6 +35,7 @@ public class Reward {
 	private String payStatus; // 결제정보
 	private String description;
 	private String rewardCategory;
+	private String rewardDetail;
 
 	public Reward() {
 	}
@@ -44,7 +45,7 @@ public class Reward {
 			Date fundDate, int fundNo, int projectNo, int fundMoney, String account, String category,
 			String categoryDiv, Date endDate, String projectTitle, String companyName, String deliverySite,
 			int deliveryMoney, Date startDate, String options, String payStatus, String description,
-			String rewardCategory) {
+			String rewardCategory, String rewardDetail) {
 		this.rewardNo = rewardNo;
 		this.rewardMoney = rewardMoney;
 		this.sortNo = sortNo;
@@ -73,6 +74,7 @@ public class Reward {
 		this.payStatus = payStatus;
 		this.description = description;
 		this.rewardCategory = rewardCategory;
+		this.rewardDetail = rewardDetail;
 	}
 
 	public int getRewardNo() {
@@ -299,6 +301,14 @@ public class Reward {
 		this.rewardCategory = rewardCategory;
 	}
 
+	public String getRewardDetail() {
+		return rewardDetail;
+	}
+
+	public void setRewardDetail(String rewardDetail) {
+		this.rewardDetail = rewardDetail;
+	}
+
 	@Override
 	public String toString() {
 		return "Reward [rewardNo=" + rewardNo + ", rewardMoney=" + rewardMoney + ", sortNo=" + sortNo + ", rewardName="
@@ -309,7 +319,7 @@ public class Reward {
 				+ ", categoryDiv=" + categoryDiv + ", endDate=" + endDate + ", projectTitle=" + projectTitle
 				+ ", companyName=" + companyName + ", deliverySite=" + deliverySite + ", deliveryMoney=" + deliveryMoney
 				+ ", startDate=" + startDate + ", options=" + options + ", payStatus=" + payStatus + ", description="
-				+ description + ", rewardCategory=" + rewardCategory + "]";
+				+ description + ", rewardCategory=" + rewardCategory + ", rewardDetail=" + rewardDetail + "]";
 	}
 
 }

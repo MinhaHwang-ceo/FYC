@@ -60,6 +60,8 @@ ArrayList<Reward> selectMyReward(SqlSessionTemplate sqlSession, Member mse, Page
 
 Reward selectMyRewardDetail(SqlSessionTemplate sqlSession, int rewardNoInt);
 
+Member selectMemberInfo(SqlSessionTemplate sqlSession, String userNo);
+
 
 
 
