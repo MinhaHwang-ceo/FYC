@@ -642,5 +642,27 @@
 		<update id="updateDb" parameterType="java.util.Map">
 update  delivery set status=#{VALUECOL};
 	</update>
+	
+	<select id="sortProjectList" parameterType="java.util.Map" resultMap="ProjectList">
+		SELECT P.PROJECT_NO,
+		P.PROJECT_TITLE,P.MONEY,M.COMPANY_NAME,P.END_DATE
+		FROM PROJECT P
+		JOIN
+		MEMBER M ON (P.MEMBER_NO = M.MEMBER_NO)
+        WHERE CATEGORY = #{category}
+        ORDER BY PROJECT_NO DESC
+	</select>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 </mapper>
 

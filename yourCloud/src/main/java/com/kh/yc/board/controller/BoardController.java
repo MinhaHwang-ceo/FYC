@@ -17,6 +17,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -109,7 +110,7 @@ public class BoardController {
 
 	@RequestMapping(value = "category.bo")
 	public String category(HttpServletRequest request, HttpServletResponse response) {
-
+		
 		int currentPage = 1;
 
 		if (request.getParameter("currentPage") != null) {
@@ -133,6 +134,41 @@ public class BoardController {
 
 		return "main/category";
 	}
+	
+	@RequestMapping(value = "categorySort.bo")
+	public String categorySort(HttpServletRequest request, HttpServletResponse response) {
+		
+		String category = request.getParameter("category");
+		
+		//System.out.println("contorller의 카테고리 번호는 "+category);
+
+		int currentPage = 1;
+
+		if (request.getParameter("currentPage") != null) {
+			currentPage = Integer.parseInt(request.getParameter("currentPage"));
+		}
+
+		try {
+
+			int listCount = ps.getListCount();
+			PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
+
+			ArrayList<Project> list = ps.sortProjectList(pi,category);
+
+			request.setAttribute("list", list);
+			request.setAttribute("pi", pi);
+
+		} catch (ProjectSelectListException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return "main/category";
+	}
+
+	
+	
+	
 
 	@RequestMapping("guide.bo")
 	public String guide() {
