@@ -38,7 +38,7 @@
 							var browsers = $("#browsers").val();
 							if (confirm("선택한 카테고리로 하시겠습니까?")) {
 								browsers = $("#browsers").val();
-								alert(browsers);
+								
 								location.href = "FundingOpen4.fd?category="
 										+ browsers + "&userNo=" + userNo
 										+ "&projectNo=" + projectNo;

@@ -142,7 +142,7 @@ function addTable() {
 	
 	var html = "";
 	
-	html +='<table  class="tt" id="tableReward'+ idx + '" style="align: center; border: 1px solid red;" border="1">';
+	html +='<table  class="tt" id="tableReward'+ idx + '" border="1">';
     html +='<tr>';
     html +='    <td>';
     html +='        <h6>금액</h6>';

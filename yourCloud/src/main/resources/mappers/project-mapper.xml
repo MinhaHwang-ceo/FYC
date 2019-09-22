@@ -174,7 +174,7 @@
 		  ,MAIN_IMG = #{mainImg}
 		  ,PROGRESS_STATUS = #{progressStatus}
 		   WHERE PROJECT_NO = #{projectNo} 
-		     AND MEMBER_NO = #{userNo}	
+		  
 		  <!--  </if> -->
 		   
 		   <!-- <if test="progressStatus.equals('오픈')">
@@ -237,7 +237,8 @@
 		       PROGRESS_STATUS,
 		       ADMIN_NO,
 		       SUMMARY,
-		       PHONE,PROJECT_TITLE,
+		       PHONE,
+		       PROJECT_TITLE,
 		       PROJECT_SHORT_TITLE,
 		       MONEY,
 		       DOCUMENT,

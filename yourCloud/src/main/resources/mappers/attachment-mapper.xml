@@ -55,6 +55,10 @@
 		AND
 			FILE_LEVEL = 1
 	</select>
+	<select id="baseInfoListAt" resultMap="AttachmentResultSet">
+	SELECT *
+	FROM ATTACHMENT
+	WHERE PROJECT_NO = #{projectNo} AND FILE_LEVEL = 0 </select>
 </mapper>
 
 

@@ -124,11 +124,10 @@ public class FundingController {
 	}
 
 	@RequestMapping(value = "FundingOpen5.fd", method = RequestMethod.POST)
-	public String FundingOpen5(Model model, Project p, HttpServletRequest request,
+	public String FundingOpen5(Model model, Project p, HttpServletRequest request, Attachment a,
 			@RequestParam(name = "photo", required = true) MultipartFile photo) {
 
 		System.out.println("photo:" + photo.getSize() + ":");
-
 		if (photo != null && photo.getOriginalFilename().length() != 0) {
 
 			String root = request.getSession().getServletContext().getRealPath("resources");
@@ -136,8 +135,9 @@ public class FundingController {
 			String filePath = root + "\\uploadFiles";
 			String origunFileName = photo.getOriginalFilename();
 			String ext = origunFileName.substring(origunFileName.lastIndexOf("."));
-			String changeName = CommonUtils.getRandomString();
-			String fullFilePath = filePath + "\\" + changeName + ext;
+			String changeName = CommonUtils.getRandomString()+ext;
+			String fullFilePath = filePath + "\\" + changeName;
+			System.out.println("********************");
 			try {
 
 				System.out.println("fullFilePath : " + fullFilePath);
@@ -165,12 +165,9 @@ public class FundingController {
 						file = fs.updateFile(fileVO);
 					}
 				}
-
-				System.out.println("fileVO : " + fileVO.getAttachmentNo());
 				
-
 				p.setMainImg(String.valueOf(fileVO.getAttachmentNo()));
-
+				System.out.println("파알  : ================================================= " + fileVO);
 				model.addAttribute("fileVO", fileVO);
 				// p.setAttachment(fileVO);
 			} catch (Exception e) {
@@ -178,7 +175,22 @@ public class FundingController {
 				e.printStackTrace();
 				new File(fullFilePath).delete();
 			}
+		}else  {
+			List<Project> list = fs.baseInfoList(p);
+			System.out.println("list : " + list);
+			
+			List<Attachment> listAttachment = fs.baseInfoListAt(a);
+			model.addAttribute("p",list.get(0));
+			if(listAttachment !=null) {
+				
+				model.addAttribute("fileVO",listAttachment.get(0));
+			}
+			
 		}
+		
+		
+		System.out.println("photo:" + a.getOriginFileName());
+		
 		int result = fs.UpdateInfo(p);
 		System.out.println("아아아아 ================" + p);
 		model.addAttribute("p", p);
@@ -478,11 +490,12 @@ public class FundingController {
 	//기본정보 조회
 		@RequestMapping("baseInfoList.fd")
 		public String baseInfoList(Model model, HttpServletRequest request, Project p, Attachment a) {
-			
 			List<Project> list = fs.baseInfoList(p);
 			System.out.println("list : " + list);
+			
 			List<Attachment> listAttachment = fs.baseInfoListAt(a);
-			System.out.println("사진 사진  :" + listAttachment);
+		System.out.println("사진 사진  :" + listAttachment);
+		System.out.println("photo:" + a.getOriginFileName());
 			
 			
 			model.addAttribute("p",list.get(0));
@@ -500,9 +513,9 @@ public class FundingController {
 	public String rewardList(Model model, HttpServletRequest request, Reward r) {
 
 		List<Reward> rewardList = fs.rewardList(r);
-		System.out.println(rewardList);
+		System.out.println(" ++++++++++++++++++++++++++++++  :"   + rewardList);
 		
-		model.addAttribute("r",rewardList.get(0));
+		model.addAttribute("r",rewardList);
 		
 		return "fundingOpen/FundingOpen5";
 	}

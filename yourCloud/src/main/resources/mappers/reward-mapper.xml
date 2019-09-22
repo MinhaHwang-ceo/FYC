@@ -148,6 +148,13 @@
 		ORDER BY
 			SORT_NO
 	</select>
+	
+	<select id="rewardList" resultMap="RewardResultSet">
+		SELECT *
+		FROM REWARD
+		WHERE PROJECT_NO =  #{projectNo}
+		ORDER BY SORT_NO ASC
+	</select>
 </mapper>
 
 
