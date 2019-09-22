@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import com.kh.yc.board.model.vo.PageInfo;
 import com.kh.yc.member.model.vo.Member;
 import com.kh.yc.member.model.vo.NaverMember;
+import com.kh.yc.project.model.vo.Project;
 import com.kh.yc.reward.model.vo.Reward;
 
 public interface MemberDao {
@@ -59,6 +60,9 @@ List<Member> emailList(SqlSessionTemplate sqlSession);
 ArrayList<Reward> selectMyReward(SqlSessionTemplate sqlSession, Member mse, PageInfo pi);
 
 Reward selectMyRewardDetail(SqlSessionTemplate sqlSession, int rewardNoInt);
+
+ArrayList<Project> interestProject(SqlSessionTemplate sqlSession, Member mse);
+
 
 
 

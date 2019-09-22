@@ -18,6 +18,7 @@ import com.kh.yc.member.model.dao.MemberDao;
 import com.kh.yc.member.model.dao.MemberDaoImpl;
 import com.kh.yc.member.model.vo.Member;
 import com.kh.yc.member.model.vo.NaverMember;
+import com.kh.yc.project.model.vo.Project;
 import com.kh.yc.reward.model.vo.Reward;
 
 @Service
@@ -130,6 +131,12 @@ public class MemberServiceImpl implements MemberService {
 	public Reward selectMyRewardDetail(int rewardNoInt) {
 		
 		return md.selectMyRewardDetail(sqlSession, rewardNoInt);
+	}
+
+	@Override
+	public ArrayList<Project> interestProject(Member mse) {
+
+		return md.interestProject(sqlSession, mse);
 	}
 
 

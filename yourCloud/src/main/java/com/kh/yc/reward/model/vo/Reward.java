@@ -35,6 +35,7 @@ public class Reward {
 	private String payStatus; // 결제정보
 	private String description;
 	private String rewardCategory;
+	private int point;
 
 	public Reward() {
 	}
@@ -44,7 +45,8 @@ public class Reward {
 			Date fundDate, int fundNo, int projectNo, int fundMoney, String account, String category,
 			String categoryDiv, Date endDate, String projectTitle, String companyName, String deliverySite,
 			int deliveryMoney, Date startDate, String options, String payStatus, String description,
-			String rewardCategory) {
+			String rewardCategory, int point) {
+		super();
 		this.rewardNo = rewardNo;
 		this.rewardMoney = rewardMoney;
 		this.sortNo = sortNo;
@@ -73,6 +75,7 @@ public class Reward {
 		this.payStatus = payStatus;
 		this.description = description;
 		this.rewardCategory = rewardCategory;
+		this.point = point;
 	}
 
 	public int getRewardNo() {
@@ -299,6 +302,14 @@ public class Reward {
 		this.rewardCategory = rewardCategory;
 	}
 
+	public int getPoint() {
+		return point;
+	}
+
+	public void setPoint(int point) {
+		this.point = point;
+	}
+
 	@Override
 	public String toString() {
 		return "Reward [rewardNo=" + rewardNo + ", rewardMoney=" + rewardMoney + ", sortNo=" + sortNo + ", rewardName="
@@ -309,7 +320,9 @@ public class Reward {
 				+ ", categoryDiv=" + categoryDiv + ", endDate=" + endDate + ", projectTitle=" + projectTitle
 				+ ", companyName=" + companyName + ", deliverySite=" + deliverySite + ", deliveryMoney=" + deliveryMoney
 				+ ", startDate=" + startDate + ", options=" + options + ", payStatus=" + payStatus + ", description="
-				+ description + ", rewardCategory=" + rewardCategory + "]";
+				+ description + ", rewardCategory=" + rewardCategory + ", point=" + point + "]";
 	}
+
+	
 
 }

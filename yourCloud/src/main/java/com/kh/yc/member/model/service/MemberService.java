@@ -9,6 +9,7 @@ import javax.security.auth.login.LoginException;
 import com.kh.yc.board.model.vo.PageInfo;
 import com.kh.yc.member.model.vo.Member;
 import com.kh.yc.member.model.vo.NaverMember;
+import com.kh.yc.project.model.vo.Project;
 import com.kh.yc.reward.model.vo.Reward;
 
 public interface MemberService {
@@ -40,6 +41,9 @@ public interface MemberService {
 	ArrayList<Reward> selectMyReward(PageInfo pi, Member mse);
 
 	Reward selectMyRewardDetail(int rewardNoInt);
+
+	ArrayList<Project> interestProject(Member mse);
+	
 	
 
 	

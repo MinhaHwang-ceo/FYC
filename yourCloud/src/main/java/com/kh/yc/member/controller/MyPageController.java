@@ -71,8 +71,13 @@ public class MyPageController {
 	}
 
 	@RequestMapping("interestProject.me")
-	public String interestProject(@ModelAttribute Member m) {
-
+	public String interestProject(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
+		
+		Member mse = (Member) session.getAttribute("loginUser");
+		System.out.println(mse);
+		
+		ArrayList<Project> list = ms.interestProject(mse);
+		
 		return "member/interestProject";
 	}
 
