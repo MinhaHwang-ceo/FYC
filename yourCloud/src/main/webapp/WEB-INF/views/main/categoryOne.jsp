@@ -419,7 +419,7 @@ a {
 					</script>
 				</p>
 				<hr />
-				<strong style="font-size: 24px;">100</strong> %달성  
+				<strong style="font-size: 24px;">100</strong> %달성   
 				<p class="total-money" style="font-size: 24px;">
 					<strong>100,000,000</strong> 원 펀딩
 				</p>
@@ -427,9 +427,13 @@ a {
 					<strong>619</strong> 명의 서포터
 				</p>
 			</div>
+			
+	
 			<div class="">
 				<button type="button" onclick="goFunding();" class="btn-funding">펀딩하기</button>
 			</div>
+			
+			
 			<br />
 			<script>
 				function goFunding(){
@@ -522,7 +526,7 @@ a {
 					console.log("ajax 넘어오는지 확인  2단계");
 				},
 				error : function(data){
-					alert("에러");
+					/* alert("에러"); */
 				}
 			});
 		});
