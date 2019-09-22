@@ -55,6 +55,9 @@ public interface ProjectService {
 	//신고 여부
 	public int reportCount(Interest inter);
 	//카제고리 분류
-	ArrayList<Project> sortProjectList(PageInfo pi, String category);;
+	ArrayList<Project> sortProjectList(PageInfo pi, String category);
+	
+	
+	ArrayList<Project> selectSupportList4(SupportList sl);;
 
 }

@@ -244,6 +244,30 @@ System.out.println("m:::::;;"+m);
 	
 	
 	
+	@RequestMapping("supporterList4.me")
+	public ModelAndView  supporterList3(ModelAndView mv, @ModelAttribute Member m,int bNum,HttpServletRequest request, HttpServletResponse response) {
+	System.out.println("bNum"+bNum);
+
+		
+	SupportList sl= new SupportList();
+
+	sl.setProjectNo(bNum);
+
+		ArrayList<Project> list= ps.selectSupportList4(sl);
+		System.out.println("list:::"+list);
+		System.out.println("listsize"+list.size());
+
+		
+		mv.setViewName("jsonView");
+		mv.addObject("list", list);
+	
+		return mv;
+		
+	}
+	
+	
+	
+	
 	@RequestMapping(value = "excelDown.do")
 
 	public void excelDown(int bNum,HttpServletResponse response) throws Exception {

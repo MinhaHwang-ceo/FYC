@@ -195,7 +195,7 @@ public class ProjectDaoImpl implements ProjectDao{
 	
 	@Override
 	public void updateDB(SqlSessionTemplate sqlSession,Map<String, Object> map) {
-	
+		 sqlSession.update("Project2.updateDb",map);
 	 sqlSession.update("Project2.updateDb2",map);
 
 	}
@@ -224,6 +224,18 @@ public class ProjectDaoImpl implements ProjectDao{
 		//System.out.println("dao에서 category 코드는?"+category);
 		
 		list = (ArrayList) sqlSession.selectList("Project2.sortProjectList",category,rowBounds);
+		
+		return list;
+	}
+
+	@Override
+	public ArrayList<Project> selectSupportList4(SqlSessionTemplate sqlSession, SupportList sl) {
+		ArrayList<Project> list =null;
+		
+			list = (ArrayList) sqlSession.selectList("Project2.selectSupportList4",sl);
+			
+	
+		
 		
 		return list;
 	}
