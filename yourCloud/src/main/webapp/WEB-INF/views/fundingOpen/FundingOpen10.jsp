@@ -246,7 +246,7 @@ td {
 						<td>
 							<div id="fileArea">
 								<input type="file" id="photo" name="photo"
-									onchange="loadImg(this, 1)"> <!-- style="display: none; -->
+									onchange="loadImg(this, 1)" style="display: none;">
 							</div> <br />
 						</td>
 					</tr>
