@@ -28,9 +28,9 @@
 	<insert id="naverInsert" parameterType="Naver">
 		INSERT INTO MEMBER
 		VALUES(
-		SEQ_MEMBERNO.NEXTVAL , #{userName} , #{userId} , 1234 ,
-		#{email} , default , null , null , null , #{gender} , null ,
-		1000 , #{age} , default , #{emailAgree})
+		SEQ_MEMBERNO.NEXTVAL, #{userName}, #{userId}, null,
+		#{email}, '서포터', null, null, null, 'M', null,
+		null, #{age}, 'N' , #{emailAgree})
 	</insert>
 	
 	<select id="naverLoginCheck" parameterType="Naver" resultType="INTEGER">

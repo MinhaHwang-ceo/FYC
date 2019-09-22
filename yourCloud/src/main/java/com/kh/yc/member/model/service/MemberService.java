@@ -28,9 +28,9 @@ public interface MemberService {
 //	NaverMember naverloginCheck(NaverMember nm);
 
 	//네이버 로그인
-	int naverInsert(Member nm);
+	int naverInsert(NaverMember nm);
 
-	int naverLoginCheck(Member nm);
+	int naverLoginCheck(NaverMember nm);
 
 
 	public void updatePwd(String email,String userPwd);
@@ -40,6 +40,8 @@ public interface MemberService {
 	ArrayList<Reward> selectMyReward(PageInfo pi, Member mse);
 
 	Reward selectMyRewardDetail(int rewardNoInt);
+
+	Member selectMember(String userNo);
 	
 
 	

@@ -58,6 +58,7 @@ public class Project implements java.io.Serializable {
 			Date adjustDate, int adjustMoney, String companyName, String adjustStatus, String categoryDiv, String story,
 			List<Attachment> attachment, String rules, int ssn) {
 		super();
+
 		this.projectNo = projectNo;
 		this.category = category;
 		this.success = success;

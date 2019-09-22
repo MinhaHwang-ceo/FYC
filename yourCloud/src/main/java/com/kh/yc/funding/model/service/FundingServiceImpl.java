@@ -180,6 +180,32 @@ public class FundingServiceImpl implements FundingService{
 		
 		return rewardUP;
 	}
+
+	@Override
+	public int deleteReward(Reward r) {
+		
+		int del = fd.deleteReward(sqlSession,r);
+		
+		return del;
+	}
+	//기본정보 조회
+	@Override
+	public List<Project> baseInfoList(Project p) {
+		
+		return fd.baseInfoList(sqlSession,p);
+	}
+
+	@Override
+	public List<Attachment> baseInfoListAt(Attachment a) {
+		
+		return fd.baseInfoListAt(sqlSession,a);
+	}
+
+	@Override
+	public List<Reward> rewardList(Reward r) {
+	
+		return fd.rewardList(sqlSession,r);
+	}
 	
 	
 	

@@ -53,6 +53,9 @@ public interface ProjectDao {
 void   updateDB(SqlSessionTemplate sqlSession,Map<String, Object> map);
 	//엑셀 데이터 가져오기
 	List<SupportList> testDbList(SqlSessionTemplate sqlSession,Map<String, Object> map);
+	
+	//카테고리 분류
+	ArrayList<Project> sorttBoardList(SqlSessionTemplate sqlSession, PageInfo pi, String category);
 
 
 }
