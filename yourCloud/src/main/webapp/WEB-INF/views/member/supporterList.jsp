@@ -92,14 +92,18 @@
            <br />
            <div id="btnDiv" align="right">
             <button class="btn btn-success excelDown">결제/배송현황 내려받기</button>
-            <br><br>
-              <button class="btn btn-success excelInsert">결제/배송현황 올리기</button>
+         
            </div>
-           
-           <form name="excelUpForm" id="excelUpload" >
-    <input type="file" id="excelFile" name="excleFile" value="엑셀 업로드" />
-    <input type="submit" class="click">
+           <div id="btnDiv" align="right">
+           <br>
+  <form name="excelUpForm" id="excelUpload" enctype="multipart/form-data" method="POST" action="./fileSave">
+
+    <input type="file" id="file" name="file" value="엑셀 업로드" />
+      <label id="click" class="btn btn-success excelInsert">결제/배송현황 올리기</label>
+   
+    
 </form>
+</div>
 
 
       </div>
@@ -293,10 +297,12 @@
     		 dataType:"json",
     		success:function(data){
 				console.log(data.list);
+    		}
+    		});
+     	});
+  	  
       
-      
-      
-				
+			
 				$(".click").click(function (){
 					   var form = $("#excelUpload")[0];
 						console.log("들와쩌염")
@@ -305,7 +311,7 @@
 					          $.ajax({
 					             enctype:"multipart/form-data",
 					             method:"POST",
-					             url: './excelUp.do',
+					             url: './fileSave',
 					             processData: false,   
 					             contentType: false,
 					             cache: false,
@@ -316,7 +322,7 @@
 					          });
 				})
 				
-				
+				 
 				
 				
 				
@@ -330,25 +336,52 @@
 			console.log("들와쩌염")
 				console.log(form)
 		          var data = new FormData(form);
-		          $.ajax({
-		             enctype:"multipart/form-data",
-		             method:"POST",
-		             url: './excelUp.do',
-		             processData: false,   
-		             contentType: false,
-		             cache: false,
-		             data: data,
-		             success: function(result){  
-		                 alert("업로드 성공!!");
-		             }
-		          });
+
+		     $.ajax({
+	             enctype:"multipart/form-data",
+	             type:"POST",
+	             url: './fileSave',
+	             processData: false,   
+	             contentType: false,
+	             cache: false,
+	             data: data,
+	             success: function(result){  
+	             
+	             }
+	          });
+			
+		          })
+  
+    	
+    	  
+    	    
+      $("#click").click(function(){
+ 
+    	  var form = $("#excelUpload")[0];
+			console.log("들와쩌염")
+				console.log(form)
+		          var data = new FormData(form);
+		   
+			
+		     $.ajax({
+	             enctype:"multipart/form-data",
+	             type:"POST",
+	             url: 'excelUp.do',
+	             processData: false,   
+	             contentType: false,
+	             cache: false,
+	             data: data,
+	             success: function(result){  
+	                 alert("업로드 성공!!");
+	             }
+	          })
+			
+		          })
+    	 
+		    
       });
 	  
-    	  
-    	  
-    	  
-    
-      
+
    </script>
 </body>
 </html>

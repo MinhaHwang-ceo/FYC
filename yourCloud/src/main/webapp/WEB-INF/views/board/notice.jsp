@@ -91,10 +91,12 @@
 </div>
 
 <br><br>
+<c:if test="${loginUser.userId eq 'admin' }">
 <div class="btn">
 <button id="btn" onclick="location.href='noticeWrite.bo'" style="float: right;">글작성</button>
 
 </div>
+</c:if>
 
 <br><br><br><br><br>
 
