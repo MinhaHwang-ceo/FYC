@@ -1,5 +1,6 @@
 package com.kh.yc.member.controller;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
@@ -33,6 +34,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.yc.board.model.vo.PageInfo;
+import com.kh.yc.common.CommonUtils;
 import com.kh.yc.common.Pagination;
 import com.kh.yc.member.model.service.MemberService;
 import com.kh.yc.member.model.vo.Member;
@@ -430,10 +432,10 @@ System.out.println("m:::::;;"+m);
                 
                 
                 System.out.println("origName"+origName);
-                String path="C:\\User\\3214\\Downloads\\"+origName;
+                String path="C:\\Users\\3214\\git\\FYC\\yourCloud\\src\\main\\webapp\\resources\\uploadFiles\\"+origName;
                 System.out.println("path:::"+path);
                 //위치 및 파일
-                ps.getExcelUpload(".\\"+origName);
+                ps.getExcelUpload(path);
             }
             
             } catch (UnsupportedEncodingException e) { // TODO Auto-generated catch block 
@@ -447,7 +449,45 @@ System.out.println("m:::::;;"+m);
         
     }
 
+	@RequestMapping("fileSave")
+	   public ModelAndView FundingOpen5(ModelAndView mv, Project p, HttpServletRequest request,
+	      @RequestParam(name ="file", required=false) MultipartFile file) {
 
+	      System.out.println("file:" + file.getSize() + ":");
+
+	      if (file != null && file.getOriginalFilename().length() != 0) {
+
+	         String root = request.getSession().getServletContext().getRealPath("resources");
+
+	         System.out.println(root);
+
+	         String filePath = root + "\\uploadFiles";
+	         String originFileName = file.getOriginalFilename();
+	         System.out.println("originFileName::::"+originFileName);
+	         String ext = originFileName.substring(originFileName.lastIndexOf("."));
+	         String newFileName = originFileName.substring(0,originFileName.indexOf("."));
+	  System.out.println("newFileName:::::"+newFileName);
+	         String fullFilePath = filePath + "\\" + newFileName  + ext;
+	         System.out.println(originFileName + "of");
+	         try {
+
+	            System.out.println("fullFilePath : " + fullFilePath);
+
+	            file.transferTo(new File(fullFilePath));
+
+
+	       
+	         } catch (Exception e) {
+
+	            e.printStackTrace();
+	            new File(fullFilePath).delete();
+	         }
+	      }
+
+			mv.setViewName("jsonView");
+			return mv;
+		
+	   }
 	
 	
 	

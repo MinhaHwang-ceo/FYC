@@ -135,6 +135,29 @@ public  class FundingDaoImpl implements FundingDao{
 		
 		return sqlSession.update("Reward.updateReward",r);
 	}
+	//리워드 삭제
+	@Override
+	public int deleteReward(SqlSessionTemplate sqlSession, Reward r) {
+		
+		return sqlSession.delete("Reward.deleteReward",r);
+	}
+	//기본정보 조회
+	@Override
+	public List<Project> baseInfoList(SqlSessionTemplate sqlSession, Project p) {
+		
+		return sqlSession.selectList("Project.baseInfoList",p);
+	}
+	//기본정보 사진 조회
+	@Override
+	public List<Attachment> baseInfoListAt(SqlSessionTemplate sqlSession, Attachment a) {
+		
+		return sqlSession.selectList("Attachment.baseInfoListAt",a);
+	}
+	@Override
+	public List<Reward> rewardList(SqlSessionTemplate sqlSession, Reward r) {
+	
+		return sqlSession.selectList("Reward.rewardList",r);
+	}
 
 	
 	

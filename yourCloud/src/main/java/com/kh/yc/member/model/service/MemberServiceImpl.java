@@ -96,13 +96,13 @@ public class MemberServiceImpl implements MemberService {
 
 	//네이버 정보 인설트
 	@Override
-	public int naverInsert(Member nm) {
+	public int naverInsert(NaverMember nm) {
 		System.out.println("Service : " + nm);
 		return md.naverInsert(sqlSession, nm);
 	}
 
 	@Override
-	public int naverLoginCheck(Member nm) {
+	public int naverLoginCheck(NaverMember nm) {
 		// TODO Auto-generated method stub
 		return md.naverLoginCheck(sqlSession, nm);
 	}
@@ -137,6 +137,12 @@ public class MemberServiceImpl implements MemberService {
 	public ArrayList<Project> interestProject(Member mse) {
 
 		return md.interestProject(sqlSession, mse);
+}
+  
+  
+	public Member selectMember(String userNo) {
+		// TODO Auto-generated method stub
+		return md.selectMemberInfo(sqlSession, userNo);
 	}
 
 

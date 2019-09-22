@@ -304,7 +304,7 @@
 	function emailCheck(){
 		var email = $("#inputEmail").val();
 		var userId=$("#userId").val();
-		console.log(userId);
+		console.log(email);
 		alert('인증번호를 전송했습니다!')
 		$.ajax({
 			url:"emailAuth.do",

@@ -17,7 +17,7 @@
       <result property="reason" column="REASON" />
       <result property="adminNo" column="ADMIN_NO" />
       <result property="summary" column="SUMMARY" />
-      <result property="prifileImg" column="PROFILE_IMG" />
+      <result property="profileImg" column="PROFILE_IMG" />
       <result property="social" column="SOCIAL" />
       <result property="site" column="SITE" />
       <result property="email" column="EMAIL" />
@@ -43,6 +43,7 @@
       <result property="adjustMoney" column="ADJUST_MONEY" />
       <result property="adminNo" column="ADMIN_NO" />
       <result property="companyName" column="COMPANY_NAME" />
+      <result property="ssn" column="SSN" />
       
    </resultMap>
    
@@ -68,7 +69,7 @@
       <result property="reason" column="REASON" />
       <result property="adminNo" column="ADMIN_NO" />
       <result property="summary" column="SUMMARY" />
-      <result property="prifileImg" column="PROFILE_IMG" />
+      <result property="profileImg" column="PROFILE_IMG" />
       <result property="social" column="SOCIAL" />
       <result property="site" column="SITE" />
       <result property="email" column="EMAIL" />
@@ -228,6 +229,26 @@
 			PROJECT_NO = #{projectNo}
 		AND
 			FILE_LEVEL = 0
+	</select>
+	
+	<select id="baseInfoList" resultMap="ProjectResultSet">
+		SELECT PROJECT_NO,
+		       CATEGORY,
+		       PROGRESS_STATUS,
+		       ADMIN_NO,
+		       SUMMARY,
+		       PHONE,PROJECT_TITLE,
+		       PROJECT_SHORT_TITLE,
+		       MONEY,
+		       DOCUMENT,
+		       PROGRESS,
+		       DELIVERY,
+		       END_DATE,
+		       ADULT
+		
+		FROM PROJECT
+		WHERE PROJECT_NO = #{projectNo}
+
 	</select>
 	
 	

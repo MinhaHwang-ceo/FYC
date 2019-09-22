@@ -12,14 +12,15 @@ public class Funding implements Serializable {
 	private int fundMoney;
 	private int rewardNo;
 	private int rewardCount;
+	private String blind;
 
 	public Funding() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Funding(int fundNo, String fundDate, int userNo, int projectNo, int fundMoney, int rewardNo,
-			int rewardCount) {
+	public Funding(int fundNo, String fundDate, int userNo, int projectNo, int fundMoney, int rewardNo, int rewardCount,
+			String blind) {
 		this.fundNo = fundNo;
 		this.fundDate = fundDate;
 		this.userNo = userNo;
@@ -27,6 +28,7 @@ public class Funding implements Serializable {
 		this.fundMoney = fundMoney;
 		this.rewardNo = rewardNo;
 		this.rewardCount = rewardCount;
+		this.blind = blind;
 	}
 
 	public int getFundNo() {
@@ -85,11 +87,19 @@ public class Funding implements Serializable {
 		this.rewardCount = rewardCount;
 	}
 
+	public String getBlind() {
+		return blind;
+	}
+
+	public void setBlind(String blind) {
+		this.blind = blind;
+	}
+
 	@Override
 	public String toString() {
 		return "Funding [fundNo=" + fundNo + ", fundDate=" + fundDate + ", userNo=" + userNo + ", projectNo="
 				+ projectNo + ", fundMoney=" + fundMoney + ", rewardNo=" + rewardNo + ", rewardCount=" + rewardCount
-				+ "]";
+				+ ", blind=" + blind + "]";
 	}
 
 }

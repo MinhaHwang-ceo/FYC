@@ -25,16 +25,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 import com.kh.yc.admin.model.service.AdminService;
 import com.kh.yc.admin.model.service.AdminServiceImpl;
 import com.kh.yc.admin.model.vo.Project;
 import com.kh.yc.admin.model.vo.Report;
 import com.kh.yc.member.model.vo.Member;
-import com.kh.yc.reward.model.vo.ExcelReward;
-
-import net.sf.jasperreports.engine.JRDataSource;
-import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 
 @Controller
 public class AdminController {
@@ -265,21 +260,28 @@ public class AdminController {
 
 	        Map map = new HashMap();
 	        List arr = new ArrayList();
-			for(int i=0; i<insertParam.size(); i++){
+			
+	        for(int i=0; i<insertParam.size(); i++){
 				map.put(i,((JSONObject) insertParam.get(i)));
-			}
+			
+	        }
+			
+			
+			
+			
+			
 		
 	        //map = (Map<Stringd,String>) gson.fromJson(gson.toJson(insertParam), map.getClass());
 	   
 	        System.out.println(map);
-	        mav.setViewName("jsonView");
+	        ap.updateReward(map);
 			return mav;
 	        
 	        
 		}
 
 
-	//ireport
+	/*//ireport
 		@RequestMapping(value = "reportTest.ad" , method = RequestMethod.GET)
         public ModelAndView generatePDFreport(ModelAndView modelAndView) {
               
@@ -296,9 +298,9 @@ public class AdminController {
         //pdfReport bean has ben declared in the jasper-views.xml file
         modelAndView = new ModelAndView("pdfReport" , parameterMap);
  
-        return modelAndView;
+        return modelAndView;*/
 }
 
 
 		
-}
+

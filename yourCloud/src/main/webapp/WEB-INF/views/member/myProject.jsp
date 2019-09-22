@@ -47,7 +47,7 @@
          <br />
          
             <c:forEach var="b" items="${ list }">
-            	<c:if test="${loginUser.userNo==b.memberNo  }">
+            	<c:if test="${loginUser.userNo==b.userNo  }">
          <table align="center" id="myProjectTable">
             <tr>
                <td class="projectImg">

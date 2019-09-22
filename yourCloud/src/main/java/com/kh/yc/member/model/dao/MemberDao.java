@@ -45,10 +45,10 @@ public interface MemberDao {
 	
 	
 	//네이버 정보 인설트
-	int naverInsert(SqlSessionTemplate sqlSession, Member nm);
+	int naverInsert(SqlSessionTemplate sqlSession, NaverMember nm);
 
  
-	int naverLoginCheck(SqlSessionTemplate sqlSession, Member nm);
+	int naverLoginCheck(SqlSessionTemplate sqlSession, NaverMember nm);
 	
 	//네이버 체크
 	//NaverMember naverloginCheck(SqlSessionTemplate sqlSession, NaverMember nm);
@@ -62,6 +62,8 @@ ArrayList<Reward> selectMyReward(SqlSessionTemplate sqlSession, Member mse, Page
 Reward selectMyRewardDetail(SqlSessionTemplate sqlSession, int rewardNoInt);
 
 ArrayList<Project> interestProject(SqlSessionTemplate sqlSession, Member mse);
+
+Member selectMemberInfo(SqlSessionTemplate sqlSession, String userNo);
 
 
 

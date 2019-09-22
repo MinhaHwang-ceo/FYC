@@ -61,6 +61,14 @@ public interface FundingDao {
 	int updateAdjust(SqlSessionTemplate sqlSession, Member m);
 
 	int openProject(SqlSessionTemplate sqlSession, Project p);
+	//리워드 삭제
+	int deleteReward(SqlSessionTemplate sqlSession, Reward r);
+	//기본정보 조회
+	List<Project> baseInfoList(SqlSessionTemplate sqlSession, Project p);
+	//기본정보 사진 조회
+	List<Attachment> baseInfoListAt(SqlSessionTemplate sqlSession, Attachment a);
+	//리워드 조회
+	List<Reward> rewardList(SqlSessionTemplate sqlSession, Reward r);
 
 
 

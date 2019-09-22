@@ -186,14 +186,18 @@ public class ProjectDaoImpl implements ProjectDao{
 	@Override
 	public int reportCount(SqlSessionTemplate sqlSession, Interest inter) {
 		
-		return sqlSession.selectOne("Report.reportCount",inter);
 
+		return sqlSession.selectOne("Report.reportCount",inter);
+	}
+
+	
+	
+	
 	@Override
 	public void updateDB(SqlSessionTemplate sqlSession,Map<String, Object> map) {
 	
-	 sqlSession.update("Project2.updateDb",map);
-	 
-	 
+	 sqlSession.update("Project2.updateDb2",map);
+
 	}
 
 	@Override
@@ -204,6 +208,24 @@ public class ProjectDaoImpl implements ProjectDao{
 		
 		return list;
 
+	}
+
+	//카테고리 분류
+	@Override
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	public ArrayList<Project> sorttBoardList(SqlSessionTemplate sqlSession, PageInfo pi, String category) {
+		
+		ArrayList<Project> list =null;
+		
+		int offset = (pi.getCurrentPage()-1)*pi.getLimit();
+		
+		RowBounds rowBounds = new RowBounds(offset, pi.getLimit());
+		
+		//System.out.println("dao에서 category 코드는?"+category);
+		
+		list = (ArrayList) sqlSession.selectList("Project2.sortProjectList",category,rowBounds);
+		
+		return list;
 	}
 
 }

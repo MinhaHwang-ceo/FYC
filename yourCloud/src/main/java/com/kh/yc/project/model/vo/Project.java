@@ -1,9 +1,12 @@
 package com.kh.yc.project.model.vo;
 
 import java.sql.Date;
+import java.util.List;
+
+import com.kh.yc.funding.model.vo.Attachment;
 
 public class Project implements java.io.Serializable {
-	
+
 	private int projectNo;
 	private String category;
 	private String success;
@@ -40,16 +43,20 @@ public class Project implements java.io.Serializable {
 	private String categoryDiv;
 	private Date projectOpen;
 	private int userNo;
+	private String story;
+	private List<Attachment> attachment;
+	private String rules;
 
-	public Project() {}
+	public Project() {
+	}
 
 	public Project(int projectNo, String category, String success, String judgeStatus, String progressStatus,
 			int agreement, String reason, int adminNo, String summary, String profileImg, String social, String site,
 			String email, String phone, String fees, String makerDiv, String agentName, String agentEmail,
 			String projectTitle, String projectShortTitle, int money, String mainImg, String document, String progress,
 			String delivery, Date endDate, String adult, int reportCount, int payNo, int adjustNo, Date adjustDate,
-			int adjustMoney, String companyName, String categoryDiv, Date projectOpen, int userNo) {
-		super();
+			int adjustMoney, String companyName, String categoryDiv, Date projectOpen, int userNo, String story,
+			List<Attachment> attachment, String rules) {
 		this.projectNo = projectNo;
 		this.category = category;
 		this.success = success;
@@ -86,6 +93,9 @@ public class Project implements java.io.Serializable {
 		this.categoryDiv = categoryDiv;
 		this.projectOpen = projectOpen;
 		this.userNo = userNo;
+		this.story = story;
+		this.attachment = attachment;
+		this.rules = rules;
 	}
 
 	public int getProjectNo() {
@@ -376,6 +386,30 @@ public class Project implements java.io.Serializable {
 		this.userNo = userNo;
 	}
 
+	public String getStory() {
+		return story;
+	}
+
+	public void setStory(String story) {
+		this.story = story;
+	}
+
+	public List<Attachment> getAttachment() {
+		return attachment;
+	}
+
+	public void setAttachment(List<Attachment> attachment) {
+		this.attachment = attachment;
+	}
+
+	public String getRules() {
+		return rules;
+	}
+
+	public void setRules(String rules) {
+		this.rules = rules;
+	}
+
 	@Override
 	public String toString() {
 		return "Project [projectNo=" + projectNo + ", category=" + category + ", success=" + success + ", judgeStatus="
@@ -388,7 +422,7 @@ public class Project implements java.io.Serializable {
 				+ ", endDate=" + endDate + ", adult=" + adult + ", reportCount=" + reportCount + ", payNo=" + payNo
 				+ ", adjustNo=" + adjustNo + ", adjustDate=" + adjustDate + ", adjustMoney=" + adjustMoney
 				+ ", companyName=" + companyName + ", categoryDiv=" + categoryDiv + ", projectOpen=" + projectOpen
-				+ ", userNo=" + userNo + "]";
+				+ ", userNo=" + userNo + ", story=" + story + ", attachment=" + attachment + ", rules=" + rules + "]";
 	}
 
 }

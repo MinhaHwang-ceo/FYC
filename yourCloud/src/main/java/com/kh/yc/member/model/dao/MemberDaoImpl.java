@@ -113,7 +113,7 @@ public class MemberDaoImpl implements MemberDao{
 
 		//네이버 회원 정보 인셀트
 		@Override
-		public int naverInsert(SqlSessionTemplate sqlSession, Member nm) {
+		public int naverInsert(SqlSessionTemplate sqlSession, NaverMember nm) {
 			
 			System.out.println("Dao : " + nm);
 			return sqlSession.insert("Naver.naverInsert", nm);
@@ -121,7 +121,8 @@ public class MemberDaoImpl implements MemberDao{
 		
 		//좋아요 기능
 		@Override
-		public int naverLoginCheck(SqlSessionTemplate sqlSession, Member nm) { 
+		public int naverLoginCheck(SqlSessionTemplate sqlSession, NaverMember nm) {
+
 			return sqlSession.selectOne("Naver.naverLoginCheck", nm);
 		}
 		@SuppressWarnings({ "unchecked", "rawtypes" })
@@ -149,6 +150,11 @@ public class MemberDaoImpl implements MemberDao{
 			list = (ArrayList) sqlSession.selectList("Project2.interestProject5", mse);
 			
 			return list;
+
+		@Override
+		public Member selectMemberInfo(SqlSessionTemplate sqlSession, String userNo) {
+			// TODO Auto-generated method stub
+			return sqlSession.selectOne("Member.selectMemberInfo", userNo);
 		}
 
 	

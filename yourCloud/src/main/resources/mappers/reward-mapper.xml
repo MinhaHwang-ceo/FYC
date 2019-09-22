@@ -3,42 +3,53 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-  <mapper namespace="Reward">
-	<resultMap type="com.kh.yc.reward.model.vo.Reward" id="RewardResultSet">
-		<id property="rewardNo" column="REWARD_NO"/>
-		<result property="rewardMoney" column="REWARD_MONEY"/>
-		<result property="sortNo" column="SORT_NO"/>
-		<result property="rewardName" column="REWARD_NAME"/>
-		<result property="option" column="OPTIONS"/>
-		<result property="deliveryRequest" column="DELIVERY_REQUEST"/>
-		<result property="deliveryMoney" column="DELIVERY_MONEY"/>
-		<result property="limitCount" column="LIMIT_COUNT"/>
-		<result property="startDate" column="START_DATE"/>
-		<result property="projectNo" column="PROJECT_NO"/>
-		<result property="projectShortTitle" column="PROJECT_SHORT_TITLE"/>
-		<result property="memberName" column="MEMBER_NAME"/>
-		<result property="money" column="MONEY"/>
-    <result property="description" column="DESCRIPTION"/>
-		
-		<result property="userNo" column="MEMBER_NO"/>
-		<result property="fundDate" column="FUND_DATE"/>
-      	<result property="fundNo" column="FUND_NO"/>
-      	<result property="fundMoney" column="FUND_MONEY"/>
-      	<result property="account" column="ACCOUNT"/>
-      	<result property="category" column="CATEGORY"/>
-      	<result property="categoryDiv" column="CATEGORY_DIV"/>
-    	<result property="endDate" column="END_DATE"/>
-     	<result property="projectTitle" column="PROJECT_TITLE"/>
-     	<result property="companyName" column="COMPANY_NAME"/>
-     	<result property="deliverySite" column="DELIVERY_SITE"/>
-      	<result property="deliveryMoney" column="DELIVERY_MONEY"/>
-      	<result property="options" column="OPTIONS"/>
-      	<result property="payStatus" column="PAY_STATUS"/>
-		
-		
-		
-</resultMap>
-	
+<mapper namespace="Reward">
+	<resultMap type="com.kh.yc.reward.model.vo.Reward"
+		id="RewardResultSet">
+		<id property="rewardNo" column="REWARD_NO" />
+		<result property="rewardMoney" column="REWARD_MONEY" />
+		<result property="sortNo" column="SORT_NO" />
+		<result property="rewardName" column="REWARD_NAME" />
+		<result property="option" column="OPTIONS" />
+		<result property="deliveryRequest" column="DELIVERY_REQUEST" />
+		<result property="deliveryMoney" column="DELIVERY_MONEY" />
+		<result property="limitCount" column="LIMIT_COUNT" />
+		<result property="startDate" column="START_DATE" />
+		<result property="projectNo" column="PROJECT_NO" />
+		<result property="projectShortTitle" column="PROJECT_SHORT_TITLE" />
+		<result property="memberName" column="MEMBER_NAME" />
+		<result property="money" column="MONEY" />
+		<result property="description" column="DESCRIPTION" />
+		<result property="userNo" column="MEMBER_NO" />
+		<result property="fundDate" column="FUND_DATE" />
+		<result property="fundNo" column="FUND_NO" />
+		<result property="fundMoney" column="FUND_MONEY" />
+		<result property="account" column="ACCOUNT" />
+		<result property="category" column="CATEGORY" />
+		<result property="categoryDiv" column="CATEGORY_DIV" />
+		<result property="endDate" column="END_DATE" />
+		<result property="projectTitle" column="PROJECT_TITLE" />
+		<result property="companyName" column="COMPANY_NAME" />
+		<result property="deliverySite" column="DELIVERY_SITE" />
+		<result property="deliveryMoney" column="DELIVERY_MONEY" />
+		<result property="options" column="OPTIONS" />
+		<result property="payStatus" column="PAY_STATUS" />
+		<result property="rewardDetail" column="REWARD_DETAIL" />
+	</resultMap>
+	<resultMap type="Reward" id="MyRewardResultSet">
+		<id property="rewardNo" column="REWARD_NO" />
+		<result property="rewardMoney" column="REWARD_MONEY" />
+		<result property="sortNo" column="SORT_NO" />
+		<result property="rewardName" column="REWARD_NAME" />
+		<result property="option" column="OPTIONS" />
+		<result property="deliveryRequest" column="DELIVERY_REQUEST" />
+		<result property="deliveryMoney" column="DELIVERY_MONEY" />
+		<result property="limitCount" column="LIMIT_COUNT" />
+		<result property="startDate" column="START_DATE" />
+		<result property="projectNo" column="PROJECT_NO" />
+		<result property="rewardCategory" column="REWARD_CATEGORY" />
+		<result property="rewardDetail" column="REWARD_DETAIL" />
+	</resultMap>	
 	<select id="viewReward" resultMap="RewardResultSet">
 		SELECT *
 		FROM REWARD
@@ -91,8 +102,8 @@
 				#{limitCount},
 				#{startDate},
 				#{projectNo},
-				#{description},
-				#{category}
+				#{category},
+				#{rewardDetail}
 			   )
 	<selectKey resultType="integer" keyProperty="rewardNo" order="AFTER"> 
         SELECT SEQ_REWARDNO.CURRVAL FROM DUAL        
@@ -113,7 +124,7 @@
 			SET REWARD_MONEY = #{rewardMoney},
 			    REWARD_NAME = #{rewardName},
 			    SORT_NO = #{sortNo},
-			    DESCRIPTION = #{description},
+			    REWARD_DETAIL = #{rewardDetail},
 			    OPTIONS = #{option},
 			    DELIVERY_REQUEST = #{deliveryRequest},
 			    DELIVERY_MONEY = #{deliveryMoney},
@@ -121,10 +132,24 @@
 			    START_DATE = #{startDate}
 	            WHERE REWARD_NO = #{rewardNo}
 	        	 AND  PROJECT_NO = #{projectNo}
-	        	 AND  SORT_NO = #{sortNo}
-	              
-			    
 	</update>
+	
+	<delete id="deleteReward" parameterType="Reward">
+		DELETE FROM REWARD
+		WHERE REWARD_NO = #{rewardNo}
+	</delete>
+	
+
+	<select id="selectRewardList" resultMap="MyRewardResultSet">
+		SELECT
+			*
+		FROM
+			REWARD
+		WHERE
+			PROJECT_NO = #{pNo}
+		ORDER BY
+			SORT_NO
+	</select>
 </mapper>
 
 
