@@ -1,6 +1,7 @@
 package com.kh.yc.admin.model.service;
 
 import java.util.List;
+import java.util.Map;
 
 import com.kh.yc.admin.model.vo.Project;
 import com.kh.yc.admin.model.vo.Report;
@@ -41,5 +42,6 @@ public interface AdminService {
 	//엑셀
 	int downExcel(String projectNo);
 
+	public void updateReward(Map map);
 
 }

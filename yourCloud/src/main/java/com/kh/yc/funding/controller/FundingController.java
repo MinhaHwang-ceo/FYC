@@ -301,7 +301,7 @@ public class FundingController {
 				int result = fs.insertProfileImg(attach);
 				if(result > 0) {
 					attach = fs.selectAttach(p);
-					p.setPrifileImg(attach.getAttachmentNo()+"");
+					p.setProfileImg(attach.getAttachmentNo()+"");
 					fs.updateProject(p);
 				} else {
 					throw new Exception();
