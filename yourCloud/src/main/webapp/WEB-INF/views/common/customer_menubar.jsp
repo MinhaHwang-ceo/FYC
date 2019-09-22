@@ -212,7 +212,7 @@ button:hover, input[type="button"]:hover {
 			$(".testBtn").click(
 					function() {
 
-						window.open("SelfTest", "PopupWin",
+						window.open("notice", "PopupWin",
 								"width=450,height=500", "resizable=no");
 
 					})

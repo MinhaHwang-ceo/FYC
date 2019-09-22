@@ -640,7 +640,24 @@
 	
 	
 		<update id="updateDb" parameterType="java.util.Map">
-update  delivery set status=#{VALUECOL};
+update delivery 
+set status=#{STATUS}
+where member_name=#{NAME}
+
+	</update>
+	
+	
+		
+	
+		<update id="updateDb2" parameterType="java.util.Map">
+update delivery_status 
+set invoice_number=#{INVOICE}
+where member_no= ( 
+select m.member_no
+from delivery_status d
+join member m on(d.member_no=m.member_no)
+where m.member_name=#{NAME}
+)
 	</update>
 </mapper>
 

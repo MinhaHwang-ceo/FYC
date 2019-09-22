@@ -165,16 +165,15 @@ public class ProjectServiceImpl implements ProjectService {
                 
                 Row row = sheet.getRow(i);
                 
-                //map.put("IDCOL", ""+ExcelUtil.cellValue(row.getCell(0)));
-                map.put("NAMECOL", ""+ExcelUtil.cellValue(row.getCell(1)));
-                map.put("VALUECOL", ""+ExcelUtil.cellValue(row.getCell(2)));
+                map.put("NAME", ""+ExcelUtil.cellValue(row.getCell(0)));
+                map.put("STATUS", ""+ExcelUtil.cellValue(row.getCell(2)));
+                map.put("INVOICE", ""+ExcelUtil.cellValue(row.getCell(3)));
                 System.out.println("map"+map);
                 //신규삽입
                 pd.updateDB(sqlSession,map);
                 System.out.println("3333333");
             }
  
-          
             //데이터가져옵니다.
             list = pd.testDbList(sqlSession,map);
             

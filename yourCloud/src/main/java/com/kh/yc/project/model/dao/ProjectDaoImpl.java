@@ -186,12 +186,16 @@ public class ProjectDaoImpl implements ProjectDao{
 	@Override
 	public int reportCount(SqlSessionTemplate sqlSession, Interest inter) {
 		
-		return sqlSession.selectOne("Report.reportCount",inter);
+		return sqlSession.selectOne("Report.reportCount",inter);}
 
+	
+	
+	
 	@Override
 	public void updateDB(SqlSessionTemplate sqlSession,Map<String, Object> map) {
 	
 	 sqlSession.update("Project2.updateDb",map);
+	 sqlSession.update("Project2.updateDb2",map);
 	 
 	 
 	}
