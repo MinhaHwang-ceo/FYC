@@ -130,21 +130,21 @@ td {
          <input type="hidden" value='<c:out value="${ p.projectNo }"></c:out>'>
          <input type="hidden" value="${ sessionScope.loginUser }">
          
-         <% int userNo = 123;%>
+         <% int userNo = 123;%> 
          
           <c:if test="${loginUser.userNo eq null }">
-             <a href="categoryOne.ca?projectNo=${ p.projectNo }&userNo=<%=userNo%>" >
-               <img src="/yc/resources/images/dog.PNG" alt="Lights" style="width:100%; height:75%;">
+             <a href="categoryOne.ca?projectNo=${ p.projectNo }&userNo=<%=userNo%>&endDate=${p.endDate}" >
+               <img src="/yc/resources/uploadFiles/<c:out value="${p.newFileName}"/>.png"  style="width:100%; height:75%;"/>
                 <div class="caption">
                   <h6>[<c:out value="${ p.projectNo }"/>]&emsp;<c:out value="${ p.projectTitle }"/></h6>
-                  <p>목표금액 : <c:out value="${ p.money }"/>원 <br>s이 리워드는 <c:out value="${ p.endDate }"/> 에 마감됩니다</p>
+                  <p>목표금액 : <c:out value="${ p.money }"/>원 <br>이 리워드는 <c:out value="${ p.endDate }"/> 에 마감됩니다</p>
                 </div>
               </a>      
          </c:if>
          
          <c:if test="${loginUser.userNo ne null }">
-             <a href="categoryOne.ca?projectNo=${ p.projectNo }&userNo=${loginUser.userNo}" >
-               <img src="/yc/resources/images/dog.PNG" alt="Lights" style="width:100%; height:75%;">
+             <a href="categoryOne.ca?projectNo=${ p.projectNo }&userNo=${loginUser.userNo}&endDate=${p.endDate}" >
+               <img src="/yc/resources/uploadFiles/<c:out value="${p.newFileName}"/>.png" style="width:100%; height:75%;">
                 <div class="caption">
                   <h6>[<c:out value="${ p.projectNo }"/>]&emsp;<c:out value="${ p.projectTitle }"/></h6>
                      <p>목표금액 : <c:out value="${ p.money }"/>원 <br>s이 리워드는 <c:out value="${ p.endDate }"/> 에 마감됩니다</p>

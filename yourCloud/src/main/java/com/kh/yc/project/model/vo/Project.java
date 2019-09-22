@@ -46,6 +46,7 @@ public class Project implements java.io.Serializable {
 	private String story;
 	private List<Attachment> attachment;
 	private String rules;
+	private String newFileName;
 
 	public Project() {
 	}
@@ -56,7 +57,7 @@ public class Project implements java.io.Serializable {
 			String projectTitle, String projectShortTitle, int money, String mainImg, String document, String progress,
 			String delivery, Date endDate, String adult, int reportCount, int payNo, int adjustNo, Date adjustDate,
 			int adjustMoney, String companyName, String categoryDiv, Date projectOpen, int userNo, String story,
-			List<Attachment> attachment, String rules) {
+			List<Attachment> attachment, String rules,String newFileName) {
 		this.projectNo = projectNo;
 		this.category = category;
 		this.success = success;
@@ -96,6 +97,16 @@ public class Project implements java.io.Serializable {
 		this.story = story;
 		this.attachment = attachment;
 		this.rules = rules;
+		this.newFileName = newFileName;
+	}
+
+
+	public String getNewFileName() {
+		return newFileName;
+	}
+
+	public void setNewFileName(String newFileName) {
+		this.newFileName = newFileName;
 	}
 
 	public int getProjectNo() {
@@ -422,7 +433,10 @@ public class Project implements java.io.Serializable {
 				+ ", endDate=" + endDate + ", adult=" + adult + ", reportCount=" + reportCount + ", payNo=" + payNo
 				+ ", adjustNo=" + adjustNo + ", adjustDate=" + adjustDate + ", adjustMoney=" + adjustMoney
 				+ ", companyName=" + companyName + ", categoryDiv=" + categoryDiv + ", projectOpen=" + projectOpen
-				+ ", userNo=" + userNo + ", story=" + story + ", attachment=" + attachment + ", rules=" + rules + "]";
+				+ ", userNo=" + userNo + ", story=" + story + ", attachment=" + attachment + ", rules=" + rules
+				+ ", fileSrc=" + newFileName + "]";
 	}
+
+
 
 }
