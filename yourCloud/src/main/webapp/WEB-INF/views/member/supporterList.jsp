@@ -373,10 +373,90 @@
 	             data: data,
 	             success: function(result){  
 	                 alert("업로드 성공!!");
+	                 
+	                 
+	                 
+	                 
+	                 $.ajax({
+	             		
+	             		url:"supporterList4.me",
+	             		data:{bNum:bNum},
+	             		type:"get",
+	             		 dataType:"json",
+	             		success:function(data){
+	         				console.log(data.list);
+	         				
+	         				var $div =$("#order");
+	         				
+	         				$div.html("");
+	         		/* 		var $tbody=$("<tbody>");
+	         				$div.append($tbody); */
+	         				
+	         				for(var i=0;i<=data.list.length-1;i++){
+	         					console.log(data.list.length);
+	         					
+	         		
+	         				var $tr=$("<tr>");
+	         				
+	         				var $td1=$("<td>");
+	         				var $td2=$("<td>");
+	         				var $td3=$("<td>");
+	         				var $td4=$("<td>");
+	         				var $td5=$("<td>");
+	         				var $td6=$("<td>");
+	         				var $td7=$("<td>");
+	         				var $td8=$("<td>");
+	         				var $td9=$("<td>");
+	         				var $td10=$("<td>");
+	         				var $td11=$("<td>");
+	         				
+	         				$td1.text(data.list[i].memberName);
+	         				$td2.text(data.list[i].rewardName);
+	         				$td3.text(data.list[i].rewardNumber);
+	         				$td4.text(data.list[i].deliverySite);
+	         				$td5.text(data.list[i].phone);
+	         				$td6.text(data.list[i].fundDate);
+	         				$td7.text(data.list[i].payState);
+	         				$td8.text(data.list[i].startDate);
+	         				if(data.list[i].invoiceNum!=""){
+	         				$td9.text(data.list[i].status+"("+data.list[i].invoiceNum+")");
+	         				}else{
+	         					$td9.text(data.list[i].status);
+	         				}
+	         				$td10.text(data.list[i].fundMoney);
+	         				
+	         				
+	         				$tr.append($td1,$td2,$td3,$td4,$td5,$td6,$td7,$td8,$td9
+	         						,$td10);
+	         				
+	         				
+	         				
+	         				$div.append($tr);
+	         				}
+	         				
+	         				
+	         				
+	         				
+	             		}
+	             		
+	             	}); 
+	          	  
+	                 
+	                 
+	                 
+	                 
+	                 
+	                 
+	                 
+	                 
+	                 
+	                 
+	                 
+	                 
 	             }
 	          })
 			
-		          })
+		   
     	 
 		    
       });

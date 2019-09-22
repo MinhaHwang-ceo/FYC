@@ -56,6 +56,7 @@ void   updateDB(SqlSessionTemplate sqlSession,Map<String, Object> map);
 	
 	//카테고리 분류
 	ArrayList<Project> sorttBoardList(SqlSessionTemplate sqlSession, PageInfo pi, String category);
+	ArrayList<Project> selectSupportList4(SqlSessionTemplate sqlSession, SupportList sl);
 
 
 }
