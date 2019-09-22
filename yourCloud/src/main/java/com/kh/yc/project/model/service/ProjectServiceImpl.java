@@ -187,4 +187,15 @@ public class ProjectServiceImpl implements ProjectService {
 		
 	}
 
+	//카테고리 분류
+	@Override
+	public ArrayList<Project> sortProjectList(PageInfo pi, String category) {
+		
+		ArrayList<Project> list = pd.sorttBoardList(sqlSession, pi,category);
+		
+		//System.out.println("서비스에서 카테고리 코드는?"+category);
+		
+		return list;
+	}
+
 }

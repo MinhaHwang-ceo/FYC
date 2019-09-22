@@ -61,6 +61,7 @@ table {
 <body>
 
 	<jsp:include page="../common/customer_menubar.jsp" />
+	<jsp:include page="../common/customer_menuList.jsp"/>
 	<div id="menu" style="width: 55%; height: 35px; margin: 0 auto;">
 		<ul>
 			<li><a id="basic">기본정보</a></li>

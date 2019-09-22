@@ -22,13 +22,19 @@
 #menu {
 	border: 1px solid black;
 }
+
+
+#menu a:hover {
+	cursor: pointer;
+	background: lightgreen;
+}
 </style>
 </head>
 <body>
 <br /><br /><br />
 	<div id="menu" style="width: 55%;height: 40px; margin: 0 auto;">
 		<ul>
-			<li><a id="basic">기본정보</a></li>
+			<li><a href="#" id="basic">기본정보</a></li>
 			<li><a id="reward">리워드</a></li>
 			<li><a id="story">스토리</a></li>
 			<li><a id="aboutyou">메이커정보</a></li>

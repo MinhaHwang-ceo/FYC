@@ -336,7 +336,7 @@
 			console.log("들와쩌염")
 				console.log(form)
 		          var data = new FormData(form);
-		   
+
 		     $.ajax({
 	             enctype:"multipart/form-data",
 	             type:"POST",
@@ -377,10 +377,11 @@
 	          })
 			
 		          })
-    	  
+    	 
+		    
+      });
+	  
 
-
-      
    </script>
 </body>
 </html>

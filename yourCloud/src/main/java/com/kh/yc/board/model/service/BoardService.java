@@ -3,6 +3,7 @@ package com.kh.yc.board.model.service;
 import java.util.ArrayList;
 
 import com.kh.yc.project.model.vo.Project;
+import com.kh.yc.reward.model.vo.Reward;
 import com.kh.yc.board.model.vo.Board;
 import com.kh.yc.board.model.vo.Comment;
 import com.kh.yc.board.model.vo.PageInfo;
@@ -47,5 +48,10 @@ public interface BoardService {
 	ArrayList<Project> getProject();
 
 	Project selectDetailProject(int projectNoInt);
+
+	Project selectProject(int pNo);
+
+	ArrayList<Reward> selectRewardList(int pNo);
+
 
 }
