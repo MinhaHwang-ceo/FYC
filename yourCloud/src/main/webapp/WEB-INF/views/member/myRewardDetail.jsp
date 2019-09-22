@@ -28,7 +28,7 @@
 				<br />
 				<h4>펀딩내역</h4>
 				<br /> 
-				<div class="rewards">
+				<div class="rewards"> 
 					<div class="left">
 						<p class="category"><c:out value="${ r.categoryDiv }"/></p>	
 						<p class="status smallText"><c:out value="${ r.endDate }"/> 종료</p>
@@ -63,38 +63,38 @@
 						<p class="smallText">결제 내역</p>
 						<p class="projectTitle">리워드 이름</p>
 						<p>가격 | 수량</p>
-						<p>발송 시작일 : yyyy년 mm월 dd일 예정</p>
+						<p>발송 시작일</p>
 						<p>옵션</p>
 					</div>
 					<div class="right">
 						<p class="smallText">&nbsp;</p>
 						<p class="projectTitle"><c:out value="${ r.projectTitle }"/></p>
 						<p><c:out value="${ r.rewardMoney }"/> 원</p>
+						<p><c:out value="${ r.startDate  }"/></p>
+						<p><c:out value="${ r.options }"/></p>
 					</div>
 				</div>
 				<div class="rewards" style="background:#D4EAE5">
 					<div class="left">
 						<p>펀딩금액</p>
 						<p>포인트 차감금액</p>
-						<p>추가 후원금</p>
 						<p>배송비</p>
 						<hr />
 						<p>펀딩 마감일</p>
 					</div>
 					<div class="right">
 						<p><c:out value="${ r.rewardMoney }"/> 원</p>
-						<p>- 0원</p>
-						<p>0원</p>
-						<p>0원</p>
+						<p>- <c:out value="${ r.point }"/> 원</p>
+						<p><c:out value="${ r.deliveryMoney }"/> 원</p>
 						<hr />
-						<p style="font-size:1.1em;font-weight:bold"><c:out value="${ r.rewardMoney }"/> 원</p>
+						<p style="font-size:1.1em;font-weight:bold"><c:out value="${ r.rewardMoney + r.deliveryMoney - r.point}"/> 원</p>
 					</div>
 				</div>
 				<div class="rewards">
 					<div class="left">
 						<p class="smallText">펀딩 상태</p>
 						<p>결제 방법</p>
-						<p>카드 번호</p>
+						<p>계좌 번호</p>
 					</div>
 					<div class="right">
 						<p>&nbsp;</p>
@@ -105,10 +105,9 @@
 				<div class="rewards">
 					<div class="left">
 						<p class="smallText">배송지 정보</p>
-						<p>사람 이름</p>
+						<p><c:out value="${ loginUser.userName }"/></p>
 						<p>010-0000-0000</p>
-						<p>서울시 관악구 행운동 행운 1가길</p>
-						<p>12번지</p>
+						<p><c:out value="${ r.deliverySite }"/></p>
 					</div>
 				</div>
 				<div class="rewards" style="background:lightgray">

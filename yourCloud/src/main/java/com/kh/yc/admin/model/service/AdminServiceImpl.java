@@ -100,6 +100,12 @@ public class AdminServiceImpl implements AdminService {
 	   	return ad.adjustProjectList(sqlSession);   
 	}
 	
+	@Override
+	public void adjustUpdate(Project p) {
+		
+		AdminDao.adjustUpdate(sqlSession, p);
+	}
+	
 	
 	//엑셀
 	@Override

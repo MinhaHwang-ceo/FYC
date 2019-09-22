@@ -85,7 +85,7 @@
 	</resultMap>
 	<resultMap type="com.kh.yc.project.model.vo.OpenAlarm"
 		id="OpenAlarmList">
-		<id property="memberNo" column="MEMBER_NO" />
+		<id property="userNo" column="MEMBER_NO" />
 		<result property="memberPhone" column="MEMBER_PHONE" />
 		<result property="projectOpen" column="PROJECT_OPEN" />
 		<result property="projectNo" column="PROJECT_NO" />
@@ -162,7 +162,7 @@
 		SELECT
 		*
 		FROM (
-		SELECT
+		SELECT 
 		PROJECT_NO, CATEGORY, SUMMARY, PROJECT_TITLE,
 		RANK() OVER (ORDER BY PROJECT_NO
 		DESC) RANK
@@ -253,24 +253,24 @@
 	<select id="selectOpenProject" resultMap="ProjectList"
 		parameterType="java.util.Map">
 		SELECT P.PROJECT_NO, P.PROJECT_TITLE,P.MAIN_IMG,
-		P.CATEGORY, P.PROJECT_SHORT_TITLE, M.COMPANY_NAME, C.CATEGORY_DIV
+		P.CATEGORY, P.PROJECT_SHORT_TITLE, M.COMPANY_NAME, C.CATEGORY_DIV, P.PROGRESS_STATUS, P.JUDGE_STATUS
 		FROM
 		PROJECT P
 		LEFT JOIN CATEGORY C ON (P.CATEGORY = C.CATEGORY)
 		LEFT JOIN
 		MEMBER M ON (P.MEMBER_NO = M.MEMBER_NO)
+		WHERE P.PROGRESS_STATUS = '오픈예정' AND P.JUDGE_STATUS = '통과'
 		ORDER BY PROJECT_NO DESC
 	</select>
 
 	<select id="selectDetailProject" resultMap="ProjectList"
 		parameterType="java.util.Map">
-		SELECT P.PROJECT_NO, P.PROJECT_TITLE, p.SUMMARY,
-		M.COMPANY_NAME, O.PROJECT_OPEN
+		SELECT P.PROJECT_NO, P.PROJECT_TITLE, P.SUMMARY,
+		M.COMPANY_NAME, O.PROJECT_OPEN, P.MAIN_IMG
 		FROM PROJECT P
 		LEFT JOIN MEMBER M
 		ON(P.MEMBER_NO = M.MEMBER_NO)
-		LEFT JOIN OPEN_ALARM O ON(M.MEMBER_NO =
-		O.MEMBER_NO)
+		LEFT JOIN OPEN_ALARM O ON(M.MEMBER_NO = O.MEMBER_NO)
 		WHERE P.PROJECT_NO = #{projectNo}
 	</select>
 
@@ -665,6 +665,16 @@ where m.member_name=#{NAME}
 )
 	</update>
 	
+	<select id="interestProject5" resultMap="ProjectList"
+		parameterType="java.util.Map">
+		SELECT P.PROJECT_NO, P.PROJECT_TITLE,P.MAIN_IMG,
+		P.CATEGORY, P.PROJECT_SHORT_TITLE, M.COMPANY_NAME, C.CATEGORY_DIV
+		FROM PROJECT P
+		LEFT JOIN CATEGORY C ON (P.CATEGORY = C.CATEGORY)
+		LEFT JOIN MEMBER M ON (P.MEMBER_NO = M.MEMBER_NO)
+		WHERE M.MEMBER_NO = #{userNo} AND
+		ORDER BY PROJECT_NO DESC
+  </select>
 	<select id="sortProjectList" parameterType="java.util.Map" resultMap="ProjectList">
 		SELECT P.PROJECT_NO,
 		P.PROJECT_TITLE,P.MONEY,M.COMPANY_NAME,P.END_DATE,A.NEW_FILE_NAME
