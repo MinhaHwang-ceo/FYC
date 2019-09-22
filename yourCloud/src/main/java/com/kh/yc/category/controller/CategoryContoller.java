@@ -31,7 +31,6 @@ public class CategoryContoller {
 	@RequestMapping(value = "/categoryOne.ca", method = RequestMethod.GET)
 	public String categoryOne(@RequestParam int projectNo,HttpServletRequest request, HttpServletResponse response) {
 		
-
 		//글의 상세 조회를 위한 서비스를 호출. 글 상세정보는 한 줄만 가져오면 되기때문에 map 형식
 		Project detail = ps.detailProject(projectNo);
 		//System.out.println(detail);

@@ -89,41 +89,40 @@ td {
 
 </head>
 <body>
-   <jsp:include page="../common/customer_menubar.jsp" />
-   <jsp:include page="../common/customer_menuList.jsp" />
+	<jsp:include page="../common/customer_menubar.jsp" />
+	<jsp:include page="../common/customer_menuList.jsp" />
 
-   <br>
-   <br>
-   <div id="includeCategory">
-      <jsp:include page="../common/projectCategory.jsp" />
-   </div>
-   <br>
-   <div style="text-align:center;">
-      <!-- 검색 div  -->
-      <div class="projectDiv">
-      <hr>
-      <table>
-         <tr>
-            <td class="title"><c:out value="전체"/></td>
-         </tr>
-         <tr>
-            <td class="td2"><select name="">
-                  <option value="pop">인기순</option>
-                  <option value="">마감임박순</option>
-                  <option value="">최신순</option>
-                  <option value="">펀딩액순</option>
-            </select></td>
-            <td class="td2"><select name="">
-                  <option value="pop">펀딩진행중</option>
-                  <option value="">펀딩종료</option>
-                  <option value="">오픈예정</option>
-            </select></td>
-         </tr>
-      </table>
-      <hr>
-      <br>
-   
-            <!-- 프로젝트 출력 -->
+	<br>
+	<br>
+	<div id="includeCategory">
+		<jsp:include page="../common/projectCategory.jsp" />
+	</div>
+	<br>
+	<div style="text-align:center;">
+		<!-- 검색 div  -->
+		<div class="projectDiv">
+		<hr>
+		<table>
+			<tr>
+				<td class="title"><c:out value="전체"/></td>
+			</tr>
+			<tr>
+				<td class="td2"><select name="">
+						<option value="">최신순</option>
+						<option value="">마감임박순</option>
+						<option value="">펀딩액순</option>
+				</select></td>
+				<td class="td2"><select name="">
+						<option value="pop">펀딩진행중</option>
+						<option value="">펀딩종료</option>
+						<option value="">오픈예정</option>
+				</select></td>
+			</tr>
+		</table>
+		<hr>
+		<br>
+	
+		      <!-- 프로젝트 출력 -->
 <div class="row">
   <c:forEach var="p" items="${ list }">
     <div class="col-md-4">
