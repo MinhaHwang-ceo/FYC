@@ -17,7 +17,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -28,7 +27,7 @@ import com.kh.yc.board.model.vo.PageInfo;
 import com.kh.yc.board.model.vo.SearchCondition;
 import com.kh.yc.common.CommonUtils;
 import com.kh.yc.common.Pagination;
-import com.kh.yc.funding.model.vo.Funding;
+import com.kh.yc.funding.model.vo.Attachment;
 import com.kh.yc.member.model.service.MemberService;
 import com.kh.yc.member.model.vo.Member;
 import com.kh.yc.project.model.exception.ProjectSelectListException;
@@ -125,11 +124,11 @@ public class BoardController {
 		
 		String[] rewardNumber2 = new String[rewardNumber1.length];
 		
-		for(int i = 0; i < rewardNo1.length; i++) {
-			rewardNo2[i] = rewardNo1[i].replace("$", "");
-			rewardNumber1[i] = rewardNumber2[i].replace("$", "");
-			System.out.println(rewardNo2[i]);
-		}
+		/*
+		 * for(int i = 0; i < rewardNo1.length; i++) { rewardNo2[i] =
+		 * rewardNo1[i].replace("$", ""); rewardNumber1[i] =
+		 * rewardNumber2[i].replace("$", ""); System.out.println(rewardNo2[i]); }
+		 */
 		
 		mv.setViewName("jsonView");
 		return mv;
@@ -479,6 +478,7 @@ public class BoardController {
 		} catch (Exception e) {
 			list = bs.getProject();
 		}
+		System.out.println(list);
 		model.addAttribute("list", list);
 		return "main/main";
 	}
