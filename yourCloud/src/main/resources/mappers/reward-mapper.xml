@@ -100,8 +100,8 @@
 				#{limitCount},
 				#{startDate},
 				#{projectNo},
-				#{description},
-				#{category}
+				#{category},
+				#{rewardDetail}
 			   )
 	<selectKey resultType="integer" keyProperty="rewardNo" order="AFTER">
         SELECT SEQ_REWARDNO.CURRVAL FROM DUAL        
@@ -122,7 +122,7 @@
 			SET REWARD_MONEY = #{rewardMoney},
 			    REWARD_NAME = #{rewardName},
 			    SORT_NO = #{sortNo},
-			    DESCRIPTION = #{description},
+			    REWARD_DETAIL = #{rewardDetail},
 			    OPTIONS = #{option},
 			    DELIVERY_REQUEST = #{deliveryRequest},
 			    DELIVERY_MONEY = #{deliveryMoney},
@@ -130,8 +130,14 @@
 			    START_DATE = #{startDate}
 	            WHERE REWARD_NO = #{rewardNo}
 	        	 AND  PROJECT_NO = #{projectNo}
-	        	 AND  SORT_NO = #{sortNo}
 	</update>
+	
+	<delete id="deleteReward" parameterType="Reward">
+		DELETE FROM REWARD
+		WHERE REWARD_NO = #{rewardNo}
+	</delete>
+	
+
 	<select id="selectRewardList" resultMap="MyRewardResultSet">
 		SELECT
 			*

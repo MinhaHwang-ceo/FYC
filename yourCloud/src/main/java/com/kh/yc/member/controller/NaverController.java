@@ -105,7 +105,8 @@ public class NaverController {
 		JSONParser parser = new JSONParser();
 		Object obj = parser.parse(apiResult);
 		JSONObject jsonObj = (JSONObject) obj;
-
+		
+		System.out.println("jsonObj : " + jsonObj);
 		// 3. 데이터 파싱
 		// Top레벨 단계 _response 파싱
 		JSONObject response_obj = (JSONObject) jsonObj.get("response");
@@ -130,7 +131,7 @@ public class NaverController {
 		
 		naverAge = naverAge.split("-")[0];
 		
-		Member nm = new Member();
+		NaverMember nm = new NaverMember();
 		//nm.setProfile(profile);
 		nm.setUserName(naverName);
 		nm.setUserId(naverId);
@@ -140,7 +141,7 @@ public class NaverController {
 		// 4.파싱 닉네임 세션으로 저장
 		
 		//System.out.println("apiResult => " + apiResult);
-	
+		System.out.println("nm :" + nm);
 		// 네이버 로그인 성공페이지 view 호출
 		int chk = ms.naverLoginCheck(nm);
 

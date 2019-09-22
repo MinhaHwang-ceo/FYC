@@ -33,7 +33,7 @@ public class Reward {
 	private Date startDate; // 발송시작일
 	private String options; // 옵션 조건
 	private String payStatus; // 결제정보
-	private String description;
+	private String rewardDetail; // 상세설명
 	private String rewardCategory;
 	private String rewardDetail;
 
@@ -44,8 +44,10 @@ public class Reward {
 			String deliveryRequest, int limitCount, String projectShortTitle, String memberName, int money, int userNo,
 			Date fundDate, int fundNo, int projectNo, int fundMoney, String account, String category,
 			String categoryDiv, Date endDate, String projectTitle, String companyName, String deliverySite,
-			int deliveryMoney, Date startDate, String options, String payStatus, String description,
+      int deliveryMoney, Date startDate, String options, String payStatus, String description,
 			String rewardCategory, String rewardDetail) {
+		super();
+
 		this.rewardNo = rewardNo;
 		this.rewardMoney = rewardMoney;
 		this.sortNo = sortNo;
@@ -72,7 +74,7 @@ public class Reward {
 		this.startDate = startDate;
 		this.options = options;
 		this.payStatus = payStatus;
-		this.description = description;
+		this.rewardDetail = rewardDetail;
 		this.rewardCategory = rewardCategory;
 		this.rewardDetail = rewardDetail;
 	}
@@ -285,12 +287,12 @@ public class Reward {
 		this.payStatus = payStatus;
 	}
 
-	public String getDescription() {
-		return description;
+	public String getRewardDetail() {
+		return rewardDetail;
 	}
 
-	public void setDescription(String description) {
-		this.description = description;
+	public void setRewardDetail(String rewardDetail) {
+		this.rewardDetail = rewardDetail;
 	}
 
 	public String getRewardCategory() {
