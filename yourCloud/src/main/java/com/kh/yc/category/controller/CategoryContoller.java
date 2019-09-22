@@ -1,11 +1,15 @@
 package com.kh.yc.category.controller;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,6 +25,7 @@ import com.kh.yc.project.model.vo.Interest;
 import com.kh.yc.project.model.vo.Project;
 
 @Controller
+@Component
 public class CategoryContoller {
 
 	@Autowired
@@ -30,6 +35,23 @@ public class CategoryContoller {
 
 	@RequestMapping(value = "/categoryOne.ca", method = RequestMethod.GET)
 	public String categoryOne(@RequestParam int projectNo,HttpServletRequest request, HttpServletResponse response) {
+		
+		//실시간 시간 테스트중
+		Date d = new Date();		
+		SimpleDateFormat test0 = new SimpleDateFormat("yyyy-MM-dd");
+	
+		String today = test0.format(d);		
+		System.out.println(today+": 오늘날짜");
+		
+		String endDate = request.getParameter("endDate");
+		System.out.println(endDate+": 마감날짜");
+		
+		if(today.equals(endDate)) {
+			System.out.println("일치합니다");
+			
+		}else {
+			System.out.println("일치하지 않습니다");
+		}
 		
 		//글의 상세 조회를 위한 서비스를 호출. 글 상세정보는 한 줄만 가져오면 되기때문에 map 형식
 		Project detail = ps.detailProject(projectNo);
@@ -142,6 +164,11 @@ public class CategoryContoller {
 		System.out.println(report);
 		
 		return ps.insertReport(report);
+	}
+	
+	@Scheduled(cron = "0 26 * * * *")
+	public void cornTest() {
+		System.out.println("매일 26분에 실행");
 	}
 	
 

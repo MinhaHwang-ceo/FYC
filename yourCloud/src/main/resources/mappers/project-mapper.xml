@@ -40,6 +40,7 @@
       <result property="payNo" column="PAY_NO" />
       <result property="adjustNo" column="ADJUST_NO" />
       <result property="adjustDate" column="ADJUST_DATE" />
+      <result property="adjustStatus" column="ADJUST_STATE" />
       <result property="adjustMoney" column="ADJUST_MONEY" />
       <result property="adminNo" column="ADMIN_NO" />
       <result property="companyName" column="COMPANY_NAME" />
@@ -112,8 +113,15 @@
    </select>
 
    <update id="updateJudgeProject" parameterType="Project">
-      UPDATE PROJECT
+      UPDATE ADJUST
       SET JUDGE_STATUS = #{judgeStatus}
+      WHERE PROJECT_NO=
+      #{projectNo}
+   </update>
+   
+   <update id="adjustUpdate" parameterType="Project">
+      UPDATE ADJUST
+      SET ADJUST_STATE = #{adjustStatus}
       WHERE PROJECT_NO=
       #{projectNo}
    </update>
@@ -131,7 +139,7 @@
       FROM PROJECT P
       INNER JOIN ADJUST A ON A.MEMBER_NO = P.MEMBER_NO
       WHERE PROGRESS_STATUS
-      = '성공'
+      = '성공' AND JUDGE_STATUS = '통과'
    </select>
 
    <!-- 프로젝트 번호 체크 -->

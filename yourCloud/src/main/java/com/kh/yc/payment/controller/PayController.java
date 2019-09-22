@@ -57,6 +57,7 @@ public class PayController {
 			sd.addSchedule(se);
 
 			iamportClient.subscribeSchedule(sd);
+			
 		} catch (IamportResponseException e) {
 			e.printStackTrace();
 		} catch (IOException e) {

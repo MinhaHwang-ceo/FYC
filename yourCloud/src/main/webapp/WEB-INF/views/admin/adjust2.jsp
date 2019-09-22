@@ -24,7 +24,7 @@ $(document).ready(function(){
     
     $(".btnUpdate").click(function(){
           
-       var projectNo = $(this).parent().siblings().eq(3).text();
+       var projectNo = $(this).parent().siblings().eq(2).text();
        console.log(projectNo);
        
        if(confirm("내역을 내려받으시겠습니까?")){
@@ -38,6 +38,8 @@ $(document).ready(function(){
  function st_close(){
 	  opener.parent.location.reload();
  }
+ 
+ 
 
 </script>
 <head>
@@ -278,7 +280,6 @@ $(document).ready(function(){
                   <thead>
                     <tr>
                       <th>정산번호</th>
-                      <th>회사명</th>
                       <th>프로젝트명</th>
                       <th>프로젝트번호</th>
                       <th>펀딩종료일</th>
@@ -291,7 +292,6 @@ $(document).ready(function(){
                   <tfoot>
                     <tr>
                       <th>정산번호</th>
-                      <th>회사명</th>
                       <th>프로젝트명</th>
                       <th>프로젝트번호</th>
                       <th>펀딩종료일</th>
@@ -305,13 +305,12 @@ $(document).ready(function(){
                     <c:forEach var="row" items="${list}">
                   <tr>
                   	<td>${row.adjustNo}</td>
-                  	<td>${row.companyName}</td>
                   	<td>${row.projectShortTitle}</td>
                   	<td>${row.projectNo}</td>
                   	<td>${row.endDate}</td>
                   	<td>${row.adjustStatus}</td>
                   	<td>${row.adjustMoney}</td>
-                  	<td><input type="button" id="st" onclick="window.open('${pageContext.request.contextPath}/projectStatus.ad?projectNo=${row.projectNo}', 'PopupWin', 'width=380,height=300');" value="상태변경"></td>
+                  	<td><input type="button" id="st" onclick="window.open('${pageContext.request.contextPath}/adjustProjectStatus.ad?projectNo=${row.projectNo}', 'PopupWin', 'width=380,height=300');" value="상태변경"></td>
                   	
                   	<input type="hidden" class="projectNo" value="${row.projectNo}" readonly="readonly">
                   	

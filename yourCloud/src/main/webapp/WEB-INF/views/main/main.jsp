@@ -22,7 +22,6 @@
 <body>
 	<jsp:include page="../common/customer_menubar.jsp" />
 	<jsp:include page="../common/customer_menuList.jsp" />
-	<button type="button" onclick="sign();">서명하기</button>
 	<script>
 		function sign() {
 			var userNo = '${ sessionScope.loginUser.userNo }';
@@ -40,7 +39,6 @@
 		}
 	</script>
 	<!--Section-1-->
-	<input type="button" onclick="location.href='funding_2.bo'" />
 	<section class="section-1">
 		<div class="jumbotron d-flex align-items-center">
 			<div class="gradient"></div>
@@ -129,7 +127,7 @@
 				<div class="col-lg-4 col-sm-12 col-12 box-1" data-aos="fade-right"
 					data-aos-delay="300">
 					<figure class="figure">
-						<a href="blog.html"><img src="/yc/resources/images/phan.PNG"
+						<a href="blog.html"><img src="/yc/resources/uploadFiles/<%= list.get(0).getAttachment().get(0).getNewFileName() %>"
 							class="figure-img img-fluid" alt="blog"></a>
 						<figcaption class="figure-caption">
 							<h2>
@@ -149,7 +147,7 @@
 					<div class="row">
 						<div class="col-sm-6 col-12 box-2">
 							<figure class="figure">
-								<a href="blog.html"><img src="/y/resources/images/hwnag.PNG"
+								<a href="blog.html"><img src="/yc/resources/uploadFiles/<%= list.get(1).getAttachment().get(0).getNewFileName() %>"
 									class="figure-img img-fluid" alt="blog"></a>
 							</figure>
 						</div>
@@ -167,8 +165,7 @@
 					<div class="row">
 						<div class="col-sm-6 col-12 box-4">
 							<figure class="figure">
-								<a href="blog.html"><img
-									src="/yc/resources/images/holding.PNG"
+								<a href="blog.html"><img src="/yc/resources/uploadFiles/<%= list.get(2).getAttachment().get(0).getNewFileName() %>"
 									class="figure-img img-fluid" alt="blog"></a>
 							</figure>
 						</div>
@@ -187,7 +184,7 @@
 					<div class="row">
 						<div class="col-sm-6 col-12 box-6">
 							<figure class="figure">
-								<a href="blog.html"><img src="/yc/resources/images/chi.PNG"
+								<a href="blog.html"><img src="/yc/resources/uploadFiles/<%= list.get(3).getAttachment().get(0).getNewFileName() %>"
 									class="figure-img img-fluid" alt="blog"></a>
 							</figure>
 						</div>

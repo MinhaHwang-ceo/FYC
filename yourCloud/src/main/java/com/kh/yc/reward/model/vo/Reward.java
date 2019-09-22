@@ -33,7 +33,6 @@ public class Reward {
 	private Date startDate; // 발송시작일
 	private String options; // 옵션 조건
 	private String payStatus; // 결제정보
-	private String rewardDetail; // 상세설명
 	private String rewardCategory;
 	private String rewardDetail;
 
@@ -303,13 +302,6 @@ public class Reward {
 		this.rewardCategory = rewardCategory;
 	}
 
-	public String getRewardDetail() {
-		return rewardDetail;
-	}
-
-	public void setRewardDetail(String rewardDetail) {
-		this.rewardDetail = rewardDetail;
-	}
 
 	@Override
 	public String toString() {
@@ -320,8 +312,7 @@ public class Reward {
 				+ projectNo + ", fundMoney=" + fundMoney + ", account=" + account + ", category=" + category
 				+ ", categoryDiv=" + categoryDiv + ", endDate=" + endDate + ", projectTitle=" + projectTitle
 				+ ", companyName=" + companyName + ", deliverySite=" + deliverySite + ", deliveryMoney=" + deliveryMoney
-				+ ", startDate=" + startDate + ", options=" + options + ", payStatus=" + payStatus + ", description="
-				+ description + ", rewardCategory=" + rewardCategory + ", rewardDetail=" + rewardDetail + "]";
+				+ ", startDate=" + startDate + ", options=" + options + ", payStatus=" + payStatus + ", rewardCategory=" + rewardCategory + ", rewardDetail=" + rewardDetail + "]";
 	}
 
 }

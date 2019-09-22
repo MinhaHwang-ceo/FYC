@@ -30,49 +30,6 @@
 				<div class="projects">
 					<table>
 						<tr>
-							<input type="hidden" value=""/>
-							<td class="projectImgs"><img src="${ contextPath }/resources/images/mail.PNG" alt="" /></td>
-						</tr>
-						<tr>
-							<td class="projectTitles"><c:out value="gd"/></td>
-						</tr>
-						<tr>
-							<td class="projectCategories"><c:out value="gd"/></td>
-						</tr>
-					</table>
-				</div>
-				<div class="projects">
-					<table>
-						<tr>
-							<input type="hidden" value=""/>
-							<td class="projectImgs"><img src="${ contextPath }/resources/images/mail.PNG" alt="" /></td>
-						</tr>
-						<tr>
-							<td class="projectTitles"><c:out value="gd"/></td>
-						</tr>
-						<tr>
-							<td class="projectCategories"><c:out value="gd"/></td>
-						</tr>
-					</table>
-				</div>
-				<div class="projects">
-					<table>
-						<tr>
-							<input type="hidden" value=""/>
-							<td class="projectImgs"><img src="${ contextPath }/resources/images/mail.PNG" alt="" /></td>
-						</tr>
-						<tr>
-							<td class="projectTitles"><c:out value="gd"/></td>
-						</tr>
-						<tr>
-							<td class="projectCategories"><c:out value="gd"/></td>
-						</tr>
-					</table>
-				</div>
-				<div class="projects">
-					<table>
-						<tr>
-							<input type="hidden" value=""/>
 							<td class="projectImgs"><img src="${ contextPath }/resources/images/mail.PNG" alt="" /></td>
 						</tr>
 						<tr>
@@ -86,10 +43,20 @@
 			</div>
 		</div>
 		<div id="openAlarmProject">
-			<h2><img src="${ contextPath }/resources/images/mail.PNG"/>  <c:out value="${ loginUser.userName }"/> 님의 관심 프로젝트</h2>
-			<div class="hr">
-				<hr />
-			</div>
+			<h2><img src="${ contextPath }/resources/images/mail.PNG"/>  <c:out value="${ loginUser.userName }"/> 님의 알림 프로젝트</h2>
+			<div class="projects">
+					<table>
+						<tr>
+							<td class="projectImgs"><img src="${ contextPath }/resources/images/mail.PNG" alt="" /></td>
+						</tr>
+						<tr>
+							<td class="projectTitles"><c:out value="gd"/></td>
+						</tr>
+						<tr>
+							<td class="projectCategories"><c:out value="gd"/></td>
+						</tr>
+					</table>
+				</div>
 		</div>
 	</div>
 	<jsp:include page="../common/customer_footer.jsp"/>
