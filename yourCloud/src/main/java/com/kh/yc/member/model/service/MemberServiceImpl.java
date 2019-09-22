@@ -18,6 +18,7 @@ import com.kh.yc.member.model.dao.MemberDao;
 import com.kh.yc.member.model.dao.MemberDaoImpl;
 import com.kh.yc.member.model.vo.Member;
 import com.kh.yc.member.model.vo.NaverMember;
+import com.kh.yc.project.model.vo.Project;
 import com.kh.yc.reward.model.vo.Reward;
 
 @Service
@@ -115,7 +116,7 @@ public class MemberServiceImpl implements MemberService {
 
 	public List<Member> emailList() {
 
-		List<Member> list=md.emailList(sqlSession);
+		List<Member> list=md.emailList(sqlSession); 
 		
 		return list;
 	}
@@ -133,6 +134,12 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
+	public ArrayList<Project> interestProject(Member mse) {
+
+		return md.interestProject(sqlSession, mse);
+}
+  
+  
 	public Member selectMember(String userNo) {
 		// TODO Auto-generated method stub
 		return md.selectMemberInfo(sqlSession, userNo);

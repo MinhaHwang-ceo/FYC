@@ -24,7 +24,7 @@ public class Reward {
 	private String account; // 계좌번호
 	private String category; // 카테고리 코드
 	private String categoryDiv; // 카테고리 이름
-	private Date endDate; // 종료일
+	private Date endDate; // 종료일 
 	private String projectTitle; // 프로젝트제목
 	private String companyName; // 메이커(법인명)
 	private String deliverySite; // 주소
@@ -35,6 +35,7 @@ public class Reward {
 	private String payStatus; // 결제정보
 	private String rewardDetail; // 상세설명
 	private String rewardCategory;
+	private int point;
 	private String rewardDetail;
 
 	public Reward() {
@@ -44,10 +45,9 @@ public class Reward {
 			String deliveryRequest, int limitCount, String projectShortTitle, String memberName, int money, int userNo,
 			Date fundDate, int fundNo, int projectNo, int fundMoney, String account, String category,
 			String categoryDiv, Date endDate, String projectTitle, String companyName, String deliverySite,
-      int deliveryMoney, Date startDate, String options, String payStatus, String description,
-			String rewardCategory, String rewardDetail) {
+			int deliveryMoney, Date startDate, String options, String payStatus, String description,
+			String rewardCategory, int point, String rewardDetail) {
 		super();
-
 		this.rewardNo = rewardNo;
 		this.rewardMoney = rewardMoney;
 		this.sortNo = sortNo;
@@ -76,7 +76,8 @@ public class Reward {
 		this.payStatus = payStatus;
 		this.rewardDetail = rewardDetail;
 		this.rewardCategory = rewardCategory;
-		this.rewardDetail = rewardDetail;
+		this.point = point;
+
 	}
 
 	public int getRewardNo() {
@@ -303,12 +304,13 @@ public class Reward {
 		this.rewardCategory = rewardCategory;
 	}
 
-	public String getRewardDetail() {
-		return rewardDetail;
+	public int getPoint() {
+		return point;
 	}
 
-	public void setRewardDetail(String rewardDetail) {
-		this.rewardDetail = rewardDetail;
+	public void setPoint(int point) {
+		this.point = point;
+
 	}
 
 	@Override
@@ -321,7 +323,9 @@ public class Reward {
 				+ ", categoryDiv=" + categoryDiv + ", endDate=" + endDate + ", projectTitle=" + projectTitle
 				+ ", companyName=" + companyName + ", deliverySite=" + deliverySite + ", deliveryMoney=" + deliveryMoney
 				+ ", startDate=" + startDate + ", options=" + options + ", payStatus=" + payStatus + ", description="
-				+ description + ", rewardCategory=" + rewardCategory + ", rewardDetail=" + rewardDetail + "]";
+				+ description + ", rewardCategory=" + rewardCategory + ", point=" + point + "," + rewardDetail=" + rewardDetail +"]";
 	}
+
+	
 
 }

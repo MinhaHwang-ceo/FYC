@@ -15,6 +15,7 @@ import org.springframework.stereotype.Repository;
 import com.kh.yc.board.model.vo.PageInfo;
 import com.kh.yc.member.model.vo.Member;
 import com.kh.yc.member.model.vo.NaverMember;
+import com.kh.yc.project.model.vo.Project;
 import com.kh.yc.reward.model.vo.Reward;
 @Repository
 public class MemberDaoImpl implements MemberDao{
@@ -121,6 +122,7 @@ public class MemberDaoImpl implements MemberDao{
 		//좋아요 기능
 		@Override
 		public int naverLoginCheck(SqlSessionTemplate sqlSession, NaverMember nm) {
+
 			return sqlSession.selectOne("Naver.naverLoginCheck", nm);
 		}
 		@SuppressWarnings({ "unchecked", "rawtypes" })
@@ -140,6 +142,15 @@ public class MemberDaoImpl implements MemberDao{
 			
 			return sqlSession.selectOne("Reward.selectMyRewardDetail", rewardNoInt);
 		}
+		@SuppressWarnings({ "unchecked", "rawtypes" })
+		@Override
+		public ArrayList<Project> interestProject(SqlSessionTemplate sqlSession, Member mse) {
+			ArrayList<Project> list = null;
+			
+			list = (ArrayList) sqlSession.selectList("Project2.interestProject5", mse);
+			
+			return list;
+
 		@Override
 		public Member selectMemberInfo(SqlSessionTemplate sqlSession, String userNo) {
 			// TODO Auto-generated method stub
