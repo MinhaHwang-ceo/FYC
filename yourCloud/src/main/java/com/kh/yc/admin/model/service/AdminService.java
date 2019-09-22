@@ -44,4 +44,6 @@ public interface AdminService {
 
 	public void updateReward(Map map);
 
+	public void adjustUpdate(Project p);
+
 }

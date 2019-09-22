@@ -106,9 +106,18 @@ public class AdminDaoImpl implements AdminDao{
 			
 			//리워드업데이트
 			@Override
-			public Object updateReward(SqlSessionTemplate sqlSession, Map map) {
+			public void updateReward(SqlSessionTemplate sqlSession, Map map) {
 				
-				return sqlSession.selectOne("ExcelReward.updateExcel", map);
+				for(int i = 0; i < map.size() ; i++) {
+					
+					sqlSession.update("ExcelReward.updateExcel", map);
+				}
+			}
+
+			@Override
+			public void adjustUpdate(SqlSessionTemplate sqlSession, Project p) {
+				
+				sqlSession.update("Project.adjustUpdate", p);
 			}
 			
 		
