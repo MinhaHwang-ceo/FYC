@@ -123,27 +123,32 @@
 			<div class="div1" style="padding-left: 50px;">
 				<table class="rewardInfo" style="width: 100%; text-align: left;">
 					<tr style="border-top: 1px solid lightgray;">
-						<td rowspan="6" style="width: 100px;"><input type="checkbox" class="check"><input type="hidden" class="rewardNo" name="rewardNo" value="${ r.rewardNo }" /></td>
-						<td><label><fmt:formatNumber value="${ r.rewardMoney }" /></label>원 펀딩합니다</td>
+						<td rowspan="6" style="width: 100px;"><input type="checkbox"
+							class="check"> <input type="hidden" class="rewardNo"
+							name="rewardNo" value="${ r.rewardNo }" /></td>
+						<td><label><fmt:formatNumber
+									value="${ r.rewardMoney }" /></label>원 펀딩합니다</td>
+						<input type="hidden" class="rewardPrice" value="${r.rewardMoney }" />
 					</tr>
 					<tr>
 						<td><h3>
 								<c:out value="${r.rewardName }" />
-							</h3>
-						</td>
+							</h3></td>
 					</tr>
 					<tr>
 						<td><c:out value="${r.rewardDetail }" /></td>
 					</tr>
 					<tr>
-						<td>배송비 : <label class="deliveryMoney"><c:out value="${ r.deliveryMoney }" /></label>&nbsp;&nbsp;&nbsp;&nbsp;
-							<c:out value="발송 예정일 : ${ r.startDate }" /></td>
+						<td>배송비 : <label class="deliveryMoney"><c:out
+									value="${ r.deliveryMoney }" /></label>&nbsp;&nbsp;&nbsp;&nbsp; <c:out
+								value="발송 예정일 : ${ r.startDate }" /></td>
 					</tr>
 					<tr class="hidden">
 						<td>수량</td>
 					</tr>
 					<tr class="hidden">
-						<td><input type='number' class="rewardNumber" name='rewardNumber' /></td>
+						<td><input type='number' class="rewardNumber"
+							name='rewardNumber' /></td>
 					</tr>
 					<tr>
 						<td>&nbsp;</td>
@@ -168,8 +173,10 @@
 				</tr>
 
 				<tr>
-					<td><input type="checkbox" id="name" name="blind" value="name"><label for="name">이름 비공개</label></td>
-					<td><input type="checkbox" id="money" name="blind" value="money"><label for="blind">펀딩금액 비공개</label></td>
+					<td><input type="checkbox" id="name" name="blind" value="name"><label
+						for="name">이름 비공개</label></td>
+					<td><input type="checkbox" id="money" name="blind"
+						value="money"><label for="blind">펀딩금액 비공개</label></td>
 				</tr>
 
 				<tr>
@@ -179,13 +186,15 @@
 			</table>
 		</div>
 		<br> <br>
-		
+
 		<div class="div2">
 			<h6>
-				<label name="projectTitle"></label><c:out value="${ p.projectTitle }" /> 에 <label id="price" name="price"></label> 원을 펀딩합니다
+				<label name="projectTitle"></label>
+				<c:out value="${ p.projectTitle }" />
+				에 <label id="price" name="price"></label> 원을 펀딩합니다
 			</h6>
-			<br> <br> 
-				<input type="button" value="다음 단계로  >" class="btn btn-info" id="btn1">
+			<br> <br> <input type="button" value="다음 단계로  >"
+				class="btn btn-info" id="btn1" onclick="location.href='funding_2.bo'">
 		</div>
 		<br>
 	</div>
@@ -194,10 +203,14 @@
 	<jsp:include page="../../common/customer_footer.jsp" />
 
 	<script>
-	
+		$(function(){
+			
+		var price = 0;
 		$(".rewardNumber").keyup(function(){
 			var cnt = $(this).val();
-			var price = $(this).parent();
+			
+			var target = $(this).parent();
+		});
 		});
 		
 		$("#goBack").click(function() {
@@ -236,6 +249,7 @@
 
 		});
 		
+		/*
 		$("#btn1").click(function(){
 			var target ="";
 			var targetCnt = "";
@@ -251,16 +265,16 @@
 			});
 			
 			$.ajax({
-				url: "reqFund.bo",
+				url: "funding_2.bo",
 				type: "POST",
 				data:{"projectNo":projectNo, "userNo":userNo, "target":target, "targetCnt":targetCnt},
 				success:function(data){
-					console.log("gd");
+					
 				}
 			});
 			
 		});
-		
+		*/
 		
 	</script>
 

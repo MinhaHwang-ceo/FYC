@@ -27,6 +27,8 @@
 <script src="${pageContext.request.contextPath}/resources/js/payment.js"></script>
 <script type="text/javascript"
 	src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <title>니가그린구름그림</title>
 <style>
 .outer {
@@ -163,8 +165,9 @@
 					<th>리워드배송지</th>
 				</tr>
 				<tr>
-					<td class="td1"><b><br>이름</b><br> 회원이름<br> <br>
-						<b>이메일</b><br> user01@naver.com<br> <br> <b>휴대폰번호</b><br>
+					<td class="td1"><b><br>이름</b><br>
+					<c:out value="${ sessionScope.loginUser.userName }" /><br> <br>
+						<b>이메일</b><br><c:out value="${ sessionScope.loginUser.email }"/><br> <br> <b>휴대폰번호</b><br>
 						010-1234-5678<br> <br> <input type="checkbox" required>(필수)
 						펀딩 진행에 대한 <br> 새소식 및 결제 관련 안내를 받습니다.<br> <br> <br>
 						<br> <br> <br> <br> <br></td>
@@ -231,9 +234,6 @@
 			var userName = '${ sessionScope.loginUser.userName }';
 			
 			var merchantUid = "test" + Math.floor(Math.random() * 100000) + 1;;
-			
-			alert(merchantUid);
-			
 			
 			var IMP = window.IMP;
 			IMP.init('imp24001024');
