@@ -45,9 +45,7 @@
 					<p><c:out value="${ m.fundDate }"/> 펀딩</p>	
 					<br />
 					<br />
-					<label>메이커 만족도</label> 
 					<br />
-					<label class="stars">★★★★☆</label>
 					<br />
 					<a href="showMyRewardDetail.me?rewardNo=${ m.rewardNo }">상세보기</a>
 				</div>

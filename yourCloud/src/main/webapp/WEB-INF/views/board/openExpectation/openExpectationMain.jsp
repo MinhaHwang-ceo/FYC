@@ -43,7 +43,7 @@
     <div class="col-md-4">
       <div class="thumbnail">
       	<a href="openExpectationDetail.bo?projectNo=${ p.projectNo }">
-          <img src="/yc/resources/images/blog-1.jpg" alt="Lights" style="width:100%; height:70%;">
+          <img src="/yc/resources/uploadFiles/<c:out value="${p.newFileName}"/>.png" alt="Lights" style="width:100%; height:70%;">
           <div class="caption">
             <h6>&nbsp;[<c:out value="${ p.projectShortTitle }"/>]<c:out value="${ p.projectTitle }"/></h6>
             <p>&nbsp;<c:out value="${ p.categoryDiv}"/></p>

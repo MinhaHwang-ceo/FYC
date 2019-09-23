@@ -40,6 +40,7 @@
 		<result property="projectOpen" column="PROJECT_OPEN" />
 		<result property="story" column="STORY" />
 		<result property="rules" column="RULES" />
+		<result property="reportCount" column="REFORT_COUNT"/>
 		<result property="newFileName" column="NEW_FILE_NAME" />
 		<collection property="attachment"
 			javaType="java.util.ArrayList" resultMap="AttachmentResultSet" />
@@ -274,13 +275,13 @@
 
 	<select id="selectOpenProject" resultMap="ProjectList"
 		parameterType="java.util.Map">
-		SELECT P.PROJECT_NO, P.PROJECT_TITLE,P.MAIN_IMG,
+		SELECT P.PROJECT_NO, P.PROJECT_TITLE, P.MAIN_IMG,
 		P.CATEGORY, P.PROJECT_SHORT_TITLE, M.COMPANY_NAME, C.CATEGORY_DIV, P.PROGRESS_STATUS, P.JUDGE_STATUS
 		FROM
 		PROJECT P
 		LEFT JOIN CATEGORY C ON (P.CATEGORY = C.CATEGORY)
-		LEFT JOIN
-		MEMBER M ON (P.MEMBER_NO = M.MEMBER_NO)
+		LEFT JOIN MEMBER M ON (P.MEMBER_NO = M.MEMBER_NO)
+		LEFT JOIN ATTACHMENT A ON(P.PROJECT_NO = A.PROJECT_NO)
 		WHERE P.PROGRESS_STATUS = '오픈예정' AND P.JUDGE_STATUS = '통과'
 		ORDER BY PROJECT_NO DESC
 	</select>
