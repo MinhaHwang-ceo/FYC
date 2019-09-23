@@ -125,10 +125,12 @@
 					<tr style="border-top: 1px solid lightgray;">
 						<td rowspan="6" style="width: 100px;"><input type="checkbox"
 							class="check"> <input type="hidden" class="rewardNo"
-							name="rewardNo" value="${ r.rewardNo }" /></td>
+							name="rewardNo" value="${ r.rewardNo }" />
+							<input type="hidden" class="rewardPrice" value="${r.rewardMoney }" />	
+							</td>
 						<td><label><fmt:formatNumber
+
 									value="${ r.rewardMoney }" /></label>원 펀딩합니다</td>
-						<input type="hidden" class="rewardPrice" value="${r.rewardMoney }" />
 					</tr>
 					<tr>
 						<td><h3>
@@ -194,7 +196,7 @@
 				에 <label id="price" name="price"></label> 원을 펀딩합니다
 			</h6>
 			<br> <br> <input type="button" value="다음 단계로  >"
-				class="btn btn-info" id="btn1" onclick="location.href='funding_2.bo'">
+				class="btn btn-info" id="btn1">
 		</div>
 		<br>
 	</div>
@@ -249,12 +251,12 @@
 
 		});
 		
-		/*
 		$("#btn1").click(function(){
 			var target ="";
 			var targetCnt = "";
-			var projectNo = '${p.projectNo}';
+			
 			var userNo = '${ m.userNo}';
+		/*
 			
 			$(".check:checked").each(function(){
 				target +=  $(this).siblings().eq(0).val();
@@ -273,8 +275,22 @@
 				}
 			});
 			
-		});
 		*/
+			var price = "";
+			var projectNo = '${p.projectNo}';
+			$(".check:checked").each(function(){
+				target +=  $(this).siblings().eq(0).val();
+				//target += "$";
+				
+				targetCnt += $(this).parent().parent().siblings().eq(4).children().eq(0).children().eq(0).val();
+				//targetCnt += "$";
+				
+				price += $(this).siblings().eq(1).val();
+				//price += "$";
+			});
+			
+			location.href="funding_2.bo?projectNo="+projectNo+"&target="+target+"&targetCnt="+targetCnt+"&price="+price+"&userNo="+userNo;
+		});
 		
 	</script>
 
