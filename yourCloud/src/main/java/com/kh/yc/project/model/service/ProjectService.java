@@ -57,7 +57,15 @@ public interface ProjectService {
 	//카제고리 분류
 	ArrayList<Project> sortProjectList(PageInfo pi, String category);
   
-	ArrayList<Project> selectSupportList4(SupportList sl);;
+	ArrayList<Project> selectSupportList4(SupportList sl);
+	//펀든 돈 합계
+	public int sumFundMoney(Interest inter);
+	//서포터 수 카운드
+	public int supportCount(Interest inter);
+	
+	public String mainImg(Interest inter);
+	
+	public String mainImg2(ArrayList<Project> list);
 
 
 }
