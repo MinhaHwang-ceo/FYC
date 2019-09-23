@@ -382,7 +382,7 @@ a {
 			</div>
 		</div>
 		</div>
-	<input type="hidden" value="${ projectNo }" />
+	<input type="hidden" id="bNum" value="${ projectNo }" />
 		
 		<!-- 오른쪽 영역 -->
 		<div class="opener-info" style="text-align:center;">
@@ -661,6 +661,10 @@ a {
 					</c:if>
 				</a>
 			</div>
+			
+			
+			
+						<input type="hidden" id="endDate" value="${ detail.endDate }">
 		</div>
 		<script type="text/javascript">
 			function successReport(){
@@ -695,13 +699,32 @@ a {
 
    $(document).ready(function(){
 
-	   var bNum=$("#bNum");
+	   var bNum=$("#bNum").val();
+	   var userNo=$("#userNo").val();
+	   var endDate=$("#endDate").val();
+	   
+	   
+	   
+	   var paramsString = "&userNo";
+	   var searchParams = new URLSearchParams(paramsString);
+	   searchParams.set("userNo", "userNo");
+var userNoString=searchParams.toString();
+console.log("D:::"+userNoString)
+	   
+	   
+	   
+	   searchParams.set
+	   
+	   
+	   
+	   
 	   
 	   $('#createBtn').on('click',function(){
-
-
-	      googleQRUrl = "https://chart.googleapis.com/chart?chs=177x177&cht=qr&chl="+"http://192.168.120.5:8001/yc/categoryOne.ca?projectNo="+bNum;
-	      
+		   console.log("dddddddd"+bNum);
+		   console.log("dddddddd"+userNo);
+		   console.log("dddddddd"+endDate);
+	      googleQRUrl = "https://chart.googleapis.com/chart?chs=177x177&cht=qr&chl="+"http://192.168.120.6:8001/yc/categoryOne.ca?projectNo="+bNum+userNoString+userNo+"\\&endDate="+endDate;
+	      console.log("DdddddddDD"+googleQRUrl)
 	      	 // 이미지가 나타날 영역에 원하는 내용을 넣은 QR code의 이미지를 출력합니다.
 
              // 여기 주소 부분을 변경해주면 원하는 값을 언제든 맘대로

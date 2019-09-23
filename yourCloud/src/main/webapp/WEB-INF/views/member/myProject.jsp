@@ -51,7 +51,8 @@
          <table align="center" id="myProjectTable">
             <tr>
                <td class="projectImg">
-                  <img src="${ contextPath }/resources/images/mail.PNG" style="width:100%;"/>
+            
+                  <img src="/yc/resources/uploadFiles/${b.newFileName}" style="width:100%; height:70%;"/>
                </td>
             </tr>
             
@@ -69,9 +70,7 @@
                    	<c:if test="${b.judgeStatus =='통과' }">
             <tr>
                <td>진행 상황 : <c:out value="${ b.progressStatus }" /> <br />
-								<c:if test="${ empty b.progressStatus }">
 									<input type="button" class="btn btn-info signBtn" value="전자약정하기" /> 
-								</c:if>	
 									<label hidden><c:out value="${ b.projectNo }" /></label>
 								</td>
             </tr>
