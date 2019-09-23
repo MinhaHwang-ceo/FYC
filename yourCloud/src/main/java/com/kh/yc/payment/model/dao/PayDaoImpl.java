@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
+import com.kh.yc.delivery.model.vo.Delivery;
 import com.kh.yc.funding.model.vo.Funding;
 import com.kh.yc.member.model.vo.Member;
 import com.kh.yc.payment.model.vo.Payment;
@@ -56,5 +57,22 @@ public class PayDaoImpl implements PayDao {
 	@Override
 	public void updatePayStatus(SqlSessionTemplate sqlSession, Payment pay) {
 		sqlSession.update("Project2.updatePayStatus", pay);
+	}
+
+	@Override
+	public int insertFund(SqlSessionTemplate sqlSession, Funding fund) {
+		// TODO Auto-generated method stub
+		return sqlSession.insert("Project2.insertFund", fund);
+	}
+
+	@Override
+	public void insertDelivery(SqlSessionTemplate sqlSession, Delivery delivery) {
+		// TODO Auto-generated method stub
+		sqlSession.insert("Project2.insertDelivery", delivery);
+	}
+
+	@Override
+	public void insertDeliveryStatus(SqlSessionTemplate sqlSession, Delivery delivery) {
+		sqlSession.insert("Project2.insertDeliveryStatus", delivery);
 	}
 }

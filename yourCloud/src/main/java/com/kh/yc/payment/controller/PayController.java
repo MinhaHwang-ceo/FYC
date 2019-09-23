@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.kh.yc.delivery.model.vo.Delivery;
+import com.kh.yc.funding.model.vo.Funding;
 import com.kh.yc.payment.model.service.PayService;
 import com.kh.yc.payment.model.vo.Payment;
 import com.siot.IamportRestClient.IamportClient;
@@ -30,14 +32,17 @@ public class PayController {
 			"xZUSL0NpyUxc1GBMg0lYT41iQYv8hFgOFbGqcuQKonXq4yclyyjsCkKsjgBAVRoB351fzSZYfXojvBE4");
 
 	@RequestMapping("billingKey.fd")
-	public ModelAndView billingKey(String customer_uid, HttpServletRequest request, ModelAndView mv) {
-
+	public ModelAndView billingKey(String customer_uid, Delivery delivery, Funding fund, HttpServletRequest request, ModelAndView mv) {
+		System.out.println(delivery);
+		System.out.println(fund);
+		fund.setBlind("0");
+		int result = ps.insertFund(fund);
 		try {
 			Random random = new Random();
 
-			String merchantUid = "fund" + random.nextInt(100000);
+			String merchantUid = "fundi" + random.nextInt(100000);
 
-			BigDecimal amount = new BigDecimal(100000);
+			BigDecimal amount = new BigDecimal(fund.getFundMoney());
 			ScheduleData sd = new ScheduleData(customer_uid);
 			Calendar cal = Calendar.getInstance();
 			cal.add(Calendar.MINUTE, 1);
@@ -53,11 +58,13 @@ public class PayController {
 			int price = amount.intValue();
 			pay.setAmount(price);
 			ps.insertPayment(pay);
-
+			
 			sd.addSchedule(se);
-
+			
 			iamportClient.subscribeSchedule(sd);
 			
+			ps.insertDelivery(delivery);
+			ps.insertDeliveryStatus(delivery);
 		} catch (IamportResponseException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
@@ -74,7 +81,7 @@ public class PayController {
 			merchantUid = p.getPayNo();
 			Random random = new Random();
 
-			String merchantUid2 = "fund" + random.nextInt(100000);
+			String merchantUid2 = "refund" + random.nextInt(100000);
 			String customer_uid = String.valueOf(p.getUserNo());
 
 			BigDecimal amount = new BigDecimal(p.getAmount());

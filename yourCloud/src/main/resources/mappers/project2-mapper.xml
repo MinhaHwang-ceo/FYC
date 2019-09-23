@@ -41,6 +41,7 @@
 		<result property="story" column="STORY" />
 		<result property="rules" column="RULES" />
 		<result property="reportCount" column="REFORT_COUNT"/>
+		<result property="newFileName" column="NEW_FILE_NAME" />
 		<collection property="attachment"
 			javaType="java.util.ArrayList" resultMap="AttachmentResultSet" />
 	</resultMap>
@@ -159,16 +160,19 @@
 		FROM
 		PROJECT
 		WHERE PROGRESS_STATUS != '오픈예정'
+		AND JUDGE_STATUS = '통과'
 	</select>
 
 	<select id="selectProjectList" parameterType="java.util.Map"
 		resultMap="ProjectList">
-		SELECT P.PROJECT_NO,
+        SELECT P.PROJECT_NO,
 		P.PROJECT_TITLE,P.MONEY,M.COMPANY_NAME,P.END_DATE, A.NEW_FILE_NAME
 		FROM PROJECT P
 		JOIN MEMBER M ON (P.MEMBER_NO = M.MEMBER_NO)
         JOIN ATTACHMENT A ON (A.PROJECT_NO = P.PROJECT_NO)
         WHERE PROGRESS_STATUS != '오픈예정'
+        AND JUDGE_STATUS = '통과'
+        AND A.FILE_LEVEL=0
 		ORDER BY PROJECT_NO DESC
 	</select>
 	<select id="getProject" resultMap="ProjectList">
@@ -191,7 +195,7 @@
             A.FILE_LEVEL = 0
 	</select>
 
-
+	<!-- 지효가 쓰는 디테일 프로젝트임 -->
 	<select id="detailProject" resultMap="ProjectList"
 		parameterType="java.lang.Integer">
 		SELECT P.PROJECT_NO, P.CATEGORY ,P.SUMMARY ,
@@ -212,7 +216,6 @@
 		resultMap="ProjectDetail">
 		SELECT *
 		FROM PROJECT
-
 		WHERE PROJECT_NO = #{projectNo}
 	</select>
 
@@ -261,9 +264,11 @@
 	<select id="selectProjectList2" resultMap="ProjectList"
 		parameterType="java.util.Map">
 		SELECT P.PROJECT_NO,
-		P.PROJECT_TITLE,P.MONEY,M.COMPANY_NAME,P.END_DATE,P.MEMBER_NO,P.JUDGE_STATUS,P.PROGRESS_STATUS
+		P.PROJECT_TITLE,P.MONEY,M.COMPANY_NAME,P.END_DATE,P.MEMBER_NO,P.JUDGE_STATUS,P.PROGRESS_STATUS,a.new_file_name
 		FROM PROJECT P
 		JOIN MEMBER M ON (P.MEMBER_NO = M.MEMBER_NO)
+		join attachment a on(p.project_no=a.project_no)
+		where file_level=0
 		ORDER BY
 		PROJECT_NO DESC
 	</select>
@@ -385,7 +390,7 @@
 		SELECT
 		P.PROJECT_TITLE,f.fund_money,f.reward_number,r.reward_name,F.FUND_DATE,M.MEMBER_NAME,d.delivery_site,d.phone,r.start_date,p.pay_status
 		,d2.invoice_number,p.project_no,d.status
-		FROM PROJECT P
+	FROM PROJECT P
 		JOIN SPONSORED S
 		ON(p.PROJECT_NO=S.PROJECT_NO)
 		Join member m on(s.member_no=m.member_no)
@@ -422,7 +427,7 @@
 		PRO.PROJECT_NO =
 		#{projectNo}
 		GROUP BY RE.REWARD_NO, RE.REWARD_NAME,
-		P.PAY_STATUS,
+
 		re.reward_money
 
 	</select>
@@ -440,7 +445,7 @@
 		UPDATE
 		PROJECT
 		SET
-		PROGRESS_STATUS = '성공'
+		PROGRESS_STATUS = '오픈'
 		WHERE
 		PROJECT_NO = #{bNo}
 		AND
@@ -545,7 +550,7 @@
 		PAYMENT(PAY_NO, MEMBER_NO, FUND_NO,
 		PAY_STATUS, COUNT, AMOUNT)
 		VALUES(
-		#{payNo}, #{userNo}, 2, #{payStatus},
+		#{payNo}, #{userNo}, SEQ_FUNDNO.CURRVAL, #{payStatus},
 		1, #{amount}
 		)
 	</insert>
@@ -722,6 +727,8 @@ where m.member_name=#{NAME}
 		JOIN MEMBER M ON (P.MEMBER_NO = M.MEMBER_NO)
 		JOIN ATTACHMENT A ON (A.PROJECT_NO = P.PROJECT_NO)
         WHERE CATEGORY = #{category}
+        AND PROGRESS_STATUS != '오픈예정'
+        AND JUDGE_STATUS = '통과'
         ORDER BY PROJECT_NO DESC
 	</select>
 	
@@ -733,5 +740,58 @@ where m.member_name=#{NAME}
 		WHERE
 			PROJECT_NO = #{pNo}
 	</select>
+	
+
+	<insert id="insertFund" >
+		INSERT INTO
+			FUND
+		VALUES(
+			SYSDATE, SEQ_FUNDNO.NEXTVAL, #{userNo}, #{projectNo},
+			#{fundMoney}, #{rewardNo}, #{rewardCount}, #{blind}
+		)
+	</insert>
+	<insert id="insertDelivery">
+		INSERT INTO
+			DELIVERY
+		VALUES(
+			#{userNo}, SEQ_DELIVERYNO.NEXTVAL, #{deliverySite}, #{userName}, 
+			#{phone}, #{etc}, '배송전'
+		)
+	</insert>
+	<insert id="insertDeliveryStatus">
+		INSERT INTO
+			DELIVERY_STATUS
+		VALUES(
+			SEQ_FUNDNO.CURRVAL, #{userNo}, SEQ_DELIVERYNO.CURRVAL, SEQ_SHIPNO.NEXTVAL, NULL
+		)
+		
+	</insert>
+
+	<select id="sumFundMoney" resultType="int">
+        SELECT SUM(FUND_MONEY)
+        FROM FUND
+        WHERE PROJECT_NO = #{projectNo}
+	</select>
+	
+	<select id="supportCount" resultType="int">
+       SELECT COUNT(MEMBER_NO)
+        FROM FUND
+        WHERE PROJECT_NO = #{projectNo}
+	</select>
+	
+	<select id="mainImg" resultType="string">
+       SELECT NEW_FILE_NAME
+        FROM ATTACHMENT
+        WHERE FILE_LEVEL=1
+        AND PROJECT_NO = #{projectNo}
+	</select>
+	
+	<select id="mainImg2" resultType="string" resultMap="ProjectList">
+        SELECT NEW_FILE_NAME
+        FROM ATTACHMENT 
+        WHERE  FILE_LEVEL=0
+	</select>
+	
+
 </mapper>
 
