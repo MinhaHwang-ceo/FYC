@@ -48,14 +48,6 @@
 					<td colspan="3" class="input" ><input type="email" name="email" value="${ sessionScope.loginUser.email }"disabled /></td>
 				</tr>
 				<tr>
-					<th><label>비밀번호&nbsp;</label></th>
-					<td colspan="3" class="input" ><input type="password" id="pass1"name="userPass" placeholder="특수문자 포함 9자 이상" /></td>
-				</tr>
-				<tr>
-					<th><label>비밀번호 확인&nbsp;</label></th>
-					<td colspan="3" class="input" ><input type="password" id="pass2"/></td>
-				</tr>
-				<tr>
 					<th><label>포인트&nbsp;</label></th>
 					<td colspan="3" class="input" ><input type="number" disabled value="${ sessionScope.loginUser.point }"/></td>
 				</tr>
