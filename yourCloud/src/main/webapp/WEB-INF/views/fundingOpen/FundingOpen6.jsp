@@ -153,7 +153,7 @@ h4 {
 		<br>
 		<form action="FundingOpen7.fd" id="mainForm" method="POST"
 			encType="multipart/form-data">
-			<input type="text" id="projectNo" name="projectNo" value="${projectNo }" />
+			<input type="hidden" id="projectNo" name="projectNo" value="${projectNo }" />
 			<%-- <input type="text" id="rewardNo" name="rewardNo" value="${ rewardNo }"/>--%>
 			<table style="align: center; width: 100%;">
 				<tr>
