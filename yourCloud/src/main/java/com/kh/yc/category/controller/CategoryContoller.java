@@ -69,15 +69,27 @@ public class CategoryContoller {
 		
 		int likeCount =  ps.likeCount(inter);
 		
-		
 		request.setAttribute("likeCount", likeCount);
 		
 		int reportCount =  ps.reportCount(inter);
+		
+		//펀드 돈
+		int sumFundMoney = ps.sumFundMoney(inter);
+		
+		//서포터 수 카운드
+		int supportCount = ps.supportCount(inter);
+		
+		String mainImg = ps.mainImg(inter);
+		
 		
 		//System.out.println("컨트롤러에서 신고수 카운트 ?"+reportCount);
 		
 		request.setAttribute("reportCount", reportCount);
 		request.setAttribute("projectNo", projectNo);
+		request.setAttribute("sumFundMoney", sumFundMoney);
+		request.setAttribute("supportCount", supportCount);
+		request.setAttribute("mainImg", mainImg);
+		
 		return "main/categoryOne";
 
 	}
