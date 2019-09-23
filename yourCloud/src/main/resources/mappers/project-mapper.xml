@@ -99,11 +99,11 @@
       
    <collection property="Attachment" javaType="java.util.List" resultMap="AttachmentResultSet"/>
    </resultMap>
+   
 	<update id="updateProject" parameterType="Project">
 		UPDATE PROJECT
 		SET PROGRESS_STATUS = #{progressStatus}
-		WHERE PROJECT_NO=
-		#{projectNo}
+		WHERE PROJECT_NO = #{projectNo}
 	</update>
 
 

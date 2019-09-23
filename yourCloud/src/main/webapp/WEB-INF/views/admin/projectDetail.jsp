@@ -14,12 +14,12 @@
 <script>
       $(document).ready(function(){
          var judgeStatus = "";
-         
          $("#btnUpdate").click(function(){
                
             var projectNo = $("#projectNo").val();
             if(confirm("수정하시겠습니까?")){
             	judgeStatus = $("#judgeStatus").val();
+         console.log(judgeStatus);
                location.href = "projectUpdate.ad?projectNo="+projectNo+"&judgeStatus="+judgeStatus;
                
             }
