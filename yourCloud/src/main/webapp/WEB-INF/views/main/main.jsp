@@ -11,7 +11,7 @@
 <!-- Required meta tags -->
 <meta charset="utf-8">
 <meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+   content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link rel="stylesheet"
    href="${pageContext.request.contextPath}/resources/css/animate.css">
 <link href="${pageContext.request.contextPath}/resources/css/main.css"
@@ -20,6 +20,7 @@
 <title>more</title>
 </head>
 <body>
+
 	<jsp:include page="../common/customer_menubar.jsp" />
 	<jsp:include page="../common/customer_menuList.jsp" />
 	<script>
@@ -311,6 +312,7 @@
 		</div>
 	</section>
 	<jsp:include page="../common/customer_footer.jsp" />
+
 </body>
 
 </html>

@@ -57,6 +57,14 @@ void   updateDB(SqlSessionTemplate sqlSession,Map<String, Object> map);
 	//카테고리 분류
 	ArrayList<Project> sorttBoardList(SqlSessionTemplate sqlSession, PageInfo pi, String category);
 	ArrayList<Project> selectSupportList4(SqlSessionTemplate sqlSession, SupportList sl);
+	//펀든 돈 합계
+	int sumFundMoney(SqlSessionTemplate sqlSession, Interest inter);
+	
+	int supportCount(SqlSessionTemplate sqlSession, Interest inter);
+	
+	String mainImg(SqlSessionTemplate sqlSession, Interest inter);
+	
+	String mainImg2(SqlSessionTemplate sqlSession, ArrayList<Project> list);
 
 
 }

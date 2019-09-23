@@ -204,4 +204,28 @@ public class ProjectServiceImpl implements ProjectService {
 		return list;
 	}
 
+	@Override
+	public int sumFundMoney(Interest inter) {
+		
+		return pd.sumFundMoney(sqlSession,inter);
+	}
+
+	@Override
+	public int supportCount(Interest inter) {
+		 
+		return pd.supportCount(sqlSession,inter);
+	}
+
+	@Override
+	public String mainImg(Interest inter) {
+		 
+		return pd.mainImg(sqlSession,inter);
+	}
+
+	@Override
+	public String mainImg2(ArrayList<Project> list) {
+		 
+		return pd.mainImg2(sqlSession,list);
+	}
+
 }

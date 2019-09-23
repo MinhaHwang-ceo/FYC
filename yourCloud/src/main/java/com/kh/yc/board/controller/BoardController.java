@@ -182,12 +182,15 @@ public class BoardController {
 			PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
 
 			ArrayList<Project> list = ps.selectProjectList(pi);
+			
+			//String mainImg2 = ps.mainImg2(list);
 
 			request.setAttribute("list", list);
 			request.setAttribute("pi", pi);
+			//request.setAttribute("mainImg2", mainImg2);
 
 		} catch (ProjectSelectListException e) {
-			// TODO Auto-generated catch block
+			 
 			e.printStackTrace();
 		}
 

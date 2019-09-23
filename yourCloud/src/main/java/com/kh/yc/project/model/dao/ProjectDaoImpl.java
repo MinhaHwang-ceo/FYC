@@ -191,8 +191,6 @@ public class ProjectDaoImpl implements ProjectDao{
 	}
 
 	
-	
-	
 	@Override
 	public void updateDB(SqlSessionTemplate sqlSession,Map<String, Object> map) {
 		 sqlSession.update("Project2.updateDb",map);
@@ -238,6 +236,30 @@ public class ProjectDaoImpl implements ProjectDao{
 		
 		
 		return list;
+	}
+
+	@Override
+	public int sumFundMoney(SqlSessionTemplate sqlSession, Interest inter) {
+	
+		return sqlSession.selectOne("Project2.sumFundMoney",inter);
+	}
+
+	@Override
+	public int supportCount(SqlSessionTemplate sqlSession, Interest inter) {
+	 
+		return sqlSession.selectOne("Project2.supportCount",inter);
+	}
+
+	@Override
+	public String mainImg(SqlSessionTemplate sqlSession, Interest inter) {
+		 
+		return sqlSession.selectOne("Project2.mainImg",inter);
+	}
+
+	@Override
+	public String mainImg2(SqlSessionTemplate sqlSession, ArrayList<Project> list) {
+	 
+		return sqlSession.selectOne("Project2.mainImg2",list);
 	}
 
 }

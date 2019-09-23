@@ -35,6 +35,7 @@ public class Reward {
 	private String payStatus; // 결제정보
 	private String rewardCategory;
 	private String rewardDetail;
+
 	public Reward() {
 	}
 	public Reward(int rewardNo, int rewardMoney, String sortNo, String rewardName, String option,
@@ -70,7 +71,6 @@ public class Reward {
 		this.options = options;
 		this.payStatus = payStatus;
 		this.rewardCategory = rewardCategory;
-		this.rewardDetail = rewardDetail;
 	}
 	public int getRewardNo() {
 		return rewardNo;

@@ -151,6 +151,7 @@ public class MemberDaoImpl implements MemberDao{
 			
 			return list;
 		}
+
 		@Override
 		public Member selectMemberInfo(SqlSessionTemplate sqlSession, String userNo) {
 			// TODO Auto-generated method stub
