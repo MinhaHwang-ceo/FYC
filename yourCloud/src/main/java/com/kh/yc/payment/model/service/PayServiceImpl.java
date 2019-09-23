@@ -11,6 +11,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
+import com.kh.yc.delivery.model.vo.Delivery;
 import com.kh.yc.funding.model.vo.Funding;
 import com.kh.yc.payment.controller.PayController;
 import com.kh.yc.payment.model.dao.PayDao;
@@ -33,7 +34,7 @@ public class PayServiceImpl implements PayService {
 
 	@Override
 	// @Scheduled(cron = "0 4 17 * * *")
-	//@Scheduled(cron = "*/50 * * * * *")
+	@Scheduled(cron = "5 * * * * *")
 	public void testJobMethod() {
 		ArrayList<Project> fundSuccessProject = pd.fundSuccessProject(sqlSession);
 
@@ -82,6 +83,24 @@ public class PayServiceImpl implements PayService {
 	@Override
 	public void updatePayStatus(com.kh.yc.payment.model.vo.Payment pay) {
 		pd.updatePayStatus(sqlSession, pay);
+		
+	}
+
+	@Override
+	public int insertFund(Funding fund) {
+		// TODO Auto-generated method stub
+		return pd.insertFund(sqlSession, fund);
+	}
+
+	@Override
+	public void insertDelivery(Delivery delivery) {
+		pd.insertDelivery(sqlSession, delivery);
+		
+	}
+
+	@Override
+	public void insertDeliveryStatus(Delivery delivery) {
+		pd.insertDeliveryStatus(sqlSession, delivery);
 		
 	}
 }

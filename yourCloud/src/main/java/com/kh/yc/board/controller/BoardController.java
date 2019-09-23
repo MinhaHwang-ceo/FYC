@@ -27,7 +27,7 @@ import com.kh.yc.board.model.vo.PageInfo;
 import com.kh.yc.board.model.vo.SearchCondition;
 import com.kh.yc.common.CommonUtils;
 import com.kh.yc.common.Pagination;
-import com.kh.yc.funding.model.vo.Attachment;
+import com.kh.yc.funding.model.vo.Funding;
 import com.kh.yc.member.model.service.MemberService;
 import com.kh.yc.member.model.vo.Member;
 import com.kh.yc.project.model.exception.ProjectSelectListException;
@@ -113,16 +113,26 @@ public class BoardController {
 		return "board/funding/funding_1";
 	}
 	@RequestMapping("reqFund.bo")
-	public ModelAndView reqFund(String projectNo, String userNo, String target, String targetCnt, ModelAndView mv) {
-		System.out.println("projectNo" + projectNo + "userNo" + userNo + "target" + target + "targetCnt" + targetCnt);
+	public ModelAndView reqFund(String projectNo, String userNo, String target, String targetCnt, String price, ModelAndView mv) {
+		System.out.println("projectNo" + projectNo + "target" + target + "targetCnt" + targetCnt + "price" + price);
+		Funding fund = new Funding();
+		fund.setUserNo(Integer.parseInt(userNo));
+		fund.setFundMoney(Integer.parseInt(price));
+		fund.setProjectNo(Integer.parseInt(projectNo));
+		fund.setRewardCount(Integer.parseInt(targetCnt));
+		fund.setRewardNo(Integer.parseInt(target));
 		
-		String[] rewardNo1 = target.split("$");
 		
-		String[] rewardNumber1 = targetCnt.split("$");
-		
-		String[] rewardNo2 = new String[rewardNo1.length];
-		
-		String[] rewardNumber2 = new String[rewardNumber1.length];
+		/*
+		 * s
+		 * String[] rewardNo1 = target.split("$");
+		 * 
+		 * String[] rewardNumber1 = targetCnt.split("$");
+		 * 
+		 * String[] rewardNo2 = new String[rewardNo1.length];
+		 * 
+		 * String[] rewardNumber2 = new String[rewardNumber1.length];
+		 */
 		
 		/*
 		 * for(int i = 0; i < rewardNo1.length; i++) { rewardNo2[i] =
@@ -134,8 +144,20 @@ public class BoardController {
 		return mv;
 	}
 	@RequestMapping(value = "funding_2.bo")
-	public String fundingRequest2(Model model) {
+	public String fundingRequest2(String projectNo, String userNo, String target, String targetCnt, String price,  Model model) {
+		System.out.println("projectNo" + projectNo + "target" + target + "targetCnt" + targetCnt + "price" + price);
+		int pNo = Integer.parseInt(projectNo);
+		Project p = bs.selectProject(pNo);
+		Funding fund = new Funding();
 		
+		fund.setUserNo(Integer.parseInt(userNo));
+		fund.setFundMoney(Integer.parseInt(price));
+		fund.setProjectNo(Integer.parseInt(projectNo));
+		fund.setRewardCount(Integer.parseInt(targetCnt));
+		fund.setRewardNo(Integer.parseInt(target));
+		
+		model.addAttribute("p", p);
+		model.addAttribute("f", fund);
 		return "board/funding/funding_2";
 	}
 

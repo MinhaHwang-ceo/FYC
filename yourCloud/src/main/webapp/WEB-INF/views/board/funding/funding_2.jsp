@@ -136,12 +136,12 @@
 		<hr>
 
 		<div>
-			<h6>프로젝트명입니다</h6>
-			<p>상세설명</p>
-			<p style="text-align: right">수량 : n개 &emsp; 1000원</p>
+			<h6><c:out value="${ p.projectTitle }"/></h6>
+			<p><c:out value="${ p.summary }"/></p>
+			<p style="text-align: right">수량 : <c:out value="${f.rewardCount }"/>개 &emsp; <c:out value="${ f.fundMoney }"/>원</p>
 			<hr>
 			<p style="float: left;">배송비</p>
-			<p style="float: right;">1000원</p>
+			<p style="float: right;">2500원</p>
 			<br>
 			<hr>
 		</div>
@@ -152,7 +152,7 @@
 			<p id="p1">
 				<b>최종결제금액</b>
 			</p>
-			<p id="p2">4000원</p>
+			<p id="p2"><c:out value="${ f.fundMoney + 2500 }"/>원</p>
 			<br> <br>
 		</div>
 		<br>
@@ -165,26 +165,24 @@
 					<th>리워드배송지</th>
 				</tr>
 				<tr>
-					<td class="td1"><b><br>이름</b><br>
-					<c:out value="${ sessionScope.loginUser.userName }" /><br> <br>
-						<b>이메일</b><br><c:out value="${ sessionScope.loginUser.email }"/><br> <br> <b>휴대폰번호</b><br>
-						010-1234-5678<br> <br> <input type="checkbox" required>(필수)
-						펀딩 진행에 대한 <br> 새소식 및 결제 관련 안내를 받습니다.<br> <br> <br>
-						<br> <br> <br> <br> <br></td>
+					<td class="td1"><b><br>이름</b><br> <c:out
+							value="${ sessionScope.loginUser.userName }" /><br> <br>
+						<b>이메일</b><br>
+					<c:out value="${ sessionScope.loginUser.email }" /><br> <br>
+						<input type="checkbox" required>&nbsp;(필수) 펀딩 진행에 대한 <br> 새소식 및 결제
+						관련 안내를 받습니다.<br> <br> <br> <br> <br> <br>
+						<br> <br></td>
 
 					<td style="background: white">&emsp;</td>
 
-					<td><input type="radio">최근 배송지<br> 회원 이름 &emsp;
-						010-1234-5678<br> [12345] 서울시 강남구 역삼동 KH정보교육원<br> <br>
-						<input type="radio">새로입력<br> 이름 &emsp;<input
-						type="text" id="text1" name=""><br> 연락처 <input
-						type="text" id="text1" name=""><br> <br> 주소 <input
-						type="button" onclick="fn_setAddr();" value="우편번호검색"
-						class="btn btn-default" id="btn2"><br> <input
-						type="text" id="zipAddr" name=""><br> <input
-						type="text" placeholder="상세주소" id="text2" name=""><br>
-						<hr> 배송 시 요청사항(선택)<br> <input type="text"
-						placeholder="ex) 부재시 경비실에 보관해주세요" id="text2"><br></td>
+					<td><input type="radio" id="origin" name="site"><label for="origin">최근 배송지</label><br> <label>최근 배송지가 없습니다.</label><br />
+						<input type="radio" id="new" name="site"><label for="new">새로 입력</label><br> 이름 &emsp;<input type="text" id="userName" name="userName"><br> 
+						연락처 <input type="text" id="phone" name="phone"><br> <br> 
+						주소 <input type="button" onclick="fn_setAddr();" value="우편번호검색" class="btn btn-default" id="btn2"><br> 
+						<input type="text" id="zipAddr" name="deliverySite"><br> 
+						<input type="text" placeholder="상세주소" id="delivertSite2" name="delivertSite2"><br>
+						<hr> 배송 시 요청사항(선택)<br> 
+						<input type="text" placeholder="ex) 부재시 경비실에 보관해주세요" id="etc" name="etc"><br></td>
 				</tr>
 			</table>
 		</div>
@@ -228,12 +226,26 @@
 			id="payBtn">
 	</div>
 	<script>
+	
 		$("#payBtn").click(function(){
 			var userNo = '${ sessionScope.loginUser.userNo }';
 			var email = '${ sessionScope.loginUser.email }';
-			var userName = '${ sessionScope.loginUser.userName }';
+			var merchantUid = "" + Math.floor(Math.random() * 100000) + 1;;
+			var price = parseInt('${ f.fundMoney}');
+			var userName = $("#userName").val();
+			var phone = $("#phone").val();
+			var site = $("#zipAddr").val();
+			var site2 = $("#delivertSite2").val();
+			var projectNo = '${ p.projectNo}';
+			var etc = $("#etc").val();
+			var deliverySite = site + " " + site2;
+			var price2 = price + 2500;
 			
-			var merchantUid = "test" + Math.floor(Math.random() * 100000) + 1;;
+			var rewardCount = '${ f.rewardCount }';
+			
+			var projectNo = '${ f.projectNo}';
+			
+			var rewardNo = '${f.rewardNo}';
 			
 			var IMP = window.IMP;
 			IMP.init('imp24001024');
@@ -254,9 +266,21 @@
 				          url: "billingKey.fd", // 서비스 웹서버
 				          method: "POST",
 				          data: {
-				        	  customer_uid:userNo
+				        	  customer_uid:userNo,
+				        	  price:price2,
+				        	  phone:phone,
+				        	  deliverySite:deliverySite,
+				        	  etc:etc,
+				        	  userName:userName,
+				        	  userNo:userNo,
+				        	  projectNo:projectNo,
+				        	  rewardCount:rewardCount,
+				        	  fundMoney:price2,
+				        	  rewardNo:rewardNo,
+				        	  projectNo:projectNo
 				          }, success:function(data){
 				        	  alert("결제가 예약되었습니다");
+				        	  location.href="funding_3.bo";
 				          }
 			    	});
 			    } else {

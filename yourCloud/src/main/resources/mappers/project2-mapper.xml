@@ -439,7 +439,7 @@
 		UPDATE
 		PROJECT
 		SET
-		PROGRESS_STATUS = '성공'
+		PROGRESS_STATUS = '오픈'
 		WHERE
 		PROJECT_NO = #{bNo}
 		AND
@@ -544,7 +544,7 @@
 		PAYMENT(PAY_NO, MEMBER_NO, FUND_NO,
 		PAY_STATUS, COUNT, AMOUNT)
 		VALUES(
-		#{payNo}, #{userNo}, 2, #{payStatus},
+		#{payNo}, #{userNo}, SEQ_FUNDNO.CURRVAL, #{payStatus},
 		1, #{amount}
 		)
 	</insert>
@@ -732,5 +732,30 @@ where m.member_name=#{NAME}
 		WHERE
 			PROJECT_NO = #{pNo}
 	</select>
+	
+	<insert id="insertFund" >
+		INSERT INTO
+			FUND
+		VALUES(
+			SYSDATE, SEQ_FUNDNO.NEXTVAL, #{userNo}, #{projectNo},
+			#{fundMoney}, #{rewardNo}, #{rewardCount}, #{blind}
+		)
+	</insert>
+	<insert id="insertDelivery">
+		INSERT INTO
+			DELIVERY
+		VALUES(
+			#{userNo}, SEQ_DELIVERYNO.NEXTVAL, #{deliverySite}, #{userName}, 
+			#{phone}, #{etc}, '배송전'
+		)
+	</insert>
+	<insert id="insertDeliveryStatus">
+		INSERT INTO
+			DELIVERY_STATUS
+		VALUES(
+			SEQ_FUNDNO.CURRVAL, #{userNo}, SEQ_DELIVERYNO.CURRVAL, SEQ_SHIPNO.NEXTVAL, NULL
+		)
+		
+	</insert>
 </mapper>
 

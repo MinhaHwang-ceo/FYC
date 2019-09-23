@@ -123,6 +123,10 @@
 					<a href="category.bo" class="btn btn-success">더 많은 프로젝트 보러가기</a>
 				</div>
 			</div>
+			<% 
+				if(list.size() > 0){
+
+			%>
 			<div class="row">
 				<div class="col-lg-4 col-sm-12 col-12 box-1" data-aos="fade-right"
 					data-aos-delay="300">
@@ -140,6 +144,7 @@
 					</figure>
 				</div>
 				<%
+				}
 					if (list.size() >= 2) {
 				%>
 				<div class="col-lg-8 col-sm-12 col-12" data-aos="fade-left"
