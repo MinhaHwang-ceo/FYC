@@ -40,6 +40,7 @@
 		<result property="projectOpen" column="PROJECT_OPEN" />
 		<result property="story" column="STORY" />
 		<result property="rules" column="RULES" />
+				<result property="newFileName" column="NEW_FILE_NAME" />
 		<collection property="attachment"
 			javaType="java.util.ArrayList" resultMap="AttachmentResultSet" />
 	</resultMap>
@@ -260,9 +261,11 @@
 	<select id="selectProjectList2" resultMap="ProjectList"
 		parameterType="java.util.Map">
 		SELECT P.PROJECT_NO,
-		P.PROJECT_TITLE,P.MONEY,M.COMPANY_NAME,P.END_DATE,P.MEMBER_NO,P.JUDGE_STATUS,P.PROGRESS_STATUS
+		P.PROJECT_TITLE,P.MONEY,M.COMPANY_NAME,P.END_DATE,P.MEMBER_NO,P.JUDGE_STATUS,P.PROGRESS_STATUS,a.new_file_name
 		FROM PROJECT P
 		JOIN MEMBER M ON (P.MEMBER_NO = M.MEMBER_NO)
+		join attachment a on(p.project_no=a.project_no)
+		where file_level=0
 		ORDER BY
 		PROJECT_NO DESC
 	</select>
@@ -384,7 +387,7 @@
 		SELECT
 		P.PROJECT_TITLE,f.fund_money,f.reward_number,r.reward_name,F.FUND_DATE,M.MEMBER_NAME,d.delivery_site,d.phone,r.start_date,p.pay_status
 		,d2.invoice_number,p.project_no,d.status
-		FROM PROJECT P
+	FROM PROJECT P
 		JOIN SPONSORED S
 		ON(p.PROJECT_NO=S.PROJECT_NO)
 		Join member m on(s.member_no=m.member_no)
@@ -421,7 +424,7 @@
 		PRO.PROJECT_NO =
 		#{projectNo}
 		GROUP BY RE.REWARD_NO, RE.REWARD_NAME,
-		P.PAY_STATUS,
+
 		re.reward_money
 
 	</select>
@@ -544,7 +547,7 @@
 		PAYMENT(PAY_NO, MEMBER_NO, FUND_NO,
 		PAY_STATUS, COUNT, AMOUNT)
 		VALUES(
-		#{payNo}, #{userNo}, 2, #{payStatus},
+		#{payNo}, #{userNo}, 3, #{payStatus},
 		1, #{amount}
 		)
 	</insert>
