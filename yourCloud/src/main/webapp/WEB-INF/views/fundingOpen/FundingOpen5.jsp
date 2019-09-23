@@ -125,6 +125,9 @@ input[type="checkbox"]:checked+label span {
 	cursor: pointer;
 	background: lightgreen;
 }
+.tt{
+	border: 1px solid white;
+}
 </style>
 <script type="text/javascript">
 $(document).ready(function(){
