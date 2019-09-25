@@ -61,7 +61,7 @@ public class PayController {
          Delivery delivery = new Delivery();
          delivery.setUserNo(userNo);
          delivery.setUserName(userName);
-         delivery.setPhone(콜);
+         delivery.setPhone(phone);
          delivery.setEtc(etc);
          delivery.setDeliverySite(deliverySite);
          delivery.setStatus("배송전");
