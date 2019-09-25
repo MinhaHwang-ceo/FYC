@@ -136,25 +136,44 @@ h4 {
 	<jsp:include page="../common/customer_menubar.jsp" />
 	<jsp:include page="../common/customer_menuList.jsp"/>
 	
-	<div id="menu" style="width: 55%; height: 35px; margin: 0 auto;">
+<%-- <jsp:include page="../common/fundOpenMenu.jsp"/> --%>
+	<div id="top" style="width: 100%;">
+<br /><br /><br />
+<div id="menu" style="width: 55%;height: 40px; margin: 0 auto;">
 		<ul>
-			<li><a id="basic">기본정보</a></li>
-			<li><a id="reward">리워드</a></li>
-			<li><a id="story" style="background-color: black; color: white;">스토리</a>
-			</li>
-			<li><a id="aboutyou">메이커정보</a></li>
+			<li><a onclick="basicInfo();" id="basic">기본정보</a></li>
+			<li><a onclick="rewardList();" id="reward">리워드</a></li>
+			<li><a id="story">스토리</a></li>
+			<li><a onclick="makerInfo();" id="aboutyou">메이커정보</a></li>
 			<li><a id="cominhsoon">오픈예정</a></li>
 			<li><a id="account">정산</a></li>
 		</ul>
 	</div>
+</div>
+<script>
+	function basicInfo(){
+		var projectNo = $("#projectNo").val();
+		location.href = "baseInfoList.fd?projectNo=" + projectNo;
+	}
+	
+	function rewardList(){
+		var projectNo = $("#projectNo").val();
+		location.href = "rewardList.fd?projectNo=" + projectNo;
+	}
+	function makerInfo() {
+		var projectNo = $("#projectNo").val();
+		location.href = "makerInfo.fd?projectNo=" + projectNo;
+		
+	}
+</script>	
 	<hr />
 	<br>
 	<div id="inputBox2" align="center">
 		<br>
 		<form action="FundingOpen7.fd" id="mainForm" method="POST"
 			encType="multipart/form-data">
-			<input type="hidden" id="projectNo" name="projectNo" value="${projectNo }" />
-			<%-- <input type="text" id="rewardNo" name="rewardNo" value="${ rewardNo }"/>--%>
+			<input type="text" id="projectNo" name="projectNo" value="${projectNo }" />
+			<%-- <input type="text" id="rewardNo" name="rewardNo" value="${ rewardNo }"/> --%>
 			<table style="align: center; width: 100%;">
 				<tr>
 					<td><h5>프로젝트 요약</h5>- 서포터가 제품의 장점이나<br> 특징을 잘 이해할 수 있도록<br>
@@ -248,39 +267,39 @@ h4 {
 					<table>
 						<tr>
 							<td>품명 및 모델명</td>
-							<td><input type="text" id="box1" name="modelName">
+							<td><input type="text" id="box1" name="">
 							<td>
 						</tr>
 						<tr>
 							<td>제품 소재</td>
-							<td><input type="text" id="box1" name="modelMat"><br>섬유의 조성 또는
+							<td><input type="text" id="box1" name=""><br>섬유의 조성 또는
 								혼용률을 백분율로 입력 기능성인 경우 성적서 또는<br>허가서 내용 입력
 							<td>
 						</tr>
 						<tr>
 							<td>치수</td>
-							<td><input type="text" id="box1" name="modelSize">
+							<td><input type="text" id="box1" name="">
 							<td>
 						</tr>
 						<tr>
 							<td>제조사(수입자)</td>
-							<td><input type="text" id="box1" name="manufacturer">
+							<td><input type="text" id="box1" name="">
 							<td>
 						</tr>
 						<tr>
 							<td>제조국</td>
-							<td><input type="text" id="box1" name="manufacturerNation">
+							<td><input type="text" id="box1" name="">
 							<td>
 						</tr>
 						<tr>
 							<td>세탁방법 및 취급시<br>주의사항
 							</td>
-							<td><input type="text" id="box1" name="modelNotice">
+							<td><input type="text" id="box1" name="">
 							<td>
 						</tr>
 						<tr>
 							<td>제조연월</td>
-							<td><input type="text" id="box1" name="modelWarranty" placeholder="예) 2019년 10월">
+							<td><input type="text" id="box1" name="" placeholder="예) 2019년 10월">
 							<td>
 						</tr>
 						<tr>
@@ -291,7 +310,7 @@ h4 {
 						</tr>
 						<tr>
 							<td>A/S책임자 전화번호</td>
-							<td><input type="text" id="box1" name="modelAdmin"><br>담당자 이름 표기가
+							<td><input type="text" id="box1" name=""><br>담당자 이름 표기가
 								어려울 경우,업체명 입력
 							<td>
 						</tr>
@@ -419,48 +438,48 @@ h4 {
 					<table>
 						<tr>
 							<td>품명 및 모델명</td>
-							<td><input type="text" id="box1">
+							<td><input type="text" name="modelName" id="box1">
 							<td>
 						</tr>
 						<tr>
 							<td>종류</td>
-							<td><input type="text" id="box1">
+							<td><input type="text" name="modelType" id="box1">
 							<td>
 						</tr>
 						<tr>
 							<td>소재</td>
-							<td><input type="text" id="box1">
+							<td><input type="text" name="modelMat" id="box1">
 							<td>
 						</tr>
 						<tr>
 							<td>치수</td>
-							<td><input type="text" id="box1">
+							<td><input type="text" name="modelSize" id="box1">
 							<td>
 						</tr>
 						<tr>
 							<td>제조사(수입자)</td>
-							<td><input type="text" id="box1">
+							<td><input type="text" name="manufacturer" id="box1">
 							<td>
 						</tr>
 						<tr>
 							<td>제조국</td>
-							<td><input type="text" id="box1">
+							<td><input type="text" name="manufacturerNation" id="box1">
 							<td>
 						</tr>
 						<tr>
 							<td>취급시 주의사항</td>
-							<td><input type="text" id="box1">
+							<td><input type="text" name="modelNotice" id="box1">
 							<td>
 						</tr>
 						<tr>
 							<td>품질보증기준</td>
-							<td><input type="text" id="box1"
+							<td><input type="text" id="box1" name="modelWarranty"
 								placeholder="예) 관련법 및 소비자분쟁해결 기준에 따름">
 							<td>
 						</tr>
 						<tr>
 							<td>A/S 책임자와 전화번호</td>
-							<td><input type="text" id="box1"><br>담당자 이름 표기가
+							<td><input type="text" name="modelAdmin" id="box1"><br>담당자 이름 표기가
 								어려울 경우,업체명 입력
 							<td>
 						</tr>

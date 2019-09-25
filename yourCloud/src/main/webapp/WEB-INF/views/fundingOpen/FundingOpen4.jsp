@@ -152,9 +152,9 @@ td {
 <div id="menu" style="width: 55%;height: 40px; margin: 0 auto;">
 		<ul>
 			<li><a onclick="basicInfo();" id="basic">기본정보</a></li>
-			<li><a  onclick="rewardList();" id="reward">리워드</a></li>
+			<li><a onclick="rewardList();" id="reward">리워드</a></li>
 			<li><a id="story">스토리</a></li>
-			<li><a id="aboutyou">메이커정보</a></li>
+			<li><a onclick="makerInfo();" id="aboutyou">메이커정보</a></li>
 			<li><a id="cominhsoon">오픈예정</a></li>
 			<li><a id="account">정산</a></li>
 		</ul>
@@ -169,6 +169,11 @@ td {
 	function rewardList(){
 		var projectNo = $("#projectNo").val();
 		location.href = "rewardList.fd?projectNo=" + projectNo;
+	}
+	function makerInfo() {
+		var projectNo = $("#projectNo").val();
+		location.href = "makerInfo.fd?projectNo=" + projectNo;
+		
 	}
 	
 </script>
@@ -340,6 +345,20 @@ td {
 						</td>
 					</tr>
 					<tr>
+						<td style="background: White"><h4>프로젝트 오픈일</h4>
+							
+							</td>
+						<td id="fno"><input type="date"
+							value="${p.projectOpen}" name="projectOpen"> <script>
+								// et today = new Date().toISOString().substr(0, 10);
+								// document.querySelector("#today").value = today;
+
+								// document.querySelector("#today2").valueAsDate = new Date();
+							</script></td>
+						
+					</tr>
+				
+					<tr>
 						<td style="background: White"><h4>프로젝트 종료일</h4>
 							<p>
 								프로젝트 진행 기간은 평균<br>30일 입니다.
@@ -351,6 +370,7 @@ td {
 
 								// document.querySelector("#today2").valueAsDate = new Date();
 							</script></td>
+							
 					</tr>
 
 					<tr>
