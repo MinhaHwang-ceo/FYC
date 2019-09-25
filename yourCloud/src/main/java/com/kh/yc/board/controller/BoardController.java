@@ -392,7 +392,7 @@ public class BoardController {
 			// 정보 출력
 			sb = new StringBuffer();
 			sb.append("&bNewLine=true").append("&sFileName=").append(originFileName).append("&sFileURL=")
-					.append("http://localhost:8001/yc/resources/uploadFiles/").append(saveName);
+					.append("/yc/resources/uploadFiles/").append(saveName);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

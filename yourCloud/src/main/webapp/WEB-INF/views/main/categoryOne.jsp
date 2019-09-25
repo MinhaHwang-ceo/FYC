@@ -358,11 +358,7 @@ a {
 				
 							
 			<c:set var="money" value="${detail.money}"/>
-			
-				<c:set var="sumFundMoney" value="${sumFundMoney}"/>
-			
-			
-			
+			<c:set var="sumFundMoney" value="${sumFundMoney}"/>
 			<c:set var="sum" value="${ Math.round((sumFundMoney/ detail.money)*100) }"></c:set>
 				
 				<strong style="font-size: 24px;"> <c:out value="${sum}"/> </strong>% 달성   
@@ -421,7 +417,6 @@ a {
 					<!------------------------------------------------------------------>
 					
 					
-
 					<button class="btn-share" id="createBtn">QR코드</button>
 			
 				</div>
@@ -681,23 +676,23 @@ console.log("D:::"+userNoString)
 	   
 	   
 	   
-	   searchParams.set
-	   
-	   
+	  
 	   
 	   
 	   
 	   $('#createBtn').on('click',function(){
-		   console.log("dddddddd"+bNum);
+		   console.log("dddddddd"+bNum);2
 		   console.log("dddddddd"+userNo);
 		   console.log("dddddddd"+endDate);
-	      googleQRUrl = "https://chart.googleapis.com/chart?chs=177x177&cht=qr&chl="+"http://192.168.120.6:8001/yc/categoryOne.ca?projectNo="+bNum+userNoString+userNo+"\\&endDate="+endDate;
+	      googleQRUrl = "https://chart.googleapis.com/chart?chs=177x177&cht=qr&chl="+"http://192.168.0.39:8001/yc/categoryOne.ca?projectNo="+bNum;
 	      console.log("DdddddddDD"+googleQRUrl)
 	      	 // 이미지가 나타날 영역에 원하는 내용을 넣은 QR code의 이미지를 출력합니다.
 
              // 여기 주소 부분을 변경해주면 원하는 값을 언제든 맘대로
 
-	      	$('#qrcode').attr('src', googleQRUrl +'&choe=UTF-8');
+	      	$('#qrcode').attr('src', googleQRUrl +"%26userNo=" + userNo + "%26endDate=" + endDate
+
+	    +'&choe=UTF-8');
 
 
 	   });

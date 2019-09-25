@@ -14,6 +14,7 @@ import com.kh.yc.category.model.vo.Report;
 import com.kh.yc.member.model.vo.Member;
 import com.kh.yc.project.model.exception.ProjectSelectListException;
 import com.kh.yc.project.model.vo.Interest;
+import com.kh.yc.project.model.vo.OpenAlarm;
 import com.kh.yc.project.model.vo.Project;
 import com.kh.yc.project.model.vo.SupportList;
 import com.kh.yc.reward.model.vo.RewardInfo;
@@ -262,6 +263,19 @@ public class ProjectDaoImpl implements ProjectDao{
 		return sqlSession.selectOne("Project2.mainImg2",list);
 	}
 
+	@Override
+	public void joinAlram(SqlSessionTemplate sqlSession, int bNum, int userNo,String phone) {
+		System.out.println("bNum::::::::::::::"+bNum);
+		OpenAlarm oa= new OpenAlarm();
+		oa.setMemberNo(userNo);
+		oa.setProjectNo(bNum);
+		oa.setMemberPhone(phone);
+		
+		int a  = sqlSession.insert("Project2.joinAlram",oa);
+
+		
+	}
+
 	@SuppressWarnings("unchecked")
 	@Override
 	public RewardInfo rewardInfo(SqlSessionTemplate sqlSession, int projectNo) {
@@ -287,7 +301,6 @@ public class ProjectDaoImpl implements ProjectDao{
 		
 		return reply;
 	}
-
 
 
 }

@@ -288,6 +288,7 @@ p {
 			  }, function (rsp) { // callback
 			    if (rsp.success) {
 			    	 // jQuery로 HTTP 요청
+			    	 console.log(rsp.success);
 			    	 jQuery.ajax({
 				          url: "billingKey.fd", // 서비스 웹서버
 				          method: "POST",
@@ -307,10 +308,13 @@ p {
 				          }, success:function(data){
 				        	  alert("결제가 예약되었습니다");
 				        	  location.href="funding_3.bo";
+				        	  console.log(data);
+				          }, error:function(data){
+				        	  alert("리워드 신청 중 에러가 발생했습니다. 관리자에게 문의해주세요");
 				          }
 			    	});
 			    } else {
-			    	
+			    	console.log(rsp.success);
 			    }
 			  });
 		});

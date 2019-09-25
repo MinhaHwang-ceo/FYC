@@ -38,17 +38,59 @@
 <br><br>
 
 <h3>* 핸드폰번호</h3>
-<input type="text" id="memberPhone">
+<input type="text" class="memberPhone">
 
 <br><br><br>
 
-<input type="submit" value="알림신청" class="btn btn-default">
+<input type="submit" value="알림신청" class="btn btn-default" id="submit">
 &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
 <input type="button" value="닫기" onClick="window.close()" class="btn btn-default">
+<input type="hidden" value="${loginUser.userNo }" id="userNo">
+<input type="hidden" value="${loginUser.userNo }" id="userNo">
 
 </div>
 	<script>
+	
+	var userNo= $("#userNo").val();
+	
+	
+	function searchParam(key) {
+		  return new URLSearchParams(location.search).get(key);
+		};
+	
+	var bNum= searchParam('bNum');
+	var phone= $('.memberPhone').val()
+	
+$('.btn-default').click(function(){
+	console.log("phone"+phone)
+	if(userNo==''){
+		
+		alert("로그인 후 이용해주세요")
+	}else{
+		console.log(bNum);
+		console.log(phone);
+		$.ajax({
 
+							
+			url: "joinAlram.bo",
+			type : "post",
+			data : {userNo : userNo,bNum:bNum,phone:phone},
+			success : function(data){
+				
+				alert('알람 신청완료');
+				window.close();
+				
+			}
+		})
+	}
+	
+	
+	
+	
+	
+	
+});
+	
 	</script>
 
 

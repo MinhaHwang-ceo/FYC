@@ -8,19 +8,19 @@ import com.kh.yc.payment.model.vo.Payment;
 import com.kh.yc.payment.model.vo.Sponsor;
 
 public interface PayService {
-	void testJobMethod();
+   void testJobMethod();
 
-	void insertPayment(Payment pay);
+   void insertPayment(Payment pay);
 
-	Payment selectRePay(String merchantUid);
+   Payment selectRePay(String merchantUid);
 
-	void updatePayStatus(Payment pay);
+   void updatePayStatus(Payment pay);
 
-	int insertFund(ArrayList<Funding> fundList);
+   int insertFund(ArrayList<Funding> fundList);
 
-	void insertDelivery(ArrayList<Delivery> deliveryList);
+   void insertDelivery(ArrayList<Delivery> deliveryList);
 
-	void insertDeliveryStatus(ArrayList<Delivery> deliveryList);
+   void insertDeliveryStatus(ArrayList<Delivery> deliveryList);
 
-	void insertSponsor(Sponsor sp);
+   void insertSponsor(Sponsor sp);
 }

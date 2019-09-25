@@ -67,12 +67,15 @@ void   updateDB(SqlSessionTemplate sqlSession,Map<String, Object> map);
 	String mainImg(SqlSessionTemplate sqlSession, Interest inter);
 	
 	String mainImg2(SqlSessionTemplate sqlSession, ArrayList<Project> list);
+
+	void joinAlram(SqlSessionTemplate sqlSession, int bNum, int userNo,String phone);
 	
 	public RewardInfo rewardInfo(SqlSessionTemplate sqlSession, int projectNo);
 	//의견 남기기
 	int insertReply(SqlSessionTemplate sqlSession, Reply reply);
 	//의견 조회
 	ArrayList<Reply> selectReplyList(SqlSessionTemplate sqlSession, int projectNo);
+
 
 
 }

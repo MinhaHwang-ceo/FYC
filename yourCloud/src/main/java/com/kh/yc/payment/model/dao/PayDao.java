@@ -13,29 +13,29 @@ import com.kh.yc.project.model.vo.Project;
 
 public interface PayDao {
 
-	void updateProjectSuccess(SqlSessionTemplate sqlSession);
+   void updateProjectSuccess(SqlSessionTemplate sqlSession);
 
-	ArrayList<Member> paySuccessMember(SqlSessionTemplate sqlSession);
+   ArrayList<Member> paySuccessMember(SqlSessionTemplate sqlSession);
 
-	ArrayList<Project> fundSuccessProject(SqlSessionTemplate sqlSession);
+   ArrayList<Project> fundSuccessProject(SqlSessionTemplate sqlSession);
 
-	ArrayList<Funding> fundingList(SqlSessionTemplate sqlSession, ArrayList<Project> fundSuccessProject);
+   ArrayList<Funding> fundingList(SqlSessionTemplate sqlSession, ArrayList<Project> fundSuccessProject);
 
-	void insertFundingSuccess(SqlSessionTemplate sqlSession, ArrayList<Funding> fundingList);
+   void insertFundingSuccess(SqlSessionTemplate sqlSession, ArrayList<Funding> fundingList);
 
-	void insertPayment(SqlSessionTemplate sqlSession, Payment pay);
+   void insertPayment(SqlSessionTemplate sqlSession, Payment pay);
 
-	Payment selectRePay(SqlSessionTemplate sqlSession, String merchantUid);
+   Payment selectRePay(SqlSessionTemplate sqlSession, String merchantUid);
 
-	void updatePayStatus(SqlSessionTemplate sqlSession, Payment pay);
+   void updatePayStatus(SqlSessionTemplate sqlSession, Payment pay);
 
-	int insertFund(SqlSessionTemplate sqlSession, ArrayList<Funding> fundList);
+   int insertFund(SqlSessionTemplate sqlSession, ArrayList<Funding> fundList);
 
-	void insertDelivery(SqlSessionTemplate sqlSession, ArrayList<Delivery> deliveryList);
+   void insertDelivery(SqlSessionTemplate sqlSession, ArrayList<Delivery> deliveryList);
 
-	void insertDeliveryStatus(SqlSessionTemplate sqlSession, ArrayList<Delivery> deliveryList);
+   void insertDeliveryStatus(SqlSessionTemplate sqlSession, ArrayList<Delivery> deliveryList);
 
-	void insertSponsor(SqlSessionTemplate sqlSession, Sponsor sp);
+   void insertSponsor(SqlSessionTemplate sqlSession, Sponsor sp);
 
 
 }

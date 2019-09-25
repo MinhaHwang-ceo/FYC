@@ -68,6 +68,9 @@ public interface ProjectService {
 	public String mainImg(Interest inter);
 	
 	public String mainImg2(ArrayList<Project> list);
+
+	void joinAlram(int bNum, int userNo,String phone);
+
 	
 	public RewardInfo rewardInfo(int projectNo);
 	//의견 등록하기 기능

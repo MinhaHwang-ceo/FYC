@@ -15,70 +15,70 @@ import com.kh.yc.project.model.vo.Project;
 @Repository
 public class PayDaoImpl implements PayDao {
 
-	@Override
-	public void updateProjectSuccess(SqlSessionTemplate sqlSession) {
-		sqlSession.update("Project2.updateProjectSuccess");
-	}
+   @Override
+   public void updateProjectSuccess(SqlSessionTemplate sqlSession) {
+      sqlSession.update("Project2.updateProjectSuccess");
+   }
 
-	@Override
-	public ArrayList<Member> paySuccessMember(SqlSessionTemplate sqlSession) {
-		ArrayList<Member> list = (ArrayList)sqlSession.selectList("Member.paySuccessMember");
+   @Override
+   public ArrayList<Member> paySuccessMember(SqlSessionTemplate sqlSession) {
+      ArrayList<Member> list = (ArrayList)sqlSession.selectList("Member.paySuccessMember");
 
-		return list;
-	}
+      return list;
+   }
 
-	@Override
-	public ArrayList<Project> fundSuccessProject(SqlSessionTemplate sqlSession) {
-		ArrayList<Project> list = (ArrayList)sqlSession.selectList("Project2.fundSuccessProject");
-		return list;
-	}
+   @Override
+   public ArrayList<Project> fundSuccessProject(SqlSessionTemplate sqlSession) {
+      ArrayList<Project> list = (ArrayList)sqlSession.selectList("Project2.fundSuccessProject");
+      return list;
+   }
 
-	@Override
-	public ArrayList<Funding> fundingList(SqlSessionTemplate sqlSession, ArrayList<Project> fundSuccessProject) {
-		ArrayList<Funding> list = (ArrayList)sqlSession.selectList("Project2.fundingList", fundSuccessProject);
-		return list;
-	}
+   @Override
+   public ArrayList<Funding> fundingList(SqlSessionTemplate sqlSession, ArrayList<Project> fundSuccessProject) {
+      ArrayList<Funding> list = (ArrayList)sqlSession.selectList("Project2.fundingList", fundSuccessProject);
+      return list;
+   }
 
-	@Override
-	public void insertFundingSuccess(SqlSessionTemplate sqlSession, ArrayList<Funding> fundingList) {
-		sqlSession.insert("Project2.insertFundingSuccess", fundingList);
-	}
+   @Override
+   public void insertFundingSuccess(SqlSessionTemplate sqlSession, ArrayList<Funding> fundingList) {
+      sqlSession.insert("Project2.insertFundingSuccess", fundingList);
+   }
 
-	@Override
-	public void insertPayment(SqlSessionTemplate sqlSession, Payment pay) {
-		sqlSession.insert("Project2.insertPayment", pay);
-		
-	}
+   @Override
+   public void insertPayment(SqlSessionTemplate sqlSession, Payment pay) {
+      sqlSession.insert("Project2.insertPayment", pay);
+      
+   }
 
-	@Override
-	public Payment selectRePay(SqlSessionTemplate sqlSession, String merchantUid) {
-		return sqlSession.selectOne("Project2.selectRePay", merchantUid);
-	}
+   @Override
+   public Payment selectRePay(SqlSessionTemplate sqlSession, String merchantUid) {
+      return sqlSession.selectOne("Project2.selectRePay", merchantUid);
+   }
 
-	@Override
-	public void updatePayStatus(SqlSessionTemplate sqlSession, Payment pay) {
-		sqlSession.update("Project2.updatePayStatus", pay);
-	}
+   @Override
+   public void updatePayStatus(SqlSessionTemplate sqlSession, Payment pay) {
+      sqlSession.update("Project2.updatePayStatus", pay);
+   }
 
-	@Override
-	public int insertFund(SqlSessionTemplate sqlSession, ArrayList<Funding> fundList) {
-		// TODO Auto-generated method stub
-		return sqlSession.insert("Project2.insertFund", fundList);
-	}
+   @Override
+   public int insertFund(SqlSessionTemplate sqlSession, ArrayList<Funding> fundList) {
+      // TODO Auto-generated method stub
+      return sqlSession.insert("Project2.insertFund", fundList);
+   }
 
-	@Override
-	public void insertDelivery(SqlSessionTemplate sqlSession, ArrayList<Delivery> deliveryList) {
-		// TODO Auto-generated method stub
-		sqlSession.insert("Project2.insertDelivery", deliveryList);
-	}
+   @Override
+   public void insertDelivery(SqlSessionTemplate sqlSession, ArrayList<Delivery> deliveryList) {
+      // TODO Auto-generated method stub
+      sqlSession.insert("Project2.insertDelivery", deliveryList);
+   }
 
-	@Override
-	public void insertDeliveryStatus(SqlSessionTemplate sqlSession, ArrayList<Delivery> deliveryList) {
-		sqlSession.insert("Project2.insertDeliveryStatus", deliveryList);
-	}
+   @Override
+   public void insertDeliveryStatus(SqlSessionTemplate sqlSession, ArrayList<Delivery> deliveryList) {
+      sqlSession.insert("Project2.insertDeliveryStatus", deliveryList);
+   }
 
-	@Override
-	public void insertSponsor(SqlSessionTemplate sqlSession, Sponsor sp) {
-		sqlSession.insert("Project2.insertSponsor", sp);
-	}
+   @Override
+   public void insertSponsor(SqlSessionTemplate sqlSession, Sponsor sp) {
+      sqlSession.insert("Project2.insertSponsor", sp);
+   }
 }

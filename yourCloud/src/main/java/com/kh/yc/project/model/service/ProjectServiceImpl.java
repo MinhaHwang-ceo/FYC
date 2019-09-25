@@ -232,6 +232,11 @@ public class ProjectServiceImpl implements ProjectService {
 	}
 
 	@Override
+	public void joinAlram(int bNum, int userNo, String phone) {
+	 pd.joinAlram(sqlSession, bNum,userNo,phone);
+
+	}
+
 	public RewardInfo rewardInfo(int projectNo) {
 		
 		String projectNo1 = Integer.toString(projectNo);
@@ -254,8 +259,5 @@ public class ProjectServiceImpl implements ProjectService {
 		return reply;
 	}
 
-
-	
-	
 
 }

@@ -21,95 +21,95 @@ import com.siot.IamportRestClient.response.Payment;
 @Service
 @EnableScheduling
 public class PayServiceImpl implements PayService {
-	@Autowired
-	PayDao pd;
-	@Autowired
-	PayController pc;
-	@Autowired
-	private SqlSessionTemplate sqlSession;
+   @Autowired
+   PayDao pd;
+   @Autowired
+   PayController pc;
+   @Autowired
+   private SqlSessionTemplate sqlSession;
 
-	IamportClient iamportClient = new IamportClient("8768417829708074",
-			"xZUSL0NpyUxc1GBMg0lYT41iQYv8hFgOFbGqcuQKonXq4yclyyjsCkKsjgBAVRoB351fzSZYfXojvBE4");
+   IamportClient iamportClient = new IamportClient("8768417829708074",
+         "xZUSL0NpyUxc1GBMg0lYT41iQYv8hFgOFbGqcuQKonXq4yclyyjsCkKsjgBAVRoB351fzSZYfXojvBE4");
 
-	@Override
-	@Scheduled(cron = "0 50 23 * * *")
+   @Override
+   @Scheduled(cron = "0 50 23 * * *")
 
-	//@Scheduled(cron = "5 * * * * *")
+   //@Scheduled(cron = "5 * * * * *")
 
-	public void testJobMethod() {
-		ArrayList<Project> fundSuccessProject = pd.fundSuccessProject(sqlSession);
+   public void testJobMethod() {
+      ArrayList<Project> fundSuccessProject = pd.fundSuccessProject(sqlSession);
 
-		pd.updateProjectSuccess(sqlSession);
+      pd.updateProjectSuccess(sqlSession);
 
-		if (fundSuccessProject.size() > 0) {
-			ArrayList<Funding> fundingList = pd.fundingList(sqlSession, fundSuccessProject);
-			if (fundingList.size() > 0) {
-				pd.insertFundingSuccess(sqlSession, fundingList);
-			}
-		}
-		try {
-			List<Payment> status = iamportClient.paymentsByStatus("all").getResponse().getList();
-			for (Payment pay : status) {
-				String payStatus = iamportClient.paymentByImpUid(pay.getImpUid()).getResponse().getStatus();
-				com.kh.yc.payment.model.vo.Payment payment = new com.kh.yc.payment.model.vo.Payment();
-				
-				if(payStatus.equals("failed")) {
-					String merchantUid = pay.getMerchantUid();
-					System.out.println(payStatus);
-					pc.RePay(merchantUid);
-				} else if(payStatus.equals("paid")) {
-					payment.setPayNo(pay.getMerchantUid());
-					payment.setPayStatus("결제성공");
-					
-					updatePayStatus(payment);
-					
-				}
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
+      if (fundSuccessProject.size() > 0) {
+         ArrayList<Funding> fundingList = pd.fundingList(sqlSession, fundSuccessProject);
+         if (fundingList.size() > 0) {
+            pd.insertFundingSuccess(sqlSession, fundingList);
+         }
+      }
+      try {
+         List<Payment> status = iamportClient.paymentsByStatus("all").getResponse().getList();
+         for (Payment pay : status) {
+            String payStatus = iamportClient.paymentByImpUid(pay.getImpUid()).getResponse().getStatus();
+            com.kh.yc.payment.model.vo.Payment payment = new com.kh.yc.payment.model.vo.Payment();
+            
+            if(payStatus.equals("failed")) {
+               String merchantUid = pay.getMerchantUid();
+               System.out.println(payStatus);
+               pc.RePay(merchantUid);
+            } else if(payStatus.equals("paid")) {
+               payment.setPayNo(pay.getMerchantUid());
+               payment.setPayStatus("결제성공");
+               
+               updatePayStatus(payment);
+               
+            }
+         }
+      } catch (Exception e) {
+         e.printStackTrace();
+      }
+   }
 
-	@Override
-	public void insertPayment(com.kh.yc.payment.model.vo.Payment pay) {
-		pd.insertPayment(sqlSession, pay);
+   @Override
+   public void insertPayment(com.kh.yc.payment.model.vo.Payment pay) {
+      pd.insertPayment(sqlSession, pay);
 
-	}
+   }
 
-	@Override
-	public com.kh.yc.payment.model.vo.Payment selectRePay(String merchantUid) {
-		return pd.selectRePay(sqlSession, merchantUid);
-	}
+   @Override
+   public com.kh.yc.payment.model.vo.Payment selectRePay(String merchantUid) {
+      return pd.selectRePay(sqlSession, merchantUid);
+   }
 
-	@Override
-	public void updatePayStatus(com.kh.yc.payment.model.vo.Payment pay) {
-		pd.updatePayStatus(sqlSession, pay);
-		
-	}
+   @Override
+   public void updatePayStatus(com.kh.yc.payment.model.vo.Payment pay) {
+      pd.updatePayStatus(sqlSession, pay);
+      
+   }
 
-	
+   
 
-	@Override
-	public void insertDelivery(ArrayList<Delivery> deliveryList) {
-		pd.insertDelivery(sqlSession, deliveryList);
-		
-	}
+   @Override
+   public void insertDelivery(ArrayList<Delivery> deliveryList) {
+      pd.insertDelivery(sqlSession, deliveryList);
+      
+   }
 
-	@Override
-	public void insertDeliveryStatus(ArrayList<Delivery> deliveryList) {
-		pd.insertDeliveryStatus(sqlSession, deliveryList);
-		
-	}
+   @Override
+   public void insertDeliveryStatus(ArrayList<Delivery> deliveryList) {
+      pd.insertDeliveryStatus(sqlSession, deliveryList);
+      
+   }
 
-	@Override
-	public void insertSponsor(Sponsor sp) {
-		pd.insertSponsor(sqlSession, sp);
-	}
+   @Override
+   public void insertSponsor(Sponsor sp) {
+      pd.insertSponsor(sqlSession, sp);
+   }
 
-	@Override
-	public int insertFund(ArrayList<Funding> fundList) {
-		return pd.insertFund(sqlSession, fundList);
-	}
+   @Override
+   public int insertFund(ArrayList<Funding> fundList) {
+      return pd.insertFund(sqlSession, fundList);
+   }
 
-	
+   
 }
