@@ -184,7 +184,6 @@ td {
             </c:if>
          </c:forEach>
 
-
          <c:if test="${ pi.currentPage < pi.maxPage }">
             <c:url var="blistEnd" value="category.bo">
                <c:param name="currentPage" value="${ pi.currentPage + 1 }" />
