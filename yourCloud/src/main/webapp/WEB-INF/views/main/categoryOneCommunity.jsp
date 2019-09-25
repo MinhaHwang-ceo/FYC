@@ -1,7 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	    	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,600,700,800" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.3.0/ekko-lightbox.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/animate.css">
+<link href="${pageContext.request.contextPath}/resources/css/main.css" rel="stylesheet"/>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>	
 <head>
 <style>
 button {
@@ -56,74 +64,19 @@ a {
 * {
 	word-break: break-all;
 }
-/* 전체 div 영역  */
-.reward-body {
-	width: 100%;
-}
+
 
 .dd {
-	border: 1px solid blue;
 	width: 75%;
 	margin: 0 auto;
 }
 /* 컨텐츠 영역  */
 .content-news {
 	float: left;
-	border: 1px solid purple;
-	width: 65%;
 	margin-right: 40px;
 	margin: 0 auto;
 	margin-right: 18px;
 }
-/* 오른쪽 영역  */
-.opener-info {
-	float: left;
-	border: 1px solid black;
-	width: 32%;
-}
-
-.btn-funding {
-	/*    border:1px solid #00c4c4; */
-	border: 0;
-	outline: 0;
-	font-size: 17px;
-	background: #00c4c4;
-	padding: 1.19px 23.9999px 0px;
-	color: white;
-	width: 85%;
-	height: 45px;
-}
-
-.btn-question, .btn-share {
-	width: 28%;
-	border: 1px solid skyblue;
-	background: white;
-	height: 35px;
-}
-
-.btn-like {
-	width: 28%;
-	border: 1px solid skyblue;
-	background: white;
-	height: 34.6px;
-}
-
-.btn-meker-question {
-	border: 1px solid rgba(0, 0, 0, 0.15);
-	border-radius: 3px;
-	background-color: #fff;
-	cursor: pointer;
-	padding: 0 1.41176em;
-	height: 48px;
-	vertical-align: middle;
-	line-height: 1;
-	color: rgba(0, 0, 0, 0.54);
-	font-size: 17px;
-	width: 90%;
-	margin: 0 auto;
-	text-align: center;
-}
-
 .projectTitle {
 	margin-bottom: 10px;
 	font-weight: 500;
@@ -136,7 +89,6 @@ a {
 	width: 100%;
 	margin-bottom: 20px;
 	/*  background: #d19cfa; */
-	border: 1px solid #eaeaea;
 	text-align: left;
 	background: white;
 }
@@ -160,23 +112,6 @@ a {
 	color: #c88af9;
 }
 
-.btn-declaration {
-	width: 100%;
-	height: 40px;
-	background: rgb(231, 76, 60);
-	border: 0;
-	color: white;
-}
-
-.reward-header {
-	text-align: center;
-	border: 1px solid black;
-	height: -1px;
-	top: -20px;
-	background-size: cover;
-	background: #001328 !important;
-	color: white;
-}
 /* 커뮤니티 영역  */
 .faqMassageBox {
 	padding-left: 36px;
@@ -328,10 +263,6 @@ a {
     color: #fff;
     border: 1px solid #00c4c4;
     margin-left: 451px;
-  
-    
-    
-    
 }
 
 .wz.button.dense {
@@ -346,7 +277,7 @@ a {
 <meta charset="UTF-8">
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<title>Insert title here</title>
+<title>니가 그린 구름 그림</title>
 </head>
 <body>
 
@@ -358,31 +289,50 @@ a {
 </script>
 
 	<jsp:include page="../common/customer_menubar.jsp" />
+	<jsp:include page="../common/customer_menuList.jsp" />
 
-	<div id="outer" style="background: white;">
-		<!-- 리워드 헤더 이미지  -->
-		<div class="reward-header">
-
-			<p class="title-info">
-				<em style="color: #5cdede;">소셜.캠페인</em> <strong>#몰카탐지카드몰가가드</strong>
-				프로젝트
-			</p>
-			<h2 class="title-header">[소셜캠페인 참여1위]불법촬영 두려워마세요! 간편한 몰카방지카드 몰카드
-			</h2>
-
-		</div>
-		<br />
-
-		<div class="tab-list">
-			<ul class="tab-story">
-				<li><a href="categoryOne.ca" class="tab-link">스토리</a></li>
-				<li><a href="categoryOneFunding.ca" class="tab-link">펀딩안내</a></li>
-				<li><a href="categoryOneNews.ca" class="tab-link">새소식</a></li>
-				<li><a href="categoryOneCommunity.ca" class="tab-link">커뮤니티</a></li>
-				<li><a href="categoryOneSupporter.ca" class="tab-link">서포터</a></li>
-			</ul>
-		</div>
-		<hr />
+	<div id="outer" style="background:white;">
+	<!-- 리워드 헤더 이미지  -->
+	<div class="reward-header">
+		<p class="title-info">
+			<h6 style="color:#5cdede;">
+				<c:choose>
+					<c:when test="${detail.category eq 'A1' }"> 테크,가전</c:when>
+					<c:when test="${detail.category eq 'A2' }"> 패션,잡화</c:when>
+					<c:when test="${detail.category eq 'A3' }"> 키즈</c:when>
+					<c:when test="${detail.category eq 'A4' }"> 여행,레저</c:when>
+					<c:when test="${detail.category eq 'A5' }"> 뷰티</c:when>
+					<c:when test="${detail.category eq 'A6' }"> 도서</c:when>
+					<c:when test="${detail.category eq 'A7' }"> 반려동물</c:when>
+					<c:when test="${detail.category eq 'A8' }"> 스포츠</c:when>
+					<c:when test="${detail.category eq 'A9' }"> 푸드</c:when>
+					<c:when test="${detail.category eq 'A10' }"> 홈리빙</c:when>
+					<c:otherwise>카테고리 미정</c:otherwise>
+				</c:choose> &emsp;
+			<strong style="color:white">${ detail.projectShortTitle }</strong>
+			</h6> 
+		<h2 class="title-header" style="color: white;"> ${ detail.projectTitle } </h2>
+		</p>
+	</div>
+	
+	</div>
+	<br>
+	<%int userNo =123; %>
+	<div class="tab-list">
+		<ul class="tab-story">
+		<c:if test="${loginUser.userNo ne null}">		
+			<li><a href="categoryOne.ca?projectNo=${ detail.projectNo }&userNo=${loginUser.userNo}&endDate=${detail.endDate}" class="tab-link">스토리</a></li>
+		</c:if>			
+		<c:if test="${loginUser.userNo eq null }">
+			<li><a href="categoryOne.ca?projectNo=${ detail.projectNo }&userNo=<%=userNo%>&endDate=${detail.endDate}" class="tab-link">스토리</a></li>
+		</c:if>
+			<li><a href="categoryOneFunding.ca?projectNo=${detail.projectNo}" class="tab-link">펀딩안내</a></li>
+			<li><a href="categoryOneNews.ca?projectNo=${detail.projectNo }" class="tab-link">새소식</a></li>
+			<li><a href="#" class="tab-link">커뮤니티</a></li>
+			<li><a href="categoryOneSupporter.ca?projectNo=${detail.projectNo }" class="tab-link">서포터</a></li>
+		</ul>
+	</div><hr>
+		<br><br>
 		<div class="reward-body">
 			<!-- 가운데 내용 -->
 			<div class="dd">
@@ -404,285 +354,113 @@ a {
 							<br />
 							<br>
 
-							<div class="funding-FAQ">
-								<form action="">
-									<div>
-										<h4>잠깐! 아직도 펀딩하는 법을 모르시나요?</h4>
-									</div>
-									<br />
-									<table align="center" style="width: 99.8%; text-align: center;"
-										border="1">
-										<tr>
-											<th>FAQ</th>
-										</tr>
-										<tr>
-											<td>펀딩 했는데 결제가 진행되지 않아요!</td>
-										</tr>
-										<tr>
-											<td>결제 실패 알림을 받았어요. 어떻게 해야하나요?</td>
-										</tr>
-										<tr>
-											<td>신청한 카드가 아닌 다른 카드로 결제하고 싶어요.</td>
-										</tr>
-										<tr>
-											<td>배송지, 리워드를 변경하고 싶어요!.</td>
-										</tr>
-									</table>
-								</form>
-							</div>
-							<hr />
-
+	
+<div class="container">
+  <h5>니가 그린 구름 그림에서 펀딩하는 방법이 궁금하다면?</h5><br>
+  <div class="panel-group" id="accordion">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h6 class="panel-title">
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">1. 펀딩 했어요. 결제는 언제, 어떻게 진행되나요? &emsp; + </a>
+        </h6>
+      </div>
+      <div id="collapse1" class="panel-collapse collapse in">
+        <div class="panel-body">펀딩기간 중에는 결제 예약 상태이며, 프로젝트 종료 후 다음 1 영업일 정해진 시간에 결제가 진행됩니다. 이때, 결제 실패된 건에 한하여 종료일+4영업일동안 매일 5시에 결제가 진행됩니다. (펀딩 종료일+4영업일 오후 5시 4차 최종 결제 진행).</div>
+      </div>
+    </div><br>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h6 class="panel-title">
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">2. 결제 실패 알림을 받았어요. 어떻게 해야하나요? &emsp; +</a>
+        </h6>
+      </div>
+      <div id="collapse2" class="panel-collapse collapse">
+        <div class="panel-body">카드 잔고 부족이나 한도 초과, 거래 정지된 카드인 경우 결제가 진행되지 않습니다. 최종 결제일 16시 30분 전까지 다른 카드로 결제 정보를 변경해주세요. 최종 결제일까지 매 영업일 5시마다 결제가 진행됩니다.
+		・ 결제정보 변경은 로그인 - [나의 리워드] - [펀딩 내역] - [참여 프로젝트]에서 결제 정보를 변경할 수 있습니다.
+		・ 반드시 참여한 프로젝트 펀딩 상세 내역 페이지에서 결제 정보를 변경해주세요. 나의 리워드 - 간편결제 정보 변경하면 해당 카드로 결제가 진행되지 않습니다!</div>
+      </div><br>
+    </div>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h6 class="panel-title">
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">3. 카드 결제가 진행된 후, 다른 카드로 변경할 수 있나요? &emsp; +</a>
+        </h6>
+      </div>
+      <div id="collapse3" class="panel-collapse collapse">
+        <div class="panel-body">프로젝트 진행 중에는 [나의 리워드] - [펀딩내역]에서 직접 변경이 가능합니다.
+			펀딩이 종료된 이후에는 직접 변경이 불가능하니, 메이커에게 문의하기를 통해 문의해주세요.</div>
+      </div>
+    </div>
+  </div> 
+</div>
+    						<br />
 							<br />
-							<br />
 
-							<!-- 리워드 배송등 펀딩ㅇ -->
-							<div class="CommentTitle">
-								<div>
-									<h4>응원 * 의견</h4>
-								</div>
-
-								<h6>펀딩 종료 전 남긴 응원, 의견 글입니다.</h6>
-								<br />
-								<div>
-									<button class="btn-writing">글 남기기</button>
-								</div>
-
-								<br>
-								<div class="community-list">
-									<div class="commentUserWrapper">
-										<div class="user-profile">
-											<span> <a href=""><img src="${ contextPath }/resources/images/tit.PNG" style="border-radius: 50%; width: 46px; height: 46px;" /></a>
-											<strong>서무권</strong>
-											</span>
-											
-											<span>
-												작성일 | 2019.07.12
-											</span>
-											<!-- 댓글 내용 -->
-											<br /><br />
-											<div>
-												<div style="padding-left: 47px;">
-													딸과 함꼐 해보고 싶어 펀딩했는데 벌써부터 기다려집니다 주신 힌트도 기다리면서 <br>딸과 함게 풀어보려합니다 딸과 돈독해질 보낼시간을 고대하며 지지서명합니다.
-												</div>
-											</div>
-										</div>
-										<!-- 답글 버튼 카운트 -->
-										<br />
-										<div align="right" style="">
-											<button class="answer">답글 남기기 <span></span></button>
-										</div>
-										<div class="comentReplyListController">
-											<div class="commentReplyList">
-												<div class="commentReplyForm">
-													<div class="commentUserWrapper">
-														
-
-															<div class="CommentUserWrapper_avatar">
-															
-																<a href="">
-																	<span class="Avatar_wrap" style="width: 36ppx; height: 36px;">
-																		<span class="Avatar_picture">
-																			<img  class="Avatar_picture" style="border-radius: 50%; width: 36px; height: 36px;" src="${ contextPath }/resources/images/tit.PNG" alt="" />
-																		</span>
-																	</span>
-																</a>
-															</div>
-															
-															
-														<div class="CommentUserWrapper_main__3QYIJ" style="border: 4px solid red;">
-															<div class="CommunityCommentReplyWriteForm_writeForm__31Tsw">
-																<form action="CommentForm_container__2p3PN CommentForm_fold__2E1qU">
-																		<div class="wz input CommentForm_textarea__GNfAn">
-																			<textarea placeholder="답글을 입력하세요"
-																				maxlength="2000" maxheight="400" style="overflow-y: hidden; resize: nono; height: 110px; width: 100%;">
-																				
-																				
-																			</textarea>
-																			
-																		</div>
-																		<div class="CommentForm_bottom__13mlK">
-																			<!-- 댓글카운터  -->
-																			<span class="CommentForm_count__2PsDA">
-																			
-																			</span>
-																				<button class="wz button CommentForm_button__fIXjR dense primary">등록</button>
-																		</div>
-																</form>
-															</div>
-														</div>
-														<!-- text창 -->
-													</div>
-													
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
+		<div>
+			
+			<h6>응원 또는 의견 남기기</h6><br>
+			
+			<c:if test="${ !empty sessionScope.loginUser }"> 
+			<button type="button" class="btn btn-info" style="width:200px; margin:0 auto;"
+			onclick="window.open('replyProject.ca?projectNo=${detail.projectNo}','_blank', 'width=550,height=580');return false;" 
+			>댓글 남기기</button>
+			</c:if>
+			
+			<c:if test="${ empty sessionScope.loginUser }">  
+			<button type="button" class="btn btn-info" style="width:200px; margin:0 auto;" 
+			onclick="return false;" 
+			>댓글 남기기</button>
+			</c:if>
+		
+		
+		<br><br><br>	
+		
+  <div class="container">
+  <input class="form-control" id="myInput" type="text" placeholder="검색 ">
+  <br>
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th style="text-align:center;">NO</th>
+        <th style="text-align:center;">이름</th>
+        <th>의견 내용</th>
+      </tr>
+    </thead>
+  <c:forEach var="reward" items="${reply}">
+    <tbody id="myTable">
+      <tr>
+        <td width="100"  style="text-align:center;"><c:out value="${reward.replyNo }"/></td>
+        <td width="150"><c:out value="${reward.userName }"></c:out></td>
+        <td><c:out value="${reward.replyComment }"/></td>
+      </tr>
+  </c:forEach>
+    </tbody>
+  </table>
+</div>
+</div>
 
 
-							</div>
-							<!-- 최상위 div -->
 
-						</div>
+<script>
+$(document).ready(function(){
+  $("#myInput").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#myTable tr").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+});
+</script>
+		
+		</div>						
 
-
-					</div>
-				</div>
-
-				<!-- 오른쪽 영역 -->
-				<div class="opener-info">
-					<div class=state-box>
-						<p class="remin-day" style="font-size: 28px;">26일 남음</p>
-						<hr />
-						<strong style="font-size: 24px;">100</strong> %달성
-						<p class="total-money" style="font-size: 24px;">
-							<strong>100,000,000</strong> 원 펀딩
-						</p>
-						<p class="total-supporter" style="font-size: 24px;">
-							<strong>619</strong> 명의 서포터
-						</p>
-					</div>
-					<div class="">
-						<button onclick="backMoney" class="btn-funding">펀딩하기</button>
-					</div>
-					<br />
-					<div class=btn-wrap>
-						<div class="btn-wrap-flex">
-							<button class="btn-like">
-								<i></i> 100
-							</button>
-							<button class="btn-question">문의</button>
-
-							<button class="btn-share">공유하기</button>
-						</div>
-					</div>
-					<hr />
-					<div class="project-meker-info">
-						<h3>메이커 정보</h3>
-						<div class="maker-box">
-							<table style="border: 1px solid black; width: 100%;">
-								<tr>
-									<td><button
-											style="border: 1px solid black; border-radius: 50%; background: white; width: 100px; height: 100px; margin-left: 10px;"></button></td>
-									<td style="">진수네 농산</td>
-								</tr>
-								<tr>
-									<td><br /></td>
-								</tr>
-								<tr>
-									<td colspan="2">메이커 평점 : 4.7
-										<hr />
-									</td>
-								</tr>
-
-								<tr>
-									<td colspan="2" align="center">
-										<button class="btn-meker-question">메이커에게 문의하기</button>
-									</td>
-								</tr>
-								<tr>
-									<td><br /></td>
-								</tr>
-
-								<tr>
-									<td colspan="2">
-										<p style="font-size: 12x;">메이커 연락처 : 010-4231-5232</p>
-
-									</td>
-								</tr>
-
-							</table>
-						</div>
-					</div>
-					<br />
-					<div class="moveRewards">
-						<div class="wd-gift" style="border: 1px solid red;">
-							<h3 class="projectTitle">리워드 선택</h3>
-							<button class="reward-list">
-								<div class="reward-info">
-									<!-- 	<dl>
-								<dt>
-									 78,200원 펀딩
-								</dt>
-								<dd > -->
-									<p>[슈퍼얼리버드] 싱글팩 (30% 혜택)</p>
-									<p>
-										남성용 / 씬타입(단목) Thin. / 4켤레 (4가지 칼라. 각 1켤레씩) <br /> [블랙&레드] ,
-										[화이트&블랙] , [블루&화이트] , [그레이&화이트]
-									</p>
-									<!-- 	</dd>
-							</dl> -->
-									<ul class="data-info">
-										<li class="shipping">배송비
-											<p>25,500원</p>
-										</li>
-										<li class="date">리워드 빌송 시작일 <em>2019 10월 초 (1~10일)
-												예정</em>
-										</li>
-									</ul>
-									<p class="reward-qty">
-										제한수량 <strong>12000</strong> 개 <em>현재 1144개 남음</em>
-									</p>
-									<p class="reward-soldcount">
-										총 <strong>76</strong> 개 펀딩 완료
-									</p>
-								</div>
-							</button>
-						</div>
-					</div>
-					<div class="moveRewards">
-						<div class="wd-gift" style="border: 1px solid red;">
-							<h3 class="projectTitle">리워드 선택</h3>
-							<button class="reward-list">
-								<div class="reward-info">
-									<!-- 	<dl>
-								<dt>
-									 78,200원 펀딩
-								</dt>
-								<dd > -->
-									<p>[슈퍼얼리버드] 싱글팩 (30% 혜택)</p>
-									<p>
-										남성용 / 씬타입(단목) Thin. / 4켤레 (4가지 칼라. 각 1켤레씩) <br /> [블랙&레드] ,
-										[화이트&블랙] , [블루&화이트] , [그레이&화이트]
-									</p>
-									<!-- 	</dd>
-							</dl> -->
-									<ul class="data-info">
-										<li class="shipping">배송비
-											<p>25,500원</p>
-										</li>
-										<li class="date">리워드 빌송 시작일 <em>2019 10월 초 (1~10일)
-												예정</em>
-										</li>
-									</ul>
-									<p class="reward-qty">
-										제한수량 <strong>12000</strong> 개 <em>현재 1144개 남음</em>
-									</p>
-									<p class="reward-soldcount">
-										총 <strong>76</strong> 개 펀딩 완료
-									</p>
-								</div>
-							</button>
-						</div>
-					</div>
-
-					<!-- 신고 영역 -->
-					<div style="border: 1px solid blue; font-size: 14px;">
-						<p class="">신고하기란?</p>
-						<p>
-							해당 프로젝트에 허위내용 및 지적재산권 <br /> 을 침해하는 내용이 있다면 제보해주세요.
-						</p>
-						<button onclick="showLyPop()" class="btn-declaration">
-							신고하러 가기</button>
-					</div>
-				</div>
-			</div>
-
-			<div style="width: 100%; float: left;"><jsp:include
-					page="../common/customer_footer.jsp" /></div>
+			<br><br>
 		</div>
 	</div>
 
+	
+</div>
 
+<div style="width: 100%; float: left;"><jsp:include page="../common/customer_footer.jsp" /></div>
 </body>
 </html>

@@ -247,6 +247,7 @@ public class BoardController {
 
 			int listCount = ps.getListCount();
 			PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
+			
 
 			ArrayList<Project> list = ps.sortProjectList(pi,category);
 
