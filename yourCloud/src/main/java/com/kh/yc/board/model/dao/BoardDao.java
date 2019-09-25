@@ -55,6 +55,8 @@ public interface BoardDao {
 
 	ArrayList<Reward> selectRewardList(SqlSessionTemplate sqlSession, int pNo);
 
+	Reward selectReward(SqlSessionTemplate sqlSession, String string);
+
 
 	
 

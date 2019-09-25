@@ -742,13 +742,16 @@ where m.member_name=#{NAME}
 	</select>
 	
 
-	<insert id="insertFund" >
+	<insert id="insertFund" parameterType="java.util.ArrayList">
+		<foreach collection="list" item="p" open="INSERT ALL"
+				close="SELECT * FROM DUAL" separator=" ">
 		INSERT INTO
 			FUND
 		VALUES(
 			SYSDATE, SEQ_FUNDNO.NEXTVAL, #{userNo}, #{projectNo},
 			#{fundMoney}, #{rewardNo}, #{rewardCount}, #{blind}
 		)
+		</foreach>
 	</insert>
 	<insert id="insertDelivery">
 		INSERT INTO
@@ -791,7 +794,13 @@ where m.member_name=#{NAME}
         FROM ATTACHMENT 
         WHERE  FILE_LEVEL=0
 	</select>
-	
+	<insert id="insertSponsor">
+		INSERT INTO
+			SPONSORED
+		VALUES(
+			#{userNo}, #{projectNo}, #{supportMoney}, 0
+		)
+	</insert>
 
 </mapper>
 

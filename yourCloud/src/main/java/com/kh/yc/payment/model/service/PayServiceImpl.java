@@ -1,7 +1,5 @@
 package com.kh.yc.payment.model.service;
 
-import java.io.IOException;
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,6 +13,7 @@ import com.kh.yc.delivery.model.vo.Delivery;
 import com.kh.yc.funding.model.vo.Funding;
 import com.kh.yc.payment.controller.PayController;
 import com.kh.yc.payment.model.dao.PayDao;
+import com.kh.yc.payment.model.vo.Sponsor;
 import com.kh.yc.project.model.vo.Project;
 import com.siot.IamportRestClient.IamportClient;
 import com.siot.IamportRestClient.response.Payment;
@@ -34,7 +33,7 @@ public class PayServiceImpl implements PayService {
 
 	@Override
 	// @Scheduled(cron = "0 4 17 * * *")
-	@Scheduled(cron = "5 * * * * *")
+	@Scheduled(cron = "0 50 23 * * *")
 	public void testJobMethod() {
 		ArrayList<Project> fundSuccessProject = pd.fundSuccessProject(sqlSession);
 
@@ -86,21 +85,29 @@ public class PayServiceImpl implements PayService {
 		
 	}
 
-	@Override
-	public int insertFund(Funding fund) {
-		// TODO Auto-generated method stub
-		return pd.insertFund(sqlSession, fund);
-	}
+	
 
 	@Override
-	public void insertDelivery(Delivery delivery) {
-		pd.insertDelivery(sqlSession, delivery);
+	public void insertDelivery(ArrayList<Delivery> deliveryList) {
+		pd.insertDelivery(sqlSession, deliveryList);
 		
 	}
 
 	@Override
-	public void insertDeliveryStatus(Delivery delivery) {
-		pd.insertDeliveryStatus(sqlSession, delivery);
+	public void insertDeliveryStatus(ArrayList<Delivery> deliveryList) {
+		pd.insertDeliveryStatus(sqlSession, deliveryList);
 		
 	}
+
+	@Override
+	public void insertSponsor(Sponsor sp) {
+		pd.insertSponsor(sqlSession, sp);
+	}
+
+	@Override
+	public int insertFund(ArrayList<Funding> fundList) {
+		return pd.insertFund(sqlSession, fundList);
+	}
+
+	
 }

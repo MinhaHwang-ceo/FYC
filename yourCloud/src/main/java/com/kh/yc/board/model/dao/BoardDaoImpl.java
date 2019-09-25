@@ -173,5 +173,10 @@ public class BoardDaoImpl implements BoardDao {
 		return r;
 	}
 
+	@Override
+	public Reward selectReward(SqlSessionTemplate sqlSession, String string) {
+		return sqlSession.selectOne("Reward.selectReward2", string);
+	}
+
 
 }

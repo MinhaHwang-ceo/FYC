@@ -4,8 +4,12 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.lang.reflect.Array;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -15,6 +19,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -143,6 +148,34 @@ public class BoardController {
 		mv.setViewName("jsonView");
 		return mv;
 	}
+
+	@RequestMapping("funding_2.bo")
+	public String selectReward(Model model, String target, String projectNo, String price, String targetCnt, String userNo) {
+		Project p = bs.selectProject(Integer.parseInt(projectNo));
+		
+		String[] target1 = target.split("\\$");
+		String[] price1 = price.split("\\$");
+		String[] targetCnt1 = targetCnt.split("\\$");
+		ArrayList<Funding> fundList = new ArrayList<Funding>();
+		ArrayList<Reward> rewardList = new ArrayList<Reward>();
+		for(int i = 0; i < target1.length; i++) {
+			Funding fund = new Funding();
+			Reward reward = new Reward();
+			fund.setUserNo(Integer.parseInt(userNo));
+			fund.setFundMoney(Integer.parseInt(price1[i]));
+			fund.setProjectNo(Integer.parseInt(projectNo));
+			fund.setRewardCount(Integer.parseInt(targetCnt1[i]));
+			fund.setRewardNo(Integer.parseInt(target1[i]));
+			fundList.add(fund);
+			reward = bs.selectReward(target1[i]);
+			rewardList.add(reward);
+		}
+		model.addAttribute("p", p);
+		model.addAttribute("f", fundList);
+		model.addAttribute("r", rewardList);
+		return "board/funding/funding_2";
+	}
+	/*
 	@RequestMapping(value = "funding_2.bo")
 	public String fundingRequest2(String projectNo, String userNo, String target, String targetCnt, String price,  Model model) {
 		System.out.println("projectNo" + projectNo + "target" + target + "targetCnt" + targetCnt + "price" + price);
@@ -160,7 +193,7 @@ public class BoardController {
 		model.addAttribute("f", fund);
 		return "board/funding/funding_2";
 	}
-
+*/
 	@RequestMapping(value = "funding_3.bo")
 	public String fundingRequest3(Model model) {
 
@@ -306,7 +339,6 @@ public class BoardController {
 		if (searchCondition.equals("content")) {
 			sc.setContent(text);
 		}
-		System.out.println(sc);
 		int currentPage = 1;
 
 		if (request.getParameter("currentPage") != null) {
@@ -503,7 +535,6 @@ public class BoardController {
 		} catch (Exception e) {
 			list = bs.getProject();
 		}
-		System.out.println(list);
 		model.addAttribute("list", list);
 		return "main/main";
 	}
