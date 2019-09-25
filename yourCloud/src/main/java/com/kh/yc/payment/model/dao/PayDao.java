@@ -8,6 +8,7 @@ import com.kh.yc.delivery.model.vo.Delivery;
 import com.kh.yc.funding.model.vo.Funding;
 import com.kh.yc.member.model.vo.Member;
 import com.kh.yc.payment.model.vo.Payment;
+import com.kh.yc.payment.model.vo.Sponsor;
 import com.kh.yc.project.model.vo.Project;
 
 public interface PayDao {
@@ -28,11 +29,13 @@ public interface PayDao {
 
 	void updatePayStatus(SqlSessionTemplate sqlSession, Payment pay);
 
-	int insertFund(SqlSessionTemplate sqlSession, Funding fund);
+	int insertFund(SqlSessionTemplate sqlSession, ArrayList<Funding> fundList);
 
-	void insertDelivery(SqlSessionTemplate sqlSession, Delivery delivery);
+	void insertDelivery(SqlSessionTemplate sqlSession, ArrayList<Delivery> deliveryList);
 
-	void insertDeliveryStatus(SqlSessionTemplate sqlSession, Delivery delivery);
+	void insertDeliveryStatus(SqlSessionTemplate sqlSession, ArrayList<Delivery> deliveryList);
+
+	void insertSponsor(SqlSessionTemplate sqlSession, Sponsor sp);
 
 
 }

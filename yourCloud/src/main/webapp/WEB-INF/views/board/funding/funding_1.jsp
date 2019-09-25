@@ -278,17 +278,20 @@
 		*/
 			var price = "";
 			var projectNo = '${p.projectNo}';
+			var target = "";
+			var targetCnt = "";
+			var price = "";
 			$(".check:checked").each(function(){
-				target +=  $(this).siblings().eq(0).val();
-				//target += "$";
-				
+				target += $(this).siblings().eq(0).val();
+				target += "$";
 				targetCnt += $(this).parent().parent().siblings().eq(4).children().eq(0).children().eq(0).val();
-				//targetCnt += "$";
-				
+				targetCnt += "$";
 				price += $(this).siblings().eq(1).val();
-				//price += "$";
+				price += "$";
 			});
-			
+			console.log(target);
+			console.log(targetCnt);
+			console.log(price);
 			location.href="funding_2.bo?projectNo="+projectNo+"&target="+target+"&targetCnt="+targetCnt+"&price="+price+"&userNo="+userNo;
 		});
 		

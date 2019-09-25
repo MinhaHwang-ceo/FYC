@@ -110,5 +110,8 @@ public class BoardServiceImpl implements BoardService {
 	public ArrayList<Reward> selectRewardList(int pNo) {
 		return bd.selectRewardList(sqlSession, pNo);
 	}
+	public Reward selectReward(String string) {
+		return bd.selectReward(sqlSession, string);
+	}
 
 }
