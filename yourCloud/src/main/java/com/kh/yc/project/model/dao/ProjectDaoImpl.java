@@ -9,6 +9,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.kh.yc.board.model.vo.PageInfo;
+import com.kh.yc.category.model.vo.Reply;
 import com.kh.yc.category.model.vo.Report;
 import com.kh.yc.member.model.vo.Member;
 import com.kh.yc.project.model.exception.ProjectSelectListException;
@@ -16,6 +17,7 @@ import com.kh.yc.project.model.vo.Interest;
 import com.kh.yc.project.model.vo.OpenAlarm;
 import com.kh.yc.project.model.vo.Project;
 import com.kh.yc.project.model.vo.SupportList;
+import com.kh.yc.reward.model.vo.RewardInfo;
 
 @Repository
 public class ProjectDaoImpl implements ProjectDao{
@@ -160,7 +162,7 @@ public class ProjectDaoImpl implements ProjectDao{
 	@Override
 	public int likeCount(SqlSessionTemplate sqlSession, Interest inter) {
 		
-		System.out.println("dao에서 좋아요 유무 "+inter);
+		//System.out.println("dao에서 좋아요 유무 "+inter);
 		
 		return sqlSession.selectOne("Project2.likeCount",inter);
 	}
@@ -179,7 +181,6 @@ public class ProjectDaoImpl implements ProjectDao{
 	@Override
 	public int insertReport(SqlSessionTemplate sqlSession, Report report) {
 
-		
 		return sqlSession.insert("Report.insertReport",report);
 	}
 
@@ -187,7 +188,6 @@ public class ProjectDaoImpl implements ProjectDao{
 	@Override
 	public int reportCount(SqlSessionTemplate sqlSession, Interest inter) {
 		
-
 		return sqlSession.selectOne("Report.reportCount",inter);
 	}
 
@@ -275,6 +275,33 @@ public class ProjectDaoImpl implements ProjectDao{
 
 		
 	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public RewardInfo rewardInfo(SqlSessionTemplate sqlSession, int projectNo) {
+		 
+		return sqlSession.selectOne("Project2.rewardInfo",projectNo);
+	}
+
+	//의견 남기기 기능
+	@Override
+	public int insertReply(SqlSessionTemplate sqlSession, Reply reply) {
+		
+		return sqlSession.insert("Project2.insertReply",reply);
+	}
+
+	//의견 리스트 출력
+	@SuppressWarnings("unchecked")
+	@Override
+	public ArrayList<Reply> selectReplyList(SqlSessionTemplate sqlSession, int projectNo) {
+		
+		ArrayList<Reply> reply = null;
+		
+		reply = (ArrayList) sqlSession.selectList("Project2.selectReplyList",projectNo);
+		
+		return reply;
+	}
+
 
 }
 

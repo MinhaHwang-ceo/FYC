@@ -1,3 +1,6 @@
+<%@page import="com.kh.yc.funding.model.vo.Funding"%>
+<%@page import="com.kh.yc.reward.model.vo.Reward"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -29,6 +32,28 @@
 	src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<% 
+	ArrayList<Reward> rewardList = (ArrayList)request.getAttribute("r");
+	ArrayList<Funding> fundList = (ArrayList)request.getAttribute("f");
+	int deliveryPrice = 0;
+	String rewardNo = "";
+	String rewardCount = "";
+	String fundMoney = "";
+	int totalPrice = 0;
+	
+	for(Reward r : rewardList){
+		deliveryPrice += r.getDeliveryMoney();
+		rewardNo += r.getRewardNo();
+		rewardNo += "$";
+	}
+	for(Funding f : fundList){
+		rewardCount += f.getRewardCount();
+		rewardCount += "$";
+		totalPrice += (f.getFundMoney() * f.getRewardCount());
+		fundMoney += (f.getFundMoney() * f.getRewardCount());
+		fundMoney += "$";
+	}
+%>
 <title>니가그린구름그림</title>
 <style>
 .outer {
@@ -112,6 +137,9 @@
 	text-align: center;
 	line-height: 1px;
 }
+p {
+	font-weight: bold;
+}
 </style>
 </head>
 <body>
@@ -136,12 +164,16 @@
 		<hr>
 
 		<div>
-			<h6><c:out value="${ p.projectTitle }"/></h6>
+			<h5><c:out value="${ p.projectTitle }"/></h5>
 			<p><c:out value="${ p.summary }"/></p>
-			<p style="text-align: right">수량 : <c:out value="${f.rewardCount }"/>개 &emsp; <c:out value="${ f.fundMoney }"/>원</p>
+			<hr />
+			<% for(int i = 0; i < rewardList.size(); i++){%>
+			<p><c:out value="<%= rewardList.get(i).getRewardDetail() %>"/></p><label style="width: 100%; text-align:right;">(리워드 한개 당 가격 : <c:out value="<%= fundList.get(i).getFundMoney() %>"/>원)</label>
+			<p style="text-align:right;">수량 : <c:out value="<%= fundList.get(i).getRewardCount() %>"/> 개</p>
+			<%}  %>
 			<hr>
 			<p style="float: left;">배송비</p>
-			<p style="float: right;">2500원</p>
+			<p style="float: right;"><c:out value="<%= deliveryPrice %>"/>원</p>
 			<br>
 			<hr>
 		</div>
@@ -152,7 +184,6 @@
 			<p id="p1">
 				<b>최종결제금액</b>
 			</p>
-			<p id="p2"><c:out value="${ f.fundMoney + 2500 }"/>원</p>
 			<br> <br>
 		</div>
 		<br>
@@ -231,7 +262,6 @@
 			var userNo = '${ sessionScope.loginUser.userNo }';
 			var email = '${ sessionScope.loginUser.email }';
 			var merchantUid = "" + Math.floor(Math.random() * 100000) + 1;;
-			var price = parseInt('${ f.fundMoney}');
 			var userName = $("#userName").val();
 			var phone = $("#phone").val();
 			var site = $("#zipAddr").val();
@@ -239,14 +269,10 @@
 			var projectNo = '${ p.projectNo}';
 			var etc = $("#etc").val();
 			var deliverySite = site + " " + site2;
-			var price2 = price + 2500;
-			
-			var rewardCount = '${ f.rewardCount }';
-			
-			var projectNo = '${ f.projectNo}';
-			
-			var rewardNo = '${f.rewardNo}';
-			
+			var totalPrice = '<%=totalPrice %>';
+			var rewardNo = '<%=rewardNo%>';
+			var price2 = '<%=fundMoney%>';
+			var rewardCount = '<%=rewardCount%>';
 			var IMP = window.IMP;
 			IMP.init('imp24001024');
 			
@@ -278,7 +304,7 @@
 				        	  rewardCount:rewardCount,
 				        	  fundMoney:price2,
 				        	  rewardNo:rewardNo,
-				        	  projectNo:projectNo
+				        	  totalPrice:totalPrice
 				          }, success:function(data){
 				        	  alert("결제가 예약되었습니다");
 				        	  location.href="funding_3.bo";

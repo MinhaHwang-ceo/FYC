@@ -53,7 +53,7 @@ public class MemberServiceImpl implements MemberService {
 
 		if (!passwordEncoder.matches(m.getUserPwd(), encPassword)) {
 			throw new LoginException("로그인 실패!");
-		} else {
+		} else { 
 			loginUser = md.selectMember(sqlSession, m);
 		}
 

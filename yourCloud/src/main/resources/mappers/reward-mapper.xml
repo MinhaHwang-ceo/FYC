@@ -157,6 +157,21 @@
 		WHERE PROJECT_NO =  #{projectNo}
 		ORDER BY SORT_NO ASC
 	</select>
+
+	
+	<select id="selectRewardAll" resultMap="RewardResultSet" parameterType="Reward">
+		SELECT *
+		FROM REWARD
+		WHERE PROJECT_NO = #{projectNo}
+	</select>
+	<select id="selectReward2" resultMap="MyRewardResultSet">
+		SELECT
+			*
+		FROM
+			REWARD
+		WHERE
+			REWARD_NO = #{string}
+	</select>
 </mapper>
 
 

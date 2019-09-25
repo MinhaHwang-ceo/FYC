@@ -109,17 +109,37 @@ h4 {
 
 	<jsp:include page="../common/customer_menubar.jsp" />
 	<jsp:include page="../common/customer_menuList.jsp"/>
-	<div id="menu" style="width: 55%; height: 35px; margin: 0 auto;">
+	<div id="top" style="width: 100%;">
+<%-- <jsp:include page="../common/fundOpenMenu.jsp"/> --%>
+<br /><br /><br />
+<div id="menu" style="width: 55%;height: 40px; margin: 0 auto;">
 		<ul>
-			<li><a id="basic">기본정보</a></li>
-			<li><a id="reward">리워드</a></li>
+			<li><a onclick="basicInfo();" id="basic">기본정보</a></li>
+			<li><a onclick="rewardList();" id="reward">리워드</a></li>
 			<li><a id="story">스토리</a></li>
-			<li><a id="aboutyou"
-				style="background-color: black; color: white;">메이커정보</a></li>
+			<li><a onclick="makerInfo();" id="aboutyou">메이커정보</a></li>
 			<li><a id="cominhsoon">오픈예정</a></li>
 			<li><a id="account">정산</a></li>
 		</ul>
 	</div>
+</div>
+<script>
+	function basicInfo(){
+		var projectNo = $("#projectNo").val();
+		location.href = "baseInfoList.fd?projectNo=" + projectNo;
+	}
+	
+	function rewardList(){
+		var projectNo = $("#projectNo").val();
+		location.href = "rewardList.fd?projectNo=" + projectNo;
+	}
+	function makerInfo() {
+		var projectNo = $("#projectNo").val();
+		location.href = "makerInfo.fd?projectNo=" + projectNo;
+		
+	}
+</script>
+	
 	<hr />
 	<br>
 	<form action="FundingOpen8.fd" id="mainForm" method="POST" encType="multipart/form-data">

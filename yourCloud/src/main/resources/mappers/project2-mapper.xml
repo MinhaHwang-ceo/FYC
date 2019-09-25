@@ -154,6 +154,14 @@
 		<result property="modelWarranty" column="MODEL_WARRANTY" />
 		<result property="modelAdmin" column="MODEL_ADMIN" />
 	</resultMap>
+	
+	<resultMap type="com.kh.yc.category.model.vo.Reply" id="ReplyResultSet">
+		<id property="replyNo" column="REPLY_NO"/>
+		<result property="projectNo" column="PROJECT_NO"/>
+		<result property="userNo" column="MEMBER_NO"/>
+		<result property="replyComment" column="REPLY_COMMENT"/>	
+		<result property="userName" column="MEMBER_NAME"/>	
+	</resultMap>
 
 	<select id="selectListCount" resultType="_int">
 		SELECT COUNT(*)
@@ -204,11 +212,12 @@
 		P.MAKER_DIV, P.AGENT_NAME, P.AGENT_EMAIL,
 		P.PROJECT_TITLE,
 		P.PROJECT_SHORT_TITLE, P.MONEY, P.MAIN_IMG, P.DELIVERY,
-		M.COMPANY_NAME,P.END_DATE,P.MEMBER_NO,P.JUDGE_STATUS,P.PROGRESS_STATUS, A.NEW_FILE_NAME 
+		M.COMPANY_NAME,P.END_DATE,P.MEMBER_NO,P.JUDGE_STATUS,P.PROGRESS_STATUS, A.NEW_FILE_NAME ,P.STORY
 		FROM PROJECT P
 		JOIN MEMBER M ON (P.MEMBER_NO = M.MEMBER_NO)
 		JOIN ATTACHMENT A ON (P.PROJECT_NO = A.PROJECT_NO)
 		AND PROGRESS_STATUS != '오픈예정'
+		AND A.FILE_LEVEL=0
         WHERE P.PROJECT_NO = #{projectNo}
 	</select>
 
@@ -739,6 +748,7 @@ where m.member_name=#{NAME}
         WHERE CATEGORY = #{category}
         AND PROGRESS_STATUS != '오픈예정'
         AND JUDGE_STATUS = '통과'
+        AND A.FILE_LEVEL=0
         ORDER BY PROJECT_NO DESC
 	</select>
 	
@@ -752,13 +762,16 @@ where m.member_name=#{NAME}
 	</select>
 	
 
-	<insert id="insertFund" >
+	<insert id="insertFund" parameterType="java.util.ArrayList">
+		<foreach collection="list" item="p" open="INSERT ALL"
+				close="SELECT * FROM DUAL" separator=" ">
 		INSERT INTO
 			FUND
 		VALUES(
 			SYSDATE, SEQ_FUNDNO.NEXTVAL, #{userNo}, #{projectNo},
 			#{fundMoney}, #{rewardNo}, #{rewardCount}, #{blind}
 		)
+		</foreach>
 	</insert>
 	
 	
@@ -793,7 +806,7 @@ where project_no=#{projectNo}),#{projectNo}
 	</insert>
 
 	<select id="sumFundMoney" resultType="int">
-        SELECT SUM(FUND_MONEY)
+        SELECT NVL(SUM(FUND_MONEY),0)
         FROM FUND
         WHERE PROJECT_NO = #{projectNo}
 	</select>
@@ -816,6 +829,38 @@ where project_no=#{projectNo}),#{projectNo}
         FROM ATTACHMENT 
         WHERE  FILE_LEVEL=0
 	</select>
+
+	<insert id="insertSponsor">
+		INSERT INTO
+			SPONSORED
+		VALUES(
+			#{userNo}, #{projectNo}, #{supportMoney}, 0
+		)
+	</insert>
+
+	
+	<select id="rewardInfo" resultMap="rewardInfoList" parameterType="java.lang.Integer">
+		SELECT R.PROJECT_NO,R.MODEL_NAME,R.MODEL_TYPE,R.MODEL_MAT,R.MODEL_SIZE,
+		R.MANUFACTURER,R.MANUFACTURER_NATION,R.MODEL_NOTICE,R.MODEL_WARRANTY,R.MODEL_ADMIN
+		FROM REWARD_INFO R
+        JOIN PROJECT P ON (R.PROJECT_NO = P.PROJECT_NO)
+		WHERE R.PROJECT_NO = #{projectNo}
+	</select>
+	
+	<insert id="insertReply">
+		INSERT INTO 
+		REPLY (REPLY_NO,PROJECT_NO,MEMBER_NO,REPLY_COMMENT)
+		VALUES (SEQ_REPLYNO.NEXTVAL,#{projectNo},#{userNo},#{replyComment})
+	</insert>
+	
+	<select id="selectReplyList" resultMap="ReplyResultSet">
+	SELECT R.REPLY_NO, R.PROJECT_NO , R.MEMBER_NO, R.REPLY_COMMENT,M.MEMBER_NAME
+	FROM REPLY R
+    JOIN MEMBER M ON (M.MEMBER_NO = R.MEMBER_NO)
+	WHERE PROJECT_NO = #{projectNo}
+	ORDER BY PROJECT_NO DESC
+	</select>
+	
 	
 
 </mapper>

@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.kh.yc.board.model.vo.PageInfo;
+import com.kh.yc.category.model.vo.Reply;
 import com.kh.yc.category.model.vo.Report;
 import com.kh.yc.member.model.vo.Member;
 import com.kh.yc.project.model.dao.ProjectDao;
@@ -21,6 +22,7 @@ import com.kh.yc.project.model.vo.ExcelUtil;
 import com.kh.yc.project.model.vo.Interest;
 import com.kh.yc.project.model.vo.Project;
 import com.kh.yc.project.model.vo.SupportList;
+import com.kh.yc.reward.model.vo.RewardInfo;
 
 @Service
 
@@ -110,6 +112,7 @@ public class ProjectServiceImpl implements ProjectService {
 		return pd.insertLike(sqlSession, inter);
 	}
 
+	//좋아요 취소 기능
 	@Override
 	public int deleteLike(Interest inter) {
 
@@ -233,5 +236,28 @@ public class ProjectServiceImpl implements ProjectService {
 	 pd.joinAlram(sqlSession, bNum,userNo,phone);
 
 	}
+
+	public RewardInfo rewardInfo(int projectNo) {
+		
+		String projectNo1 = Integer.toString(projectNo);
+		
+		return pd.rewardInfo(sqlSession, (Integer.parseInt(projectNo1)));
+	}
+
+	//의견 입력하기
+	@Override
+	public int insertReply(Reply reply) {
+		 
+		return pd.insertReply(sqlSession,reply);
+	}
+	//의견 조회
+	@Override
+	public ArrayList<Reply> selectReplyList(int projectNo) {
+		
+		ArrayList<Reply> reply = pd.selectReplyList(sqlSession,projectNo);
+		
+		return reply;
+	}
+
 
 }

@@ -3,6 +3,7 @@ package com.kh.yc.admin.model.vo;
 import java.sql.Date;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.kh.yc.funding.model.vo.Attachment;
 
 public class Project implements java.io.Serializable {
@@ -46,6 +47,8 @@ public class Project implements java.io.Serializable {
 	private List<Attachment> attachment;
 	private String rules;
 	private int ssn;
+	@JsonFormat(pattern = "yyyy-MM-dd")
+	private String projectOpen; //오픈일
 
 	public Project() {
 	}
@@ -56,9 +59,8 @@ public class Project implements java.io.Serializable {
 			String projectTitle, String projectShortTitle, int money, String mainImg, String document, String progress,
 			String delivery, Date endDate, String adult, int userNo, int reportCount, int payNo, int adjustNo,
 			Date adjustDate, int adjustMoney, String companyName, String adjustStatus, String categoryDiv, String story,
-			List<Attachment> attachment, String rules, int ssn) {
+			List<Attachment> attachment, String rules, int ssn, String projectOpen) {
 		super();
-
 		this.projectNo = projectNo;
 		this.category = category;
 		this.success = success;
@@ -99,6 +101,7 @@ public class Project implements java.io.Serializable {
 		this.attachment = attachment;
 		this.rules = rules;
 		this.ssn = ssn;
+		this.projectOpen = projectOpen;
 	}
 
 	public int getProjectNo() {
@@ -421,6 +424,14 @@ public class Project implements java.io.Serializable {
 		this.ssn = ssn;
 	}
 
+	public String getProjectOpen() {
+		return projectOpen;
+	}
+
+	public void setProjectOpen(String projectOpen) {
+		this.projectOpen = projectOpen;
+	}
+
 	@Override
 	public String toString() {
 		return "Project [projectNo=" + projectNo + ", category=" + category + ", success=" + success + ", judgeStatus="
@@ -434,8 +445,12 @@ public class Project implements java.io.Serializable {
 				+ ", payNo=" + payNo + ", adjustNo=" + adjustNo + ", adjustDate=" + adjustDate + ", adjustMoney="
 				+ adjustMoney + ", companyName=" + companyName + ", adjustStatus=" + adjustStatus + ", categoryDiv="
 				+ categoryDiv + ", story=" + story + ", attachment=" + attachment + ", rules=" + rules + ", ssn=" + ssn
-				+ "]";
+				+ ", projectOpen=" + projectOpen + "]";
 	}
+
+	
+
+	
 
 	
 

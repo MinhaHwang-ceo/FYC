@@ -1,21 +1,26 @@
 package com.kh.yc.payment.model.service;
 
+import java.util.ArrayList;
+
 import com.kh.yc.delivery.model.vo.Delivery;
 import com.kh.yc.funding.model.vo.Funding;
 import com.kh.yc.payment.model.vo.Payment;
+import com.kh.yc.payment.model.vo.Sponsor;
 
 public interface PayService {
-	void testJobMethod();
+   void testJobMethod();
 
-	int insertPayment(Payment pay);
+   void insertPayment(Payment pay);
 
-	Payment selectRePay(String merchantUid);
+   Payment selectRePay(String merchantUid);
 
-	void updatePayStatus(Payment pay);
+   void updatePayStatus(Payment pay);
 
-	int insertFund(Funding fund);
+   int insertFund(ArrayList<Funding> fundList);
 
-	int insertDelivery(Delivery delivery);
+   void insertDelivery(ArrayList<Delivery> deliveryList);
 
-	int insertDeliveryStatus(Delivery delivery);
+   void insertDeliveryStatus(ArrayList<Delivery> deliveryList);
+
+   void insertSponsor(Sponsor sp);
 }

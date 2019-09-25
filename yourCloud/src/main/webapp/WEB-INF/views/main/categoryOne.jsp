@@ -179,26 +179,6 @@ a {
    }
 
 
-
-
-/* .starR {
-	background:
-		url('http://miuu227.godohosting.com/images/icon/ico_review.png')
-		no-repeat right 0;
-	background-size: auto 100%;
-	width: 20px;
-	height: 20px;
-	display: inline-block;
-	text-indent: -9999px;
-	cursor: pointer;
-}
-
-.starR.on {
-	background-position: 0 0;
-} */
-
-
-
 .dropbtn {
   background-color: #ea2129;
   color: white;
@@ -234,6 +214,16 @@ a {
 
 .dropdown:hover .dropbtn {background-color: #3e8e41;}
 
+.contents-view img{
+	width: 700px;
+}
+
+.title-img img{
+	width: 500px;
+	 display:block;
+    margin-left:auto;
+    margin-right:auto;
+}
 
 </style>
 <meta charset="UTF-8">
@@ -241,6 +231,7 @@ a {
 </head>
 <body>
 <jsp:include page="../common/customer_menubar.jsp"/>
+	<jsp:include page="../common/customer_menuList.jsp" />
 <script type="text/javascript">
 
 	$(function(){
@@ -273,16 +264,17 @@ a {
 	</div>
 	
 	<br/>
-
+	
 	<div class="tab-list">
 		<ul class="tab-story">
-			<li><a href="categoryOne.ca" class="tab-link">스토리</a></li>
-			<li><a href="categoryOneFunding.ca" class="tab-link">펀딩안내</a></li>
-			<li><a href="categoryOneNews.ca" class="tab-link">새소식</a></li>
-			<li><a href="categoryOneCommunity.ca" class="tab-link">커뮤니티</a></li>
-			<li><a href="categoryOneSupporter.ca" class="tab-link">서포터</a></li>
+			<li><a href="#" class="tab-link">스토리</a></li>
+			<li><a href="categoryOneFunding.ca?projectNo=${detail.projectNo}" class="tab-link">펀딩안내</a></li>
+			<li><a href="categoryOneNews.ca?projectNo=${detail.projectNo}" class="tab-link">새소식</a></li>
+			<li><a href="categoryOneCommunity.ca?projectNo=${detail.projectNo}" class="tab-link">커뮤니티</a></li>
+			<li><a href="categoryOneSupporter.ca?projectNo=${detail.projectNo}" class="tab-link">서포터</a></li>
 		</ul>
 	</div>
+	
 	<hr/>
 	
 	<div class="reward-body">
@@ -291,11 +283,8 @@ a {
 				
 				<!-- 이미지 앤 동영상 영역 -->
 				<div class="title-img">
-					<img src="/yc/resources/uploadFiles/<c:out value="${mainImg}"/>.png" width="100%"
-						style="border: 1px solid green;">
-				</div>
-				<br />
-				<br />
+					<img src="/yc/resources/uploadFiles/<c:out value="${detail.newFileName}"/>" width="100%">
+				</div> 
 				<br />
 
 				<div style="padding: 20px; background: #eafbf7; background: rgba(0, 204, 163, 0.1)">
@@ -313,67 +302,36 @@ a {
 				<!-- 에이터 영역님이다 -->
 				<br />
 				<br />
-				<div class="story" style="height: auto; text-align:left; padding-left:40px; padding-right:40px;">
-					<strong class="title-story">스토리</strong> <br />
+				<div class="story" style="text-align:left; padding-left:40px; padding-right:40px;">
+					<strong class="title-story" style="color:#673AB7">스토리</strong> <br />
 					<br />
+					
 					<div class="contents-view">
-						<p>
-							<img src="${ contextPath }/resources/images/tit.PNG"
-								style="width: 92%" />
-						</p>
-
-						<p> <br/> </p>
 						
-						<p>
-							<img src="${ contextPath }/resources/images/tit.PNG" style="width: 92%" />
-						</p>
-						
-						<p> <br/> </p>
-						
-						<p>
-							<img src="${ contextPath }/resources/images/tit.PNG" style="width: 92%" />
-						</p>
+						${detail.story }
+					
 
-						<blockquote>
-							<p>
-								<br><br>${detail.summary}
-							</p>
-						</blockquote>
-						<p>
-							<br />
-						</p>
-						<p>생활공간은 한정 되어있는데물건은 점점 쌓여가고, 버리기는 아깝고 팔 수도 없는 물건들로 결국 집안 곳곳이
-							가득 찹니다. 아내는 집에 누구 초대하기도 민망하다며 성화고, 남편은 애들같이 장난감을 사모아서 방 한칸을 꽉
-							채워놨네요. 이건 뭐 우리 집이 집인지 창고인지… 큰집으로 이사를 가자니 계약기간도 남아 있고 집값도 비싸고 보통
-							일이 아닙니다. 많은 분들이 미니멀 라이프를 추구 하고 있지만 더하기는 쉬워도 빼는 건 쉬운 일이 아닌 것 같습니다.
-						</p>
-						<p>
-							<br />
-						</p>
-
-						<!-- 프로젝트 일정 -->
-						<p>
+						<!-- 프로젝트 일정 --><br><br>
+						<p style="color:#673AB7">
 							<strong>프로젝트 일정 안내</strong>
 						</p>
 						<p>
-							<strong> 펀딩 전 프로젝트 일정을 꼭 확인해 주세요! </strong> 
-							<br> ${ detail.companyName }의 일정은 새소식을 통해 업데이트 하도록 하겠습니다.
+							<strong style="color:#B39DDB"> 펀딩 전 프로젝트 일정을 꼭 확인해 주세요! </strong> 
+							<br> ${ detail.projectShortTitle }의 일정은 새소식을 통해 업데이트 하도록 하겠습니다.
 						</p>
 						<p>
-							<strong>08월 27일 : 프로젝트 오픈</strong> <br /> 
-							<strong>${detail.endDate } : 프로젝트 마감</strong> <br /> <strong>09월 23일 ~ 09월 26일 : 결제 기간</strong>
-							<br /> <strong>09월 30일 ~ : 배송시작</strong>
+							 ${detail.endDate } : 프로젝트 마감 
 						</p>
-						<p>
+						<p style="color:#B39DDB">
 							<br />
-						<strong>배송 안내</strong>
+						<strong >배송 안내</strong>
 						<p>
 						<p>
-							1.리워드는 CJ 대한통운 택배사를 통해 발송됩니다. <br /> 2.배송 소식은 새소식을 통해 내용을 공유해
+							1. 리워드는 CJ 대한통운 택배사를 통해 발송됩니다. <br /> 2. 배송 소식은 새소식을 통해 내용을 공유해
 							드리겠습니다. <br /> &nbsp; - ${detail.delivery }후 부터 일일 1,000개씩 순차배송 <br />
-							&nbsp; - 배송시 포장상태 : 에어캡 + 박스포장 <br /> 3.도서/산간 지방도 택배 발송이 되며, 지역에
+							&nbsp; - 배송시 포장상태 : 에어캡 + 박스포장 <br /> 3. 도서/산간 지방도 택배 발송이 되며, 지역에
 							관게없이 배송비는 없습니다. <br> &emsp; 단 , 배송 예정일이 지연될 수 있음을 미리 안내드립니다. &nbsp; <br />
-							4.제품 및 배송 관련 문의사항문의 &nbsp; : <a href="">${detail.email }</a>
+							4. 제품 및 배송 관련 문의사항문의 &nbsp; : <a href="">${detail.email }</a>
 						</p>
 						<br>
 
@@ -397,6 +355,7 @@ a {
 					</script>
 				</p>
 				<hr />
+				
 							
 			<c:set var="money" value="${detail.money}"/>
 			<c:set var="sumFundMoney" value="${sumFundMoney}"/>
@@ -532,7 +491,8 @@ a {
 	
 						<tr>
 							<td colspan="2" align="center">
-								<button class="btn-meker-question">메이커에게 문의하기</button>			
+								<button class="btn-meker-question" onclick="location.href='mailto:${detail.email}'">
+								메이커에게 문의하기</button>			
 							</td>
 						</tr>
 						<tr>
@@ -549,6 +509,10 @@ a {
 					</table>
 				</div>
 			</div>
+			
+			
+			
+			
 			<br />
 			<div class="moveRewards">
 				<div class="wd-gift">
@@ -634,7 +598,7 @@ a {
 			</div>
 						<!-------------------------- 신고 영역 --------------------------------->
 			<div style="font-size: 14px;">
-				<p style="font-size:20px"><b>신고하기란?</b></p> 
+				<p style="font-size:20px; color:#EF5350;"><b>신고하기란?</b></p> 
 				<p> 해당 프로젝트에 허위내용 및 지적재산권 <br/> 을 침해하는 내용이 있다면 제보해주세요. </p>
 				
 				<a onclick=

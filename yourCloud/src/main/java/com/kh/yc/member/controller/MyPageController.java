@@ -67,7 +67,7 @@ public class MyPageController {
 
 	@RequestMapping("changeInfo.me")
 	public String changeInfo(@ModelAttribute Member m) {
-		System.out.println("내가 돌아왔다.");
+		System.out.println("내가 돌아왔다."); 
 
 		return "main/main";
 	}

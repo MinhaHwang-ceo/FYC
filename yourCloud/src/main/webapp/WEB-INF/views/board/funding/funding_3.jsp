@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -97,7 +98,7 @@
 <br><br>
 
 <div id="div1">
-<b>홍길동 서포터님<br>
+<b><c:out value="${ sessionScope.loginUser.userName }"/> 서포터님<br>
 펀딩으로 참여해주셔서 참 감사합니다!</b>
 </div>
 
@@ -124,7 +125,7 @@
 
 <div id="div2">
 <p id="p1">결제예약결과 및 배송예상일 조회는 나의 펀딩현황에서 확인하세요.</p>
-<p id="p2"><input type="button" value="바로가기" class="btn btn-info"></p>
+<p id="p2"><input type="button" id="goMyReward" value="바로가기" class="btn btn-info"></p>
 <br><br>
 </div>
 <br><br>
@@ -149,6 +150,12 @@
 </div>
 
 <br><br><br>
+
+<script>
+	$("#goMyReward").click(function(){
+		location.href="myReward.me";
+	});
+</script>
 <jsp:include page="../../common/customer_footer.jsp"/>
 </body>
 </html>

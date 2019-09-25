@@ -78,6 +78,8 @@ public interface FundingService{
 	List<Attachment> baseInfoListAt(Attachment a);
 	//리워드 조회
 	List<Reward> rewardList(Reward r);
+	
+	List<Reward> selectRewardAll(Reward r);
 
 
 	
