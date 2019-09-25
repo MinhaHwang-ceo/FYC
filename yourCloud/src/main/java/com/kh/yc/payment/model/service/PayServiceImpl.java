@@ -34,7 +34,7 @@ public class PayServiceImpl implements PayService {
 
 	@Override
 	// @Scheduled(cron = "0 4 17 * * *")
-	@Scheduled(cron = "5 * * * * *")
+	//@Scheduled(cron = "5 * * * * *")
 	public void testJobMethod() {
 		ArrayList<Project> fundSuccessProject = pd.fundSuccessProject(sqlSession);
 

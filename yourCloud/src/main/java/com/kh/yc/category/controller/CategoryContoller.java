@@ -19,10 +19,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.yc.category.model.service.CategoryService;
+import com.kh.yc.category.model.vo.Reply;
 import com.kh.yc.category.model.vo.Report;
 import com.kh.yc.project.model.service.ProjectService;
 import com.kh.yc.project.model.vo.Interest;
 import com.kh.yc.project.model.vo.Project;
+import com.kh.yc.reward.model.vo.RewardInfo;
 
 @Controller
 @Component
@@ -37,22 +39,19 @@ public class CategoryContoller {
 	public String categoryOne(@RequestParam int projectNo,HttpServletRequest request, HttpServletResponse response) {
 		
 		//실시간 시간 테스트중
-		Date d = new Date();		
-		SimpleDateFormat test0 = new SimpleDateFormat("yyyy-MM-dd");
-	
-		String today = test0.format(d);		
-		System.out.println(today+": 오늘날짜");
-		
-		String endDate = request.getParameter("endDate");
-		System.out.println(endDate+": 마감날짜");
-		
-		if(today.equals(endDate)) {
-			System.out.println("일치합니다");
-			
-		}else {
-			System.out.println("일치하지 않습니다");
-		}
-		
+		/*
+		 * Date d = new Date(); SimpleDateFormat test0 = new
+		 * SimpleDateFormat("yyyy-MM-dd");
+		 * 
+		 * String today = test0.format(d); System.out.println(today+": 오늘날짜");
+		 * 
+		 * String endDate = request.getParameter("endDate");
+		 * System.out.println(endDate+": 마감날짜");
+		 * 
+		 * if(today.equals(endDate)) { System.out.println("일치합니다");
+		 * 
+		 * }else { System.out.println("일치하지 않습니다"); }
+		 */
 		//글의 상세 조회를 위한 서비스를 호출. 글 상세정보는 한 줄만 가져오면 되기때문에 map 형식
 		Project detail = ps.detailProject(projectNo);
 		//System.out.println(detail);
@@ -81,9 +80,6 @@ public class CategoryContoller {
 		
 		String mainImg = ps.mainImg(inter);
 		
-		
-		//System.out.println("컨트롤러에서 신고수 카운트 ?"+reportCount);
-		
 		request.setAttribute("reportCount", reportCount);
 		request.setAttribute("projectNo", projectNo);
 		request.setAttribute("sumFundMoney", sumFundMoney);
@@ -95,29 +91,82 @@ public class CategoryContoller {
 	}
 
 	@RequestMapping(value = "/categoryOneFunding.ca", method = RequestMethod.GET)
-	public String categoryOneFunding(Model model) {
+	public String categoryOneFunding(HttpServletRequest request, HttpServletResponse response) {
+		
+		int projectNo = Integer.parseInt(request.getParameter("projectNo"));
+		
+		System.out.println(projectNo);
+		
+		Project detail = ps.detailProject(projectNo);
+		
+		System.out.println(detail);
+		
+		request.setAttribute("detail", detail);
+		
+		RewardInfo rewardInfo = ps.rewardInfo(projectNo);
+		
+		request.setAttribute("reward", rewardInfo);
+		
+		System.out.println(rewardInfo+"는?????????????????????");
 
 		return "main/categoryOneFunding";
 
 	}
 
 	@RequestMapping(value = "/categoryOneNews.ca", method = RequestMethod.GET)
-	public String categoryOneNews(Model model) {
+	public String categoryOneNews(HttpServletRequest request, HttpServletResponse response) {
 
+		int projectNo = Integer.parseInt(request.getParameter("projectNo"));
+		
+		System.out.println(projectNo);
+		
+		Project detail = ps.detailProject(projectNo);
+		
+		System.out.println(detail);
+		
+		request.setAttribute("detail", detail);
+		
 		return "main/categoryOneNews";
 
 	}
 
 	@RequestMapping(value = "/categoryOneSupporter.ca", method = RequestMethod.GET)
-	public String categoryOneSupporter(Model model) {
+	public String categoryOneSupporter(HttpServletRequest request, HttpServletResponse response) {
+		
+		int projectNo = Integer.parseInt(request.getParameter("projectNo"));
+		
+		System.out.println(projectNo);
+		
+		Project detail = ps.detailProject(projectNo);
+		
+		System.out.println(detail);
+		
+		
+		request.setAttribute("detail", detail);
+		
 
 		return "main/categoryOneSupporter";
 
 	}
 
 	@RequestMapping(value = "/categoryOneCommunity.ca", method = RequestMethod.GET)
-	public String categoryOneCommunity(Model model) {
-
+	public String categoryOneCommunity(HttpServletRequest request, HttpServletResponse response) {
+		
+		int projectNo = Integer.parseInt(request.getParameter("projectNo"));
+		
+		System.out.println(projectNo);
+		
+		Project detail = ps.detailProject(projectNo);
+		
+		System.out.println(detail);
+		
+		request.setAttribute("detail", detail);
+		
+		//댓글 출력
+		ArrayList<Reply> reply = ps.selectReplyList(projectNo);
+		 
+		request.setAttribute("reply", reply);
+		 
 		return "main/categoryOneCommunity";
 
 	}
@@ -178,11 +227,35 @@ public class CategoryContoller {
 		return ps.insertReport(report);
 	}
 	
-	@Scheduled(cron = "0 26 * * * *")
+	@Scheduled(cron = "0 59 * * * *")
 	public void cornTest() {
 		System.out.println("매일 26분에 실행");
 	}
 	
+	@RequestMapping(value = "/replyProject.ca", method = RequestMethod.GET)
+	public String replyCount(HttpServletRequest request, HttpServletResponse response) {
+		
+		int projectNo = Integer.parseInt(request.getParameter("projectNo"));
+		
+		System.out.println(projectNo);
+		
+		Project detail = ps.detailProject(projectNo);
+		
+		System.out.println(detail);
+		
+		request.setAttribute("detail", detail);
 
+		return "main/replyProject";
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/submitReply.ca", method = RequestMethod.POST)
+	public int submitReply(Reply reply,Model model,HttpServletRequest request, HttpServletResponse response) {
+		
+		System.out.println(reply+"는 뭔가요");
+		
+		return ps.insertReply(reply);
+	}
+	
 	
 }

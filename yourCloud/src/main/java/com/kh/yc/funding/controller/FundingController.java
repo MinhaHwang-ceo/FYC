@@ -297,6 +297,7 @@ public class FundingController {
 	public String FundingOpen7(Project p, Reward r, RewardInfo ri, Model model) {
 		System.out.println("실행");
 
+		System.out.println(ri);
 		fs.updateProject(p);
 
 		if (r.getRewardNo() > 0) {
