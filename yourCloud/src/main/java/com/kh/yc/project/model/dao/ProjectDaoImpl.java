@@ -13,6 +13,7 @@ import com.kh.yc.category.model.vo.Report;
 import com.kh.yc.member.model.vo.Member;
 import com.kh.yc.project.model.exception.ProjectSelectListException;
 import com.kh.yc.project.model.vo.Interest;
+import com.kh.yc.project.model.vo.OpenAlarm;
 import com.kh.yc.project.model.vo.Project;
 import com.kh.yc.project.model.vo.SupportList;
 
@@ -260,6 +261,19 @@ public class ProjectDaoImpl implements ProjectDao{
 	public String mainImg2(SqlSessionTemplate sqlSession, ArrayList<Project> list) {
 	 
 		return sqlSession.selectOne("Project2.mainImg2",list);
+	}
+
+	@Override
+	public void joinAlram(SqlSessionTemplate sqlSession, int bNum, int userNo,String phone) {
+		System.out.println("bNum::::::::::::::"+bNum);
+		OpenAlarm oa= new OpenAlarm();
+		oa.setMemberNo(userNo);
+		oa.setProjectNo(bNum);
+		oa.setMemberPhone(phone);
+		
+		int a  = sqlSession.insert("Project2.joinAlram",oa);
+
+		
 	}
 
 }

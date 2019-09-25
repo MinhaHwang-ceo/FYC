@@ -34,7 +34,7 @@ public class PayServiceImpl implements PayService {
 
 	@Override
 	// @Scheduled(cron = "0 4 17 * * *")
-	@Scheduled(cron = "5 * * * * *")
+	//@Scheduled(cron = "5 * * * * *")
 	public void testJobMethod() {
 		ArrayList<Project> fundSuccessProject = pd.fundSuccessProject(sqlSession);
 
@@ -70,8 +70,8 @@ public class PayServiceImpl implements PayService {
 	}
 
 	@Override
-	public void insertPayment(com.kh.yc.payment.model.vo.Payment pay) {
-		pd.insertPayment(sqlSession, pay);
+	public int insertPayment(com.kh.yc.payment.model.vo.Payment pay) {
+		return pd.insertPayment(sqlSession, pay);
 
 	}
 
@@ -93,14 +93,14 @@ public class PayServiceImpl implements PayService {
 	}
 
 	@Override
-	public void insertDelivery(Delivery delivery) {
-		pd.insertDelivery(sqlSession, delivery);
+	public int insertDelivery(Delivery delivery) {
+		return pd.insertDelivery(sqlSession, delivery);
 		
 	}
 
 	@Override
-	public void insertDeliveryStatus(Delivery delivery) {
-		pd.insertDeliveryStatus(sqlSession, delivery);
+	public int insertDeliveryStatus(Delivery delivery) {
+		return pd.insertDeliveryStatus(sqlSession, delivery);
 		
 	}
 }

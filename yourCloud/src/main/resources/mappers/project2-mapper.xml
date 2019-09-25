@@ -703,9 +703,19 @@ where member_name=#{NAME}
 update delivery_status 
 set invoice_number=#{INVOICE}
 where member_no= ( 
-select m.member_no
-from delivery_status d
-join member m on(d.member_no=m.member_no)
+	select m.member_no
+		FROM PROJECT P
+		JOIN SPONSORED S
+		ON(p.PROJECT_NO=S.PROJECT_NO)
+		Join member m on(s.member_no=m.member_no)
+		JOIN FUND F ON(F.MEMBER_NO = M.MEMBER_NO)
+		join reward r
+		on(r.reward_no=f.reward_no)
+		join delivery d on(d.member_no=m.member_no)
+		join payment p on(p.fund_no=f.fund_no)
+		join delivery_status d2
+		on(d2.delivery_no=d.delivery_no)
+
 where m.member_name=#{NAME}
 )
 	</update>
@@ -750,6 +760,21 @@ where m.member_name=#{NAME}
 			#{fundMoney}, #{rewardNo}, #{rewardCount}, #{blind}
 		)
 	</insert>
+	
+	
+	<insert id="joinAlram" >
+		INSERT INTO
+			OPEN_ALRAM
+		VALUES(#{memberNo},#{memberPhone},(select project_open 
+from project
+where project_no=#{projectNo}),#{projectNo}
+		
+		)
+	</insert>
+	
+	
+	
+
 	<insert id="insertDelivery">
 		INSERT INTO
 			DELIVERY

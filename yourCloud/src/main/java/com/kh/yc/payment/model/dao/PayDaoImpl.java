@@ -44,8 +44,8 @@ public class PayDaoImpl implements PayDao {
 	}
 
 	@Override
-	public void insertPayment(SqlSessionTemplate sqlSession, Payment pay) {
-		sqlSession.insert("Project2.insertPayment", pay);
+	public int insertPayment(SqlSessionTemplate sqlSession, Payment pay) {
+		return sqlSession.insert("Project2.insertPayment", pay);
 		
 	}
 
@@ -66,13 +66,13 @@ public class PayDaoImpl implements PayDao {
 	}
 
 	@Override
-	public void insertDelivery(SqlSessionTemplate sqlSession, Delivery delivery) {
+	public int insertDelivery(SqlSessionTemplate sqlSession, Delivery delivery) {
 		// TODO Auto-generated method stub
-		sqlSession.insert("Project2.insertDelivery", delivery);
+		return sqlSession.insert("Project2.insertDelivery", delivery);
 	}
 
 	@Override
-	public void insertDeliveryStatus(SqlSessionTemplate sqlSession, Delivery delivery) {
-		sqlSession.insert("Project2.insertDeliveryStatus", delivery);
+	public int insertDeliveryStatus(SqlSessionTemplate sqlSession, Delivery delivery) {
+		return sqlSession.insert("Project2.insertDeliveryStatus", delivery);
 	}
 }

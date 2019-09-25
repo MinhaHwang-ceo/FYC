@@ -22,7 +22,7 @@ public interface PayDao {
 
 	void insertFundingSuccess(SqlSessionTemplate sqlSession, ArrayList<Funding> fundingList);
 
-	void insertPayment(SqlSessionTemplate sqlSession, Payment pay);
+	int insertPayment(SqlSessionTemplate sqlSession, Payment pay);
 
 	Payment selectRePay(SqlSessionTemplate sqlSession, String merchantUid);
 
@@ -30,9 +30,9 @@ public interface PayDao {
 
 	int insertFund(SqlSessionTemplate sqlSession, Funding fund);
 
-	void insertDelivery(SqlSessionTemplate sqlSession, Delivery delivery);
+	int insertDelivery(SqlSessionTemplate sqlSession, Delivery delivery);
 
-	void insertDeliveryStatus(SqlSessionTemplate sqlSession, Delivery delivery);
+	int insertDeliveryStatus(SqlSessionTemplate sqlSession, Delivery delivery);
 
 
 }

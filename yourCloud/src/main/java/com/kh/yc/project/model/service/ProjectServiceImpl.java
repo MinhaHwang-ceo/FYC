@@ -228,4 +228,10 @@ public class ProjectServiceImpl implements ProjectService {
 		return pd.mainImg2(sqlSession,list);
 	}
 
+	@Override
+	public void joinAlram(int bNum, int userNo, String phone) {
+	 pd.joinAlram(sqlSession, bNum,userNo,phone);
+
+	}
+
 }

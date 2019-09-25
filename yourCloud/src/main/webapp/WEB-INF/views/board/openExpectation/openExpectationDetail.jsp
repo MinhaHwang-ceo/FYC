@@ -48,7 +48,8 @@
 				<img alt="" src="/yc/resources/images/yc-logo3.png">
 			</div>
 		</td>
-		<td id="td1"><input type="button" value="알림신청" id="btn" class="btn btn-info" onclick="window.open('openExpectationRequest.bo','_blank', 'width=370,height=400');return false;">
+		
+		<td id="td1"><input type="button" value="알림신청" id="btn" class="btn btn-info join">
 			<br><br>
 			<input type="button" value="공유하기" id="btn" class="btn btn-info">
 			<br><br>
@@ -86,5 +87,38 @@
 
 <br><br>
 <jsp:include page="../../common/customer_footer.jsp"/>
+
+
+
+
+
+<script>
+
+
+function searchParam(key) {
+	  return new URLSearchParams(location.search).get(key);
+	};
+
+$('.join').click(function(){
+	
+	var bNum= searchParam('projectNo');
+	console.log("Bnum"+bNum)
+	window.open('openExpectationRequest.bo?bNum='+bNum,'_blank', 'width=370,height=400');return false;
+	
+	
+})
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
 </body>
 </html>

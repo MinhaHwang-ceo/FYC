@@ -7,7 +7,7 @@ import com.kh.yc.payment.model.vo.Payment;
 public interface PayService {
 	void testJobMethod();
 
-	void insertPayment(Payment pay);
+	int insertPayment(Payment pay);
 
 	Payment selectRePay(String merchantUid);
 
@@ -15,7 +15,7 @@ public interface PayService {
 
 	int insertFund(Funding fund);
 
-	void insertDelivery(Delivery delivery);
+	int insertDelivery(Delivery delivery);
 
-	void insertDeliveryStatus(Delivery delivery);
+	int insertDeliveryStatus(Delivery delivery);
 }

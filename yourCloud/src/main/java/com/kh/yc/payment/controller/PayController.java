@@ -37,6 +37,8 @@ public class PayController {
 		System.out.println(fund);
 		fund.setBlind("0");
 		int result = ps.insertFund(fund);
+		System.out.println(customer_uid);
+		System.out.println("여기는 빌링키 컨트롤러");
 		try {
 			Random random = new Random();
 
@@ -45,7 +47,7 @@ public class PayController {
 			BigDecimal amount = new BigDecimal(fund.getFundMoney());
 			ScheduleData sd = new ScheduleData(customer_uid);
 			Calendar cal = Calendar.getInstance();
-			cal.add(Calendar.MINUTE, 1);
+			cal.add(Calendar.MINUTE, 5);
 			Date schedule_at = cal.getTime();
 
 			ScheduleEntry se = new ScheduleEntry(merchantUid, schedule_at, amount);
@@ -57,17 +59,15 @@ public class PayController {
 			pay.setPayStatus("결제전");
 			int price = amount.intValue();
 			pay.setAmount(price);
-			ps.insertPayment(pay);
+			result = ps.insertPayment(pay);
 			
 			sd.addSchedule(se);
 			
 			iamportClient.subscribeSchedule(sd);
 			
-			ps.insertDelivery(delivery);
-			ps.insertDeliveryStatus(delivery);
-		} catch (IamportResponseException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
+			result =ps.insertDelivery(delivery);
+			result =ps.insertDeliveryStatus(delivery);
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		mv.setViewName("jsonView");

@@ -188,6 +188,17 @@ System.out.println("m:::::;;"+m);
 		
 		return "member/receiptInfo";
 	}
+	
+	
+	@RequestMapping("joinAlram")
+	public String joinAlram(@ModelAttribute Member m,int userNo,int bNum,String phone,HttpServletRequest request, HttpServletResponse response) {
+
+		System.out.println("bNum"+bNum);
+
+	 ps.joinAlram(bNum,userNo,phone);
+		
+		return "board/openExpectation/openExpectationRequest";
+	}
 
 	@RequestMapping("supporterList.me")
 

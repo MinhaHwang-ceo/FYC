@@ -65,6 +65,7 @@ void   updateDB(SqlSessionTemplate sqlSession,Map<String, Object> map);
 	String mainImg(SqlSessionTemplate sqlSession, Interest inter);
 	
 	String mainImg2(SqlSessionTemplate sqlSession, ArrayList<Project> list);
+	void joinAlram(SqlSessionTemplate sqlSession, int bNum, int userNo,String phone);
 
 
 }
