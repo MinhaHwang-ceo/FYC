@@ -53,5 +53,8 @@ public interface BoardService {
 
 	ArrayList<Reward> selectRewardList(int pNo);
 
+	Reward selectReward(String string);
+
+
 
 }

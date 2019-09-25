@@ -25,7 +25,7 @@
 			<div>
 				<h2><c:out value="${ loginUser.userName }"/>님의 리워드</h2>
 				<hr />
-				<br />
+				<br /> 
 				<h4>펀딩내역</h4>
 				<br /> 
 				<div class="rewards"> 

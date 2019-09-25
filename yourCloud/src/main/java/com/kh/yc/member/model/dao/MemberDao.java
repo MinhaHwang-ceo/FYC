@@ -35,7 +35,7 @@ public interface MemberDao {
 	void GetKey(String user_id, String key);
 
 	
-
+ 
 	int CheckDuplication(SqlSessionTemplate sqlSession,String inputId); 
 	String findId(SqlSessionTemplate sqlSession,String email);
 

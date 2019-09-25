@@ -308,6 +308,7 @@ public class FundingController {
 		System.out.println(r);
 		System.out.println(ri);
 
+		System.out.println(ri);
 		fs.updateProject(p);
 
 		if (r.getRewardNo() > 0) {

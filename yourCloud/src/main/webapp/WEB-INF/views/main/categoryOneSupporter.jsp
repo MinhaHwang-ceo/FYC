@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -100,29 +101,6 @@ a {
 	height: 35px;
 }
 
-.btn-like {
-	width: 28%;
-	border: 1px solid skyblue;
-	background: white;
-	height: 34.6px;
-}
-.btn-meker-question {
-	
-	border:1px solid rgba(0, 0, 0, 0.15);
-	border-radius: 3px;
-	background-color: #fff;
-	cursor: pointer;
-	padding: 0 1.41176em;
-	height: 48px;
- 	vertical-align: middle;
- 	line-height: 1;
- 	color: rgba(0, 0, 0, 0.54);
- 	font-size: 17px;
- 	width:90%;
- 	margin: 0 auto;
- 	text-align: center;
-	
-}
 .projectTitle{
 	margin-bottom: 10px;
     font-weight: 500;
@@ -156,28 +134,7 @@ a {
     color: #c88af9;
 }
 
-.btn-declaration {
-	width: 100%; 
-	height: 40px;
-	background: rgb(231, 76, 60);
-	border: 0;
-	color: white;
-	
-}
 
-.reward-header{
-	text-align:center;
-    border: 1px solid black;
-    height:-1px;
-    top: -20px;
-    background-size: cover;
-    background: #001328!important;
-    color: white;
-   }
-.RewardItem {
-	border-bottom: 1px solid #e6eaed;
-	min-height: 46px;
-}
 .avatar-wrap .RewardItem {
 	position: absolute;
 	background-repeat: no-repeat;
@@ -189,6 +146,10 @@ a {
 <title>Insert title here</title>
 </head>
 <body>
+
+	<jsp:include page="../common/customer_menubar.jsp" />
+	<jsp:include page="../common/customer_menuList.jsp" />
+	
 	<script type="text/javascript">
 
 	$(function(){
@@ -197,310 +158,70 @@ a {
 	})
 	</script>
 
+	<div id="outer" style="background:white;">
+	
 	<!-- 리워드 헤더 이미지  -->
 	<div class="reward-header">
-		
 		<p class="title-info">
-			<em style="color:#5cdede;">소셜.캠페인</em>
-			<strong>#몰카탐지카드몰가가드</strong>
-			프로젝트
+			<h6 style="color:#5cdede;">
+				<c:choose>
+					<c:when test="${detail.category eq 'A1' }"> 테크,가전</c:when>
+					<c:when test="${detail.category eq 'A2' }"> 패션,잡화</c:when>
+					<c:when test="${detail.category eq 'A3' }"> 키즈</c:when>
+					<c:when test="${detail.category eq 'A4' }"> 여행,레저</c:when>
+					<c:when test="${detail.category eq 'A5' }"> 뷰티</c:when>
+					<c:when test="${detail.category eq 'A6' }"> 도서</c:when>
+					<c:when test="${detail.category eq 'A7' }"> 반려동물</c:when>
+					<c:when test="${detail.category eq 'A8' }"> 스포츠</c:when>
+					<c:when test="${detail.category eq 'A9' }"> 푸드</c:when>
+					<c:when test="${detail.category eq 'A10' }"> 홈리빙</c:when>
+					<c:otherwise>카테고리 미정</c:otherwise>
+				</c:choose> &emsp;
+			<strong style="color:white">${ detail.projectShortTitle }</strong>
+			</h6> 
+		<h2 class="title-header" style="color: white;"> ${ detail.projectTitle } </h2>
 		</p>
-		<h2 class="title-header">
-			[소셜캠페인 참여1위]불법촬영 두려워마세요! 간편한 몰카방지카드 몰카드
-		</h2>
-		
 	</div>
-	<br />
+	<!--------------->
+	
+	<br/>
+	<%int userNo =123; %>
 
 	<div class="tab-list">
-		<ul class="tab-story">
-			<li><a href="categoryOne.ca" class="tab-link">스토리</a></li>
-			<li><a href="categoryOneFunding.ca" class="tab-link">펀딩안내</a></li>
-			<li><a href="categoryOneNews.ca" class="tab-link">새소식</a></li>
-			<li><a href="categoryOneCommunity.ca" class="tab-link">커뮤니티</a></li>
-			<li><a href="categoryOneSupporter.ca" class="tab-link">서포터</a></li>
+		<ul class="tab-story">		
+		<c:if test="${loginUser.userNo ne null}">		
+			<li><a href="categoryOne.ca?projectNo=${ detail.projectNo }&userNo=${loginUser.userNo}&endDate=${detail.endDate}" class="tab-link">스토리</a></li>
+		</c:if>	
+		
+		<c:if test="${loginUser.userNo eq null }">
+			<li><a href="categoryOne.ca?projectNo=${ detail.projectNo }&userNo=<%=userNo%>&endDate=${detail.endDate}" class="tab-link">스토리</a></li>
+		</c:if>			
+			<li><a href="categoryOneFunding.ca?projectNo=${detail.projectNo}" class="tab-link">펀딩안내</a></li>
+			<li><a href="#" class="tab-link">새소식</a></li>
+			<li><a href="categoryOneCommunity.ca?projectNo=${detail.projectNo}" class="tab-link">커뮤니티</a></li>
+			<li><a href="categoryOneSupporter.ca?projectNo=${detail.projectNo}" class="tab-link">서포터</a></li>
 		</ul>
 	</div>
-	<hr />
-
-	<div class="reward-body">
-		<!-- 가운데 내용 -->
-		<div class="dd">
-			<div class="content-supporter">
-				<p style="font-size: 20px;">
-					현재 이 프로젝트의 서포터즈 수는
-					<br />
-					<strong style="color: #00c4c4">178명</strong>
-					입니다.
-				</p>
-				<br /><br /><br>
-				<div class="rewardSupporterList">	
-					<div class="RewardItem" style="">
-					<table style="width: 100%;">
-							<tr>
-								<td align="center">
-									<span>
-										<img src="${ contextPath }/resources/images/tit.PNG" style="border-radius: 50%; width: 46px; height: 46px;"/>
-									</span>
-								</td>
-								<td>
-									<p>
-										<strong>이건희님이  5,8500원 펀딩으로 참여 하셨습니다.</strong>
-									</p>
-								</td>
-							</tr>
-								
-								<tr >
-									<td style="border-bottom: 1px solid #e6eaed;" colspan="2"><hr /></td>
-								</tr>
-						</table>
-					</div>
-					
-					<div class="RewardItem" style="">
-					<table style="width: 100%;">
-							<tr>
-								<td align="center">
-									<span>
-										<img src="${ contextPath }/resources/images/tit.PNG" style="border-radius: 50%; width: 46px; height: 46px;"/>
-									</span>
-								</td>
-								<td>
-									<p>
-										<strong>이건희님이  5,8500원 펀딩으로 참여 하셨습니다.</strong>
-									</p>
-								</td>
-							</tr>
-								
-								<tr >
-									<td style="border-bottom: 1px solid #e6eaed;" colspan="2"><hr /></td>
-								</tr>
-						</table>
-					</div>
-					
-					<div class="RewardItem" style="">
-					<table style="width: 100%;">
-							<tr>
-								<td align="center">
-									<span>
-										<img src="${ contextPath }/resources/images/tit.PNG" style="border-radius: 50%; width: 46px; height: 46px;"/>
-									</span>
-								</td>
-								<td>
-									<p>
-										<strong>이건희님이  5,8500원 펀딩으로 참여 하셨습니다.</strong>
-									</p>
-								</td>
-							</tr>
-								
-								<tr >
-									<td style="border-bottom: 1px solid #e6eaed;" colspan="2"><hr /></td>
-								</tr>
-						</table>
-					</div>
-				</div>
-			</div>
-		</div>
-		
-			<!-- 오른쪽 영역 -->
-		<div class="opener-info">
-			<div class=state-box>
-				<p class="remin-day" style="font-size: 28px;">26일 남음</p>
-				<hr />
-				<strong style="font-size: 24px;">100</strong> %달성
-				<p class="total-money" style="font-size: 24px;">
-					<strong>100,000,000</strong> 원 펀딩
-				</p>
-				<p class="total-supporter" style="font-size: 24px;">
-					<strong>619</strong> 명의 서포터
-				</p>
-			</div>
-			<div class="">
-				<button onclick="backMoney" class="btn-funding">펀딩하기</button>
-			</div>
-			<br />
-			<div class=btn-wrap>
-				<div class="btn-wrap-flex">
-					<button class="btn-like">
-						<i></i> 100
-					</button>
-					<button class="btn-question">문의</button>
-
-					<button class="btn-share">공유하기</button>
-				</div>
-			</div>
-			<hr />
-			<div class="project-meker-info">
-				<h3>메이커 정보</h3>
-				<div class="maker-box">
-					<table style="border: 1px solid black; width: 100%;">
-						<tr>
-							<td><button
-									style="border: 1px solid black; border-radius: 50%; background: white; width: 100px; height: 100px; margin-left: 10px;"></button></td>
-							<td style="">진수네 농산</td>
-						</tr>
-						<tr>
-							<td><br /></td>
-						</tr>
-						<tr>
-							<td colspan="2">메이커 평점 : 4.7
-								<hr />
-							</td>
-						</tr>
 	
-						<tr>
-							<td colspan="2" align="center">
-								<button class="btn-meker-question">메이커에게 문의하기</button>			
-							</td>
-						</tr>
-						<tr>
-							<td><br /></td>
-						</tr>
-						
-						<tr>
-							<td colspan="2">
-								<p style="font-size: 12x;">
-									메이커 연락처 : 010-4231-5232
-				
-								</p>
-								
-							</td>
-						</tr>
-						
-					</table>
-				</div>
-			</div>
-			<br />
-			<div class="moveRewards">
-				<div class="wd-gift" style="border: 1px solid red;">
-					<h3 class="projectTitle">리워드 선택</h3>
-					<button class="reward-list">
-						<div class="reward-info">
-						<!-- 	<dl>
-								<dt>
-									 78,200원 펀딩
-								</dt>
-								<dd > -->
-									<p>[슈퍼얼리버드] 싱글팩 (30% 혜택)</p>
-									<p>
-										남성용 / 씬타입(단목) Thin. / 4켤레 (4가지 칼라. 각 1켤레씩)
-										<br />
-										[블랙&레드] , [화이트&블랙] , [블루&화이트] , [그레이&화이트]
-									</p>
-							<!-- 	</dd>
-							</dl> -->
-								<ul class="data-info">
-									<li class="shipping">
-										배송비
-										<p>25,500원</p>
-									</li>
-									<li class="date">
-										리워드 빌송 시작일
-									<em>2019 10월 초 (1~10일) 예정</em>
-									</li>
-								</ul>
-								<p class="reward-qty">
-									제한수량
-									<strong>12000</strong>
-									개
-									<em>현재 1144개 남음</em>
-								</p>
-								<p class="reward-soldcount">
-									총
-									<strong>76</strong>
-									개 펀딩 완료
-								</p>
-						</div>
-					</button>
-				</div>	
-			</div>
-			<div class="moveRewards">
-				<div class="wd-gift" style="border: 1px solid red;">
-					<h3 class="projectTitle">리워드 선택</h3>
-					<button class="reward-list">
-						<div class="reward-info">
-						<!-- 	<dl>
-								<dt>
-									 78,200원 펀딩
-								</dt>
-								<dd > -->
-									<p>[슈퍼얼리버드] 싱글팩 (30% 혜택)</p>
-									<p>
-										남성용 / 씬타입(단목) Thin. / 4켤레 (4가지 칼라. 각 1켤레씩)
-										<br />
-										[블랙&레드] , [화이트&블랙] , [블루&화이트] , [그레이&화이트]
-									</p>
-							<!-- 	</dd>
-							</dl> -->
-								<ul class="data-info">
-									<li class="shipping">
-										배송비
-										<p>25,500원</p>
-									</li>
-									<li class="date">
-										리워드 빌송 시작일
-									<em>2019 10월 초 (1~10일) 예정</em>
-									</li>
-								</ul>
-								<p class="reward-qty">
-									제한수량
-									<strong>12000</strong>
-									개
-									<em>현재 1144개 남음</em>
-								</p>
-								<p class="reward-soldcount">
-									총
-									<strong>76</strong>
-									개 펀딩 완료
-								</p>
-						</div>
-					</button>
-				</div>	
-			</div>
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			<!-- 신고 영역 -->
-			<div style="border:1px solid blue; font-size: 14px;">
-				<p class="">
-					신고하기란?
-				</p>
-				<p>
-					해당 프로젝트에 허위내용 및 지적재산권
-					<br />
-					을 침해하는 내용이 있다면 제보해주세요.
-				</p>
-				<button onclick="showLyPop()" class="btn-declaration"  >
-					신고하러 가기
-					
-				</button>
-			</div>
-			
-			
+	<hr/>
 
-
-
-
-
-
-
-
-
-
-
-
+	이펀딩에 참여한 사람은 5명입니다<br>
+	이펀딩에 참여한 사람은 5명입니다<br>
+	이펀딩에 참여한 사람은 5명입니다<br>
+	이펀딩에 참여한 사람은 5명입니다<br>
+	이펀딩에 참여한 사람은 5명입니다<br>
+	
+	이펀딩에 참여한 사람은 5명입니다<br>
+	이펀딩에 참여한 사람은 5명입니다<br>
+	
 		
-		</div>
+	
+	
+	
+	<br><br>	
 		
-		
-		
+	
+	<div style="width:100%; float:left;"><jsp:include page="../common/customer_footer.jsp"/></div><br>
 	</div>
-
 </body>
 </html>

@@ -31,7 +31,7 @@
     </style>
 </head>
 <body>
-<jsp:include page="../../common/customer_menubar.jsp"/>
+<jsp:include page="../../common/customer_menubar.jsp"/> 
 <jsp:include page="../../common/customer_menuList.jsp"/>
 
 <div class="container">

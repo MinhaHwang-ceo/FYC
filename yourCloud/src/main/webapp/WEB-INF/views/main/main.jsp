@@ -1,9 +1,11 @@
+<%@page import="com.kh.yc.member.model.vo.Member"%>
 <%@page import="com.kh.yc.project.model.vo.Project"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
    pageEncoding="UTF-8" import="java.util.*"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%
-   ArrayList<Project> list = (ArrayList) request.getAttribute("list");
+	ArrayList<Project> list = (ArrayList) request.getAttribute("list");
+	Member m = (Member)request.getAttribute("loginUser");
 %>
 <html>
 
@@ -40,6 +42,20 @@
 		}
 	</script>
 	<!--Section-1-->
+	
+	<table>
+		<tr>
+			<td><input type="checkbox" class="check" name="ba" id="ba"/><input type="text" value="1"/></td>
+			<td><input type="checkbox" class="check" name="ba" id="bb"/><input type="text" value="2"/></td>
+		</tr>
+		<tr>
+			<td><input type="button" id="baba" /></td>
+		</tr>
+	</table>
+	<script>
+
+	</script>
+	
 	<section class="section-1">
 		<div class="jumbotron d-flex align-items-center">
 			<div class="gradient"></div>
@@ -132,7 +148,7 @@
 				<div class="col-lg-4 col-sm-12 col-12 box-1" data-aos="fade-right"
 					data-aos-delay="300">
 					<figure class="figure">
-						<a href="blog.html"><img src="/yc/resources/uploadFiles/<%= list.get(0).getAttachment().get(0).getNewFileName() %>"
+						<a href="categoryOne.ca?projectNo=<%= list.get(0).getProjectNo()%>&userNo=123"><img src="/yc/resources/uploadFiles/<%= list.get(0).getAttachment().get(0).getNewFileName() %>"
 							class="figure-img img-fluid" alt="blog"></a>
 						<figcaption class="figure-caption">
 							<h2>
@@ -153,7 +169,7 @@
 					<div class="row">
 						<div class="col-sm-6 col-12 box-2">
 							<figure class="figure">
-								<a href="blog.html"><img src="/yc/resources/uploadFiles/<%= list.get(1).getAttachment().get(0).getNewFileName() %>"
+								<a href="categoryOne.ca?projectNo=<%= list.get(1).getProjectNo()%>&userNo=123"><img src="/yc/resources/uploadFiles/<%= list.get(1).getAttachment().get(0).getNewFileName() %>"
 									class="figure-img img-fluid" alt="blog"></a>
 							</figure>
 						</div>
@@ -171,7 +187,7 @@
 					<div class="row">
 						<div class="col-sm-6 col-12 box-4">
 							<figure class="figure">
-								<a href="blog.html"><img src="/yc/resources/uploadFiles/<%= list.get(2).getAttachment().get(0).getNewFileName() %>"
+								<a href="categoryOne.ca?projectNo=<%= list.get(2).getProjectNo()%>&userNo=123"><img src="/yc/resources/uploadFiles/<%= list.get(2).getAttachment().get(0).getNewFileName() %>"
 									class="figure-img img-fluid" alt="blog"></a>
 							</figure>
 						</div>
@@ -190,7 +206,7 @@
 					<div class="row">
 						<div class="col-sm-6 col-12 box-6">
 							<figure class="figure">
-								<a href="blog.html"><img src="/yc/resources/uploadFiles/<%= list.get(3).getAttachment().get(0).getNewFileName() %>"
+								<a href="categoryOne.ca?projectNo=<%= list.get(3).getProjectNo()%>&userNo=123"><img src="/yc/resources/uploadFiles/<%= list.get(3).getAttachment().get(0).getNewFileName() %>"
 									class="figure-img img-fluid" alt="blog"></a>
 							</figure>
 						</div>

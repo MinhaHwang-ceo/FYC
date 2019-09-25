@@ -16,13 +16,13 @@ public class RewardInfo implements Serializable {
 	private String modelAdmin;
 
 	public RewardInfo() {
-		super();
 		// TODO Auto-generated constructor stub
 	}
 
 	public RewardInfo(int projectNo, int rewardNo, String modelName, String modelType, String modelMat,
 			String modelSize, String manufacturer, String manufacturerNation, String modelNotice, String modelWarranty,
 			String modelAdmin) {
+		
 		this.projectNo = projectNo;
 		this.rewardNo = rewardNo;
 		this.modelName = modelName;

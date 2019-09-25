@@ -9,6 +9,7 @@ import com.kh.yc.delivery.model.vo.Delivery;
 import com.kh.yc.funding.model.vo.Funding;
 import com.kh.yc.member.model.vo.Member;
 import com.kh.yc.payment.model.vo.Payment;
+import com.kh.yc.payment.model.vo.Sponsor;
 import com.kh.yc.project.model.vo.Project;
 
 @Repository
@@ -60,19 +61,24 @@ public class PayDaoImpl implements PayDao {
 	}
 
 	@Override
-	public int insertFund(SqlSessionTemplate sqlSession, Funding fund) {
+	public int insertFund(SqlSessionTemplate sqlSession, ArrayList<Funding> fundList) {
 		// TODO Auto-generated method stub
-		return sqlSession.insert("Project2.insertFund", fund);
+		return sqlSession.insert("Project2.insertFund", fundList);
 	}
 
 	@Override
-	public void insertDelivery(SqlSessionTemplate sqlSession, Delivery delivery) {
+	public void insertDelivery(SqlSessionTemplate sqlSession, ArrayList<Delivery> deliveryList) {
 		// TODO Auto-generated method stub
-		sqlSession.insert("Project2.insertDelivery", delivery);
+		sqlSession.insert("Project2.insertDelivery", deliveryList);
 	}
 
 	@Override
-	public void insertDeliveryStatus(SqlSessionTemplate sqlSession, Delivery delivery) {
-		sqlSession.insert("Project2.insertDeliveryStatus", delivery);
+	public void insertDeliveryStatus(SqlSessionTemplate sqlSession, ArrayList<Delivery> deliveryList) {
+		sqlSession.insert("Project2.insertDeliveryStatus", deliveryList);
+	}
+
+	@Override
+	public void insertSponsor(SqlSessionTemplate sqlSession, Sponsor sp) {
+		sqlSession.insert("Project2.insertSponsor", sp);
 	}
 }
