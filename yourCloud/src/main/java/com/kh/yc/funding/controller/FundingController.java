@@ -126,6 +126,7 @@ public class FundingController {
 	@RequestMapping(value = "FundingOpen5.fd", method = RequestMethod.POST)
 	public String FundingOpen5(Model model, Project p, HttpServletRequest request, Attachment a,
 			@RequestParam(name = "photo", required = true) MultipartFile photo) {
+		System.out.println("오픈 일 : " + p);
 
 		System.out.println("photo:" + photo.getSize() + ":");
 		if (photo != null && photo.getOriginalFilename().length() != 0) {
@@ -179,9 +180,10 @@ public class FundingController {
 			List<Project> list = fs.baseInfoList(p);
 			System.out.println("list : " + list);
 			
-			List<Attachment> listAttachment = fs.baseInfoListAt(a);
+			List<Attachment> listAttachment = fs.
+					baseInfoListAt(a);
 			model.addAttribute("p",list.get(0));
-			if(listAttachment !=null) {
+			if(listAttachment.size() !=0) {
 				
 				model.addAttribute("fileVO",listAttachment.get(0));
 			}
@@ -190,7 +192,7 @@ public class FundingController {
 		
 		
 		System.out.println("photo:" + a.getOriginFileName());
-		
+	
 		int result = fs.UpdateInfo(p);
 		System.out.println("아아아아 ================" + p);
 		model.addAttribute("p", p);
@@ -222,8 +224,9 @@ public class FundingController {
 		System.out.println("리워드 번호 : " + r.getRewardNo());
 
 		int RewardNo2 = r.getRewardNo();
+		System.out.println("RewardNo2 : RewardNo2  ;RewardNo2 : " + r);
 
-		mv.addObject("RewardNo2", RewardNo2);
+		
 		mv.addObject("r", r);
 
 		// mv.setViewName("mvReward");
@@ -287,7 +290,13 @@ public class FundingController {
 	 
 
 	@RequestMapping(value = "FundingOpen6.fd")
-	public String FundingOpen6(String projectNo, Model model) {
+	public String FundingOpen6(String projectNo, Model model,
+			@SessionAttribute("RewardNo2") int RewardNo2, Reward r) {
+		
+		int Reward = r.getRewardNo();
+		System.out.println("============== : " + Reward);
+
+		model.addAttribute("Reward", Reward);
 		model.addAttribute("projectNo", projectNo);
 
 		return "fundingOpen/FundingOpen6";
@@ -296,12 +305,15 @@ public class FundingController {
 	@RequestMapping(value = "FundingOpen7.fd")
 	public String FundingOpen7(Project p, Reward r, RewardInfo ri, Model model) {
 		System.out.println("실행");
+		System.out.println(r);
+		System.out.println(ri);
 
 		System.out.println(ri);
 		fs.updateProject(p);
 
 		if (r.getRewardNo() > 0) {
 			fs.insertRewardInfo(ri);
+			
 		}
 		model.addAttribute("p", p);
 		return "fundingOpen/FundingOpen7";
@@ -309,7 +321,7 @@ public class FundingController {
 
 	@RequestMapping(value = "FundingOpen8.fd")
 	public String FundingOpen8(Project p, Member m, HttpServletRequest request, @RequestParam(name = "photo", required = false) MultipartFile photo, Model model) {
-		
+		System.out.println("프로필");
 		Attachment attach = new Attachment();
 		
 		attach = fs.selectAttach(p);
@@ -491,6 +503,7 @@ public class FundingController {
 	//기본정보 조회
 		@RequestMapping("baseInfoList.fd")
 		public String baseInfoList(Model model, HttpServletRequest request, Project p, Attachment a) {
+			System.out.println("pppppppppppppppp : " + p );
 			List<Project> list = fs.baseInfoList(p);
 			System.out.println("list : " + list);
 			
@@ -498,9 +511,16 @@ public class FundingController {
 		System.out.println("사진 사진  :" + listAttachment);
 		System.out.println("photo:" + a.getOriginFileName());
 			
+			if(list.size()!=0) {
 			
-			model.addAttribute("p",list.get(0));
-			model.addAttribute("fileVO",listAttachment.get(0));
+				model.addAttribute("p",list.get(0));
+				
+				
+			}
+			if(listAttachment.size() != 0) {
+				
+				model.addAttribute("fileVO",listAttachment.get(0));
+			}
 			
 			
 			
@@ -511,16 +531,32 @@ public class FundingController {
 	  
 	 //리워드 
 	@RequestMapping("rewardList.fd")
-	public String rewardList(Model model, HttpServletRequest request, Reward r) {
-
+	public String rewardList(Project p, Model model, HttpServletRequest request, Reward r) {
+		
 		List<Reward> rewardList = fs.rewardList(r);
-		System.out.println(" ++++++++++++++++++++++++++++++  :"   + rewardList);
 		
 		model.addAttribute("r",rewardList);
+		model.addAttribute("p",p);
 		
+
 		return "fundingOpen/FundingOpen5";
 	}
 	
-
+	@RequestMapping("selectRewardAll.fd")
+	public ModelAndView selectRewardAll(ModelAndView mv, Project p, Model model, HttpServletRequest request, Reward r) {
+		
+		r.setProjectNo(p.getProjectNo());
+		List<Reward> rewardList = fs.selectRewardAll(r);
+		
+		
+		
+		mv.setViewName("jsonView2");;
+		mv.addObject("r",rewardList);
+		
+		return mv;
+	}
+	
+	
+	
 
 }

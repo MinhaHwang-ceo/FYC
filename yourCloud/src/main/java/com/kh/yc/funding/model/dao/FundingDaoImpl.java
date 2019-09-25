@@ -158,6 +158,11 @@ public  class FundingDaoImpl implements FundingDao{
 	
 		return sqlSession.selectList("Reward.rewardList",r);
 	}
+	@Override
+	public List<Reward> selectRewardAll(SqlSessionTemplate sqlSession, Reward r) {
+		
+		return sqlSession.selectList("Reward.selectRewardAll",r);
+	}
 
 	
 	

@@ -206,6 +206,12 @@ public class FundingServiceImpl implements FundingService{
 	
 		return fd.rewardList(sqlSession,r);
 	}
+
+	@Override
+	public List<Reward> selectRewardAll(Reward r) {
+		
+		return fd.selectRewardAll(sqlSession,r);
+	}
 	
 	
 	

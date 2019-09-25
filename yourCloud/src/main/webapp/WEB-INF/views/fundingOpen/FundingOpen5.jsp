@@ -128,20 +128,45 @@ input[type="checkbox"]:checked+label span {
 .tt{
 	border: 1px solid white;
 }
+
 </style>
+
+
 <script type="text/javascript">
 $(document).ready(function(){
+	var projectNo = parseInt($("#projectNo").val() || "0");
 	
-
+	var prme = {projectNo:projectNo} 
+	$.ajax({
+		url:"selectRewardAll.fd",
+		type:"post",
+		data:prme,
+		success:function(data){
+			console.log(data);
+			
+			if(data.r.length != 0){
+			for(var i = 0; i < data.r.length; i++){
+				var reward = data.r[i]; 
+				console.log(reward);
+				addTable(reward);
+			}
+			}else {
+				addTable({});
+			}
+		},
+		error:function(err){	
+			console.log("조회 실패하셨씁니다");
+		}
+	
+	});
 	addTable();
-	
 
 });
 
 var idx = 0;
 
 
-function addTable() {
+function addTable(reward) {
 	
 	var html = "";
 	
@@ -150,7 +175,7 @@ function addTable() {
     html +='    <td>';
     html +='        <h6>금액</h6>';
     html +='    </td>';
-    html +='    <td id="fno">&nbsp;&nbsp;&nbsp;&nbsp; <input type="text" placeholder="12345" id="rewardMoney'+idx +'" name="rewardMoney" style="text-align: right;">원';
+    html +='    <td id="fno">&nbsp;&nbsp;&nbsp;&nbsp; <input type="text" value="'+ (reward.rewardMoney || '')  +'" placeholder="12345" id="rewardMoney'+idx +'" name="rewardMoney" style="text-align: right;">원';
     html +='    </td>';
     html +='    <td><span>정렬 : </span>&nbsp;'; 
     html +='    <input type="number" name="sortNo" value="'+ (idx +1) +'" id="sortNo'+idx +'" min="0" maxlength="2" style="width: 50px;">';
@@ -163,20 +188,22 @@ function addTable() {
     html +='    <td>';
     html +='        <h4>리워드명</h4>';
     html +='    </td>';
-    html +='    <td id="fno"><input type="text" placeholder="예)ㅇㄴㅇㄴㅇ" id="rewardName'+idx +'" name="rewardName"></td>';
+    html +='    <td id="fno"><input type="text" value="'+ (reward.rewardName || '')  +'" placeholder="예)ㅇㄴㅇㄴㅇ" id="rewardName'+idx +'" name="rewardName"></td>';
     html +='</tr>';
     html +='<tr>';
     html +='    <td>';
     html +='        <h4>상세설명</h4>';
     html +='    </td>';
-    html +='    <td><textarea id="rewardDetail'+idx +'" name="rewardDetail" placeholder="" rows="3" data-maxlength="400" style="overflow-y: auto; resize: none; width: 350px;"></textarea>';
+    html +='    <td><textarea id="rewardDetail'+idx +'" name="rewardDetail" placeholder="" rows="3" data-maxlength="400" style="overflow-y: auto; resize: none; width: 350px;">'+ (reward.rewardDetail || '')  +'</textarea>';
     html +='    </td>';
     html +='</tr>';
     html +='<tr>';
     html +='    <td>';
     html +='        <h4>옵션조건</h4>';
     html +='    </td>';
-    html +='    <td id="fno"><ul><li><input type="radio"  class="option'+idx +'" name="option'+ idx +'" value="필요없음" style="width:14px;height:14px;/>';
+    
+    html +='    <td id="fno"><ul><li><input type="radio"  class="option'+idx +'" name="option'+ idx +'" value="필요없음" style="width:14px;height:14px;/ checked>';
+    	
     html +='        <label for="option"><span></span>옵션 입력이 필요없는 상품입니다.</label><br></li>';
     html +='        <li><input type="radio" class="option'+idx +'" name="option'+idx +'" value="선택옵션" style="width:14px;height:14px;/> <label for="option"><span></span>옵션 입력이 필요한 상품입니다.</label>&nbsp;&nbsp;&nbsp;<br>';
     html +='        <textarea rows="5" cols="40" style="width: 300px; height: 100px;"></textarea></li></ul>';
@@ -195,25 +222,25 @@ function addTable() {
     html +='    <td>';
     html +='        <h4>배송비</h4>';
     html +='    </td>';
-    html +='    <td align="center"><input id="deliveryMoney'+idx +'" name="deliveryMoney" type="text" style="width: 300px; height: 40px; margin-left: 14px;" />원</td>';
+    html +='    <td align="center"><input value="'+ (reward.deliveryMoney || '')  +'"  id="deliveryMoney'+idx +'" name="deliveryMoney" type="text" style="width: 300px; height: 40px; margin-left: 14px;" />원</td>';
     html +='</tr>';
     html +='<tr>';
     html +='    <td>';
     html +='        <h4>제한수량</h4>';
     html +='    </td>';
-    html +='    <td id="fno" align="center"><input id="limitCount'+idx +'" name="limitCount" style="margin-left: 14px;" type="text">개</td>';
+    html +='    <td id="fno" align="center"><input value="'+ (reward.limitCount || '')  +'" id="limitCount'+idx +'" name="limitCount" style="margin-left: 14px;" type="text">개</td>';
     html +='</tr>';
     html +='<tr>';
     html +='    <td>';
     html +='        <h4>발송시작일</h4>';
     html +='    </td>';
-    html +='    <td id="fno" align="center"><input id="startDate'+idx +'" name="startDate" type="date" min="2017-08-15"></td>';
+    html +='    <td id="fno" align="center"><input value="'+ (reward.startDate || '')  +'" id="startDate'+idx +'" name="startDate" type="date" min="2017-08-15"></td>';
     html +='</tr>';
     html +='<tr>';
     html +='    <td></td>';
     html +='    <td>';
     html +='        <button onclick="save_re('+ idx + ');">저장하기</button> <button id="nextProject" onclick="nextProject()">다음으로</button>';
-    html += '        <button value="" onclick="addTable()">만들기</button>';
+    html += '        <button value="" onclick="addTable(reward)">만들기</button>';
     html += '    </td>';
     html += '</tr>';
     html += '</table>';
@@ -233,6 +260,7 @@ function addTable() {
 	var dataArr = {};
 	
  	function nextProject(){
+ 		
 	    location.href="FundingOpen6.fd?projectNo="+'${p.projectNo}';
 	 }
  	
@@ -271,7 +299,7 @@ function addTable() {
 		  	startDate:startDate
      	};
 		
-		//console.log(param);
+		console.log(param);
 		
 		if(dataArr[idx] == null) {
 			
@@ -296,6 +324,7 @@ function addTable() {
 				success:function(data){
 					console.log(data);
 					alert("업데이트해야함");
+					//dataArr[idx] = data.r.rewardNo;
 					
 				},
 				error:function(arr){
@@ -313,7 +342,7 @@ function addTable() {
 				projectNo:projectNo
 		};
 		
-		$.ajax({
+		$.ajax({	
 			url:"deleteReward.fd",
 			type:"post",
 			data : number,
@@ -336,39 +365,47 @@ function addTable() {
 </head>
 <body>
 
-	 <input type="hidden" value="${p.projectNo}"  id="projectNo" name="projectNo"/>       
+	  <input type="hidden" value="${p.projectNo}"  id="projectNo" name="projectNo"/>       
 	  <input type="hidden" value="${p.category}"  id="category" name="category"/>
-	  <input type="hidden" value="${r.rewardNo}"  id="rewardNo" name="rewardNo"/>    
+	<%--  <input type="text" value="${r.rewardNo}"  id="rewardNo" name="rewardNo"/> --%>
 	<jsp:include page="../common/customer_menubar.jsp" />
 	<jsp:include page="../common/customer_menuList.jsp"/>
 	
 
 	<br>
-	<div id="top" style="width: 100%;">
+	
 		<br /><br /><br />
+<div id="top" style="width: 100%;">
+<%-- <jsp:include page="../common/fundOpenMenu.jsp"/> --%>
+<br /><br /><br />
 <div id="menu" style="width: 55%;height: 40px; margin: 0 auto;">
 		<ul>
 			<li><a onclick="basicInfo();" id="basic">기본정보</a></li>
 			<li><a onclick="rewardList();" id="reward">리워드</a></li>
 			<li><a id="story">스토리</a></li>
-			<li><a id="aboutyou">메이커정보</a></li>
+			<li><a onclick="makerInfo();" id="aboutyou">메이커정보</a></li>
 			<li><a id="cominhsoon">오픈예정</a></li>
 			<li><a id="account">정산</a></li>
 		</ul>
 	</div>
-	<script>
+</div>
+<script>
 	function basicInfo(){
 		var projectNo = $("#projectNo").val();
-			location.href = "baseInfoList.fd?projectNo=" + projectNo;
+		location.href = "baseInfoList.fd?projectNo=" + projectNo;
+	}
 	
 	function rewardList(){
 		var projectNo = $("#projectNo").val();
-			location.href = "rewardList.fd?projectNo=" + projectNo;
-		}		
+		location.href = "rewardList.fd?projectNo=" + projectNo;
+	}
+	function makerInfo() {
+		var projectNo = $("#projectNo").val();
+		location.href = "makerInfo.fd?projectNo=" + projectNo;
+		
 	}
 	
 </script>
-	</div>
 	<br><br><br> 
 		<div id="inputBox2" class="reward_SaveBtn" align="center">
 			

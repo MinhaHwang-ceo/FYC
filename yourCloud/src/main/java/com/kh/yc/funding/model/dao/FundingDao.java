@@ -70,6 +70,8 @@ public interface FundingDao {
 	//리워드 조회
 	List<Reward> rewardList(SqlSessionTemplate sqlSession, Reward r);
 
+	List<Reward> selectRewardAll(SqlSessionTemplate sqlSession, Reward r);
+
 
 
 
