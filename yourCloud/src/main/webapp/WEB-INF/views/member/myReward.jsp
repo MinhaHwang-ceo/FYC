@@ -33,7 +33,7 @@
 			<c:forEach var="m" items="${ list }">
 			<a href="showMyRewardDetail.me?rewardNo=${ m.rewardNo }">
 			<div class="rewards">
-				<div class="left">
+				<div class="left"> 
 					<p class="category"><c:out value="${ m.categoryDiv }"/></p>	
 					<p class="status"><c:out value="${ m.endDate }"/> 종료</p>
 					<br />

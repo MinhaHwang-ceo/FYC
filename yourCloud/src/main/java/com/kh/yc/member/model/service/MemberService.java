@@ -43,7 +43,7 @@ public interface MemberService {
 	Reward selectMyRewardDetail(int rewardNoInt);
 
 	ArrayList<Project> interestProject(Member mse);
-
+ 
 	Member selectMember(String userNo);
 
 
