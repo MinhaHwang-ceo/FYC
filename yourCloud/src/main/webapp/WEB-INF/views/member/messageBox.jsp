@@ -20,33 +20,25 @@
 	<jsp:include page="../common/customer_menubar.jsp" />
 	<jsp:include page="../common/myPage_menuList.jsp" />
 	<br />
-	<div id="outer">
+	<div id="outer" style="padding-left:300px; padding-right:300px;">
 		<div id="messageBoxHeader">
-			<h2><img src="${ contextPath }/resources/images/messageBox.PNG"/>  <c:out value="${ loginUser.userName }"/> 님의 쪽지함</h2>
-			<p>메시지는 실시간 채팅이 아닙니다. 주기적으로 페이지를 새로고침하세요.</p>
+			<h2><img src="${ contextPath }/resources/images/message.png" style="width:80px;"/> &nbsp; <c:out value="${ loginUser.userName }"/> 님의 쪽지함</h2>
+		<button style="left:920px;">쪽지 보내기</button>
 		</div>
 		<br />
 		<div class="messageList">
 			<figure class="snip1141">
 				<table class="messageListTable">
-					<input type="hidden" value="나는 플젝번호일까?"/>
 					<tr>
-						<th class="imgList" rowspan="3"><img src="${ contextPath }/resources/images/messageBox.PNG"/></th>
-						<th>(주)지티엘</th>
+						<td>&emsp;</td>
+						<td>(주)지티엘</td>
 						<td>하이하이 플젝명</td>
-					</tr>
-					<tr>
-						<td>야 알랴ㅕ줘</td>
-						<td></td>
-					</tr>
-					<tr>
 						<td>날짜</td>
-						<td></td>
+						<td>&nbsp;</td>
 					</tr>
 				</table>
 				<figcaption>
-					<div class="circle"><i class="ion-ios-plus-empty"> </i></div>
-					<h2>답장하기</h2>
+					<div class=""><i class="ion-ios-plus-empty"> </i></div>
 				</figcaption>
 			</figure>			
 		</div>

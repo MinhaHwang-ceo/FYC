@@ -7,6 +7,7 @@ import java.util.Map;
 import com.kh.yc.board.model.vo.PageInfo;
 import com.kh.yc.category.model.vo.Reply;
 import com.kh.yc.category.model.vo.Report;
+import com.kh.yc.funding.model.vo.Funding;
 import com.kh.yc.member.model.vo.Member;
 import com.kh.yc.project.model.exception.ProjectSelectListException;
 import com.kh.yc.project.model.vo.Interest;
@@ -77,5 +78,8 @@ public interface ProjectService {
 	public int insertReply(Reply reply);
 	//의견 리스트
 	ArrayList<Reply> selectReplyList(int projectNo);
+	//서포터 리스트
+	ArrayList<Funding> fundList(int projectNo);
+
 
 }

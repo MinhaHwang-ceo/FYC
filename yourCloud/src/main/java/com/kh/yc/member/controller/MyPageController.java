@@ -84,8 +84,12 @@ public class MyPageController {
 	}
 
 	@RequestMapping("messageBox.me")
-	public String messageBox(@ModelAttribute Member m) {
+	public String messageBox(Member m,HttpServletRequest request, HttpServletResponse response) {
 
+		//쪽지 출력
+		//ArrayList<Message> message = ms.selectMessageList();
+		System.out.println(m);
+		
 		return "member/messageBox";
 	}
 

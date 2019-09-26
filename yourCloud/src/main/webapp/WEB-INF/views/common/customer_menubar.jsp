@@ -116,7 +116,6 @@ button:hover, input[type="button"]:hover {
 <body>
 
 
-
 	<nav class="navbar navbar-expand-sm ">
 		<div class="right-box" id="navbar3">
 			<ul class="navbar-nav">
