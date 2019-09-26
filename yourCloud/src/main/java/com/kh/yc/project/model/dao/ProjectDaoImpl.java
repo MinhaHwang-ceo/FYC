@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 import com.kh.yc.board.model.vo.PageInfo;
 import com.kh.yc.category.model.vo.Reply;
 import com.kh.yc.category.model.vo.Report;
+import com.kh.yc.funding.model.vo.Funding;
 import com.kh.yc.member.model.vo.Member;
 import com.kh.yc.project.model.exception.ProjectSelectListException;
 import com.kh.yc.project.model.vo.Interest;
@@ -25,8 +26,17 @@ public class ProjectDaoImpl implements ProjectDao{
 	@Override
 	public int getListCount(SqlSessionTemplate sqlSession) throws ProjectSelectListException{
 		
-		int result = 0;
-		result = sqlSession.selectOne("Project2.selectListCount");
+		
+		int result = sqlSession.selectOne("Project2.selectListCount");
+		
+		return result;
+	}
+	
+	@Override
+	public int getListCount2(SqlSessionTemplate sqlSession,int userNo) {
+		
+		
+		int result = sqlSession.selectOne("Project2.selectListCount2",userNo);
 		
 		return result;
 	}
@@ -48,7 +58,7 @@ public class ProjectDaoImpl implements ProjectDao{
 	
 	@Override
 	@SuppressWarnings({ "unchecked", "rawtypes" })
-	public ArrayList<Project> selectBoardList2(SqlSessionTemplate sqlSession, PageInfo pi,Member m) throws ProjectSelectListException {
+	public ArrayList<Project> selectBoardList2(SqlSessionTemplate sqlSession, PageInfo pi) throws ProjectSelectListException {
 
 		ArrayList<Project> list =null;
 		
@@ -301,6 +311,48 @@ public class ProjectDaoImpl implements ProjectDao{
 		
 		return reply;
 	}
+
+	//서포터 리스트 
+	@SuppressWarnings("unchecked")
+	@Override
+	public ArrayList<Funding> fundList(SqlSessionTemplate sqlSession, int projectNo) {
+		
+		
+		ArrayList<Funding> fund = (ArrayList) sqlSession.selectList("Project2.selectFundList",projectNo);
+		
+		return fund;
+	}
+
+
+	@Override
+	public ArrayList<Project> memberCategories(SqlSessionTemplate sqlSession, ArrayList<String> categoryList) {
+		ArrayList<Project> list = new ArrayList<Project>();
+		
+		for(String s : categoryList) {
+			list.addAll((ArrayList)sqlSession.selectList("Project2.selectMemberCategories", s));
+		}
+		return list;
+}
+  @Override
+	public List<OpenAlarm> getCountAlarm(SqlSessionTemplate sqlSession, String projectOpen) {
+		
+		List<OpenAlarm> reply = null;
+		
+		reply =   sqlSession.selectList("Project2.getCountAlarm",projectOpen);
+	
+		return reply;
+	}
+
+	@Override
+	public List<OpenAlarm> getCountAlarm2(SqlSessionTemplate sqlSession, int projectNo) {
+		
+		List<OpenAlarm> reply = null;
+		
+		reply =   sqlSession.selectList("Project2.getCountAlarm2",projectNo);
+
+		return reply;
+	}
+
 
 
 }

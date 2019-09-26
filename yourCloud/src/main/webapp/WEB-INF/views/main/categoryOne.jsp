@@ -371,7 +371,7 @@ a {
 			</div>
 
 			
-	
+			
 			<div class="">
 				<button type="button" onclick="goFunding();" class="btn-funding">펀딩하기</button>
 			</div>
@@ -517,7 +517,7 @@ a {
 			<div class="moveRewards">
 				<div class="wd-gift">
 					<h3 class="projectTitle"><b>리워드 선택</b></h3>
-					<button class="reward-list">
+					<button class="reward-list"  onclick="goFunding();">
 						<div class="reward-info">
 						<!-- 	<dl>
 								<dt>
@@ -560,7 +560,7 @@ a {
 			<div class="moveRewards">
 				<div class="wd-gift">
 					<h3 class="projectTitle"><b>리워드 선택</b></h3>
-					<button class="reward-list">
+					<button class="reward-list"  onclick="goFunding();">
 						<div class="reward-info">
 						<!-- 	<dl>
 								<dt>
@@ -648,6 +648,8 @@ a {
 					data : {pNo : pNo},
 					success : function(data){
 						
+						  location.reload();
+						
 					}
 				})
 			})
@@ -704,4 +706,5 @@ console.log("D:::"+userNoString)
 
 
 </body>
+
 </html>

@@ -16,11 +16,7 @@ public interface PayService {
 
    void updatePayStatus(Payment pay);
 
-   int insertFund(ArrayList<Funding> fundList);
-
-   void insertDelivery(ArrayList<Delivery> deliveryList);
-
-   void insertDeliveryStatus(ArrayList<Delivery> deliveryList);
+   int insertFund(ArrayList<Funding> fundList, ArrayList<Delivery> deliveryList);
 
    void insertSponsor(Sponsor sp);
 }

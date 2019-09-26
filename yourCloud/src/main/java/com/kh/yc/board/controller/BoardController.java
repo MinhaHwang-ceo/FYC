@@ -110,7 +110,6 @@ public class BoardController {
 		
 		Member maker = ms.selectMember(makerNo);
 		
-		System.out.println(maker);
 		model.addAttribute("maker", maker);
 		model.addAttribute("p", p);
 		model.addAttribute("m", m);
@@ -150,9 +149,8 @@ public class BoardController {
 	}
 
 	@RequestMapping("funding_2.bo")
-	public String selectReward(Model model, String target, String projectNo, String price, String targetCnt, String userNo) {
+	public String selectReward(Model model, String target, String projectNo, String price, String targetCnt, String userNo, String blind) {
 		Project p = bs.selectProject(Integer.parseInt(projectNo));
-		
 		String[] target1 = target.split("\\$");
 		String[] price1 = price.split("\\$");
 		String[] targetCnt1 = targetCnt.split("\\$");
@@ -166,6 +164,7 @@ public class BoardController {
 			fund.setProjectNo(Integer.parseInt(projectNo));
 			fund.setRewardCount(Integer.parseInt(targetCnt1[i]));
 			fund.setRewardNo(Integer.parseInt(target1[i]));
+			fund.setBlind(blind);
 			fundList.add(fund);
 			reward = bs.selectReward(target1[i]);
 			rewardList.add(reward);
@@ -175,28 +174,9 @@ public class BoardController {
 		model.addAttribute("r", rewardList);
 		return "board/funding/funding_2";
 	}
-	/*
-	@RequestMapping(value = "funding_2.bo")
-	public String fundingRequest2(String projectNo, String userNo, String target, String targetCnt, String price,  Model model) {
-		System.out.println("projectNo" + projectNo + "target" + target + "targetCnt" + targetCnt + "price" + price);
-		int pNo = Integer.parseInt(projectNo);
-		Project p = bs.selectProject(pNo);
-		Funding fund = new Funding();
-		
-		fund.setUserNo(Integer.parseInt(userNo));
-		fund.setFundMoney(Integer.parseInt(price));
-		fund.setProjectNo(Integer.parseInt(projectNo));
-		fund.setRewardCount(Integer.parseInt(targetCnt));
-		fund.setRewardNo(Integer.parseInt(target));
-		
-		model.addAttribute("p", p);
-		model.addAttribute("f", fund);
-		return "board/funding/funding_2";
-	}
-*/
 	@RequestMapping(value = "funding_3.bo")
-	public String fundingRequest3(Model model) {
-
+	public String fundingRequest3(String blind, Model model) {
+		model.addAttribute(blind);
 		return "board/funding/funding_3";
 	}
 
@@ -530,11 +510,25 @@ public class BoardController {
 			if ((m == null) || (m.getMemberCategory().length() == 0)) {
 				list = bs.getProject();
 			} else {
-				String category = m.getMemberCategory();
-				list = ps.memberCategory(category);
+				String categories = m.getMemberCategory();
+				
+				String[] category = categories.split(",");
+				
+				ArrayList<String> categoryList = new ArrayList<String>(); 
+				for(String s : category) {
+					String s1 = s.replace(" ", "");
+					categoryList.add(s1);
+				}
+				list = ps.memberCategories(categoryList);
+				
+				for(Project p : list) {
+					System.out.println(p);
+				}
+				
 			}
 		} catch (Exception e) {
 			list = bs.getProject();
+			e.printStackTrace();
 		}
 		model.addAttribute("list", list);
 		return "main/main";

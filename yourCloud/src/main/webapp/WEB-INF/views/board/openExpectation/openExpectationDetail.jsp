@@ -45,7 +45,7 @@
 	<tr>
 		<td>
 			<div>
-				<img alt="" src="/yc/resources/images/yc-logo3.png">
+				<img src="/yc/resources/uploadFiles/<c:out value="${pj.newFileName}"/>"style="width:300px;">
 			</div>
 		</td>
 		

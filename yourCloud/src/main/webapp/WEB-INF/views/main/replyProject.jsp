@@ -60,6 +60,8 @@
 			success : function(data){
 				alert("댓글 남기기를 완료하셨습니다!");
 				window.close();
+				opener.parent.location.reload();
+				
 			},error : function(data){
 				alert("에러발생");
 			} 

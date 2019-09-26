@@ -7,9 +7,11 @@ import java.util.Map;
 import com.kh.yc.board.model.vo.PageInfo;
 import com.kh.yc.category.model.vo.Reply;
 import com.kh.yc.category.model.vo.Report;
+import com.kh.yc.funding.model.vo.Funding;
 import com.kh.yc.member.model.vo.Member;
 import com.kh.yc.project.model.exception.ProjectSelectListException;
 import com.kh.yc.project.model.vo.Interest;
+import com.kh.yc.project.model.vo.OpenAlarm;
 import com.kh.yc.project.model.vo.Project;
 import com.kh.yc.project.model.vo.SupportList;
 import com.kh.yc.reward.model.vo.RewardInfo;
@@ -23,7 +25,7 @@ public interface ProjectService {
 	//상세보기 메소드
 	public Project detailProject(int projectNo);
 	//나의 메이커 게시글조회용
-	public ArrayList<Project> selectProjectList2(PageInfo pi, Member m) throws ProjectSelectListException;
+	public ArrayList<Project> selectProjectList2(PageInfo pi) throws ProjectSelectListException;
 	//서포터 정보 조회
 	ArrayList<Project> selectSupportList(int bNum);
 	//서포터 정렬
@@ -34,6 +36,9 @@ public interface ProjectService {
 	ArrayList<Project> receipt(int bNum);
 	//리워드 count출력
 	ArrayList<Integer> receipt2(int bNum);
+
+	
+	int getListCount2(int userNo);
 
 
 	ArrayList<Project> memberCategory(String category);
@@ -77,5 +82,17 @@ public interface ProjectService {
 	public int insertReply(Reply reply);
 	//의견 리스트
 	ArrayList<Reply> selectReplyList(int projectNo);
+	//서포터 리스트
+	ArrayList<Funding> fundList(int projectNo);
+
+
+	ArrayList<Project> memberCategories(ArrayList<String> categoryList);
+
+	//문자알림1
+	  List<OpenAlarm> getCount(String present2);
+	  
+	  //문자알림2
+	List<OpenAlarm> getCount2(int projectNo);
+
 
 }

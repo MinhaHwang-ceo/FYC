@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,17 +28,26 @@
 				<ul class="navbar-nav">
 					<li class="nav-item"><a class="nav-link" href="myPage.me">내 정보</a></li>
 					<li class="nav-item"><a class="nav-link" href="myReward.me">나의 리워드</a></li>
-					<li class="nav-item"><a class="nav-link" href="myProject.me">나의 메이커</a>
+					<li class="nav-item"><a class="nav-link maker" href="myProject.me?userNo=${loginUser.userNo }">나의 메이커</a>
 					</li>
-					<li class="nav-item"><a class="nav-link" href="messageBox.me">쪽지함</a>
+					<li class="nav-item"><a class="nav-link" href="messageBox.me" >쪽지함</a>
 					</li>
 					<li class="nav-item"><a class="nav-link" href="interestProject.me">관심 / 알림 프로젝트</a>
 					</li>
 				</ul>
 			</div>
+			
 		</div>
+		<input type="hidden" value="${loginUser.userNo }" id="userNo">
 	</nav>
 	<script>
+	
+	
+
+	
+	
+	
+	
 	</script>
 </body>
 </html>
