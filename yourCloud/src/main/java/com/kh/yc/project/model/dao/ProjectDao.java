@@ -76,11 +76,14 @@ void   updateDB(SqlSessionTemplate sqlSession,Map<String, Object> map);
 	int insertReply(SqlSessionTemplate sqlSession, Reply reply);
 	//의견 조회
 	ArrayList<Reply> selectReplyList(SqlSessionTemplate sqlSession, int projectNo);
+  
+	ArrayList<Project> memberCategories(SqlSessionTemplate sqlSession, ArrayList<String> categoryList);
 	//문자알림
 	List<OpenAlarm> getCountAlarm(SqlSessionTemplate sqlSession, String present2);
 	//문자알림2
 	List<OpenAlarm> getCountAlarm2(SqlSessionTemplate sqlSession, int projectNo);
 	int getListCount2(SqlSessionTemplate sqlSession, int userNo);
+
 
 
 

@@ -271,6 +271,11 @@ public class ProjectServiceImpl implements ProjectService {
 	}
 
 	@Override
+	public ArrayList<Project> memberCategories(ArrayList<String> categoryList) {
+		// TODO Auto-generated method stub
+		return pd.memberCategories(sqlSession, categoryList);
+  }
+  @Override
 	public   List<OpenAlarm>  getCount(String present2) {
 
 		  List<OpenAlarm>  reply = pd.getCountAlarm(sqlSession,present2);

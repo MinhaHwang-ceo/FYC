@@ -37,7 +37,7 @@
 </if>
    <if test="gender ==null or memberCategory==null or age==null or emailAgree==null" >
       INSERT INTO MEMBER
-      VALUES( SEQ_MEMBER.NEXTVAL,#{userName},#{userId}, #{userPwd}, #{email},default,null,null,null,null,null,
+      VALUES( SEQ_MEMBER.NEXTVAL,#{userName},#{userId}, #{userPwd}, #{email},default,null,null,null,null,#{memberCategory},
       0,null,default,'N')
 </if>
 
@@ -143,4 +143,5 @@
 		WHERE
 			MEMBER_NO = #{userNo}
 	</select>
+
 </mapper>

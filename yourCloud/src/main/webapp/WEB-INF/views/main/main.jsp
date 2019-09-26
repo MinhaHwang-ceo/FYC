@@ -25,36 +25,7 @@
 
 	<jsp:include page="../common/customer_menubar.jsp" />
 	<jsp:include page="../common/customer_menuList.jsp" />
-	<script>
-		function sign() {
-			var userNo = '${ sessionScope.loginUser.userNo }';
-			
-			$.ajax({
-				url:"getPayStatus.fd",
-				type:"GET",
-				data:{userNo:userNo},
-				success:function(data){
-					console.log(data);
-				},error:function(err){
-					console.log(err);
-				}
-			});
-		}
-	</script>
 	<!--Section-1-->
-	
-	<table>
-		<tr>
-			<td><input type="checkbox" class="check" name="ba" id="ba"/><input type="text" value="1"/></td>
-			<td><input type="checkbox" class="check" name="ba" id="bb"/><input type="text" value="2"/></td>
-		</tr>
-		<tr>
-			<td><input type="button" id="baba" /></td>
-		</tr>
-	</table>
-	<script>
-
-	</script>
 	
 	<section class="section-1">
 		<div class="jumbotron d-flex align-items-center">

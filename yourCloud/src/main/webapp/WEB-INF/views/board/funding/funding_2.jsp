@@ -40,7 +40,7 @@
 	String rewardCount = "";
 	String fundMoney = "";
 	int totalPrice = 0;
-	
+	String blind = "";
 	for(Reward r : rewardList){
 		deliveryPrice += r.getDeliveryMoney();
 		rewardNo += r.getRewardNo();
@@ -52,6 +52,10 @@
 		totalPrice += (f.getFundMoney() * f.getRewardCount());
 		fundMoney += (f.getFundMoney() * f.getRewardCount());
 		fundMoney += "$";
+		blind = f.getBlind();
+	}
+	if(blind.equals("") || blind.length() == 0){
+		blind = "0";
 	}
 %>
 <title>니가그린구름그림</title>
@@ -168,12 +172,16 @@ p {
 			<p><c:out value="${ p.summary }"/></p>
 			<hr />
 			<% for(int i = 0; i < rewardList.size(); i++){%>
-			<p><c:out value="<%= rewardList.get(i).getRewardDetail() %>"/></p><label style="width: 100%; text-align:right;">(리워드 한개 당 가격 : <c:out value="<%= fundList.get(i).getFundMoney() %>"/>원)</label>
+			<p><%= rewardList.get(i).getRewardDetail() %></p><label style="width: 100%; text-align:right;">(리워드 한개 당 가격 : <fmt:setLocale value="ko_KR"/><fmt:formatNumber type="currency" value="<%= fundList.get(i).getFundMoney() %>" /></label>
 			<p style="text-align:right;">수량 : <c:out value="<%= fundList.get(i).getRewardCount() %>"/> 개</p>
 			<%}  %>
 			<hr>
 			<p style="float: left;">배송비</p>
-			<p style="float: right;"><c:out value="<%= deliveryPrice %>"/>원</p>
+			<p style="float: right;"><fmt:setLocale value="ko_KR"/><fmt:formatNumber type="currency" value="<%= deliveryPrice %>" /></p>
+			<br />
+			<hr />
+			<p style="float: left;">총 결제액</p>
+			<p style="float: right"><fmt:setLocale value="ko_KR"/><fmt:formatNumber type="currency" value="<%= totalPrice %>" />
 			<br>
 			<hr>
 		</div>
@@ -257,7 +265,7 @@ p {
 			id="payBtn">
 	</div>
 	<script>
-	
+			
 		$("#payBtn").click(function(){
 			var userNo = '${ sessionScope.loginUser.userNo }';
 			var email = '${ sessionScope.loginUser.email }';
@@ -273,6 +281,7 @@ p {
 			var rewardNo = '<%=rewardNo%>';
 			var price2 = '<%=fundMoney%>';
 			var rewardCount = '<%=rewardCount%>';
+			var blind = '<%= blind %>';
 			var IMP = window.IMP;
 			IMP.init('imp24001024');
 			
@@ -288,7 +297,6 @@ p {
 			  }, function (rsp) { // callback
 			    if (rsp.success) {
 			    	 // jQuery로 HTTP 요청
-			    	 console.log(rsp.success);
 			    	 jQuery.ajax({
 				          url: "billingKey.fd", // 서비스 웹서버
 				          method: "POST",
@@ -304,37 +312,37 @@ p {
 				        	  rewardCount:rewardCount,
 				        	  fundMoney:price2,
 				        	  rewardNo:rewardNo,
-				        	  totalPrice:totalPrice
+				        	  totalPrice:totalPrice,
+				        	  blind:blind
 				          }, success:function(data){
 				        	  alert("결제가 예약되었습니다");
-				        	  location.href="funding_3.bo";
-				        	  console.log(data);
+				        	  location.href="funding_3.bo?blind="+blind;
 				          }, error:function(data){
-				        	  alert("리워드 신청 중 에러가 발생했습니다. 관리자에게 문의해주세요");
+				        	  alert("리워드 신청 중 에러가 발생했습니다. 관리자에게 문의해주세요.");
 				          }
 			    	});
 			    } else {
-			    	console.log(rsp.success);
+			    	alert("결제 예약에 실패했습니다. 관리자에게 문의해주세요.")
 			    }
 			  });
 		});
 	</script>
 	<jsp:include page="../../common/customer_footer.jsp" />
 	<script type="text/javascript">
-	function fn_setAddr() {
-		var width = 500;
-		var height = 600;
-		daum.postcode.load(function(){
-			new daum.Postcode({
-				oncomplete: function(data){
-					$("#zipAddr").val(data.address);
-				} 	
-			}).open({
-				left: (window.screen.width / 2) - (width / 2),
-				top: (window.screen.height / 2) - (height / 2)
+		function fn_setAddr() {
+			var width = 500;
+			var height = 600;
+			daum.postcode.load(function(){
+				new daum.Postcode({
+					oncomplete: function(data){
+						$("#zipAddr").val(data.address);
+					} 	
+				}).open({
+					left: (window.screen.width / 2) - (width / 2),
+					top: (window.screen.height / 2) - (height / 2)
+				});
 			});
-		});
-	}	
-</script>
+		}	
+	</script>
 </body>
 </html>

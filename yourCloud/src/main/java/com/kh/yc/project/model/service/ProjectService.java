@@ -81,10 +81,14 @@ public interface ProjectService {
 	public int insertReply(Reply reply);
 	//의견 리스트
 	ArrayList<Reply> selectReplyList(int projectNo);
+
+	ArrayList<Project> memberCategories(ArrayList<String> categoryList);
+
 	//문자알림1
 	  List<OpenAlarm> getCount(String present2);
 	  
 	  //문자알림2
 	List<OpenAlarm> getCount2(int projectNo);
+
 
 }

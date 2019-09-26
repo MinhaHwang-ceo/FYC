@@ -220,6 +220,7 @@
   		
   		<tr><td><br></td></tr>  		
   		
+
   		<tr>
   			<td>관심<br>카테고리</td>
   			<td id="td4">
@@ -228,6 +229,7 @@
   			<input type="checkbox" name="memberCategory" value="A8">여행,레저 &emsp;&emsp; <input type="checkbox" name="memberCategory"  value="A9">스포츠   &emsp;&emsp; <input type="checkbox"  name="memberCategory" value="A10">반려동물  &emsp;&emsp;
   			</td>
   		</tr>
+
   		
   		<tr><td><br></td></tr>  		
   		
