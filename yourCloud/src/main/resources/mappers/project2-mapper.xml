@@ -174,6 +174,15 @@
 		WHERE PROGRESS_STATUS != '오픈예정'
 		AND JUDGE_STATUS = '통과'
 	</select>
+	
+		<select id="selectListCount2" resultType="_int">
+		SELECT COUNT(*)
+		FROM
+		PROJECT
+		WHERE member_no=#{userNo}
+	and story is not null
+	</select>
+	
 
 	<select id="selectProjectList" parameterType="java.util.Map"
 		resultMap="ProjectList">
@@ -296,29 +305,27 @@
 		parameterType="java.util.Map">
 		SELECT P.PROJECT_NO, P.PROJECT_TITLE, P.MAIN_IMG,
 		P.CATEGORY, P.PROJECT_SHORT_TITLE, M.COMPANY_NAME, C.CATEGORY_DIV,
-		P.PROGRESS_STATUS, P.JUDGE_STATUS
-		FROM
+		P.PROGRESS_STATUS, P.JUDGE_STATUS, A.NEW_FILE_NAME 
+    
+    FROM
 		PROJECT P
 		LEFT JOIN CATEGORY C ON
 		(P.CATEGORY = C.CATEGORY)
 		LEFT JOIN MEMBER M ON (P.MEMBER_NO =
 		M.MEMBER_NO)
 		LEFT JOIN ATTACHMENT A ON(P.PROJECT_NO = A.PROJECT_NO)
-		WHERE P.PROGRESS_STATUS = '오픈예정' AND P.JUDGE_STATUS = '통과'
-		ORDER BY
-		PROJECT_NO DESC
+		WHERE P.PROGRESS_STATUS = '오픈예정' AND P.JUDGE_STATUS = '통과' AND A.FILE_LEVEL=0
+		ORDER BY PROJECT_NO DESC
 	</select>
 
 	<select id="selectDetailProject" resultMap="ProjectList"
 		parameterType="java.util.Map">
 		SELECT P.PROJECT_NO, P.PROJECT_TITLE, P.SUMMARY,
-		M.COMPANY_NAME, O.PROJECT_OPEN, P.MAIN_IMG
+		M.COMPANY_NAME, O.PROJECT_OPEN, P.MAIN_IMG, A.NEW_FILE_NAME 
 		FROM PROJECT P
-		LEFT JOIN
-		MEMBER M
-		ON(P.MEMBER_NO = M.MEMBER_NO)
-		LEFT JOIN OPEN_ALARM O
-		ON(M.MEMBER_NO = O.MEMBER_NO)
+		LEFT JOIN MEMBER M ON(P.MEMBER_NO = M.MEMBER_NO)
+		LEFT JOIN OPEN_ALARM O ON(M.MEMBER_NO = O.MEMBER_NO)
+		LEFT JOIN ATTACHMENT A ON(P.PROJECT_NO = A.PROJECT_NO)
 		WHERE P.PROJECT_NO = #{projectNo}
 	</select>
 
@@ -808,11 +815,10 @@
 
 	<insert id="joinAlram">
 		INSERT INTO
-		OPEN_ALRAM
-		VALUES(#{memberNo},#{memberPhone},(select project_open
-		from project
-		where project_no=#{projectNo}),#{projectNo}
-
+			OPEN_ALARM
+		VALUES(#{memberNo},#{memberPhone},(select project_open 
+from project
+where project_no=#{projectNo}),#{projectNo}
 		)
 	</insert>
 
@@ -854,11 +860,10 @@
 		AND PROJECT_NO = #{projectNo}
 	</select>
 
-	<select id="mainImg2" resultType="string"
-		resultMap="ProjectList">
-		SELECT NEW_FILE_NAME
-		FROM ATTACHMENT
-		WHERE FILE_LEVEL=0
+	<select id="mainImg2" resultType="string" resultMap="ProjectList">
+        SELECT NEW_FILE_NAME
+        FROM ATTACHMENT 
+        WHERE  FILE_LEVEL=0
 	</select>
 
 	<insert id="insertSponsor">
@@ -895,6 +900,7 @@
 		WHERE PROJECT_NO = #{projectNo}
 		ORDER BY PROJECT_NO DESC
 	</select>
+
 	<select id="selectMemberCategories" parameterType="string" resultMap="ProjectList">
 		SELECT
 			*
@@ -937,5 +943,22 @@
 		AND
 			TRUNC(END_DATE) = TRUNC(SYSDATE)
 	</update>
+
+
+	
+	
+		<select id="getCountAlarm" resultMap="OpenAlarmList">
+select distinct(project_no)
+from open_alarm
+where project_open=#{projectOpen}
+	</select>
+
+	<select id="getCountAlarm2" resultMap="OpenAlarmList">
+select member_phone
+from open_alarm
+where project_no=#{projectNo}
+	</select>
+
+
 </mapper>
 

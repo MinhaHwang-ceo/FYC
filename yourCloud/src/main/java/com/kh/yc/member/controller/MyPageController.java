@@ -32,6 +32,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import com.kh.yc.board.model.vo.PageInfo;
 import com.kh.yc.common.CommonUtils;
@@ -55,21 +56,31 @@ public class MyPageController {
 	@Autowired
 	private MemberService ms;
 	
+	@Autowired
+	private BCryptPasswordEncoder passwordEncoder;
+	
 	public MyPageController() {
 	}
 
 	@RequestMapping("myPage.me")
-	public String goMyPage(@ModelAttribute Member m) {
-		
-
+	public String goMyPage(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
+		Member mse = (Member) session.getAttribute("loginUser");
+		System.out.println(mse);
 		return "member/myPage";
 	}
 
 	@RequestMapping("changeInfo.me")
-	public String changeInfo(@ModelAttribute Member m) {
+	public String changeInfo(HttpServletRequest request, HttpServletResponse response, HttpSession session, Model model) {
 		System.out.println("내가 돌아왔다."); 
-
-		return "main/main";
+		Member mse = (Member) session.getAttribute("loginUser");
+		System.out.println(mse);
+		String encPassword = passwordEncoder.encode(mse.getUserPwd());
+		System.out.println(encPassword);
+		
+		session.setAttribute("member", ms.userCrystal(mse));
+		
+		
+		return "member/userCrystal";
 	}
 
 	@RequestMapping("interestProject.me")
@@ -119,11 +130,12 @@ public class MyPageController {
 		
 		return "member/myReward";
 	}
-	@RequestMapping("myMaker.me")
-	public String makerReward(@ModelAttribute Member m) {
-
-		return "member/myMaker";
-	}
+	/*
+	 * @RequestMapping("myMaker.me") public String makerReward(@ModelAttribute
+	 * Member m) {
+	 * 
+	 * return "member/myMaker"; }
+	 */
  
 	@RequestMapping("showMyRewardDetail.me")
 	public String showMyRewardDetail(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
@@ -143,23 +155,22 @@ public class MyPageController {
 		return "member/myRewardDetail";
 	}
 
-	@RequestMapping("myProject.me")
-	public String myProject(@ModelAttribute Member m,HttpServletRequest request, HttpServletResponse response) {
-	
-		
+@RequestMapping(value = "/myProject.me", method = RequestMethod.GET)
+	public String myProject(HttpServletRequest request, HttpServletResponse response) {
+	int userNo = Integer.parseInt(request.getParameter("userNo"));
+	System.out.println("userNo"+userNo);
 		int currentPage = 1;
 		if(request.getParameter("currentPage") !=null) {
 			currentPage = Integer.parseInt(request.getParameter("currentPage"));
 		}
 		
 		try {
-		int count=	ps.getListCount();
+		int count=	ps.getListCount2(userNo);
 		System.out.println("count::::::"+count );
 		PageInfo pi = Pagination.getPageInfo(currentPage, count);
 	
-System.out.println("m:::::;;"+m);
 		
-		ArrayList<Project> list= ps.selectProjectList2(pi,m);
+		ArrayList<Project> list= ps.selectProjectList2(pi);
 		System.out.println("list:::"+list);
 		System.out.println("listsize"+list.size());
 		request.setAttribute("list", list);
