@@ -13,7 +13,6 @@
 .outer {
    width: 800px;
 }
-
 .circle {
    width: 60px;
    height: 60px;
@@ -26,60 +25,48 @@
    outline: 0;
    cursor: pointer;
 }
-
 .projectDiv {
    width: 70%;
    display: inline-block;
    margin: 0 auto;
 }
-
 .projects {
    width: 30%;
    display: inline-block;
 }
-
 .projects table {
    text-align: center;
    width: 100%;
    border: 1px solid white;
 }
-
 .table1 tr td {
    text-align: center;
    font-size: 12px;
 }
-
 td {
    padding: 0px 20px;
 }
-
 .td2 {
    padding: 0px 5px;
 }
-
 .projects table .projectTitles {
    font-size: 1.5em;
    font-weight: bold;
 }
-
 .projects table .projectCategories {
    text-align: left;
    color: gray;
 }
-
 .projects table img {
    width: 100%;
 }
-
 .title {
    font-size: 2.5em;
    font-weight: bold;
 }
-
 .caption {
    text-align: left;
 }
-
 .col-md-4 {
    padding: 40px;
 }

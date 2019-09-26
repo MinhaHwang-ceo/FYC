@@ -130,11 +130,12 @@ public class MyPageController {
 		
 		return "member/myReward";
 	}
-	@RequestMapping("myMaker.me")
-	public String makerReward(@ModelAttribute Member m) {
-
-		return "member/myMaker";
-	}
+	/*
+	 * @RequestMapping("myMaker.me") public String makerReward(@ModelAttribute
+	 * Member m) {
+	 * 
+	 * return "member/myMaker"; }
+	 */
  
 	@RequestMapping("showMyRewardDetail.me")
 	public String showMyRewardDetail(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
@@ -154,23 +155,22 @@ public class MyPageController {
 		return "member/myRewardDetail";
 	}
 
-	@RequestMapping("myProject.me")
-	public String myProject(@ModelAttribute Member m,HttpServletRequest request, HttpServletResponse response) {
-	
-		
+@RequestMapping(value = "/myProject.me", method = RequestMethod.GET)
+	public String myProject(HttpServletRequest request, HttpServletResponse response) {
+	int userNo = Integer.parseInt(request.getParameter("userNo"));
+	System.out.println("userNo"+userNo);
 		int currentPage = 1;
 		if(request.getParameter("currentPage") !=null) {
 			currentPage = Integer.parseInt(request.getParameter("currentPage"));
 		}
 		
 		try {
-		int count=	ps.getListCount();
+		int count=	ps.getListCount2(userNo);
 		System.out.println("count::::::"+count );
 		PageInfo pi = Pagination.getPageInfo(currentPage, count);
 	
-System.out.println("m:::::;;"+m);
 		
-		ArrayList<Project> list= ps.selectProjectList2(pi,m);
+		ArrayList<Project> list= ps.selectProjectList2(pi);
 		System.out.println("list:::"+list);
 		System.out.println("listsize"+list.size());
 		request.setAttribute("list", list);

@@ -696,9 +696,8 @@ console.log("D:::"+userNoString)
 
 
 	   });
-	 
+   });
 
-	});
 
 </script>
 

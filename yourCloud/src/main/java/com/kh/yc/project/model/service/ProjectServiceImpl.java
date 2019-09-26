@@ -20,6 +20,7 @@ import com.kh.yc.project.model.dao.ProjectDao;
 import com.kh.yc.project.model.exception.ProjectSelectListException;
 import com.kh.yc.project.model.vo.ExcelUtil;
 import com.kh.yc.project.model.vo.Interest;
+import com.kh.yc.project.model.vo.OpenAlarm;
 import com.kh.yc.project.model.vo.Project;
 import com.kh.yc.project.model.vo.SupportList;
 import com.kh.yc.reward.model.vo.RewardInfo;
@@ -42,6 +43,16 @@ public class ProjectServiceImpl implements ProjectService {
 
 		return listCount;
 	}
+	
+	@Override
+	public int getListCount2(int userNo)  {
+
+		int listCount = pd.getListCount2(sqlSession,userNo);
+
+		return listCount;
+	}
+
+	
 
 	@Override
 	public ArrayList<Project> selectProjectList(PageInfo pi) throws ProjectSelectListException {
@@ -52,9 +63,9 @@ public class ProjectServiceImpl implements ProjectService {
 	}
 
 	@Override
-	public ArrayList<Project> selectProjectList2(PageInfo pi, Member m) throws ProjectSelectListException {
+	public ArrayList<Project> selectProjectList2(PageInfo pi) throws ProjectSelectListException {
 
-		ArrayList<Project> list = pd.selectBoardList2(sqlSession, pi, m);
+		ArrayList<Project> list = pd.selectBoardList2(sqlSession, pi);
 
 		return list;
 	}
@@ -257,6 +268,23 @@ public class ProjectServiceImpl implements ProjectService {
 		ArrayList<Reply> reply = pd.selectReplyList(sqlSession,projectNo);
 		
 		return reply;
+	}
+
+	@Override
+	public   List<OpenAlarm>  getCount(String present2) {
+
+		  List<OpenAlarm>  reply = pd.getCountAlarm(sqlSession,present2);
+		
+		return reply;
+		
+		
+	}
+
+	@Override
+	public List<OpenAlarm> getCount2(int projectNo) {
+		  List<OpenAlarm>  reply = pd.getCountAlarm2(sqlSession,projectNo);
+			
+			return reply;
 	}
 
 
