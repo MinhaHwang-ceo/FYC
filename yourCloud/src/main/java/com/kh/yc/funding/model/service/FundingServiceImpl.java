@@ -212,6 +212,31 @@ public class FundingServiceImpl implements FundingService{
 		
 		return fd.selectRewardAll(sqlSession,r);
 	}
+
+	@Override
+	public List<Project> selectRewardInfo(Project p) {
+		
+		return fd.selectRewardInfo(sqlSession,p);
+		
+	}
+
+	@Override
+	public List<RewardInfo> selectlistInfo(RewardInfo rf) {
+		
+		return fd.selectlistInfo(sqlSession,rf);
+	}
+
+	@Override
+	public List<Project> selectMakerInfo(Project p) {
+	
+		return fd.selectMakerInfo(sqlSession,p);
+	}
+
+	@Override
+	public void updateMember(Member m) {
+		fd.updateMember(sqlSession,m);
+		
+	}
 	
 	
 	

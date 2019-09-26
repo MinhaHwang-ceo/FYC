@@ -664,11 +664,12 @@
 		</set>
 		WHERE PROJECT_NO = #{projectNo}
 	</update>
-	<insert id="insertRewardInfo">
+	<insert id="insertRewardInfo" parameterType="RewardInfo">
 		INSERT INTO 
 			REWARD_INFO
 		VALUES(
-			#{projectNo}, #{rewardNo}, #{modelName}, #{modelMat}, #{manufacturer}, #{menufacturerNation}, #{modelNotice}, #{modelWarranty}, #{modelAdmin}
+			#{projectNo}, #{rewardNo}, #{modelName}, #{modelType}, #{modelMat}, #{modelSize}, #{manufacturer}, #{manufacturerNation}, #{modelNotice},
+			#{modelWarranty}, #{modelAdmin}
 		)
 	</insert>
 	<select id="selectProfileImg" resultType="_int">
@@ -698,10 +699,10 @@
 	</update>
 	
 	
-		<update id="updateDb" parameterType="java.util.Map">
-update delivery 
-set status=#{STATUS}
-where member_name=#{NAME}
+	<update id="updateDb" parameterType="java.util.Map">
+		update delivery 
+		set status=#{STATUS}
+		where member_name=#{NAME}
 
 	</update>
 	
@@ -861,6 +862,23 @@ where project_no=#{projectNo}),#{projectNo}
 	ORDER BY PROJECT_NO DESC
 	</select>
 	
+	<select id="selectRewardInfo" resultMap="ProjectList">
+		SELECT *
+		FROM PROJECT
+		WHERE PROJECT_NO = #{projectNo}
+	</select>
+	
+	<select id="selectRewardInfoJop" resultMap="rewardInfoList">
+		SELECT *
+		FROM REWARD_INFO
+		WHERE PROJECT_NO = #{projectNo}
+	</select>
+	
+	<select id="selectMakerInfo" resultMap="ProjectList">
+		SELECT * 
+		FROM PROJECT 
+		WHERE PROJECT_NO = #{projectNo}
+	</select>
 	
 
 </mapper>

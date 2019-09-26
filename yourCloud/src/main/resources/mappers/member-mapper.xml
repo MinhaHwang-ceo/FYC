@@ -143,4 +143,12 @@
 		WHERE
 			MEMBER_NO = #{userNo}
 	</select>
+	
+	<update id="updateMemberCompanyName" parameterType="Member">
+		UPDATE MEMBER
+		SET 
+		COMPANY_NAME = #{companyName}
+		WHERE MEMBER_NO = #{userNo}
+		
+	</update>
 </mapper>

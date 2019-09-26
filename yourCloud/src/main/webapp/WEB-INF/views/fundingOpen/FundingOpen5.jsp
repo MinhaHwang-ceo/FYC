@@ -142,7 +142,7 @@ $(document).ready(function(){
 		type:"post",
 		data:prme,
 		success:function(data){
-			console.log(data);
+			//console.log(data);
 			
 			if(data.r.length != 0){
 			for(var i = 0; i < data.r.length; i++){
@@ -161,6 +161,7 @@ $(document).ready(function(){
 	});
 	addTable();
 
+
 });
 
 var idx = 0;
@@ -175,7 +176,7 @@ function addTable(reward) {
     html +='    <td>';
     html +='        <h6>금액</h6>';
     html +='    </td>';
-    html +='    <td id="fno">&nbsp;&nbsp;&nbsp;&nbsp; <input type="text" value="'+ (reward.rewardMoney || '')  +'" placeholder="12345" id="rewardMoney'+idx +'" name="rewardMoney" style="text-align: right;">원';
+    html +='    <td id="fno">&nbsp;&nbsp;&nbsp;&nbsp; <input type="text" value="'+ (reward.rewardMoney || '0')  +'" placeholder="12345" id="rewardMoney'+idx +'" name="rewardMoney" style="text-align: right;">원';
     html +='    </td>';
     html +='    <td><span>정렬 : </span>&nbsp;'; 
     html +='    <input type="number" name="sortNo" value="'+ (idx +1) +'" id="sortNo'+idx +'" min="0" maxlength="2" style="width: 50px;">';
@@ -245,7 +246,7 @@ function addTable(reward) {
     html += '</tr>';
     html += '</table>';
     html += '   <hr />';
-    html += '<br />';	
+    html += '<br />';
 	
 	//alert(idx);
 	idx++;
@@ -261,11 +262,14 @@ function addTable(reward) {
 	
  	function nextProject(){
  		
+ 		var rewardNo=$('#rewardNo').val();
+ 		console.log("rewardNo:::::"+rewardNo);
+ 		
 	    location.href="FundingOpen6.fd?projectNo="+'${p.projectNo}';
 	 }
  	
 	 
-	function save_re(idx){
+ 	function save_re(idx){
 		var idx = idx;
 		var category = $("#category").val();
 		var projectNo = parseInt($("#projectNo").val() || "0");
@@ -283,6 +287,7 @@ function addTable(reward) {
 
 		var rewardNo = parseInt($("#rewardNo").val() || "0");
 		
+		
 		var param = {
 			idx:idx,
 			rewardNo:rewardNo,
@@ -299,7 +304,7 @@ function addTable(reward) {
 		  	startDate:startDate
      	};
 		
-		console.log(param);
+		//console.log(param);
 		
 		if(dataArr[idx] == null) {
 			
@@ -324,7 +329,6 @@ function addTable(reward) {
 				success:function(data){
 					console.log(data);
 					alert("업데이트해야함");
-					//dataArr[idx] = data.r.rewardNo;
 					
 				},
 				error:function(arr){
@@ -364,25 +368,22 @@ function addTable(reward) {
 </script>
 </head>
 <body>
-
-	  <input type="hidden" value="${p.projectNo}"  id="projectNo" name="projectNo"/>       
-	  <input type="hidden" value="${p.category}"  id="category" name="category"/>
-	<%--  <input type="text" value="${r.rewardNo}"  id="rewardNo" name="rewardNo"/> --%>
+	
+	<input type="hidden" value="${p.projectNo}"  id="projectNo" name="projectNo"/>       
+	<input type="hidden" value="${p.category}"  id="category" name="category"/>
+	<input type="text" value="${r1.rewardNo}" id="rewardNo" name="rewardNo"/> 
 	<jsp:include page="../common/customer_menubar.jsp" />
 	<jsp:include page="../common/customer_menuList.jsp"/>
 	
 
 	<br>
-	
-		<br /><br /><br />
-<div id="top" style="width: 100%;">
-<%-- <jsp:include page="../common/fundOpenMenu.jsp"/> --%>
+	<div id="top" style="width: 100%;">
 <br /><br /><br />
 <div id="menu" style="width: 55%;height: 40px; margin: 0 auto;">
 		<ul>
 			<li><a onclick="basicInfo();" id="basic">기본정보</a></li>
 			<li><a onclick="rewardList();" id="reward">리워드</a></li>
-			<li><a id="story">스토리</a></li>
+			<li><a onclick="rewardStory();" id="story">스토리</a></li>
 			<li><a onclick="makerInfo();" id="aboutyou">메이커정보</a></li>
 			<li><a id="cominhsoon">오픈예정</a></li>
 			<li><a id="account">정산</a></li>
@@ -399,12 +400,16 @@ function addTable(reward) {
 		var projectNo = $("#projectNo").val();
 		location.href = "rewardList.fd?projectNo=" + projectNo;
 	}
+	function rewardStory(){
+		var projectNo = $("#projectNo").val();
+		location.href = "rewardStory.fd?projectNo=" + projectNo;
+		
+	} 
 	function makerInfo() {
 		var projectNo = $("#projectNo").val();
 		location.href = "makerInfo.fd?projectNo=" + projectNo;
 		
 	}
-	
 </script>
 	<br><br><br> 
 		<div id="inputBox2" class="reward_SaveBtn" align="center">

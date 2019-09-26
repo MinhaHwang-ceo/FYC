@@ -71,6 +71,16 @@ public interface FundingDao {
 	List<Reward> rewardList(SqlSessionTemplate sqlSession, Reward r);
 
 	List<Reward> selectRewardAll(SqlSessionTemplate sqlSession, Reward r);
+	
+	List<Project> selectRewardInfo(SqlSessionTemplate sqlSession, Project p);
+
+	List<RewardInfo> selectlistInfo(SqlSessionTemplate sqlSession, RewardInfo rf);
+
+	List<Project> selectMakerInfo(SqlSessionTemplate sqlSession, Project p);
+
+	void updateMember(SqlSessionTemplate sqlSession, Member m);
+
+
 
 
 

@@ -203,32 +203,38 @@ public class FundingController {
 	// 다음으로 가기 기본정보에서 ~ 리워드로
 	@RequestMapping(value = "FundingOpenNext5.fd", method = RequestMethod.POST)
 	public String FundingOpenNext5(Project p, Model model, HttpServletRequest request) {
-
-		request.setAttribute("p", p);
+		
+		
+		
+		model.addAttribute("p", p);
 		return "fundingOpen/FundingOpen5";
 	}
 
 	// 리워드 저장부분
 	@RequestMapping("insertreReward.fd")
 	public ModelAndView RewardSave(String idx, Project p, HttpServletRequest request, HttpServletResponse response,
-			Reward r) {
+			Reward r, Model model) {
 
 		ModelAndView mv = new ModelAndView("jsonView2");
-
+		
+		
 		System.out.println("리워드 : " + r);
 		r.setProjectNo(p.getProjectNo());
+		
 		int reward = fs.rewardInest(r);
 
 		System.out.println("idx : " + idx);
 
 		System.out.println("리워드 번호 : " + r.getRewardNo());
-
-		int RewardNo2 = r.getRewardNo();
-		System.out.println("RewardNo2 : RewardNo2  ;RewardNo2 : " + r);
-
 		
-		mv.addObject("r", r);
+		int RewardNo2 = r.getRewardNo();
+		
 
+		model.addAttribute("RewardNo2",RewardNo2);
+		model.addAttribute("r1", r);
+		//mv.addObject("RewardNo2",RewardNo2);
+		mv.addObject("r", r);
+		
 		// mv.setViewName("mvReward");
 		/*
 		 * List<Reward> list = fs.rewardSelect(r);
@@ -247,6 +253,7 @@ public class FundingController {
 			@SessionAttribute("RewardNo2") int RewardNo2, Reward r) {
 
 		System.out.println("잘받아 오나 확인 : " + r);
+		System.out.println("RewardNo2"+RewardNo2);
 
 		ModelAndView mv = new ModelAndView("jsonView2");
 		// System.out.println("************************"+mv.getViewName());
@@ -257,15 +264,10 @@ public class FundingController {
 
 		r.setRewardNo(RewardNo2);
 		int rewardUP = fs.rewardUpdate(r);
-
-		mv.addObject("r", r);
+		
 		System.out.println("리워드업데이트 후 : " + r);
-
-		// List<Reward> list = fs.rewardSelect(r);
-
-		// System.out.println("list : " + list);
-
-		// mv.addObject("r", list);
+			
+		mv.addObject("r", r);
 
 		return mv;
 
@@ -290,14 +292,15 @@ public class FundingController {
 	 
 
 	@RequestMapping(value = "FundingOpen6.fd")
-	public String FundingOpen6(String projectNo, Model model,
-			@SessionAttribute("RewardNo2") int RewardNo2, Reward r) {
+	public String FundingOpen6(Project p, String projectNo, Model model,
+			@SessionAttribute("RewardNo2") String RewardNo2, Reward r) {
 		
-		int Reward = r.getRewardNo();
-		System.out.println("============== : " + Reward);
-
-		model.addAttribute("Reward", Reward);
-		model.addAttribute("projectNo", projectNo);
+		r.setRewardNo(Integer.parseInt(RewardNo2));
+		
+		p.setProjectNo(Integer.parseInt(projectNo));
+		
+		model.addAttribute("p", p);
+		model.addAttribute("RewardNo2",r.getRewardNo());
 
 		return "fundingOpen/FundingOpen6";
 	}
@@ -305,14 +308,14 @@ public class FundingController {
 	@RequestMapping(value = "FundingOpen7.fd")
 	public String FundingOpen7(Project p, Reward r, RewardInfo ri, Model model) {
 		System.out.println("실행");
-		System.out.println(r);
-		System.out.println(ri);
+		
+		System.out.println("ri 들어오는 중  :" + ri);
 
-		System.out.println(ri);
 		fs.updateProject(p);
 
 		if (r.getRewardNo() > 0) {
 			fs.insertRewardInfo(ri);
+			System.out.println("ri 인설트 : " + ri);
 			
 		}
 		model.addAttribute("p", p);
@@ -322,8 +325,8 @@ public class FundingController {
 	@RequestMapping(value = "FundingOpen8.fd")
 	public String FundingOpen8(Project p, Member m, HttpServletRequest request, @RequestParam(name = "photo", required = false) MultipartFile photo, Model model) {
 		System.out.println("프로필");
+		System.out.println("프로젝트 번호 : " + p.getProjectNo());
 		Attachment attach = new Attachment();
-		
 		attach = fs.selectAttach(p);
 		if(attach == null || attach.equals(null)) {
 				
@@ -350,6 +353,7 @@ public class FundingController {
 					attach = fs.selectAttach(p);
 					p.setProfileImg(attach.getAttachmentNo()+"");
 					fs.updateProject(p);
+					fs.updateMember(m);
 				} else {
 					throw new Exception();
 				}
@@ -555,6 +559,34 @@ public class FundingController {
 		
 		return mv;
 	}
+	
+	@RequestMapping("rewardStory.fd")
+	public String rewardStory(Project p, RewardInfo rf, Model model) {
+		
+		List<Project> rewardInfo = fs.selectRewardInfo(p);
+		
+		List<RewardInfo> listInfo = fs.selectlistInfo(rf);
+		
+		if(rewardInfo.size()!=0) {
+			model.addAttribute("p", rewardInfo.get(0));
+		}
+		
+		if(listInfo.size()!=0) {
+			model.addAttribute("rf",listInfo.get(0));
+			
+		}
+		return "fundingOpen/FundingOpen6";
+	}
+
+	@RequestMapping("makerInfo.fd")
+	public String makerInfo(Project p, Attachment at, Model model) {
+		System.out.println("전");
+			List<Project> makerInfoList = fs.selectMakerInfo(p);
+		System.out.println("메이커 리스트 : " + makerInfoList);
+		
+		return "fundingOpen/FundingOpen7";
+	}
+	
 	
 	
 	

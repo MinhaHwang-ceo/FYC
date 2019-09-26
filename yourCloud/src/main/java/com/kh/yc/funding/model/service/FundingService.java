@@ -81,6 +81,14 @@ public interface FundingService{
 	
 	List<Reward> selectRewardAll(Reward r);
 
+	List<Project> selectRewardInfo(Project p);
+
+	List<RewardInfo> selectlistInfo(RewardInfo rf);
+
+	List<Project> selectMakerInfo(Project p);
+
+	void updateMember(Member m);
+
 
 	
 
