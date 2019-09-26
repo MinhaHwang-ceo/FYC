@@ -94,7 +94,7 @@ public  class FundingDaoImpl implements FundingDao{
 	}
 	@Override
 	public void insertRewardInfo(SqlSessionTemplate sqlSession, RewardInfo ri) {
-		sqlSession.insert("Project2.insertReward", ri);
+		sqlSession.insert("Project2.insertRewardInfo", ri);
 	}
 	@Override
 	public int selectProfileImg(SqlSessionTemplate sqlSession, Project p) {
@@ -163,6 +163,26 @@ public  class FundingDaoImpl implements FundingDao{
 		
 		return sqlSession.selectList("Reward.selectRewardAll",r);
 	}
+	@Override
+	public List<Project> selectRewardInfo(SqlSessionTemplate sqlSession, Project p) {
+		
+		return sqlSession.selectList("Project2.selectRewardInfo",p);
+	}
+	@Override
+	public List<RewardInfo> selectlistInfo(SqlSessionTemplate sqlSession, RewardInfo rf) {
+		
+		return sqlSession.selectList("Project2.selectRewardInfoJop",rf);
+	}
+	@Override
+	public List<Project> selectMakerInfo(SqlSessionTemplate sqlSession, Project p) {
+		
+		return sqlSession.selectList("Project2.selectMakerInfo",p);
+	}
+	@Override
+	public void updateMember(SqlSessionTemplate sqlSession, Member m) {
+		sqlSession.selectList("Member.updateMemberCompanyName",m);
+	}
+	
 
 	
 	

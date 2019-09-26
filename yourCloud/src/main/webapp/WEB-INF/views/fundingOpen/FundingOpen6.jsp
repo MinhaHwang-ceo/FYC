@@ -143,7 +143,7 @@ h4 {
 		<ul>
 			<li><a onclick="basicInfo();" id="basic">기본정보</a></li>
 			<li><a onclick="rewardList();" id="reward">리워드</a></li>
-			<li><a id="story">스토리</a></li>
+			<li><a onclick="rewardStory();" id="story">스토리</a></li>
 			<li><a onclick="makerInfo();" id="aboutyou">메이커정보</a></li>
 			<li><a id="cominhsoon">오픈예정</a></li>
 			<li><a id="account">정산</a></li>
@@ -160,26 +160,32 @@ h4 {
 		var projectNo = $("#projectNo").val();
 		location.href = "rewardList.fd?projectNo=" + projectNo;
 	}
+	function rewardStory(){
+		var projectNo = $("#projectNo").val();
+		location.href = "rewardStory.fd?projectNo=" + projectNo;
+		
+	} 
 	function makerInfo() {
 		var projectNo = $("#projectNo").val();
 		location.href = "makerInfo.fd?projectNo=" + projectNo;
 		
 	}
-</script>	
+</script>
 	<hr />
 	<br>
+	<input type="text"  />
 	<div id="inputBox2" align="center">
 		<br>
 		<form action="FundingOpen7.fd" id="mainForm" method="POST"
 			encType="multipart/form-data">
-			<input type="text" id="projectNo" name="projectNo" value="${projectNo }" />
-			<%-- <input type="text" id="rewardNo" name="rewardNo" value="${ rewardNo }"/> --%>
+			<input type="text" id="projectNo" name="projectNo" value="${p.projectNo }" />
+			<input type="text" id="rewardNo" name="rewardNo" value="${ RewardNo2 }"/>
 			<table style="align: center; width: 100%;">
 				<tr>
 					<td><h5>프로젝트 요약</h5>- 서포터가 제품의 장점이나<br> 특징을 잘 이해할 수 있도록<br>
 						간략하게 소개하세요.</td>
 					<td><textarea rows="5" cols="40" id="summary" name="summary"
-							style="width: 100%;">내용을 입력해주세요.</textarea></td>
+							style="width: 100%;">${p.summary}</textarea></td>
 				</tr>
 				<tr>
 					<td colspan="2"><hr /></td>
@@ -188,7 +194,7 @@ h4 {
 					<td colspan="2"><h4>스토리</h4> 최초 승인 이후에는 스토리를 수정할 수 없습니다.</td>
 				</tr>
 				<tr>
-					<td colspan="2"><textarea name="story" id="editor" style="width: 100%; height: 500px;"></textarea></td>
+					<td colspan="2"><textarea name="story" id="editor" style="width: 100%; height: 500px;">${p.story}</textarea></td>
 					<textarea name="story" id="story" hidden></textarea>
 				</tr>
 				<tr>
@@ -438,48 +444,48 @@ h4 {
 					<table>
 						<tr>
 							<td>품명 및 모델명</td>
-							<td><input type="text" name="modelName" id="box1">
+							<td><input type="text" value="${rf.modelName}" name="modelName" id="box1">
 							<td>
 						</tr>
 						<tr>
 							<td>종류</td>
-							<td><input type="text" name="modelType" id="box1">
+							<td><input type="text" value="${rf.modelType }" name="modelType" id="box1">
 							<td>
 						</tr>
 						<tr>
 							<td>소재</td>
-							<td><input type="text" name="modelMat" id="box1">
+							<td><input type="text" value="${rf.modelMat }" name="modelMat" id="box1">
 							<td>
 						</tr>
 						<tr>
 							<td>치수</td>
-							<td><input type="text" name="modelSize" id="box1">
+							<td><input type="text" value="${rf.modelSize }"  name="modelSize" id="box1">
 							<td>
 						</tr>
 						<tr>
 							<td>제조사(수입자)</td>
-							<td><input type="text" name="manufacturer" id="box1">
+							<td><input type="text" value="${rf.manufacturer }" name="manufacturer" id="box1">
 							<td>
 						</tr>
 						<tr>
 							<td>제조국</td>
-							<td><input type="text" name="manufacturerNation" id="box1">
+							<td><input type="text" value="${rf.manufacturerNation }" name="manufacturerNation" id="box1">
 							<td>
 						</tr>
 						<tr>
 							<td>취급시 주의사항</td>
-							<td><input type="text" name="modelNotice" id="box1">
+							<td><input type="text" value="${rf.modelNotice }" name="modelNotice" id="box1">
 							<td>
 						</tr>
 						<tr>
 							<td>품질보증기준</td>
-							<td><input type="text" id="box1" name="modelWarranty"
+							<td><input type="text"  value="${rf.modelWarranty }" id="box1" name="modelWarranty"
 								placeholder="예) 관련법 및 소비자분쟁해결 기준에 따름">
 							<td>
 						</tr>
 						<tr>
 							<td>A/S 책임자와 전화번호</td>
-							<td><input type="text" name="modelAdmin" id="box1"><br>담당자 이름 표기가
+							<td><input type="text" value="${rf.modelAdmin}" name="modelAdmin" id="box1"><br>담당자 이름 표기가
 								어려울 경우,업체명 입력
 							<td>
 						</tr>
@@ -2382,7 +2388,7 @@ h4 {
 				<h4>리워드 발송 예상 변동 기간</h4>
 				<p>혹시라도 리워드 발송이 약속한 리워드 발송 시작일보다 지연될 가능성이 있다면,<br />지연될 수 있는 최대 기간을
 					선택해주세요.</p>
-				<select id="browsers1" name="delivery">
+				<select id="browsers1" name="dd">
 					<option value="선택하세요">예상 발송 변동 기간선택</option>
 					<option value="14일">최대 14일</option>
 					<option value="30일">최대 30일</option>

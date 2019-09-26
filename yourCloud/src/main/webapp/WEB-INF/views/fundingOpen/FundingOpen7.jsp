@@ -110,13 +110,12 @@ h4 {
 	<jsp:include page="../common/customer_menubar.jsp" />
 	<jsp:include page="../common/customer_menuList.jsp"/>
 	<div id="top" style="width: 100%;">
-<%-- <jsp:include page="../common/fundOpenMenu.jsp"/> --%>
 <br /><br /><br />
 <div id="menu" style="width: 55%;height: 40px; margin: 0 auto;">
 		<ul>
 			<li><a onclick="basicInfo();" id="basic">기본정보</a></li>
 			<li><a onclick="rewardList();" id="reward">리워드</a></li>
-			<li><a id="story">스토리</a></li>
+			<li><a onclick="rewardStory();" id="story">스토리</a></li>
 			<li><a onclick="makerInfo();" id="aboutyou">메이커정보</a></li>
 			<li><a id="cominhsoon">오픈예정</a></li>
 			<li><a id="account">정산</a></li>
@@ -133,13 +132,17 @@ h4 {
 		var projectNo = $("#projectNo").val();
 		location.href = "rewardList.fd?projectNo=" + projectNo;
 	}
+	function rewardStory(){
+		var projectNo = $("#projectNo").val();
+		location.href = "rewardStory.fd?projectNo=" + projectNo;
+		
+	} 
 	function makerInfo() {
 		var projectNo = $("#projectNo").val();
 		location.href = "makerInfo.fd?projectNo=" + projectNo;
 		
 	}
-</script>
-	
+</script>	
 	<hr />
 	<br>
 	<form action="FundingOpen8.fd" id="mainForm" method="POST" encType="multipart/form-data">
@@ -148,7 +151,7 @@ h4 {
 		<div id="inputBox2" align="center">
 			<table style="align: center; width:100%;">
 				<tr>
-					<td><h5>메이커 이름</h5></td>
+					<td><h5>메이커 이름(법인명)</h5></td>
 					<td ><input type="text" name="companyName"></td>
 				</tr>
 				<tr>
