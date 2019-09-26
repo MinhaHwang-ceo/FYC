@@ -78,7 +78,7 @@ a {
 </script>
 
 	<jsp:include page="../common/customer_menubar.jsp"/>
-		<jsp:include page="../common/customer_menuList.jsp" />
+	<jsp:include page="../common/customer_menuList.jsp" />
 	
 	<div id="outer" style="background:white;">
 	<!-- 리워드 헤더 이미지  -->
@@ -132,35 +132,18 @@ a {
 			<div class="content-news">
 				<div class="tab-news"><br>	
 					<div>
-					<p class="massage-box" style="height: 100px; text-align: center; color: #90949c" >
-						등록된 새소식이 없습니다.
-					</p>
 					</div>
 					<!-- 새소식 등록 -->
-					
 					<div style="width:900px; margin:0 auto;">
-						<form action="" name="" method="get">
-							<table>
-								<tr>
-									<td><h2>진수네 구기자기자 오픈 2시간만에 80% 달성 기념 이벤트!</h2></td>
-								</tr>
-								
-								<tr>
-									<td>
-										여러분의 성원에 힘입어 오픈 2시간만에 80%를 달성했습니다!
-										QR코드로 프로젝트를 공유하고 인증 사진을 댓글로 달아주시면
-										추첨을 통해 [얼리버드] 리워드를 한개! 무료 배송해 드립니다!
-									</td>
-								</tr>
-								<tr>
-									<td>
-										펀딩에 참여하지 않은 서포터분들도 참여 가능하니 많은 참여! 
-										부탁드려요!
-									</td>
-								</tr>
-								
-							</table>						
+						<c:if test="${loginUser.userNo eq detail.userNo }">
+						<form id="form1">
+							<input type="text" style="width:700px; height: 100px;"> &emsp;
+							<button value="새소식 올리기" class="btn btn-info">새소식 올리기</button>
 						</form>
+						
+						
+						</c:if>
+						
 					</div>
 					
 				</div>

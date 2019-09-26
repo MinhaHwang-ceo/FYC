@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 import com.kh.yc.board.model.vo.PageInfo;
 import com.kh.yc.category.model.vo.Reply;
 import com.kh.yc.category.model.vo.Report;
+import com.kh.yc.funding.model.vo.Funding;
 import com.kh.yc.member.model.vo.Member;
 import com.kh.yc.project.model.dao.ProjectDao;
 import com.kh.yc.project.model.exception.ProjectSelectListException;
@@ -271,6 +272,13 @@ public class ProjectServiceImpl implements ProjectService {
 	}
 
 	@Override
+	public ArrayList<Funding> fundList(int projectNo) {
+		
+		ArrayList<Funding> fund = pd.fundList(sqlSession,projectNo);
+		
+		return fund;
+}
+  @Override
 	public ArrayList<Project> memberCategories(ArrayList<String> categoryList) {
 		// TODO Auto-generated method stub
 		return pd.memberCategories(sqlSession, categoryList);

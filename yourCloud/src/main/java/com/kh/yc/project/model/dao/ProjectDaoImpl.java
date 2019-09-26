@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 import com.kh.yc.board.model.vo.PageInfo;
 import com.kh.yc.category.model.vo.Reply;
 import com.kh.yc.category.model.vo.Report;
+import com.kh.yc.funding.model.vo.Funding;
 import com.kh.yc.member.model.vo.Member;
 import com.kh.yc.project.model.exception.ProjectSelectListException;
 import com.kh.yc.project.model.vo.Interest;
@@ -311,6 +312,18 @@ public class ProjectDaoImpl implements ProjectDao{
 		return reply;
 	}
 
+	//서포터 리스트 
+	@SuppressWarnings("unchecked")
+	@Override
+	public ArrayList<Funding> fundList(SqlSessionTemplate sqlSession, int projectNo) {
+		
+		
+		ArrayList<Funding> fund = (ArrayList) sqlSession.selectList("Project2.selectFundList",projectNo);
+		
+		return fund;
+	}
+
+
 	@Override
 	public ArrayList<Project> memberCategories(SqlSessionTemplate sqlSession, ArrayList<String> categoryList) {
 		ArrayList<Project> list = new ArrayList<Project>();
@@ -339,6 +352,7 @@ public class ProjectDaoImpl implements ProjectDao{
 
 		return reply;
 	}
+
 
 
 }

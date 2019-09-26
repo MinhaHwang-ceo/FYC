@@ -1,9 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+    	<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
+<link href="https://fonts.googleapis.com/css?family=Nanum+Gothic+Coding&display=swap" rel="stylesheet">
 <style>
 	button {
 		cursor: pointer;
@@ -143,7 +145,7 @@ a {
 }
 </style>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>니가 그린 구름 그림</title>
 </head>
 <body>
 
@@ -203,16 +205,44 @@ a {
 		</ul>
 	</div>
 	
-	<hr/>
-
-	이펀딩에 참여한 사람은 5명입니다<br>
-	이펀딩에 참여한 사람은 5명입니다<br>
-	이펀딩에 참여한 사람은 5명입니다<br>
-	이펀딩에 참여한 사람은 5명입니다<br>
-	이펀딩에 참여한 사람은 5명입니다<br>
+	<hr/><br><br>
 	
-	이펀딩에 참여한 사람은 5명입니다<br>
-	이펀딩에 참여한 사람은 5명입니다<br>
+	<jsp:useBean id="now" class="java.util.Date"/>
+	<fmt:formatDate value="${now}" var="today" pattern="MM.dd"/> 
+	
+	
+	<div style="padding-left:500px; font-family: 'Nanum Gothic Coding', monospace;">
+	
+	<h3 style="color:#42A5F5"><c:out value="${today}"/> 현재 이 프로젝트에 참여한 회원들 입니다</h3><br><br>
+	
+		<table>
+		<c:forEach var="fund" items="${fund}">
+			<tr>
+				<td>
+				<c:choose>
+					<c:when test="${'1' eq fund.blind}">
+						<b>비공개</b>님이
+					</c:when>
+					<c:otherwise><b><c:out value="${fund.memberName }"/></b>님이</c:otherwise>
+				</c:choose>
+				</td>
+				
+				<td>&emsp;</td>
+				<td><c:out value="${fund.fundMoney }"/>원으로 참여하셨습니다. </td>
+				<td>&emsp;</td>
+				<td>&emsp;</td>
+				<td>&emsp;</td>
+				<td>&emsp;</td>
+				<td>참여날짜 : <c:out value="${fund.fundDate }"/></td>
+			</tr>
+			
+			<tr><td><br></td></tr>
+			
+	
+		</c:forEach>
+		</table>
+	</div>
+
 	
 		
 	

@@ -21,6 +21,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.kh.yc.category.model.service.CategoryService;
 import com.kh.yc.category.model.vo.Reply;
 import com.kh.yc.category.model.vo.Report;
+import com.kh.yc.funding.model.vo.Funding;
 import com.kh.yc.project.model.service.ProjectService;
 import com.kh.yc.project.model.vo.Interest;
 import com.kh.yc.project.model.vo.Project;
@@ -95,11 +96,11 @@ public class CategoryContoller {
 		
 		int projectNo = Integer.parseInt(request.getParameter("projectNo"));
 		
-		System.out.println(projectNo);
+		//System.out.println(projectNo);
 		
 		Project detail = ps.detailProject(projectNo);
 		
-		System.out.println(detail);
+		//System.out.println(detail);
 		
 		request.setAttribute("detail", detail);
 		
@@ -107,7 +108,7 @@ public class CategoryContoller {
 		
 		request.setAttribute("reward", rewardInfo);
 		
-		System.out.println(rewardInfo+"는?????????????????????");
+		//System.out.println(rewardInfo+"는?????????????????????");
 
 		return "main/categoryOneFunding";
 
@@ -135,14 +136,19 @@ public class CategoryContoller {
 		
 		int projectNo = Integer.parseInt(request.getParameter("projectNo"));
 		
-		System.out.println(projectNo);
+		//System.out.println(projectNo);
 		
 		Project detail = ps.detailProject(projectNo);
 		
-		System.out.println(detail);
+		//System.out.println(detail);
 		
+		ArrayList<Funding> fund = ps.fundList(projectNo);
 		
+		//System.out.println(fund);
+		
+	
 		request.setAttribute("detail", detail);
+		request.setAttribute("fund", fund);
 		
 
 		return "main/categoryOneSupporter";
@@ -229,7 +235,7 @@ public class CategoryContoller {
 	
 	@Scheduled(cron = "0 59 * * * *")
 	public void cornTest() {
-		System.out.println("매일 26분에 실행");
+		System.out.println("59분에 항상 실행");
 	}
 	
 	@RequestMapping(value = "/replyProject.ca", method = RequestMethod.GET)

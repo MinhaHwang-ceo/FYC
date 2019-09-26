@@ -18,21 +18,59 @@
 <body>
 	<jsp:include page="../common/customer_menubar.jsp" />
 	<jsp:include page="../common/myPage_menuList.jsp" />
-	<br />
-	<div id="messageOuter">
+	<br /><br><br>
+		<div id="messageOuter">
+	<form id="message">
 		<div id="messageWindow">
+			
 			<div class="myMessage">
 				<span>보낸 메세지</span>
 			</div>
+			
 			<div class="receivedMessage">
 				<span>받은 메세지</span>
+			
 			</div>
 		</div>
+		
 		<div id="inputMessageDiv" align="center">
-			<input type="text" id="inputMessage" />
-			<input type="button" class="btn btn-info" id="sendMessage" value="전송"/>
+			<input type="hidden" value="${loginUser.userNo}" name="userNo">
+			<input type="text" id="inputMessage" name="inputMessage"/>
+			<input type="button" class="btn btn-info" onclick="sendMessage()" value="전송"/>
 		</div>
+		
+	</form>
 	</div>
+	
+	<br><br>
+	
+	<script>
+	function sendMessage(){
+		
+		var formData = $("#message").serializeArray();
+		
+		console.log(formData);
+		
+		$.ajax({
+			cache:false,
+			url : "sendMessage.me",
+			data : formData,
+			success : function(data){
+				alert(formData);
+				//location.reload();
+				
+			},error : function(data){
+				alert("에러발생");
+			}
+		})
+		
+	}
+	
+	
+	
+	</script>
+	
+	
 	<jsp:include page="../common/customer_footer.jsp"/>
 </body>
 </html>

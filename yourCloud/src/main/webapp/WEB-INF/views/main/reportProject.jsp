@@ -85,6 +85,7 @@ function report(){
 		success : function(data){
 			alert("신고를 완료하였습니다!");
 			window.close();
+			opener.parent.location.reload();
 		},
 		error : function(data){
 			alert("!!ERROR!!");

@@ -133,7 +133,8 @@
 		<result property="fundMoney" column="FUND_MONEY" />
 		<result property="rewardNo" column="REWARD_NO" />
 		<result property="rewardCount" column="REWARD_NUMBER" />
-		<result property="blind" column="BLIND" />
+		<result property="blind" column="BLIND"/>
+		<result property="memberName" column="MEMBER_NAME"/>		
 	</resultMap>
 	<resultMap type="Payment" id="PaymentList">
 		<id property="payNo" column="PAY_NO" />
@@ -172,6 +173,8 @@
 		FROM
 		PROJECT
 		WHERE PROGRESS_STATUS != '오픈예정'
+		AND PROGRESS_STATUS != '실패'
+		AND PROGRESS_STATUS IS NOT NULL
 		AND JUDGE_STATUS = '통과'
 	</select>
 	
@@ -190,12 +193,15 @@
 		P.PROJECT_TITLE,P.MONEY,M.COMPANY_NAME,P.END_DATE,
 		A.NEW_FILE_NAME
 		FROM PROJECT P
-		JOIN MEMBER M ON (P.MEMBER_NO =
-		M.MEMBER_NO)
-		JOIN ATTACHMENT A ON (A.PROJECT_NO = P.PROJECT_NO)
-		WHERE PROGRESS_STATUS != '오픈예정'
-		AND JUDGE_STATUS = '통과'
-		AND A.FILE_LEVEL=0
+
+		JOIN MEMBER M ON (P.MEMBER_NO = M.MEMBER_NO)
+        JOIN ATTACHMENT A ON (A.PROJECT_NO = P.PROJECT_NO)
+        WHERE PROGRESS_STATUS != '오픈예정'
+        AND PROGRESS_STATUS != '실패'
+        AND JUDGE_STATUS = '통과'
+        AND PROGRESS_STATUS IS NOT NULL
+        AND A.FILE_LEVEL=0
+
 		ORDER BY PROJECT_NO DESC
 	</select>
 	<select id="getProject" resultMap="ProjectList">
@@ -945,6 +951,18 @@ where project_no=#{projectNo}),#{projectNo}
 	</update>
 
 
+	
+	<select id="selectFundList" resultMap="FundingList">
+	SELECT F.FUND_DATE, F.FUND_NO, F.MEMBER_NO, F.PROJECT_NO, F.FUND_MONEY, F.REWARD_NO, 
+        F.REWARD_NUMBER, F.BLIND, M.MEMBER_NAME
+	FROM FUND F
+	JOIN MEMBER M ON (F.MEMBER_NO = M.MEMBER_NO)
+	WHERE PROJECT_NO = #{projectNo}
+	ORDER BY PROJECT_NO DESC 
+	</select>
+	
+	
+	
 	
 	
 		<select id="getCountAlarm" resultMap="OpenAlarmList">

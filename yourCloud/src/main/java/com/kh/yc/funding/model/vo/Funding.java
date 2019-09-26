@@ -13,6 +13,7 @@ public class Funding implements Serializable {
 	private int rewardNo;
 	private int rewardCount;
 	private String blind;
+	private String memberName;
 
 	public Funding() {
 		super();
@@ -20,7 +21,8 @@ public class Funding implements Serializable {
 	}
 
 	public Funding(int fundNo, String fundDate, int userNo, int projectNo, int fundMoney, int rewardNo, int rewardCount,
-			String blind) {
+			String blind, String memberName) {
+		super();
 		this.fundNo = fundNo;
 		this.fundDate = fundDate;
 		this.userNo = userNo;
@@ -29,6 +31,7 @@ public class Funding implements Serializable {
 		this.rewardNo = rewardNo;
 		this.rewardCount = rewardCount;
 		this.blind = blind;
+		this.memberName = memberName;
 	}
 
 	public int getFundNo() {
@@ -95,11 +98,21 @@ public class Funding implements Serializable {
 		this.blind = blind;
 	}
 
+	public String getMemberName() {
+		return memberName;
+	}
+
+	public void setMemberName(String memberName) {
+		this.memberName = memberName;
+	}
+
 	@Override
 	public String toString() {
 		return "Funding [fundNo=" + fundNo + ", fundDate=" + fundDate + ", userNo=" + userNo + ", projectNo="
 				+ projectNo + ", fundMoney=" + fundMoney + ", rewardNo=" + rewardNo + ", rewardCount=" + rewardCount
-				+ ", blind=" + blind + "]";
+				+ ", blind=" + blind + ", memberName=" + memberName + "]";
 	}
+
+
 
 }
