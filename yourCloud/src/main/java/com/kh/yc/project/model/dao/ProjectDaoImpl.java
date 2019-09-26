@@ -26,8 +26,17 @@ public class ProjectDaoImpl implements ProjectDao{
 	@Override
 	public int getListCount(SqlSessionTemplate sqlSession) throws ProjectSelectListException{
 		
-		int result = 0;
-		result = sqlSession.selectOne("Project2.selectListCount");
+		
+		int result = sqlSession.selectOne("Project2.selectListCount");
+		
+		return result;
+	}
+	
+	@Override
+	public int getListCount2(SqlSessionTemplate sqlSession,int userNo) {
+		
+		
+		int result = sqlSession.selectOne("Project2.selectListCount2",userNo);
 		
 		return result;
 	}
@@ -49,7 +58,7 @@ public class ProjectDaoImpl implements ProjectDao{
 	
 	@Override
 	@SuppressWarnings({ "unchecked", "rawtypes" })
-	public ArrayList<Project> selectBoardList2(SqlSessionTemplate sqlSession, PageInfo pi,Member m) throws ProjectSelectListException {
+	public ArrayList<Project> selectBoardList2(SqlSessionTemplate sqlSession, PageInfo pi) throws ProjectSelectListException {
 
 		ArrayList<Project> list =null;
 		
@@ -314,6 +323,35 @@ public class ProjectDaoImpl implements ProjectDao{
 		return fund;
 	}
 
+
+	@Override
+	public ArrayList<Project> memberCategories(SqlSessionTemplate sqlSession, ArrayList<String> categoryList) {
+		ArrayList<Project> list = new ArrayList<Project>();
+		
+		for(String s : categoryList) {
+			list.addAll((ArrayList)sqlSession.selectList("Project2.selectMemberCategories", s));
+		}
+		return list;
+}
+  @Override
+	public List<OpenAlarm> getCountAlarm(SqlSessionTemplate sqlSession, String projectOpen) {
+		
+		List<OpenAlarm> reply = null;
+		
+		reply =   sqlSession.selectList("Project2.getCountAlarm",projectOpen);
+	
+		return reply;
+	}
+
+	@Override
+	public List<OpenAlarm> getCountAlarm2(SqlSessionTemplate sqlSession, int projectNo) {
+		
+		List<OpenAlarm> reply = null;
+		
+		reply =   sqlSession.selectList("Project2.getCountAlarm2",projectNo);
+
+		return reply;
+	}
 
 
 

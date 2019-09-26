@@ -32,15 +32,12 @@ public class PayServiceImpl implements PayService {
          "xZUSL0NpyUxc1GBMg0lYT41iQYv8hFgOFbGqcuQKonXq4yclyyjsCkKsjgBAVRoB351fzSZYfXojvBE4");
 
    @Override
-   @Scheduled(cron = "0 50 23 * * *")
-
-   //@Scheduled(cron = "5 * * * * *")
-
+   @Scheduled(cron = "0 55 11 * * *")
    public void testJobMethod() {
       ArrayList<Project> fundSuccessProject = pd.fundSuccessProject(sqlSession);
 
       pd.updateProjectSuccess(sqlSession);
-
+      pd.updateProjectFail(sqlSession);
       if (fundSuccessProject.size() > 0) {
          ArrayList<Funding> fundingList = pd.fundingList(sqlSession, fundSuccessProject);
          if (fundingList.size() > 0) {
@@ -87,29 +84,27 @@ public class PayServiceImpl implements PayService {
       
    }
 
-   
-
-   @Override
-   public void insertDelivery(ArrayList<Delivery> deliveryList) {
-      pd.insertDelivery(sqlSession, deliveryList);
-      
-   }
-
-   @Override
-   public void insertDeliveryStatus(ArrayList<Delivery> deliveryList) {
-      pd.insertDeliveryStatus(sqlSession, deliveryList);
-      
-   }
-
    @Override
    public void insertSponsor(Sponsor sp) {
       pd.insertSponsor(sqlSession, sp);
    }
 
-   @Override
-   public int insertFund(ArrayList<Funding> fundList) {
-      return pd.insertFund(sqlSession, fundList);
-   }
+@Override
+public int insertFund(ArrayList<Funding> fundList, ArrayList<Delivery> deliveryList) {
+	int result = 0;
+	for(int i = 0; i < fundList.size(); i++) {
+		result = pd.insertFund(sqlSession, fundList.get(i));
+		if(result > 0) {
+			result = pd.insertDelivery(sqlSession, deliveryList.get(i));
+			if(result > 0) {
+				result = pd.insertDeliveryStatus(sqlSession, deliveryList.get(i));
+			}
+		}
+	}
+	
+	
+	return 0;
+}
 
    
 }

@@ -38,7 +38,7 @@
 <br><br>
 
 <h3>* 핸드폰번호</h3>
-<input type="text" class="memberPhone">
+<input type="text" id="memberPhone">
 
 <br><br><br>
 
@@ -51,7 +51,6 @@
 </div>
 	<script>
 	
-	var userNo= $("#userNo").val();
 	
 	
 	function searchParam(key) {
@@ -59,10 +58,12 @@
 		};
 	
 	var bNum= searchParam('bNum');
-	var phone= $('.memberPhone').val()
 	
 $('.btn-default').click(function(){
+	var userNo= $("#userNo").val();
+	var phone= $('#memberPhone').val()
 	console.log("phone"+phone)
+		console.log("userNo"+userNo)
 	if(userNo==''){
 		
 		alert("로그인 후 이용해주세요")
