@@ -46,6 +46,8 @@ public interface MemberService {
  
 	Member selectMember(String userNo);
 
+	Object userCrystal(Member mse);
+
 
 	
 

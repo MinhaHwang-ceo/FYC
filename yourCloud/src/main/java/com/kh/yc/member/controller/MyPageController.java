@@ -32,6 +32,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import com.kh.yc.board.model.vo.PageInfo;
 import com.kh.yc.common.CommonUtils;
@@ -55,21 +56,31 @@ public class MyPageController {
 	@Autowired
 	private MemberService ms;
 	
+	@Autowired
+	private BCryptPasswordEncoder passwordEncoder;
+	
 	public MyPageController() {
 	}
 
 	@RequestMapping("myPage.me")
-	public String goMyPage(@ModelAttribute Member m) {
-		
-
+	public String goMyPage(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
+		Member mse = (Member) session.getAttribute("loginUser");
+		System.out.println(mse);
 		return "member/myPage";
 	}
 
 	@RequestMapping("changeInfo.me")
-	public String changeInfo(@ModelAttribute Member m) {
+	public String changeInfo(HttpServletRequest request, HttpServletResponse response, HttpSession session, Model model) {
 		System.out.println("내가 돌아왔다."); 
-
-		return "main/main";
+		Member mse = (Member) session.getAttribute("loginUser");
+		System.out.println(mse);
+		String encPassword = passwordEncoder.encode(mse.getUserPwd());
+		System.out.println(encPassword);
+		
+		session.setAttribute("member", ms.userCrystal(mse));
+		
+		
+		return "member/userCrystal";
 	}
 
 	@RequestMapping("interestProject.me")
