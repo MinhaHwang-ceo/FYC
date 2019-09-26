@@ -12,6 +12,7 @@ import com.kh.yc.category.model.vo.Report;
 import com.kh.yc.member.model.vo.Member;
 import com.kh.yc.project.model.exception.ProjectSelectListException;
 import com.kh.yc.project.model.vo.Interest;
+import com.kh.yc.project.model.vo.OpenAlarm;
 import com.kh.yc.project.model.vo.Project;
 import com.kh.yc.project.model.vo.SupportList;
 import com.kh.yc.reward.model.vo.RewardInfo;
@@ -24,7 +25,7 @@ public interface ProjectDao {
 	//게시판 상세보기
 	public Project detailProject(SqlSessionTemplate sqlSession ,int projectNo);
 	//나의메이커 조회
-	public ArrayList<Project> selectBoardList2(SqlSessionTemplate sqlSession, PageInfo pi, Member m) throws ProjectSelectListException;
+	public ArrayList<Project> selectBoardList2(SqlSessionTemplate sqlSession, PageInfo pi) throws ProjectSelectListException;
 	//서포트 조회용
 	ArrayList<Project> selectSupportList(SqlSessionTemplate sqlSession, int projectNo);
 
@@ -75,6 +76,11 @@ void   updateDB(SqlSessionTemplate sqlSession,Map<String, Object> map);
 	int insertReply(SqlSessionTemplate sqlSession, Reply reply);
 	//의견 조회
 	ArrayList<Reply> selectReplyList(SqlSessionTemplate sqlSession, int projectNo);
+	//문자알림
+	List<OpenAlarm> getCountAlarm(SqlSessionTemplate sqlSession, String present2);
+	//문자알림2
+	List<OpenAlarm> getCountAlarm2(SqlSessionTemplate sqlSession, int projectNo);
+	int getListCount2(SqlSessionTemplate sqlSession, int userNo);
 
 
 

@@ -9,6 +9,7 @@ public class OpenAlarm implements Serializable{
 	private Date projectOpen;
 	private int projectNo;
 	
+	
 	public OpenAlarm() {}
 
 	public OpenAlarm(int memberNo, String memberPhone, Date projectOpen, int projectNo) {

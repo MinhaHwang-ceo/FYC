@@ -170,6 +170,15 @@
 		WHERE PROGRESS_STATUS != '오픈예정'
 		AND JUDGE_STATUS = '통과'
 	</select>
+	
+		<select id="selectListCount2" resultType="_int">
+		SELECT COUNT(*)
+		FROM
+		PROJECT
+		WHERE member_no=#{userNo}
+	and story is not null
+	</select>
+	
 
 	<select id="selectProjectList" parameterType="java.util.Map"
 		resultMap="ProjectList">
@@ -777,7 +786,7 @@ where m.member_name=#{NAME}
 	
 	<insert id="joinAlram" >
 		INSERT INTO
-			OPEN_ALRAM
+			OPEN_ALARM
 		VALUES(#{memberNo},#{memberPhone},(select project_open 
 from project
 where project_no=#{projectNo}),#{projectNo}
@@ -824,6 +833,20 @@ where project_no=#{projectNo}),#{projectNo}
         AND PROJECT_NO = #{projectNo}
 	</select>
 	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	<select id="mainImg2" resultType="string" resultMap="ProjectList">
         SELECT NEW_FILE_NAME
         FROM ATTACHMENT 
@@ -860,8 +883,22 @@ where project_no=#{projectNo}),#{projectNo}
 	WHERE PROJECT_NO = #{projectNo}
 	ORDER BY PROJECT_NO DESC
 	</select>
+
 	
 	
+		<select id="getCountAlarm" resultMap="OpenAlarmList">
+select distinct(project_no)
+from open_alarm
+where project_open=#{projectOpen}
+	</select>
+
+	<select id="getCountAlarm2" resultMap="OpenAlarmList">
+select member_phone
+from open_alarm
+where project_no=#{projectNo}
+	</select>
+
+
 
 </mapper>
 

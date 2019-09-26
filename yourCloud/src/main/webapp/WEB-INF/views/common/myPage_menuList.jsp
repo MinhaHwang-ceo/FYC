@@ -27,7 +27,7 @@
 				<ul class="navbar-nav">
 					<li class="nav-item"><a class="nav-link" href="myPage.me">내 정보</a></li>
 					<li class="nav-item"><a class="nav-link" href="myReward.me">나의 리워드</a></li>
-					<li class="nav-item"><a class="nav-link" href="myProject.me">나의 메이커</a>
+					<li class="nav-item"><a class="nav-link maker" href="myProject.me?userNo=${loginUser.userNo }">나의 메이커</a>
 					</li>
 					<li class="nav-item"><a class="nav-link" href="messageBox.me">쪽지함</a>
 					</li>
@@ -35,9 +35,18 @@
 					</li>
 				</ul>
 			</div>
+			
 		</div>
+		<input type="hidden" value="${loginUser.userNo }" id="userNo">
 	</nav>
 	<script>
+	
+	
+
+	
+	
+	
+	
 	</script>
 </body>
 </html>
