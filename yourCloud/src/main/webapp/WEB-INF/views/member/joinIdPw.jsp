@@ -220,14 +220,14 @@
   		
   		<tr><td><br></td></tr>  		
   		
-  		<tr>
-  			<td>관심<br>카테고리</td>
-  			<td id="td4">
-  			<input type="checkbox" value="1" name="memberCategory">테크,가전  &emsp;&emsp; <input type="checkbox" name="memberCategory" value="2">패션,잡화  &emsp;&emsp; <input type="checkbox" name="memberCategory" value="3">뷰티  &emsp;&emsp; <input type="checkbox"  name="memberCategory" value="4">도서   <br>
-  			<input type="checkbox" name="memberCategory" value="5">푸드  &emsp;&emsp; <input type="checkbox"  name="memberCategory" value="6">홈리빙  &emsp;&emsp; <input type="checkbox"  name="memberCategory" value="7 ">키즈  <br>
-  			<input type="checkbox" name="memberCategory" value="8">여행,레저 &emsp;&emsp; <input type="checkbox" name="memberCategory"  value="9">스포츠   &emsp;&emsp; <input type="checkbox"  name="memberCategory" value="10">반려동물  &emsp;&emsp;
-  			</td>
-  		</tr>
+  	   <tr>
+           <td>관심<br>카테고리</td>
+           <td id="td4">
+           <input type="checkbox" value="A1" name="memberCategory">테크,가전  &emsp;&emsp; <input type="checkbox" name="memberCategory" value="A2">패션,잡화  &emsp;&emsp; <input type="checkbox" name="memberCategory" value="A3">뷰티  &emsp;&emsp; <input type="checkbox"  name="memberCategory" value="A4">도서   <br>
+           <input type="checkbox" name="memberCategory" value="A5">푸드  &emsp;&emsp; <input type="checkbox"  name="memberCategory" value="A6">홈리빙  &emsp;&emsp; <input type="checkbox"  name="memberCategory" value="A7">키즈  <br>
+           <input type="checkbox" name="memberCategory" value="A8">여행,레저 &emsp;&emsp; <input type="checkbox" name="memberCategory"  value="A9">스포츠   &emsp;&emsp; <input type="checkbox"  name="memberCategory" value="A10">반려동물  &emsp;&emsp;
+           </td>
+        </tr>
   		
   		<tr><td><br></td></tr>  		
   		

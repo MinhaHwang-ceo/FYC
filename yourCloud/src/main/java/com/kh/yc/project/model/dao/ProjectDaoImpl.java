@@ -302,6 +302,16 @@ public class ProjectDaoImpl implements ProjectDao{
 		return reply;
 	}
 
+	@Override
+	public ArrayList<Project> memberCategories(SqlSessionTemplate sqlSession, ArrayList<String> categoryList) {
+		ArrayList<Project> list = new ArrayList<Project>();
+		
+		for(String s : categoryList) {
+			list.addAll((ArrayList)sqlSession.selectList("Project2.selectMemberCategories", s));
+		}
+		return list;
+	}
+
 
 }
 

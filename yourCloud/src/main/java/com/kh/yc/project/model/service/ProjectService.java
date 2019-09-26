@@ -77,5 +77,6 @@ public interface ProjectService {
 	public int insertReply(Reply reply);
 	//의견 리스트
 	ArrayList<Reply> selectReplyList(int projectNo);
+	ArrayList<Project> memberCategories(ArrayList<String> categoryList);
 
 }

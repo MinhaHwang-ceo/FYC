@@ -75,6 +75,7 @@ void   updateDB(SqlSessionTemplate sqlSession,Map<String, Object> map);
 	int insertReply(SqlSessionTemplate sqlSession, Reply reply);
 	//의견 조회
 	ArrayList<Reply> selectReplyList(SqlSessionTemplate sqlSession, int projectNo);
+	ArrayList<Project> memberCategories(SqlSessionTemplate sqlSession, ArrayList<String> categoryList);
 
 
 

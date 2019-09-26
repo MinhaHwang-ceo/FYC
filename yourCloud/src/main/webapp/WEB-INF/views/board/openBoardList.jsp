@@ -15,6 +15,11 @@
 <script src="${contextPath}/resources/js/board.js"></script>
 <title>사용후기</title>
 </head>
+<style>
+	td {
+		height: 50px;
+	}
+</style>
 <body>
 	<c:set var="loginUser" value="${sessionScope.loginUser }"/>
 	<jsp:include page="../common/customer_menubar.jsp" />
@@ -23,7 +28,7 @@
 	<div id="reviewOuter">
 		<h2 style="text-align: left">사용후기 게시판</h2>
 		<hr />
-		<table id="reviewTable" align="center" style="min-height: 500px">
+		<table id="reviewTable" align="center">
 			<tr style="height:10%;">
 				<th style="width:10%;">글번호</th>
 				<th style="width:10%;">작성자</th>
@@ -47,7 +52,7 @@
 							[이   전] &nbsp;
 						</c:if>
 						<c:if test="${ pi.currentPage > 1 }">
-							<c:url var="blistBack" value="/selectList.bo">
+							<c:url var="blistBack" value="/openBoardList.bo">
 								<c:param name="currentPage" value="${ pi.currentPage - 1 }"/>
 							</c:url>
 							<a href="${ blistBack }">[이   전]</a> &nbsp;
@@ -57,7 +62,7 @@
 								<font color="red" size="4"><b>[  ${ p }  ]</b></font>
 							</c:if>
 							<c:if test="${ p ne pi.currentPage }">
-								<c:url var="blistCheck" value="/selectList.bo">
+								<c:url var="blistCheck" value="/openBoardList.bo">
 									<c:param name="currentPage" value="${ p }"/>
 								</c:url>
 								<a href="${ blistCheck }">${ p }</a>
@@ -65,7 +70,7 @@
 						</c:forEach>
 				
 						<c:if test="${ pi.currentPage < pi.maxPage }">
-							<c:url var="blistEnd" value="/selectList.bo">
+							<c:url var="blistEnd" value="/openBoardList.bo">
 								<c:param name="currentPage" value="${ pi.currentPage + 1 }"/>
 							</c:url>
 							<a href="${ blistEnd }">[다   음]</a>

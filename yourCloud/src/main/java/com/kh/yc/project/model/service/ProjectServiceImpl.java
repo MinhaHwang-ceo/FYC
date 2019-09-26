@@ -259,5 +259,11 @@ public class ProjectServiceImpl implements ProjectService {
 		return reply;
 	}
 
+	@Override
+	public ArrayList<Project> memberCategories(ArrayList<String> categoryList) {
+		// TODO Auto-generated method stub
+		return pd.memberCategories(sqlSession, categoryList);
+	}
+
 
 }

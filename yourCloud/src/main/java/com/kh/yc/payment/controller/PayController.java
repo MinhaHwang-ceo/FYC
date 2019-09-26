@@ -2,6 +2,8 @@ package com.kh.yc.payment.controller;
 
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -38,10 +40,11 @@ public class PayController {
          "xZUSL0NpyUxc1GBMg0lYT41iQYv8hFgOFbGqcuQKonXq4yclyyjsCkKsjgBAVRoB351fzSZYfXojvBE4");
 
    @RequestMapping("billingKey.fd")
-   public ModelAndView billingKey(String customer_uid, String price, String phone, String deliverySite, String etc, String userName, String userNo, String projectNo, String rewardCount, String fundMoney, String rewardNo, String totalPrice, HttpServletRequest request, ModelAndView mv) {
-      System.out.println("여긴 빌링키");
+   public ModelAndView billingKey(String customer_uid, String price, String phone, String deliverySite, String etc, String userName, String userNo, String projectNo, String rewardCount, String fundMoney, String rewardNo, String totalPrice, String blind, HttpServletRequest request, ModelAndView mv) {
       Project p = bs.selectProject(Integer.parseInt(projectNo));
+      
       Date endDate = p.getEndDate();
+      
       String rewardNo2[] = rewardNo.split("\\$");
       String rewardCount2[] = rewardCount.split("\\$");
       String fundMoney2[] = fundMoney.split("\\$");
@@ -54,8 +57,7 @@ public class PayController {
          fund.setRewardCount(Integer.parseInt(rewardCount2[i]));
          fund.setProjectNo(Integer.parseInt(projectNo));
          fund.setFundMoney(Integer.parseInt(fundMoney2[i]));
-         fund.setBlind("0");
-         System.out.println(fund);
+         fund.setBlind(blind);
          fundList.add(fund);
          
          Delivery delivery = new Delivery();
@@ -65,11 +67,8 @@ public class PayController {
          delivery.setEtc(etc);
          delivery.setDeliverySite(deliverySite);
          delivery.setStatus("배송전");
-         System.out.println(delivery);
          deliveryList.add(delivery);
       }
-      
-      int result = ps.insertFund(fundList);
       
       try {
          
@@ -98,15 +97,13 @@ public class PayController {
          pay.setPayStatus("결제전");
          
          pay.setAmount(Integer.parseInt(totalPrice));
-         ps.insertPayment(pay);
          
          sd.addSchedule(se);
          
          iamportClient.subscribeSchedule(sd);
-         
-         ps.insertDelivery(deliveryList);
-         ps.insertDeliveryStatus(deliveryList);
-         
+         int result = ps.insertFund(fundList, deliveryList);
+         ps.insertPayment(pay);
+         System.out.println(result);
          Sponsor sp = new Sponsor();
          sp.setUserNo(pay.getUserNo());
          sp.setProjectNo(Integer.parseInt(projectNo));
@@ -124,6 +121,9 @@ public class PayController {
 
    public void RePay(String merchantUid) {
       try {
+    	  
+    	  // 시간 예약 다시
+    	  
          Payment p = ps.selectRePay(merchantUid);
          merchantUid = p.getPayNo();
          Random random = new Random();
@@ -133,8 +133,21 @@ public class PayController {
 
          BigDecimal amount = new BigDecimal(p.getAmount());
          ScheduleData sd = new ScheduleData(customer_uid);
+//         Calendar cal = Calendar.getInstance();
+//         cal.add(Calendar.MINUTE, 1);
          Calendar cal = Calendar.getInstance();
-         cal.add(Calendar.MINUTE, 1);
+         
+         SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMdd");
+         Date date = cal.getTime();
+         String today = new SimpleDateFormat("yyyyMMdd").format(date);
+         try {
+			cal.setTime(formatter.parse(today));
+			cal.add(Calendar.DATE, 1);
+			cal.add(Calendar.HOUR, 17);
+         } catch (ParseException e) {
+			e.printStackTrace();
+         }
+         
          Date schedule_at = cal.getTime();
 
          ScheduleEntry se = new ScheduleEntry(merchantUid2, schedule_at, amount);

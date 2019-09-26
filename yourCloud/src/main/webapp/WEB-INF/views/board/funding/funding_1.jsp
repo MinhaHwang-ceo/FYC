@@ -125,11 +125,9 @@
 					<tr style="border-top: 1px solid lightgray;">
 						<td rowspan="6" style="width: 100px;"><input type="checkbox"
 							class="check"> <input type="hidden" class="rewardNo"
-							name="rewardNo" value="${ r.rewardNo }" />
-							<input type="hidden" class="rewardPrice" value="${r.rewardMoney }" />	
-							</td>
+							name="rewardNo" value="${ r.rewardNo }" /> <input type="hidden"
+							class="rewardPrice" value="${r.rewardMoney }" /></td>
 						<td><label><fmt:formatNumber
-
 									value="${ r.rewardMoney }" /></label>원 펀딩합니다</td>
 					</tr>
 					<tr>
@@ -141,9 +139,11 @@
 						<td><c:out value="${r.rewardDetail }" /></td>
 					</tr>
 					<tr>
-						<td>배송비 : <label class="deliveryMoney"><c:out
-									value="${ r.deliveryMoney }" /></label>&nbsp;&nbsp;&nbsp;&nbsp; <c:out
-								value="발송 예정일 : ${ r.startDate }" /></td>
+						<td>배송비 : <label class="deliveryMoney">
+							<fmt:setLocale value="ko_KR"/><fmt:formatNumber type="currency" value="${ r.deliveryMoney }" /> 
+							</label>&nbsp;&nbsp;&nbsp;&nbsp; 
+							<c:out value="발송 예정일 : ${ r.startDate }" />
+						</td>
 					</tr>
 					<tr class="hidden">
 						<td>수량</td>
@@ -205,96 +205,98 @@
 	<jsp:include page="../../common/customer_footer.jsp" />
 
 	<script>
-		$(function(){
+		var blind = "";
+		$("#name").click(function(){
+			if($("#name").is(":checked")){
+				blind = "1";
+			} else {
+				blind = "2";
+			};
+		})
 			
-		var price = 0;
-		$(".rewardNumber").keyup(function(){
-			var cnt = $(this).val();
-			
-			var target = $(this).parent();
+		$(function() {
+			var price = 0;
+			$(".rewardNumber").keyup(function() {
+				var cnt = $(this).val();
+				var target = $(this).parent();
+			});
 		});
-		});
-		
+
 		$("#goBack").click(function() {
 			if (confirm("뒤로 가시겠습니까? 내용은 저장되지 않습니다.")) {
 				history.go(-1);
 			}
 		});
 		$("#projectTitle").click(
-				function() {
-					var projectNo = '${p.projectNo}';
-					var userNo = '${ sessionScope.loginUser.userNo}';
-					location.href = "categoryOne.ca?projectNo=" + projectNo + "&userNo=" + userNo;
-				});
+			function() {
+				var projectNo = '${p.projectNo}';
+				var userNo = '${ sessionScope.loginUser.userNo}';
+				location.href = "categoryOne.ca?projectNo=" + projectNo + "&userNo=" + userNo;
+			});
 		$("#projectTitle").mouseover(function() {
 			$(this).css("cursor", "pointer");
 		});
-		$(".div1").mouseover(function(){
-			$(this).css({"cursor":"pointer","background":"#1DE9B6"});
-		}).mouseout(function(){
-			$(this).css("background","#EAEAEA");
+		$(".div1").mouseover(function() {
+			$(this).css({ "cursor" : "pointer","background" : "#1DE9B6" });
+		}).mouseout(function() {
+			$(this).css("background", "#EAEAEA");
 		});
-		$(function(){
-			$(".div1").click(function(){
+		$(function() {
+			$(".div1").click(function() {
 				var table = $(this).children().eq(0);
-				
 				var target = table.children().eq(0).children().eq(0).children().eq(0).children().eq(0);
 				var target1 = table.children().eq(0).children().eq(4);
 				var target2 = table.children().eq(0).children().eq(5);
-				
 				var a = $(table).children().eq(0);
-				
-				if(target.prop("checked", function(){
+				if (target.prop("checked", function() {
 					return !$(this).prop('checked');
 				}));
 			});
+		});
 
-		});
-		
-		$("#btn1").click(function(){
-			var target ="";
-			var targetCnt = "";
-			
-			var userNo = '${ m.userNo}';
-		/*
-			
-			$(".check:checked").each(function(){
-				target +=  $(this).siblings().eq(0).val();
-				target += "$";
-				
-				targetCnt = $(this).parent().parent().siblings().eq(4).children().eq(0).children().eq(0).val();
-				targetCnt += "$";
-			});
-			
-			$.ajax({
-				url: "funding_2.bo",
-				type: "POST",
-				data:{"projectNo":projectNo, "userNo":userNo, "target":target, "targetCnt":targetCnt},
-				success:function(data){
+		$("#btn1").click(
+			function() {
+				var target = "";
+				var targetCnt = "";
+	
+				var userNo = '${ m.userNo}';
+				/*
 					
-				}
+					$(".check:checked").each(function(){
+						target +=  $(this).siblings().eq(0).val();
+						target += "$";
+						
+						targetCnt = $(this).parent().parent().siblings().eq(4).children().eq(0).children().eq(0).val();
+						targetCnt += "$";
+					});
+					
+					$.ajax({
+						url: "funding_2.bo",
+						type: "POST",
+						data:{"projectNo":projectNo, "userNo":userNo, "target":target, "targetCnt":targetCnt},
+						success:function(data){
+							
+						}
+					});
+					
+				 */
+				var price = "";
+				var projectNo = '${p.projectNo}';
+				var target = "";
+				var targetCnt = "";
+				var price = "";
+				
+				$(".check:checked").each(function() {
+					target += $(this).siblings().eq(0).val();
+					target += "$";
+					targetCnt += $(this).parent().parent().siblings().eq(4).children().eq(0).children().eq(0).val();
+					targetCnt += "$";
+					price += $(this).siblings().eq(1).val();
+					price += "$";
+				});
+				location.href = "funding_2.bo?projectNo=" + projectNo + "&target=" + target + "&targetCnt=" + targetCnt 
+							+ "&price=" + price + "&userNo=" + userNo + "&blind=" + blind;
 			});
-			
-		*/
-			var price = "";
-			var projectNo = '${p.projectNo}';
-			var target = "";
-			var targetCnt = "";
-			var price = "";
-			$(".check:checked").each(function(){
-				target += $(this).siblings().eq(0).val();
-				target += "$";
-				targetCnt += $(this).parent().parent().siblings().eq(4).children().eq(0).children().eq(0).val();
-				targetCnt += "$";
-				price += $(this).siblings().eq(1).val();
-				price += "$";
-			});
-			console.log(target);
-			console.log(targetCnt);
-			console.log(price);
-			location.href="funding_2.bo?projectNo="+projectNo+"&target="+target+"&targetCnt="+targetCnt+"&price="+price+"&userNo="+userNo;
-		});
-		
 	</script>
 
 </body>
