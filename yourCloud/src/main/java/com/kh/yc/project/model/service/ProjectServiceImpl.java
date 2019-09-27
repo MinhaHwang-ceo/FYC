@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.kh.yc.board.model.vo.PageInfo;
+import com.kh.yc.category.model.vo.Encore;
 import com.kh.yc.category.model.vo.Reply;
 import com.kh.yc.category.model.vo.Report;
 import com.kh.yc.funding.model.vo.Funding;
@@ -24,12 +25,13 @@ import com.kh.yc.project.model.vo.Interest;
 import com.kh.yc.project.model.vo.OpenAlarm;
 import com.kh.yc.project.model.vo.Project;
 import com.kh.yc.project.model.vo.SupportList;
+import com.kh.yc.reward.model.vo.Reward;
 import com.kh.yc.reward.model.vo.RewardInfo;
 
 @Service
 
 public class ProjectServiceImpl implements ProjectService {
-	// 게시물 목록 갯수 조회용 메소드
+	 
 	@Autowired
 	SqlSessionTemplate sqlSession;
 	@Autowired
@@ -298,6 +300,41 @@ public class ProjectServiceImpl implements ProjectService {
 		  List<OpenAlarm>  reply = pd.getCountAlarm2(sqlSession,projectNo);
 			
 			return reply;
+	}
+
+	//앵콜신청
+	@Override
+	public int insertEncore(Encore encore) {
+		 
+		return pd.insertEncore(sqlSession,encore);
+	}
+
+	@Override
+	public int encoreCount(Interest inter) {
+		 
+		return pd.encoreCount(sqlSession, inter);
+	}
+
+	@Override
+	public ArrayList<Reward> rewardList(int projectNo) {
+		
+		ArrayList<Reward> Reward = pd.rewardList(sqlSession,projectNo);
+		
+		return Reward;
+	}
+
+	@Override
+	public String makerImg(Interest inter) {
+		 
+		return pd.makerImg(sqlSession,inter);
+	}
+
+	@Override
+	public int getSortListCount(String category) throws ProjectSelectListException {
+		
+		int getSortListCount = pd.getSortListCount(sqlSession,category);
+		
+		return getSortListCount;
 	}
 
 

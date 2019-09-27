@@ -9,6 +9,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.kh.yc.board.model.vo.PageInfo;
+import com.kh.yc.category.model.vo.Encore;
 import com.kh.yc.category.model.vo.Reply;
 import com.kh.yc.category.model.vo.Report;
 import com.kh.yc.funding.model.vo.Funding;
@@ -18,6 +19,7 @@ import com.kh.yc.project.model.vo.Interest;
 import com.kh.yc.project.model.vo.OpenAlarm;
 import com.kh.yc.project.model.vo.Project;
 import com.kh.yc.project.model.vo.SupportList;
+import com.kh.yc.reward.model.vo.Reward;
 import com.kh.yc.reward.model.vo.RewardInfo;
 
 @Repository
@@ -352,6 +354,46 @@ public class ProjectDaoImpl implements ProjectDao{
 
 		return reply;
 	}
+
+	@Override
+	public int insertEncore(SqlSessionTemplate sqlSession, Encore encore) {
+		
+		return sqlSession.insert("Project2.insertEncore",encore);
+	}
+
+	@Override
+	public int encoreCount(SqlSessionTemplate sqlSession, Interest inter) {
+		
+		return sqlSession.selectOne("Project2.encoreCount", inter);
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public ArrayList<Reward> rewardList(SqlSessionTemplate sqlSession, int projectNo) {
+		
+		System.out.println(projectNo);
+		
+		ArrayList<Reward> reward = (ArrayList) sqlSession.selectList("Reward.categoryOneRewardList", projectNo);
+		
+		System.out.println(reward);
+		
+		return reward;
+		
+		
+	}
+
+	@Override
+	public String makerImg(SqlSessionTemplate sqlSession, Interest inter) {
+		 
+		return sqlSession.selectOne("Project2.makerImg", inter);
+	}
+
+	@Override
+	public int getSortListCount(SqlSessionTemplate sqlSession, String category) {
+	
+		return sqlSession.selectOne("Project2.getSortListCount",category);
+	}
+
 
 
 

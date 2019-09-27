@@ -14,6 +14,7 @@ import org.springframework.stereotype.Repository;
 
 import com.kh.yc.board.model.vo.PageInfo;
 import com.kh.yc.member.model.vo.Member;
+import com.kh.yc.member.model.vo.Message;
 import com.kh.yc.member.model.vo.NaverMember;
 import com.kh.yc.project.model.vo.Project;
 import com.kh.yc.reward.model.vo.Reward;
@@ -119,7 +120,7 @@ public class MemberDaoImpl implements MemberDao{
 			return sqlSession.insert("Naver.naverInsert", nm);
 		}
 		
-		//좋아요 기능
+		 
 		@Override
 		public int naverLoginCheck(SqlSessionTemplate sqlSession, NaverMember nm) {
 
@@ -156,6 +157,20 @@ public class MemberDaoImpl implements MemberDao{
 		public Member selectMemberInfo(SqlSessionTemplate sqlSession, String userNo) {
 			// TODO Auto-generated method stub
 			return sqlSession.selectOne("Member.selectMemberInfo", userNo);
+		}
+		
+		@SuppressWarnings("rawtypes")
+		@Override
+		public ArrayList<Message> selectMessageList(SqlSessionTemplate sqlSession, Member member) {
+			
+			ArrayList<Message> message = (ArrayList) sqlSession.selectList("Member.selectMessageList",member.getUserNo());
+			
+			return message;
+		}
+		@Override
+		public int insertMessage(SqlSessionTemplate sqlSession, Message message) {
+			 
+			return sqlSession.insert("Member.insertMessage", message);
 		}
 
 	

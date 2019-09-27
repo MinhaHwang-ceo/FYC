@@ -225,7 +225,7 @@ public class BoardController {
 
 		try {
 
-			int listCount = ps.getListCount();
+			int listCount = ps.getSortListCount(category);
 			PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
 			
 
@@ -528,7 +528,6 @@ public class BoardController {
 			}
 		} catch (Exception e) {
 			list = bs.getProject();
-			e.printStackTrace();
 		}
 		model.addAttribute("list", list);
 		return "main/main";

@@ -345,7 +345,7 @@ public class FundingController {
 				attach.setProjectNo(p.getProjectNo());
 				attach.setFileSrc(filePath + "\\");
 				attach.setOriginFileName(originFileName);
-				attach.setNewFileName(newFileName);
+				attach.setNewFileName(newFileName + ext);
 				attach.setFileLevel("1");
 				
 				int result = fs.insertProfileImg(attach);

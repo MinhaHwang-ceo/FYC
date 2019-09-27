@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 
 import com.kh.yc.board.model.vo.PageInfo;
 import com.kh.yc.member.model.vo.Member;
+import com.kh.yc.member.model.vo.Message;
 import com.kh.yc.member.model.vo.NaverMember;
 import com.kh.yc.project.model.vo.Project;
 import com.kh.yc.reward.model.vo.Reward;
@@ -64,6 +65,10 @@ Reward selectMyRewardDetail(SqlSessionTemplate sqlSession, int rewardNoInt);
 ArrayList<Project> interestProject(SqlSessionTemplate sqlSession, Member mse);
 
 Member selectMemberInfo(SqlSessionTemplate sqlSession, String userNo);
+//메세지 출력
+ArrayList<Message> selectMessageList(SqlSessionTemplate sqlSession, Member member);
+//메세지 insert
+int insertMessage(SqlSessionTemplate sqlSession, Message message);
 
 
 

@@ -167,6 +167,14 @@
 		<result property="replyComment" column="REPLY_COMMENT" />
 		<result property="userName" column="MEMBER_NAME" />
 	</resultMap>
+	
+	<resultMap type="com.kh.yc.category.model.vo.Encore" id="EncoreList">
+		<id property="encoreNo" column="ENCORE_NO" />
+		<result property="projectNo" column="PROJECT_NO" />
+		<result property="userNo" column="MEMBER_NO" />
+	</resultMap>
+	
+	
 
 	<select id="selectListCount" resultType="_int">
 		SELECT COUNT(*)
@@ -994,6 +1002,38 @@ select member_phone
 from open_alarm
 where project_no=#{projectNo}
 	</select>
+	
+	<insert id="insertEncore">
+		INSERT INTO ENCORE(ENCORE_NO,PROJECT_NO,MEMBER_NO)
+		VALUES
+		(SEQ_ENCORENO.NEXTVAL,#{projectNo} ,#{userNo} )
+	</insert>
+	
+	<select id="encoreCount" resultType="int">
+		SELECT COUNT(*)
+		FROM ENCORE
+		WHERE PROJECT_NO = #{projectNo}
+		AND MEMBER_NO = #{userNo}
+	</select>
+	
+	<select id="makerImg" resultType="string">
+	SELECT NEW_FILE_NAME
+	FROM ATTACHMENT
+	WHERE PROJECT_NO = #{projectNo}
+	AND FILE_LEVEL = 1
+	</select>
+	
+	 <select id="getSortListCount" resultType="_int">
+   	  SELECT COUNT(*)
+      FROM
+      PROJECT
+      WHERE CATEGORY = #{category} 
+      AND PROGRESS_STATUS != '오픈예정'
+      AND PROGRESS_STATUS != '실패'
+      AND PROGRESS_STATUS IS NOT NULL
+      AND JUDGE_STATUS = '통과'
+   </select>
+	
 
 
 </mapper>
