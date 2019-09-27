@@ -17,6 +17,7 @@ import com.kh.yc.board.model.vo.PageInfo;
 import com.kh.yc.member.model.dao.MemberDao;
 import com.kh.yc.member.model.dao.MemberDaoImpl;
 import com.kh.yc.member.model.vo.Member;
+import com.kh.yc.member.model.vo.Message;
 import com.kh.yc.member.model.vo.NaverMember;
 import com.kh.yc.project.model.vo.Project;
 import com.kh.yc.reward.model.vo.Reward;
@@ -128,9 +129,9 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public Reward selectMyRewardDetail(int rewardNoInt) {
+	public Reward selectMyRewardDetail(int fundNoInt) {
 		
-		return md.selectMyRewardDetail(sqlSession, rewardNoInt);
+		return md.selectMyRewardDetail(sqlSession, fundNoInt);
 	}
 
 	@Override
@@ -139,13 +140,45 @@ public class MemberServiceImpl implements MemberService {
 		return md.interestProject(sqlSession, mse);
 }
   
-  
+  @Override
 	public Member selectMember(String userNo) {
 		// TODO Auto-generated method stub
 		return md.selectMemberInfo(sqlSession, userNo);
 	}
 
-	
+
+	@Override
+	public Object userCrystal(Member mse) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ArrayList<Message> selectMessageList(Member member) {
+		
+		ArrayList<Message> message = md.selectMessageList(sqlSession,member);
+		
+		return message;
+	}
+
+	@Override
+	public int insertMessage(Message message) {
+		 
+		return md.insertMessage(sqlSession,message);
+	}
+
+
+	@Override
+	public boolean checkPwd(String userId, String userPwd) {
+		
+		return md.checkPwd(sqlSession, userId, userPwd);
+	}
+
+	@Override
+	public void updateMember(Member mse) {
+		
+		md.updateMember(sqlSession, mse);
+	}
 
 
 

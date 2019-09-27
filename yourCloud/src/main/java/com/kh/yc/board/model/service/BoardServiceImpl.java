@@ -144,6 +144,11 @@ public class BoardServiceImpl implements BoardService {
 	public int PageListCount() {
 		
 		return bd.PageListCount(sqlSession);
+  }
+  @Override
+	public ArrayList<Project> selectRankList() {
+		// TODO Auto-generated method stub
+		return bd.selectRankList(sqlSession);
 	}
 
 }

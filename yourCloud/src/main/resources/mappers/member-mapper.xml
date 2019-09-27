@@ -21,7 +21,19 @@
       <result property="status" column="STATUS"/>
       <result property="memberDiv" column="MEMBER_DIV"/>   
       <result property="emailAgree" column="EMAIL_AGREE"/>      
-         </resultMap>
+</resultMap>
+         
+      	<resultMap type="com.kh.yc.member.model.vo.Message" id="MessageList">
+			<id property="messageNo" column="MESSAGE_NO" />
+			<result property="sendMember" column="SEND_MEMBER" />
+			<result property="receiveMember" column="RECEIVE_MEMBER" />
+			<result property="createDate" column="CREATE_DATE" />
+			<result property="messageContent" column="MESSAGE_CONTENT" />
+			<result property="status" column="STATUS" />
+			<result property="userName" column="MEMBER_NAME" />		
+		</resultMap>   
+         
+         
       <select id="loginCheck" resultMap="memberResultSet" parameterType="Member">
       SELECT *
       FROM MEMBER
@@ -157,5 +169,38 @@
 		FROM MEMBER
 		WHERE MEMBER_NO = #{userNo}
 	</select>
+
+	<select id="selectMessageList" resultMap="MessageList" parameterType="Member">
+		SELECT G.MESSAGE_NO,G.SEND_MEMBER,G.RECEIVE_MEMBER,G.CREATE_DATE,G.MESSAGE_CONTENT,G.STATUS,M.MEMBER_NAME
+		FROM MESSAGE G
+		JOIN MEMBER M ON (M.MEMBER_NO = G.SEND_MEMBER)
+		WHERE G.SEND_MEMBER = #{userNo}
+		OR G.RECEIVE_MEMBER = #{userNo}
+		ORDER BY G.MESSAGE_NO DESC
+	</select>
+	
+	<insert id="insertMessage">
+		INSERT INTO 
+		MESSAGE (MESSAGE_NO,SEND_MEMBER,RECEIVE_MEMBER,CREATE_DATE,MESSAGE_CONTENT,STATUS)
+		VALUES
+		(SEQ_MESSAGENO.NEXTVAL,#{sendMember},#{receiveMember},SYSDATE,#{messageContent},'N')
+	
+	</insert>
+	
+	
+	<select id="checkPwd" resultType="int" resultMap="memberResultSet">
+		SELECT COUNT(*)
+		FROM MEMBER
+		WHERE MEMBER_ID = #{userId} AND MEMBER_PASSWORD = #{userPwd}
+	</select>
+	
+	<update id="updateMember1" parameterType="Member">
+		UPDATE MEMBER
+		SET 
+			EMAIL = #{email}
+			MEMBER_CATEGORY = #{memberCategory}
+			EMAIL_AGREE  = #{emailAgree}
+		WHERE MEMBER_ID = #{userId}
+	</update>
 
 </mapper>

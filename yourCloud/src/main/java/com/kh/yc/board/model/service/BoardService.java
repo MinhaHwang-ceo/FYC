@@ -69,6 +69,9 @@ public interface BoardService {
 
 	int PageListCount();
 
+	ArrayList<Project> selectRankList();
+
+
 
 
 }

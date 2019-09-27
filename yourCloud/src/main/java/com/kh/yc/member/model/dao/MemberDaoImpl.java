@@ -1,7 +1,9 @@
 package com.kh.yc.member.model.dao;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 import javax.security.auth.login.LoginException;
@@ -14,6 +16,7 @@ import org.springframework.stereotype.Repository;
 
 import com.kh.yc.board.model.vo.PageInfo;
 import com.kh.yc.member.model.vo.Member;
+import com.kh.yc.member.model.vo.Message;
 import com.kh.yc.member.model.vo.NaverMember;
 import com.kh.yc.project.model.vo.Project;
 import com.kh.yc.reward.model.vo.Reward;
@@ -119,7 +122,7 @@ public class MemberDaoImpl implements MemberDao{
 			return sqlSession.insert("Naver.naverInsert", nm);
 		}
 		
-		//좋아요 기능
+		 
 		@Override
 		public int naverLoginCheck(SqlSessionTemplate sqlSession, Member nm) {
 
@@ -138,9 +141,9 @@ public class MemberDaoImpl implements MemberDao{
 			return list;
 		} 
 		@Override
-		public Reward selectMyRewardDetail(SqlSessionTemplate sqlSession, int rewardNoInt) {
+		public Reward selectMyRewardDetail(SqlSessionTemplate sqlSession, int fundNoInt) {
 			
-			return sqlSession.selectOne("Reward.selectMyRewardDetail", rewardNoInt);
+			return sqlSession.selectOne("Reward.selectMyRewardDetail", fundNoInt);
 		}
 		@SuppressWarnings({ "unchecked", "rawtypes" })
 		@Override
@@ -156,6 +159,38 @@ public class MemberDaoImpl implements MemberDao{
 		public Member selectMemberInfo(SqlSessionTemplate sqlSession, String userNo) {
 			// TODO Auto-generated method stub
 			return sqlSession.selectOne("Member.selectMemberInfo", userNo);
+		}
+
+		@SuppressWarnings("rawtypes")
+		@Override
+		public ArrayList<Message> selectMessageList(SqlSessionTemplate sqlSession, Member member) {
+			
+			ArrayList<Message> message = (ArrayList) sqlSession.selectList("Member.selectMessageList",member.getUserNo());
+			
+			return message;
+		}
+		@Override
+		public int insertMessage(SqlSessionTemplate sqlSession, Message message) {
+			 
+			return sqlSession.insert("Member.insertMessage", message);
+    }
+		@Override
+		public boolean checkPwd(SqlSessionTemplate sqlSession, String userId, String userPwd) {
+			boolean result = false;
+			Map<String, String> map = new HashMap<String, String>();
+			map.put("userId", userId);
+			map.put("userPwd", userPwd);
+			int count = sqlSession.selectOne("member.checkPwd", map);
+			if(count == 1) {
+				result= true;
+			}
+			
+			return result;
+		}
+		@Override
+		public void updateMember(SqlSessionTemplate sqlSession, Member mse) {
+			sqlSession.update("member.updateMember1", mse);
+
 		}
 
 	

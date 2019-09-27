@@ -22,27 +22,20 @@
 	<br />
 	<div id="outer" style="padding-left:300px; padding-right:300px;">
 		<div id="messageBoxHeader">
-			<h2><img src="${ contextPath }/resources/images/message.png" style="width:80px;"/> &nbsp; <c:out value="${ loginUser.userName }"/> 님의 쪽지함</h2>
-		<button style="left:920px;">쪽지 보내기</button>
+			<h2><img src="${ contextPath }/resources/images/message.png" style="width:80px;"/> &nbsp; <a style="color:#5C6BC0;"><c:out value="${ loginUser.userName }"/>님</a>의 쪽지함</h2>
+		<button style="left:920px;">쪽지 보내기  </button><br><br>
 		</div>
 		<br />
+				<c:forEach var="m" items="${message}">
 		<div class="messageList">
-			<figure class="snip1141">
-				<table class="messageListTable">
-					<tr>
-						<td>&emsp;</td>
-						<td>(주)지티엘</td>
-						<td>하이하이 플젝명</td>
-						<td>날짜</td>
-						<td>&nbsp;</td>
-					</tr>
-				</table>
-				<figcaption>
-					<div class=""><i class="ion-ios-plus-empty"> </i></div>
-				</figcaption>
-			</figure>			
-		</div>
-	</div>
+			<figure class="snip1141" style="height:50px; width:450px; margin:0 auto;">
+		
+						&emsp; <c:out value="${m.userName }"/>님과의 대화
+					
+			</figure>	
+		</div><br>
+				</c:forEach>
+	</div><br><br>
 	<jsp:include page="../common/customer_footer.jsp"/>
 	<script>
 		$(function(){

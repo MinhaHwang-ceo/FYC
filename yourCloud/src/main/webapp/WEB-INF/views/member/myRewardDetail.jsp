@@ -33,7 +33,6 @@
 						<p class="category"><c:out value="${ r.categoryDiv }"/></p>	
 						<p class="status smallText"><c:out value="${ r.endDate }"/> 종료</p>
 						<p class="projectTitle"><c:out value="${ r.projectTitle }"/></p>
-						<p class="maker smallText" style="color:black"><c:out value="${ r.companyName }"/></p>
 					</div>				
 					<div class="right">
 						<p><c:out value="${ r.fundDate }"/> 펀딩</p>	
@@ -51,11 +50,29 @@
 						<p><c:out value="${ r.endDate }"/></p>
 					</div>
 				</div>
+				<c:choose>
+				<c:when  test="${r.payStatus eq '결제실패'}">
 				<div class="payStatusForm rewards">
 					<label style="color:lightgray" class="smallText">펀딩 상태</label>
-					<p class="payStatus"><c:out value="${ r.payStatus  }"/>결제실패</p>
+					<p class="payStatus"><c:out value="${ r.payStatus  }"/></p>
 					<p class="smallNotice">프로젝트가 실패하여, 결제가 진행되지 않습니다.</p>
 				</div>
+				</c:when>
+				<c:when  test="${r.payStatus eq '결제전'}">
+				<div class="payStatusForm rewards">
+					<label style="color:lightgray" class="smallText">펀딩 상태</label>
+					<p class="payStatus"><c:out value="${ r.payStatus  }"/></p>
+					<p class="smallNotice">프로젝트가 진행중이여서, 결제 대기중입니다.</p>
+				</div>
+				</c:when>
+				<c:when  test="${r.payStatus eq '결제완료'}">
+				<div class="payStatusForm rewards">
+					<label style="color:lightgray" class="smallText">펀딩 상태</label>
+					<p class="payStatus"><c:out value="${ r.payStatus  }"/></p>
+					<p class="smallNotice">프로젝트가 성공하여, 결제가 완료되었습니다.</p>
+				</div>
+				</c:when>
+				</c:choose>
 				<p>&nbsp;</p>
 				<p class="smallNotice">&nbsp;* 펀딩하기는 쇼핑하기가 아닙니다!</p>
 				<div class="rewards">
@@ -92,7 +109,7 @@
 				</div>
 				<div class="rewards">
 					<div class="left">
-						<p class="smallText">펀딩 상태</p>
+						<p class="smallText">결제 정보</p>
 						<p>결제 방법</p>
 						<p>계좌 번호</p>
 					</div>
@@ -106,7 +123,7 @@
 					<div class="left">
 						<p class="smallText">배송지 정보</p>
 						<p><c:out value="${ loginUser.userName }"/></p>
-						<p>010-0000-0000</p>
+						<p><c:out value="${ r.memberPhone }"/></p>
 						<p><c:out value="${ r.deliverySite }"/></p>
 					</div>
 				</div>

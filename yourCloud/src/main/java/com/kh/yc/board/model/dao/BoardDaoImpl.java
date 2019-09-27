@@ -214,6 +214,14 @@ public class BoardDaoImpl implements BoardDao {
 	public int PageListCount(SqlSessionTemplate sqlSession) {
 	
 		return sqlSession.selectOne("Board.selectPageListCount");
+
+  }
+  
+  @Override
+	public ArrayList<Project> selectRankList(SqlSessionTemplate sqlSession) {
+		ArrayList<Project> list = (ArrayList)sqlSession.selectList("Project2.selectRankList");
+		return list;
+
 	}
 
 

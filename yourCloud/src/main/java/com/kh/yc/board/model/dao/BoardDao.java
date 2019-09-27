@@ -71,6 +71,9 @@ public interface BoardDao {
 
 	int PageListCount(SqlSessionTemplate sqlSession);
 
+	ArrayList<Project> selectRankList(SqlSessionTemplate sqlSession);
+
+
 
 	
 

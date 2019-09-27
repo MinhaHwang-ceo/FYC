@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.kh.yc.board.model.vo.PageInfo;
+import com.kh.yc.category.model.vo.Encore;
 import com.kh.yc.category.model.vo.Reply;
 import com.kh.yc.category.model.vo.Report;
 import com.kh.yc.funding.model.vo.Funding;
@@ -14,6 +15,7 @@ import com.kh.yc.project.model.vo.Interest;
 import com.kh.yc.project.model.vo.OpenAlarm;
 import com.kh.yc.project.model.vo.Project;
 import com.kh.yc.project.model.vo.SupportList;
+import com.kh.yc.reward.model.vo.Reward;
 import com.kh.yc.reward.model.vo.RewardInfo;
 
 public interface ProjectService {
@@ -85,14 +87,21 @@ public interface ProjectService {
 	//서포터 리스트
 	ArrayList<Funding> fundList(int projectNo);
 
-
 	ArrayList<Project> memberCategories(ArrayList<String> categoryList);
-
 	//문자알림1
-	  List<OpenAlarm> getCount(String present2);
-	  
-	  //문자알림2
+	List<OpenAlarm> getCount(String present2);  
+	//문자알림2
 	List<OpenAlarm> getCount2(int projectNo);
+	//앵콜신청
+	public int insertEncore(Encore encore);
+	//앵콜 수 카운트
+	public int encoreCount(Interest inter);
+	//리워드 리스트
+	ArrayList<Reward> rewardList(int projectNo);
+	//메이커 이미지
+	public String makerImg(Interest inter);
+	//정렬된 페이징
+	int getSortListCount(String category) throws ProjectSelectListException;
 
 
 }

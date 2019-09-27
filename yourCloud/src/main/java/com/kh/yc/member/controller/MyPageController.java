@@ -31,6 +31,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
@@ -39,6 +40,7 @@ import com.kh.yc.common.CommonUtils;
 import com.kh.yc.common.Pagination;
 import com.kh.yc.member.model.service.MemberService;
 import com.kh.yc.member.model.vo.Member;
+import com.kh.yc.member.model.vo.Message;
 import com.kh.yc.project.model.exception.ProjectSelectListException;
 import com.kh.yc.project.model.service.ProjectService;
 import com.kh.yc.project.model.vo.Project;
@@ -73,14 +75,36 @@ public class MyPageController {
 	public String changeInfo(HttpServletRequest request, HttpServletResponse response, HttpSession session, Model model) {
 		System.out.println("내가 돌아왔다."); 
 		Member mse = (Member) session.getAttribute("loginUser");
-		System.out.println(mse);
-		String encPassword = passwordEncoder.encode(mse.getUserPwd());
-		System.out.println(encPassword);
 		
-		session.setAttribute("member", ms.userCrystal(mse));
+		boolean result = ms.checkPwd(mse.getUserId(), mse.getUserPwd());
+		System.out.println(result);
 		
+		if(result) {
+			ms.updateMember(mse);
+			
+			return "redirect:/member/myPage.me";
+		}else {
+			model.addAttribute("message", "비밀번호 불일치");
+			return "member/userCrystal";
+		}
+	}
+	
+	@RequestMapping("changeInfo1.me")
+	public String changeInfo1(HttpServletRequest request, HttpServletResponse response, HttpSession session, Model model) {
+		System.out.println("내가 돌아왔다."); 
+		Member mse = (Member) session.getAttribute("loginUser");
 		
-		return "member/userCrystal";
+		boolean result = ms.checkPwd(mse.getUserId(), mse.getUserPwd());
+		System.out.println(result);
+		
+		if(result) {
+			ms.updateMember(mse);
+			
+			return "redirect:/member/myPage.me";
+		}else {
+			model.addAttribute("message", "비밀번호 불일치");
+			return "member/userCrystal";
+		}
 	}
 
 	@RequestMapping("interestProject.me")
@@ -91,24 +115,57 @@ public class MyPageController {
 		
 		ArrayList<Project> list = ms.interestProject(mse); 
 		
+		request.setAttribute("list", list);
+		
+
 		return "member/interestProject";
 	}
 
 	@RequestMapping("messageBox.me")
-	public String messageBox(Member m,HttpServletRequest request, HttpServletResponse response) {
-
+	public String messageBox(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
+		
+		Member member = (Member) session.getAttribute("loginUser");
+		//System.out.println(member);
+	
 		//쪽지 출력
-		//ArrayList<Message> message = ms.selectMessageList();
-		System.out.println(m);
+		ArrayList<Message> message = ms.selectMessageList(member);
+		
+		
+		System.out.println(message+"는??");
+		
+		request.setAttribute("message", message);
+		request.setAttribute("member", member);
 		
 		return "member/messageBox";
 	}
 
 	@RequestMapping("sendMessage.me")
-	public String sendMessage(@ModelAttribute Member m) {
+	public String sendMessage(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
 
+		int makerNo = Integer.parseInt(request.getParameter("makerNo"));
+		
+		request.setAttribute("makerNo", makerNo);
+		
 		return "member/message";
 	}
+	
+	@ResponseBody
+	@RequestMapping("submitMessage.me")
+	public int submitMessage(Message message,HttpServletRequest request, HttpServletResponse response, HttpSession session) {
+		
+		System.out.println(message);
+		
+		return ms.insertMessage(message);
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 	@RequestMapping("myReward.me")
 	public String myReward(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
@@ -144,14 +201,14 @@ public class MyPageController {
 	@RequestMapping("showMyRewardDetail.me")
 	public String showMyRewardDetail(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
 		
-		String rewardNo = request.getParameter("rewardNo");
-		int rewardNoInt = Integer.parseInt(rewardNo);
-		System.out.println(rewardNoInt);
+		String fundNo = request.getParameter("fundNo");
+		int fundNoInt = Integer.parseInt(fundNo);
+		System.out.println(fundNoInt);
 		
 		Reward r = new Reward();
 		
 		
-		r = ms.selectMyRewardDetail(rewardNoInt); 
+		r = ms.selectMyRewardDetail(fundNoInt); 
 		request.setAttribute("r", r);
 		 
 		
