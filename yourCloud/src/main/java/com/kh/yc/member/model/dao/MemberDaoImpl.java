@@ -113,7 +113,7 @@ public class MemberDaoImpl implements MemberDao{
 
 		//네이버 회원 정보 인셀트
 		@Override
-		public int naverInsert(SqlSessionTemplate sqlSession, NaverMember nm) {
+		public int naverInsert(SqlSessionTemplate sqlSession, Member nm) {
 			
 			System.out.println("Dao : " + nm);
 			return sqlSession.insert("Naver.naverInsert", nm);
@@ -121,7 +121,7 @@ public class MemberDaoImpl implements MemberDao{
 		
 		//좋아요 기능
 		@Override
-		public int naverLoginCheck(SqlSessionTemplate sqlSession, NaverMember nm) {
+		public int naverLoginCheck(SqlSessionTemplate sqlSession, Member nm) {
 
 			return sqlSession.selectOne("Naver.naverLoginCheck", nm);
 		}

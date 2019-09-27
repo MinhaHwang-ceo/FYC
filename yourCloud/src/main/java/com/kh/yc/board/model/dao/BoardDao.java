@@ -1,6 +1,7 @@
 package com.kh.yc.board.model.dao;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
 
@@ -10,6 +11,7 @@ import com.kh.yc.board.model.vo.Board;
 import com.kh.yc.board.model.vo.Comment;
 import com.kh.yc.board.model.vo.PageInfo;
 import com.kh.yc.board.model.vo.SearchCondition;
+import com.kh.yc.funding.model.vo.Attachment;
 
 public interface BoardDao {
 
@@ -56,6 +58,18 @@ public interface BoardDao {
 	ArrayList<Reward> selectRewardList(SqlSessionTemplate sqlSession, int pNo);
 
 	Reward selectReward(SqlSessionTemplate sqlSession, String string);
+
+	int boardInsert(SqlSessionTemplate sqlSession, Board b);
+
+	int boardContentInsert(SqlSessionTemplate sqlSession, Board b);
+
+	int fileInsert(SqlSessionTemplate sqlSession, Attachment fileVO);
+
+	List<Board> selectAllBoardList(SqlSessionTemplate sqlSession, Board b);
+
+	List<Attachment> selectAllfileList(SqlSessionTemplate sqlSession, Attachment at);
+
+	int PageListCount(SqlSessionTemplate sqlSession);
 
 
 	

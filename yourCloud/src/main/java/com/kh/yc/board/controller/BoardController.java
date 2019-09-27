@@ -1,5 +1,6 @@
 package com.kh.yc.board.controller;
 
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -22,7 +23,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.yc.board.model.service.BoardService;
@@ -32,6 +35,7 @@ import com.kh.yc.board.model.vo.PageInfo;
 import com.kh.yc.board.model.vo.SearchCondition;
 import com.kh.yc.common.CommonUtils;
 import com.kh.yc.common.Pagination;
+import com.kh.yc.funding.model.vo.Attachment;
 import com.kh.yc.funding.model.vo.Funding;
 import com.kh.yc.member.model.service.MemberService;
 import com.kh.yc.member.model.vo.Member;
@@ -272,8 +276,22 @@ public class BoardController {
 	}
 
 	@RequestMapping("notice.bo")
-	public String Notice() {
-
+	public String Notice(Model model, Board b, HttpServletRequest request, HttpServletResponse response) {
+		int currentPage = 1;
+		
+		if (request.getParameter("currentPage") != null) {
+			currentPage = Integer.parseInt(request.getParameter("currentPage"));
+		}
+		
+		int listCount = bs.PageListCount();
+		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
+		
+		
+		List<Board> BoardList = bs.selectAllBoardList(b);
+	
+		System.out.println(BoardList);
+		
+		model.addAttribute("BoardList",BoardList);
 		return "board/notice";
 	}
 
@@ -533,5 +551,57 @@ public class BoardController {
 		model.addAttribute("list", list);
 		return "main/main";
 	}
+	@RequestMapping("noticeInsert.bo")
+	public String noticeInsert(Board b, Model model, HttpSession session, HttpServletRequest request,
+			@RequestParam(name = "photo", required = true) MultipartFile photo) { 
+	 
+		System.out.println("글쓰기");
+		Member m = (Member) session.getAttribute("loginUser");
+		b.setWriter(String.valueOf(m.getUserNo()));
+		System.out.println(b);
+		
+		int boardInsert = bs.boardInsert(b);
+		int bnum = b.getbNo();
+		int boardContentInsert = bs.boardContentInsert(b);
+		
+		System.out.println("photo:" + photo.getOriginalFilename());
+		
+		if (photo != null && photo.getOriginalFilename().length() != 0) {
+
+			String root = request.getSession().getServletContext().getRealPath("resources");
+
+			String filePath = root + "\\uploadFiles";
+			String origunFileName = photo.getOriginalFilename();
+			String ext = origunFileName.substring(origunFileName.lastIndexOf("."));
+			String changeName = CommonUtils.getRandomString()+ext;
+			String fullFilePath = filePath + "\\" + changeName;
+			System.out.println("********************");
+			try {
+
+				photo.transferTo(new File(fullFilePath));
+
+				Attachment fileVO = new Attachment();
+
+				fileVO.setOriginFileName(origunFileName);
+				fileVO.setFileSrc(fullFilePath);
+				fileVO.setNewFileName(changeName);
+				fileVO.setBoardNo(bnum);
+				fileVO.setFileLevel("4");
+				// insert 파일정보
+				
+				int fileInsert = bs.fileInsert(fileVO);
+				
+				model.addAttribute("fileVO", fileVO);
+				// p.setAttachment(fileVO);
+			} catch (Exception e) {
+
+				e.printStackTrace();
+				new File(fullFilePath).delete();
+			}
+		}
+		return "board/notice";
+	}
+	
+	
 }
 

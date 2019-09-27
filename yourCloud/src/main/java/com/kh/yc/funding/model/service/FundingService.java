@@ -89,6 +89,10 @@ public interface FundingService{
 
 	void updateMember(Member m);
 
+	List<Attachment> selectProfileImgList(Attachment at);
+
+	List<Member> makerCompanyNameList(Member m);
+
 
 	
 

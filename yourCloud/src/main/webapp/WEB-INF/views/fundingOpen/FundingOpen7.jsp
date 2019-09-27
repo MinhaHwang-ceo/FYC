@@ -152,7 +152,7 @@ h4 {
 			<table style="align: center; width:100%;">
 				<tr>
 					<td><h5>메이커 이름(법인명)</h5></td>
-					<td ><input type="text" name="companyName"></td>
+					<td ><input type="text" value="${m.companyName}" name="companyName"></td>
 				</tr>
 				<tr>
 					<td><h5>프로필 이미지</h5>
@@ -161,7 +161,7 @@ h4 {
 							<br />(권장 사이즈 : 200px x 200px)
 						</p></td>
 					<td >
-						<img id="image_section" style="width:200px; height:200px;"src="#" /> <br> <input type='file' name="photo" id="photo"/>
+						<img src="resources/uploadFiles/${at.newFileName}" id="image_section" style="width:200px; height:200px;"/> <br> <input type='file' name="photo" id="photo"/>
 					</td>
 				</tr>
 				<tr>
@@ -170,7 +170,7 @@ h4 {
 							서포터가 확인할 수 있는<br>메이커님의 페이스북,<br>인스타그램 링크 등을<br>
 							등록해주세요.(최소 1개 등록)
 						</p></td>
-					<td ><input type="text" name="social"></td>
+					<td ><input value="${p.social}" type="text" name="social"></td>
 				</tr>
 				<tr>
 					<td><h5>문의 이메일</h5>
@@ -178,7 +178,7 @@ h4 {
 							서포터 문의 시 소통이 <br>가능하고, 프로젝트<br> 페이지에 노출가능한<br>
 							이메일을 입력해주세요.
 						</p></td>
-					<td ><input type="text" name="email"></td>
+					<td ><input value="${p.email}" type="text" name="email"></td>
 				</tr>
 				<tr>
 					<td><h5>문의 전화번호</h5>
@@ -186,7 +186,7 @@ h4 {
 							서포터 문의 시 실시간<br> 연락이 가능하고, <br>프로젝트 페이지에<br> 노출가능한
 							대표번호를<br> 입력해주세요.
 						</p></td>
-					<td ><input type="text" name="phone"></td>
+					<td ><input type="text" name="phone" value="${p.phone}"></td>
 				</tr>
 				<tr>
 					<td></td>

@@ -1,6 +1,7 @@
 package com.kh.yc.board.model.dao;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
@@ -10,6 +11,7 @@ import com.kh.yc.board.model.vo.Board;
 import com.kh.yc.board.model.vo.Comment;
 import com.kh.yc.board.model.vo.PageInfo;
 import com.kh.yc.board.model.vo.SearchCondition;
+import com.kh.yc.funding.model.vo.Attachment;
 import com.kh.yc.project.model.vo.Project;
 import com.kh.yc.reward.model.vo.Reward;
 
@@ -176,6 +178,42 @@ public class BoardDaoImpl implements BoardDao {
 	@Override
 	public Reward selectReward(SqlSessionTemplate sqlSession, String string) {
 		return sqlSession.selectOne("Reward.selectReward2", string);
+	}
+
+	@Override
+	public int boardInsert(SqlSessionTemplate sqlSession, Board b) {
+	
+		return sqlSession.insert("Board.boardInsert",b);
+	}
+
+	@Override
+	public int boardContentInsert(SqlSessionTemplate sqlSession, Board b) {
+		
+		return sqlSession.insert("Board.boardContentInsert",b);
+	}
+
+	@Override
+	public int fileInsert(SqlSessionTemplate sqlSession, Attachment fileVO) {
+		
+		return sqlSession.insert("Attachment.fileInsert",fileVO);
+	}
+
+	@Override
+	public List<Board> selectAllBoardList(SqlSessionTemplate sqlSession, Board b) {
+		
+		return sqlSession.selectList("Board.selectAllBoardList",b);
+	}
+
+	@Override
+	public List<Attachment> selectAllfileList(SqlSessionTemplate sqlSession, Attachment at) {
+	
+		return sqlSession.selectList("Attachment.selectAllfileList",at);
+	}
+
+	@Override
+	public int PageListCount(SqlSessionTemplate sqlSession) {
+	
+		return sqlSession.selectOne("Board.selectPageListCount");
 	}
 
 

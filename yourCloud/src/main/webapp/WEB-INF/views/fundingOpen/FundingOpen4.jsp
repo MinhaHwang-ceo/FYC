@@ -201,13 +201,9 @@ td {
 							value="${p.projectNo}"></td>
 					</tr>
 					<tr>
-						<td style="background: White"><h4>연락처</h4>
-							<p>
-								주요 안내를 받으실 이메일<br>과 휴대폰 번호를 등록해 주세요<br>정보 변경은 회원정보설정에서<br>
-								가능합니다.
-							</p></td>
-						<td id="fno"><input type="text" placeholder="연락처" id="phone"
-							name="phone" value="${p.phone}"> <br>
+						<td style="background: White"><h4>이메일</h4>
+							</td>
+						<td>
 						<br> <input type="email" value="${ loginUser.email }"
 							id="email" readonly="readonly"></td>
 					</tr>

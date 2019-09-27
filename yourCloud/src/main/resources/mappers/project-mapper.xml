@@ -171,19 +171,18 @@
 	
 		  <!--  <if test="progressStatus.equals('오픈예정')"> -->
 		UPDATE PROJECT
-		SET PHONE = #{phone}
-		  ,PROJECT_TITLE = #{projectTitle}
-		  ,PROJECT_SHORT_TITLE = #{projectShortTitle}
-		  ,MONEY = TO_NUMBER(#{money})
-		  ,CATEGORY = #{category}
-		  ,PROGRESS = #{progress}
-		  ,DELIVERY = #{delivery}
-		  ,END_DATE = #{endDate}
-		  ,ADULT = #{adult}
-		  ,MAIN_IMG = #{mainImg}
-		  ,PROGRESS_STATUS = #{progressStatus}
-		  ,PROJECT_OPEN = #{projectOpen}
-		   WHERE PROJECT_NO = #{projectNo} 
+		SET    PROJECT_TITLE = #{projectTitle}
+			  ,PROJECT_SHORT_TITLE = #{projectShortTitle}
+			  ,MONEY = TO_NUMBER(#{money})
+			  ,CATEGORY = #{category}
+			  ,PROGRESS = #{progress}
+			  ,DELIVERY = #{delivery}
+			  ,END_DATE = #{endDate}
+			  ,ADULT = #{adult}
+			  ,MAIN_IMG = #{mainImg}
+			  ,PROGRESS_STATUS = #{progressStatus}
+			  ,PROJECT_OPEN = #{projectOpen}
+			   WHERE PROJECT_NO = #{projectNo} 
 		  
 		  <!--  </if> -->
 		   

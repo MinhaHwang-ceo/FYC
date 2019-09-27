@@ -18,6 +18,7 @@ public class Board implements Serializable {
 	private String companyName;
 	private String pTitle;
 	private ArrayList<Comment> commentList;
+	private String newFileName;
 
 	public Board() {
 		super();
@@ -26,7 +27,8 @@ public class Board implements Serializable {
 
 	public Board(int bNo, String bTitle, String writer, int bCount, String open, String status, String bCategory,
 			String refBNo, Date createDate, String bcontent, String companyName, String pTitle,
-			ArrayList<Comment> commentList) {
+			ArrayList<Comment> commentList, String newFileName) {
+		super();
 		this.bNo = bNo;
 		this.bTitle = bTitle;
 		this.writer = writer;
@@ -40,6 +42,7 @@ public class Board implements Serializable {
 		this.companyName = companyName;
 		this.pTitle = pTitle;
 		this.commentList = commentList;
+		this.newFileName = newFileName;
 	}
 
 	public int getbNo() {
@@ -121,6 +124,7 @@ public class Board implements Serializable {
 	public void setBcontent(String bcontent) {
 		this.bcontent = bcontent;
 	}
+
 	public String getCompanyName() {
 		return companyName;
 	}
@@ -145,14 +149,23 @@ public class Board implements Serializable {
 		this.commentList = commentList;
 	}
 
+	public String getNewFileName() {
+		return newFileName;
+	}
+
+	public void setNewFileName(String newFileName) {
+		this.newFileName = newFileName;
+	}
+
 	@Override
 	public String toString() {
 		return "Board [bNo=" + bNo + ", bTitle=" + bTitle + ", writer=" + writer + ", bCount=" + bCount + ", open="
 				+ open + ", status=" + status + ", bCategory=" + bCategory + ", refBNo=" + refBNo + ", createDate="
 				+ createDate + ", bcontent=" + bcontent + ", companyName=" + companyName + ", pTitle=" + pTitle
-				+ ", commentList=" + commentList + "]";
+				+ ", commentList=" + commentList + ", newFileName=" + newFileName + "]";
 	}
 
+	
 
 
 }

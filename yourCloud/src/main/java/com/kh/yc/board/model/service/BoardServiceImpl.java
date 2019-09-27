@@ -1,6 +1,7 @@
 package com.kh.yc.board.model.service;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,7 @@ import com.kh.yc.board.model.vo.Board;
 import com.kh.yc.board.model.vo.Comment;
 import com.kh.yc.board.model.vo.PageInfo;
 import com.kh.yc.board.model.vo.SearchCondition;
+import com.kh.yc.funding.model.vo.Attachment;
 
 @Service
 public class BoardServiceImpl implements BoardService {
@@ -112,6 +114,36 @@ public class BoardServiceImpl implements BoardService {
 	}
 	public Reward selectReward(String string) {
 		return bd.selectReward(sqlSession, string);
+	}
+	@Override
+	public int boardInsert(Board b) {
+		
+		return bd.boardInsert(sqlSession,b);
+	}
+	@Override
+	public int boardContentInsert(Board b) {
+		
+		return bd.boardContentInsert(sqlSession,b);
+	}
+	@Override
+	public int fileInsert(Attachment fileVO) {
+		
+		return bd.fileInsert(sqlSession,fileVO);
+	}
+	@Override
+	public List<Board> selectAllBoardList(Board b) {
+		
+		return bd.selectAllBoardList(sqlSession,b);
+	}
+	@Override
+	public List<Attachment> selectAllfileList(Attachment at) {
+		
+		return bd.selectAllfileList(sqlSession,at);
+	}
+	@Override
+	public int PageListCount() {
+		
+		return bd.PageListCount(sqlSession);
 	}
 
 }

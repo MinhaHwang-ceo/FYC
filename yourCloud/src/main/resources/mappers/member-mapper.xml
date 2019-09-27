@@ -151,5 +151,11 @@
 		WHERE MEMBER_NO = #{userNo}
 		
 	</update>
+	
+	<select id="makerCompanyNameList" resultMap="memberResultSet">
+		SELECT *
+		FROM MEMBER
+		WHERE MEMBER_NO = #{userNo}
+	</select>
 
 </mapper>

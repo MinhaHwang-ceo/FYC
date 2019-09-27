@@ -80,6 +80,10 @@ public interface FundingDao {
 
 	void updateMember(SqlSessionTemplate sqlSession, Member m);
 
+	List<Attachment> selectProfileImgList(SqlSessionTemplate sqlSession, Attachment at);
+
+	List<Member> makerCompanyNameList(SqlSessionTemplate sqlSession, Member m);
+
 
 
 

@@ -98,7 +98,7 @@ table {
 </script>
 	<br />
 	<br>
-	<form action="finalOpen.fd" method="POST" encType="multipart/form-data">
+	<form action="finalOpen.fd" method="POST" encType="multipart/form-data" id="openForm">
 		<input type="hidden" id="projectNo" name="projectNo" value="${p.projectNo }" /> 
 		<input type="hidden" id="userNo" name="userNo" value="${ sessionScope.loginUser.userNo }" />
 		<div id="inputBox2" align="center" style="width: 100%; min-height: 700px;">
@@ -134,7 +134,7 @@ table {
 			</tr>
 			<tr>
 				<td colspan="4">
-					<button type="button" onclick="submit();">저장하기</button>
+					<input type="button" value="저장하기" onclick="submit();" />
 				</td>
 			</tr>
 		</table>
