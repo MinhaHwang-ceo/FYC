@@ -1,6 +1,7 @@
 package com.kh.yc.board.model.service;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import com.kh.yc.project.model.vo.Project;
 import com.kh.yc.reward.model.vo.Reward;
@@ -8,6 +9,7 @@ import com.kh.yc.board.model.vo.Board;
 import com.kh.yc.board.model.vo.Comment;
 import com.kh.yc.board.model.vo.PageInfo;
 import com.kh.yc.board.model.vo.SearchCondition;
+import com.kh.yc.funding.model.vo.Attachment;
 
 public interface BoardService {
 
@@ -55,7 +57,20 @@ public interface BoardService {
 
 	Reward selectReward(String string);
 
+	int boardInsert(Board b);
+
+	int boardContentInsert(Board b);
+
+	int fileInsert(Attachment fileVO);
+
+	List<Board> selectAllBoardList(Board b);
+
+	List<Attachment> selectAllfileList(Attachment at);
+
+	int PageListCount();
+
 	ArrayList<Project> selectRankList();
+
 
 
 

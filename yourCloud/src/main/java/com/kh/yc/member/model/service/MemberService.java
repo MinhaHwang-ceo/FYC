@@ -30,9 +30,9 @@ public interface MemberService {
 //	NaverMember naverloginCheck(NaverMember nm);
 
 	//네이버 로그인
-	int naverInsert(NaverMember nm);
+	int naverInsert(Member nm);
 
-	int naverLoginCheck(NaverMember nm);
+	int naverLoginCheck(Member nm);
 
 
 	public void updatePwd(String email,String userPwd); 

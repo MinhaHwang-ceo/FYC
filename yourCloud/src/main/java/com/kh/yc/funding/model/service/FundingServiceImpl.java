@@ -237,6 +237,18 @@ public class FundingServiceImpl implements FundingService{
 		fd.updateMember(sqlSession,m);
 		
 	}
+
+	@Override
+	public List<Attachment> selectProfileImgList(Attachment at) {
+		
+		return fd.selectProfileImgList(sqlSession,at);
+	}
+
+	@Override
+	public List<Member> makerCompanyNameList(Member m) {
+		
+		return fd.makerCompanyNameList(sqlSession,m);
+	}
 	
 	
 	

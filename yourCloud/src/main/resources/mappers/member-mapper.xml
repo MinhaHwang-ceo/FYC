@@ -164,6 +164,12 @@
 		
 	</update>
 	
+	<select id="makerCompanyNameList" resultMap="memberResultSet">
+		SELECT *
+		FROM MEMBER
+		WHERE MEMBER_NO = #{userNo}
+	</select>
+
 	<select id="selectMessageList" resultMap="MessageList" parameterType="Member">
 		SELECT G.MESSAGE_NO,G.SEND_MEMBER,G.RECEIVE_MEMBER,G.CREATE_DATE,G.MESSAGE_CONTENT,G.STATUS,M.MEMBER_NAME
 		FROM MESSAGE G

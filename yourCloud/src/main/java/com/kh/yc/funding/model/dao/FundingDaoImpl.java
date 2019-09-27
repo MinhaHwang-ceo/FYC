@@ -173,13 +173,23 @@ public  class FundingDaoImpl implements FundingDao{
 		return sqlSession.selectList("Project2.selectRewardInfoJop",rf);
 	}
 	@Override
+	public void updateMember(SqlSessionTemplate sqlSession, Member m) {
+		sqlSession.selectList("Member.updateMemberCompanyName",m);
+	}
+	@Override
 	public List<Project> selectMakerInfo(SqlSessionTemplate sqlSession, Project p) {
 		
 		return sqlSession.selectList("Project2.selectMakerInfo",p);
 	}
 	@Override
-	public void updateMember(SqlSessionTemplate sqlSession, Member m) {
-		sqlSession.selectList("Member.updateMemberCompanyName",m);
+	public List<Attachment> selectProfileImgList(SqlSessionTemplate sqlSession, Attachment at) {
+		
+		return sqlSession.selectList("Attachment.selectProfileImgList",at);
+	}
+	@Override
+	public List<Member> makerCompanyNameList(SqlSessionTemplate sqlSession, Member m) {
+		
+		return sqlSession.selectList("Member.makerCompanyNameList",m);
 	}
 	
 

@@ -131,7 +131,7 @@ public class NaverController {
 		
 		naverAge = naverAge.split("-")[0];
 		
-		NaverMember nm = new NaverMember();
+		Member nm = new Member();
 		//nm.setProfile(profile);
 		nm.setUserName(naverName);
 		nm.setUserId(naverId);
@@ -148,7 +148,7 @@ public class NaverController {
 		if (chk < 1) {
 			int insert = ms.naverInsert(nm);
 			
-			return "member/myPage.me";
+			return "member/joinNaver.jsp";
 		}else {
 			
 			model.addAttribute("loginUser", nm);
@@ -183,7 +183,8 @@ public class NaverController {
 //		}
 		 
 	}
-		
+	
+			
 	/*
 	 * // 네이버 회원정보 입력
 	 * 

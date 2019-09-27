@@ -14,7 +14,9 @@
 		<result property="bCategory" column="BOARD_CATEGORY" />
 		<result property="refBNo" column="REF_BOARD_NO" />
 		<result property="createDate" column="CREATE_DATE" />
+		<result property="newFileName" column="NEW_FILE_NAME" />
 	</resultMap>
+	
 	<resultMap type="Comment" id="commentResultSet">
 		<id property="cNo" column="COMMENT_NO" />
 		<result property="writer" column="MEMBER_ID" />
@@ -293,4 +295,37 @@
 			SEQ_COMMENTNO.NEXTVAL, #{writer}, SYSDATE, #{refCNo}, #{content}, #{bNo}, 'N'
 		)
 	</insert>
+	
+	<insert id="boardInsert" parameterType="Board">
+		INSERT INTO BOARD(BOARD_NO, BOARD_TITLE, WRITER, VIEW_COUNT, OPEN, STATUS, BOARD_CATEGORY, REF_BOARD_NO, CREATE_DATE)
+		VALUES(
+		    	SEQ_BOARDNO.NEXTVAL, #{bTitle}, #{writer}, 0, 'Y' ,'N', '공지사항', NULL, SYSDATE
+		    )
+	<selectKey resultType="integer" keyProperty="bNo" order="AFTER">
+        SELECT SEQ_BOARDNO.CURRVAL FROM DUAL        
+    </selectKey>
+	</insert>
+	
+	<insert id="boardContentInsert" parameterType="Board">
+		INSERT INTO BOARD_CONTENT(BOARD_CONTENT, BOARD_NO)
+		VALUES(
+				#{bcontent}, SEQ_BOARDNO.CURRVAL
+			)
+	
+	</insert>
+	<select id="selectAllBoardList" resultMap="boardResultSet">
+		SELECT *
+		FROM BOARD B
+		LEFT OUTER JOIN BOARD_CONTENT BC ON (B.BOARD_NO = BC.BOARD_NO)
+		LEFT OUTER JOIN ATTACHMENT AT ON (B.BOARD_NO = AT.BOARD_NO)
+		WHERE BOARD_CATEGORY = '공지사항' AND FILE_LEVEL = 4
+		
+	</select>
+	
+	<select id="selectPageListCount" resultType="_int">
+		SELECT COUNT(*)
+		FROM BOARD
+		WHERE OPEN = 'Y'
+		AND STATUS = 'N'
+	</select>
 </mapper>

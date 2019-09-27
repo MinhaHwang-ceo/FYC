@@ -93,6 +93,7 @@ public class FundingController {
 		pro.setUserNo(m.getUserNo());
 
 		int check = fs.insertProjectNum(pro);
+	
 
 		model.addAttribute("pro", pro);
 
@@ -387,13 +388,14 @@ public class FundingController {
 	public String finalOpen(Member m, Project p ,HttpServletRequest request, @RequestParam(name = "photo", required = false) MultipartFile photo, Model model) {
 		System.out.println(m);
 		
-		
+		System.out.println("대표자 명 전 : " + p);
 		
 		int result = fs.updateAdjust(m);
 		System.out.println(result);
-		
+		fs.updateProject(p);
 		result = fs.openProject(p);
 		
+		System.out.println("대표자 명 전 : " + p);
 		
 		ArrayList<com.kh.yc.project.model.vo.Project> list = null;
 		try {
@@ -576,14 +578,29 @@ public class FundingController {
 		return "fundingOpen/FundingOpen6";
 	}
 
-	@RequestMapping("makerInfo.fd")
-	public String makerInfo(Project p, Attachment at, Model model) {
-		System.out.println("전");
-			List<Project> makerInfoList = fs.selectMakerInfo(p);
-		System.out.println("메이커 리스트 : " + makerInfoList);
-		
-		return "fundingOpen/FundingOpen7";
-	}
+//	@RequestMapping("makerInfo.fd")
+//	public String makerInfo(Project p, Attachment at, Member m, Model model) {
+//		System.out.println("전");
+//			
+//			//Member m = (Member) session.getAttribute("loginUser");
+//			
+//			List<Project> makerInfoList = fs.selectMakerInfo(p);
+//			List<Attachment> makerProfileImgList = fs.selectProfileImgList(at);
+//			List<Member> makerCompanyNameList = fs.makerCompanyNameList(m);
+//			System.out.println("mmmmmmmmmmmmmm : " + m );
+//			
+//			if(makerInfoList.size() !=0) {
+//				model.addAttribute("p",makerInfoList.get(0));
+//			}
+//			if(makerProfileImgList.size() !=0) {
+//				model.addAttribute("at",makerProfileImgList.get(0));
+//			}
+//			if(makerCompanyNameList.size() !=0) {
+//				model.addAttribute("m",makerCompanyNameList.get(0));
+//			}
+//		
+//		return "fundingOpen/FundingOpen7";
+//	}
 	
 	
 	

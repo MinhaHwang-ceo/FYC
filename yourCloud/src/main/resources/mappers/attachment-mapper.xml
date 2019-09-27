@@ -55,9 +55,32 @@
 			FILE_LEVEL = 1
 	</select>
 	<select id="baseInfoListAt" resultMap="AttachmentResultSet">
-	SELECT *
-	FROM ATTACHMENT
-	WHERE PROJECT_NO = #{projectNo} AND FILE_LEVEL = 0 </select>
+		SELECT *
+		FROM ATTACHMENT
+		WHERE PROJECT_NO = #{projectNo} AND FILE_LEVEL = 0 
+	</select>
+	
+	<select id="selectProfileImgList" resultMap="AttachmentResultSet">
+		SELECT *
+		FROM ATTACHMENT
+		WHERE PROJECT_NO = #{projectNo} AND FILE_LEVEL = 1
+	</select>
+	
+	<insert id="fileInsert" parameterType="Attachment">
+		INSERT INTO ATTACHMENT (ATTACHMENT_NO,ORIGIN_FILE_NAME,FILE_SRC,NEW_FILE_NAME,SAVE_DATE
+		           ,ATTACHMENT_DIV,BOARD_NO,PROJECT_NO,FILE_LEVEL)
+			VALUES(
+				SEQ_ATTACHMENTNO.NEXTVAL, #{originFileName}, #{fileSrc}, #{newFileName}, SYSDATE,
+				'게시물', #{boardNo}, null, #{fileLevel}
+			)
+	</insert>
+	
+	<select id="selectAllfileList" resultMap="AttachmentResultSet">
+		SELECT *
+		FROM ATTACHMENT
+		WHERE FILE_LEVEL = 4
+	</select>
 </mapper>
+
 
 
