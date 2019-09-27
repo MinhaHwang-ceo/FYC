@@ -566,7 +566,7 @@ public class BoardController {
 		int bnum = b.getbNo();
 		int boardContentInsert = bs.boardContentInsert(b);
 		
-		System.out.println("photo:" + photo.getOriginalFilename());
+		 System.out.println("photo:" + photo.getOriginalFilename());
 		
 		if (photo != null && photo.getOriginalFilename().length() != 0) {
 
