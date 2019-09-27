@@ -284,6 +284,8 @@ public class BoardController {
 		}
 		
 		int listCount = bs.PageListCount();
+		
+		
 		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
 		
 		
