@@ -1,7 +1,9 @@
 package com.kh.yc.member.model.dao;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 import javax.security.auth.login.LoginException;
@@ -138,9 +140,9 @@ public class MemberDaoImpl implements MemberDao{
 			return list;
 		} 
 		@Override
-		public Reward selectMyRewardDetail(SqlSessionTemplate sqlSession, int rewardNoInt) {
+		public Reward selectMyRewardDetail(SqlSessionTemplate sqlSession, int fundNoInt) {
 			
-			return sqlSession.selectOne("Reward.selectMyRewardDetail", rewardNoInt);
+			return sqlSession.selectOne("Reward.selectMyRewardDetail", fundNoInt);
 		}
 		@SuppressWarnings({ "unchecked", "rawtypes" })
 		@Override
@@ -156,6 +158,24 @@ public class MemberDaoImpl implements MemberDao{
 		public Member selectMemberInfo(SqlSessionTemplate sqlSession, String userNo) {
 			// TODO Auto-generated method stub
 			return sqlSession.selectOne("Member.selectMemberInfo", userNo);
+		}
+		@Override
+		public boolean checkPwd(SqlSessionTemplate sqlSession, String userId, String userPwd) {
+			boolean result = false;
+			Map<String, String> map = new HashMap<String, String>();
+			map.put("userId", userId);
+			map.put("userPwd", userPwd);
+			int count = sqlSession.selectOne("member.checkPwd", map);
+			if(count == 1) {
+				result= true;
+			}
+			
+			return result;
+		}
+		@Override
+		public void updateMember(SqlSessionTemplate sqlSession, Member mse) {
+			sqlSession.update("member.updateMember1", mse);
+			
 		}
 
 	

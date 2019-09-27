@@ -357,15 +357,7 @@
 		function secession(){
 			location.href="supporterList.me";	
 		};
-		$(function() {
-			$("#deletebtn").click(function(){
-				window.confirm("회원을 탈퇴하시겠습니까?");
-				location.href = "UserDelete.jsp";
-			});
-			$("#updatebtn").click(function(){
-				location.href = "changeInfo.me";
-			});
-		});
+
 	</script>
 </body>
 </html>
