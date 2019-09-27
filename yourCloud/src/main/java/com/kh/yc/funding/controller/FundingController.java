@@ -473,7 +473,6 @@ public class FundingController {
 
 		s.setUserNo(Integer.parseInt(userNo));
 		s.setbNo(Integer.parseInt(bNum));
-		System.out.println(s);
 		int result = fs.signUser(s);
 
 		if (result > 0) {
@@ -483,7 +482,6 @@ public class FundingController {
 			a.setOriginFileName(fileName);
 			a.setNewFileName(fileName);
 
-			System.out.println(a);
 			result = fs.signFile(a);
 			try {
 				FileUtils.writeByteArrayToFile(new File(root + attachPath + fileName), Base64.decodeBase64(sign));

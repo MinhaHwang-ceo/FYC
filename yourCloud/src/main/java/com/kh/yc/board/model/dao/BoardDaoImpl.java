@@ -178,5 +178,11 @@ public class BoardDaoImpl implements BoardDao {
 		return sqlSession.selectOne("Reward.selectReward2", string);
 	}
 
+	@Override
+	public ArrayList<Project> selectRankList(SqlSessionTemplate sqlSession) {
+		ArrayList<Project> list = (ArrayList)sqlSession.selectList("Project2.selectRankList");
+		return list;
+	}
+
 
 }

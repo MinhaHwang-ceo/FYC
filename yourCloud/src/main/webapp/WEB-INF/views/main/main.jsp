@@ -6,6 +6,7 @@
 <%
 	ArrayList<Project> list = (ArrayList) request.getAttribute("list");
 	Member m = (Member)request.getAttribute("loginUser");
+	ArrayList<Project> rankList = (ArrayList) request.getAttribute("rankList");
 %>
 <html>
 
@@ -28,12 +29,11 @@
 	<!--Section-1-->
 	
 	<section class="section-1">
-		<div class="jumbotron d-flex align-items-center">
+		<div class="jumbotron d-flex align-items-center" style="background-image:url('/yc/resources/uploadFiles/<%= list.get(0).getAttachment().get(0).getNewFileName() %>')">
 			<div class="gradient"></div>
 			<div class="container-fluid content">
-				<h1 data-aos="fade-up" data-aos-delay="100">영화 의상디자이너 조상경</h1>
-				<h2 data-aos="fade-up" data-aos-delay="300">"늘 새로운 영화의 의상을 만들때
-					제가 그곳에 살아있다는걸 느껴요"</h2>
+				<h1 data-aos="fade-up" data-aos-delay="100"><%= list.get(0).getProjectTitle() %></h1>
+				<h2 data-aos="fade-up" data-aos-delay="300">"<%= list.get(0).getSummary() %>"</h2>
 				</br> </br> </br>
 				<p data-aos="fade-up" data-aos-delay="700">
 					<a href="about.html" class="btn btn-success">스토리 읽어보러 가기</a>
@@ -120,14 +120,14 @@
 					data-aos-delay="300">
 					<figure class="figure">
 						<a href="categoryOne.ca?projectNo=<%= list.get(0).getProjectNo()%>&userNo=123"><img src="/yc/resources/uploadFiles/<%= list.get(0).getAttachment().get(0).getNewFileName() %>"
-							class="figure-img img-fluid" alt="blog"></a>
+							class="figure-img img-fluid" style="height: 50%;"alt="blog"></a>
 						<figcaption class="figure-caption">
 							<h2>
-								<a href="blog.html"> <%=list.get(0).getProjectTitle()%>
+								<a href="categoryOne.ca?projectNo=<%= list.get(0).getProjectNo()%>&userNo=123"> <%=list.get(0).getProjectTitle()%>
 								</a>
 							</h2>
 							<p><%=list.get(0).getSummary()%></p>
-							<a href="blog_single.html" class="btn btn-success">+ more</a>
+							<a href="categoryOne.ca?projectNo=<%= list.get(0).getProjectNo()%>&userNo=123" class="btn btn-success">+ more</a>
 						</figcaption>
 					</figure>
 				</div>
@@ -146,10 +146,10 @@
 						</div>
 						<div class="col-sm-6 col-12 box-3">
 							<h4>
-								<a href="blog.html"><%=list.get(1).getProjectTitle()%></a>
+								<a href=categoryOne.ca?projectNo=<%= list.get(1).getProjectNo()%>&userNo=123><%=list.get(1).getProjectTitle()%></a>
 							</h4>
 							<h5><%=list.get(1).getSummary()%></h5>
-							<a href="blog_single.html" class="btn btn-success">+ more</a>
+							<a href="categoryOne.ca?projectNo=<%= list.get(1).getProjectNo()%>&userNo=123" class="btn btn-success">+ more</a>
 						</div>
 					</div>
 					<%
@@ -164,10 +164,10 @@
 						</div>
 						<div class="col-sm-6 col-12 box-5">
 							<h4>
-								<a href="blog.html"><%=list.get(2).getProjectTitle()%></a>
+								<a href="categoryOne.ca?projectNo=<%= list.get(2).getProjectNo()%>&userNo=123"><%=list.get(2).getProjectTitle()%></a>
 							</h4>
 							<h5><%=list.get(2).getSummary()%></h5>
-							<a href="blog_single.html" class="btn btn-success">+ more</a>
+							<a href="categoryOne.ca?projectNo=<%= list.get(2).getProjectNo()%>&userNo=123" class="btn btn-success">+ more</a>
 						</div>
 					</div>
 					<%
@@ -183,10 +183,10 @@
 						</div>
 						<div class="col-sm-6 col-12 box-7">
 							<h4>
-								<a href="blog.html"><%=list.get(3).getProjectTitle()%></a>
+								<a href="categoryOne.ca?projectNo=<%= list.get(3).getProjectNo()%>&userNo=123"><%=list.get(3).getProjectTitle()%></a>
 							</h4>
 							<h5><%=list.get(3).getSummary()%></h5>
-							<a href="blog_single.html" class="btn btn-success">+ more</a>
+							<a href="categoryOne.ca?projectNo=<%= list.get(3).getProjectNo()%>&userNo=123" class="btn btn-success">+ more</a>
 						</div>
 					</div>
 					<%

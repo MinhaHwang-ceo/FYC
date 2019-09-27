@@ -31,14 +31,13 @@
 			<h4>펀딩내역</h4>
 			<br />
 			<c:forEach var="m" items="${ list }">
-			<a href="showMyRewardDetail.me?rewardNo=${ m.rewardNo }">
+			<a href="showMyRewardDetail.me?fundNo=${ m.fundNo }">
 			<div class="rewards">
 				<div class="left"> 
 					<p class="category"><c:out value="${ m.categoryDiv }"/></p>	
 					<p class="status"><c:out value="${ m.endDate }"/> 종료</p>
 					<br />
 					<p class="projectTitle"><c:out value="${ m.projectTitle }"/></p>
-					<p class="maker"><c:out value="${ m.companyName }"/></p>
 					<p class="payStatus"><c:out value="${ m.payStatus }"/></p> 
 				</div>				
 				<div class="right">
@@ -47,7 +46,7 @@
 					<br />
 					<br />
 					<br />
-					<a href="showMyRewardDetail.me?rewardNo=${ m.rewardNo }">상세보기</a>
+					<a href="showMyRewardDetail.me?fundNo=${ m.fundNo }">상세보기</a>
 				</div>
 			</div>
 			</a>

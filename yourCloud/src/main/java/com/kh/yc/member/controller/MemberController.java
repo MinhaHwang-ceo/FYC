@@ -122,7 +122,7 @@ public class MemberController {
    public String newPwd(String email,String userPwd,Member model) {
 	   String userPwd2 = passwordEncoder.encode(userPwd);
 	    
- ms.updatePwd(email,userPwd2);
+	   ms.updatePwd(email,userPwd2);
 	    
 	         return "member/loginMain";
 	      

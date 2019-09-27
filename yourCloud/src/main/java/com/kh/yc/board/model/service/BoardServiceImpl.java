@@ -113,5 +113,10 @@ public class BoardServiceImpl implements BoardService {
 	public Reward selectReward(String string) {
 		return bd.selectReward(sqlSession, string);
 	}
+	@Override
+	public ArrayList<Project> selectRankList() {
+		// TODO Auto-generated method stub
+		return bd.selectRankList(sqlSession);
+	}
 
 }

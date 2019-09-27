@@ -60,7 +60,7 @@ List<Member> emailList(SqlSessionTemplate sqlSession);
 
 ArrayList<Reward> selectMyReward(SqlSessionTemplate sqlSession, Member mse, PageInfo pi);
 
-Reward selectMyRewardDetail(SqlSessionTemplate sqlSession, int rewardNoInt);
+Reward selectMyRewardDetail(SqlSessionTemplate sqlSession, int fundNoInt);
 
 ArrayList<Project> interestProject(SqlSessionTemplate sqlSession, Member mse);
 
@@ -69,6 +69,11 @@ Member selectMemberInfo(SqlSessionTemplate sqlSession, String userNo);
 ArrayList<Message> selectMessageList(SqlSessionTemplate sqlSession, Member member);
 //메세지 insert
 int insertMessage(SqlSessionTemplate sqlSession, Message message);
+
+boolean checkPwd(SqlSessionTemplate sqlSession, String userId, String userPwd);
+
+void updateMember(SqlSessionTemplate sqlSession, Member mse);
+
 
 
 

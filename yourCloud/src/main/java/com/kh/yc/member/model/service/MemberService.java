@@ -41,7 +41,7 @@ public interface MemberService {
 
 	ArrayList<Reward> selectMyReward(PageInfo pi, Member mse);
 
-	Reward selectMyRewardDetail(int rewardNoInt);
+	Reward selectMyRewardDetail(int fundNoInt);
 
 	ArrayList<Project> interestProject(Member mse);
  
@@ -52,6 +52,11 @@ public interface MemberService {
 	ArrayList<Message> selectMessageList(Member member);
 
 	public int insertMessage(Message message);
+ 
+	boolean checkPwd(String userId, String userPwd);
+
+	void updateMember(Member mse);
+	
 
 
 	

@@ -55,6 +55,8 @@ public interface BoardService {
 
 	Reward selectReward(String string);
 
+	ArrayList<Project> selectRankList();
+
 
 
 }

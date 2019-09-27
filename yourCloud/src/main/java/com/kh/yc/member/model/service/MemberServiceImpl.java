@@ -129,9 +129,9 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public Reward selectMyRewardDetail(int rewardNoInt) {
+	public Reward selectMyRewardDetail(int fundNoInt) {
 		
-		return md.selectMyRewardDetail(sqlSession, rewardNoInt);
+		return md.selectMyRewardDetail(sqlSession, fundNoInt);
 	}
 
 	@Override
@@ -164,6 +164,19 @@ public class MemberServiceImpl implements MemberService {
 	public int insertMessage(Message message) {
 		 
 		return md.insertMessage(sqlSession,message);
+	}
+
+
+	@Override
+	public boolean checkPwd(String userId, String userPwd) {
+		
+		return md.checkPwd(sqlSession, userId, userPwd);
+	}
+
+	@Override
+	public void updateMember(Member mse) {
+		
+		md.updateMember(sqlSession, mse);
 	}
 
 

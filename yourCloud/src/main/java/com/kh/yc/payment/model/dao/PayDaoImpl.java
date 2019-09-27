@@ -85,4 +85,26 @@ public class PayDaoImpl implements PayDao {
 	public void updateProjectFail(SqlSessionTemplate sqlSession) {
 		sqlSession.update("Project2.updateProjectFail");
 	}
+
+	@Override
+	public ArrayList<Funding> fundFailProject(SqlSessionTemplate sqlSession) {
+		ArrayList<Funding> list = (ArrayList)sqlSession.selectList("Project2.fundFail");
+		return list;
+	}
+
+	@Override
+	public ArrayList<Payment> failMerchantID(SqlSessionTemplate sqlSession, ArrayList<Funding> fundFailProject) {
+		ArrayList<Payment> list = new ArrayList<Payment>();
+		
+		for(Funding f : fundFailProject) {
+			list.addAll((ArrayList)sqlSession.selectList("Project2.selectFailMerchant", f));
+		}
+		return list;
+	}
+
+	@Override
+	public int updateProjectOpen(SqlSessionTemplate sqlSession) {
+		return sqlSession.update("Project2.updateProjectOpen");
+	}
+
 }

@@ -182,5 +182,19 @@
 	</insert>
 	
 	
+	<select id="checkPwd" resultType="int" resultMap="memberResultSet">
+		SELECT COUNT(*)
+		FROM MEMBER
+		WHERE MEMBER_ID = #{userId} AND MEMBER_PASSWORD = #{userPwd}
+	</select>
+	
+	<update id="updateMember1" parameterType="Member">
+		UPDATE MEMBER
+		SET 
+			EMAIL = #{email}
+			MEMBER_CATEGORY = #{memberCategory}
+			EMAIL_AGREE  = #{emailAgree}
+		WHERE MEMBER_ID = #{userId}
+	</update>
 
 </mapper>
