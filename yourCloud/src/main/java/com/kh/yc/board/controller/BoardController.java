@@ -506,6 +506,7 @@ public class BoardController {
 
 		Member m = (Member) session.getAttribute("loginUser");
 		ArrayList<Project> list = null;
+		ArrayList<Project> rankList = bs.selectRankList();
 		try {
 			if ((m == null) || (m.getMemberCategory().length() == 0)) {
 				list = bs.getProject();
@@ -520,16 +521,12 @@ public class BoardController {
 					categoryList.add(s1);
 				}
 				list = ps.memberCategories(categoryList);
-				
-				for(Project p : list) {
-					System.out.println(p);
-				}
-				
 			}
 		} catch (Exception e) {
 			list = bs.getProject();
 			e.printStackTrace();
 		}
+		model.addAttribute("rankList", rankList);
 		model.addAttribute("list", list);
 		return "main/main";
 	}

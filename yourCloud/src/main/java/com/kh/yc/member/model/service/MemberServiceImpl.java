@@ -145,6 +145,12 @@ public class MemberServiceImpl implements MemberService {
 		return md.selectMemberInfo(sqlSession, userNo);
 	}
 
+	@Override
+	public Object userCrystal(Member mse) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 
 	@Override
 	public boolean checkPwd(String userId, String userPwd) {
