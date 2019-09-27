@@ -39,4 +39,11 @@ public interface PayDao {
 
 	void updateProjectFail(SqlSessionTemplate sqlSession);
 
+	ArrayList<Funding> fundFailProject(SqlSessionTemplate sqlSession);
+
+	ArrayList<Payment> failMerchantID(SqlSessionTemplate sqlSession, ArrayList<Funding> fundFailProject);
+
+	int updateProjectOpen(SqlSessionTemplate sqlSession);
+
+
 }

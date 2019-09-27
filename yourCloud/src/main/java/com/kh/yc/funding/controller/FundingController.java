@@ -345,7 +345,7 @@ public class FundingController {
 				attach.setProjectNo(p.getProjectNo());
 				attach.setFileSrc(filePath + "\\");
 				attach.setOriginFileName(originFileName);
-				attach.setNewFileName(newFileName);
+				attach.setNewFileName(newFileName+ext);
 				attach.setFileLevel("1");
 				
 				int result = fs.insertProfileImg(attach);
@@ -473,7 +473,6 @@ public class FundingController {
 
 		s.setUserNo(Integer.parseInt(userNo));
 		s.setbNo(Integer.parseInt(bNum));
-		System.out.println(s);
 		int result = fs.signUser(s);
 
 		if (result > 0) {
@@ -483,7 +482,6 @@ public class FundingController {
 			a.setOriginFileName(fileName);
 			a.setNewFileName(fileName);
 
-			System.out.println(a);
 			result = fs.signFile(a);
 			try {
 				FileUtils.writeByteArrayToFile(new File(root + attachPath + fileName), Base64.decodeBase64(sign));

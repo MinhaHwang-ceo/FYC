@@ -489,7 +489,7 @@
 		UPDATE
 		PROJECT
 		SET
-		PROGRESS_STATUS = '오픈'
+		JUDGE_STATUS = '통과'
 		WHERE
 		PROJECT_NO = #{bNo}
 		AND
@@ -556,15 +556,17 @@
 			TRUNC(END_DATE) = TRUNC(SYSDATE)
 	</update>
 	<select id="fundSuccessProject" resultMap="ProjectList">
-		SELECT
+        SELECT
 		*
 		FROM
 		PROJECT P
 		WHERE
+        p.judge_status = '통과'
+        and
 		P.PROGRESS_STATUS = '오픈'
 		AND
-		to_char(end_date, 'yyyy-mm-dd') =
-		to_char(sysdate, 'yyyy-mm-dd')
+		trunc(end_date) =
+		trunc(sysdate)
 	</select>
 	<select id="fundingList" resultMap="FundingList"
 		parameterType="java.util.ArrayList">
@@ -994,7 +996,69 @@ select member_phone
 from open_alarm
 where project_no=#{projectNo}
 	</select>
-
-
+	<select id="fundFail" resultMap="FundingList">
+		 SELECT * FROM FUND
+        WHERE PROJECT_NO IN (
+        SELECT PROJECT_NO
+		FROM PROJECT
+		WHERE PROJECT_NO IN
+		( SELECT PROJECT_NO 
+		FROM PROJECT P
+		where 
+		<![CDATA[
+		P.MONEY > 
+		]]>
+		( 
+        SELECT SUM(FUND_MONEY) FROM FUND
+		GROUP BY PROJECT_NO having project_no = p.project_no))
+		AND TRUNC(END_DATE) = TRUNC(SYSDATE))
+	</select>
+	<select id="selectFailMerchant" resultMap="PaymentList">
+		SELECT
+			*
+		FROM
+			PAYMENT
+		WHERE
+			FUND_NO = #{fundNo}
+	</select>
+	<update id="updateProjectOpen">
+		UPDATE
+			PROJECT
+		SET
+			PROGRESS_STATUS = '오픈'
+		WHERE
+			TRUNC(PROJECT_OPEN) = TRUNC(SYSDATE)
+		AND
+		    PROGRESS_STATUS = '오픈예정'
+		AND
+		    JUDGE_STATUS = '통과'
+	</update>
+	<select id="selectRankList" resultMap="ProjectList">
+	    select
+	        *
+	    from(
+	    select
+	        p.project_no, p.category, p.success, p.judge_status, p.progress_status, p.summary, p.project_title, p.money, p.agent_name
+	        , a.new_file_name, sum(f.fund_money), rank() OVER (ORDER BY sum(f.fund_money) desc) as rank
+	    from
+	        project p, attachment a, fund f
+	    where
+	        p.project_no = a.project_no
+	    and
+	        p.project_no = f.project_no
+	    and
+	        a.project_no = f.project_no
+	    and
+	        p.progress_status = '오픈'
+	    and
+	        p.judge_status = '통과'
+	    and
+	        a.file_level = 0 group by p.project_no, p.category, p.success, p.judge_status, p.progress_status, 
+	        p.summary, p.project_title, p.money, p.agent_name, a.new_file_name)
+	    where
+	    	<![CDATA[
+	        rank < 4
+	        ]]>
+	</select>
 </mapper>
 
