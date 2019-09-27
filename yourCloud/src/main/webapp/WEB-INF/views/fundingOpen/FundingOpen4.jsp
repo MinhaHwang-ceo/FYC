@@ -345,6 +345,7 @@ td {
 					</tr>
 					<tr>
 						<td style="background: White"><h4>프로젝트 오픈일</h4>
+						<h6>*오픈 예정인 경우에만 입력하세요</h6>
 							
 							</td>
 						<td id="fno"><input type="date"

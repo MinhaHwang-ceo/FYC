@@ -136,13 +136,8 @@ button:hover, input[type="button"]:hover {
 						관리자페이지</a></li>
 
 
-			</ul>
-			<ul class="navbar-nav">
-				<li><i class="fa" aria-hidden="true"><img
-						src="/yc/resources/images/hwack2.PNG"></i> <input type="text">
-				</li>
-
-			</ul>
+			</ul><br><br>
+		
 			<ul>
 				<li class=" webTest">
 					<button class="testBtn"
@@ -211,7 +206,7 @@ button:hover, input[type="button"]:hover {
 			$(".testBtn").click(
 					function() {
 
-						window.open("notice", "PopupWin",
+						window.open("SelfTest", "PopupWin",
 								"width=450,height=500", "resizable=no");
 
 					})
