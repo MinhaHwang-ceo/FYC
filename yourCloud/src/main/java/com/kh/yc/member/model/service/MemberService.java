@@ -40,13 +40,17 @@ public interface MemberService {
 
 	ArrayList<Reward> selectMyReward(PageInfo pi, Member mse);
 
-	Reward selectMyRewardDetail(int rewardNoInt);
+	Reward selectMyRewardDetail(int fundNoInt);
 
 	ArrayList<Project> interestProject(Member mse);
  
 	Member selectMember(String userNo);
 
-	Object userCrystal(Member mse);
+	boolean checkPwd(String userId, String userPwd);
+
+	void updateMember(Member mse);
+	
+
 
 
 	
