@@ -16,44 +16,47 @@
 </head>
 
 <body>
-	<jsp:include page="../common/customer_menubar.jsp" />
-	<jsp:include page="../common/myPage_menuList.jsp" />
-	<br /><br><br>
-		<div id="messageOuter">
-	<form id="message">
-		<div id="messageWindow">
-			
+<div>
+	<br><br>
+	<div>
+	<form id="form1">
+
 			<div class="myMessage">
 				<span>보낸 메세지</span>
 			</div>
 			
 			<div class="receivedMessage">
 				<span>받은 메세지</span>
-			
 			</div>
-		</div>
+		<br><br><br><br><br><br>
 		
 		<div id="inputMessageDiv" align="center">
-			<input type="hidden" value="${loginUser.userNo}" name="userNo">
-			<input type="text" id="inputMessage" name="inputMessage"/>
+			<input type="hidden" value="${loginUser.userNo}" id="sendMember"name="sendMember">
+			<input type="hidden"  value="${makerNo}" name="receiveMember" id="receiveMember">
+			<input type="text" id="messageContent" name="messageContent" style="width:320px; height:35px;"/> &nbsp;
 			<input type="button" class="btn btn-info" onclick="sendMessage()" value="전송"/>
 		</div>
 		
 	</form>
 	</div>
+
+</div>
 	
 	<br><br>
 	
 	<script>
 	function sendMessage(){
 		
-		var formData = $("#message").serializeArray();
+		var formData = $("#form1").serializeArray();
 		
 		console.log(formData);
+		console.log(formData[0]);
+		console.log(formData[1]);
+		console.log(formData[2]);
 		
 		$.ajax({
 			cache:false,
-			url : "sendMessage.me",
+			url : "submitMessage.me",
 			data : formData,
 			success : function(data){
 				alert(formData);
@@ -62,15 +65,8 @@
 			},error : function(data){
 				alert("에러발생");
 			}
-		})
-		
+		});
 	}
-	
-	
-	
 	</script>
-	
-	
-	<jsp:include page="../common/customer_footer.jsp"/>
 </body>
 </html>

@@ -282,6 +282,7 @@ a {
 			<div class="sub-contents">
 				
 				<!-- 이미지 앤 동영상 영역 -->
+				<br>
 				<div class="title-img">
 					<img src="/yc/resources/uploadFiles/<c:out value="${detail.newFileName}"/>" width="100%">
 				</div> 
@@ -308,8 +309,7 @@ a {
 					
 					<div class="contents-view">
 						
-						${detail.story }
-					
+						${detail.story}
 
 						<!-- 프로젝트 일정 --><br><br>
 						<p style="color:#673AB7">
@@ -319,7 +319,7 @@ a {
 							<strong style="color:#B39DDB"> 펀딩 전 프로젝트 일정을 꼭 확인해 주세요! </strong> 
 							<br> ${ detail.projectShortTitle }의 일정은 새소식을 통해 업데이트 하도록 하겠습니다.
 						</p>
-						<p>
+						<p style="color:#80CBC4">
 							 ${detail.endDate } : 프로젝트 마감 
 						</p>
 						<p style="color:#B39DDB">
@@ -331,7 +331,7 @@ a {
 							드리겠습니다. <br /> &nbsp; - ${detail.delivery }후 부터 일일 1,000개씩 순차배송 <br />
 							&nbsp; - 배송시 포장상태 : 에어캡 + 박스포장 <br /> 3. 도서/산간 지방도 택배 발송이 되며, 지역에
 							관게없이 배송비는 없습니다. <br> &emsp; 단 , 배송 예정일이 지연될 수 있음을 미리 안내드립니다. &nbsp; <br />
-							4. 제품 및 배송 관련 문의사항문의 &nbsp; : <a href="">${detail.email }</a>
+							4. 제품 및 배송 관련 문의사항문의 &nbsp; : <a style="color:#536DFE">${detail.email }</a>
 						</p>
 						<br>
 
@@ -370,11 +370,60 @@ a {
 				</p>
 			</div>
 
+	<c:if test="${ empty sessionScope.loginUser }"> 
+			<button type="button" onclick="goFunding();" class="btn-funding">펀딩하기</button><br>
+	</c:if>
 			
+	<c:if test="${ ! empty sessionScope.loginUser }"> 	
+		<c:if test="${detail.progressStatus ne '성공'}">
+				<button type="button" onclick="goFunding();" class="btn-funding">펀딩하기</button><br>
+		</c:if>
 			
-			<div class="">
-				<button type="button" onclick="goFunding();" class="btn-funding">펀딩하기</button>
-			</div>
+		<c:if test="${detail.progressStatus eq '성공'}">
+			<c:if test="${ encoreCount >= 1}">
+				<button class="btn-funding" onclick="noEncore();">앵콜하기</button><br>	
+			</c:if>
+			
+			<c:if test="${ encoreCount == 0}">
+				<button class="btn-funding" id="encore">앵콜하기</button><br>			
+			</c:if>
+		</c:if>
+	</c:if>
+	
+		<script>
+		$(function(){
+			$('#encore').click(function(){
+				
+				var projectNo = ${detail.projectNo};
+				var userNo = ${loginUser.userNo};
+				
+				console.log(projectNo);
+				console.log(userNo);
+				
+				$.ajax({
+					url : "encore.ca",
+					type : "get",
+					dataType : "json",
+					data : { projectNo : projectNo, userNo : userNo },
+					success: function(data){
+						alert("앵콜 신청이 완료되었습니다!");
+						location.reload();
+					},error : function(data){
+						alert("에러!");
+					}
+				})
+				
+			})
+		})
+	</script>	
+	
+	<script>
+		function noEncore(){
+			alert("이미 앵콜신청하신 프로젝트입니다");
+		}
+	
+	
+	</script>
 			
 			
 			<br />
@@ -477,13 +526,21 @@ a {
 			<hr />
 			
 			<div class="project-meker-info">
-				<h3>메이커 정보</h3>
-				<div class="maker-box">
+				<h5>메이커 정보</h5>
+				<div class="maker-box"><br>
+
 					<table style="width: 100%;">
 						<tr>
-							<td><button
-									style="border: 1px solid black; border-radius: 50%; background: white; width: 100px; height: 100px; margin-left: 10px;"></button></td>
-							<td style="">${ detail.companyName }</td>
+							<td>
+								<c:if test="${makerImg eq null}">
+									<img alt="메이커이미지" src="/yc/resources/images/null.png"; style="width:100px; height:100px;"> 
+								</c:if>
+								<c:if test="${makerImg ne null}">
+									<img alt="메이커이미지" src="/yc/resources/uploadFiles/<c:out value="${makerImg}"/>" style="width:100px; height:100px;border-radius: 50%;"> 	
+								</c:if>
+						
+							</td>
+							<td>${ detail.companyName }</td> 
 						</tr>
 						<tr>
 							<td><br/></td>
@@ -491,7 +548,8 @@ a {
 	
 						<tr>
 							<td colspan="2" align="center">
-								<button class="btn-meker-question" onclick="location.href='mailto:${detail.email}'">
+								<button class="btn-meker-question" onclick="window.open('sendMessage.me?userNo=${loginUser.userNo}&makerNo=${detail.userNo}'
+								,'_black','width=400,height=513');return false;">
 								메이커에게 문의하기</button>			
 							</td>
 						</tr>
@@ -518,80 +576,27 @@ a {
 				<div class="wd-gift">
 					<h3 class="projectTitle"><b>리워드 선택</b></h3>
 					<button class="reward-list"  onclick="goFunding();">
-						<div class="reward-info">
-						<!-- 	<dl>
-								<dt>
-									 78,200원 펀딩
-								</dt>
-								<dd > -->
-									<p>[슈퍼얼리버드] 싱글팩 (30% 혜택)</p>
-									<p>
-										남성용 / 씬타입(단목) Thin. / 4켤레 (4가지 칼라. 각 1켤레씩)
-										<br />
-										[블랙&레드] , [화이트&블랙] , [블루&화이트] , [그레이&화이트]
+						 <div class="reward-info" style="padding:10px 10px 10px 10px;">
+						 	<c:forEach var="re" items="${reward }">
+									<p style="color:#9E9E9E;">&nbsp;<b>NO . <c:out value="${re.rewardNo }"/></b></p>
+									<p style="font-size:1.2em"> 
+										<b><c:out value="${re.rewardName }"/></b>
 									</p>
-							<!-- 	</dd>
-							</dl> -->
+									<p><c:out value="${re.rewardMoney }"></c:out>원 펀딩하기</p>
+									<p style="color:#757575">[구성] <br><c:out value="${re.rewardDetail}"></c:out>
 								<ul class="data-info">
-									<li class="shipping">
-										배송비
-										<p>25,500원</p>
+									<li class="shipping" style="font-size:0.9em; color:#FFAB91">
+										배송비 : &nbsp;<c:out value="${re.deliveryMoney }"></c:out>원
 									</li>
-									<li class="date">
-										리워드 빌송 시작일
-									<em>2019 10월 초 (1~10일) 예정</em>
+									<li class="date" style="font-size:0.9em; color:#8D6E63;">
+										리워드 발송 시작일 &nbsp;:&nbsp;<c:out value="${re.startDate }"></c:out>
 									</li>
 								</ul>
 								<p class="reward-qty">
-									제한수량
-									<strong>12000</strong>
-									개
-									<em>현재 1144개 남음</em>
-								</p>
-								<p class="reward-soldcount">
-									총
-									<strong>76</strong>
-									개 펀딩 완료
-								</p>
-						</div>
-					</button>
-				</div>	
-			</div>
-			<div class="moveRewards">
-				<div class="wd-gift">
-					<h3 class="projectTitle"><b>리워드 선택</b></h3>
-					<button class="reward-list"  onclick="goFunding();">
-						<div class="reward-info">
-						<!-- 	<dl>
-								<dt>
-									 78,200원 펀딩
-								</dt>
-								<dd > -->
-									<p>[슈퍼얼리버드] 싱글팩 (30% 혜택)</p>
-									<p>
-										남성용 / 씬타입(단목) Thin. / 4켤레 (4가지 칼라. 각 1켤레씩)
-									</p>
-							<!-- 	</dd>
-							</dl> -->
-								<ul class="data-info">
-									<li class="shipping">
-										배송비
-										<p>25,500원</p>
-									</li>
-									<li class="date">
-										리워드 빌송 시작일
-									<em>2019 10월 초 (1~10일) 예정</em>
-									</li>
-								</ul>
-								<p class="reward-qty">
-									제한수량
-									<strong>12000</strong>
-									개
-									<em>현재 1144개 남음</em>
-								</p>
-								<p class="reward-soldcount">
-									총 <strong>76</strong> 개 펀딩 완료
-								</p>
+									제한수량 &nbsp;
+									<strong><c:out value="${re.limitCount }"/></strong>개
+								</p><br>
+						</c:forEach>
 						</div>
 					</button>
 				</div>	

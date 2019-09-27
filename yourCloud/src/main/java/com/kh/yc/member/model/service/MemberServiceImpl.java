@@ -17,6 +17,7 @@ import com.kh.yc.board.model.vo.PageInfo;
 import com.kh.yc.member.model.dao.MemberDao;
 import com.kh.yc.member.model.dao.MemberDaoImpl;
 import com.kh.yc.member.model.vo.Member;
+import com.kh.yc.member.model.vo.Message;
 import com.kh.yc.member.model.vo.NaverMember;
 import com.kh.yc.project.model.vo.Project;
 import com.kh.yc.reward.model.vo.Reward;
@@ -151,6 +152,20 @@ public class MemberServiceImpl implements MemberService {
 		return null;
 	}
 
+	@Override
+	public ArrayList<Message> selectMessageList(Member member) {
+		
+		ArrayList<Message> message = md.selectMessageList(sqlSession,member);
+		
+		return message;
+	}
+
+	@Override
+	public int insertMessage(Message message) {
+		 
+		return md.insertMessage(sqlSession,message);
+	}
+
 
 	@Override
 	public boolean checkPwd(String userId, String userPwd) {
@@ -163,7 +178,6 @@ public class MemberServiceImpl implements MemberService {
 		
 		md.updateMember(sqlSession, mse);
 	}
-
 
 
 

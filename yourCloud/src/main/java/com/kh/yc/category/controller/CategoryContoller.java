@@ -19,12 +19,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.yc.category.model.service.CategoryService;
+import com.kh.yc.category.model.vo.Encore;
 import com.kh.yc.category.model.vo.Reply;
 import com.kh.yc.category.model.vo.Report;
 import com.kh.yc.funding.model.vo.Funding;
 import com.kh.yc.project.model.service.ProjectService;
 import com.kh.yc.project.model.vo.Interest;
 import com.kh.yc.project.model.vo.Project;
+import com.kh.yc.reward.model.vo.Reward;
 import com.kh.yc.reward.model.vo.RewardInfo;
 
 @Controller
@@ -79,13 +81,27 @@ public class CategoryContoller {
 		//서포터 수 카운드
 		int supportCount = ps.supportCount(inter);
 		
+		//앵콜 수 카운트
+		int encoreCount = ps.encoreCount(inter);
+		
 		String mainImg = ps.mainImg(inter);
+		//메이커 이미지
+		String makerImg = ps.makerImg(inter);
+		System.out.println(makerImg+"는 메이커이미지입니다");
+		
+		//리워드 출력
+		ArrayList<Reward> reward =  ps.rewardList(projectNo);
+		System.out.println(reward);
 		
 		request.setAttribute("reportCount", reportCount);
 		request.setAttribute("projectNo", projectNo);
 		request.setAttribute("sumFundMoney", sumFundMoney);
 		request.setAttribute("supportCount", supportCount);
 		request.setAttribute("mainImg", mainImg);
+		request.setAttribute("encoreCount", encoreCount);
+		request.setAttribute("reward", reward);
+		request.setAttribute("makerImg", makerImg);
+		
 		
 		return "main/categoryOne";
 
@@ -262,6 +278,27 @@ public class CategoryContoller {
 		
 		return ps.insertReply(reply);
 	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/encore.ca", method = RequestMethod.GET)
+	public int submitEncore(Encore encore,Model model,HttpServletRequest request, HttpServletResponse response) {
+		
+		/*
+		 * int projectNo = Integer.parseInt(request.getParameter("projectNo")); int
+		 * userNo = Integer.parseInt(request.getParameter("userNo"));
+		 * 
+		 * System.out.println(projectNo); System.out.println(userNo);
+		 * 
+		 * Encore encore = new Encore();
+		 * 
+		 * encore.setProjectNo(projectNo); encore.setUserNo(userNo);
+		 * System.out.println(encore);
+		 */
+		
+		return ps.insertEncore(encore);
+	}
+	
+	
 	
 	
 }
