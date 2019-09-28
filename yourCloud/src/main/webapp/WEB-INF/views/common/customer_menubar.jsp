@@ -134,7 +134,7 @@ button:hover, input[type="button"]:hover {
 				<li><a class="nav-link" href="FundingOpen2.fd">펀딩 오픈하기</a></li>
 				<li><a class="nav-link" href="${ contextPath }/main.ad">(임시)
 						관리자페이지</a></li>
-
+				<li><a class="nav-link" href="chat.ch">채팅</a></li>
 
 			</ul><br><br>
 		

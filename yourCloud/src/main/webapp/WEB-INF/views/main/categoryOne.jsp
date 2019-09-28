@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+	<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -536,7 +537,14 @@ a {
 									<img alt="메이커이미지" src="/yc/resources/images/null.png"; style="width:100px; height:100px;"> 
 								</c:if>
 								<c:if test="${makerImg ne null}">
-									<img alt="메이커이미지" src="/yc/resources/uploadFiles/<c:out value="${makerImg}"/>" style="width:100px; height:100px;border-radius: 50%;"> 	
+								<c:choose>
+									<c:when test="${ fn: contains(makerImg, '.') }">
+										<img alt="메이커이미지" src="/yc/resources/uploadFiles/<c:out value="${makerImg}"/>" style="width:100px; height:100px;border-radius: 50%;"> 	
+									</c:when>
+									<c:otherwise>
+										<img alt="메이커이미지" src="/yc/resources/uploadFiles/<c:out value="${makerImg}"/>.JPG" style="width:100px; height:100px;border-radius: 50%;"> 	
+									</c:otherwise>
+								</c:choose>
 								</c:if>
 						
 							</td>

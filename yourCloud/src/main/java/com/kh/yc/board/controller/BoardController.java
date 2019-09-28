@@ -47,7 +47,7 @@ import com.kh.yc.reward.model.vo.Reward;
 
 @Controller
 public class BoardController {
-	
+
 	@Autowired
 	BoardService bs;
 	@Autowired
@@ -56,7 +56,8 @@ public class BoardController {
 	ProjectService ps;
 	@Autowired
 	MemberService ms;
-		@RequestMapping(value = "openExpectation.bo", method = RequestMethod.GET)
+
+	@RequestMapping(value = "openExpectation.bo", method = RequestMethod.GET)
 	public String openExpectation(HttpServletRequest request, HttpServletResponse response) {
 		int currentPage = 1;
 
@@ -71,7 +72,7 @@ public class BoardController {
 			ArrayList<Project> openlist = bs.selectOpenProject(pi);
 			/* ArrayList<Member> mlist = */
 			System.out.println(openlist);
-			
+
 			request.setAttribute("openlist", openlist);
 			request.setAttribute("pi", pi);
 		} catch (ProjectSelectListException e) {
@@ -85,20 +86,20 @@ public class BoardController {
 	public String openExpectationDetail(HttpServletRequest request, Model model) {
 		String projectNo = request.getParameter("projectNo");
 		int projectNoInt = Integer.parseInt(projectNo);
-		
+
 		Project pj = new Project();
-		
+
 		pj = bs.selectDetailProject(projectNoInt);
 		System.out.println(pj);
 		request.setAttribute("pj", pj);
-		
+
 		return "board/openExpectation/openExpectationDetail";
 	}
 
 	@RequestMapping(value = "openExpectationRequest.bo", method = RequestMethod.GET)
 	public String openExpectationRequest(Model model, OpenAlarm o, HttpServletRequest request) {
 		System.out.println(o);
-		
+
 		return "board/openExpectation/openExpectationRequest";
 	}
 
@@ -106,22 +107,24 @@ public class BoardController {
 	public String fundingRequest1(String projectNo, String userNo, Model model) {
 		int pNo = Integer.parseInt(projectNo);
 		Project p = bs.selectProject(pNo);
-		
+
 		Member m = ms.selectMember(userNo);
 		ArrayList<Reward> r = bs.selectRewardList(pNo);
-		
-		String makerNo = p.getUserNo()+"";
-		
+
+		String makerNo = p.getUserNo() + "";
+
 		Member maker = ms.selectMember(makerNo);
-		
+
 		model.addAttribute("maker", maker);
 		model.addAttribute("p", p);
 		model.addAttribute("m", m);
 		model.addAttribute("r", r);
 		return "board/funding/funding_1";
 	}
+
 	@RequestMapping("reqFund.bo")
-	public ModelAndView reqFund(String projectNo, String userNo, String target, String targetCnt, String price, ModelAndView mv) {
+	public ModelAndView reqFund(String projectNo, String userNo, String target, String targetCnt, String price,
+			ModelAndView mv) {
 		System.out.println("projectNo" + projectNo + "target" + target + "targetCnt" + targetCnt + "price" + price);
 		Funding fund = new Funding();
 		fund.setUserNo(Integer.parseInt(userNo));
@@ -129,11 +132,9 @@ public class BoardController {
 		fund.setProjectNo(Integer.parseInt(projectNo));
 		fund.setRewardCount(Integer.parseInt(targetCnt));
 		fund.setRewardNo(Integer.parseInt(target));
-		
-		
+
 		/*
-		 * s
-		 * String[] rewardNo1 = target.split("$");
+		 * s String[] rewardNo1 = target.split("$");
 		 * 
 		 * String[] rewardNumber1 = targetCnt.split("$");
 		 * 
@@ -141,26 +142,27 @@ public class BoardController {
 		 * 
 		 * String[] rewardNumber2 = new String[rewardNumber1.length];
 		 */
-		
+
 		/*
 		 * for(int i = 0; i < rewardNo1.length; i++) { rewardNo2[i] =
 		 * rewardNo1[i].replace("$", ""); rewardNumber1[i] =
 		 * rewardNumber2[i].replace("$", ""); System.out.println(rewardNo2[i]); }
 		 */
-		
+
 		mv.setViewName("jsonView");
 		return mv;
 	}
 
 	@RequestMapping("funding_2.bo")
-	public String selectReward(Model model, String target, String projectNo, String price, String targetCnt, String userNo, String blind) {
+	public String selectReward(Model model, String target, String projectNo, String price, String targetCnt,
+			String userNo, String blind) {
 		Project p = bs.selectProject(Integer.parseInt(projectNo));
 		String[] target1 = target.split("\\$");
 		String[] price1 = price.split("\\$");
 		String[] targetCnt1 = targetCnt.split("\\$");
 		ArrayList<Funding> fundList = new ArrayList<Funding>();
 		ArrayList<Reward> rewardList = new ArrayList<Reward>();
-		for(int i = 0; i < target1.length; i++) {
+		for (int i = 0; i < target1.length; i++) {
 			Funding fund = new Funding();
 			Reward reward = new Reward();
 			fund.setUserNo(Integer.parseInt(userNo));
@@ -178,6 +180,7 @@ public class BoardController {
 		model.addAttribute("r", rewardList);
 		return "board/funding/funding_2";
 	}
+
 	@RequestMapping(value = "funding_3.bo")
 	public String fundingRequest3(String blind, Model model) {
 		model.addAttribute(blind);
@@ -186,7 +189,7 @@ public class BoardController {
 
 	@RequestMapping(value = "category.bo")
 	public String category(HttpServletRequest request, HttpServletResponse response) {
-		
+
 		int currentPage = 1;
 
 		if (request.getParameter("currentPage") != null) {
@@ -199,27 +202,27 @@ public class BoardController {
 			PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
 
 			ArrayList<Project> list = ps.selectProjectList(pi);
-			
-			//String mainImg2 = ps.mainImg2(list);
+
+			// String mainImg2 = ps.mainImg2(list);
 
 			request.setAttribute("list", list);
 			request.setAttribute("pi", pi);
-			//request.setAttribute("mainImg2", mainImg2);
+			// request.setAttribute("mainImg2", mainImg2);
 
 		} catch (ProjectSelectListException e) {
-			 
+
 			e.printStackTrace();
 		}
 
 		return "main/category";
 	}
-	
+
 	@RequestMapping(value = "categorySort.bo")
 	public String categorySort(HttpServletRequest request, HttpServletResponse response) {
-		
+
 		String category = request.getParameter("category");
-		
-		//System.out.println("contorller의 카테고리 번호는 "+category);
+
+		// System.out.println("contorller의 카테고리 번호는 "+category);
 
 		int currentPage = 1;
 
@@ -231,9 +234,8 @@ public class BoardController {
 
 			int listCount = ps.getSortListCount(category);
 			PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
-			
 
-			ArrayList<Project> list = ps.sortProjectList(pi,category);
+			ArrayList<Project> list = ps.sortProjectList(pi, category);
 
 			request.setAttribute("list", list);
 			request.setAttribute("pi", pi);
@@ -245,10 +247,6 @@ public class BoardController {
 
 		return "main/category";
 	}
-
-	
-	
-	
 
 	@RequestMapping("guide.bo")
 	public String guide() {
@@ -278,22 +276,20 @@ public class BoardController {
 	@RequestMapping("notice.bo")
 	public String Notice(Model model, Board b, HttpServletRequest request, HttpServletResponse response) {
 		int currentPage = 1;
-		
+
 		if (request.getParameter("currentPage") != null) {
 			currentPage = Integer.parseInt(request.getParameter("currentPage"));
 		}
-		
+
 		int listCount = bs.PageListCount();
-		
-		
+
 		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
-		
-		
+
 		List<Board> BoardList = bs.selectAllBoardList(b);
-	
+
 		System.out.println(BoardList);
-		
-		model.addAttribute("BoardList",BoardList);
+
+		model.addAttribute("BoardList", BoardList);
 		return "board/notice";
 	}
 
@@ -373,7 +369,7 @@ public class BoardController {
 		StringBuffer sb = new StringBuffer();
 		String originFileName = request.getHeader("file-name");
 		String root = request.getSession().getServletContext().getRealPath("resources/uploadFiles");
-        String attachPath = "\\";
+		String attachPath = "\\";
 		String filePath = root + attachPath;
 		String saveName = sb.append(new SimpleDateFormat("yyyyMMddHHmmss").format(System.currentTimeMillis()))
 				.append(CommonUtils.getRandomString()).append(originFileName.substring(originFileName.lastIndexOf(".")))
@@ -532,11 +528,11 @@ public class BoardController {
 				list = bs.getProject();
 			} else {
 				String categories = m.getMemberCategory();
-				
+
 				String[] category = categories.split(",");
-				
-				ArrayList<String> categoryList = new ArrayList<String>(); 
-				for(String s : category) {
+
+				ArrayList<String> categoryList = new ArrayList<String>();
+				for (String s : category) {
 					String s1 = s.replace(" ", "");
 					categoryList.add(s1);
 				}
@@ -549,21 +545,22 @@ public class BoardController {
 		model.addAttribute("list", list);
 		return "main/main";
 	}
+
 	@RequestMapping("noticeInsert.bo")
 	public String noticeInsert(Board b, Model model, HttpSession session, HttpServletRequest request,
-			@RequestParam(name = "photo", required = true) MultipartFile photo) { 
-	 
+			@RequestParam(name = "photo", required = true) MultipartFile photo) {
+
 		System.out.println("글쓰기");
 		Member m = (Member) session.getAttribute("loginUser");
 		b.setWriter(String.valueOf(m.getUserNo()));
 		System.out.println(b);
-		
+
 		int boardInsert = bs.boardInsert(b);
 		int bnum = b.getbNo();
 		int boardContentInsert = bs.boardContentInsert(b);
-		
-		 System.out.println("photo:" + photo.getOriginalFilename());
-		
+
+		System.out.println("photo:" + photo.getOriginalFilename());
+
 		if (photo != null && photo.getOriginalFilename().length() != 0) {
 
 			String root = request.getSession().getServletContext().getRealPath("resources");
@@ -571,7 +568,7 @@ public class BoardController {
 			String filePath = root + "\\uploadFiles";
 			String origunFileName = photo.getOriginalFilename();
 			String ext = origunFileName.substring(origunFileName.lastIndexOf("."));
-			String changeName = CommonUtils.getRandomString()+ext;
+			String changeName = CommonUtils.getRandomString() + ext;
 			String fullFilePath = filePath + "\\" + changeName;
 			System.out.println("********************");
 			try {
@@ -586,9 +583,9 @@ public class BoardController {
 				fileVO.setBoardNo(bnum);
 				fileVO.setFileLevel("4");
 				// insert 파일정보
-				
+
 				int fileInsert = bs.fileInsert(fileVO);
-				
+
 				model.addAttribute("fileVO", fileVO);
 				// p.setAttachment(fileVO);
 			} catch (Exception e) {
@@ -599,7 +596,9 @@ public class BoardController {
 		}
 		return "board/notice";
 	}
-	
-	
-}
 
+	@RequestMapping("chat.ch")
+	public String goChat(String userNo) {
+		return "board/chat";
+	}
+}
