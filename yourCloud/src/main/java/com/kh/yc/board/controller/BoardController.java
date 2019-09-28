@@ -276,26 +276,33 @@ public class BoardController {
 	@RequestMapping("notice.bo")
 	public String Notice(Model model, Board b, HttpServletRequest request, HttpServletResponse response) {
 		int currentPage = 1;
-
+		
 		if (request.getParameter("currentPage") != null) {
 			currentPage = Integer.parseInt(request.getParameter("currentPage"));
 		}
-
+		
 		int listCount = bs.PageListCount();
-
+		
 		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
-
-		List<Board> BoardList = bs.selectAllBoardList(b);
-
+		
+		List<Board> BoardList = bs.selectAllBoardList(pi);
+	
 		System.out.println(BoardList);
-
-		model.addAttribute("BoardList", BoardList);
+		
+		model.addAttribute("BoardList",BoardList);
+		model.addAttribute("pi",pi);
+		
 		return "board/notice";
 	}
 
-	@RequestMapping("noticeOne.bo")
-	public String noticeOne() {
-
+	@RequestMapping("selectNoticeOne.bo")
+	public String noticeOne(HttpServletRequest request, 
+			                HttpServletResponse response, String bNo, Model model) {
+		
+		Board b = bs.selectNoticeOne(bNo);
+		
+		model.addAttribute("b",b);
+		
 		return "board/noticeOne";
 	}
 
