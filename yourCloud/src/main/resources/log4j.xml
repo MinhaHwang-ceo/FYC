@@ -9,6 +9,30 @@
 			<param name="ConversionPattern" value="%-5p: %c - %m%n" />
 		</layout>
 	</appender>
+	    <!-- 디비에 로그 찍기 -->
+    <appender name="sqlLogger" class="org.apache.log4j.ConsoleAppender">
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="[%d{yyyy-MM-dd HH:mm:ss}] %-5p:%m%n"/>
+        </layout>
+    </appender>
+ 	<appender name="fileLogger" class="org.apache.log4j.DailyRollingFileAppender">
+		<!-- DailyRollring = 하루에 하나씩 지가 알아서 작성됨 -->
+		<param name="file" value="C:/Users/KJS/git/FYC/yourCloud/src/main/resources/logs/system.log"/>
+		<param name="Append" value="true"/>
+		<!-- true = 이어쓰기 -->
+		<param name="DatePattern" value="'.'yyyy-MM-dd"/>
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="[%d{HH:mm:ss}][%-5p](%F:%L) - %m%n"/>
+		</layout>
+	</appender>
+    <logger name="jdbc.sqlonly" additivity="false">
+        <level value="info"/>
+        <appender-ref ref="sqlLogger"/>
+    </logger>
+    <logger name="jdbc.resultsettable" additivity="false">
+        <level value="info"/>
+        <appender-ref ref="sqlLogger"/>
+    </logger>
 	
 	<!-- Application Loggers -->
 	<logger name="com.kh.yc">
@@ -34,8 +58,7 @@
 
 	<!-- Root Logger -->
 	<root>
-		<priority value="warn" />
-		<appender-ref ref="console" />
+		<priority value="info" />
+		<appender-ref ref="fileLogger" />
 	</root>
-	
 </log4j:configuration>

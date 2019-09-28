@@ -322,7 +322,7 @@
 		P.CATEGORY, P.PROJECT_SHORT_TITLE, M.COMPANY_NAME, C.CATEGORY_DIV,
 		P.PROGRESS_STATUS, P.JUDGE_STATUS, A.NEW_FILE_NAME 
     
-    FROM
+   		FROM
 		PROJECT P
 		LEFT JOIN CATEGORY C ON
 		(P.CATEGORY = C.CATEGORY)
@@ -493,9 +493,9 @@ FROM PROJECT P
 	</select>
 	<update id="signUser" parameterType="_int">
 		UPDATE
-		PROJECT
+            PROJECT
 		SET
-		JUDGE_STATUS = '통과'
+		JUDGE_STATUS = '통과', project_open = (case progress_status when '오픈' then SYSDATE end)
 		WHERE
 		PROJECT_NO = #{bNo}
 		AND
@@ -1068,7 +1068,7 @@ where project_no=#{projectNo}
 		SET
 			PROGRESS_STATUS = '오픈'
 		WHERE
-			TRUNC(PROJECT_OPEN) = TRUNC(SYSDATE)
+			TRUNC(PROJECT_OPEN) = TRUNC(SYSDATE)+1
 		AND
 		    PROGRESS_STATUS = '오픈예정'
 		AND

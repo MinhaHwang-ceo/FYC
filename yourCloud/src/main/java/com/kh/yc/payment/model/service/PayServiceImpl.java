@@ -33,19 +33,12 @@ public class PayServiceImpl implements PayService {
 
 	IamportClient iamportClient = new IamportClient("8768417829708074",
 			"xZUSL0NpyUxc1GBMg0lYT41iQYv8hFgOFbGqcuQKonXq4yclyyjsCkKsjgBAVRoB351fzSZYfXojvBE4");
-
-	@Scheduled(cron = "1 0 0 * * *")
-	public void openProject() {
-		int result = pd.updateProjectOpen(sqlSession);
-
-	}
-	
-	
-	
 	
 	@Override
 	@Scheduled(cron = "0 59 23 * * *")
 	public void testJobMethod() {
+		System.out.println(2359 + "스케쥴러");
+		int result = pd.updateProjectOpen(sqlSession);
 		ArrayList<Project> fundSuccessProject = pd.fundSuccessProject(sqlSession);
 		System.out.println("d"+fundSuccessProject);
 		pd.updateProjectSuccess(sqlSession);
