@@ -206,9 +206,11 @@ public class ProjectDaoImpl implements ProjectDao{
 	
 	@Override
 	public void updateDB(SqlSessionTemplate sqlSession,Map<String, Object> map) {
-		 sqlSession.update("Project2.updateDb",map);
+	System.out.println("mpmpp"+map);
+	sqlSession.update("Project2.updateDb",map);
+		 System.out.println("a");
 	 sqlSession.update("Project2.updateDb2",map);
-
+	 System.out.println("b");
 	}
 
 	@Override
