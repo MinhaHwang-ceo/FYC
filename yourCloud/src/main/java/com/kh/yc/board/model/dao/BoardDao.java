@@ -65,13 +65,19 @@ public interface BoardDao {
 
 	int fileInsert(SqlSessionTemplate sqlSession, Attachment fileVO);
 
-	List<Board> selectAllBoardList(SqlSessionTemplate sqlSession, Board b);
+	List<Board> selectAllBoardList(SqlSessionTemplate sqlSession, PageInfo pi);
 
 	List<Attachment> selectAllfileList(SqlSessionTemplate sqlSession, Attachment at);
 
 	int PageListCount(SqlSessionTemplate sqlSession);
 
 	ArrayList<Project> selectRankList(SqlSessionTemplate sqlSession);
+
+	Board selectNoticeOne(SqlSessionTemplate sqlSession, String bNo);
+
+	int deleteBoardNotice(SqlSessionTemplate sqlSession, Board b);
+
+	
 
 
 
