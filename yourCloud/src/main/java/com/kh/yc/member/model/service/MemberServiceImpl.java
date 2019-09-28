@@ -180,6 +180,15 @@ public class MemberServiceImpl implements MemberService {
 		md.updateMember(sqlSession, mse);
 	}
 
+	@Override
+	public ArrayList<Message> messageDetail(Message message) {
+		 
+		ArrayList<Message> mse = md.messageDetail(sqlSession,message);
+		
+		return mse;
+	}
+
+
 
 
 

@@ -120,7 +120,8 @@ public class MyPageController {
 
 		return "member/interestProject";
 	}
-
+	
+	//마이페이지 쪽지 첫화면
 	@RequestMapping("messageBox.me")
 	public String messageBox(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
 		
@@ -130,8 +131,7 @@ public class MyPageController {
 		//쪽지 출력
 		ArrayList<Message> message = ms.selectMessageList(member);
 		
-		
-		System.out.println(message+"는??");
+		//System.out.println(message+"는??");
 		
 		request.setAttribute("message", message);
 		request.setAttribute("member", member);
@@ -139,23 +139,40 @@ public class MyPageController {
 		return "member/messageBox";
 	}
 
+	//문의하기 눌렀을때 
 	@RequestMapping("sendMessage.me")
-	public String sendMessage(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
+	public String sendMessage(Message message,HttpServletRequest request, HttpServletResponse response, HttpSession session,Model model) {
 
-		int makerNo = Integer.parseInt(request.getParameter("makerNo"));
+		Member member = (Member) session.getAttribute("loginUser");
 		
-		request.setAttribute("makerNo", makerNo);
+		int makerNo = Integer.parseInt(request.getParameter("makerNo"));
+		int userNo = Integer.parseInt(request.getParameter("userNo"));
+		
+		//System.out.println(userNo);
+
+		message.setSendMember(userNo);
+		message.setReceiveMember(makerNo);
+		
+		
+		ArrayList<Message> mge = ms.messageDetail(message);
+		
+		model.addAttribute("mge",mge);
+		model.addAttribute("makerNo",makerNo);
 		
 		return "member/message";
 	}
 	
+	//쪽지 insert하는 컨트롤러
 	@ResponseBody
-	@RequestMapping("submitMessage.me")
-	public int submitMessage(Message message,HttpServletRequest request, HttpServletResponse response, HttpSession session) {
+	@RequestMapping(value="/submitMessage.me")
+	public ModelAndView submitMessage(Message message,HttpServletRequest request, ModelAndView mv, HttpServletResponse response, HttpSession session) {
 		
 		System.out.println(message);
+		int result = ms.insertMessage(message);
+		mv.addObject("result", result);
+		mv.setViewName("jsonView");
 		
-		return ms.insertMessage(message);
+		return mv;
 	}
 	
 	

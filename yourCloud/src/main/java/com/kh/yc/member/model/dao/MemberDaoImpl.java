@@ -195,7 +195,19 @@ public class MemberDaoImpl implements MemberDao{
 			sqlSession.update("member.updateMember1", mse);
 
 		}
-
+		
+		@SuppressWarnings({ "rawtypes", "unchecked" })
+		@Override
+		public ArrayList<Message> messageDetail(SqlSessionTemplate sqlSession, Message message) {
+			
+			ArrayList<Message> mse = null;
+	
+			mse = (ArrayList) sqlSession.selectList("Member.messageDetail", message);
+			//System.out.println(mse);
+			
+			return mse;
+		}
+	
 	
 	}
 	

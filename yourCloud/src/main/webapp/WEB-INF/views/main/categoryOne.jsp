@@ -547,11 +547,29 @@ a {
 						</tr>
 	
 						<tr>
+						
+						<c:if test="${ empty sessionScope.loginUser }">
+							<td colspan="2" align="center"><button class="btn-meker-question" onclick="noMessage()">
+								메이커에게 문의하기</button></td>
+						</c:if>
+						
+						<c:if test="${! empty sessionScope.loginUser }">
+						
+							<c:if test="${loginUser.userNo eq detail.userNo}">
+								<td colspan="2" align="center"><button class="btn-meker-question" onclick="selfMessage()">
+								메이커에게 문의하기</button></td>
+							</c:if>
+						
+							<c:if test="${loginUser.userNo ne detail.userNo}">
 							<td colspan="2" align="center">
 								<button class="btn-meker-question" onclick="window.open('sendMessage.me?userNo=${loginUser.userNo}&makerNo=${detail.userNo}'
 								,'_black','width=400,height=513');return false;">
 								메이커에게 문의하기</button>			
 							</td>
+							</c:if>
+						
+						</c:if>
+						
 						</tr>
 						<tr>
 							<td><br /></td>
@@ -568,7 +586,16 @@ a {
 				</div>
 			</div>
 			
+			<script>
+			function selfMessage(){
+				alert("회원님이 오픈한 프로젝트입니다");
+			}
 			
+			function noMessage(){
+				alert("로그인 후 이용 가능합니다");
+			}
+			
+			</script>
 			
 			
 			<br />
