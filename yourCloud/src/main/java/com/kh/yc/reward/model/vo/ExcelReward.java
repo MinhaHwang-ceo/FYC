@@ -1,139 +1,155 @@
 package com.kh.yc.reward.model.vo;
 
 public class ExcelReward {
-	private String PROJECT_NO;
-	private String PROJECT_SHORT_TITLE;
-	private String MEMBER_NAME;
-	private String REWARD_MONEY;
-	private String REWARD_NAME;
-	private String OPTIONS;
-	private String DELIVERY_REQUEST;
-	private String DELIVERY_MONEY;
-	private String START_DATE;
-	private String CONPANY_NAME;
-	private int FUND_NO; 
+	private int projectNo;
+	private String projectShortTitle;
+	private String memberName;
+	private String rewardMoney;
+	private String rewardName;
+	private String options;
+	private String deliveryStatus;
+	private String deliveryMoney;
+	private String startDate;
+	private String companyName;
+	private int fundNo; 
+	private int adjustNo;
+	private String adjustState;
 	
 	public ExcelReward (){}
 
-	public ExcelReward(String pROJECT_NO, String pROJECT_SHORT_TITLE, String mEMBER_NAME, String rEWARD_MONEY,
-			String rEWARD_NAME, String oPTIONS, String dELIVERY_REQUEST, String dELIVERY_MONEY, String sTART_DATE,
-			String cONPANY_NAME, int fUND_NO) {
+	public ExcelReward(int projectNo, String projectShortTitle, String memberName, String rewardMoney,
+			String rewardName, String options, String deliveryStatus, String deliveryMoney, String startDate,
+			String companyName, int fundNo, int adjustNo, String adjustState) {
 		super();
-		PROJECT_NO = pROJECT_NO;
-		PROJECT_SHORT_TITLE = pROJECT_SHORT_TITLE;
-		MEMBER_NAME = mEMBER_NAME;
-		REWARD_MONEY = rEWARD_MONEY;
-		REWARD_NAME = rEWARD_NAME;
-		OPTIONS = oPTIONS;
-		DELIVERY_REQUEST = dELIVERY_REQUEST;
-		DELIVERY_MONEY = dELIVERY_MONEY;
-		START_DATE = sTART_DATE;
-		CONPANY_NAME = cONPANY_NAME;
-		FUND_NO = fUND_NO;
+		this.projectNo = projectNo;
+		this.projectShortTitle = projectShortTitle;
+		this.memberName = memberName;
+		this.rewardMoney = rewardMoney;
+		this.rewardName = rewardName;
+		this.options = options;
+		this.deliveryStatus = deliveryStatus;
+		this.deliveryMoney = deliveryMoney;
+		this.startDate = startDate;
+		this.companyName = companyName;
+		this.fundNo = fundNo;
+		this.adjustNo = adjustNo;
+		this.adjustState = adjustState;
 	}
 
-	public String getPROJECT_NO() {
-		return PROJECT_NO;
+	public int getProjectNo() {
+		return projectNo;
 	}
 
-	public void setPROJECT_NO(String pROJECT_NO) {
-		PROJECT_NO = pROJECT_NO;
+	public void setProjectNo(int projectNo) {
+		this.projectNo = projectNo;
 	}
 
-	public String getPROJECT_SHORT_TITLE() {
-		return PROJECT_SHORT_TITLE;
+	public String getProjectShortTitle() {
+		return projectShortTitle;
 	}
 
-	public void setPROJECT_SHORT_TITLE(String pROJECT_SHORT_TITLE) {
-		PROJECT_SHORT_TITLE = pROJECT_SHORT_TITLE;
+	public void setProjectShortTitle(String projectShortTitle) {
+		this.projectShortTitle = projectShortTitle;
 	}
 
-	public String getMEMBER_NAME() {
-		return MEMBER_NAME;
+	public String getMemberName() {
+		return memberName;
 	}
 
-	public void setMEMBER_NAME(String mEMBER_NAME) {
-		MEMBER_NAME = mEMBER_NAME;
+	public void setMemberName(String memberName) {
+		this.memberName = memberName;
 	}
 
-	public String getREWARD_MONEY() {
-		return REWARD_MONEY;
+	public String getRewardMoney() {
+		return rewardMoney;
 	}
 
-	public void setREWARD_MONEY(String rEWARD_MONEY) {
-		REWARD_MONEY = rEWARD_MONEY;
+	public void setRewardMoney(String rewardMoney) {
+		this.rewardMoney = rewardMoney;
 	}
 
-	public String getREWARD_NAME() {
-		return REWARD_NAME;
+	public String getRewardName() {
+		return rewardName;
 	}
 
-	public void setREWARD_NAME(String rEWARD_NAME) {
-		REWARD_NAME = rEWARD_NAME;
+	public void setRewardName(String rewardName) {
+		this.rewardName = rewardName;
 	}
 
-	public String getOPTIONS() {
-		return OPTIONS;
+	public String getOptions() {
+		return options;
 	}
 
-	public void setOPTIONS(String oPTIONS) {
-		OPTIONS = oPTIONS;
+	public void setOptions(String options) {
+		this.options = options;
 	}
 
-	public String getDELIVERY_REQUEST() {
-		return DELIVERY_REQUEST;
+	public String getDeliveryStatus() {
+		return deliveryStatus;
 	}
 
-	public void setDELIVERY_REQUEST(String dELIVERY_REQUEST) {
-		DELIVERY_REQUEST = dELIVERY_REQUEST;
+	public void setDeliveryStatus(String deliveryStatus) {
+		this.deliveryStatus = deliveryStatus;
 	}
 
-	public String getDELIVERY_MONEY() {
-		return DELIVERY_MONEY;
+	public String getDeliveryMoney() {
+		return deliveryMoney;
 	}
 
-	public void setDELIVERY_MONEY(String dELIVERY_MONEY) {
-		DELIVERY_MONEY = dELIVERY_MONEY;
+	public void setDeliveryMoney(String deliveryMoney) {
+		this.deliveryMoney = deliveryMoney;
 	}
 
-	public String getSTART_DATE() {
-		return START_DATE;
+	public String getStartDate() {
+		return startDate;
 	}
 
-	public void setSTART_DATE(String sTART_DATE) {
-		START_DATE = sTART_DATE;
+	public void setStartDate(String startDate) {
+		this.startDate = startDate;
 	}
 
-	public String getCONPANY_NAME() {
-		return CONPANY_NAME;
+	public String getCompanyName() {
+		return companyName;
 	}
 
-	public void setCONPANY_NAME(String cONPANY_NAME) {
-		CONPANY_NAME = cONPANY_NAME;
+	public void setCompanyName(String companyName) {
+		this.companyName = companyName;
 	}
 
-	public int getFUND_NO() {
-		return FUND_NO;
+	public int getFundNo() {
+		return fundNo;
 	}
 
-	public void setFUND_NO(int fUND_NO) {
-		FUND_NO = fUND_NO;
+	public void setFundNo(int fundNo) {
+		this.fundNo = fundNo;
+	}
+
+	public int getAdjustNo() {
+		return adjustNo;
+	}
+
+	public void setAdjustNo(int adjustNo) {
+		this.adjustNo = adjustNo;
+	}
+
+	public String getAdjustState() {
+		return adjustState;
+	}
+
+	public void setAdjustState(String adjustState) {
+		this.adjustState = adjustState;
 	}
 
 	@Override
 	public String toString() {
-		return "ExcelReward [PROJECT_NO=" + PROJECT_NO + ", PROJECT_SHORT_TITLE=" + PROJECT_SHORT_TITLE
-				+ ", MEMBER_NAME=" + MEMBER_NAME + ", REWARD_MONEY=" + REWARD_MONEY + ", REWARD_NAME=" + REWARD_NAME
-				+ ", OPTIONS=" + OPTIONS + ", DELIVERY_REQUEST=" + DELIVERY_REQUEST + ", DELIVERY_MONEY="
-				+ DELIVERY_MONEY + ", START_DATE=" + START_DATE + ", CONPANY_NAME=" + CONPANY_NAME + ", FUND_NO="
-				+ FUND_NO + "]";
+		return "ExcelReward [projectNo=" + projectNo + ", projectShortTitle=" + projectShortTitle + ", memberName="
+				+ memberName + ", rewardMoney=" + rewardMoney + ", rewardName=" + rewardName + ", options=" + options
+				+ ", deliveryStatus=" + deliveryStatus + ", deliveryMoney=" + deliveryMoney + ", startDate=" + startDate
+				+ ", companyName=" + companyName + ", fundNo=" + fundNo + ", adjustNo=" + adjustNo + ", adjustState="
+				+ adjustState + "]";
 	}
 
-	public void setCurrencyPair(String currencyPair) {
-		// TODO Auto-generated method stub
-		
-	}
-
+	
 	
 	
 	

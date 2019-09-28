@@ -246,7 +246,10 @@ public class CategoryContoller {
 		
 		System.out.println(report);
 		
-		return ps.insertReport(report);
+		
+		int result = ps.insertReport(report);
+		ps.updateReport(report);
+		return result;
 	}
 	
 	@Scheduled(cron = "0 59 * * * *")

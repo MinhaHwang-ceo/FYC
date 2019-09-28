@@ -38,11 +38,20 @@
  
  <insert id="insertReport">
  		INSERT INTO
-		REPORT (REPORT_COMMENT, REPORT_DATE, REPORT_NO ,MEMBER_NO, PROJECT_NO, REPORT_CODE)
+		REPORT (REPORT_COMMENT, REPORT_DATE, REPORT_NO ,MEMBER_NO, PROJECT_NO, REPORT_CODE, REPORT_COUNT)
 		VALUES( 
-		#{reportComment}, SYSDATE , SEQ_REPORTNO.NEXTVAL, #{userNo} , #{projectNo} , #{reportCode}
+		#{reportComment}, SYSDATE , SEQ_REPORTNO.NEXTVAL, #{userNo} , #{projectNo} , #{reportCode} , 1
 		)
  </insert>
+ 
+ <update id="updateReportCount">
+UPDATE     PROJECT    
+SET   REPORT_COUNT = 
+(SELECT SUM(R.REPORT_COUNT)
+FROM REPORT R 
+INNER JOIN PROJECT P ON P.PROJECT_NO = R.PROJECT_NO WHERE R.PROJECT_NO = #{projectNo} GROUP BY P.PROJECT_NO )                 
+WHERE    PROJECT_NO = #{projectNo}
+	</update>
  
  <select id="reportCount" resultType="int">
  		SELECT COUNT(*) 

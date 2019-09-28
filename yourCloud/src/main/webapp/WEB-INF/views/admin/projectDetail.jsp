@@ -103,13 +103,12 @@
   		<tr>
 				<td align="center">
 					<select id="judgeStatus">
-				    <option value="통과">통과
-					</option>
-					<option value="심사중">심사중
+					<option value="서명대기중">서명대기중
 					</option>
 					<option value="반려">반려
 					</option>
-					
+					<option value="통과">통과
+					</option>
    					
 					</select>
 					<input type="button" value="수정" id="btnUpdate">

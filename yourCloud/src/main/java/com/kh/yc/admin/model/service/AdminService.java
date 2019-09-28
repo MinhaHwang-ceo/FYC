@@ -42,8 +42,11 @@ public interface AdminService {
 	//엑셀
 	int downExcel(String projectNo);
 
-	public void updateReward(Map map);
 
 	public void adjustUpdate(Project p);
+
+
+
+	public void updateReward(List arr);
 
 }
