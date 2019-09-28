@@ -192,7 +192,7 @@ public class ProjectDaoImpl implements ProjectDao{
 	//신고하기 기능
 	@Override
 	public int insertReport(SqlSessionTemplate sqlSession, Report report) {
-
+		
 		return sqlSession.insert("Report.insertReport",report);
 	}
 
@@ -202,13 +202,22 @@ public class ProjectDaoImpl implements ProjectDao{
 		
 		return sqlSession.selectOne("Report.reportCount",inter);
 	}
+	
+	//업데이트
+	@Override
+	public void updateReport(SqlSessionTemplate sqlSession, Report report) {
+		
+		sqlSession.insert("Report.updateReportCount",report);
+	}
 
 	
 	@Override
 	public void updateDB(SqlSessionTemplate sqlSession,Map<String, Object> map) {
-		 sqlSession.update("Project2.updateDb",map);
+	System.out.println("mpmpp"+map);
+	sqlSession.update("Project2.updateDb",map);
+		 System.out.println("a");
 	 sqlSession.update("Project2.updateDb2",map);
-
+	 System.out.println("b");
 	}
 
 	@Override

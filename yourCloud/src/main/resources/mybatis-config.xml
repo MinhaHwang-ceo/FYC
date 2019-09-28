@@ -22,7 +22,7 @@
 		<typeAlias type="com.kh.yc.payment.model.vo.Payment" alias="Payment"/>
 		<typeAlias type="com.kh.yc.delivery.model.vo.Delivery" alias="Delivery"/>
 	<typeAlias type="com.kh.yc.project.model.vo.OpenAlarm" alias="OpenAlarm"/>
-
+	<typeAlias type="com.kh.yc.reward.model.vo.ExcelReward" alias="ExcelReward"/>
 </typeAliases>
 	
 	<mappers>
@@ -34,6 +34,7 @@
 		<mapper resource="mappers/project2-mapper.xml"/>
 		<mapper resource="mappers/reward-mapper.xml"/>
 		<mapper resource="mappers/attachment-mapper.xml"/>
+		<mapper resource="mappers/excelReward-mapper.xml"/>
 	</mappers>
 	
 	

@@ -1,94 +1,101 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="UTF-8">
-<link href="https://fonts.googleapis.com/css?family=Sunflower:300&display=swap" rel="stylesheet">
-<title>Insert title here</title>
+<script src="https://code.jquery.com/jquery-latest.js"></script>
+<script type="text/javascript"
+	src="./resources/editor/js/HuskyEZCreator.js" charset="utf-8"></script>
+<link rel="stylesheet" href="${contextPath }/resources/css/myPage.css" />
 <style>
-.row2{
-
-width:800px;
-height:80%;
-
-margin:auto;
-	font-family: 'Sunflower', sans-serif;
+input {
+	width: 100%;
+	text-align: center;
 }
 
-.btn{
-  background:#1AAB8A;
-  color:#fff;
-  border:none;
-  position:relative;
-  cursor:pointer;
-  transition:800ms ease all;
-  outline:none;
-  font-family: 'Sunflower', sans-serif;
+.readonly {
+	border: none;
 }
 
+.center {
+	text-align: center;
+}
 </style>
 </head>
+<script type="text/javascript">
+	$(function() {
+		//전역변수
+		var obj = [];
+		//스마트에디터 프레임생성
+		nhn.husky.EZCreator.createInIFrame({
+			oAppRef : obj,
+			elPlaceHolder : "editor",
+			sSkinURI : "./resources/editor/SmartEditor2Skin.html",
+			htParams : {
+				// 툴바 사용 여부
+				bUseToolbar : true,
+				// 입력창 크기 조절바 사용 여부
+				bUseVerticalResizer : true,
+				// 모드 탭(Editor | HTML | TEXT) 사용 여부
+				bUseModeChanger : true,
+			}
+		});
+		//전송버튼
+		$("#insertBoardGuide").click(function() {
+			//id가 smarteditor인 textarea에 에디터에서 대입
+			obj.getById["editor"].exec("UPDATE_CONTENTS_FIELD", []);
+			//폼 submit
+			$("#insertBoardFrm").submit();
+		});
+	});
+</script>
 <body>
-<jsp:include page="../common/customer_menubar.jsp"/>
+	<c:set var="now" value="<%=new java.util.Date()%>" />
+	<jsp:include page="../common/customer_menubar.jsp" />
 	<jsp:include page="../common/customer_menuList.jsp" />
-	
-	<br><br><br><br><br>
-<div class="container">
-
-		 <div class="row2">
-
-		 	<form method="post" action="guide.bo">
-
-			 	<table class="table table-striped" style="text-align:center; border:1px; solid #dddddd">
-
-			 		<thead>
-
-						<tr>
-
-							<th colspan="1" style="background-color:#eeeeee; text-align: center;">이용가이드 글쓰기</th>
-
-						</tr>		 		
-
-			 		</thead>
-
-			 		
-
-			 		<tbody>
-
-			 			<tr>
-
-			 				<td><input type="text" class="form-control" placeholder="글제목" name="bbsTitle"></td>
-
-			 			</tr>
-
-			 			<tr>	
-
-			 				<td><textarea class="form-control" placeholder="글 내용" name="bbsContent" maxlength="2048" style="height:350px"></textarea> </td>
-
-			 			</tr>	
-						<tr>	
-
-			 				<td><input type="file" class="form-control"  name="bbsTitle"></td>
-
-			 			</tr>	
-
-
-
-			 		</tbody>
-
-			 	</table>
-
-				 	<input type="submit" class="btn" value="글쓰기" style="float: right;">
-
-			</form>
-
-		 </div>
-
+	<br />
+	<div id="outer" style="min-height: 1000px;">
+		<form action="insertBoardGuide.bo" method="post" id="insertBoardFrm"
+			enctype="multipart/form-data">
+			<table align="center" style="width: 60%;">
+				
+				<tr>
+					<th>제목</th>
+					<td colspan="3" class="center"><input type="text" name="bTitle" style="width:100%;" id="bTitle"/></td>
+				</tr>
+				<tr>
+					<th>작성자</th>
+					<input disabled="disabled" type="text" id="writer" name="writer" hidden value="${ sessionScope.loginUser.userNo }"/>
+					<td><input type="text" name="writeriD" id="writeriD" class="readonly" readonly value="${sessionScope.loginUser.userId }"/></td>
+					<th style="text-align:right;">현재시각</th>
+					<td><input style="background:white;" disabled="disabled" type="text" class="readonly" value="<fmt:formatDate value="${now}" pattern="yyyy-MM-dd hh:mm:ss" />"/></td>
+				</tr>
+				<tr>
+					<th>내용</th>
+					<td colspan="3" style="width: 80%;"><textarea name="editor" id="editor" name="bcontent" style="width:100%;height: 500px;"></textarea></td>
+					<textarea name="bcontent" id="bcontent" cols="10" rows="10" hidden></textarea>
+				</tr>
+				<tr style="height: 100px;">
+					<td></td>
+					<td colspan="3" class="center">
+						<button type="button" id="insertBoardGuide" class="btn" style="width:100px;" name="insertBoard">등록</button>
+						<button type="button" id="1" class="btn" style="width:100px;" name="cancel">취소</button>
+					</td>
+				</tr>
+			</table>
+		</form>
 	</div>
-<br><br><br><br><br>
-
-		<jsp:include page="../common/customer_footer.jsp"/>
-		
+	<jsp:include page="../common/customer_footer.jsp"/>
+	<script>
+		$(function(){
+			$("#cancel").click(function(){
+				history.go(-1);
+			});
+			$("#insertBoard").click(function(){
+				$("#insertBoardFrm").submit();
+			});
+		});
+	</script>
 </body>
 </html>

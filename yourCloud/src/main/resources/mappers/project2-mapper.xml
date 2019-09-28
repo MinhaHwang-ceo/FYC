@@ -123,6 +123,7 @@
 		<result property="rewardMoney" column="REWARD_MONEY" />
 		<result property="rewardCount" column="REWARD_COUNT" />
 		<result property="status" column="STATUS" />
+		<result property="fundNo" column="FUND_NO" />
 	</resultMap>
 	<resultMap type="com.kh.yc.funding.model.vo.Funding"
 		id="FundingList">
@@ -263,19 +264,19 @@
 	<select id="selectSupportList" resultMap="SupportList"
 		parameterType="java.util.Map">
 		SELECT
-		P.PROJECT_TITLE,f.fund_money,f.reward_number,r.reward_name,F.FUND_DATE,M.MEMBER_NAME,d.delivery_site,d.phone,r.start_date,p.pay_status
+		P.PROJECT_TITLE,f.fund_money,f.reward_number,r.reward_name,F.FUND_DATE,M.MEMBER_NAME,d.delivery_site,d.phone,r.start_date,p2.pay_status
 		,d2.invoice_number,p.project_no,d.status
-		FROM PROJECT P
+			FROM PROJECT P
 		JOIN SPONSORED S
 		ON(p.PROJECT_NO=S.PROJECT_NO)
 		Join member m on(s.member_no=m.member_no)
-		JOIN FUND F ON(F.MEMBER_NO = M.MEMBER_NO)
-		join reward r
+        join fund f on(f.member_no=m.member_no)
+        join fund_success f2 on(f.fund_no=f2.fund_no)
+        join reward r
 		on(r.reward_no=f.reward_no)
-		join delivery d on(d.member_no=m.member_no)
-		join payment p on(p.fund_no=f.fund_no)
-		join delivery_status d2
-		on(d2.delivery_no=d.delivery_no)
+        	join delivery_status d2 on(d2.fund_no=f.fund_no)
+            join delivery d on(d.delivery_no=d2.delivery_no)
+            join payment p2 on(p2.fund_no=f.fund_no)
 		WHERE P.PROJECT_NO=#{projectNo}
 	</select>
 
@@ -285,19 +286,19 @@
 	<select id="selectSupportListExcel" resultMap="SupportList"
 		parameterType="java.util.Map">
 		SELECT
-		P.PROJECT_TITLE,f.fund_money,f.reward_number,r.reward_name,F.FUND_DATE,M.MEMBER_NAME,d.delivery_site,d.phone,r.start_date,p.pay_status
-		,d2.invoice_number,p.project_no,d.status
+		P.PROJECT_TITLE,f.fund_money,f.reward_number,r.reward_name,F.FUND_DATE,M.MEMBER_NAME,d.delivery_site,d.phone,r.start_date,p2.pay_status
+		,d2.invoice_number,p.project_no,d.status,f.fund_no
 		FROM PROJECT P
 		JOIN SPONSORED S
 		ON(p.PROJECT_NO=S.PROJECT_NO)
 		Join member m on(s.member_no=m.member_no)
-		JOIN FUND F ON(F.MEMBER_NO = M.MEMBER_NO)
-		join reward r
+        join fund f on(f.member_no=m.member_no)
+        join fund_success f2 on(f.fund_no=f2.fund_no)
+        join reward r
 		on(r.reward_no=f.reward_no)
-		join delivery d on(d.member_no=m.member_no)
-		join payment p on(p.fund_no=f.fund_no)
-		join delivery_status d2
-		on(d2.delivery_no=d.delivery_no)
+        	join delivery_status d2 on(d2.fund_no=f.fund_no)
+            join delivery d on(d.delivery_no=d2.delivery_no)
+            join payment p2 on(p2.fund_no=f.fund_no)
 		WHERE P.PROJECT_NO=#{projectNo}
 	</select>
 
@@ -348,19 +349,19 @@
 	<select id="orderList1" resultMap="SupportList"
 		parameterType="java.util.Map">
 		SELECT
-		P.PROJECT_TITLE,f.fund_money,f.reward_number,r.reward_name,F.FUND_DATE,M.MEMBER_NAME,d.delivery_site,d.phone,r.start_date,p.pay_status
+		P.PROJECT_TITLE,f.fund_money,f.reward_number,r.reward_name,F.FUND_DATE,M.MEMBER_NAME,d.delivery_site,d.phone,r.start_date,p2.pay_status
 		,d2.invoice_number,p.project_no,d.status
-		FROM PROJECT P
+	FROM PROJECT P
 		JOIN SPONSORED S
 		ON(p.PROJECT_NO=S.PROJECT_NO)
 		Join member m on(s.member_no=m.member_no)
-		JOIN FUND F ON(F.MEMBER_NO = M.MEMBER_NO)
-		join reward r
+        join fund f on(f.member_no=m.member_no)
+        join fund_success f2 on(f.fund_no=f2.fund_no)
+        join reward r
 		on(r.reward_no=f.reward_no)
-		join delivery d on(d.member_no=m.member_no)
-		join payment p on(p.fund_no=f.fund_no)
-		join delivery_status d2
-		on(d2.delivery_no=d.delivery_no)
+        	join delivery_status d2 on(d2.fund_no=f.fund_no)
+            join delivery d on(d.delivery_no=d2.delivery_no)
+            join payment p2 on(p2.fund_no=f.fund_no)
 		WHERE P.PROJECT_NO=#{projectNo}
 		AND
 		D.status='배송전'
@@ -369,19 +370,19 @@
 	<select id="orderList2" resultMap="SupportList"
 		parameterType="java.util.Map">
 		SELECT
-		P.PROJECT_TITLE,f.fund_money,f.reward_number,r.reward_name,F.FUND_DATE,M.MEMBER_NAME,d.delivery_site,d.phone,r.start_date,p.pay_status
+		P.PROJECT_TITLE,f.fund_money,f.reward_number,r.reward_name,F.FUND_DATE,M.MEMBER_NAME,d.delivery_site,d.phone,r.start_date,p2.pay_status
 		,d2.invoice_number,p.project_no,d.status
-		FROM PROJECT P
+FROM PROJECT P
 		JOIN SPONSORED S
 		ON(p.PROJECT_NO=S.PROJECT_NO)
 		Join member m on(s.member_no=m.member_no)
-		JOIN FUND F ON(F.MEMBER_NO = M.MEMBER_NO)
-		join reward r
+        join fund f on(f.member_no=m.member_no)
+        join fund_success f2 on(f.fund_no=f2.fund_no)
+        join reward r
 		on(r.reward_no=f.reward_no)
-		join delivery d on(d.member_no=m.member_no)
-		join payment p on(p.fund_no=f.fund_no)
-		join delivery_status d2
-		on(d2.delivery_no=d.delivery_no)
+        	join delivery_status d2 on(d2.fund_no=f.fund_no)
+            join delivery d on(d.delivery_no=d2.delivery_no)
+            join payment p2 on(p2.fund_no=f.fund_no)
 		WHERE P.PROJECT_NO=#{projectNo}
 		AND
 		D.status='배송완료'
@@ -391,19 +392,19 @@
 	<select id="selectSupportList4" resultMap="SupportList"
 		parameterType="java.util.Map">
 		SELECT
-		P.PROJECT_TITLE,f.fund_money,f.reward_number,r.reward_name,F.FUND_DATE,M.MEMBER_NAME,d.delivery_site,d.phone,r.start_date,p.pay_status
+		P.PROJECT_TITLE,f.fund_money,f.reward_number,r.reward_name,F.FUND_DATE,M.MEMBER_NAME,d.delivery_site,d.phone,r.start_date,p2.pay_status
 		,d2.invoice_number,p.project_no,d.status
 		FROM PROJECT P
 		JOIN SPONSORED S
 		ON(p.PROJECT_NO=S.PROJECT_NO)
 		Join member m on(s.member_no=m.member_no)
-		JOIN FUND F ON(F.MEMBER_NO = M.MEMBER_NO)
-		join reward r
+        join fund f on(f.member_no=m.member_no)
+        join fund_success f2 on(f.fund_no=f2.fund_no)
+        join reward r
 		on(r.reward_no=f.reward_no)
-		join delivery d on(d.member_no=m.member_no)
-		join payment p on(p.fund_no=f.fund_no)
-		join delivery_status d2
-		on(d2.delivery_no=d.delivery_no)
+        	join delivery_status d2 on(d2.fund_no=f.fund_no)
+            join delivery d on(d.delivery_no=d2.delivery_no)
+            join payment p2 on(p2.fund_no=f.fund_no)
 		WHERE P.PROJECT_NO=#{projectNo}
 
 	</select>
@@ -412,48 +413,45 @@
 	<select id="orderList3" resultMap="SupportList"
 		parameterType="java.util.Map">
 		SELECT
-		P.PROJECT_TITLE,f.fund_money,f.reward_number,r.reward_name,F.FUND_DATE,M.MEMBER_NAME,d.delivery_site,d.phone,r.start_date,p.pay_status
+		P.PROJECT_TITLE,f.fund_money,f.reward_number,r.reward_name,F.FUND_DATE,M.MEMBER_NAME,d.delivery_site,d.phone,r.start_date,p2.pay_status
 		,d2.invoice_number,p.project_no,d.status
 		FROM PROJECT P
 		JOIN SPONSORED S
 		ON(p.PROJECT_NO=S.PROJECT_NO)
 		Join member m on(s.member_no=m.member_no)
-		JOIN FUND F ON(F.MEMBER_NO = M.MEMBER_NO)
-		join reward r
+        join fund f on(f.member_no=m.member_no)
+        join fund_success f2 on(f.fund_no=f2.fund_no)
+        join reward r
 		on(r.reward_no=f.reward_no)
-		join delivery d on(d.member_no=m.member_no)
-		join payment p on(p.fund_no=f.fund_no)
-		join delivery_status d2
-		on(d2.delivery_no=d.delivery_no)
+        	join delivery_status d2 on(d2.fund_no=f.fund_no)
+            join delivery d on(d.delivery_no=d2.delivery_no)
+            join payment p2 on(p2.fund_no=f.fund_no)
 		WHERE P.PROJECT_NO=#{projectNo}
 		AND
-		p.pay_status='결제전'
+		p2.pay_status='결제전'
 	</select>
 
 
 	<select id="orderList4" resultMap="SupportList"
 		parameterType="java.util.Map">
 		SELECT
-		P.PROJECT_TITLE,f.fund_money,f.reward_number,r.reward_name,F.FUND_DATE,M.MEMBER_NAME,d.delivery_site,d.phone,r.start_date,p.pay_status
+		P.PROJECT_TITLE,f.fund_money,f.reward_number,r.reward_name,F.FUND_DATE,M.MEMBER_NAME,d.delivery_site,d.phone,r.start_date,p2.pay_status
 		,d2.invoice_number,p.project_no,d.status
 		FROM PROJECT P
 		JOIN SPONSORED S
 		ON(p.PROJECT_NO=S.PROJECT_NO)
-		Join member m
-		on(s.member_no=m.member_no)
-		JOIN FUND F ON(F.MEMBER_NO = M.MEMBER_NO)
-		join reward r
+		Join member m on(s.member_no=m.member_no)
+        join fund f on(f.member_no=m.member_no)
+        join fund_success f2 on(f.fund_no=f2.fund_no)
+        join reward r
 		on(r.reward_no=f.reward_no)
-		join delivery d
-		on(d.member_no=m.member_no)
-		join payment p on(p.fund_no=f.fund_no)
-		join
-		delivery_status d2
-		on(d2.delivery_no=d.delivery_no)
+        	join delivery_status d2 on(d2.fund_no=f.fund_no)
+            join delivery d on(d.delivery_no=d2.delivery_no)
+            join payment p2 on(p2.fund_no=f.fund_no)
 		WHERE
 		P.PROJECT_NO=#{projectNo}
 		AND
-		p.pay_status='결제성공'
+		p2.pay_status='결제성공'
 	</select>
 
 
@@ -752,8 +750,8 @@
 	
 	<update id="updateDb" parameterType="java.util.Map">
 		update delivery 
-		set status=#{STATUS}
-		where member_name=#{NAME}
+		set status=#{status}
+		where member_name=#{memberName}
 
 	</update>
 
@@ -762,23 +760,25 @@
 
 	<update id="updateDb2" parameterType="java.util.Map">
 		update delivery_status
-		set invoice_number=#{INVOICE}
+		set invoice_number=#{invoiceNum}
 		where member_no= (
 		select m.member_no
-		FROM PROJECT P
+			FROM PROJECT P
 		JOIN SPONSORED S
 		ON(p.PROJECT_NO=S.PROJECT_NO)
 		Join member m on(s.member_no=m.member_no)
-		JOIN FUND F ON(F.MEMBER_NO = M.MEMBER_NO)
-		join reward r
+        join fund f on(f.member_no=m.member_no)
+        join fund_success f2 on(f.fund_no=f2.fund_no)
+        join reward r
 		on(r.reward_no=f.reward_no)
-		join delivery d on(d.member_no=m.member_no)
-		join payment p on(p.fund_no=f.fund_no)
-		join delivery_status d2
-		on(d2.delivery_no=d.delivery_no)
+        	join delivery_status d2 on(d2.fund_no=f.fund_no)
+            join delivery d on(d.delivery_no=d2.delivery_no)
+            join payment p2 on(p2.fund_no=f.fund_no)
 
-		where m.member_name=#{NAME}
+		where m.member_name=#{memberName}
+		   and p.project_no=#{projectNo}
 		)
+		   and fund_no=#{fundNo}
 	</update>
 
 	<select id="interestProject5" resultMap="ProjectList"

@@ -99,8 +99,7 @@
       <result property="companyName" column="COMPANY_NAME" />
       
    <collection property="Attachment" javaType="java.util.List" resultMap="AttachmentResultSet"/>
-   </resultMap>
-   
+    </resultMap>
 	<update id="updateProject" parameterType="Project">
 		UPDATE PROJECT
 		SET PROGRESS_STATUS = #{progressStatus}
@@ -114,10 +113,9 @@
    </select>
 
    <update id="updateJudgeProject" parameterType="Project">
-      UPDATE ADJUST
+      UPDATE PROJECT
       SET JUDGE_STATUS = #{judgeStatus}
-      WHERE PROJECT_NO=
-      #{projectNo}
+      WHERE PROJECT_NO= #{projectNo}
    </update>
    
    <update id="adjustUpdate" parameterType="Project">

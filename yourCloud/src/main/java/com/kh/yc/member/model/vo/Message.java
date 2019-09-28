@@ -7,14 +7,14 @@ public class Message implements java.io.Serializable{
 	private int messageNo;
 	private int sendMember;
 	private int receiveMember;
-	private Date createDate;
+	private String createDate;
 	private String messageContent;
 	private String status;
 	private String userName;
 	
 	public Message() {}
 
-	public Message(int messageNo, int sendMember, int receiveMember, Date createDate, String messageContent,
+	public Message(int messageNo, int sendMember, int receiveMember, String createDate, String messageContent,
 			String status, String userName) {
 		super();
 		this.messageNo = messageNo;
@@ -50,11 +50,11 @@ public class Message implements java.io.Serializable{
 		this.receiveMember = receiveMember;
 	}
 
-	public Date getCreateDate() {
+	public String getCreateDate() {
 		return createDate;
 	}
 
-	public void setCreateDate(Date createDate) {
+	public void setCreateDate(String createDate) {
 		this.createDate = createDate;
 	}
 
@@ -88,7 +88,6 @@ public class Message implements java.io.Serializable{
 				+ ", createDate=" + createDate + ", messageContent=" + messageContent + ", status=" + status
 				+ ", userName=" + userName + "]";
 	}
-	
-	
-	
+
+		
 }

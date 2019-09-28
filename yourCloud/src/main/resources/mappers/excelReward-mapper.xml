@@ -6,24 +6,67 @@
 <mapper namespace="ExcelReward">
 	<resultMap type="com.kh.yc.reward.model.vo.ExcelReward"
 		id="ExcelRewardResultSet">
-		<id property="PROJECT_NO" column="PROJECT_NO" />
-		<result property="PROJECT_SHORT_TITLE" column="PROJECT_SHORT_TITLE" />
-		<result property="MEMBER_NAME" column="MEMBER_NAME" />
-		<result property="REWARD_MONEY" column="REWARD_MONEY" />
-		<result property="REWARD_NAME" column="REWARD_NAME" />
-		<result property="OPTIONS" column="OPTIONS" />
-		<result property="DELIVERY_REQUEST" column="DELIVERY_REQUEST" />
-		<result property="DELIVERY_MONEY" column="DELIVERY_MONEY" />
-		<result property="START_DATE" column="START_DATE" />
-		<result property="CONPANY_NAME" column="CONPANY_NAME" />
-		<result property="FUND_NO" column="FUND_NO" />
-		<result property="ADJUST_STATE" column="ADJUST_STATE" />
+		<id property="projectNo" column="PROJECT_NO" />
+		<result property="projectShortTitle" column="PROJECT_SHORT_TITLE" />
+		<result property="memberName" column="MEMBER_NAME" />
+		<result property="rewardMoney" column="REWARD_MONEY" />
+		<result property="rewardName" column="REWARD_NAME" />
+		<result property="options" column="OPTIONS" />
+		<result property="deliveryStatus" column="DELIVERY_REQUEST" />
+		<result property="deliveryMoney" column="DELIVERY_MONEY" />
+		<result property="startDate" column="START_DATE" />
+		<result property="companyName" column="CONPANY_NAME" />
+		<result property="fundNo" column="FUND_NO" />
+		<result property="adjustState" column="ADJUST_STATE" />
+		<result property="adjustNo" column="ADJUST_NO" />
+		
 	</resultMap>
 	
 	
-	<update id="updateExcel" parameterType="ExcelReward">
+	<update id="updateExcel" parameterType="java.util.ArrayList" >
 			UPDATE ADJUST
-			SET ADJUST_STATE = #{ADJUST_STATE}
+			SET ADJUST_STATE = 
+		
+		 <foreach collection="list" item="item" separator='","'>
+
+        (
+
+        #{item.ADJUST_STATE}
+
+        )
+
+        </foreach> 
+        
+			WHERE PROJECT_NO = 
+		 <foreach collection="list" item="item" separator='","'>
+
+        (
+
+        #{item.PROJECT_NO}
+
+        )
+		
+		</foreach> 
+		 AND ADJUST_NO = 
+ 		<foreach collection="list" item="item" separator='","'>
+
+        (
+
+        #{item.ADJUST_NO}
+
+        )
+		
+		</foreach> 
+		AND PAY_NO = 
+ 		<foreach collection="list" item="item" separator='","'>
+
+        (
+
+        #{item.PAY_NO}
+
+        )
+		
+		</foreach> 
 	</update>
 </mapper>
 

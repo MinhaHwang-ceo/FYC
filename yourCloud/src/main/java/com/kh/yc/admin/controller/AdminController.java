@@ -112,7 +112,7 @@ public class AdminController {
 	@RequestMapping(value = "project3.ad", method = RequestMethod.GET)
 	public String admin5(Locale locale, Model model) {
 
-		return "admin/charts";
+		return "admin/chartsTest";
 	}
 
 	// 프로젝트 현황
@@ -195,7 +195,7 @@ public class AdminController {
 
 		AdminService.updateProject(p);
 
-		return "redirect:/project1.ad";
+		return "redirect:/projectStatus.ad";
 	}
 	
 	
@@ -255,8 +255,9 @@ public class AdminController {
 	
 	// 엑셀 업로더ㅡ
 		@RequestMapping(value = "excel2.ad", method = RequestMethod.GET)
-		public String exUp(Locale locale, Model model) {
+		public String exUp(String projectNo, Model model) {
 			
+			model.addAttribute("rpt", AdminService.viewProject(projectNo));
 			
 			return "admin/excelupTest";
 		}
@@ -277,20 +278,28 @@ public class AdminController {
 
 	        Map map = new HashMap();
 	        List arr = new ArrayList();
+	        //Map<String,Object> result = new HashMap<String, Object>();
 			
+	        ArrayList<HashMap<String,Object>> list = new ArrayList<HashMap<String,Object>>();
+	        
 	        for(int i=0; i<insertParam.size(); i++){
-	        	arr.add(i,((JSONObject) insertParam.get(i)));
-			
+	        	list.add(i,((JSONObject) insertParam.get(i)));
 	        }
 			
 	        
-	        
-	        
 			
 		
-	        //map = (Map<Stringd,String>) gson.fromJson(gson.toJson(insertParam), map.getClass());
+	       // map = (Map<String,Object>) gson.fromJson(gson.toJson(insertParam), map.getClass());
 	   
-	        System.out.println(arr);
+	        System.out.println("*************************************" + list);
+	        
+	        AdminService.updateReward(list);
+	        
+	        
+	        System.out.println("*************************************" + map);
+	        
+	        mav.setViewName("jsonView");
+	        
 			return mav;
 	        
 	        

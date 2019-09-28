@@ -113,9 +113,10 @@ public class AdminServiceImpl implements AdminService {
 		int downExcel = ad.downExcel(sqlSession, projectNo);
 		return downExcel;
 	}
-
-	public void updateReward(Map map) {
-		ad.updateReward(sqlSession, map);
+	
+	@Override
+	public void updateReward(List arr) {
+		ad.updateReward(sqlSession, arr);
 	}
 
 }                                       

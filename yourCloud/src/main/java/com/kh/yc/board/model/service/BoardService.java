@@ -63,13 +63,17 @@ public interface BoardService {
 
 	int fileInsert(Attachment fileVO);
 
-	List<Board> selectAllBoardList(Board b);
+	List<Board> selectAllBoardList(PageInfo pi);
 
 	List<Attachment> selectAllfileList(Attachment at);
 
 	int PageListCount();
 
 	ArrayList<Project> selectRankList();
+
+	Board selectNoticeOne(String bNo);
+
+	int deleteBoardNotice(Board b);
 
 
 

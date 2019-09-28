@@ -120,7 +120,8 @@ public class MyPageController {
 
 		return "member/interestProject";
 	}
-
+	
+	//마이페이지 쪽지 첫화면
 	@RequestMapping("messageBox.me")
 	public String messageBox(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
 		
@@ -130,8 +131,7 @@ public class MyPageController {
 		//쪽지 출력
 		ArrayList<Message> message = ms.selectMessageList(member);
 		
-		
-		System.out.println(message+"는??");
+		//System.out.println(message+"는??");
 		
 		request.setAttribute("message", message);
 		request.setAttribute("member", member);
@@ -139,23 +139,40 @@ public class MyPageController {
 		return "member/messageBox";
 	}
 
+	//문의하기 눌렀을때 
 	@RequestMapping("sendMessage.me")
-	public String sendMessage(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
+	public String sendMessage(Message message,HttpServletRequest request, HttpServletResponse response, HttpSession session,Model model) {
 
-		int makerNo = Integer.parseInt(request.getParameter("makerNo"));
+		Member member = (Member) session.getAttribute("loginUser");
 		
-		request.setAttribute("makerNo", makerNo);
+		int makerNo = Integer.parseInt(request.getParameter("makerNo"));
+		int userNo = Integer.parseInt(request.getParameter("userNo"));
+		
+		//System.out.println(userNo);
+
+		message.setSendMember(userNo);
+		message.setReceiveMember(makerNo);
+		
+		
+		ArrayList<Message> mge = ms.messageDetail(message);
+		
+		model.addAttribute("mge",mge);
+		model.addAttribute("makerNo",makerNo);
 		
 		return "member/message";
 	}
 	
+	//쪽지 insert하는 컨트롤러
 	@ResponseBody
-	@RequestMapping("submitMessage.me")
-	public int submitMessage(Message message,HttpServletRequest request, HttpServletResponse response, HttpSession session) {
+	@RequestMapping(value="/submitMessage.me")
+	public ModelAndView submitMessage(Message message,HttpServletRequest request, ModelAndView mv, HttpServletResponse response, HttpSession session) {
 		
 		System.out.println(message);
+		int result = ms.insertMessage(message);
+		mv.addObject("result", result);
+		mv.setViewName("jsonView");
 		
-		return ms.insertMessage(message);
+		return mv;
 	}
 	
 	
@@ -435,21 +452,36 @@ public class MyPageController {
 
 	    cell.setCellStyle(headStyle);
 
+	    cell.setCellValue("프로젝트번호");
+	    
+	    cell = row.createCell(1);
+
+	    cell.setCellStyle(headStyle);
+
+	    cell.setCellValue("펀드고유번호");
+	    
+	    
+	    
+	    
+	    cell = row.createCell(2);
+
+	    cell.setCellStyle(headStyle);
+
 	    cell.setCellValue("후원자이름");
 
-	    cell = row.createCell(1);
+	    cell = row.createCell(3);
 
 	    cell.setCellStyle(headStyle);
 
 	    cell.setCellValue("결제현황");
 
-	    cell = row.createCell(2);
+	    cell = row.createCell(4);
 
 	    cell.setCellStyle(headStyle);
 
 	    cell.setCellValue("배송현황");
 
-	    cell = row.createCell(3);
+	    cell = row.createCell(5);
 
 	    cell.setCellStyle(headStyle);
 
@@ -463,26 +495,41 @@ public class MyPageController {
 
 	        row = sheet.createRow(rowNo++);
 
+	        
 	        cell = row.createCell(0);
+
+	        cell.setCellStyle(bodyStyle);
+
+	        cell.setCellValue(vo.getProjectNo());
+	        
+	        cell = row.createCell(1);
+
+	        cell.setCellStyle(bodyStyle);
+
+	        cell.setCellValue(vo.getFundNo());
+	        
+	        
+	        
+	        cell = row.createCell(2);
 
 	        cell.setCellStyle(bodyStyle);
 
 	        cell.setCellValue(vo.getMemberName());
 	        
-	        cell = row.createCell(1);
+	        cell = row.createCell(3);
 
 	        cell.setCellStyle(bodyStyle);
 
 	        cell.setCellValue(vo.getPayState());
 	        
 
-	        cell = row.createCell(2);
+	        cell = row.createCell(4);
 
 	        cell.setCellStyle(bodyStyle);
 
 	        cell.setCellValue(vo.getStatus());
 
-	        cell = row.createCell(3);
+	        cell = row.createCell(5);
 
 	        cell.setCellStyle(bodyStyle);
 

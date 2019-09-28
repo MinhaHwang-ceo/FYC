@@ -74,7 +74,7 @@ boolean checkPwd(SqlSessionTemplate sqlSession, String userId, String userPwd);
 
 void updateMember(SqlSessionTemplate sqlSession, Member mse);
 
-
+ArrayList<Message> messageDetail(SqlSessionTemplate sqlSession, Message message);
 
 
 

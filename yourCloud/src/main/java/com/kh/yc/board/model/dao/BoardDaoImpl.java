@@ -199,11 +199,19 @@ public class BoardDaoImpl implements BoardDao {
 	}
 
 	@Override
-	public List<Board> selectAllBoardList(SqlSessionTemplate sqlSession, Board b) {
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	public List<Board> selectAllBoardList(SqlSessionTemplate sqlSession, PageInfo pi) {
+		List<Board> BoardList = null;
 		
-		return sqlSession.selectList("Board.selectAllBoardList",b);
-	}
+		int offset = (pi.getCurrentPage() - 1) * pi.getLimit();
+		RowBounds rowBounds = new RowBounds(offset, pi.getLimit());
 
+		BoardList = (List) sqlSession.selectList("Board.selectAllBoardList", null, rowBounds);
+		return BoardList;
+		
+		
+		 
+	}
 	@Override
 	public List<Attachment> selectAllfileList(SqlSessionTemplate sqlSession, Attachment at) {
 	
@@ -223,6 +231,21 @@ public class BoardDaoImpl implements BoardDao {
 		return list;
 
 	}
+
+	@Override
+	public Board selectNoticeOne(SqlSessionTemplate sqlSession, String bNo) {
+		
+		return sqlSession.selectOne("Board.selectNoticeOne",bNo);
+	}
+	@Override
+	public int deleteBoardNotice(SqlSessionTemplate sqlSession, Board b) {
+		
+		return sqlSession.delete("Board.delBoardNotice",b);
+	}
+
+
+	
+  
 
 
 }

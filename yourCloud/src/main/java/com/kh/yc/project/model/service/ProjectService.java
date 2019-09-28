@@ -63,6 +63,7 @@ public interface ProjectService {
 	public int insertReport(Report report);
 	//신고 여부
 	public int reportCount(Interest inter);
+	//신고수 프로젝트 업데이트
 	//카제고리 분류
 	ArrayList<Project> sortProjectList(PageInfo pi, String category);
   
@@ -102,6 +103,9 @@ public interface ProjectService {
 	public String makerImg(Interest inter);
 	//정렬된 페이징
 	int getSortListCount(String category) throws ProjectSelectListException;
+	
+	public void updateReport(Report report);
+	
 
 
 }

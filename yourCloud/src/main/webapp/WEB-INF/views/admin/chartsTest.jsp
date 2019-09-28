@@ -11,102 +11,52 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>니가 그린 구름 그림</title>
-
-<!-- Custom fonts for this template-->
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/vendor/fontawesome-free/css/all.min.css"
-	type="text/css">
-<link
-	href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-	rel="stylesheet">
-
-<!-- Custom styles for this template-->
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/sb-admin-2.min.css">
-
-<!-- Custom styles for this page -->
-<link
-	href="${pageContext.request.contextPath}/resources/vendor/datatables/dataTables.bootstrap4.min.css"
-	rel="stylesheet">
-
-<script src="js/chart/Chart.js"></script>
+<title>Labelling Data Points</title>
+<script src="../../dist/Chart.bundle.js"></script>
+<script src="../utils.js"></script>
+<style>
+  canvas {
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+  }
+</style>
 <script>
-
-
-//And for a doughnut chart
-var myDoughnutChart = new Chart(ctx, {
-    type: 'doughnut',
-    data: data,
-    options: options
-});
-
-data = {
-	    datasets: [{
-	        data: [10, 20, 30]
-	    }],
-
-	    // These labels appear in the legend and in the tooltips when hovering different arcs
-	    labels: [
-	        'Red',
-	        'Yellow',
-	        'Blue'
-	    ]
-	};
-	
-var myBarChart = new Chart(ctx, {
-
-
+var stackedBar = new Chart(ctx, {
     type: 'bar',
-
     data: data,
-
-    options: options
-
-});
-
-var ctx = document.getElementById("myChart");
-var myChart = new Chart(ctx, {
-    type: 'bar',
-    data: {
-        labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
-        datasets: [{
-            label: '# of Votes',
-            data: [12, 19, 3, 5, 2, 3],
-            backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 206, 86, 0.2)',
-                'rgba(75, 192, 192, 0.2)',
-                'rgba(153, 102, 255, 0.2)',
-                'rgba(255, 159, 64, 0.2)'
-            ],
-            borderColor: [
-                'rgba(255,99,132,1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)',
-                'rgba(255, 159, 64, 1)'
-            ],
-            borderWidth: 1
-        }]
-    },
     options: {
         scales: {
+            xAxes: [{
+                stacked: true
+            }],
             yAxes: [{
-                ticks: {
-                    beginAtZero:true
-                }
+                stacked: true
             }]
         }
     }
 });
-</script>
 
+function addData(chart, label, data) {
+    chart.data.labels.push(label);
+    chart.data.datasets.forEach((dataset) => {
+        dataset.data.push(data);
+    });
+    chart.update();
+}
+
+function removeData(chart) {
+    chart.data.labels.pop();
+    chart.data.datasets.forEach((dataset) => {
+        dataset.data.pop();
+    });
+    chart.update();
+}
+
+</script>
+ 
 
 </head>
-
 <body id="page-top">
 
 	<!-- Page Wrapper -->
@@ -374,12 +324,46 @@ var myChart = new Chart(ctx, {
 							<div class="card-header py-3">
 									<h6 class="m-0 font-weight-bold text-primary">Bar Chart</h6>
 								</div>
-								<div class="card-body">
-									<div class="chart-bar">
-							<canvas id="myChart" width="400" height="400"></canvas>
-
-						</div>
-					</div>
+								 <canvas id="myChart" width="400" height="400"></canvas>
+<script>
+var ctx = document.getElementById("myChart"); //캔버스 id값 가져오기
+var myChart = new Chart(ctx, {
+    type: 'bar', //그래프 형태 지정하기
+    data: {
+        labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"], //X축 제목
+        datasets: [{
+            label: '# of Votes',
+            data: [12, 19, 3, 5, 2, 3],
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)', //1번째 그래프의 바탕색
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)'
+            ],
+            borderColor: [
+                'rgba(255,99,132,1)',      //1번째 그래프의 선색
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)'
+            ],
+            borderWidth: 1 //선굵기
+        }]
+    },
+    options: {
+        scales: { //X,Y축 옵션
+            yAxes: [{
+                ticks: {
+                    beginAtZero:true  //Y축의 값이 0부터 시작
+                }
+            }]
+        }
+    }
+});
+</script>
 
 				</div>
 				<!-- /.container-fluid -->

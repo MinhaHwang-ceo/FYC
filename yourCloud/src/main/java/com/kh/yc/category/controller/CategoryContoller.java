@@ -87,11 +87,11 @@ public class CategoryContoller {
 		String mainImg = ps.mainImg(inter);
 		//메이커 이미지
 		String makerImg = ps.makerImg(inter);
-		System.out.println(makerImg+"는 메이커이미지입니다");
+		//System.out.println(makerImg+"는 메이커이미지입니다");
 		
 		//리워드 출력
 		ArrayList<Reward> reward =  ps.rewardList(projectNo);
-		System.out.println(reward);
+		//System.out.println(reward);
 		
 		request.setAttribute("reportCount", reportCount);
 		request.setAttribute("projectNo", projectNo);
@@ -246,7 +246,10 @@ public class CategoryContoller {
 		
 		System.out.println(report);
 		
-		return ps.insertReport(report);
+		
+		int result = ps.insertReport(report);
+		ps.updateReport(report);
+		return result;
 	}
 	
 	@Scheduled(cron = "0 59 * * * *")
