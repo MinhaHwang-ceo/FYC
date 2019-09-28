@@ -285,21 +285,26 @@ public class BoardController {
 		
 		int listCount = bs.PageListCount();
 		
-		
 		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
 		
-		
-		List<Board> BoardList = bs.selectAllBoardList(b);
+		List<Board> BoardList = bs.selectAllBoardList(pi);
 	
 		System.out.println(BoardList);
 		
 		model.addAttribute("BoardList",BoardList);
+		model.addAttribute("pi",pi);
+		
 		return "board/notice";
 	}
 
-	@RequestMapping("noticeOne.bo")
-	public String noticeOne() {
-
+	@RequestMapping("selectNoticeOne.bo")
+	public String noticeOne(HttpServletRequest request, 
+			                HttpServletResponse response, String bNo, Model model) {
+		
+		Board b = bs.selectNoticeOne(bNo);
+		
+		model.addAttribute("b",b);
+		
 		return "board/noticeOne";
 	}
 
@@ -550,7 +555,7 @@ public class BoardController {
 		return "main/main";
 	}
 	@RequestMapping("noticeInsert.bo")
-	public String noticeInsert(Board b, Model model, HttpSession session, HttpServletRequest request,
+	public String noticeInsert(Board b, Model model, HttpSession session, HttpServletRequest request, HttpServletResponse response,
 			@RequestParam(name = "photo", required = true) MultipartFile photo) { 
 	 
 		System.out.println("글쓰기");
@@ -597,9 +602,24 @@ public class BoardController {
 				new File(fullFilePath).delete();
 			}
 		}
-		return "board/notice";
+		return "redirect:notice.bo";
 	}
 	
+	
+	@RequestMapping("deleteBoardNotice.bo")
+	public ModelAndView deleteBoardNotice(Board b,String bNo, ModelAndView mv, Model model, HttpSession session, HttpServletRequest request, HttpServletResponse response) {
+	
+		b.setbNo(Integer.parseInt(bNo));
+		System.out.println(b);
+		int result = bs.deleteBoardNotice(b);
+		//mv.addObject()
+		mv.setViewName("jsonView");
+			
+		return mv;
+	}
+	
+	
+
 	
 }
 

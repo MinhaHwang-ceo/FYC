@@ -131,9 +131,9 @@ public class BoardServiceImpl implements BoardService {
 		return bd.fileInsert(sqlSession,fileVO);
 	}
 	@Override
-	public List<Board> selectAllBoardList(Board b) {
+	public List<Board> selectAllBoardList(PageInfo pi) {
 		
-		return bd.selectAllBoardList(sqlSession,b);
+		return bd.selectAllBoardList(sqlSession,pi);
 	}
 	@Override
 	public List<Attachment> selectAllfileList(Attachment at) {
@@ -145,10 +145,21 @@ public class BoardServiceImpl implements BoardService {
 		
 		return bd.PageListCount(sqlSession);
   }
-  @Override
+	@Override
 	public ArrayList<Project> selectRankList() {
 		// TODO Auto-generated method stub
 		return bd.selectRankList(sqlSession);
 	}
+	@Override
+	public Board selectNoticeOne(String bNo) {
+		
+		return bd.selectNoticeOne(sqlSession,bNo);
+	}
+	@Override
+	public int deleteBoardNotice(Board b) {
+
+		return bd.deleteBoardNotice(sqlSession,b);
+	}
+	
 
 }
