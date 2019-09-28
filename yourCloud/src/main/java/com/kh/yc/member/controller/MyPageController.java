@@ -452,21 +452,36 @@ public class MyPageController {
 
 	    cell.setCellStyle(headStyle);
 
+	    cell.setCellValue("프로젝트번호");
+	    
+	    cell = row.createCell(1);
+
+	    cell.setCellStyle(headStyle);
+
+	    cell.setCellValue("펀드고유번호");
+	    
+	    
+	    
+	    
+	    cell = row.createCell(2);
+
+	    cell.setCellStyle(headStyle);
+
 	    cell.setCellValue("후원자이름");
 
-	    cell = row.createCell(1);
+	    cell = row.createCell(3);
 
 	    cell.setCellStyle(headStyle);
 
 	    cell.setCellValue("결제현황");
 
-	    cell = row.createCell(2);
+	    cell = row.createCell(4);
 
 	    cell.setCellStyle(headStyle);
 
 	    cell.setCellValue("배송현황");
 
-	    cell = row.createCell(3);
+	    cell = row.createCell(5);
 
 	    cell.setCellStyle(headStyle);
 
@@ -480,26 +495,41 @@ public class MyPageController {
 
 	        row = sheet.createRow(rowNo++);
 
+	        
 	        cell = row.createCell(0);
+
+	        cell.setCellStyle(bodyStyle);
+
+	        cell.setCellValue(vo.getProjectNo());
+	        
+	        cell = row.createCell(1);
+
+	        cell.setCellStyle(bodyStyle);
+
+	        cell.setCellValue(vo.getFundNo());
+	        
+	        
+	        
+	        cell = row.createCell(2);
 
 	        cell.setCellStyle(bodyStyle);
 
 	        cell.setCellValue(vo.getMemberName());
 	        
-	        cell = row.createCell(1);
+	        cell = row.createCell(3);
 
 	        cell.setCellStyle(bodyStyle);
 
 	        cell.setCellValue(vo.getPayState());
 	        
 
-	        cell = row.createCell(2);
+	        cell = row.createCell(4);
 
 	        cell.setCellStyle(bodyStyle);
 
 	        cell.setCellValue(vo.getStatus());
 
-	        cell = row.createCell(3);
+	        cell = row.createCell(5);
 
 	        cell.setCellStyle(bodyStyle);
 

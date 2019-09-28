@@ -182,9 +182,12 @@ public class ProjectServiceImpl implements ProjectService {
                 
                 Row row = sheet.getRow(i);
                 
-                map.put("NAME", ""+ExcelUtil.cellValue(row.getCell(0)));
-                map.put("STATUS", ""+ExcelUtil.cellValue(row.getCell(2)));
-                map.put("INVOICE", ""+ExcelUtil.cellValue(row.getCell(3)));
+                map.put("projectNo", ""+ExcelUtil.cellValue(row.getCell(0)));
+                map.put("fundNo", ""+ExcelUtil.cellValue(row.getCell(1)));
+                map.put("memberName", ""+ExcelUtil.cellValue(row.getCell(2)));
+                map.put("payState", ""+ExcelUtil.cellValue(row.getCell(3)));
+                map.put("status", ""+ExcelUtil.cellValue(row.getCell(4)));
+                map.put("invoiceNum", ""+ExcelUtil.cellValue(row.getCell(5)));
                 System.out.println("map"+map);
                 //신규삽입
                 pd.updateDB(sqlSession,map);
@@ -193,6 +196,7 @@ public class ProjectServiceImpl implements ProjectService {
  
             //데이터가져옵니다.
             list = pd.testDbList(sqlSession,map);
+            System.out.println("ddddddddddddddddd"+list.size());
             
         }catch(Exception e){
          

@@ -1,14 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+   pageEncoding="UTF-8"%>
+   <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+   <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <!DOCTYPE html>
 <html>
 <head>
 <%@ page import="java.util.Date" %>
 <%@ page import="java.text.SimpleDateFormat" %>
 <%
-	Date nowTime = new Date();
-	SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd");
+   Date nowTime = new Date();
+   SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd");
 %>
 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
@@ -17,122 +18,122 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.3.0/ekko-lightbox.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/animate.css">
 <link href="${pageContext.request.contextPath}/resources/css/main.css" rel="stylesheet"/>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>	
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>   
 <style>
 body, ul {
-	margin: 0;
-	padding: 0;
+   margin: 0;
+   padding: 0;
 }
 
 li {
-	list-style-type: none;
+   list-style-type: none;
 }
 
 a {
-	text-decoration: none;
+   text-decoration: none;
 }
 
 .tab-list {
-	text-align: center;
+   text-align: center;
 }
 
 .tab-list ul {
-	display: inline-block;
-	*display: inline;
-	zoom: 1;
+   display: inline-block;
+   *display: inline;
+   zoom: 1;
 }
 
 .tab-list ul li {
-	float: left;
-	margin-left: -1px;
-	z-index: 1;
+   float: left;
+   margin-left: -1px;
+   z-index: 1;
 }
 
 .tab-story a {
-	height: 40px;
-	padding: 0 30px;
-	line-height: 30px;
+   height: 40px;
+   padding: 0 30px;
+   line-height: 30px;
 }
 
 * {
-	word-break: break-all;
+   word-break: break-all;
 }
 
 .reward-body {
-	width: 100%;
+   width: 100%;
 }
 
 .dd {
-	
-	width: 75%;
-	margin: 0 auto;
+   
+   width: 75%;
+   margin: 0 auto;
 }
 /* 컨텐츠 영역  */
 .sub-contents {
-	float: left;
-	border: 1px solid purple;
-	width: 65%;
-	
-	margin: 0 auto;
-	margin-right: 18px;
+   float: left;
+   border: 1px solid purple;
+   width: 65%;
+   
+   margin: 0 auto;
+   margin-right: 18px;
 }
 /* 오른쪽 영역  */
 .opener-info {
-	float: left;
-	border: 1px solid black;
-	width: 24%;
+   float: left;
+   border: 1px solid black;
+   width: 24%;
 }
 
 .btn-funding {
-	/*    border:1px solid #00c4c4; */
-	border: 0;
-	outline: 0;
-	font-size: 17px;
-	background: #00c4c4;
-	padding: 1.19px 23.9999px 0px;
-	color: white;
-	width: 85%;
-	height: 45px;
+   /*    border:1px solid #00c4c4; */
+   border: 0;
+   outline: 0;
+   font-size: 17px;
+   background: #00c4c4;
+   padding: 1.19px 23.9999px 0px;
+   color: white;
+   width: 85%;
+   height: 45px;
 }
 
 .btn-question, .btn-share {
-	width: 28%;
-	border: 1px solid skyblue;
-	background: white;
-	height: 35px;
+   width: 28%;
+   border: 1px solid skyblue;
+   background: white;
+   height: 35px;
 }
 
 .btn-like {
-	width: 28%;
-	background: white;
-	height: 34.6px;
-	border:0;
-	outline:0;
+   width: 28%;
+   background: white;
+   height: 34.6px;
+   border:0;
+   outline:0;
 }
 .btn-meker-question {
-	
-	border:1px solid rgba(0, 0, 0, 0.15);
-	border-radius: 3px;
-	background-color: #fff;
-	cursor: pointer;
-	padding: 0 1.41176em;
-	height: 48px;
- 	vertical-align: middle;
- 	line-height: 1;
- 	color: rgba(0, 0, 0, 0.54);
- 	font-size: 17px;
- 	width:90%;
- 	margin: 0 auto;
- 	text-align: center;
-	
+   
+   border:1px solid rgba(0, 0, 0, 0.15);
+   border-radius: 3px;
+   background-color: #fff;
+   cursor: pointer;
+   padding: 0 1.41176em;
+   height: 48px;
+    vertical-align: middle;
+    line-height: 1;
+    color: rgba(0, 0, 0, 0.54);
+    font-size: 17px;
+    width:90%;
+    margin: 0 auto;
+    text-align: center;
+   
 }
 .projectTitle{
-	margin-bottom: 10px;
+   margin-bottom: 10px;
     font-weight: 500;
     font-size: 15px;
     color: #777;
 }.reward-list{
-	position: relative;
+   position: relative;
  
     width: 100%;
     margin-bottom: 20px;
@@ -160,16 +161,16 @@ a {
 }
 
 .btn-declaration {
-	width: 100%; 
-	height: 40px;
-	background: rgb(231, 76, 60);
-	border: 0;
-	color: white;
-	
+   width: 100%; 
+   height: 40px;
+   background: rgb(231, 76, 60);
+   border: 0;
+   color: white;
+   
 }
 
 .reward-header{
-	text-align:center;
+   text-align:center;
     border: 1px solid black;
     height:-1px;
     top: -20px;
@@ -215,12 +216,12 @@ a {
 .dropdown:hover .dropbtn {background-color: #3e8e41;}
 
 .contents-view img{
-	width: 700px;
+   width: 700px;
 }
 
 .title-img img{
-	width: 500px;
-	 display:block;
+   width: 500px;
+    display:block;
     margin-left:auto;
     margin-right:auto;
 }
@@ -231,13 +232,13 @@ a {
 </head>
 <body>
 <jsp:include page="../common/customer_menubar.jsp"/>
-	<jsp:include page="../common/customer_menuList.jsp" />
+   <jsp:include page="../common/customer_menuList.jsp" />
 <script type="text/javascript">
 
-	$(function(){
-		$("html").css({"background-image":"linear-gradient('')", "background":"white"});
-		
-	})
+   $(function(){
+      $("html").css({"background-image":"linear-gradient('')", "background":"white"});
+      
+   })
 </script>
 	<div id="outer" style="background:white;">
 	<!-- 리워드 헤더 이미지  -->
@@ -687,52 +688,48 @@ a {
 			})
 		})
 		</script> 
-					<!-------------------------- 신고 영역 --------------------------------->
-
-	<div style="width:100%; float:left;"><jsp:include page="../common/customer_footer.jsp"/></div>
-	</div>
 	
 <script type="text/javascript">
 
    $(document).ready(function(){
 
-	   var bNum=$("#bNum").val();
-	   var userNo=$("#userNo").val();
-	   var endDate=$("#endDate").val();
-	   
-	   
-	   
-	   var paramsString = "&userNo";
-	   var searchParams = new URLSearchParams(paramsString);
-	   searchParams.set("userNo", "userNo");
+      var bNum=$("#bNum").val();
+      var userNo=$("#userNo").val();
+      var endDate=$("#endDate").val();
+      
+      
+      
+      var paramsString = "&userNo";
+      var searchParams = new URLSearchParams(paramsString);
+      searchParams.set("userNo", "userNo");
 var userNoString=searchParams.toString();
 console.log("D:::"+userNoString)
-	   
-	   
-	   
-	  
-	   
-	   
-	   
-	   $('#createBtn').on('click',function(){
-		   console.log("dddddddd"+bNum);2
-		   console.log("dddddddd"+userNo);
-		   console.log("dddddddd"+endDate);
-	      googleQRUrl = "https://chart.googleapis.com/chart?chs=177x177&cht=qr&chl="+"http://192.168.0.39:8001/yc/categoryOne.ca?projectNo="+bNum;
-	      console.log("DdddddddDD"+googleQRUrl)
-	      	 // 이미지가 나타날 영역에 원하는 내용을 넣은 QR code의 이미지를 출력합니다.
+      
+      
+      
+     
+      
+      
+      
+      $('#createBtn').on('click',function(){
+         console.log("dddddddd"+bNum);2
+         console.log("dddddddd"+userNo);
+         console.log("dddddddd"+endDate);
+         googleQRUrl = "https://chart.googleapis.com/chart?chs=177x177&cht=qr&chl="+"http://192.168.0.39:8001/yc/categoryOne.ca?projectNo="+bNum;
+         console.log("DdddddddDD"+googleQRUrl)
+             // 이미지가 나타날 영역에 원하는 내용을 넣은 QR code의 이미지를 출력합니다.
 
              // 여기 주소 부분을 변경해주면 원하는 값을 언제든 맘대로
 
-	      	$('#qrcode').attr('src', googleQRUrl +"%26userNo=" + userNo + "%26endDate=" + endDate
+            $('#qrcode').attr('src', googleQRUrl +"%26userNo=" + userNo + "%26endDate=" + endDate
 
-	    +'&choe=UTF-8');
+       +'&choe=UTF-8');
 
 
-	   });
-	 
+      });
+    
 
-	});
+   });
 
 </script>
 
