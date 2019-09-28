@@ -8,6 +8,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.EnableScheduling;
@@ -15,6 +19,7 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.kh.yc.member.model.vo.Member;
 import com.kh.yc.project.model.service.ProjectService;
 import com.kh.yc.project.model.vo.OpenAlarm;
 
@@ -83,12 +88,34 @@ public class ProjectController {
     	
     	
     	
-    	
-    	
-    	
-	
-	  }
+
+
+
+
+      	   	}
          }
     }
 
+
+    
+    
+    
+	@RequestMapping("SelfTest")
+	public String goMyPage(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
+
+		return "common/SelfTest";
+	}
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 }

@@ -129,12 +129,15 @@ public class MemberDaoImpl implements MemberDao{
 		@Override
 		public ArrayList<Reward> selectMyReward(SqlSessionTemplate sqlSession, Member mse, PageInfo pi) {
 			ArrayList<Reward> list = null;
+			
+			System.out.println("씨");
 			int offset = (pi.getCurrentPage() -1) * pi.getLimit();
 			
 			RowBounds rowBounds = new RowBounds(offset, pi.getLimit());
-			
+			System.out.println("발");
 			list = (ArrayList) sqlSession.selectList("Reward.selectMyReward", mse, rowBounds);
-			System.out.println(list);
+			System.out.println("놈");
+			System.out.println("아"+list);
 			return list;
 		} 
 		@Override

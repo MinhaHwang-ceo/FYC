@@ -113,16 +113,19 @@ public class MyPageController {
 	@RequestMapping("myReward.me")
 	public String myReward(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
 		int currentPage = 1;
-		
+		System.out.println("11111");
 		Member mse = (Member) session.getAttribute("loginUser");
 		System.out.println(mse);
-		
+		System.out.println("22222");
 		if(request.getParameter("currentPage") != null) {
 			currentPage = Integer.parseInt(request.getParameter("currentPage"));
+			
 		}
 		int listCount;
+		System.out.println("333");
 		try {
 			listCount = ps.getListCount();
+			System.out.println("listCount"+listCount);
 			PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
 			ArrayList<Reward> list = ms.selectMyReward(pi, mse);
 			request.setAttribute("list", list);
@@ -131,7 +134,7 @@ public class MyPageController {
 			e.printStackTrace();
 		}
 		
-		
+		System.out.println("ddddddddddddd");
 		return "member/myReward";
 	}
 	/*
