@@ -67,7 +67,9 @@ function requestDataJson(url, formData){
 		success: function(data) {
 
 			results= data;
-
+			console.log("완료해ㅔㅆ씁니다");
+			opener.parent.location.reload();
+	      	  window.close();
 		},
 
 		error: function(xhr) {
@@ -106,11 +108,100 @@ function get_header_row(sheet) {
 
 
 </script>
+
+ <style>
+  .outer{
+  
+  width:350px;
+  margin:auto;
+  font-family: 'Gothic A1', sans-serif;
+  background:lightblue;
+  
+  }
+  
+  button {
+  	 background:lightblue;
+  }
+  
+  .td2{
+  
+  	width:400px;
+  	margin-left:100px;
+  
+  }
+  
+  .td3{
+  	
+  	width:100px;
+  	margin-left:30px;
+  
+  }
+  
+  #td4{
+  	
+  	padding-left:100px;
+  
+  }
+  
+  
+  
+  
+  </style>
 </head>
 <body>
-파일 선택 : <input type="file" id="excelFile" onchange="excelExport(event)"/>
-<h1>JSON 형태로 보기</h1>
-<div id="displayExcelJson"></div>
+
+
+
+<!-- 전체div -->
+<div class="outer">
+<br>
+  <!-- 회원상태 폼 -->
+  <div align="center">
+ 	 <form name="form1" method="post">
+  			<table>
+  	  	
+  		<tr><td><br></td></tr>
+    	<tr>
+  			<td><input type="hidden" id="projectNo" value="${ rpt.projectNo }" readonly="readonly"></td>
+  		</tr> 
+  		
+		<tr>  	
+  			<td  align="center">프로젝트명</td>
+  			
+  		</tr>
+  		<tr align="center">
+  			<td><input type="text" value="${ rpt.projectShortTitle }" readonly="readonly"></td>
+  		</tr> 
+  		
+  	
+  		
+  		<tr><td><br></td></tr>	
+  		
+  				<tr><td align="center">정산 업데이트</td></tr>
+  		<tr>
+				<td align="center">
+				<input type="file" id="excelFile" onchange="excelExport(event)"/>
+		</td>
+		
+		</tr>
+		<tr><td><br></td></tr>	
+		<tr><td>*업데이트 후 자동으로 창이 꺼집니다</td></tr>
+  		
+  		<tr><td><br></td></tr>	
+  		
+  		
+  		
+  		
+  				
+		</table>
+  </form>
+  
+  <br><br>
+  
+  </div>
+  
+
+</div>    
 </body>
 </html>
 

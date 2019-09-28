@@ -192,7 +192,7 @@ public class ProjectDaoImpl implements ProjectDao{
 	//신고하기 기능
 	@Override
 	public int insertReport(SqlSessionTemplate sqlSession, Report report) {
-
+		
 		return sqlSession.insert("Report.insertReport",report);
 	}
 
@@ -201,6 +201,13 @@ public class ProjectDaoImpl implements ProjectDao{
 	public int reportCount(SqlSessionTemplate sqlSession, Interest inter) {
 		
 		return sqlSession.selectOne("Report.reportCount",inter);
+	}
+	
+	//업데이트
+	@Override
+	public void updateReport(SqlSessionTemplate sqlSession, Report report) {
+		
+		sqlSession.insert("Report.updateReportCount",report);
 	}
 
 	

@@ -160,7 +160,14 @@ public class ProjectServiceImpl implements ProjectService {
 		
 		return pd.reportCount(sqlSession,inter);
 	}
-
+	//신고수 업데이트
+	@Override
+	public void updateReport(Report report) {
+		
+		pd.updateReport(sqlSession,report);
+	}
+	
+	
 	@Override
 	public List<SupportList>  getExcelUpload(String excelFile) {
 		  

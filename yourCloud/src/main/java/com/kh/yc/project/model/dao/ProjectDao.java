@@ -100,6 +100,8 @@ void   updateDB(SqlSessionTemplate sqlSession,Map<String, Object> map);
 	String makerImg(SqlSessionTemplate sqlSession, Interest inter);
 	//정렬 페이징
 	int getSortListCount(SqlSessionTemplate sqlSession, String category);
+	
+	void updateReport(SqlSessionTemplate sqlSession, Report report);
 
 
 

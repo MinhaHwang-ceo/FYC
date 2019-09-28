@@ -20,7 +20,7 @@
          $("#btnUpdate").click(function(){
                
             var projectNo = $("#projectNo").val();
-            if(confirm("수정하시겠습니까?")){
+            if(confirm("등록하시겠습니까?")){
             progressStatus = $("#progressStatus").val();
                location.href = "reportUpdate.ad?projectNo="+projectNo+"&progressStatus="+progressStatus;
                
@@ -384,48 +384,115 @@
                     		 <!-- 전체div -->
 <div class="outer">
 <br>
-  <!-- 회원상태 폼 -->
-  <div align="center">
- 	 <form name="form1" method="post">
-  			<table>
+    <!-- 회원가입 폼 -->
+  <div>
+  <form action="joinInput.me" method="post">
+  	<table>
   	  	
-  		<tr><td><br></td></tr>
-    	<tr>
-  			<td><input type="hidden" id="projectNo" value="${ rpt.projectNo }" readonly="readonly"></td>
-  		</tr> 
-  		
-		<tr>  	
-  			<td  align="center">금액</td>
-  			
-  		</tr>
-  		<tr>
-  		<td>
-  			<span class="format-money"><input type="text" id="bookMoney"></span>원
-  		</td>
-  		</tr> 
-  		
+    	
   	
+  		<tr><td><br></td></tr>
+  	
+  		<tr>
+  			<td>프로젝트번호</td>
+  			<td><input type="text" name="projectNo" class="td2" required></td>
+  		</tr> 
   		
-  		<tr><td><br></td></tr>	
+  		<tr><td><br></td></tr>
+  			
+   		<tr>
+  			<td></td>
+  			<td><input type="text" name="project" class="td2" id="userId" required></td>
+  			<td><button onclick="return duplicationCheck();" class="btn btn-info" >중복</button></td>
+  		</tr> 		
+  		
+  		<tr><td><br></td></tr>
   		
   		<tr>
-				<td align="center">
-					<select id="progressStatus">
-				    <option value="입금">입금
-					</option>
-					<option value="출금">출금
-					</option>
-   					
-					</select>
-					<input type="button" value="입력" id="btnUpdate">
-		</td>
-		</tr>
+  			<td>*비밀번호</td>
+  			<td><input type="password" name="userPwd" id="pass1" class="td2" required></td>
+  		</tr> 	
   		
-  		<tr><td><br></td></tr>	
+  		<tr><td><br></td></tr>  		
+		
+  		<tr>
+  			<td>*비밀번호 확인</td>
+  			<td><input type="password" id="pass2" class="td2" required></td>
+  		</tr>  		
+
+   		<tr><td><br></td></tr>
   		
+    	<tr>
+  			<td>*이메일</td>
+  			<td><input type="text" name="email" class="td2" id="inputEmail" required></td>
+  			<td><button id="mailbtn" class="btn btn-info" onclick="return emailCheck();">인증요청</button></td>
+  		</tr>   		
+
+  		<tr><td><br></td></tr> 
+  	
+  		<tr>
+  			<td>인증번호</td>
+  			<td><input type="text" name="" class="td2" id="randomNum" required></td>
+  			<td><button  class="btn btn-info"  id="pushNum" onclick="return confirm();">확인</button></td>
+  		</tr>
   		
-  				
-		</table>
+  		<tr><td><br></td></tr> 
+  		<tr><td><br></td></tr> 
+  		<tr><td><br></td></tr> 
+  	
+  		<tr>
+  			<td><b>+ 추가사항</b></td>
+  			<td>(모두 입력시1000P 적립)</td>
+  		</tr>
+  		
+  		<tr><td><br></td></tr>  		
+  		
+  		<tr>
+  			<td>연령대</td>
+  			<td id="td4">
+  			<input type="checkbox" name="age"  value="10">20대 미만  &nbsp; <input type="checkbox" name="age" value="20">20대 이상 ~ 30대 미만 &nbsp; <input type="checkbox" name="age" value="30">30대 이상 ~ 40대 미만
+  			<br>
+  			<input type="checkbox" value="40" name="age">40대 이상 ~ 50대 미만  &nbsp; <input type="checkbox" value="50" name="age">50대 이상 ~ 60대 미만  &nbsp; <input type="checkbox" value="60" name="age">60대 이상  			
+  			</td>
+  		</tr>
+  		
+  		<tr><td><br></td></tr>  		
+  		
+  		<tr>
+  			<td>성별</td>
+  			<td id="td4">
+  			<input type="checkbox" value="F"  name="gender">여성  &emsp;&emsp;&emsp;&emsp; <input type="checkbox" value="M" name="gender">남성
+  			</td>
+  		</tr>
+  		
+  		<tr><td><br></td></tr>  		
+  		
+
+  		<tr>
+  			<td>관심<br>카테고리</td>
+  			<td id="td4">
+  			<input type="checkbox" value="A1" name="memberCategory">테크,가전  &emsp;&emsp; <input type="checkbox" name="memberCategory" value="A2">패션,잡화  &emsp;&emsp; <input type="checkbox" name="memberCategory" value="A3">뷰티  &emsp;&emsp; <input type="checkbox"  name="memberCategory" value="A4">도서   <br>
+  			<input type="checkbox" name="memberCategory" value="A5">푸드  &emsp;&emsp; <input type="checkbox"  name="memberCategory" value="A6">홈리빙  &emsp;&emsp; <input type="checkbox"  name="memberCategory" value="A7">키즈  <br>
+  			<input type="checkbox" name="memberCategory" value="A8">여행,레저 &emsp;&emsp; <input type="checkbox" name="memberCategory"  value="A9">스포츠   &emsp;&emsp; <input type="checkbox"  name="memberCategory" value="A10">반려동물  &emsp;&emsp;
+  			</td>
+  		</tr>
+
+  		
+  		<tr><td><br></td></tr>  		
+  		
+  		<tr>
+  			<td>이메일<br>수신동의</td>
+  			<td class="td4">
+  			이메일을 통해 쿠폰 및 이벤트 정보를 받아보실  수 있습니다.
+  			<br>
+  			<input type="checkbox" name="emailAgree" value="Y">이메일 수신을 동의합니다
+  			</td>
+  		</tr>
+
+  		<tr><td><br></td></tr>  
+  		
+  	</table>
+  <button id="sumbmitbutton" class="btn btn-info" onclick="return finalcheck();">확인</button>
   </form>
   
   <br><br>
@@ -488,7 +555,7 @@
                       <td>[당신의옷]너무나멋진똥간닦개</td>
                       <td>황민하</td>
                       <td>입금</td>
-                      <td><fmt:formatNumber value="2000000" type="currency"/>원</td>
+                      <td><fmt:formatNumber value="2000000" type="currency"/></td>
                       <td></td>
                     </tr>
                     <tr>
@@ -497,7 +564,7 @@
                       <td>[당신의옷]너무나멋진똥간닦개</td>
                       <td>황민하</td>
                       <td>출금</td>
-                      <td><fmt:formatNumber value="2000000" type="currency"/>원</td>
+                      <td><fmt:formatNumber value="2000000" type="currency"/></td>
                       <td></td>
                     </tr>
                     

@@ -40,6 +40,7 @@ $(document).ready(function(){
  }
  
  
+ 
 
 </script>
 <head>
@@ -310,7 +311,7 @@ $(document).ready(function(){
                   	<td>${row.endDate}</td>
                   	<td>${row.adjustStatus}</td>
                   	<td>${row.adjustMoney}</td>
-                  	<td><input type="button" id="st" onclick="window.open('${pageContext.request.contextPath}/adjustProjectStatus.ad?projectNo=${row.projectNo}', 'PopupWin', 'width=380,height=300');" value="상태변경"></td>
+                  	<td><input type="button" id="st" onclick="window.open('${pageContext.request.contextPath}/excel2.ad?projectNo=${row.projectNo}', 'PopupWin', 'width=380,height=300');" value="업데이트"></td>
                   	
                   	<input type="hidden" class="projectNo" value="${row.projectNo}" readonly="readonly">
                   	
