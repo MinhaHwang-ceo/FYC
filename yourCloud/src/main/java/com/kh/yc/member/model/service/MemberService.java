@@ -56,7 +56,8 @@ public interface MemberService {
 	boolean checkPwd(String userId, String userPwd);
 
 	void updateMember(Member mse);
-	
+
+	ArrayList<Message> messageDetail(Message message);
 
 
 	

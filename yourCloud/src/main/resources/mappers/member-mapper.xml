@@ -174,8 +174,7 @@
 		SELECT G.MESSAGE_NO,G.SEND_MEMBER,G.RECEIVE_MEMBER,G.CREATE_DATE,G.MESSAGE_CONTENT,G.STATUS,M.MEMBER_NAME
 		FROM MESSAGE G
 		JOIN MEMBER M ON (M.MEMBER_NO = G.SEND_MEMBER)
-		WHERE G.SEND_MEMBER = #{userNo}
-		OR G.RECEIVE_MEMBER = #{userNo}
+		WHERE G.RECEIVE_MEMBER = #{userNo}
 		ORDER BY G.MESSAGE_NO DESC
 	</select>
 	
@@ -202,5 +201,18 @@
 			EMAIL_AGREE  = #{emailAgree}
 		WHERE MEMBER_ID = #{userId}
 	</update>
+	
+	
+	<select id="messageDetail" resultMap="MessageList">
+	SELECT * 
+	FROM MESSAGE
+	WHERE SEND_MEMBER = #{sendMember} 
+	AND RECEIVE_MEMBER = #{receiveMember}
+	OR SEND_MEMBER = #{receiveMember}
+	AND RECEIVE_MEMBER = #{sendMember} 
+	ORDER BY MESSAGE_NO ASC
+	</select>
+	
+	
 
 </mapper>

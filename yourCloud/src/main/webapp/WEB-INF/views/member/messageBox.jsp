@@ -23,7 +23,25 @@
 	<div id="outer" style="padding-left:300px; padding-right:300px;">
 		<div id="messageBoxHeader">
 			<h2><img src="${ contextPath }/resources/images/message.png" style="width:80px;"/> &nbsp; <a style="color:#5C6BC0;"><c:out value="${ loginUser.userName }"/>님</a>의 쪽지함</h2>
-		<button style="left:920px;">쪽지 보내기  </button><br><br>
+					
+			<div>		
+					<a href="#">
+						<img src="/yc/resources/images/receiveMessage.png" style="width:25px;">
+						받은 메세지
+					</a>
+					&emsp;&emsp;&emsp;
+					
+					<a href="#">
+						<img src="/yc/resources/images/sendMessage.png" style="width:25px;">
+						보낸 메세지
+					</a>
+			</div>	
+		
+		
+		<div>
+		</div>
+		
+		<br>
 		</div>
 		<br />
 				<c:forEach var="m" items="${message}">
