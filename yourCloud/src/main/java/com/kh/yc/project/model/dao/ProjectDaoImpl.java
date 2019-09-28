@@ -29,7 +29,7 @@ public class ProjectDaoImpl implements ProjectDao{
 	public int getListCount(SqlSessionTemplate sqlSession) throws ProjectSelectListException{
 		
 		
-		int result = sqlSession.selectOne("Project2.selectListCount");
+		int result = sqlSession.selectOne("Project2.selectListCount11");
 		
 		return result;
 	}

@@ -80,6 +80,13 @@
 		FROM ATTACHMENT
 		WHERE FILE_LEVEL = 4
 	</select>
+	
+		<insert id="fileupdate" parameterType="Attachment">
+	update attachment set FILE_SRC=#{fileSrc},ORIGIN_FILE_NAME=#{originFileName},
+	NEW_FILE_NAME= #{newFileName} 
+	where board_no=#{boardNo}
+	</insert>
+	
 </mapper>
 
 

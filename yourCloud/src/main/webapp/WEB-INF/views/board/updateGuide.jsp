@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -41,7 +42,8 @@
 
 		<div class="row2">
 
-			<form method="post" action="insertGuide.bo" enctype="multipart/form-data">
+			<form method="post" action="guideWrite2" enctype="multipart/form-data">
+			<input type="hidden" name="bNo" value="${list.bNo }">
 				<table class="table table-striped"
 					style="text-align: center; border: 1px;">
 					<thead>
@@ -54,11 +56,11 @@
 					<tbody>
 						<tr>
 							<td><input type="text" class="form-control" name="bTitle"
-								placeholder="글제목" name="bTitle"></td>
+								value="${list.bTitle }" name="bTitle"></td>
 						</tr>
 						<tr>
-							<td><textarea class="form-control" placeholder="글 내용"
-									name="bcontent" maxlength="2048" style="height: 350px"></textarea>
+							<td><textarea class="form-control" 
+									name="bcontent" maxlength="2048" style="height: 350px">${list.bcontent }</textarea>
 							</td>
 						</tr>
 						<tr>

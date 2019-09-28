@@ -96,7 +96,14 @@
 		AND
 			STATUS = 'N'
 	</select>
-	<select id="selectBoardList" resultMap="boardResultSet">
+	
+		<select id="countfile" resultType="_int" parameterType="_int">
+		SELECT 
+			COUNT(*)
+from attachment 
+where BOARD_NO = #{bNo}
+	</select>
+	<select id="selectBoardList" resultMap="boardResultSet" >
 		SELECT
 			*
 		FROM
@@ -244,6 +251,22 @@
 		WHERE
 			BOARD_NO = #{bNo}
 	</update>
+	<update id="updateGuide1">
+		UPDATE 
+			BOARD
+		SET
+			BOARD_TITLE = #{bTitle}
+		WHERE
+			BOARD_NO = #{bNo}
+	</update>
+	<update id="updateGuide2">
+		UPDATE 
+			BOARD_CONTENT
+		SET
+			BOARD_CONTENT = #{bcontent}
+		WHERE
+			BOARD_NO = #{bNo}
+	</update>
 	<update id="updateBoardContent">
 		UPDATE
 			BOARD_CONTENT
@@ -337,9 +360,56 @@
 		LEFT OUTER JOIN ATTACHMENT A ON (B.BOARD_NO = A.BOARD_NO)
 		WHERE B.BOARD_NO = #{bNo}
 	</select>
+	
+	<select id="guideOne" resultMap="boardResultSet">
+		SELECT *
+		FROM BOARD B
+		LEFT OUTER JOIN BOARD_CONTENT BC ON (B.BOARD_NO = BC.BOARD_NO)
+		LEFT OUTER JOIN ATTACHMENT A ON (B.BOARD_NO = A.BOARD_NO)
+		WHERE B.BOARD_NO = #{bNo}
+	</select>
+	
+	
 	<delete id="delBoardNotice" parameterType="Board">
 		DELETE 
 		FROM BOARD
 		WHERE BOARD_NO = 71
 	</delete>
+
+	<delete id="deleteGuide" parameterType="_int">
+		update BOARD
+		SET
+			STATUS = 'Y'
+		WHERE BOARD_NO = #{bNo}
+	</delete>
+	<insert id="guideInsert" parameterType="Board">
+		INSERT INTO BOARD(BOARD_NO, BOARD_TITLE, WRITER, VIEW_COUNT, OPEN, STATUS, BOARD_CATEGORY, REF_BOARD_NO, CREATE_DATE)
+		VALUES(
+		    	SEQ_BOARDNO.NEXTVAL, #{bTitle}, 109,0, 'Y' ,'N', '이용가이드', NULL, SYSDATE
+		    )
+	<selectKey resultType="integer" keyProperty="bNo" order="AFTER">
+        SELECT SEQ_BOARDNO.CURRVAL FROM DUAL        
+    </selectKey>
+	</insert>
+	
+	<insert id="guideInsert2" parameterType="Board">
+	INSERT INTO BOARD_CONTENT(BOARD_CONTENT, BOARD_NO)
+		VALUES(
+				#{bcontent}, SEQ_BOARDNO.CURRVAL
+			)
+
+	</insert>
+	
+
+	<select id="selectGuideList" resultMap="boardResultSet">
+		SELECT *
+		FROM BOARD B
+		WHERE b.BOARD_CATEGORY = '이용가이드' 
+		
+		and b.status='N'
+		ORDER BY B.BOARD_NO DESC
+		
+	</select>
+	
+
 </mapper>

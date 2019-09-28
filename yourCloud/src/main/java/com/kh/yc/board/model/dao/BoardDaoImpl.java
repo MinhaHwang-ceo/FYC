@@ -243,6 +243,56 @@ public class BoardDaoImpl implements BoardDao {
 		return sqlSession.delete("Board.delBoardNotice",b);
 	}
 
+	@Override
+	public void guideInsert(SqlSessionTemplate sqlSession, Board b) {
+		sqlSession.insert("Board.guideInsert",b);
+		
+	}
+
+	@Override
+	public ArrayList<Board> selectGuideList(SqlSessionTemplate sqlSession) {
+
+		ArrayList<Board> list = (ArrayList)sqlSession.selectList("Board.selectGuideList");
+		return list;
+		
+	}
+
+	@Override
+	public void guideInsert2(SqlSessionTemplate sqlSession, Board b) {
+		sqlSession.insert("Board.guideInsert2",b);
+		
+	}
+
+	@Override
+	public Board guideOne(SqlSessionTemplate sqlSession, int bNo) {
+		return sqlSession.selectOne("Board.guideOne",bNo);
+	}
+
+	@Override
+	public void deleteGuide(SqlSessionTemplate sqlSession, int bNo) {
+		 sqlSession.delete("Board.deleteGuide",bNo);
+	}
+
+	@Override
+	public void updateGuide1(SqlSessionTemplate sqlSession, Board b) {
+		 sqlSession.update("Board.updateGuide1", b);
+	}
+
+	@Override
+	public void updateGuide2(SqlSessionTemplate sqlSession, Board b) {
+		 sqlSession.update("Board.updateGuide2", b);
+	}
+
+	@Override
+	public int fileupdate(SqlSessionTemplate sqlSession, Attachment fileVO) {
+		return sqlSession.update("Attachment.fileupdate",fileVO);
+	}
+
+	@Override
+	public int countfile(SqlSessionTemplate sqlSession, int bNo) {
+		return sqlSession.selectOne("Board.countfile", bNo);
+	}
+
 
 	
   

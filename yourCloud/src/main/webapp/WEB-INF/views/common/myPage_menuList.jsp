@@ -32,7 +32,7 @@
 					</li>
 					<li class="nav-item"><a class="nav-link" href="messageBox.me" >쪽지함</a>
 					</li>
-					<li class="nav-item"><a class="nav-link" href="interestProject.me">관심 / 알림 프로젝트</a>
+					<li class="nav-item"><a class="nav-link" href="interestProject.me?userNo=${loginUser.userNo }">관심 / 알림 프로젝트</a>
 					</li>
 				</ul>
 			</div>

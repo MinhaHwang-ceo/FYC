@@ -51,7 +51,12 @@
 
 			<c:forEach var="b" items="${ list }">
 				<c:if test="${loginUser.userNo==b.userNo  }">
-					<table align="center" id="myProjectTable">
+					<table align="center" id="myProjectTable" class="whole">
+					<input type="hidden"  value="${ b.judgeStatus }">
+					<input type="hidden" value="${ b.progressStatus }">
+					<input type="hidden" value="${ b.projectNo }">
+					<input type="hidden" value="${ loginUser.userNo }">
+					<input type="hidden" value="${ b.endDate }">
 						<tr>
 							<td class="projectImg"><img
 								src="/yc/resources/uploadFiles/${b.newFileName}"
@@ -163,6 +168,24 @@
 
 
 	<script>
+	
+	
+	$('.whole').click(function(){
+		var $target = $(this).children('input').eq(0).val();
+		var $target2 = $(this).children('input').eq(1).val();
+		var $bNum = $(this).children('input').eq(2).val();
+		var $userNo = $(this).children('input').eq(3).val();
+		var $endDate = $(this).children('input').eq(4).val();
+		
+		if($target =='통과'&& $target2=='오픈' || $target2=='성공' || $target2=='실패' ){
+
+		location.href="categoryOne.ca?projectNo="+$bNum+"&userNo="+$userNo+"&endDate="+$endDate;
+	}else if($target =='통과'&& $target2=='오픈예정'){
+		location.href="openExpectationDetail.bo?projectNo="+$bNum;
+	}
+	});
+	
+	
 		$(".support").click(function() {
 
 			var bNum = $(this).siblings().eq(1).text();

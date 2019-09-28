@@ -56,7 +56,7 @@ input {
 	<jsp:include page="../common/customer_menuList.jsp" />
 	<br />
 	<div id="outer" style="min-height: 1000px;">
-		<form action="updateBoard.bo" method="post" id="insertBoardFrm"
+		<form action="guideWrite2" method="post" id="insertBoardFrm"
 			enctype="multipart/form-data">
 			<table align="center" style="width: 60%;">
 				<input type="number" id="bNo" name="bNo" value="${ b.bNo }" hidden/>

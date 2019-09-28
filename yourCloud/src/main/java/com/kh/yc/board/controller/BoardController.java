@@ -249,23 +249,212 @@ public class BoardController {
 	}
 
 	@RequestMapping("guide.bo")
-	public String guide() {
+	public String guide(HttpServletRequest request, HttpServletResponse response) {
 
+		ArrayList<Board> list =  bs.selectGuideList();
+		System.out.println("list:::::::::::::::::"+list);
+		request.setAttribute("list", list);
+		
 		return "board/guide";
 	}
 
 	@RequestMapping("guideOne.bo")
-	public String guideOne() {
-
+	public String guideOne(HttpServletRequest request, HttpServletResponse response) {
+		int bNo = Integer.parseInt(request.getParameter("bNo"));
+		
+		Board list =  bs.guideOne(bNo);
+		System.out.println("list:::::::::::::::::"+list);
+		request.setAttribute("list", list);
+		
+		
+		
+		
 		return "board/guideOne";
 	}
+
+	@RequestMapping("deleteGuide.bo")
+	public String deleteGuide(HttpServletRequest request, HttpServletResponse response) {
+		int bNo = Integer.parseInt(request.getParameter("bNo"));
+		
+		bs.deleteGuide(bNo);
+	
+		
+		
+		return "forward:guide.bo";
+	}
+	
+	
+	  @RequestMapping("updateGuide.bo") 
+	  public String updateGuide(HttpServletRequest request, HttpServletResponse response) { int
+	  bNo = Integer.parseInt(request.getParameter("bNo"));
+	  
+	  Board list= bs.guideOne(bNo);
+		System.out.println("list:::::::::::::::::"+list);
+		request.setAttribute("list", list);
+	  
+	  return "board/updateGuide"; 
+	  
+	  
+	  }
+	  
+	  @RequestMapping("guideWrite2") 
+	  public String guideWrite2(Model m,HttpServletRequest request, HttpServletResponse response,
+			  @RequestParam(name = "photo", required = true) MultipartFile photo,Board b) {
+	    
+		  int bNo=b.getbNo();
+		  bs.updateGuide1(b);
+		  
+	      bs.updateGuide2(b);
+		  
+		  
+	      int count=bs.countfile(bNo);
+	      
+	      if(count==1) {
+
+			if (photo != null && photo.getOriginalFilename().length() != 0) {
+
+				String root = request.getSession().getServletContext().getRealPath("resources");
+
+				String filePath = root + "\\uploadFiles";
+				String origunFileName = photo.getOriginalFilename();
+				String ext = origunFileName.substring(origunFileName.lastIndexOf("."));
+				String changeName = CommonUtils.getRandomString() + ext;
+				String fullFilePath = filePath + "\\" + changeName;
+				System.out.println("********************");
+				try {
+
+					photo.transferTo(new File(fullFilePath));
+
+					Attachment fileVO = new Attachment();
+
+					fileVO.setOriginFileName(origunFileName);
+					fileVO.setFileSrc(fullFilePath);
+					fileVO.setNewFileName(changeName);
+					fileVO.setBoardNo(bNo);
+					fileVO.setFileLevel("4");
+					// insert 파일정보
+
+					int fileInsert = bs.fileupdate(fileVO);
+
+					m.addAttribute("fileVO", fileVO);
+					// p.setAttachment(fileVO);
+				} catch (Exception e) {
+
+					e.printStackTrace();
+					new File(fullFilePath).delete();
+				}
+	      
+	      
+			}
+	      }
+	      
+	      
+	      
+	      else {
+	    	  
+	    	  if (photo != null && photo.getOriginalFilename().length() != 0) {
+
+	  			String root = request.getSession().getServletContext().getRealPath("resources");
+
+	  			String filePath = root + "\\uploadFiles";
+	  			String origunFileName = photo.getOriginalFilename();
+	  			String ext = origunFileName.substring(origunFileName.lastIndexOf("."));
+	  			String changeName = CommonUtils.getRandomString() + ext;
+	  			String fullFilePath = filePath + "\\" + changeName;
+	  			System.out.println("********************");
+	  			try {
+
+	  				photo.transferTo(new File(fullFilePath));
+
+	  				Attachment fileVO = new Attachment();
+
+	  				fileVO.setOriginFileName(origunFileName);
+	  				fileVO.setFileSrc(fullFilePath);
+	  				fileVO.setNewFileName(changeName);
+	  				fileVO.setBoardNo(bNo);
+	  				fileVO.setFileLevel("4");
+	  				// insert 파일정보
+
+	  				int fileInsert = bs.fileInsert(fileVO);
+
+	  				m.addAttribute("fileVO", fileVO);
+	  				// p.setAttachment(fileVO);
+	  			} catch (Exception e) {
+
+	  				e.printStackTrace();
+	  				new File(fullFilePath).delete();
+	  			}
+	  		}
+	  		
+	    	  
+	    	  
+	      }
+	      
+	      
+	      
+	      
+		  
+	  return "forward:guideOne.bo"; 
+	  
+	  
+	  }
+
 
 	@RequestMapping("guideWrite.bo")
 	public String guideWrite() {
 
 		return "board/guideWrite";
 	}
+	
 
+	@RequestMapping("insertGuide.bo")
+	public String insertGuide(Board b,Model m,HttpServletRequest request, HttpServletResponse response,
+			@RequestParam(name = "photo", required = true) MultipartFile photo) {
+
+		System.out.println("board"+b);
+		
+		bs.guideInsert(b);
+		int bnum = b.getbNo();
+		bs.guideInsert2(b);
+
+		
+		if (photo != null && photo.getOriginalFilename().length() != 0) {
+
+			String root = request.getSession().getServletContext().getRealPath("resources");
+
+			String filePath = root + "\\uploadFiles";
+			String origunFileName = photo.getOriginalFilename();
+			String ext = origunFileName.substring(origunFileName.lastIndexOf("."));
+			String changeName = CommonUtils.getRandomString() + ext;
+			String fullFilePath = filePath + "\\" + changeName;
+			System.out.println("********************");
+			try {
+
+				photo.transferTo(new File(fullFilePath));
+
+				Attachment fileVO = new Attachment();
+
+				fileVO.setOriginFileName(origunFileName);
+				fileVO.setFileSrc(fullFilePath);
+				fileVO.setNewFileName(changeName);
+				fileVO.setBoardNo(bnum);
+				fileVO.setFileLevel("4");
+				// insert 파일정보
+
+				int fileInsert = bs.fileInsert(fileVO);
+
+				m.addAttribute("fileVO", fileVO);
+				// p.setAttachment(fileVO);
+			} catch (Exception e) {
+
+				e.printStackTrace();
+				new File(fullFilePath).delete();
+			}
+		}
+		
+		
+		return "forward:guide.bo";
+	}
 	@RequestMapping("intro")
 	public String intro() {
 

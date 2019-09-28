@@ -27,35 +27,40 @@
 				<hr />
 			</div>
 			<div class="projectDiv">
+					<c:forEach var="b" items="${ list }">
 				<div class="projects">
-					<table>
+					<table  align="center" >
 						<tr>
-							<td class="projectImgs"><img src="${ contextPath }/resources/images/mail.PNG" alt="" /></td>
+							<td class="projectImgs"><img
+								src="/yc/resources/uploadFiles/${b.newFileName}"
+								style="width: 100%; height: 70%;" /></td>
 						</tr>
 						<tr>
-							<td class="projectTitles"><c:out value="gd"/></td>
+							<td class="projectTitles"><c:out
+									value="${ b.projectTitle }" /></td>
 						</tr>
-						<tr>
-							<td class="projectCategories"><c:out value="gd"/></td>
-						</tr>
+					
 					</table>
 				</div>
+							</c:forEach>
 			</div>
 		</div>
 		<div id="openAlarmProject">
 			<h2><img src="${ contextPath }/resources/images/mail.PNG"/>  <c:out value="${ loginUser.userName }"/> 님의 알림 프로젝트</h2>
 			<div class="projects">
-					<table>
-						<tr>
-							<td class="projectImgs"><img src="${ contextPath }/resources/images/mail.PNG" alt="" /></td>
+					<c:forEach var="b" items="${ list2 }">
+					<table  align="center" >
+					<tr>
+							<td class="projectImgs"><img
+								src="/yc/resources/uploadFiles/${b.newFileName}"
+								style="width: 100%; height: 50%;" /></td>
 						</tr>
 						<tr>
-							<td class="projectTitles"><c:out value="gd"/></td>
-						</tr>
-						<tr>
-							<td class="projectCategories"><c:out value="gd"/></td>
+							<td class="projectTitles"><c:out
+									value="${ b.projectTitle }" /></td>
 						</tr>
 					</table>
+					</c:forEach>
 				</div>
 		</div>
 	</div>

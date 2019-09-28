@@ -77,6 +77,24 @@ public interface BoardDao {
 
 	int deleteBoardNotice(SqlSessionTemplate sqlSession, Board b);
 
+	void guideInsert(SqlSessionTemplate sqlSession, Board b);
+
+	ArrayList<Board> selectGuideList(SqlSessionTemplate sqlSession);
+
+	void guideInsert2(SqlSessionTemplate sqlSession, Board b);
+
+	Board guideOne(SqlSessionTemplate sqlSession, int bNo);
+
+	void deleteGuide(SqlSessionTemplate sqlSession, int bNo);
+
+	void updateGuide1(SqlSessionTemplate sqlSession, Board b);
+
+	void updateGuide2(SqlSessionTemplate sqlSession, Board b);
+
+	int fileupdate(SqlSessionTemplate sqlSession, Attachment fileVO);
+
+	int countfile(SqlSessionTemplate sqlSession, int bNo);
+
 	
 
 

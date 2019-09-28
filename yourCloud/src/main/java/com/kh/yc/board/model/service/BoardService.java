@@ -75,6 +75,24 @@ public interface BoardService {
 
 	int deleteBoardNotice(Board b);
 
+	void guideInsert(Board b);
+
+	ArrayList<Board> selectGuideList();
+
+	void guideInsert2(Board b);
+
+	Board guideOne(int bNo);
+
+	void deleteGuide(int bNo);
+
+	void updateGuide1(Board b);
+
+	void updateGuide2(Board b);
+
+	int fileupdate(Attachment fileVO);
+
+	int countfile(int bNo);
+
 
 
 

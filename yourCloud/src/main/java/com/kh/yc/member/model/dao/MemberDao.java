@@ -62,7 +62,7 @@ ArrayList<Reward> selectMyReward(SqlSessionTemplate sqlSession, Member mse, Page
 
 Reward selectMyRewardDetail(SqlSessionTemplate sqlSession, int fundNoInt);
 
-ArrayList<Project> interestProject(SqlSessionTemplate sqlSession, Member mse);
+ArrayList<Project> interestProject(SqlSessionTemplate sqlSession, int userNo);
 
 Member selectMemberInfo(SqlSessionTemplate sqlSession, String userNo);
 //메세지 출력
@@ -75,6 +75,8 @@ boolean checkPwd(SqlSessionTemplate sqlSession, String userId, String userPwd);
 void updateMember(SqlSessionTemplate sqlSession, Member mse);
 
 ArrayList<Message> messageDetail(SqlSessionTemplate sqlSession, Message message);
+
+ArrayList<Project> interestProject2(SqlSessionTemplate sqlSession, int userNo);
 
 
 

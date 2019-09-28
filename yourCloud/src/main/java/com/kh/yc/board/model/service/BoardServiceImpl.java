@@ -160,6 +160,48 @@ public class BoardServiceImpl implements BoardService {
 
 		return bd.deleteBoardNotice(sqlSession,b);
 	}
+	@Override
+	public void guideInsert(Board b) {
+		 bd.guideInsert(sqlSession,b);
+		
+	}
+	@Override
+	public ArrayList<Board> selectGuideList() {
+		
+		return bd.selectGuideList(sqlSession);
+	}
+	@Override
+	public void guideInsert2(Board b) {
+		 bd.guideInsert2(sqlSession,b);
+		
+	}
+	@Override
+	public Board guideOne(int bNo) {
+		return bd.guideOne(sqlSession,bNo);
+	}
+	@Override
+	public void deleteGuide(int bNo) {
+		 bd.deleteGuide(sqlSession,bNo);		
+	}
+	@Override
+	public void updateGuide1(Board b) {
+		 bd.updateGuide1(sqlSession,b);	
+		
+	}
+	@Override
+	public void updateGuide2(Board b) {
+		 bd.updateGuide2(sqlSession,b);	
+		
+	}
+	@Override
+	public int fileupdate(Attachment fileVO) {
+	return 	 bd.fileupdate(sqlSession,fileVO);	
+			
+	}
+	@Override
+	public int countfile(int bNo) {
+		return 	 bd.countfile(sqlSession,bNo);	
+	}
 	
 
 }

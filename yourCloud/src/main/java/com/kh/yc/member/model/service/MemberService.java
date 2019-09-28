@@ -43,7 +43,7 @@ public interface MemberService {
 
 	Reward selectMyRewardDetail(int fundNoInt);
 
-	ArrayList<Project> interestProject(Member mse);
+	ArrayList<Project> interestProject(int userNo);
  
 	Member selectMember(String userNo);
 
@@ -58,6 +58,8 @@ public interface MemberService {
 	void updateMember(Member mse);
 
 	ArrayList<Message> messageDetail(Message message);
+
+	ArrayList<Project> interestProject2(int userNo);
 
 
 	

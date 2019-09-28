@@ -81,7 +81,6 @@
 </table>
 
 <!-- 임시버튼 -->
-<input type="button" onclick="location.href='funding_1.bo'" value="펀딩하기 임시버튼">
 
 </div>
 

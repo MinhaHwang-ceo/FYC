@@ -150,10 +150,10 @@ public class MemberDaoImpl implements MemberDao{
 		}
 		@SuppressWarnings({ "unchecked", "rawtypes" })
 		@Override
-		public ArrayList<Project> interestProject(SqlSessionTemplate sqlSession, Member mse) {
+		public ArrayList<Project> interestProject(SqlSessionTemplate sqlSession,int userNo) {
 			ArrayList<Project> list = null;
 			
-			list = (ArrayList) sqlSession.selectList("Project2.interestProject5", mse);
+			list = (ArrayList) sqlSession.selectList("Project2.interestProject5", userNo);
 			
 			return list;
 		}
@@ -206,6 +206,14 @@ public class MemberDaoImpl implements MemberDao{
 			//System.out.println(mse);
 			
 			return mse;
+		}
+		@Override
+		public ArrayList<Project> interestProject2(SqlSessionTemplate sqlSession, int userNo) {
+	ArrayList<Project> list = null;
+			
+			list = (ArrayList) sqlSession.selectList("Project2.interestProject6", userNo);
+			
+			return list;
 		}
 	
 	
