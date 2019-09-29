@@ -36,6 +36,7 @@
       <result property="endDate" column="END_DATE" />
       <result property="adult" column="ADULT" />
       <result property="userNo" column="MEMBER_NO" />
+      <result property="userNo2" column="MEMBER_NO"/>
       <result property="reportCount" column="REPORT_COUNT" />
       <result property="payNo" column="PAY_NO" />
       <result property="adjustNo" column="ADJUST_NO" />
@@ -134,11 +135,11 @@
    </select>
 
    <select id="adjustProjectList" resultMap="ProjectResultSet">
-      SELECT *
+		SELECT *
       FROM PROJECT P
-      INNER JOIN ADJUST A ON A.MEMBER_NO = P.MEMBER_NO
+      LEFT JOIN ADJUST A ON A.PROJECT_NO = P.PROJECT_NO
       WHERE PROGRESS_STATUS
-      = '성공' AND JUDGE_STATUS = '통과'
+      = '성공' AND JUDGE_STATUS = '통과' AND A.PROJECT_NO = P.PROJECT_NO
    </select>
 
    <!-- 프로젝트 번호 체크 -->
@@ -259,6 +260,23 @@
 		WHERE PROJECT_NO = #{projectNo}
 	</select>
 	
+	<insert id="insertAdjust" parameterType="java.util.ArrayList">
+	<foreach item="p" collection="list">
+	INSERT INTO ADJUST 
+	VALUES (SEQ_PAY_NO.NEXTVAL,SEQ_ADJUSTNO.NEXTVAL,SYSDATE,0,#{userNo},1,'1차',#{projectNo}) 
+	</foreach>
+	</insert>
 	
+	
+	<update id="AdjustUp">
+	UPDATE ADJUST
+	SET ADJUST_MONEY = (
+        SELECT SUM(P.AMOUNT)
+          FROM PAYMENT P
+          LEFT JOIN ADJUST A ON A.MEMBER_NO = P.MEMBER_NO
+          LEFT JOIN PROJECT PJ ON A.PROJECT_NO = PJ.PROJECT_NO
+         WHERE A.PROJECT_NO = PJ.PROJECT_NO
+         GROUP BY A.PROJECT_NO )
+	</update>
 	
 </mapper>

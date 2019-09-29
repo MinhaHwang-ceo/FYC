@@ -118,6 +118,13 @@ public class AdminServiceImpl implements AdminService {
 	public void updateReward(List arr) {
 		ad.updateReward(sqlSession, arr);
 	}
+	
+	@Override
+	public void Adjustup(Project p) {
+
+		ad.adjustUpdate(sqlSession, p);
+		
+	}
 
 }                                       
                                             
