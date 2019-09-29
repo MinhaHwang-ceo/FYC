@@ -43,12 +43,12 @@ public interface MemberService {
 
 	Reward selectMyRewardDetail(int fundNoInt);
 
-	ArrayList<Project> interestProject(int userNo);
+	ArrayList<Project> interestProject(Member mse);
  
 	Member selectMember(String userNo);
 
 	Object userCrystal(Member mse);
-	//쪽지함 출력
+	//받은쪽지함 
 	ArrayList<Message> selectMessageList(Member member);
 
 	public int insertMessage(Message message);
@@ -56,10 +56,12 @@ public interface MemberService {
 	boolean checkPwd(String userId, String userPwd);
 
 	void updateMember(Member mse);
-
+	//쪽지대화방
 	ArrayList<Message> messageDetail(Message message);
+	//보낸쪽지함
+	ArrayList<Message> sendMessageList(Member member);
 
-	ArrayList<Project> interestProject2(int userNo);
+	public int deleteReply(int replyNo);
 
 
 	

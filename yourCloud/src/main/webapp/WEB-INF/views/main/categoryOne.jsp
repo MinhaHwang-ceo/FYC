@@ -742,5 +742,5 @@ console.log("D:::"+userNoString)
 
 
 </body>
-
+<div style="width: 100%; float: left;"><jsp:include page="../common/customer_footer.jsp" /></div>
 </html>

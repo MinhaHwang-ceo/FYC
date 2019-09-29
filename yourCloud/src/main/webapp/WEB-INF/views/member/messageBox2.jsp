@@ -25,12 +25,12 @@
 			<h2><img src="${ contextPath }/resources/images/message.png" style="width:80px;"/> &nbsp; <a style="color:#5C6BC0;"><c:out value="${ loginUser.userName }"/>님</a>의 쪽지함</h2>
 				
 			<div style="padding-left:790px;">		
-					<a href="#">
+					<a href="messageBox.me">
 						받은 메세지	
 					</a>
 					&emsp;&emsp;&emsp;
 					
-					<a href="messageBox2.me">		
+					<a href="#">		
 						보낸 메세지
 					</a>
 			</div>	
@@ -44,13 +44,13 @@
 		<br />
 		
 
-				<c:forEach var="m" items="${message}">
+				<c:forEach var="m" items="${message2}">
 				
 		<div class="messageList">
 			
 			<figure class="snip1141" style="height:30px; width:100%; ">
 		
-						&emsp; <c:out value="${m.userName }"/>님의 쪽지  &emsp;&emsp;&emsp;
+						&emsp; <c:out value="${m.userName }"/>님에게 보낸 쪽지  &emsp;&emsp;&emsp;
 						&emsp; <c:out value="${m.messageContent }"/>
 						&emsp; <a style="text-align:right;"><c:out value="${m.createDate }"/>&emsp;</a>
 					

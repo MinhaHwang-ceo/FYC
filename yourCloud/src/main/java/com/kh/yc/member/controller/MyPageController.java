@@ -36,6 +36,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import com.kh.yc.board.model.vo.PageInfo;
+import com.kh.yc.category.model.vo.Reply;
 import com.kh.yc.common.CommonUtils;
 import com.kh.yc.common.Pagination;
 import com.kh.yc.member.model.service.MemberService;
@@ -110,12 +111,13 @@ public class MyPageController {
 	@RequestMapping("interestProject.me")
 	public String interestProject(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
 		
-		int userNo = Integer.parseInt(request.getParameter("userNo"));
-		System.out.println("userNONOOOOOOOO"+userNo);
-		ArrayList<Project> list = ms.interestProject(userNo); 
-		ArrayList<Project> list2 = ms.interestProject2(userNo); 
+		Member mse = (Member) session.getAttribute("loginUser");
+		System.out.println(mse);
+		
+		ArrayList<Project> list = ms.interestProject(mse); 
+		
 		request.setAttribute("list", list);
-		request.setAttribute("list2", list2);
+		
 
 		return "member/interestProject";
 	}
@@ -125,18 +127,29 @@ public class MyPageController {
 	public String messageBox(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
 		
 		Member member = (Member) session.getAttribute("loginUser");
-		//System.out.println(member);
 	
 		//쪽지 출력
 		ArrayList<Message> message = ms.selectMessageList(member);
-		
-		//System.out.println(message+"는??");
 		
 		request.setAttribute("message", message);
 		request.setAttribute("member", member);
 		
 		return "member/messageBox";
 	}
+	
+	@RequestMapping("messageBox2.me")
+	public String messageBox2(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
+		
+		Member member = (Member) session.getAttribute("loginUser");
+		
+		ArrayList<Message> message2 = ms.sendMessageList(member);
+		
+		request.setAttribute("message2", message2);
+		request.setAttribute("member", member);
+		
+		return "member/messageBox2";
+	}
+	
 
 	//문의하기 눌렀을때 
 	@RequestMapping("sendMessage.me")
@@ -175,7 +188,16 @@ public class MyPageController {
 	}
 	
 	
-	
+	@ResponseBody
+	@RequestMapping(value = "/deleteReply.me")
+	public int deleteReply(Reply reply,ModelAndView mv,HttpServletRequest request, HttpServletResponse response) {
+		
+		int replyNo = Integer.parseInt(request.getParameter("replyNo"));
+		
+		int result = ms.deleteReply(replyNo);
+		
+		return result;
+	}
 	
 	
 	
@@ -292,7 +314,6 @@ public class MyPageController {
 	}
 
 	@RequestMapping("supporterList.me")
-
 	public String supporterList(@ModelAttribute Member m,int bNum,HttpServletRequest request, HttpServletResponse response) {
 		System.out.println("bNum"+bNum);
 		ArrayList<Project> list= ps.selectSupportList(bNum);
@@ -644,6 +665,7 @@ public class MyPageController {
 			return mv;
 		
 	   }
+
 	
 	
 	

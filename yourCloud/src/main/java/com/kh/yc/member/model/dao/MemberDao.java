@@ -62,10 +62,10 @@ ArrayList<Reward> selectMyReward(SqlSessionTemplate sqlSession, Member mse, Page
 
 Reward selectMyRewardDetail(SqlSessionTemplate sqlSession, int fundNoInt);
 
-ArrayList<Project> interestProject(SqlSessionTemplate sqlSession, int userNo);
+ArrayList<Project> interestProject(SqlSessionTemplate sqlSession, Member mse);
 
 Member selectMemberInfo(SqlSessionTemplate sqlSession, String userNo);
-//메세지 출력
+//받은메세지
 ArrayList<Message> selectMessageList(SqlSessionTemplate sqlSession, Member member);
 //메세지 insert
 int insertMessage(SqlSessionTemplate sqlSession, Message message);
@@ -73,10 +73,12 @@ int insertMessage(SqlSessionTemplate sqlSession, Message message);
 boolean checkPwd(SqlSessionTemplate sqlSession, String userId, String userPwd);
 
 void updateMember(SqlSessionTemplate sqlSession, Member mse);
-
+//쪽지 대화방
 ArrayList<Message> messageDetail(SqlSessionTemplate sqlSession, Message message);
+//보낸메세지
+ArrayList<Message> sendMessageList(SqlSessionTemplate sqlSession, Member member);
 
-ArrayList<Project> interestProject2(SqlSessionTemplate sqlSession, int userNo);
+int deleteReply(SqlSessionTemplate sqlSession, int replyNo);
 
 
 
