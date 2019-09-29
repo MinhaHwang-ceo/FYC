@@ -93,6 +93,18 @@ public interface BoardService {
 
 	int countfile(int bNo);
 
+	List<Board> noticeListNo(String bNo1);
+
+	List<Attachment> noticeListNoAt(String bNo1);
+
+	int fileUpdate(Attachment fileVO);
+
+	int noticeUpdateComplate(Board b);
+
+	int noticeUpdateComplateContent(Board b);
+
+
+
 
 
 

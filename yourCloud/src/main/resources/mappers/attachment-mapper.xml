@@ -87,6 +87,22 @@
 	where board_no=#{boardNo}
 	</insert>
 	
+	<select id="noticeListNoAt" resultMap="AttachmentResultSet">
+		SELECT *
+		FROM ATTACHMENT
+		WHERE BOARD_NO = #{bNo}
+		AND FILE_LEVEL = 4
+	</select>
+	
+		<update id="fileUpdate" parameterType="Attachment">
+		UPDATE ATTACHMENT
+		SET ORIGIN_FILE_NAME = #{originFileName},
+		FILE_SRC = #{fileSrc},
+		NEW_FILE_NAME = #{newFileName}
+		    
+		WHERE ATTACHMENT_NO = #{attachmentNo}
+	</update>
+	
 </mapper>
 
 

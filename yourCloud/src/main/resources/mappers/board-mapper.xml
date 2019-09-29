@@ -369,12 +369,6 @@ where BOARD_NO = #{bNo}
 		WHERE B.BOARD_NO = #{bNo}
 	</select>
 	
-	
-	<delete id="delBoardNotice" parameterType="Board">
-		DELETE 
-		FROM BOARD
-		WHERE BOARD_NO = 71
-	</delete>
 
 	<delete id="deleteGuide" parameterType="_int">
 		update BOARD
@@ -410,6 +404,32 @@ where BOARD_NO = #{bNo}
 		ORDER BY B.BOARD_NO DESC
 		
 	</select>
+	
+	<update id="delBoardNotice" parameterType="Board">
+	UPDATE BOARD SET 
+	STATUS = 'Y'WHERE BOARD_NO = #{bNo} 
+	</update>
+	
+		<select id="noticeListNo" resultMap="boardResultSet">
+		SELECT B.*,BC.BOARD_CONTENT
+		FROM BOARD B
+		LEFT OUTER JOIN BOARD_CONTENT BC ON (B.BOARD_NO = BC.BOARD_NO)
+		WHERE B.OPEN = 'Y'
+		AND B.STATUS = 'N'
+		AND B.BOARD_CATEGORY = '공지사항'
+		AND B.BOARD_NO = #{bNo}
+	</select>
+<update id="noticeUpdateComplate" parameterType="Board">
+		UPDATE BOARD
+		SET BOARD_TITLE = #{bTitle}
+		WHERE BOARD_NO = #{bNo}
+	</update>
+	
+	<update id="noticeUpdateComplateContent">
+		UPDATE BOARD_CONTENT
+		SET BOARD_CONTENT = #{bcontent}
+		WHERE BOARD_NO = #{bNo}
+	</update>
 	
 
 </mapper>

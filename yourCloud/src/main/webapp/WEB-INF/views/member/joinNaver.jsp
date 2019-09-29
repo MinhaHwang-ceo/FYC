@@ -5,6 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>니가그린구름그림</title>
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> -->
   	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,600,700,800" rel="stylesheet">
@@ -12,12 +13,14 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/animate.css">
     <link href="${pageContext.request.contextPath}/resources/css/main.css" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css?family=Gothic+A1&display=swap" rel="stylesheet">
+
   <style>
   .outer{
   
   width:800px;
   margin:auto;
   font-family: 'Gothic A1', sans-serif;
+  
   }
   
   #sumbmitbutton{
@@ -25,31 +28,45 @@
   	width:800px;
   }
   
-  #td2{
+  .td2{
   
   	width:400px;
   	margin-left:100px;
+  
   }
   
-  #td3{
+  .td3{
   	
   	width:100px;
   	margin-left:30px;
+  
   }
   
   #td4{
   	
-  	padding-left:100px;  
+  	padding-left:100px;
+  
   }
   
   
   </style>
 </head>
 <body>
-<jsp:include page="../common/customer_menubar.jsp"/><br><br>
+ <jsp:include page="../common/customer_menubar.jsp"/><jsp:include page="../common/customer_menuList.jsp"/><br><br>
 <!-- 전체div -->
 <div class="outer">
-  <h2><b>네이버 회원가입</b></h2>
+
+
+
+<div  id="checkcheck1">
+<input type="hidden" value="1" id="check1">
+</div>
+<div  id="checkcheck2">
+<input type="hidden"  value="1" id="check2">
+</div>
+
+
+  <h2><b>회원가입</b></h2>
   <br>
   
   <!-- 약관 div -->
@@ -119,65 +136,15 @@
     <input type="checkbox" required>약관에 동의합니다.
     <br><br>
   </div> 
-  
+  <br>
   <!-- 회원가입 폼 -->
   <div>
-  <form action="">
+  <form action="naverJoinGo.ne" method="post">
+  <input name="userId" type="text" value="${ naverLoginUser.userId}">
+  <input name="email" type="text" value="${ naverLoginUser.email}">
+  <input name="userName" type="text" value="${ naverLoginUser.userName }">
+  <input name="age" type="text" value="${ naverLoginUser.age}">
   	<table>
-  		<tr>
-  			<td>*이메일</td>
-  			<td><input type="text" name="" id="td2" disabled></td>
-  		</tr>
-  	
-  		<tr><td><br></td></tr>
-  		
-  		<tr>
-  			<td>*이름</td>
-  			<td><input type="text" name="" id="td2" disabled></td>
-  		</tr>
-  		
-  		<tr><td><br></td></tr>
-  			
-   		<tr>
-  			<td>*아이디</td>
-  			<td><input type="text" name="" id="td2" required></td>
-  			<td><button id="td3" class="btn btn-info">중복</button></td>
-  		</tr> 		
-  		
-  		<tr><td><br></td></tr>
-  		
-  		<tr>
-  			<td>*비밀번호</td>
-  			<td><input type="password" name="" id="td2" required></td>
-  		</tr> 	
-  		
-  		<tr><td><br></td></tr>  		
-  		
-   		<tr>
-  			<td>*비밀번호 확인</td>
-  			<td><input type="password" name="" id="td2" required></td>
-  		</tr>  		
- 
-   		<tr><td><br></td></tr>
-  		
-    	<tr>
-  			<td>*이메일</td>
-  			<td><input type="text" name="" id="td2" required></td>
-  			<td><button id="td3" class="btn btn-info">인증요청</button></td>
-  		</tr>   		
-  		
-  		<tr><td><br></td></tr> 
-  		
-  		<tr>
-  			<td>인증번호</td>
-  			<td><input type="text" name="" id="td2" required></td>
-  			<td><button id="td3" class="btn btn-info">확인</button></td>
-  		</tr>
-  		
-  		<tr><td><br></td></tr> 
-  		<tr><td><br></td></tr> 
-  		<tr><td><br></td></tr> 
-  		
   		<tr>
   			<td><b>+ 추가사항</b></td>
   			<td>(모두 입력시1000P 적립)</td>
@@ -185,59 +152,56 @@
   		
   		<tr><td><br></td></tr>  		
   		
-  		<tr>
-  			<td>연령대</td>
-  			<td id="td4">
-  			<input type="checkbox" checked="checked">20대 미만  &nbsp; <input type="checkbox">20대 이상 ~ 30대 미만 &nbsp; <input type="checkbox">30대 이상 ~ 40대 미만
-  			<br>
-  			<input type="checkbox">40대 이상 ~ 50대 미만  &nbsp; <input type="checkbox">50대 이상 ~ 60대 미만  &nbsp; <input type="checkbox">60대 이상  			
-  			</td>
-  		</tr>
-  		
   		<tr><td><br></td></tr>  		
   		
   		<tr>
   			<td>성별</td>
   			<td id="td4">
-  			<input type="checkbox" value="" checked="checked">여성  &emsp;&emsp;&emsp;&emsp; <input type="checkbox" value="">남성
+  			<input type="checkbox" value="F"  name="gender">여성  &emsp;&emsp;&emsp;&emsp; <input type="checkbox" value="M" name="gender">남성
   			</td>
   		</tr>
   		
   		<tr><td><br></td></tr>  		
   		
+
   		<tr>
   			<td>관심<br>카테고리</td>
   			<td id="td4">
-  			<input type="checkbox" value="" checked="checked">테크,가전  &emsp;&emsp; <input type="checkbox" value="">패션,잡화  &emsp;&emsp; <input type="checkbox" value="">뷰티  &emsp;&emsp; <input type="checkbox" value="">도서   <br>
-  			<input type="checkbox" value="">푸드  &emsp;&emsp; <input type="checkbox" value="">홈리빙  &emsp;&emsp; <input type="checkbox" value="">키즈  <br>
-  			<input type="checkbox" value="">여행,레저 &emsp;&emsp; <input type="checkbox" value="">스포츠   &emsp;&emsp; <input type="checkbox" value="">반려동물  &emsp;&emsp;
+  			<input type="checkbox" value="A1" name="memberCategory">테크,가전  &emsp;&emsp; <input type="checkbox" name="memberCategory" value="A2">패션,잡화  &emsp;&emsp; <input type="checkbox" name="memberCategory" value="A3">뷰티  &emsp;&emsp; <input type="checkbox"  name="memberCategory" value="A4">도서   <br>
+  			<input type="checkbox" name="memberCategory" value="A5">푸드  &emsp;&emsp; <input type="checkbox"  name="memberCategory" value="A6">홈리빙  &emsp;&emsp; <input type="checkbox"  name="memberCategory" value="A7">키즈  <br>
+  			<input type="checkbox" name="memberCategory" value="A8">여행,레저 &emsp;&emsp; <input type="checkbox" name="memberCategory"  value="A9">스포츠   &emsp;&emsp; <input type="checkbox"  name="memberCategory" value="A10">반려동물  &emsp;&emsp;
   			</td>
   		</tr>
-  		
   		<tr><td><br></td></tr>  		
   		
   		<tr>
   			<td>이메일<br>수신동의</td>
-  			<td id="td4">
+  			<td class="td4">
   			이메일을 통해 쿠폰 및 이벤트 정보를 받아보실  수 있습니다.
   			<br>
-  			<input type="checkbox" value="">이메일 수신을 동의합니다
+  			<input type="checkbox" name="emailAgree" value="Y">이메일 수신을 동의합니다
   			</td>
   		</tr>
+
+  		<tr><td><br></td></tr>  
   		
   	</table>
+  <button id="sumbmitbutton" class="btn btn-info" onclick="naverJoin();">확인</button>
   </form>
   
   <br><br>
   
-  <input type="submit" value="확인" id="sumbmitbutton" class="btn btn-info">
-  
-  
   </div>
-  
+
   <br><br><br><br>
 
 </div>    
-<jsp:include page="../common/customer_footer.jsp"/>
+<script>
+		function naverJoin(){
+			location.href = "naverJoinGo.ne";
+		}
+</script>
+
+ <jsp:include page="../common/customer_footer.jsp"/>
 </body>
 </html>

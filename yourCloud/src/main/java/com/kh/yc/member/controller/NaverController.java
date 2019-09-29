@@ -1,9 +1,11 @@
 package com.kh.yc.member.controller;
 
 import java.io.IOException;
+import java.util.Locale;
 
 import javax.security.auth.login.LoginException;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.servlet.jsp.tagext.TryCatchFinally;
 
@@ -146,67 +148,60 @@ public class NaverController {
 		int chk = ms.naverLoginCheck(nm);
 
 		if (chk < 1) {
-			int insert = ms.naverInsert(nm);
 			
-			return "member/joinNaver.jsp";
+			System.out.println(nm);
+			model.addAttribute("naverLoginUser", nm);
+			return "member/joinNaver";
 		}else {
 			
-			model.addAttribute("loginUser", nm);
+			model.addAttribute("naverLoginUser", nm);
 			
 			return "redirect:index.jsp";
 		}
-		
 
-//		if(naverLogin == null) {
-//			
-//		}else {
-//			
-//		}
-		
-		
-		
-		
-		
-//		int result = ms.naverInsert(nm);
-//		NaverMember naverLogin = ms.naverloginCheck(nm);
-//		if(naverLogin != null) {
-//			model.addAttribute("nm", apiResult);
-//			session.setAttribute("session", nm);
-//			return "redirect:/index.jsp";
-//		}else if(result > 0) {
-//		
-//			return "Member/joinNaver";
-//		}else {
-//			model.addAttribute("msg", "회원 가입 실패!");
-//			return "common/errorPage";
-//			
-//		}
-		 
 	}
-	
+	  @RequestMapping("naverJoinGo.ne")
+	 	public String naverJoinGo(Member m, Model model,HttpServletRequest request, HttpServletResponse response) {
+		  System.out.println(m);
+		  String userId = request.getParameter("userId");
+		  String email = request.getParameter("email");
+		  String userName = request.getParameter("userName");
+		  String age = request.getParameter("age");
+		  String[] irr = request.getParameterValues("memberCategory");
+		  String gender = request.getParameter("gender");
+		  String emailAgree = request.getParameter("emailAgree");
+		  String interest = ""; 
 			
-	/*
-	 * // 네이버 회원정보 입력
-	 * 
-	 * @RequestMapping(value = "naverInsert.me") public String
-	 * NaverInsert(@ModelAttribute NaverMember nm, Model model) {
-	 * 
-	 * System.out.println(nm.getUserName() + "fucku");
-	 * System.out.println(nm.getEmail() + "mail");
-	 * 
-	 * ms.naverInsert(nm);
-	 * 
-	 * return "redirect:/index.jsp"; }
-	 */
-
-	/*
-	 * @RequestMapping(value = "naverInsert.me") 
-	 * public ModelAndView test() {\
-	 * 
-	 * ModelAndView mav = new ModelAndView("/index.jsp");
-	 * 
-	 * mav.addObject("key", "value");
-	 * 
-	 * return mav; }
-	 */
+			if(irr != null) {
+				for(int i = 0; i < irr.length; i++) {
+					if(i == 0) {
+						interest += irr[i];
+					}else {
+						interest += "," + irr[i];
+					}
+				}
+			}
+			Member nm = new Member();
+			nm.setUserId(userId);
+			nm.setEmail(email);
+			nm.setUserName(userName);
+			nm.setAge(Integer.parseInt(age));
+			nm.setMemberCategory(interest);
+			nm.setGender(gender);
+			nm.setEmailAgree(emailAgree);;
+			
+			System.out.println(userId);
+			System.out.println(email);
+			System.out.println(userName);
+			System.out.println(age);
+			System.out.println(gender);
+			System.out.println(emailAgree);
+			System.out.println(interest);
+			
+			int insert = ms.naverInsert(nm);
+			
+			
+			return "member/loginMain";
+	 	}
 }
+

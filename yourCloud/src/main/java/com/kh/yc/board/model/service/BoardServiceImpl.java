@@ -202,6 +202,28 @@ public class BoardServiceImpl implements BoardService {
 	public int countfile(int bNo) {
 		return 	 bd.countfile(sqlSession,bNo);	
 	}
+	@Override
+	public List<Board> noticeListNo(String bNo1) {
+		return bd.noticeListNo(sqlSession,bNo1);
+	}
+	@Override
+	public List<Attachment> noticeListNoAt(String bNo1) {
+		// TODO Auto-generated method stub
+		return bd.noticeListNoAt(sqlSession,bNo1);
+	
+	}
+	@Override
+	public int fileUpdate(Attachment fileVO) {
+		return bd.fileUpdate(sqlSession,fileVO);
+	}
+	@Override
+	public int noticeUpdateComplate(Board b) {
+		return bd.noticeUpdateComplate(sqlSession,b);
+	}
+	@Override
+	public int noticeUpdateComplateContent(Board b) {
+		return bd.noticeUpdateComplateContent(sqlSession,b);
+	}
 	
 
 }
