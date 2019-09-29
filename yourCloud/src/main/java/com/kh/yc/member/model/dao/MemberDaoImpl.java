@@ -150,10 +150,10 @@ public class MemberDaoImpl implements MemberDao{
 		}
 		@SuppressWarnings({ "unchecked", "rawtypes" })
 		@Override
-		public ArrayList<Project> interestProject(SqlSessionTemplate sqlSession,int userNo) {
+		public ArrayList<Project> interestProject(SqlSessionTemplate sqlSession, Member mse) {
 			ArrayList<Project> list = null;
 			
-			list = (ArrayList) sqlSession.selectList("Project2.interestProject5", userNo);
+			list = (ArrayList) sqlSession.selectList("Project2.interestProject5", mse);
 			
 			return list;
 		}
@@ -207,13 +207,24 @@ public class MemberDaoImpl implements MemberDao{
 			
 			return mse;
 		}
+		
+		@SuppressWarnings("rawtypes")
 		@Override
-		public ArrayList<Project> interestProject2(SqlSessionTemplate sqlSession, int userNo) {
-	ArrayList<Project> list = null;
+		public ArrayList<Message> sendMessageList(SqlSessionTemplate sqlSession, Member member) {
 			
-			list = (ArrayList) sqlSession.selectList("Project2.interestProject6", userNo);
+			ArrayList<Message> message2 = (ArrayList)sqlSession.selectList("Member.sendMessageList", member.getUserNo());
 			
-			return list;
+			System.out.println("보낸쪽지는?:"+message2);
+			
+			return message2;
+		}
+		
+		@Override
+		public int deleteReply(SqlSessionTemplate sqlSession, int replyNo) {
+			
+			System.out.println(replyNo);
+			 
+			return sqlSession.delete("Project2.deleteReply", replyNo);
 		}
 	
 	

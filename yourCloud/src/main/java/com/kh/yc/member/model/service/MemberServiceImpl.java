@@ -135,9 +135,9 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public ArrayList<Project> interestProject(int userNo) {
+	public ArrayList<Project> interestProject(Member mse) {
 
-		return md.interestProject(sqlSession, userNo);
+		return md.interestProject(sqlSession, mse);
 }
   
   @Override
@@ -189,8 +189,17 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public ArrayList<Project> interestProject2(int userNo) {
-		return md.interestProject2(sqlSession, userNo);
+	public ArrayList<Message> sendMessageList(Member member) {
+		
+		ArrayList<Message> message2 = md.sendMessageList(sqlSession,member);
+		
+		return message2;
+	}
+
+	@Override
+	public int deleteReply(int replyNo) {
+		
+		return md.deleteReply(sqlSession,replyNo);
 	}
 
 

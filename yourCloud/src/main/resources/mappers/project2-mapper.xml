@@ -187,18 +187,6 @@
 		AND JUDGE_STATUS = '통과'
 	</select>
 	
-	
-	<select id="selectListCount11" resultType="_int">
-		SELECT COUNT(*)
-		FROM
-		PROJECT
-		WHERE PROGRESS_STATUS = '오픈예정'
-	
-		AND PROGRESS_STATUS IS NOT NULL
-		AND JUDGE_STATUS = '통과'
-	</select>
-	
-	
 		<select id="selectListCount2" resultType="_int">
 		SELECT COUNT(*)
 		FROM
@@ -214,7 +202,6 @@
 		P.PROJECT_TITLE,P.MONEY,M.COMPANY_NAME,P.END_DATE,
 		A.NEW_FILE_NAME
 		FROM PROJECT P
-
 		JOIN MEMBER M ON (P.MEMBER_NO = M.MEMBER_NO)
         JOIN ATTACHMENT A ON (A.PROJECT_NO = P.PROJECT_NO)
         WHERE PROGRESS_STATUS != '오픈예정'
@@ -222,8 +209,7 @@
         AND JUDGE_STATUS = '통과'
         AND PROGRESS_STATUS IS NOT NULL
         AND A.FILE_LEVEL=0
-
-		ORDER BY PROJECT_NO DESC
+		ORDER BY PROJECT_OPEN DESC
 	</select>
 	<select id="getProject" resultMap="ProjectList">
 		SELECT
@@ -318,7 +304,7 @@
 	<select id="selectProjectList2" resultMap="ProjectList"
 		parameterType="java.util.Map">
 		SELECT P.PROJECT_NO,
-		P.PROJECT_TITLE,P.MONEY,M.COMPANY_NAME,P.END_DATE,P.MEMBER_NO,P.JUDGE_STATUS,P.PROGRESS_STATUS,a.new_file_name,p.END_DATE
+		P.PROJECT_TITLE,P.MONEY,M.COMPANY_NAME,P.END_DATE,P.MEMBER_NO,P.JUDGE_STATUS,P.PROGRESS_STATUS,a.new_file_name
 		FROM PROJECT P
 		JOIN MEMBER M ON (P.MEMBER_NO = M.MEMBER_NO)
 		join
@@ -354,7 +340,6 @@
 		LEFT JOIN OPEN_ALARM O ON(M.MEMBER_NO = O.MEMBER_NO)
 		LEFT JOIN ATTACHMENT A ON(P.PROJECT_NO = A.PROJECT_NO)
 		WHERE P.PROJECT_NO = #{projectNo}
-		and a.file_level=0
 	</select>
 
 
@@ -795,25 +780,17 @@ FROM PROJECT P
 	</update>
 
 	<select id="interestProject5" resultMap="ProjectList"
-		parameterType="_int">
-		select *
-from member m
- join interest o on(o.member_no=m.member_no)
-join project p on(o.project_no=p.project_no)
-join attachment a on(a.project_no=p.project_no)
-where m.member_no=#{userNo}
-and a.file_level=0
-	</select>
-	
-	<select id="interestProject6" resultMap="ProjectList"
-		parameterType="_int">
-		select *
-from member m
- join open_alarm i on(i.member_no=m.member_no)
- join project p on(i.project_no=p.project_no)
-join attachment a on(a.project_no=p.project_no)
-where m.member_no=#{userNo}
-and a.file_level=0
+		parameterType="java.util.Map">
+		SELECT P.PROJECT_NO, P.PROJECT_TITLE,P.MAIN_IMG,
+		P.CATEGORY, P.PROJECT_SHORT_TITLE, M.COMPANY_NAME, C.CATEGORY_DIV
+		FROM
+		PROJECT P
+		LEFT JOIN CATEGORY C ON (P.CATEGORY = C.CATEGORY)
+		LEFT JOIN
+		MEMBER M ON (P.MEMBER_NO = M.MEMBER_NO)
+		WHERE M.MEMBER_NO = #{userNo}
+		AND
+		ORDER BY PROJECT_NO DESC
 	</select>
 	<select id="sortProjectList" parameterType="java.util.Map"
 		resultMap="ProjectList">
@@ -828,7 +805,7 @@ and a.file_level=0
 		AND PROGRESS_STATUS != '오픈예정'
 		AND JUDGE_STATUS = '통과'
 		AND A.FILE_LEVEL=0
-		ORDER BY PROJECT_NO DESC
+		ORDER BY PROJECT_OPEN DESC
 	</select>
 
 	<select id="selectProject" resultMap="ProjectList">
@@ -1122,5 +1099,13 @@ where project_no=#{projectNo}
 	        rank < 4
 	        ]]>
 	</select>
+	
+	<delete id="deleteReply" parameterType="int" >
+		DELETE 
+		FROM REPLY 
+		WHERE REPLY_NO = ${replyNo}
+	</delete>
+	
+	
 </mapper>
 

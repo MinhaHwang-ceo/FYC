@@ -271,8 +271,10 @@ a {
     line-height: 34px;
     font-size: 15px;
 }
-
-
+#btn1{
+	border: none;
+	background: none;	
+}
 </style>
 <meta charset="UTF-8">
 <script
@@ -424,14 +426,30 @@ a {
         <th style="text-align:center;">NO</th>
         <th style="text-align:center;">이름</th>
         <th>의견 내용</th>
+        <th></th>
+        <th></th>
       </tr>
     </thead>
   <c:forEach var="reward" items="${reply}">
     <tbody id="myTable">
       <tr>
-        <td width="100"  style="text-align:center;"><c:out value="${reward.replyNo }"/></td>
-        <td width="150"><c:out value="${reward.userName }"></c:out></td>
-        <td><c:out value="${reward.replyComment }"/></td>
+      	<c:if test="${loginUser.userNo eq reward.userNo }">
+      	   	<td width="100"  style="text-align:center;"><c:out value="${reward.replyNo }"/></td>
+       		<td width="150"><c:out value="${reward.userName }"></c:out></td>
+       		<td width="700"><c:out value="${reward.replyComment }"/></td>    
+       		<td><button id="btn1">수정</button></td>
+        	<td><button id="btn1"  onclick="location.href='deleteReply.me?replyNo=${reward.replyNo}'">삭제</button></td>
+      	</c:if>
+      	
+      	<c:if test="${loginUser.userNo ne reward.userNo }">
+      	    <td width="100"  style="text-align:center;"><c:out value="${reward.replyNo }"/></td>
+       		<td width="150"><c:out value="${reward.userName }"></c:out></td>
+       		<td width="700"><c:out value="${reward.replyComment }"/></td>    
+       		<td></td>
+       		<td></td>
+      	</c:if>
+    
+      	
       </tr>
   </c:forEach>
     </tbody>
