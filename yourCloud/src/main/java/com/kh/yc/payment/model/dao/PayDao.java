@@ -45,5 +45,6 @@ public interface PayDao {
 
 	int updateProjectOpen(SqlSessionTemplate sqlSession);
 
+	void insertAdjust(SqlSessionTemplate sqlSession, ArrayList<Project> fundSuccessProject);
 
 }

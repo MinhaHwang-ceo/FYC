@@ -21,8 +21,8 @@
 		<typeAlias type="com.kh.yc.funding.model.vo.Funding" alias="Funding"/>
 		<typeAlias type="com.kh.yc.payment.model.vo.Payment" alias="Payment"/>
 		<typeAlias type="com.kh.yc.delivery.model.vo.Delivery" alias="Delivery"/>
-	<typeAlias type="com.kh.yc.project.model.vo.OpenAlarm" alias="OpenAlarm"/>
-	<typeAlias type="com.kh.yc.reward.model.vo.ExcelReward" alias="ExcelReward"/>
+		<typeAlias type="com.kh.yc.project.model.vo.OpenAlarm" alias="OpenAlarm"/>
+		<typeAlias type="com.kh.yc.reward.model.vo.ExcelReward" alias="ExcelReward"/>
 </typeAliases>
 	
 	<mappers>

@@ -22,36 +22,7 @@
   }
 </style>
 <script>
-var stackedBar = new Chart(ctx, {
-    type: 'bar',
-    data: data,
-    options: {
-        scales: {
-            xAxes: [{
-                stacked: true
-            }],
-            yAxes: [{
-                stacked: true
-            }]
-        }
-    }
-});
 
-function addData(chart, label, data) {
-    chart.data.labels.push(label);
-    chart.data.datasets.forEach((dataset) => {
-        dataset.data.push(data);
-    });
-    chart.update();
-}
-
-function removeData(chart) {
-    chart.data.labels.pop();
-    chart.data.datasets.forEach((dataset) => {
-        dataset.data.pop();
-    });
-    chart.update();
-}
 
 </script>
  
@@ -324,46 +295,90 @@ function removeData(chart) {
 							<div class="card-header py-3">
 									<h6 class="m-0 font-weight-bold text-primary">Bar Chart</h6>
 								</div>
-								 <canvas id="myChart" width="400" height="400"></canvas>
+
+
+<canvas id="myChart" width="200px" height="100px"></canvas>
+
 <script>
-var ctx = document.getElementById("myChart"); //캔버스 id값 가져오기
+
+var ctx = document.getElementById("myChart");
+
 var myChart = new Chart(ctx, {
-    type: 'bar', //그래프 형태 지정하기
+
+    type: 'bar',
+
     data: {
-        labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"], //X축 제목
+
+        labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+
         datasets: [{
-            label: '# of Votes',
+
+            label: '그래프 테스트',
+
             data: [12, 19, 3, 5, 2, 3],
+
             backgroundColor: [
-                'rgba(255, 99, 132, 0.2)', //1번째 그래프의 바탕색
+
+                'rgba(255, 99, 132, 0.2)',
+
                 'rgba(54, 162, 235, 0.2)',
+
                 'rgba(255, 206, 86, 0.2)',
+
                 'rgba(75, 192, 192, 0.2)',
+
                 'rgba(153, 102, 255, 0.2)',
+
                 'rgba(255, 159, 64, 0.2)'
+
             ],
+
             borderColor: [
-                'rgba(255,99,132,1)',      //1번째 그래프의 선색
+
+                'rgba(255,99,132,1)',
+
                 'rgba(54, 162, 235, 1)',
+
                 'rgba(255, 206, 86, 1)',
+
                 'rgba(75, 192, 192, 1)',
+
                 'rgba(153, 102, 255, 1)',
+
                 'rgba(255, 159, 64, 1)'
+
             ],
-            borderWidth: 1 //선굵기
+
+            borderWidth: 1
+
         }]
+
     },
+
     options: {
-        scales: { //X,Y축 옵션
+
+        scales: {
+
             yAxes: [{
+
                 ticks: {
-                    beginAtZero:true  //Y축의 값이 0부터 시작
+
+                    beginAtZero:true
+
                 }
+
             }]
+
         }
+
     }
+
 });
+
 </script>
+
+
+
 
 				</div>
 				<!-- /.container-fluid -->

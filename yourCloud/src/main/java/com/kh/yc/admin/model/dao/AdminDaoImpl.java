@@ -118,6 +118,11 @@ public class AdminDaoImpl implements AdminDao{
 				sqlSession.update("Project.adjustUpdate", p);
 			}
 			
+			@Override
+			public void AdjustUp(SqlSessionTemplate sqlSession, Project p) {
+				
+				sqlSession.update("Project.AdjustUp", p);
+			}
 		
 		
 	}

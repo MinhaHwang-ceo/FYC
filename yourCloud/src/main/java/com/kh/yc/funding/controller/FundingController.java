@@ -27,6 +27,8 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.itextpdf.text.log.SysoCounter;
+import com.kh.yc.admin.model.service.AdminService;
+import com.kh.yc.admin.model.service.AdminServiceImpl;
 import com.kh.yc.admin.model.vo.Project;
 import com.kh.yc.board.model.service.BoardService;
 import com.kh.yc.common.CommonUtils;
@@ -56,6 +58,11 @@ public class FundingController {
 	@Autowired
 	private ProjectService ps;
 	private IamportClient client;
+
+	@Autowired
+	private AdminServiceImpl as;
+	
+	
 
 	@RequestMapping(value = "FundingOpen1.fd", method = RequestMethod.GET)
 	public String FundingOpen(Locale locale, Model model) {
@@ -472,7 +479,9 @@ public class FundingController {
 		String fileName = "sign" + System.currentTimeMillis() + ".png";
 
 		Sign s = new Sign();
-
+		Project p = new Project();
+		
+		p.setUserNo2(userNo);
 		s.setUserNo(Integer.parseInt(userNo));
 		s.setbNo(Integer.parseInt(bNum));
 		int result = fs.signUser(s);
@@ -483,6 +492,7 @@ public class FundingController {
 			a.setProjectNo(Integer.parseInt(bNum));
 			a.setOriginFileName(fileName);
 			a.setNewFileName(fileName);
+			as.Adjustup(p);
 
 			result = fs.signFile(a);
 			try {

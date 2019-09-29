@@ -42,6 +42,8 @@ public class PayServiceImpl implements PayService {
 		ArrayList<Project> fundSuccessProject = pd.fundSuccessProject(sqlSession);
 		System.out.println("d"+fundSuccessProject);
 		pd.updateProjectSuccess(sqlSession);
+		pd.insertAdjust(sqlSession, fundSuccessProject);
+		
 		try {
 			ArrayList<Funding> fundFailProject = pd.fundFailProject(sqlSession);
 			ArrayList<com.kh.yc.payment.model.vo.Payment> merchantId = pd.failMerchantID(sqlSession, fundFailProject);

@@ -267,7 +267,7 @@
                   <tr>
                   	<td onclick="window.open('${pageContext.request.contextPath}/memberView.ad?userNo=${row.userNo}', 'PopupWin', 'width=520,height=600');">${row.projectNo}</td>
                   	<td>${row.agentName}</td>
-                  	<td>${row.makerDiv}</td>
+                  	<td>${row.companyName}</td>
                   	<td>${row.category}</td>
                   	<td>${row.projectShortTitle}</td>
                   	<td>${row.progressStatus}</td>

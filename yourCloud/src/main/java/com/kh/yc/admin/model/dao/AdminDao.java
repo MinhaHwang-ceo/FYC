@@ -56,5 +56,5 @@ public interface AdminDao {
 
 	public void adjustUpdate(SqlSessionTemplate sqlSession, Project p);
 
-	
+	public void AdjustUp(SqlSessionTemplate sqlSession, Project p);
 }
