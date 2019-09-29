@@ -743,20 +743,20 @@ public class BoardController {
 	}
 
 	@RequestMapping("noticeInsert.bo")
-	public String noticeInsert(Board b, Model model, HttpSession session, HttpServletRequest request,
-			@RequestParam(name = "photo", required = true) MultipartFile photo) {
-
+	public String noticeInsert(Board b, Model model, HttpSession session, HttpServletRequest request, HttpServletResponse response,
+			@RequestParam(name = "photo", required = true) MultipartFile photo) { 
+	 
 		System.out.println("글쓰기");
 		Member m = (Member) session.getAttribute("loginUser");
 		b.setWriter(String.valueOf(m.getUserNo()));
 		System.out.println(b);
-
+		
 		int boardInsert = bs.boardInsert(b);
 		int bnum = b.getbNo();
 		int boardContentInsert = bs.boardContentInsert(b);
-
-		System.out.println("photo:" + photo.getOriginalFilename());
-
+		
+		 System.out.println("photo:" + photo.getOriginalFilename());
+		
 		if (photo != null && photo.getOriginalFilename().length() != 0) {
 
 			String root = request.getSession().getServletContext().getRealPath("resources");
@@ -764,7 +764,7 @@ public class BoardController {
 			String filePath = root + "\\uploadFiles";
 			String origunFileName = photo.getOriginalFilename();
 			String ext = origunFileName.substring(origunFileName.lastIndexOf("."));
-			String changeName = CommonUtils.getRandomString() + ext;
+			String changeName = CommonUtils.getRandomString()+ext;
 			String fullFilePath = filePath + "\\" + changeName;
 			System.out.println("********************");
 			try {
@@ -779,9 +779,9 @@ public class BoardController {
 				fileVO.setBoardNo(bnum);
 				fileVO.setFileLevel("4");
 				// insert 파일정보
-
+				
 				int fileInsert = bs.fileInsert(fileVO);
-
+				
 				model.addAttribute("fileVO", fileVO);
 				// p.setAttachment(fileVO);
 			} catch (Exception e) {
@@ -790,11 +790,101 @@ public class BoardController {
 				new File(fullFilePath).delete();
 			}
 		}
-		return "board/notice";
+		return "redirect:notice.bo";
 	}
 
 	@RequestMapping("chat.ch")
 	public String goChat(String userNo) {
 		return "board/chat";
 	}
+	
+	
+	@RequestMapping("updateBoardNotice.bo")
+	public String updateBoardNotice(Attachment at, String bNo, Board b,Model model, HttpSession session, HttpServletRequest request, HttpServletResponse response) {
+		
+		String bNo1 = bNo;
+		
+		List<Board> BoardList = bs.noticeListNo(bNo1);
+		
+		List<Attachment> attachmentList = bs.noticeListNoAt(bNo1);
+		
+		model.addAttribute("at", attachmentList.get(0));
+		model.addAttribute("b", BoardList.get(0));
+		return "board/noticeUpdate";
+	}
+	
+	@RequestMapping("deleteBoardNotice.bo")
+	public ModelAndView deleteBoardNotice(Board b,String bNo, ModelAndView mv, Model model, HttpSession session, HttpServletRequest request, HttpServletResponse response) {
+	
+		b.setbNo(Integer.parseInt(bNo));
+		System.out.println(b);
+		int result = bs.deleteBoardNotice(b);
+		mv.addObject("b",b);
+		mv.setViewName("jsonView");
+			
+		return mv;
+	}
+	
+	@RequestMapping("noticeUpdateComplateEsc.bo")
+	public String noticeUpdateComplateEsc(Model model, HttpSession session, HttpServletRequest request, HttpServletResponse response) {
+		
+	
+		
+		return "redirect:notice.bo";
+	}
+	
+	@RequestMapping("noticeUpdateComplate.bo")
+	public String noticeUpdateComplate(Attachment at, Board b, String bNo, String attachmentNo, Model model, HttpSession session, HttpServletRequest request, HttpServletResponse response,
+			@RequestParam(name = "photo", required = true) MultipartFile photo) {
+		
+		if (photo != null && photo.getOriginalFilename().length() != 0) {
+
+			String root = request.getSession().getServletContext().getRealPath("resources");
+
+			String filePath = root + "\\uploadFiles";
+			String origunFileName = photo.getOriginalFilename();
+			String ext = origunFileName.substring(origunFileName.lastIndexOf("."));
+			String changeName = CommonUtils.getRandomString()+ext;
+			String fullFilePath = filePath + "\\" + changeName;
+			System.out.println("********************");
+			try {
+
+				photo.transferTo(new File(fullFilePath));
+
+				Attachment fileVO = new Attachment();
+
+				fileVO.setOriginFileName(origunFileName);
+				fileVO.setFileSrc(fullFilePath);
+				fileVO.setNewFileName(changeName);
+				fileVO.setAttachmentNo(Integer.parseInt(attachmentNo));
+				fileVO.setBoardNo(Integer.parseInt(bNo));
+				
+				int fileInsert = bs.fileUpdate(fileVO);
+				
+				model.addAttribute("fileVO", fileVO);
+				// p.setAttachment(fileVO);
+			} catch (Exception e) {
+
+				e.printStackTrace();
+				new File(fullFilePath).delete();
+			}
+		}
+		int resulut = bs.noticeUpdateComplate(b);
+		
+		int result = bs.noticeUpdateComplateContent(b);
+		
+		
+		model.addAttribute("b",b);
+	
+		return "redirect:notice.bo";
+	}
+	
+	
+	@RequestMapping("noticbok.bo")
+	public String noticbok(Board b,String bNo, ModelAndView mv, Model model, HttpSession session, HttpServletRequest request, HttpServletResponse response) {
+	
+		return "redirect:notice.bo";
+	}
+	
+	
 }

@@ -39,27 +39,31 @@
 	<br>
 	<br>
 	<div class="container">
-
 		<div class="row2">
 
-			<form method="post" action="noticeInsert.bo" enctype="multipart/form-data">
+			<form id="saveForm" method="post" action="" enctype="multipart/form-data">
+			<input type="hidden" id="bNo" name="bNo" value="${b.bNo }" />
+				<input type="hidden" id="attachmentNo" name="attachmentNo" value="${at.attachmentNo}" />
 				<table class="table table-striped"
 					style="text-align: center; border: 1px;">
 					<thead>
 						<tr>
 							<th colspan="1"
 								style="background-color: #eeeeee; text-align: center;">공지사항
-								글쓰기</th>
+								글쓰기
+							</th>
+							
+								
 						</tr>
 					</thead>
 					<tbody>
 						<tr>
-							<td><input type="text" class="form-control"
-								placeholder="글제목" name="bTitle"></td>
+							<td><input value="${b.bTitle}" type="text" class="form-control"
+								placeholder="글제목"  name="bTitle"></td>
 						</tr>
 						<tr>
 							<td><textarea class="form-control" placeholder="글 내용"
-									name="bcontent" maxlength="2048" style="height: 350px"></textarea>
+									name="bcontent" maxlength="2048" style="height: 350px">${b.bcontent}</textarea>
 							</td>
 						</tr>
 						<tr>
@@ -67,16 +71,24 @@
 						</tr>
 					</tbody>
 				</table>
-				<input type="submit" class="btn" value="글쓰기" style="float: right;">
+				<button onclick="exc();" class="btn" style="float: right; margin-left: 50px;" >취소</button>
+				<button onclick="updateComplate();" class="btn" style="float: right; margin-left: 50px;" >수정완료</button>
 			</form>
 		</div>
 	</div>
+	<script>
+	function exc() {
+		$("#saveForm").attr("action","noticeUpdateComplateEsc.bo");
+	}
+	function updateComplate() {
+		$("#saveForm").attr("action","noticeUpdateComplate.bo").submit();
+	}
+	</script>
 	<br>
 	<br>
 	<br>
 	<br>
 	<br>
 	<jsp:include page="../common/customer_footer.jsp" />
-
-</body>
+	</body>
 </html>

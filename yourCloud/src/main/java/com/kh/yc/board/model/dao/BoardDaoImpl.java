@@ -240,7 +240,7 @@ public class BoardDaoImpl implements BoardDao {
 	@Override
 	public int deleteBoardNotice(SqlSessionTemplate sqlSession, Board b) {
 		
-		return sqlSession.delete("Board.delBoardNotice",b);
+		return sqlSession.update("Board.delBoardNotice",b);
 	}
 
 	@Override
@@ -291,6 +291,32 @@ public class BoardDaoImpl implements BoardDao {
 	@Override
 	public int countfile(SqlSessionTemplate sqlSession, int bNo) {
 		return sqlSession.selectOne("Board.countfile", bNo);
+	}
+
+	@Override
+	public List<Board> noticeListNo(SqlSessionTemplate sqlSession, String bNo1) {
+		return sqlSession.selectList("Board.noticeListNo",bNo1);
+	}
+
+	@Override
+	public List<Attachment> noticeListNoAt(SqlSessionTemplate sqlSession, String bNo1) {
+
+		return sqlSession.selectList("Attachment.noticeListNoAt",bNo1);
+	}
+
+	@Override
+	public int fileUpdate(SqlSessionTemplate sqlSession, Attachment fileVO) {
+		return sqlSession.update("Attachment.fileUpdate",fileVO);
+	}
+
+	@Override
+	public int noticeUpdateComplate(SqlSessionTemplate sqlSession, Board b) {
+		return sqlSession.update("Board.noticeUpdateComplate",b);
+	}
+
+	@Override
+	public int noticeUpdateComplateContent(SqlSessionTemplate sqlSession, Board b) {
+		return sqlSession.update("Board.noticeUpdateComplateContent",b);
 	}
 
 

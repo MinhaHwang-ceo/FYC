@@ -17,7 +17,6 @@
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <link
-	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"
 	rel="stylesheet">
 <link
 	href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,600,700,800"
@@ -107,6 +106,17 @@ button:hover, input[type="button"]:hover {
 	}
 
 	document.addEventListener("scroll", fx_Floating);
+	
+	function fundingOp(flag){
+		console.log(flag);
+		if(flag){
+			location.href="FundingOpen2.fd";
+			
+		}else{
+			alert("로그인을 해주세요");
+		}
+		
+	}
 </script>
 
 
@@ -131,7 +141,7 @@ button:hover, input[type="button"]:hover {
 
 					<li><a class="nav-link" href="myPage.me">마이페이지 </a></li>
 				</c:if>
-				<li><a class="nav-link" href="FundingOpen2.fd">펀딩 오픈하기</a></li>
+	<li><a style="cursor: pointer;" class="nav-link" onclick="fundingOp(${ !empty sessionScope.loginUser });">펀딩 오픈하기</a></li>
 				<li><a class="nav-link" href="${ contextPath }/main.ad">(임시)
 						관리자페이지</a></li>
 				<li><a class="nav-link" href="chat.ch">채팅</a></li>

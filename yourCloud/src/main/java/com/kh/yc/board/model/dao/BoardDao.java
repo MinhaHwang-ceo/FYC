@@ -95,6 +95,16 @@ public interface BoardDao {
 
 	int countfile(SqlSessionTemplate sqlSession, int bNo);
 
+	List<Board> noticeListNo(SqlSessionTemplate sqlSession, String bNo1);
+
+	List<Attachment> noticeListNoAt(SqlSessionTemplate sqlSession, String bNo1);
+
+	int fileUpdate(SqlSessionTemplate sqlSession, Attachment fileVO);
+
+	int noticeUpdateComplate(SqlSessionTemplate sqlSession, Board b);
+
+	int noticeUpdateComplateContent(SqlSessionTemplate sqlSession, Board b);
+
 	
 
 
