@@ -202,6 +202,11 @@ public class MemberServiceImpl implements MemberService {
 		return md.deleteReply(sqlSession,replyNo);
 	}
 
+	@Override
+	public int answerMessage(Message message) {
+		 
+		return md.answerMessage(sqlSession,message);
+	}
 
 
 

@@ -347,6 +347,13 @@ a {
 		<div class="opener-info" style="text-align:center;">
 			<div class=state-box>
 				<p class="remin-day"> 
+				
+				<c:if test="${detail.progressStatus eq '실패' || detail.progressStatus eq '성공'}">
+					<h3>마감된 프로젝트입니다</h3><br>
+					<img alt="" src="/yc/resources/images/stopwatch.png" style="width:80px;">
+				</c:if>
+				
+				<c:if test="${detail.progressStatus eq '오픈' }">
 					<script>
   	 					var now = new Date();
   						var then = new Date('${ detail.endDate }');
@@ -354,6 +361,9 @@ a {
    						gap = Math.floor(gap / (1000 * 60 * 60 * 24)) * -1;
    						document.write('<div id="dday" style="font-size:34px;">D-<span style="font-size:34px;">' + gap+ "일 남음" + '</span></div>');
 					</script>
+				
+				</c:if>
+				
 				</p>
 				<hr />
 				
@@ -367,7 +377,7 @@ a {
 					<strong>${sumFundMoney}</strong> 원 펀딩
 				</p>
 				<p class="total-supporter" style="font-size: 24px;">
-					<strong>${supportCount}</strong> 명의 서포터
+					<strong>${supportCount}</strong> 명의 서포터  
 				</p>
 			</div>
 

@@ -226,6 +226,11 @@ public class MemberDaoImpl implements MemberDao{
 			 
 			return sqlSession.delete("Project2.deleteReply", replyNo);
 		}
+		@Override
+		public int answerMessage(SqlSessionTemplate sqlSession, Message message) {
+			
+			return sqlSession.insert("Member.answerMessage", message);
+		}
 	
 	
 	}

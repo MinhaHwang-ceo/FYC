@@ -124,7 +124,16 @@ td {
                <img src="/yc/resources/uploadFiles/<c:out value="${p.newFileName}"/>"  style="width:100%; height:75%;"/>
                 <div class="caption">
                   <h6>[<c:out value="${ p.projectNo }"/>]&emsp;<c:out value="${ p.projectTitle }"/></h6>
-                  <p>목표금액 : <c:out value="${ p.money }"/>원 <br>이 리워드는 <c:out value="${ p.endDate }"/> 에 마감됩니다</p>
+                  <p>목표금액 : <c:out value="${ p.money }"/>원 <br>이 리워드는 
+                  
+                  <c:if test="${p.progressStatus eq '성공' || p.progressStatus eq '실패'}">
+                  	마감된 프로젝트 입니다<p>
+                  </c:if>
+                  
+                  <c:if test="${p.progressStatus eq '오픈'}">
+                 	 <c:out value="${ p.endDate }"/> 에 마감됩니다</p> 
+                  </c:if>
+               
                 </div>
               </a>      
          </c:if>
@@ -134,7 +143,16 @@ td {
                <img src="/yc/resources/uploadFiles/<c:out value="${p.newFileName}"/>" style="width:100%; height:75%;">
                 <div class="caption">
                   <h6>[<c:out value="${ p.projectNo }"/>]&emsp;<c:out value="${ p.projectTitle }"/></h6>
-                     <p>목표금액 : <c:out value="${ p.money }"/>원 <br>이 리워드는 <c:out value="${ p.endDate }"/> 에 마감됩니다</p>
+                     <p>목표금액 : <c:out value="${ p.money }"/>원 <br>이 리워드는 
+                     
+                  <c:if test="${p.progressStatus eq '성공' || p.progressStatus eq '실패'}">
+                  	마감된 프로젝트 입니다<p>
+                  </c:if>
+                  
+                  <c:if test="${p.progressStatus eq '오픈'}">
+                 	 <c:out value="${ p.endDate }"/> 에 마감됩니다</p> 
+                  </c:if>
+                     
                   </div>
             </a>
          </c:if>

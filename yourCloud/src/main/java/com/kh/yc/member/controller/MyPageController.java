@@ -37,6 +37,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import com.kh.yc.board.model.vo.PageInfo;
 import com.kh.yc.category.model.vo.Reply;
+import com.kh.yc.category.model.vo.Report;
 import com.kh.yc.common.CommonUtils;
 import com.kh.yc.common.Pagination;
 import com.kh.yc.member.model.service.MemberService;
@@ -666,7 +667,28 @@ public class MyPageController {
 		
 	   }
 
+	@RequestMapping("messageDetail.me")
+	public String messageDetail(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
+		
+		Member member = (Member) session.getAttribute("loginUser");
+		
+		int sendMember = Integer.parseInt(request.getParameter("sendMember"));
+		String sendName = request.getParameter("sendName");
+		
+		request.setAttribute("sendMember", sendMember);
+		request.setAttribute("sendName", sendName);
+		
+		return "member/messageDetail";
+	}
 	
+	@ResponseBody
+	@RequestMapping(value = "/answerMessage.me")
+	public int answerMessage(Message message,Model model,HttpServletRequest request, HttpServletResponse response) {
+		
+		System.out.println(message);
+	
+		return ms.answerMessage(message);
+	}
 	
 	
 }

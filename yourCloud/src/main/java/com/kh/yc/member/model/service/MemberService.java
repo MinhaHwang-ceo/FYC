@@ -62,6 +62,8 @@ public interface MemberService {
 	ArrayList<Message> sendMessageList(Member member);
 
 	public int deleteReply(int replyNo);
+	//답장하기
+	int answerMessage(Message message);
 
 
 	
