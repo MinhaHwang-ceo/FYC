@@ -164,6 +164,17 @@ button:hover, input[type="button"]:hover {
 					})
 
 		})
+		
+		function fundingOp(flag){
+      console.log(flag);
+      if(flag){
+         location.href="FundingOpen2.fd";
+         
+      }else{
+         alert("로그인을 해주세요");
+      }
+      
+   }
 	</script>
 
 </body>
