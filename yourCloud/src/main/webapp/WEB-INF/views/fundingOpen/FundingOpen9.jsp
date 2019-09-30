@@ -28,9 +28,11 @@
 	display: none;
 }
 
-#menu li {
+#menu li  {
 	float: left;
-	font-size: 20px;
+	font-size: 25px;
+	font-family: 'Sunflower', sans-serif;
+	border: 1px solid black;
 }
 
 #menu a {
@@ -39,6 +41,14 @@
 	line-height: 35px;
 	padding: 0 35px;
 }
+
+
+#menu {
+   text-align: center;
+}
+
+
+
 
 #menu a:hover {
 	cursor: pointer;
@@ -56,6 +66,25 @@ label:hover {
 table {
 	border: 1px solid lightgray;
 }
+
+input[type="button"]{
+	
+	width:120px;
+    height: 40px;
+    background-color: #00af84;
+    display: inline-block;
+    font-weight: 500;
+    color: #fff;
+    font-size: 16px;
+    border: 0;
+
+
+}
+input[type="button"]:hover {
+	cursor: pointer;
+	background: orange;
+
+}
 </style>
 </head>
 <body>
@@ -64,8 +93,8 @@ table {
 	<jsp:include page="../common/customer_menuList.jsp"/>
 	<div id="top" style="width: 100%;">
 <br /><br /><br />
-<div id="menu" style="width: 55%;height: 40px; margin: 0 auto;">
-		<ul>
+<div id="menu" style="width: 60%;height: 30px; margin: 0 auto;">
+		<ul class="ull">
 			<li><a onclick="basicInfo();" id="basic">기본정보</a></li>
 			<li><a onclick="rewardList();" id="reward">리워드</a></li>
 			<li><a onclick="rewardStory();" id="story">스토리</a></li>
@@ -101,18 +130,20 @@ table {
 	<form action="finalOpen.fd" method="POST" encType="multipart/form-data" id="openForm">
 		<input type="hidden" id="projectNo" name="projectNo" value="${p.projectNo }" /> 
 		<input type="hidden" id="userNo" name="userNo" value="${ sessionScope.loginUser.userNo }" />
-		<div id="inputBox2" align="center" style="width: 100%; min-height: 700px;">
-		<table style="align: center; text-align:center; width: 55%;">
+		<div id="inputBox2" align="center" style="width: 100%; min-height:700px;">
+		<table style="align: center; text-align:center; width: 55%; background-color: #f8f8f8; border: 1px solid #dddddd;">
 			<tr>
 				<td colspan="2"><h5>수수료</h5></td>
-				<td colspan="2" style="background:white;">
-					<h6>리워드 오픈 수수료는 7%(VAT별도)입니다.</h6>
+				<td colspan="2" style="background:white;  background-color: #f8f8f8;">
+				
+					<h6 style="">리워드 오픈 수수료는 7%(VAT별도)입니다.</h6>
 					- 부가 서비스 이용 시, 추가 수수료가 발생될 수 있습니다. <br />
 					- 리워드가 없는 기부후원 프로젝트의 경우, 수수료가 다르게 적용됩니다. <br />
 					- 자세한 내용은 니가그린 구름그림 수수료 정책을 확인해주세요. <br />
    					 <input type="checkbox" id="c1" name="cc" />
    					 <label for="c1">구름펀딩 수수료 정책을 확인하였습니다.</label>
 				</td>
+				
 			</tr>
 			<tr>
 				<td colspan="2" rowspan="2"><h5>계약정보-1)<br>사업자 여부 및 정보</h5></td>

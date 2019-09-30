@@ -58,6 +58,7 @@ body {
 	width: 400px;
 	height: 100px;
 	font-family: 'Sunflower', sans-serif;
+	 background-color: #f8f8f8; border: 1px solid #dddddd;
 }
 
 table {
@@ -105,9 +106,13 @@ input[type="checkbox"]:checked+label span {
 		-19px top no-repeat;
 }
 td {
-	padding: 10px;
-	padding-left: 20px;
+	padding: 3px;
+	padding-left: 32px;
 	font-family: 'Sunflower', sans-serif;
+	height: 1px;
+}
+input {
+	border: 2px solid #dddddd;"
 }
 #contentImgArea1 {
 	width: 150px;
@@ -120,11 +125,12 @@ td {
 #contentImgArea1:hover {
 	cursor: pointer;
 }
-#menu li {
+#menu li  {
 	float: left;
 	font-size: 25px;
 	font-family: 'Sunflower', sans-serif;
-	board-left:1px solid #d9d9de;
+	border: 1px solid black;
+	font-family: 'Sunflower', sans-serif;
 }
 
 #menu a {
@@ -132,15 +138,23 @@ td {
 	height: 40px;
 	line-height: 35px;
 	padding: 0 35px;
+	font-family: 'Sunflower', sans-serif;
 }
+
+
 #menu {
-	border: 1px solid black;
+   text-align: center;
 }
+
+
 
 
 #menu a:hover {
 	cursor: pointer;
 	background: lightgreen;
+}
+.ull {
+	board
 }
 
 body, ul {
@@ -170,14 +184,32 @@ a {
    float: left;
    margin-left: -1px;
    z-index: 1;
+    font-size: 30px;
   
 }
 
 .tab-story a{
    height: 40px;
    padding: 0 50px;
-   line-height: 30px;
-  
+   line-height: 25px;
+   background-color: red;
+}
+button {
+	width:120px;
+    height: 40px;
+    background-color: #00af84;
+    display: inline-block;
+    font-weight: 500;
+    color: #fff;
+    font-size: 16px;
+    border: 0;
+    font-family: 'Sunflower', sans-serif;
+}
+
+
+button:hover {
+	cursor: pointer;
+	background: orange;
 }
 
 </style>
@@ -186,8 +218,8 @@ a {
 <jsp:include page="../common/customer_menuList.jsp"/>	
 <div id="top" style="width: 100%;">
 <br /><br /><br />
-<div id="menu" style="width: 55%;height: 40px; margin: 0 auto;">
-		<ul>
+<div id="menu" style="width: 60%;height: 30px; margin: 0 auto;">
+		<ul class="ull">
 			<li><a onclick="basicInfo();" id="basic">기본정보</a></li>
 			<li><a onclick="rewardList();" id="reward">리워드</a></li>
 			<li><a onclick="rewardStory();" id="story">스토리</a></li>
@@ -198,8 +230,8 @@ a {
 	</div>
 </div>
 
-
-	<%-- <div class="tab-list">
+<%-- 
+	<div class="tab-list">
 		<ul class="tab-story">
 			<li><a href="#" class="tab-link">스토리</a></li>
 			<li><a href="categoryOneFunding.ca?projectNo=${detail.projectNo}" class="tab-link">펀딩안내</a></li>
@@ -207,7 +239,7 @@ a {
 			<li><a href="categoryOneCommunity.ca?projectNo=${detail.projectNo}" class="tab-link">커뮤니티</a></li>
 			<li><a href="categoryOneSupporter.ca?projectNo=${detail.projectNo}" class="tab-link">서포터</a></li>
 		</ul>
-	</div> --%>
+	</div>  --%>
 <script>
 	function basicInfo(){
 		var projectNo = $("#projectNo").val();
@@ -242,28 +274,49 @@ a {
 			<div id="inputBox2" align="center">
 				<table>
 					<tr>
-						<td style="background: White"><h4>프로젝트 번호</h4>
+						<td style="background: White;"><h4>프로젝트 번호</h4>
 							<p>
 								구름펀딩 담당자와의 소통은<br>프로젝트 번호로 진행됩니다.
 							</p></td>
-						<td id="fno"><input readonly="readonly" type="text"
+						<td id="fno" style=" height: 20px; background-color: #f8f8f8; border: 1px solid #dddddd;"><input readonly="readonly" type="text"
 							value="${p.projectNo}"></td>
 					</tr>
 					<tr>
-						<td style="background: White"><h4>이메일</h4>
-							</td>
 						<td>
-						<br> <input type="email" value="${ loginUser.email }"
-							id="email" readonly="readonly"></td>
+							<br />
+						</td>
+					</tr>
+					
+					<tr>
+						<td style="background: White "><h4>이메일</h4>
+							</td>
+						<td style=" background-color: #f8f8f8; border: 1px solid #dddddd; height: 80px;">
+						<input   type="email" value="${ loginUser.email }"
+					
+							id="email" readonly="readonly">
+						</td>
+					
+					<tr>
+						<tr>
+						<td>
+							<br />
+						</td>
+						
 					</tr>
 					<tr>
-						<td style="background: White"><h4>프로젝트 제목</h4>
+						<td style="background: White "><h4>프로젝트 제목</h4>
 							<p>
 								프로젝트 성격과 리워드를 짐작<br>할 수 있게 간결하고 직관적으로<br> 작성 해주세요.
-							</p></td>
-						<td id="fno"><input type="text"
+							</p>
+						</td>
+						<td id="fno" style=" background-color: #f8f8f8; border: 1px solid #dddddd;"><input type="text"
 							placeholder="예)더 가벼워진 권석이,동양 무술의 신비" value="${p.projectTitle}"
 							name="projectTitle"></td>
+					</tr>
+						<tr>
+						<td>
+							<br />
+						</td>
 					</tr>
 					<tr>
 						<td style="background: White"><h4>짧은 제목</h4>
@@ -272,6 +325,11 @@ a {
 							</p></td>
 						<td id="fno"><input type="text" placeholder="예)#무술의 신비"
 							value="${p.projectShortTitle}" name="projectShortTitle"></td>
+					</tr>
+						<tr>
+						<td>
+							<br />
+						</td>
 					</tr>
 					<tr>
 						<td style="background: White"><h4>목표 금액</h4>
@@ -283,6 +341,12 @@ a {
 							value="${p.money}" style="text-align: right;"> <em>원</em>
 						</td>
 					</tr>
+						<tr>
+						<td>
+							<br />
+						</td>
+					</tr>
+					
 					<tr>
 						<td style="background: White"><h4>대표 이미지</h4>
 							<p>
@@ -298,18 +362,19 @@ a {
 					<tr>
 						<td>
 							<div id="fileArea">
-								<input type="file" id="photo" name="photo"
+								<input style="display: none;" type="file" id="photo" name="photo"
 									onchange="loadImg(this, 1)"> <!-- style="display: none; -->
 							</div> <br />
 						</td>
 					</tr>
 					<tr>
-						<td style="background: White"><h4>리워드 필수 인증서류</h4>
+						<td style="background: White;"><h4>리워드 필수 인증서류</h4>
 							<p>
 								서포터에게 제공할 리워드<br>(제품/서비스)의 생산 및 유통시,<br>필요한 인증서류를
 								첨부해주세요.
-							</p></td>
-						<td id="fno" style="background: Lightgray; height: 300px;">
+							</p>
+						</td>
+						<td id="fno" style=" background-color: #f8f8f8; border: 1px solid #dddddd;height: 300px;">
 							<h5>서포터에게 제공하는 리워드 종류 선택</h5> <select id="browsers"
 							name="category">
 								<option value="">카테고리 선택하기</option>
@@ -366,7 +431,7 @@ a {
 							<p>
 								답변이 미흡할 경우, 심사 시<br>재요청 드리며 심사 기간이<br>늘어날 수 있습니다.
 							</p></td>
-						<td id="fno" style="background: Lightgray; height: 300px;"><h5>Q1.리워드가
+						<td id="fno" style="background: background-color: #f8f8f8; border: 1px solid #dddddd; height: 300px;"><h5>Q1.리워드가
 								타 크라우드펀딩사 및 온라인커머스,자사 홈페이지 등 다른 판매처에 유통된 적이 있거나 현재 유통중인가요?</h5>
 							<p>선택하신 답변이 사실과 다를 경우 약정서에 근거하여 프로젝트 취소 및 위약벌금이 부과될 수 있습니다</p> <input
 							type="checkbox" id="c3" name="cc" /> <label for="c3"><span></span>아니요,다른곳에서
@@ -393,6 +458,9 @@ a {
 						</td>
 					</tr>
 					<tr>
+						<td><br /></td>
+					</tr>
+					<tr>
 						<td style="background: White"><h4>프로젝트 오픈일</h4>
 						<h6>*오픈 예정인 경우에만 입력하세요</h6>
 							
@@ -405,6 +473,11 @@ a {
 								// document.querySelector("#today2").valueAsDate = new Date();
 							</script></td>
 						
+					</tr>
+						<tr>
+						<td>
+							<br />
+						</td>
 					</tr>
 				
 					<tr>
@@ -421,6 +494,11 @@ a {
 							</script></td>
 							
 					</tr>
+						<tr>
+						<td>
+							<br />
+						</td>
+					</tr>
 
 					<tr>
 						<td style="background: White"><h4>19세 이상(선택)</h4>
@@ -428,7 +506,7 @@ a {
 								제공할 리워드가 19세 이상 <br>이용가능한 제품/서비스(주류, 티켓)<br>인 경우,
 								체크해주세요.
 							</p></td>
-						<td id="fno" style="background: Lightgray;">
+						<td id="fno" style=" background-color: #f8f8f8; border: 1px solid #dddddd;">
 							<c:choose>
 								<c:when test="${p.adult == 'Y'}">
 									<input type="checkbox" id="adult" name="adult" value="Y" checked="checked" />
@@ -476,12 +554,16 @@ a {
 							<p>오픈예정 7~15일 진행 후, 프로젝트 오픈 추가 플랫폼 수수료 : 3%(VAT별도)</p></td>
 					</tr> -->
 					<tr>
+						<td><br /></td>
+					</tr>
+					<tr>
 						<td></td>
 						<td>
-							<button id="btn_save btn btn-info" style="margin-right: 50px;"onclick="save();">저장하기</button>
+							&nbsp;&nbsp;&nbsp;<button id="btn_save btn btn-info" style="margin-right: 50px;"onclick="save();">저장하기</button>
 							<button id="next btn btn-info" onclick="btn_Next();">다음으로</button>
 						</td>
 					</tr>
+					
 
 				</table>
 			</div>
