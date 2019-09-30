@@ -104,8 +104,6 @@ button:hover, input[type="button"]:hover {
 				</c:if>
 				<c:if test="${ !empty sessionScope.loginUser }">
 					<li><a class="nav-link" href="logout.me">로그아웃 </a></li>
-
-
 					<li><a class="nav-link" href="myPage.me">마이페이지 </a></li>
 				</c:if>
 	<li><a style="cursor: pointer;" class="nav-link" onclick="fundingOp(${ !empty sessionScope.loginUser });">펀딩 오픈하기</a></li>

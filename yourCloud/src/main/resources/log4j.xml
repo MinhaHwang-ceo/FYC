@@ -22,9 +22,7 @@
 	<appender name="fileLogger"
 		class="org.apache.log4j.DailyRollingFileAppender">
 		<!-- DailyRollring = 하루에 하나씩 지가 알아서 작성됨 -->
-		<param name="file"
-			value="C:/Users/3214/git/FYC/yourCloud/src/main/resources/logs/system.log" />
-		<param name="Append" value="true" />
+		
 		<!--true = 이어쓰기-->
 		<param name="DatePattern" value="'.'yyyy-MM-dd" />
 		<layout class="org.apache.log4j.PatternLayout">

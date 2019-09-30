@@ -92,10 +92,16 @@ document.addEventListener("scroll",fx_Floating);
 				</c:if>
 				<c:if test="${ !empty sessionScope.loginUser }">
 					<li><a class="nav-link" href="logout.me">로그아웃 </a></li>
-
-
 					<li><a class="nav-link" href="myPage.me">마이페이지 </a></li>
 				</c:if>
+				<c:choose>
+					<c:when test="${loginUser.userId == 'admin' }"> 
+						<li><a class="nav-link" href="main.ad">관리자페이지 </a></li>
+					</c:when>
+				</c:choose>
+				
+									
+				
 	<li><a style="cursor: pointer;" class="nav-link" onclick="fundingOp(${ !empty sessionScope.loginUser });">펀딩 오픈하기</a></li>
 				<li><a class="nav-link" href="chat.ch">채팅</a></li>
 
@@ -163,17 +169,6 @@ $(function(){
    
    
 })   
-
-function fundingOp(flag){
-      console.log(flag);
-      if(flag){
-         location.href="FundingOpen2.fd";
-         
-      }else{
-         alert("로그인을 해주세요");
-      }
-      
-   }
     </script>
  
 </body>
