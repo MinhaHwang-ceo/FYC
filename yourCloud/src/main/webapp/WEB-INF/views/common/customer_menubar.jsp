@@ -84,40 +84,7 @@ button:hover, input[type="button"]:hover {
 }
 </style>
 
-<script>
-	var Flag_clr = 0;
 
-	function hideMenu() {
-		document.getElementById("floating").style.display = "none";
-	}
-
-	function fx_Floating() {
-		if (window.pageYOffset >= 1100) {
-			document.getElementById("floating").style.display = "block";
-			document.getElementById("floating").style.animationName = "fade_in";
-			Flag_clr = 1;
-		} else if (window.pageYOffset < 1100 && Flag_clr) {
-			Flag_clr = 0;
-			document.getElementById("floating").style.animationName = "fade_out";
-			document.getElementById("floating").style.animationFillMode = "forwards";
-
-			setTimeout(hideMenu, 300);
-		}
-	}
-
-	document.addEventListener("scroll", fx_Floating);
-	
-	function fundingOp(flag){
-		console.log(flag);
-		if(flag){
-			location.href="FundingOpen2.fd";
-			
-		}else{
-			alert("로그인을 해주세요");
-		}
-		
-	}
-</script>
 
 
 
@@ -142,8 +109,6 @@ button:hover, input[type="button"]:hover {
 					<li><a class="nav-link" href="myPage.me">마이페이지 </a></li>
 				</c:if>
 	<li><a style="cursor: pointer;" class="nav-link" onclick="fundingOp(${ !empty sessionScope.loginUser });">펀딩 오픈하기</a></li>
-				<li><a class="nav-link" href="${ contextPath }/main.ad">(임시)
-						관리자페이지</a></li>
 				<li><a class="nav-link" href="chat.ch">채팅</a></li>
 
 			</ul><br><br>
@@ -182,30 +147,7 @@ button:hover, input[type="button"]:hover {
 	<nav class="navbar navbar-expand-sm sticky-top navbar-dark">
 
 		<!--   플로팅 메뉴 -->
-		<div id="floating" class=" float-top "
-			style="border: 1px solid darkgray;">
-			<figure class="figure">
-				<a><img src="/yc/resources/images/rank_banner2.PNG" alt="blog"></a>
-			</figure>
-			<div>
-				<a href="blog.html"><img src="/yc/resources/images/rank5.PNG"
-					alt="blog">[끝판왕 등장] 스마트폰 거치대의 끝, 허킨스 스마트서포터 (마지막앵콜)</a>
-			</div>
-			<div>
-				<a href="blog.html"><img src="/yc/resources/images/rank2.PNG"
-					alt="blog">캐시미어 코트의 가격을 다시 쓰다ㅣ매일 입는 캐시미어 코트, 벨리에</a>
-			</div>
-			<div>
-				<a href="blog.html"><img src="/yc/resources/images/rank3.PNG"
-					alt="blog">세상에 없던 스마트한 카메라 어시스턴트, 키노피 루미 마크원!</a>
-			</div>
-			<hr>
-			<div>
-				<a href="blog.html"><img src="/yc/resources/images/talk.PNG"
-					alt="blog"></a>
-				</figure>
-			</div>
-		</div>
+
 	</nav>
 
 

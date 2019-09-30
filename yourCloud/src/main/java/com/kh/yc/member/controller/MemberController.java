@@ -87,6 +87,7 @@ public class MemberController {
       int result = ms.insertMember(m);
       
       if(result > 0) {
+    	  
          return "member/loginMain";
       }else {
          model.addAttribute("msg", "회원 가입 실패!");
@@ -139,9 +140,11 @@ public class MemberController {
          Member loginUser = ms.loginMember(m);
          
          model.addAttribute("loginUser", loginUser);
-         
+         if(m.getUserId().equals("admin")) {
+   		  return "admin/admin_index";
+   	  }else {
          return "redirect:index.jsp";
-         
+   	  }
       } catch (LoginException e) {
          model.addAttribute("msg", e.getMessage());
          return "common/errorPage";

@@ -120,9 +120,9 @@ public class AdminServiceImpl implements AdminService {
 	}
 	
 	@Override
-	public void Adjustup(Project p) {
+	public void Adjustup(List<Project> list) {
 
-		ad.adjustUpdate(sqlSession, p);
+		ad.AdjustUp(sqlSession, list);
 		
 	}
 

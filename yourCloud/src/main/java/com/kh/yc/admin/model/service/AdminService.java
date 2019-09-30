@@ -47,6 +47,7 @@ public interface AdminService {
 
 	public void updateReward(List arr);
 	
-	void Adjustup(Project p);
+
+	void Adjustup(List<Project> list);
 
 }

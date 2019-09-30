@@ -153,33 +153,33 @@ public class BoardController {
 		return mv;
 	}
 
-	@RequestMapping("funding_2.bo")
-	public String selectReward(Model model, String target, String projectNo, String price, String targetCnt,
-			String userNo, String blind) {
-		Project p = bs.selectProject(Integer.parseInt(projectNo));
-		String[] target1 = target.split("\\$");
-		String[] price1 = price.split("\\$");
-		String[] targetCnt1 = targetCnt.split("\\$");
-		ArrayList<Funding> fundList = new ArrayList<Funding>();
-		ArrayList<Reward> rewardList = new ArrayList<Reward>();
-		for (int i = 0; i < target1.length; i++) {
-			Funding fund = new Funding();
-			Reward reward = new Reward();
-			fund.setUserNo(Integer.parseInt(userNo));
-			fund.setFundMoney(Integer.parseInt(price1[i]));
-			fund.setProjectNo(Integer.parseInt(projectNo));
-			fund.setRewardCount(Integer.parseInt(targetCnt1[i]));
-			fund.setRewardNo(Integer.parseInt(target1[i]));
-			fund.setBlind(blind);
-			fundList.add(fund);
-			reward = bs.selectReward(target1[i]);
-			rewardList.add(reward);
-		}
-		model.addAttribute("p", p);
-		model.addAttribute("f", fundList);
-		model.addAttribute("r", rewardList);
-		return "board/funding/funding_2";
-	}
+	   @RequestMapping("funding_2.bo")
+	   public String selectReward(Model model, String target, String projectNo, String price, String targetCnt,
+	         String userNo, String blind) {
+	      Project p = bs.selectProject(Integer.parseInt(projectNo));
+	      String[] target1 = target.split("\\$");
+	      String[] price1 = price.split("\\$");
+	      String[] targetCnt1 = targetCnt.split("\\$");
+	      ArrayList<Funding> fundList = new ArrayList<Funding>();
+	      ArrayList<Reward> rewardList = new ArrayList<Reward>();
+	      for (int i = 0; i < target1.length; i++) {
+	         Funding fund = new Funding();
+	         Reward reward = new Reward();
+	         fund.setUserNo(Integer.parseInt(userNo));
+	         fund.setFundMoney(Integer.parseInt(price1[i]));
+	         fund.setProjectNo(Integer.parseInt(projectNo));
+	         fund.setRewardCount(Integer.parseInt(targetCnt1[i]));
+	         fund.setRewardNo(Integer.parseInt(target1[i]));
+	         fund.setBlind(blind);
+	         fundList.add(fund);
+	         reward = bs.selectReward(target1[i]);
+	         rewardList.add(reward);
+	      }
+	      model.addAttribute("p", p);
+	      model.addAttribute("f", fundList);
+	      model.addAttribute("r", rewardList);
+	      return "board/funding/funding_2";
+	   }
 
 	@RequestMapping(value = "funding_3.bo")
 	public String fundingRequest3(String blind, Model model) {
