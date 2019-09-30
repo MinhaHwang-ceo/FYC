@@ -139,11 +139,7 @@ public class MemberController {
          Member loginUser = ms.loginMember(m);
          
          model.addAttribute("loginUser", loginUser);
-         if(m.getUserId().equals("admin")) {
-   		  return "admin/admin_index";
-   	  }else {
          return "redirect:index.jsp";
-   	  }
       } catch (LoginException e) {
          model.addAttribute("msg", e.getMessage());
          return "common/errorPage";
