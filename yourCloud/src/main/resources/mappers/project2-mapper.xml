@@ -187,6 +187,12 @@
 		AND JUDGE_STATUS = '통과'
 	</select>
 	
+	<select id="selectListCount4" resultType="_int"> SELECT COUNT(*)
+	FROM PROJECT 
+	WHERE PROGRESS_STATUS = '오픈예정' 
+	AND PROGRESS_STATUS IS NOT NULL
+	AND JUDGE_STATUS = '통과' </select>
+	
 		<select id="selectListCount2" resultType="_int">
 		SELECT COUNT(*)
 		FROM
@@ -261,7 +267,7 @@
 	<select id="selectSupportList" resultMap="SupportList"
 		parameterType="java.util.Map">
 		SELECT
-		P.PROJECT_TITLE,f.fund_money,f.reward_number,r.reward_name,F.FUND_DATE,M.MEMBER_NAME,d.delivery_site,d.phone,r.start_date,p2.pay_status
+		distinct(M.MEMBER_NAME),P.PROJECT_TITLE,f.fund_money,f.reward_number,r.reward_name,F.FUND_DATE,d.delivery_site,d.phone,r.start_date,p2.pay_status
 		,d2.invoice_number,p.project_no,d.status
 			FROM PROJECT P
 		JOIN SPONSORED S
@@ -332,13 +338,14 @@
 
 	<select id="selectDetailProject" resultMap="ProjectList"
 		parameterType="java.util.Map">
-		SELECT P.PROJECT_NO, P.PROJECT_TITLE, P.SUMMARY,
+		SELECT distinct(P.PROJECT_NO), P.PROJECT_TITLE, P.SUMMARY,
 		M.COMPANY_NAME, O.PROJECT_OPEN, P.MAIN_IMG, A.NEW_FILE_NAME ,P.PROGRESS_STATUS
 		FROM PROJECT P
 		LEFT JOIN MEMBER M ON(P.MEMBER_NO = M.MEMBER_NO)
-		LEFT JOIN OPEN_ALARM O ON(M.MEMBER_NO = O.MEMBER_NO)
+		LEFT JOIN OPEN_ALARM O ON(p.PROJECT_NO = O.PROJECT_NO)
 		LEFT JOIN ATTACHMENT A ON(P.PROJECT_NO = A.PROJECT_NO)
 		WHERE P.PROJECT_NO = #{projectNo}
+		and a.file_level=0
 	</select>
 
 
@@ -454,10 +461,9 @@ FROM PROJECT P
 
 	<select id="receipt" resultMap="SupportList"
 		parameterType="java.util.Map">
-		SELECT SUM((DECODE(P.PAY_STATUS, '결제성공', 1, 0))) AS
-		REWARD_COUNT,
+	   SELECT SUM((DECODE(P.PAY_STATUS, '결제성공', 1, 0))) AS
+		REWARD_COUNT,fu.reward_number,
 		re.reward_name, re.reward_money
-
 		FROM PROJECT PRO
 		INNER JOIN
 		FUND FU ON
@@ -469,11 +475,10 @@ FROM PROJECT P
 		= FS.FUND_NO)
 		INNER JOIN PAYMENT P ON (FS.FUND_NO = P.FUND_NO)
 		WHERE
-		PRO.PROJECT_NO =
-		#{projectNo}
+		PRO.PROJECT_NO =#{projectNo}
 		GROUP BY RE.REWARD_NO, RE.REWARD_NAME,
+		re.reward_money,fu.reward_number
 
-		re.reward_money
 
 	</select>
 
@@ -778,19 +783,7 @@ FROM PROJECT P
 		   and fund_no=#{fundNo}
 	</update>
 
-	<select id="interestProject5" resultMap="ProjectList"
-		parameterType="java.util.Map">
-		SELECT P.PROJECT_NO, P.PROJECT_TITLE,P.MAIN_IMG,
-		P.CATEGORY, P.PROJECT_SHORT_TITLE, M.COMPANY_NAME, C.CATEGORY_DIV
-		FROM
-		PROJECT P
-		LEFT JOIN CATEGORY C ON (P.CATEGORY = C.CATEGORY)
-		LEFT JOIN
-		MEMBER M ON (P.MEMBER_NO = M.MEMBER_NO)
-		WHERE M.MEMBER_NO = #{userNo}
-		AND
-		ORDER BY PROJECT_NO DESC
-	</select>
+
 	<select id="sortProjectList" parameterType="java.util.Map"
 		resultMap="ProjectList">
 		SELECT P.PROJECT_NO,
@@ -1104,7 +1097,27 @@ where project_no=#{projectNo}
 		FROM REPLY 
 		WHERE REPLY_NO = ${value}
 	</delete>
+		<select id="interestProject5" resultMap="ProjectList"
+		parameterType="_int">
+		select *
+from member m
+ join interest o on(o.member_no=m.member_no)
+join project p on(o.project_no=p.project_no)
+join attachment a on(a.project_no=p.project_no)
+where m.member_no=#{userNo}
+and a.file_level=0
+	</select>
 	
+	<select id="interestProject6" resultMap="ProjectList"
+		parameterType="_int">
+		select *
+from member m
+ join open_alarm i on(i.member_no=m.member_no)
+ join project p on(i.project_no=p.project_no)
+join attachment a on(a.project_no=p.project_no)
+where m.member_no=#{userNo}
+and a.file_level=0
+	</select>
 	
 
 	

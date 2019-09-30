@@ -227,9 +227,26 @@ public class MemberDaoImpl implements MemberDao{
 			return sqlSession.delete("Project2.deleteReply", replyNo);
 		}
 		@Override
+		public ArrayList<Project> interestProject(SqlSessionTemplate sqlSession, int userNo) {
+ArrayList<Project> list = null;
+			
+			list = (ArrayList) sqlSession.selectList("Project2.interestProject5", userNo);
+			
+			return list;
+		}
+		@Override
+		public ArrayList<Project> interestProject2(SqlSessionTemplate sqlSession, int userNo) {
+	ArrayList<Project> list = null;
+			
+			list = (ArrayList) sqlSession.selectList("Project2.interestProject6", userNo);
+			
+			return list;
+    }
+    @Override
 		public int answerMessage(SqlSessionTemplate sqlSession, Message message) {
 			
 			return sqlSession.insert("Member.answerMessage", message);
+
 		}
 	
 	

@@ -65,6 +65,10 @@ public interface MemberService {
 	//답장하기
 	int answerMessage(Message message);
 
+	ArrayList<Project> interestProject(int userNo);
+
+	ArrayList<Project> interestProject2(int userNo);
+
 
 	
 

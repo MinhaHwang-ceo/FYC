@@ -203,6 +203,16 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
+	public ArrayList<Project> interestProject(int userNo) {
+		return md.interestProject(sqlSession, userNo);
+	}
+
+	@Override
+	public ArrayList<Project> interestProject2(int userNo) {
+		return md.interestProject2(sqlSession, userNo);
+	}
+
+  @Override
 	public int answerMessage(Message message) {
 		 
 		return md.answerMessage(sqlSession,message);

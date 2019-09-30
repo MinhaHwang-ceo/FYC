@@ -67,7 +67,7 @@ public class BoardController {
 
 		int listCount;
 		try {
-			listCount = ps.getListCount();
+			listCount = ps.getListCount4();
 			PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
 			ArrayList<Project> openlist = bs.selectOpenProject(pi);
 			/* ArrayList<Member> mlist = */

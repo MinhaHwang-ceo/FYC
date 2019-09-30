@@ -23,6 +23,7 @@ public interface ProjectService {
 
 	//게시물 목록 갯수 조회용 메소드
 	int getListCount() throws ProjectSelectListException;
+	int getListCount4() throws ProjectSelectListException;
 	//페이징 된 게시물 목록 조회용 메소드
 	public ArrayList<Project> selectProjectList(PageInfo pi) throws ProjectSelectListException;
 	//상세보기 메소드

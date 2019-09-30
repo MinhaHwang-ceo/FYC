@@ -80,7 +80,12 @@ ArrayList<Message> sendMessageList(SqlSessionTemplate sqlSession, Member member)
 
 int deleteReply(SqlSessionTemplate sqlSession, int replyNo);
 
+ArrayList<Project> interestProject(SqlSessionTemplate sqlSession, int userNo);
+
+ArrayList<Project> interestProject2(SqlSessionTemplate sqlSession, int userNo);
+
 int answerMessage(SqlSessionTemplate sqlSession, Message message);
+
 
 
 

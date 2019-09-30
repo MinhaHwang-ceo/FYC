@@ -2,7 +2,7 @@ package com.kh.yc.project.model.vo;
 
 import java.sql.Date;
 
-public class SupportList {
+public class SupportList implements java.io.Serializable {
 	private String projectTitle;
 	private int fundMoney;
 	private String rewardName;

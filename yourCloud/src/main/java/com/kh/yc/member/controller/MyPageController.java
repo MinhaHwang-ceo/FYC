@@ -112,13 +112,13 @@ public class MyPageController {
 	@RequestMapping("interestProject.me")
 	public String interestProject(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
 		
-		Member mse = (Member) session.getAttribute("loginUser");
-		System.out.println(mse);
-		
-		ArrayList<Project> list = ms.interestProject(mse); 
-		
+
+		int userNo = Integer.parseInt(request.getParameter("userNo"));
+		System.out.println("userNONOOOOOOOO"+userNo);
+		ArrayList<Project> list = ms.interestProject(userNo); 
+		ArrayList<Project> list2 = ms.interestProject2(userNo); 
 		request.setAttribute("list", list);
-		
+		request.setAttribute("list2", list2);
 
 		return "member/interestProject";
 	}

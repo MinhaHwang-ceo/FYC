@@ -170,13 +170,13 @@
 	<script>
 	
 	
-	$('.whole').click(function(){
-		var $target = $(this).children('input').eq(0).val();
-		var $target2 = $(this).children('input').eq(1).val();
-		var $bNum = $(this).children('input').eq(2).val();
-		var $userNo = $(this).children('input').eq(3).val();
-		var $endDate = $(this).children('input').eq(4).val();
-		
+	$('.projectImg').click(function(){
+		var $target = $(this).parents().parents().children('input').eq(0).val();
+		var $target2 = $(this).parents().parents().children('input').eq(1).val();
+		var $bNum = $(this).parents().parents().children('input').eq(2).val();
+		var $userNo = $(this).parents().parents().children('input').eq(3).val();
+		var $endDate = $(this).parents().parents().children('input').eq(4).val();
+		console.log($target)
 		if($target =='통과'&& $target2=='오픈' || $target2=='성공' || $target2=='실패' ){
 
 		location.href="categoryOne.ca?projectNo="+$bNum+"&userNo="+$userNo+"&endDate="+$endDate;

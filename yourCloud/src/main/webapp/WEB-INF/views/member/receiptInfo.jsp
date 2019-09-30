@@ -51,9 +51,9 @@
 
 						<tr>
 							<td><c:out value="${ b.rewardName }" /></td>
-							<td><c:out value="${ b.rewardCount }" /></td>
+							<td><c:out value="${ b.rewardNumber }" /></td>
 							<td><c:out value="${ b.rewardMoney }" /></td>
-							<td class="sum"><c:out value="${ b.rewardCount * b.rewardMoney }" /></td>
+							<td class="sum"><c:out value="${ b.rewardNumber * b.rewardMoney }" /></td>
 						</tr>
 
 					</c:forEach>
