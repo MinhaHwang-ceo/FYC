@@ -179,18 +179,13 @@ p {
 			<p style="float: left;">배송비</p>
 			<p style="float: right;"><fmt:setLocale value="ko_KR"/><fmt:formatNumber type="currency" value="<%= deliveryPrice %>" /></p>
 			<br />
-			<hr />
-			<p style="float: left;">총 결제액</p>
-			<p style="float: right"><fmt:setLocale value="ko_KR"/><fmt:formatNumber type="currency" value="<%= totalPrice %>" />
-			<br>
-			<hr>
 		</div>
 
 		<br>
 
 		<div id="div1">
-			<p id="p1">
-				<b>최종결제금액</b>
+			<p id="p1" style="float:right;">
+				<b>최종결제금액 : <fmt:setLocale value="ko_KR"/><fmt:formatNumber type="currency" value="<%= totalPrice %>" /></b>
 			</p>
 			<br> <br>
 		</div>

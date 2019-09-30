@@ -16,8 +16,7 @@
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<link
-	rel="stylesheet">
+<link rel="stylesheet">
 <link
 	href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,600,700,800"
 	rel="stylesheet">
@@ -108,11 +107,14 @@ button:hover, input[type="button"]:hover {
 
 					<li><a class="nav-link" href="myPage.me">마이페이지 </a></li>
 				</c:if>
-	<li><a style="cursor: pointer;" class="nav-link" onclick="fundingOp(${ !empty sessionScope.loginUser });">펀딩 오픈하기</a></li>
-				<li><a class="nav-link" href="chat.ch">채팅</a></li>
+				<li><a style="cursor: pointer;" class="nav-link"
+					onclick="fundingOp(${ !empty sessionScope.loginUser });">펀딩
+						오픈하기</a></li>
 
-			</ul><br><br>
-		
+			</ul>
+			<br>
+			<br>
+
 			<ul>
 				<li class=" webTest">
 					<button class="testBtn"

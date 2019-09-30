@@ -354,6 +354,9 @@ public class ProjectServiceImpl implements ProjectService {
 		
 		return getSortListCount;
 	}
-
+	@Override
+	public int selectFundCount(Funding fund) {
+		return pd.selectFundCount(sqlSession, fund);
+	}
 
 }

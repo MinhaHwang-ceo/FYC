@@ -138,7 +138,42 @@ public class PayServiceImpl implements PayService {
 			}
 		}
 
-		return 0;
+		return result;
+	}
+
+	@Override
+	public Funding selectFund(Funding fund) {
+		return pd.selectFund(sqlSession, fund);
+	}
+
+	@Override
+	public com.kh.yc.payment.model.vo.Payment selectPay(Funding fund) {
+		return pd.selectPay(sqlSession, fund);
+	}
+
+	@Override
+	public void deletePay(com.kh.yc.payment.model.vo.Payment pay) {
+		pd.deletePay(sqlSession, pay);
+	}
+
+	@Override
+	public void deleteFund(Funding fund) {
+		pd.deleteFund(sqlSession, fund);
+	}
+
+	@Override
+	public void deleteDeliveryStatus(com.kh.yc.payment.model.vo.Payment pay) {
+		pd.deleteDeliveryStatus(sqlSession, pay);
+	}
+
+	@Override
+	public void deleteDelivery(com.kh.yc.payment.model.vo.Payment pay) {
+		pd.deleteDelivery(sqlSession, pay);
+	}
+
+	@Override
+	public void deleteSpon(Funding fund) {
+		pd.deleteSpon(sqlSession, fund);
 	}
 
 }

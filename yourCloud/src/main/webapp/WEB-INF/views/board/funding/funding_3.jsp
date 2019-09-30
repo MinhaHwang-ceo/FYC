@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<% String a= request.getParameter("blind"); %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -102,7 +103,7 @@
 	<jsp:include page="../../common/customer_menubar.jsp" /><br>
 	<br>
 	<jsp:include page="../../common/customer_menuList.jsp" /><br>
-	<div class="outer">
+	<div class="outer" style="min-height: 800px;">
 
 		<div id="step">
 			<table>
@@ -119,11 +120,12 @@
 		<br> <br>
 
 		<div id="div1">
-			<b> <c:if test="${ blind == 1 }">
-					<c:out value="${ sessionScope.loginUser.userName }" />
-				</c:if> 
-				<c:if test="${ blind == 0 }">익명</c:if> 
-				서포터님<br> 펀딩으로 참여해주셔서 정말 감사합니다!
+			
+			<b> <% if(a.equals("0")) { %>
+					<c:out value="${ sessionScope.loginUser.userName }" /> 님<br> 펀딩에 참여해주셔서 정말 감사합니다!
+				<% }  else {%>
+				<c:if test="${ blind == 0 }">익명 서포터님<br> 펀딩에 참여해주셔서 정말 감사합니다!</c:if> 
+				<% } %>
 			</b>
 		</div>
 
@@ -158,21 +160,6 @@
 		</div>
 		<br> <br>
 
-		<div id="div3">
-			<table id="table2">
-				<tr>
-					<td colspan="3">이런 프로젝트는 어떠세요?</td>
-				</tr>
-
-				<tr>
-					<td class="box" onclick="location.href='#'">1</td>
-					<td>&emsp;</td>
-					<td class="box" onclick="location.href='#'">2</td>
-					<td>&emsp;</td>
-					<td class="box" onclick="location.href='#'">3</td>
-				</tr>
-			</table>
-		</div>
 
 
 	</div>
