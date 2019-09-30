@@ -47,7 +47,7 @@
 				<c:forEach var="m" items="${message}">
 				
 		<div>
-			<button style="width:1000px;" onclick="window.open('messageDetail.me?sendMember=${m.sendMember}&sendName=${m.userName}','_blank','width=500,height=500');return false;">
+			<button style="width:1000px;" onclick="window.open('messageDetail.me?sendMember=${m.sendMember}&sendName=${m.userName}','_blank','width=580,height=580');return false;">
 						<c:out value="${m.userName }"/>님의 쪽지  &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
 						<c:out value="${m.messageContent }"/>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
 						<a style="text-align:right;"><c:out value="${m.createDate }"/>&emsp;</a>	

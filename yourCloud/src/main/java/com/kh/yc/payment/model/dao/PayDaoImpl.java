@@ -114,4 +114,39 @@ public class PayDaoImpl implements PayDao {
 		return sqlSession.update("Project2.updateProjectOpen");
 	}
 
+	@Override
+	public Funding selectFund(SqlSessionTemplate sqlSession, Funding fund) {
+		return sqlSession.selectOne("Project2.selectFund", fund);
+	}
+
+	@Override
+	public Payment selectPay(SqlSessionTemplate sqlSession, Funding fund) {
+		return sqlSession.selectOne("Project2.selectPay", fund);
+	}
+
+	@Override
+	public void deletePay(SqlSessionTemplate sqlSession, Payment pay) {
+		sqlSession.delete("Project2.deletePay", pay);
+	}
+
+	@Override
+	public void deleteFund(SqlSessionTemplate sqlSession, Funding fund) {
+		sqlSession.delete("Project2.deleteFund", fund);
+	}
+
+	@Override
+	public void deleteDeliveryStatus(SqlSessionTemplate sqlSession, Payment pay) {
+		sqlSession.delete("Project2.deleteDeliveryStatus", pay);
+	}
+
+	@Override
+	public void deleteDelivery(SqlSessionTemplate sqlSession, Payment pay) {
+		sqlSession.delete("Project2.deleteDelivery", pay);
+	}
+
+	@Override
+	public void deleteSpon(SqlSessionTemplate sqlSession, Funding fund) {
+		sqlSession.delete("Project2.deleteSpon", fund);
+	}
+
 }

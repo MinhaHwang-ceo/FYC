@@ -127,16 +127,6 @@
 						<p><c:out value="${ r.deliverySite }"/></p>
 					</div>
 				</div>
-				<div class="rewards" style="background:lightgray">
-					<p style="font-weight:bold">
-						펀딩 종료 이 후에는 서포터의 배송지 정보가 프로젝트 메이커에게 전달되기 때문에, 종료 이 후 배송 정보 변경 등에 대한 문의는 메이커에게 직접하셔야 합니다.
-					</p>
-					<div id="requestHelp" style="background:white;width:98%;margin:0 auto;border-radius:10px;" align="center">
-						<img src="${ contextPath }/resources/images/mail.PNG"/>메이커에게 문의하기
-					</div>
-				</div>
-				<p>&nbsp;</p>
-				<p align=right id="printBtn"><a href="" style="color:blue;text-decoration:underline;font-size:1.1em;">영수증 출력하기</a></p>
 			</div>
 		</div>
 	</div>

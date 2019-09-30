@@ -64,7 +64,7 @@ table {
 }
 
 input {
-	background-color: Lightgray;
+		
 	width: 300px;
 	height: 40px;
 	font-family: 'Sunflower', sans-serif;
@@ -109,10 +109,11 @@ input[type="checkbox"]:checked+label span {
 		-19px top no-repeat;
 		
 }
-#menu li {
+#menu li  {
 	float: left;
 	font-size: 25px;
 	font-family: 'Sunflower', sans-serif;
+	border: 1px solid black;
 }
 
 #menu a {
@@ -121,9 +122,13 @@ input[type="checkbox"]:checked+label span {
 	line-height: 35px;
 	padding: 0 35px;
 }
+
+
 #menu {
-	border: 1px solid black;
+   text-align: center;
 }
+
+
 
 
 #menu a:hover {
@@ -132,6 +137,24 @@ input[type="checkbox"]:checked+label span {
 }
 .tt{
 	border: 1px solid white;
+}
+
+button {
+	width:120px;
+    height: 40px;
+    background-color: #00af84;
+    display: inline-block;
+    font-weight: 500;
+    color: #fff;
+    font-size: 16px;
+    border: 0;
+    font-family: 'Sunflower', sans-serif;
+}
+
+
+button:hover {
+	cursor: pointer;
+	background: orange;
 }
 
 </style>
@@ -384,6 +407,7 @@ function addTable(reward) {
 </script>
 </head>
 <body>
+
 	
 	<input type="hidden" value="${p.projectNo}"  id="projectNo" name="projectNo"/>       
 	<input type="hidden" value="${p.category}"  id="category" name="category"/>
@@ -391,12 +415,10 @@ function addTable(reward) {
 	<jsp:include page="../common/customer_menubar.jsp" />
 	<jsp:include page="../common/customer_menuList.jsp"/>
 	
-
-	<br>
 	<div id="top" style="width: 100%;">
 <br /><br /><br />
-<div id="menu" style="width: 55%;height: 40px; margin: 0 auto;">
-		<ul>
+<div id="menu" style="width: 60%;height: 30px; margin: 0 auto;">
+		<ul class="ull">
 			<li><a onclick="basicInfo();" id="basic">기본정보</a></li>
 			<li><a onclick="rewardList();" id="reward">리워드</a></li>
 			<li><a onclick="rewardStory();" id="story">스토리</a></li>

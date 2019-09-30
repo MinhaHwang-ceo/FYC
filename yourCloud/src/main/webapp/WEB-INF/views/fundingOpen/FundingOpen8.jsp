@@ -36,7 +36,7 @@
 	height: 80%;
 	z-index: 1;
 	margin: 0 auto;
-	border: 1px solid lightgray;
+	
 }
 
 
@@ -53,11 +53,11 @@
 	display: none;
 }
 
-#menu li {
+#menu li  {
 	float: left;
 	font-size: 25px;
 	font-family: 'Sunflower', sans-serif;
-	board-left:1px solid #d9d9de;
+	border: 1px solid black;
 }
 
 #menu a {
@@ -66,9 +66,13 @@
 	line-height: 35px;
 	padding: 0 35px;
 }
+
+
 #menu {
-	border: 1px solid black;
+   text-align: center;
 }
+
+
 
 
 #menu a:hover {
@@ -87,6 +91,23 @@ label:hover {
 table td{
 	height: 50px;
 }
+
+button {
+	width:120px;
+    height: 40px;
+    background-color: #00af84;
+    display: inline-block;
+    font-weight: 500;
+    color: #fff;
+    font-size: 16px;
+    border: 0;
+}
+
+
+button:hover {
+	cursor: pointer;
+	background: orange;
+}
 </style>
 </head>
 <body>
@@ -95,8 +116,8 @@ table td{
 	<jsp:include page="../common/customer_menuList.jsp"/>
 	<div id="top" style="width: 100%;">
 <br /><br /><br />
-<div id="menu" style="width: 55%;height: 40px; margin: 0 auto;">
-		<ul>
+<div id="menu" style="width: 60%;height: 30px; margin: 0 auto;">
+		<ul class="ull">
 			<li><a onclick="basicInfo();" id="basic">기본정보</a></li>
 			<li><a onclick="rewardList();" id="reward">리워드</a></li>
 			<li><a onclick="rewardStory();" id="story">스토리</a></li>
@@ -129,10 +150,10 @@ table td{
 </script>
 	<br>
 	<form action="FundingOpen9.fd" method="POST">
-		<div id="inputBox2" align="center" style="min-height: 700px; padding: 50px;">
+		<div id="inputBox2" align="center" style="min-height: 350px; padding: 50px;">
 			<input type="hidden" id="projectNo" name="projectNo" value="${p.projectNo }" /> 
 			<input type="hidden" id="userNo" name="userNo" value="${ sessionScope.loginUser.userNo }" />
-			<table style="align: center; width: 100%;">
+			<table style="align: center; width: 100%; background-color: #f8f8f8; border: 1px solid #dddddd;">
 				<tr>
 					<th colspan="3">'오픈예정'은 오픈예정 알림 신청한 서포터에게 프로젝트 오픈 소식이 SMS으로 발송되는 서비스입니다.<br>
 										오픈예정을 신청하시면, 오픈예정 심사가 진행됩니다.</th>

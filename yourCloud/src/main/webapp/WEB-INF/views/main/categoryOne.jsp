@@ -385,22 +385,26 @@ a {
 			<button type="button" onclick="goFunding();" class="btn-funding">펀딩하기</button><br>
 	</c:if>
 			
-	<c:if test="${ ! empty sessionScope.loginUser }"> 	
-		<c:if test="${detail.progressStatus ne '성공'}">
-				<button type="button" onclick="goFunding();" class="btn-funding">펀딩하기</button><br>
-		</c:if>
-			
-		<c:if test="${detail.progressStatus eq '성공'}">
-			<c:if test="${ encoreCount >= 1}">
-				<button class="btn-funding" onclick="noEncore();">앵콜하기</button><br>	
+		<c:if test="${ ! empty sessionScope.loginUser }"> 	
+			<c:if test="${detail.progressStatus ne '성공'}">
+				<c:if test="${ '0' == fundCnt }">
+					<button type="button" onclick="goFunding();" class="btn-funding">펀딩하기</button><br>
+				</c:if>	
+				<c:if test="${ '0' != fundCnt }">
+					<button type="button" onclick="goCancle();" class="btn-funding">펀딩 취소하기</button><br>
+				</c:if>
 			</c:if>
-			
-			<c:if test="${ encoreCount == 0}">
-				<button class="btn-funding" id="encore">앵콜하기</button><br>			
+				
+			<c:if test="${detail.progressStatus eq '성공'}">
+				<c:if test="${ encoreCount >= 1}">
+					<button class="btn-funding" onclick="noEncore();">앵콜하기</button><br>	
+				</c:if>
+				
+				<c:if test="${ encoreCount == 0}">
+					<button class="btn-funding" id="encore">앵콜하기</button><br>			
+				</c:if>
 			</c:if>
 		</c:if>
-	</c:if>
-	
 		<script>
 		$(function(){
 			$('#encore').click(function(){
@@ -446,6 +450,21 @@ a {
 					} else {
 						location.href="funding_1.bo?projectNo="+'${projectNo}'+"&userNo="+'${sessionScope.loginUser.userNo}';
 					}
+				};
+				function goCancle(){
+					var userNo = '${ sessionScope.loginUser.userNo}';
+					location.href="cancleFund.pa?projectNo="+'${projectNo}'+"&userNo="+'${sessionScope.loginUser.userNo}';
+					$.ajax({
+						url:"cancleFund.pa",
+						type:"POST",
+						data:{"userNo":userNo, "projectNo":'${projectNo}'},
+						success:function(){
+							alert("펀딩이 취소되었습니다.");
+							location.reload();
+						}, error:function(){
+							alert("에러가 발생했습니다. 관리자에게 문의해주세요");
+						}
+					})
 				}
 			</script>
 			<div class=btn-wrap>
@@ -581,7 +600,7 @@ a {
 							<c:if test="${loginUser.userNo ne detail.userNo}">
 							<td colspan="2" align="center">
 								<button class="btn-meker-question" onclick="window.open('sendMessage.me?userNo=${loginUser.userNo}&makerNo=${detail.userNo}'
-								,'_black','width=400,height=513');return false;">
+								,'_black','width=460,height=513');return false;">
 								메이커에게 문의하기</button>			
 							</td>
 							</c:if>
@@ -660,7 +679,7 @@ a {
  				
  					<c:if test= "${ !empty sessionScope.loginUser }">
  						<c:if test="${ reportCount == 0 }">
-							<button onclick="window.open('reportProject.ca?pNo=${detail.projectNo}','_blank', 'width=600,height=500');return false;" style="border:0; background:white;">
+							<button onclick="window.open('reportProject.ca?pNo=${detail.projectNo}','_blank', 'width=700,height=550');return false;" style="border:0; background:white;">
 								<img src="/yc/resources/images/alarm.png" style="width:40px; height: auto;"> 
 							</button>
 						</c:if>

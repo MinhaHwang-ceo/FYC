@@ -51,6 +51,22 @@ td {
 	width: 5%;
 	text-align: center;
 }
+input[type="button"] {
+	width:120px;
+    height: 40px;
+    background-color: #00af84;
+    display: inline-block;
+    font-weight: 500;
+    color: #fff;
+    font-size: 16px;
+    border: 0;
+}
+
+
+input[type="button"]:hover {
+	cursor: pointer;
+	background: orange;
+}
 </style>
 </head>
 <body>

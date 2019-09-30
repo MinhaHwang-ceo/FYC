@@ -107,6 +107,7 @@ public interface ProjectService {
 	int getSortListCount(String category) throws ProjectSelectListException;
 	
 	public void updateReport(Report report);
+	int selectFundCount(Funding fund);
 	
 
 

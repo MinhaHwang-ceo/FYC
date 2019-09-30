@@ -19,4 +19,19 @@ public interface PayService {
    int insertFund(ArrayList<Funding> fundList, ArrayList<Delivery> deliveryList);
 
    void insertSponsor(Sponsor sp);
+
+Funding selectFund(Funding fund);
+
+Payment selectPay(Funding fund);
+
+void deletePay(Payment pay);
+
+void deleteFund(Funding fund);
+
+void deleteDeliveryStatus(Payment pay);
+
+void deleteDelivery(Payment pay);
+
+void deleteSpon(Funding fund);
+
 }
