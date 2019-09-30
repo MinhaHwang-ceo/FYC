@@ -83,11 +83,11 @@ input[type="checkbox"]:checked+label span {
 	display: none;
 }
 
-#menu li {
+#menu li  {
 	float: left;
 	font-size: 25px;
 	font-family: 'Sunflower', sans-serif;
-	board-left:1px solid #d9d9de;
+	border: 1px solid black;
 }
 
 #menu a {
@@ -96,9 +96,13 @@ input[type="checkbox"]:checked+label span {
 	line-height: 35px;
 	padding: 0 35px;
 }
+
+
 #menu {
-	border: 1px solid black;
+   text-align: center;
 }
+
+
 
 
 #menu a:hover {
@@ -109,6 +113,24 @@ input[type="checkbox"]:checked+label span {
 h4 {
 	text-align: center;
 }
+
+button {
+	width:120px;
+    height: 40px;
+    background-color: #00af84;
+    display: inline-block;
+    font-weight: 500;
+    color: #fff;
+    font-size: 16px;
+    border: 0;
+}
+
+
+button:hover {
+	cursor: pointer;
+	background: orange;
+}
+
 </style>
 </head>
 <body>
@@ -117,8 +139,8 @@ h4 {
 	<jsp:include page="../common/customer_menuList.jsp"/>
 	<div id="top" style="width: 100%;">
 <br /><br /><br />
-<div id="menu" style="width: 55%;height: 40px; margin: 0 auto;">
-		<ul>
+<div id="menu" style="width: 60%;height: 30px; margin: 0 auto;">
+		<ul class="ull">
 			<li><a onclick="basicInfo();" id="basic">기본정보</a></li>
 			<li><a onclick="rewardList();" id="reward">리워드</a></li>
 			<li><a onclick="rewardStory();" id="story">스토리</a></li>
@@ -158,7 +180,7 @@ h4 {
 			<table style="align: center; width:100%;">
 				<tr>
 					<td><h5>메이커 이름(법인명)</h5></td>
-					<td ><input type="text" value="${m.companyName}" name="companyName"></td>
+					<td><input type="text" value="${m.companyName}" name="companyName"></td>
 				</tr>
 				<tr>
 					<td><h5>프로필 이미지</h5>
