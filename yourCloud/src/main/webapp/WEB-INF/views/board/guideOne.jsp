@@ -73,7 +73,7 @@ margin:5px;
 </c:if>
 <br><br><br><br>
 
-<tr><label>${list.bcontent}</label></tr>
+<tr><pre>${list.bcontent}</pre></tr>
 
 </table>
 

@@ -238,9 +238,8 @@ var myChart = new Chart(ctx, {
 										<div class="status-indicator bg-success"></div>
 									</div>
 									<div class="font-weight-bold">
-										<div class="text-truncate">Hi there! I am wondering if
-											you can help me with a problem I've been having.</div>
-										<div class="small text-gray-500">Emily Fowler · 58m</div>
+										<div class="text-truncate">안녕하세요. 문의사항 연락드립니다.</div>
+										<div class="small text-gray-500">김채원 · 58m</div>
 									</div>
 								</a> <a class="dropdown-item d-flex align-items-center" href="#">
 									<div class="dropdown-list-image mr-3">
@@ -322,11 +321,6 @@ var myChart = new Chart(ctx, {
 					<!-- Page Heading -->
 					<h1 class="h3 mb-2 text-gray-800">통계</h1>
 					<p class="mb-4">
-						Chart.js is a third party plugin that is used to generate the
-						charts in this theme. The charts below have been customized - for
-						further customization options, please visit the <a target="_blank"
-							href="https://www.chartjs.org/docs/latest/">official Chart.js
-							documentation</a>.
 					</p>
 
 					<!-- Content Row -->

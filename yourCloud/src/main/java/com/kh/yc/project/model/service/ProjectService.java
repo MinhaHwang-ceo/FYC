@@ -10,6 +10,7 @@ import com.kh.yc.category.model.vo.Reply;
 import com.kh.yc.category.model.vo.Report;
 import com.kh.yc.funding.model.vo.Funding;
 import com.kh.yc.member.model.vo.Member;
+import com.kh.yc.member.model.vo.Message;
 import com.kh.yc.project.model.exception.ProjectSelectListException;
 import com.kh.yc.project.model.vo.Interest;
 import com.kh.yc.project.model.vo.OpenAlarm;
@@ -22,6 +23,7 @@ public interface ProjectService {
 
 	//게시물 목록 갯수 조회용 메소드
 	int getListCount() throws ProjectSelectListException;
+	int getListCount4() throws ProjectSelectListException;
 	//페이징 된 게시물 목록 조회용 메소드
 	public ArrayList<Project> selectProjectList(PageInfo pi) throws ProjectSelectListException;
 	//상세보기 메소드

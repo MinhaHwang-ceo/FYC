@@ -24,6 +24,7 @@
       <result property="phone" column="PHONE" />
       <result property="fees" column="FEES" />
       <result property="makerDiv" column="MAKER_DIV" />
+      <result property="categoryDiv" column="CATEGORY_DIV" />
       <result property="agentName" column="AGENT_NAME" />
       <result property="agentEmail" column="AGENT_EMAIL" />
       <result property="projectTitle" column="PROJECT_TITLE" />
@@ -36,7 +37,6 @@
       <result property="endDate" column="END_DATE" />
       <result property="adult" column="ADULT" />
       <result property="userNo" column="MEMBER_NO" />
-      <result property="userNo2" column="MEMBER_NO"/>
       <result property="reportCount" column="REPORT_COUNT" />
       <result property="payNo" column="PAY_NO" />
       <result property="adjustNo" column="ADJUST_NO" />
@@ -47,6 +47,7 @@
       <result property="companyName" column="COMPANY_NAME" />
       <result property="ssn" column="SSN" />
       <result property="projectOpen" column="PROJECT_OPEN"/>
+      <result property="userName" column="MEMBER_NAME"/>
       
    </resultMap>
    
@@ -98,6 +99,7 @@
       <result property="adjustMoney" column="ADJUST_MONEY" />
       <result property="adminNo" column="ADMIN_NO" />
       <result property="companyName" column="COMPANY_NAME" />
+      <result property="userName" column="MEMBER_NAME"/>
       
    <collection property="Attachment" javaType="java.util.List" resultMap="AttachmentResultSet"/>
     </resultMap>
@@ -109,8 +111,11 @@
 
 
    <select id="judgeProjectList" resultMap="ProjectResultSet">
-      SELECT *
-      FROM PROJECT
+            SELECT *
+			FROM PROJECT P
+			INNER JOIN MEMBER M ON M.MEMBER_NO = P.MEMBER_NO
+			INNER JOIN CATEGORY C ON C.CATEGORY = P.CATEGORY
+			WHERE P.MEMBER_NO = M.MEMBER_NO
    </select>
 
    <update id="updateJudgeProject" parameterType="Project">
@@ -260,6 +265,7 @@
 		WHERE PROJECT_NO = #{projectNo}
 	</select>
 	
+
 	<insert id="insertAdjust">
 		INSERT INTO ADJUST 
 		VALUES (SEQ_PAY_NO.NEXTVAL,SEQ_ADJUSTNO.NEXTVAL,SYSDATE,0,#{userNo},1,'1차',#{projectNo}) 

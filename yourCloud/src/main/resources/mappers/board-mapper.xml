@@ -355,6 +355,7 @@ where BOARD_NO = #{bNo}
 		FROM BOARD
 		WHERE OPEN = 'Y'
 		AND STATUS = 'N'
+		AND BOARD_CATEGORY = '공지사항'
 	</select>
 	
 	<select id="selectNoticeOne" resultMap="boardResultSet">

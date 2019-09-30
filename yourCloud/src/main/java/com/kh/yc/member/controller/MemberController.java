@@ -61,15 +61,14 @@ public class MemberController {
 	 * 
 	 * }
 	 */
-
-    
-    
-    
-     @RequestMapping(value = "joinMain.me", method = RequestMethod.GET)
- 	public String join(Locale locale, Model model) {
- 		
- 		return "member/joinMain";
- 	}
+	
+	/*
+	 * @RequestMapping(value = "joinMain.me", method = RequestMethod.GET) public
+	 * String join(Locale locale, Model model) {
+	 * 
+	 * 
+	 * }
+	 */
     
    
 
@@ -87,6 +86,7 @@ public class MemberController {
       int result = ms.insertMember(m);
       
       if(result > 0) {
+    	  
          return "member/loginMain";
       }else {
          model.addAttribute("msg", "회원 가입 실패!");
@@ -139,9 +139,11 @@ public class MemberController {
          Member loginUser = ms.loginMember(m);
          
          model.addAttribute("loginUser", loginUser);
-         
+         if(m.getUserId().equals("admin")) {
+   		  return "admin/admin_index";
+   	  }else {
          return "redirect:index.jsp";
-         
+   	  }
       } catch (LoginException e) {
          model.addAttribute("msg", e.getMessage());
          return "common/errorPage";
@@ -229,8 +231,8 @@ public class MemberController {
 
 		int port = 465;
 		String recipient = email;
-		String subject = "메일테스트";
-		String body = authNum + "입니다";
+		String subject = "인증메일을 보내드립니다";
+		String body = "니가그린 구름그림의 인증번호는"+authNum + "입니다";
 		Properties props = System.getProperties(); // 정보를 담기 위한 객체 생성
 		props.put("mail.smtp.host", host);// SMTP 서버 정보 설정
 		props.put("mail.smtp.port", port);

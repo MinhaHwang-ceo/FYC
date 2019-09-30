@@ -87,7 +87,9 @@ input[type="checkbox"]:checked+label span {
 
 #menu li {
 	float: left;
-	font-size: 20px;
+	font-size: 25px;
+	font-family: 'Sunflower', sans-serif;
+	board-left:1px solid #d9d9de;
 }
 
 #menu a {
@@ -96,6 +98,10 @@ input[type="checkbox"]:checked+label span {
 	line-height: 35px;
 	padding: 0 35px;
 }
+#menu {
+	border: 1px solid black;
+}
+
 
 #menu a:hover {
 	cursor: pointer;
@@ -104,6 +110,7 @@ input[type="checkbox"]:checked+label span {
 
 h4 {
 	text-align: center;
+	
 }
 </style>
 </head>
@@ -173,13 +180,13 @@ h4 {
 </script>
 	<hr />
 	<br>
-	<input type="text"  />
-	<div id="inputBox2" align="center">
+	
+<div id="inputBox2" align="center" style="background:white; border: 3px solid white;"  >
 		<br>
 		<form action="FundingOpen7.fd" id="mainForm" method="POST"
 			encType="multipart/form-data">
-			<input type="text" id="projectNo" name="projectNo" value="${p.projectNo }" />
-			<input type="text" id="rewardNo" name="rewardNo" value="${ RewardNo2 }"/>
+			<input type="hidden" id="projectNo" name="projectNo" value="${p.projectNo }" />
+			<input type="hidden" id="rewardNo" name="rewardNo" value="${ RewardNo2 }"/>
 			<table style="align: center; width: 100%;">
 				<tr>
 					<td><h5>프로젝트 요약</h5>- 서포터가 제품의 장점이나<br> 특징을 잘 이해할 수 있도록<br>
