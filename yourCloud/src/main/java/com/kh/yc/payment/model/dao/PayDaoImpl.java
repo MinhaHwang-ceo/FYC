@@ -22,7 +22,9 @@ public class PayDaoImpl implements PayDao {
 	
 	@Override
 	public void insertAdjust(SqlSessionTemplate sqlSession,  ArrayList<Project> fundSuccessProject) {
-		sqlSession.insert("Project.insertAdjust", fundSuccessProject);
+		for(int i = 0; i < fundSuccessProject.size(); i++) {
+			sqlSession.insert("Project.insertAdjust", fundSuccessProject.get(i));
+		}
 	}
 
 	@Override

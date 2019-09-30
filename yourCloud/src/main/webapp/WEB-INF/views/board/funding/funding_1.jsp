@@ -260,26 +260,6 @@
 				var targetCnt = "";
 	
 				var userNo = '${ m.userNo}';
-				/*
-					
-					$(".check:checked").each(function(){
-						target +=  $(this).siblings().eq(0).val();
-						target += "$";
-						
-						targetCnt = $(this).parent().parent().siblings().eq(4).children().eq(0).children().eq(0).val();
-						targetCnt += "$";
-					});
-					
-					$.ajax({
-						url: "funding_2.bo",
-						type: "POST",
-						data:{"projectNo":projectNo, "userNo":userNo, "target":target, "targetCnt":targetCnt},
-						success:function(data){
-							
-						}
-					});
-					
-				 */
 				var price = "";
 				var projectNo = '${p.projectNo}';
 				var target = "";

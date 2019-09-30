@@ -260,23 +260,21 @@
 		WHERE PROJECT_NO = #{projectNo}
 	</select>
 	
-	<insert id="insertAdjust" parameterType="java.util.ArrayList">
-	<foreach item="p" collection="list">
-	INSERT INTO ADJUST 
-	VALUES (SEQ_PAY_NO.NEXTVAL,SEQ_ADJUSTNO.NEXTVAL,SYSDATE,0,#{userNo},1,'1차',#{projectNo}) 
-	</foreach>
+	<insert id="insertAdjust">
+		INSERT INTO ADJUST 
+		VALUES (SEQ_PAY_NO.NEXTVAL,SEQ_ADJUSTNO.NEXTVAL,SYSDATE,0,#{userNo},1,'1차',#{projectNo}) 
 	</insert>
 	
 	
 	<update id="AdjustUp">
-	UPDATE ADJUST
-	SET ADJUST_MONEY = (
-        SELECT SUM(P.AMOUNT)
-          FROM PAYMENT P
-          LEFT JOIN ADJUST A ON A.MEMBER_NO = P.MEMBER_NO
-          LEFT JOIN PROJECT PJ ON A.PROJECT_NO = PJ.PROJECT_NO
-         WHERE A.PROJECT_NO = PJ.PROJECT_NO
-         GROUP BY A.PROJECT_NO )
+		UPDATE ADJUST
+		SET ADJUST_MONEY = (
+	        SELECT SUM(P.AMOUNT)
+	          FROM PAYMENT P
+	          LEFT JOIN ADJUST A ON A.MEMBER_NO = P.MEMBER_NO
+	          LEFT JOIN PROJECT PJ ON A.PROJECT_NO = PJ.PROJECT_NO
+	         WHERE A.PROJECT_NO = PJ.PROJECT_NO
+	         GROUP BY A.PROJECT_NO )
 	</update>
 	
 </mapper>

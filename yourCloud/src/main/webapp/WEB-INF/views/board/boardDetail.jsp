@@ -107,6 +107,7 @@ table * {
 					</c:if>
 				</c:forEach>
 			</c:forEach>
+			<c:if test="${ !empty rc }">
 			<tr>
 				<td colspan="8" style="height:10%;">		
 					<div id="pagingArea" align="center">
@@ -145,6 +146,7 @@ table * {
 					</div>
 				</td>
 			</tr>
+			</c:if>
 			<tr>
 				<td colspan="8" class="center"><textarea name="inputComment" id="inputComment" style="width:100%;" cols="30" rows="5"></textarea></td>
 			</tr>
@@ -193,7 +195,7 @@ table * {
 				if(writer.length == 0) {
 					alert("로그인이 필요한 기능입니다.");
 				} else {
-					if(text.lenfth == 0 || text == ""){
+					if(text.length == 0 || text == ""){
 						alert("댓글 내용을 입력해주세요");
 					} else {
 						 $.ajax({

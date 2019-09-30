@@ -61,13 +61,7 @@ input {
 			<table align="center" style="width: 60%;">
 				<tr>
 					<th>카테고리</th>
-					<td colspan="3" style="text-align:left;">
-						<select name="bCategory" id="bCategory">
-						<option value="faq">FAQ</option>
-						<option value="qna">QnA</option>
-						<option value="review">REVIEW</option>
-					</select>
-					</td>
+					<td colspan="3" style="text-align:left;"><p>사용후기</p></td>
 				</tr>
 				<tr>
 					<th>제목</th>

@@ -37,50 +37,60 @@ public class PayServiceImpl implements PayService {
 	@Override
 	@Scheduled(cron = "0 59 23 * * *")
 	public void testJobMethod() {
-		System.out.println(2359 + "스케쥴러");
+		// 내일(1분 후)이 오픈 예정인 프로젝트 상태를 오픈으로 변경
 		int result = pd.updateProjectOpen(sqlSession);
+		// 금일 성공한 프로젝트 정보 조회
 		ArrayList<Project> fundSuccessProject = pd.fundSuccessProject(sqlSession);
-		System.out.println("d"+fundSuccessProject);
+		// 성공한 프로젝트의 상태를 펀딩 성공으로 변경
 		pd.updateProjectSuccess(sqlSession);
+		// 정산 정보 입력
 		pd.insertAdjust(sqlSession, fundSuccessProject);
 		
 		try {
+			// 펀딩 실패 프로젝트 조회
 			ArrayList<Funding> fundFailProject = pd.fundFailProject(sqlSession);
+			// 펀딩 실패 프로젝트에 해당하는 빌링키 조회
 			ArrayList<com.kh.yc.payment.model.vo.Payment> merchantId = pd.failMerchantID(sqlSession, fundFailProject);
+			// 빌링키를 하나씩 꺼내어 REST API에 데이터 전달 후 결제 예약 취소
 			for (com.kh.yc.payment.model.vo.Payment p : merchantId) {
-				System.out.println(p + "에 해당하는 결제 취소");
 				UnscheduleData unscheduleData = new UnscheduleData(p.getUserNo() + "");
 				unscheduleData.addMerchantUid(p.getPayNo());
 				iamportClient.unsubscribeSchedule(unscheduleData);
 			}
 
 		} catch (NullPointerException e) {
+			// 1분 후 펀딩 실패에 해당하는 프로젝트가 존재하지 않는 경우 NullpointerException을 발생시켜 해당 문구를 콘솔에 출력
 			System.out.println("예약 취소건 없음");
 		} catch (IamportResponseException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		// 프로젝트 실패에 해당하는 프로젝트를 실패로 변경
 		pd.updateProjectFail(sqlSession);
 		if (fundSuccessProject.size() > 0) {
+			// 1분 후 성공된 프로젝트 목록 조회
 			ArrayList<Funding> fundingList = pd.fundingList(sqlSession, fundSuccessProject);
 			if (fundingList.size() > 0) {
+				// 존재할 경우 FUND_SUCCESS 테이블에 데이터 입력
 				pd.insertFundingSuccess(sqlSession, fundingList);
 			}
 		}
 		try {
+			// REST API로부터 결제 현황 데이터를 받아옴
 			List<Payment> status = iamportClient.paymentsByStatus("all").getResponse().getList();
 
 			for (Payment pay : status) {
 				String payStatus = iamportClient.paymentByImpUid(pay.getImpUid()).getResponse().getStatus();
 				com.kh.yc.payment.model.vo.Payment payment = new com.kh.yc.payment.model.vo.Payment();
 
+				// 하나씩 비교해 실패한 데이터들에 해당하는 빌링키 조회 후 결제를 다시 예약함(다음날 17시)
 				if (payStatus.equals("failed")) {
+					System.out.println("결제 실패 건 + 번째 :::" + pay.getMerchantUid());
 					String merchantUid = pay.getMerchantUid();
 					pc.RePay(merchantUid);
 				} else if (payStatus.equals("paid")) {
+					// 성공한 결제 데이터는 PAYMENT 테이블의 결제 상태를 성공으로 변경
 					payment.setPayNo(pay.getMerchantUid());
 					payment.setPayStatus("결제성공");
 
