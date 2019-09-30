@@ -48,6 +48,7 @@ public class Project implements java.io.Serializable {
 	private String rules;
 	private int ssn;
 	private String userNo2;
+	private String userName;
 	@JsonFormat(pattern = "yyyy-MM-dd")
 	private String projectOpen; //오픈일
 
@@ -60,7 +61,7 @@ public class Project implements java.io.Serializable {
 			String projectTitle, String projectShortTitle, int money, String mainImg, String document, String progress,
 			String delivery, Date endDate, String adult, int userNo, int reportCount, int payNo, int adjustNo,
 			Date adjustDate, int adjustMoney, String companyName, String adjustStatus, String categoryDiv, String story,
-			List<Attachment> attachment, String rules, int ssn, String userNo2, String projectOpen) {
+			List<Attachment> attachment, String rules, int ssn, String userNo2, String userName, String projectOpen) {
 		super();
 		this.projectNo = projectNo;
 		this.category = category;
@@ -103,6 +104,7 @@ public class Project implements java.io.Serializable {
 		this.rules = rules;
 		this.ssn = ssn;
 		this.userNo2 = userNo2;
+		this.userName = userName;
 		this.projectOpen = projectOpen;
 	}
 
@@ -434,6 +436,14 @@ public class Project implements java.io.Serializable {
 		this.userNo2 = userNo2;
 	}
 
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+
 	public String getProjectOpen() {
 		return projectOpen;
 	}
@@ -455,9 +465,10 @@ public class Project implements java.io.Serializable {
 				+ ", payNo=" + payNo + ", adjustNo=" + adjustNo + ", adjustDate=" + adjustDate + ", adjustMoney="
 				+ adjustMoney + ", companyName=" + companyName + ", adjustStatus=" + adjustStatus + ", categoryDiv="
 				+ categoryDiv + ", story=" + story + ", attachment=" + attachment + ", rules=" + rules + ", ssn=" + ssn
-				+ ", userNo2=" + userNo2 + ", projectOpen=" + projectOpen + "]";
+				+ ", userNo2=" + userNo2 + ", userName=" + userName + ", projectOpen=" + projectOpen + "]";
 	}
 
+	
 		
 
 }

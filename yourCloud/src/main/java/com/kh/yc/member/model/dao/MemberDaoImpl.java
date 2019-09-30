@@ -241,6 +241,12 @@ ArrayList<Project> list = null;
 			list = (ArrayList) sqlSession.selectList("Project2.interestProject6", userNo);
 			
 			return list;
+    }
+    @Override
+		public int answerMessage(SqlSessionTemplate sqlSession, Message message) {
+			
+			return sqlSession.insert("Member.answerMessage", message);
+
 		}
 	
 	

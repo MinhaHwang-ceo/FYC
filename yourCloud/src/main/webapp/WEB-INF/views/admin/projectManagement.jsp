@@ -263,17 +263,17 @@
                     </tr>
                   </tfoot>
                   <tbody>
-                    <c:forEach var="row" items="${list}">
+                    <c:forEach var="list" items="${list}">
                   <tr>
-                  	<td onclick="window.open('${pageContext.request.contextPath}/memberView.ad?userNo=${row.userNo}', 'PopupWin', 'width=520,height=600');">${row.projectNo}</td>
-                  	<td>${row.agentName}</td>
-                  	<td>${row.companyName}</td>
-                  	<td>${row.category}</td>
-                  	<td>${row.projectShortTitle}</td>
-                  	<td>${row.progressStatus}</td>
-                  	<td>${row.judgeStatus}</td>
+                  	<td onclick="window.open('${pageContext.request.contextPath}/memberView.ad?userNo=${list.userNo}', 'PopupWin', 'width=520,height=600');">${list.projectNo}</td>
+                  	<td>${list.userName}</td>
+                  	<td>${list.companyName}</td>
+                  	<td>${list.categoryDiv}</td>
+                  	<td>${list.projectShortTitle}</td>
+                  	<td>${list.progressStatus}</td>
+                  	<td>${list.judgeStatus}</td>
                   	
-                  	<td><input type="button" id="st" onclick="window.open('${pageContext.request.contextPath}/projectStatus.ad?projectNo=${row.projectNo}', 'PopupWin', 'width=380,height=300');" value="검토"></td>
+                  	<td><input type="button" id="st" onclick="window.open('${pageContext.request.contextPath}/projectStatus.ad?projectNo=${list.projectNo}', 'PopupWin', 'width=380,height=300');" value="검토"></td>
                   </tr>
                   
                   </c:forEach>

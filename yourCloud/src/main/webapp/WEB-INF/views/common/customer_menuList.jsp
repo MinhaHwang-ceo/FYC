@@ -1,19 +1,31 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<!DOCTYPE html>
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<!DOCTYPE>
 <html>
 <head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
 <!-- Bootstrap CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,600,700,800" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.3.0/ekko-lightbox.css">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<link
+	rel="stylesheet">
+<link
+	href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,600,700,800"
+	rel="stylesheet">
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.3.0/ekko-lightbox.css">
 
 <link rel="stylesheet" href="/yc/resources/css/animate.css">
 <link href="/yc/resources/css/main.css" rel="stylesheet" />
-
-<meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
 @
@@ -97,29 +109,7 @@ to {
 		</div>
 		<!--container end-->
 		<!--   플로팅 메뉴 -->
-		<div id="floating" class=" float-top "
-			style="border: 1px solid darkgray;">
-			<figure class="figure">
-				<a><img src="/yc/resources/images/rank_banner2.PNG" alt="blog"></a>
-			</figure>
-			<div>
-				<a href="blog.html"><img src="/yc/resources/images/rank5.PNG"
-					alt="blog">[끝판왕 등장] 스마트폰 거치대의 끝, 허킨스 스마트서포터 (마지막앵콜)</a>
-			</div>
-			<div>
-				<a href="blog.html"><img src="/yc/resources/images/rank2.PNG"
-					alt="blog">캐시미어 코트의 가격을 다시 쓰다ㅣ매일 입는 캐시미어 코트, 벨리에</a>
-			</div>
-			<div>
-				<a href="blog.html"><img src="/yc/resources/images/rank3.PNG"
-					alt="blog">세상에 없던 스마트한 카메라 어시스턴트, 키노피 루미 마크원!</a>
-			</div>
-			<hr>
-			<div>
-				<a href="blog.html"><img src="/yc/resources/images/talk.PNG"
-					alt="blog"></a>
-			</div>
-		</div>
+		
 	</nav>
 </body>
 </html>

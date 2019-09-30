@@ -46,15 +46,12 @@
 
 				<c:forEach var="m" items="${message}">
 				
-		<div class="messageList">
-			
-			<figure class="snip1141" style="height:30px; width:100%; ">
-		
-						&emsp; <c:out value="${m.userName }"/>님의 쪽지  &emsp;&emsp;&emsp;
-						&emsp; <c:out value="${m.messageContent }"/>
-						&emsp; <a style="text-align:right;"><c:out value="${m.createDate }"/>&emsp;</a>
-					
-			</figure>	
+		<div>
+			<button style="width:1000px;" onclick="window.open('messageDetail.me?sendMember=${m.sendMember}&sendName=${m.userName}','_blank','width=500,height=500');return false;">
+						<c:out value="${m.userName }"/>님의 쪽지  &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+						<c:out value="${m.messageContent }"/>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+						<a style="text-align:right;"><c:out value="${m.createDate }"/>&emsp;</a>	
+			</button>
 		</div><br>
 				
 				</c:forEach>

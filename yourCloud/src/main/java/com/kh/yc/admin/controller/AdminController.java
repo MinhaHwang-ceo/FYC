@@ -39,6 +39,9 @@ public class AdminController {
 
 	@Autowired
 	private AdminServiceImpl ap;
+	
+	@Autowired
+	private AdminServiceImpl as;
 
 	private static final Logger logger = LoggerFactory.getLogger(AdminController.class);
 
@@ -90,7 +93,8 @@ public class AdminController {
 	// ADMIN메인페이지
 	@RequestMapping(value = "main.ad", method = RequestMethod.GET)
 	public String admin2(Locale locale, Model model) {
-
+		
+		
 		return "admin/admin_index";
 	}
 
@@ -172,7 +176,7 @@ public class AdminController {
 		List<Project> list = AdminService.projectList();
 		model.addAttribute("list", list);
 
-		System.out.println("list : " + list);
+		System.out.println("list *******************************************************************: " + list);
 		return "admin/projectManagement";
 	}
 
@@ -219,6 +223,12 @@ public class AdminController {
 
 		System.out.println("넘어왔다~~~~~~~~~~~~~~");
 		List<Project> list = AdminService.adjustProjectList();
+		
+		if(list != null) {
+			
+			as.Adjustup(list);
+			System.out.println("ㄹ업데이드완료다이새기야");
+		}
 		
 		model.addAttribute("list", list);
 
@@ -324,6 +334,11 @@ public class AdminController {
         modelAndView = new ModelAndView("pdfReport" , parameterMap);
  
         return modelAndView;*/
+		
+		
+		
+		
+		
 }
 
 

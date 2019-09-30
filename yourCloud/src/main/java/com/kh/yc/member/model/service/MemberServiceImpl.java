@@ -212,6 +212,11 @@ public class MemberServiceImpl implements MemberService {
 		return md.interestProject2(sqlSession, userNo);
 	}
 
+  @Override
+	public int answerMessage(Message message) {
+		 
+		return md.answerMessage(sqlSession,message);
+	}
 
 
 

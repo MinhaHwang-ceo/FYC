@@ -205,13 +205,12 @@
 	<select id="selectProjectList" parameterType="java.util.Map"
 		resultMap="ProjectList">
 		SELECT P.PROJECT_NO,
-		P.PROJECT_TITLE,P.MONEY,M.COMPANY_NAME,P.END_DATE,
+		P.PROJECT_TITLE,P.MONEY,M.COMPANY_NAME,P.END_DATE,P.PROGRESS_STATUS,
 		A.NEW_FILE_NAME
 		FROM PROJECT P
 		JOIN MEMBER M ON (P.MEMBER_NO = M.MEMBER_NO)
         JOIN ATTACHMENT A ON (A.PROJECT_NO = P.PROJECT_NO)
         WHERE PROGRESS_STATUS != '오픈예정'
-        AND PROGRESS_STATUS != '실패'
         AND JUDGE_STATUS = '통과'
         AND PROGRESS_STATUS IS NOT NULL
         AND A.FILE_LEVEL=0
@@ -340,12 +339,12 @@
 	<select id="selectDetailProject" resultMap="ProjectList"
 		parameterType="java.util.Map">
 		SELECT distinct(P.PROJECT_NO), P.PROJECT_TITLE, P.SUMMARY,
-		M.COMPANY_NAME, O.PROJECT_OPEN, P.MAIN_IMG, A.NEW_FILE_NAME 
+		M.COMPANY_NAME, O.PROJECT_OPEN, P.MAIN_IMG, A.NEW_FILE_NAME ,P.PROGRESS_STATUS
 		FROM PROJECT P
 		LEFT JOIN MEMBER M ON(P.MEMBER_NO = M.MEMBER_NO)
 		LEFT JOIN OPEN_ALARM O ON(p.PROJECT_NO = O.PROJECT_NO)
 		LEFT JOIN ATTACHMENT A ON(P.PROJECT_NO = A.PROJECT_NO)
-		WHERE P.PROJECT_NO = 707442
+		WHERE P.PROJECT_NO = #{projectNo}
 		and a.file_level=0
 	</select>
 
@@ -788,7 +787,7 @@ FROM PROJECT P
 	<select id="sortProjectList" parameterType="java.util.Map"
 		resultMap="ProjectList">
 		SELECT P.PROJECT_NO,
-		P.PROJECT_TITLE,P.MONEY,M.COMPANY_NAME,P.END_DATE,A.NEW_FILE_NAME
+		P.PROJECT_TITLE,P.MONEY,M.COMPANY_NAME,P.END_DATE,A.NEW_FILE_NAME,P.PROGRESS_STATUS	
 		FROM
 		PROJECT P
 		JOIN MEMBER M ON (P.MEMBER_NO = M.MEMBER_NO)
@@ -1096,7 +1095,7 @@ where project_no=#{projectNo}
 	<delete id="deleteReply" parameterType="int" >
 		DELETE 
 		FROM REPLY 
-		WHERE REPLY_NO = ${replyNo}
+		WHERE REPLY_NO = ${value}
 	</delete>
 		<select id="interestProject5" resultMap="ProjectList"
 		parameterType="_int">
@@ -1119,6 +1118,10 @@ join attachment a on(a.project_no=p.project_no)
 where m.member_no=#{userNo}
 and a.file_level=0
 	</select>
+	
+
+	
+	
 	
 </mapper>
 

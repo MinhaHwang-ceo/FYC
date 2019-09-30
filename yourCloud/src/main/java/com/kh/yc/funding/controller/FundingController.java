@@ -479,9 +479,7 @@ public class FundingController {
 		String fileName = "sign" + System.currentTimeMillis() + ".png";
 
 		Sign s = new Sign();
-		Project p = new Project();
 		
-		p.setUserNo2(userNo);
 		s.setUserNo(Integer.parseInt(userNo));
 		s.setbNo(Integer.parseInt(bNum));
 		int result = fs.signUser(s);
@@ -492,7 +490,7 @@ public class FundingController {
 			a.setProjectNo(Integer.parseInt(bNum));
 			a.setOriginFileName(fileName);
 			a.setNewFileName(fileName);
-			as.Adjustup(p);
+			
 
 			result = fs.signFile(a);
 			try {
