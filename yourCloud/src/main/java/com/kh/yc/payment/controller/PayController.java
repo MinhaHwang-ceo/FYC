@@ -121,22 +121,15 @@ public class PayController {
 
    public void RePay(String merchantUid) {
       try {
-    	  
-    	  // 시간 예약 다시
-    	  
          Payment p = ps.selectRePay(merchantUid);
          merchantUid = p.getPayNo();
          Random random = new Random();
-
          String merchantUid2 = "refund" + random.nextInt(100000);
          String customer_uid = String.valueOf(p.getUserNo());
 
          BigDecimal amount = new BigDecimal(p.getAmount());
          ScheduleData sd = new ScheduleData(customer_uid);
-//         Calendar cal = Calendar.getInstance();
-//         cal.add(Calendar.MINUTE, 1);
          Calendar cal = Calendar.getInstance();
-         
          SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMdd");
          Date date = cal.getTime();
          String today = new SimpleDateFormat("yyyyMMdd").format(date);
@@ -161,7 +154,6 @@ public class PayController {
          ps.updatePayStatus(pay);
          sd.addSchedule(se);
          
-
          iamportClient.subscribeSchedule(sd);
       } catch (IamportResponseException | IOException e) {
          e.printStackTrace();

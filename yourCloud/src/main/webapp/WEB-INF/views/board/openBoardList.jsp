@@ -45,6 +45,12 @@
 					<td class="boardInfo"><c:out value="${ b.bCount }" /></td>
 				</tr>
 			</c:forEach>
+			<c:if test="${ empty list }">
+				<tr class="tr">
+					<td colspan="5">작성된 후기가 없습니다.</td>
+				</tr>
+			</c:if>
+			<c:if test="${ !empty list }">
 			<tr>
 				<td colspan="5" style="height:10%;">		
 					<div id="pagingArea" align="center">
@@ -81,6 +87,7 @@
 					</div>
 				</td>
 			</tr>
+			</c:if>
 			<tr>
 				<td colspan="3"><input type="search" id="searchArea" style="width: 400px" /> 
 				<select name="searchCondition" id="searchCondition">

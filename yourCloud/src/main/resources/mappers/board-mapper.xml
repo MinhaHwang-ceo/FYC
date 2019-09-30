@@ -89,12 +89,18 @@
 	<select id="selectListCount" resultType="_int">
 		SELECT 
 			COUNT(*)
-		FROM 
-			BOARD 
-		WHERE 
-			OPEN = 'Y'
+		FROM
+			BOARD B, MEMBER M, BOARD_CONTENT C
+		WHERE
+			B.BOARD_NO = C.BOARD_NO
 		AND
-			STATUS = 'N'
+			B.WRITER = M.MEMBER_NO
+		AND	
+			B.OPEN = 'Y'
+		AND
+			B.STATUS = 'N'
+		AND
+			B.BOARD_CATEGORY = '사용후기'
 	</select>
 	
 		<select id="countfile" resultType="_int" parameterType="_int">
@@ -107,24 +113,18 @@ where BOARD_NO = #{bNo}
 		SELECT
 			*
 		FROM
-			BOARD B, MEMBER M
+			BOARD B, MEMBER M, BOARD_CONTENT C
 		WHERE
-			B.WRITER = M.MEMBER_NO
+			B.BOARD_NO = C.BOARD_NO
 		AND
+			B.WRITER = M.MEMBER_NO
+		AND	
 			B.OPEN = 'Y'
 		AND
 			B.STATUS = 'N'
-		ORDER BY 
-			BOARD_NO DESC
+		AND
+			B.BOARD_CATEGORY = '사용후기'
 	</select>
-	<!-- <select id="selectOpenProject" parameterType="java.util.Map" resultMap="projectResultSet">
-		SELECT *
-		FROM PROJECT P
-	    LEFT JOIN MEMBER M ON (P.MEMBER_NO = M.MEMBER_NO)
-	    LEFT JOIN CATEGORY C ON (P.CATEGORY = C.CATEGORY)
-	    ORDER BY PROJECT_NO DESC
-		
-	</select> -->
 	<select id="selectSearchResultCount" resultType="_int">
 		SELECT
 			COUNT(*)
@@ -138,6 +138,8 @@ where BOARD_NO = #{bNo}
 			B.OPEN = 'Y'
 		AND
 			B.STATUS = 'N'
+		AND
+			B.BOARD_CATEGORY = '사용후기'
 		<choose>
 			<when test="writer != null">
 				AND M.MEMBER_ID = #{writer}
@@ -163,6 +165,8 @@ where BOARD_NO = #{bNo}
 			B.OPEN = 'Y'
 		AND
 			B.STATUS = 'N'
+		AND
+			B.BOARD_CATEGORY = '사용후기'
 		<choose>
 			<when test="writer != null">
 				AND M.MEMBER_ID LIKE '%' || #{writer} || '%'
@@ -181,7 +185,7 @@ where BOARD_NO = #{bNo}
 	<insert id="insertBoard">
 		INSERT INTO BOARD(BOARD_NO, BOARD_TITLE, WRITER, VIEW_COUNT, OPEN, STATUS, BOARD_CATEGORY, REF_BOARD_NO, CREATE_DATE)
 		VALUES(
-		    	SEQ_BOARDNO.NEXTVAL, #{bTitle}, #{writer}, 0, 'Y', 'N', DEFAULT, NULL, SYSDATE
+		    	SEQ_BOARDNO.NEXTVAL, #{bTitle}, #{writer}, 0, 'Y', 'N', '사용후기', NULL, SYSDATE
 		    )
 	</insert>
 	

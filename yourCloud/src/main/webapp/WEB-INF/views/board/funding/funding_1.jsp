@@ -254,30 +254,32 @@
          });
       });
 
-      $("#btn1").click(
-         function() {
-            var target = "";
-            var targetCnt = "";
-   
-            var userNo = '${ m.userNo}';
-            var price = "";
-            var projectNo = '${p.projectNo}';
-            var target = "";
-            var targetCnt = "";
-            var price = "";
-            
-            $(".check:checked").each(function() {
-               target += $(this).siblings().eq(0).val();
-               target += "$";
-               targetCnt += $(this).parent().parent().siblings().eq(4).children().eq(0).children().eq(0).val();
-               targetCnt += "$";
-               price += $(this).siblings().eq(1).val();
-               price += "$";
-            });
-            location.href = "funding_2.bo?projectNo=" + projectNo + "&target=" + target + "&targetCnt=" + targetCnt 
-                     + "&price=" + price + "&userNo=" + userNo + "&blind=" + blind;
-         });
-   </script>
+
+		$("#btn1").click(
+			function() {
+				var target = "";
+				var targetCnt = "";
+	
+				var userNo = '${ m.userNo}';
+				var price = "";
+				var projectNo = '${p.projectNo}';
+				var target = "";
+				var targetCnt = "";
+				var price = "";
+				
+				$(".check:checked").each(function() {
+					target += $(this).siblings().eq(0).val();
+					target += "$";
+					targetCnt += $(this).parent().parent().siblings().eq(4).children().eq(0).children().eq(0).val();
+					targetCnt += "$";
+					price += $(this).siblings().eq(1).val();
+					price += "$";
+				});
+				location.href = "funding_2.bo?projectNo=" + projectNo + "&target=" + target + "&targetCnt=" + targetCnt 
+							+ "&price=" + price + "&userNo=" + userNo + "&blind=" + blind;
+			});
+	</script>
+
 
 </body>
 </html>
