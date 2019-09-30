@@ -404,7 +404,7 @@ a {
 			
 			<c:if test="${ !empty sessionScope.loginUser }"> 
 			<button type="button" class="btn btn-info" style="width:200px; margin:0 auto;"
-			onclick="window.open('replyProject.ca?projectNo=${detail.projectNo}','_blank', 'width=550,height=580');return false;" 
+			onclick="window.open('replyProject.ca?projectNo=${detail.projectNo}','_blank', 'width=600,height=630');return false;" 
 			>댓글 남기기</button>
 			</c:if>
 			

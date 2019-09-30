@@ -27,6 +27,7 @@ import com.siot.IamportRestClient.IamportClient;
 import com.siot.IamportRestClient.exception.IamportResponseException;
 import com.siot.IamportRestClient.request.ScheduleData;
 import com.siot.IamportRestClient.request.ScheduleEntry;
+import com.siot.IamportRestClient.request.UnscheduleData;
 
 @RestController()
 public class PayController {
@@ -39,6 +40,40 @@ public class PayController {
    IamportClient iamportClient = new IamportClient("8768417829708074",
          "xZUSL0NpyUxc1GBMg0lYT41iQYv8hFgOFbGqcuQKonXq4yclyyjsCkKsjgBAVRoB351fzSZYfXojvBE4");
 
+   
+   @RequestMapping("cancleFund.pa")
+   public ModelAndView cancleFund(ModelAndView mv, String userNo, String projectNo) {
+	   	Funding fund = new Funding();
+	   	fund.setProjectNo(Integer.parseInt(projectNo));
+	   	fund.setUserNo(Integer.parseInt(userNo));
+	   	
+	   	fund = ps.selectFund(fund);
+	   	
+	   	Payment pay = ps.selectPay(fund);
+	   	
+	   	UnscheduleData unscheduleData = new UnscheduleData(userNo);
+		unscheduleData.addMerchantUid(pay.getPayNo());
+		
+
+		try {
+			iamportClient.unsubscribeSchedule(unscheduleData);
+		} catch (IamportResponseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		ps.deletePay(pay);
+		ps.deleteDeliveryStatus(pay);
+		ps.deleteDelivery(pay);
+		ps.deleteFund(fund);
+		ps.deleteSpon(fund);
+		mv.setViewName("jsonView");
+		return mv;
+		
+   }
    @RequestMapping("billingKey.fd")
    public ModelAndView billingKey(String customer_uid, String price, String phone, String deliverySite, String etc, String userName, String userNo, String projectNo, String rewardCount, String fundMoney, String rewardNo, String totalPrice, String blind, HttpServletRequest request, ModelAndView mv) {
       Project p = bs.selectProject(Integer.parseInt(projectNo));

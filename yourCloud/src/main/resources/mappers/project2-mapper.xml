@@ -1167,10 +1167,65 @@ join attachment a on(a.project_no=p.project_no)
 where m.member_no=#{userNo}
 and a.file_level=0
 	</select>
-	
-
-	
-	
-	
+	<select id="selectFundCount" resultType="_int">
+		SELECT
+			COUNT(*)
+		FROM
+			FUND
+		WHERE
+			MEMBER_NO = #{userNo}
+		AND
+			PROJECT_NO = #{projectNo}
+	</select>
+	<select id="selectFund" resultMap="FundingList">
+		SELECT
+			*
+		FROM
+			FUND
+		WHERE
+			MEMBER_NO = #{userNo}
+		AND
+			PROJECT_NO = #{projectNo}
+	</select>
+	<select id="selectPay" resultMap="PaymentList">
+		SELECT
+			*
+		FROM
+			PAYMENT
+		WHERE
+			FUND_NO = #{fundNo}
+	</select>
+	<delete id="deletePay">
+		DELETE FROM
+			PAYMENT
+		WHERE
+			PAY_NO = #{payNo}
+	</delete>
+	<delete id="deleteFund">
+		DELETE FROM
+			FUND
+		WHERE
+			FUND_NO = #{fundNo}
+	</delete>
+	<delete id="deleteDeliveryStatus">
+		DELETE FROM
+			DELIVERY_STATUS
+		WHERE
+			DELIVERY_NO = #{fundNo}
+	</delete>
+	<delete id="deleteDelivery">
+		DELETE FROM
+			DELIVERY
+		WHERE
+			DELIVERY_NO = #{fundNo}
+	</delete>
+	<delete id="deleteSpon">
+		DELETE FROM
+			SPONSORED
+		WHERE
+			MEMBER_NO = #{userNo}
+		AND
+			PROJECT_NO = #{projectNo}
+	</delete>
 </mapper>
 

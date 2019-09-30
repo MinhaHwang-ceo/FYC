@@ -20,7 +20,7 @@
 <body>
 <div>
 	<br>
-	<div style="font-family: 'Nanum Gothic', sans-serif; position:relative; height:1000px;">
+	<div style="font-family: 'Nanum Gothic', sans-serif; position:relative;  height:1000px;">
 	<form id="form1">
 
 			<div class="myMessage">
