@@ -69,6 +69,22 @@ public class NaverController {
 		return "member/joinNaver";
 	}
 	
+	@RequestMapping(value = "joinMain.me", method = { RequestMethod.GET, RequestMethod.POST })
+	public String joinMain(Model model, HttpSession session) {
+		/* 네이버아이디로 인증 URL을 생성하기 위하여 naverLoginBO클래스의 getAuthorizationUrl메소드 호출 */
+		String naverAuthUrl = naverLoginBO.getAuthorizationUrl(session);
+		// https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=sE***************&
+
+		// redirect_uri=http%3A%2F%2F211.63.89.90%3A8090%2Flogin_project%2Fcallback&state=e68c269c-5ba9-4c31-85da-54c16c658125
+		System.out.println("네이버:" + naverAuthUrl);
+
+		// 네이버
+		model.addAttribute("url", naverAuthUrl);
+		
+		return "member/joinMain";
+		
+	}
+	
 	
 	
 	// 로그인 첫 화면 요청 메소드
@@ -141,6 +157,9 @@ public class NaverController {
 		nm.setEmail(naveremail);
 		// Member NaverUser ms.Servlet
 		// 4.파싱 닉네임 세션으로 저장
+		//model.addAttribute("naverloginUser", naverId);
+	   //model.addAttribute("result", apiResult);
+		
 		
 		//System.out.println("apiResult => " + apiResult);
 		System.out.println("nm :" + nm);
@@ -150,18 +169,19 @@ public class NaverController {
 		if (chk < 1) {
 			
 			System.out.println(nm);
-			model.addAttribute("naverLoginUser", nm);
+			model.addAttribute("loginUser", nm);
 			return "member/joinNaver";
 		}else {
 			
-			model.addAttribute("naverLoginUser", nm);
 			
-			return "redirect:index.jsp";
+			model.addAttribute("loginUser", nm);
+			
+			 return "redirect:index.jsp";
 		}
 
 	}
 	  @RequestMapping("naverJoinGo.ne")
-	 	public String naverJoinGo(Member m, Model model,HttpServletRequest request, HttpServletResponse response) {
+	 	public String naverJoinGo(Member m, Model model,HttpServletRequest request, HttpServletResponse response,HttpSession session) {
 		  System.out.println(m);
 		  String userId = request.getParameter("userId");
 		  String email = request.getParameter("email");
@@ -201,7 +221,8 @@ public class NaverController {
 			int insert = ms.naverInsert(nm);
 			
 			
-			return "member/loginMain";
+			model.addAttribute("loginUser",nm);
+			return "redirect:index.jsp";
 	 	}
 }
 

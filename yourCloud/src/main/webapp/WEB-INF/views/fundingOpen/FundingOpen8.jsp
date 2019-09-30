@@ -55,7 +55,9 @@
 
 #menu li {
 	float: left;
-	font-size: 20px;
+	font-size: 25px;
+	font-family: 'Sunflower', sans-serif;
+	board-left:1px solid #d9d9de;
 }
 
 #menu a {
@@ -64,6 +66,10 @@
 	line-height: 35px;
 	padding: 0 35px;
 }
+#menu {
+	border: 1px solid black;
+}
+
 
 #menu a:hover {
 	cursor: pointer;
@@ -137,7 +143,7 @@ table td{
 				<tr>
 					<td rowspan="2"><h5>오픈예정 신청</h5> 오픈예정 진행 여부를 선택해주세요. </td>
 					<td style="background: white; border:">
-						<input type="radio" id="c1" name="progressStatus" value="" /></td>
+						<input type="radio" id="c1" name="progressStatus" value="오픈" /></td>
 					<td><label for="c1">오픈예정 진행하지 않고,바로 프로젝트 오픈<br /></label></td>
 				</tr>
 				<tr>

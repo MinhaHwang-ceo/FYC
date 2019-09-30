@@ -61,15 +61,14 @@ public class MemberController {
 	 * 
 	 * }
 	 */
-
-    
-    
-    
-     @RequestMapping(value = "joinMain.me", method = RequestMethod.GET)
- 	public String join(Locale locale, Model model) {
- 		
- 		return "member/joinMain";
- 	}
+	
+	/*
+	 * @RequestMapping(value = "joinMain.me", method = RequestMethod.GET) public
+	 * String join(Locale locale, Model model) {
+	 * 
+	 * 
+	 * }
+	 */
     
    
 

@@ -85,7 +85,9 @@ input[type="checkbox"]:checked+label span {
 
 #menu li {
 	float: left;
-	font-size: 20px;
+	font-size: 25px;
+	font-family: 'Sunflower', sans-serif;
+	board-left:1px solid #d9d9de;
 }
 
 #menu a {
@@ -94,6 +96,10 @@ input[type="checkbox"]:checked+label span {
 	line-height: 35px;
 	padding: 0 35px;
 }
+#menu {
+	border: 1px solid black;
+}
+
 
 #menu a:hover {
 	cursor: pointer;

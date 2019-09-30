@@ -22,6 +22,7 @@
   
   #btn{
   	width:300px;
+  	height: 51px;
   }
   
   #img{
@@ -52,7 +53,13 @@
 		<tr><td><br></td></tr>
 	
 		<tr>
-			<td><input type="button" id="btn" class="btn btn-success" value="네이버로 회원가입" onclick="location.href='${contextPath}/joinNaver.me'"></td>
+			<td>
+				<div id="naver_id_login" style="text-align: center;">
+					<a href="${ url }"><img style="margin: 0 auto; width: 300px; height: 51px;"
+					src="https://developers.naver.com/doc/review_201802/CK_bEFnWMeEBjXpQ5o8N_20180202_7aot50.png" />
+					</a>
+				</div>
+			</td>
 		</tr>
 		
 		<tr><td><br></td></tr>
