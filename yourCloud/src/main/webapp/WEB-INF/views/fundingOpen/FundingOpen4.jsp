@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+   pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
@@ -7,103 +7,105 @@
 <meta charset="UTF-8">
 <title>펀딩하기</title>
 <script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+   src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <link
-	href="https://fonts.googleapis.com/css?family=Sunflower:300&display=swap"
-	rel="stylesheet">
+   href="https://fonts.googleapis.com/css?family=Sunflower:300&display=swap"
+   rel="stylesheet">
 <!-- Bootstrap CSS -->
 <link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+   href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 <script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+   src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <link
-	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"
-	rel="stylesheet">
+   href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"
+   rel="stylesheet">
 <link
-	href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,600,700,800"
-	rel="stylesheet">
+   href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,600,700,800"
+   rel="stylesheet">
 <link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.3.0/ekko-lightbox.css">
+   href="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.3.0/ekko-lightbox.css">
 
 <link rel="stylesheet" href="/yc/resources/css/animate.css">
 <link href="/yc/resources/css/main.css" rel="stylesheet" />
 <style>
 body {
-	background-color: rgb(246, 249, 249);
-	font-family: 'Sunflower', sans-serif;
+   background-color: rgb(246, 249, 249);
+   font-family: 'Sunflower', sans-serif;
 }
 
 #personal {
-	color: White;
-	font-family: 'Sunflower', sans-serif;
+   color: White;
+   font-family: 'Sunflower', sans-serif;
 }
 
 #textbox {
-	font-size: 13px;
-	color: red;
-	border: 1px solid red;
-	font-family: 'Sunflower', sans-serif;
+   font-size: 13px;
+   color: red;
+   border: 1px solid red;
+   font-family: 'Sunflower', sans-serif;
 }
 
 #inputBox {
-	width: 900px;
-	position: relatve;
-	z-index: 2;
-	background: White;
-	margin: 0 auto;
-	font-family: 'Sunflower', sans-serif;
+   width: 900px;
+   position: relatve;
+   z-index: 2;
+   background: White;
+   margin: 0 auto;
+   font-family: 'Sunflower', sans-serif;
 }
 
 #fno {
+
 	width: 400px;
 	height: 100px;
 	font-family: 'Sunflower', sans-serif;
 	 background-color: #f8f8f8; border: 1px solid #dddddd;
+
 }
 
 table {
-	border-spacing: 50px;
-	margin-left: 20px;
-	font-family: 'Sunflower', sans-serif;
+   border-spacing: 50px;
+   margin-left: 20px;
+   font-family: 'Sunflower', sans-serif;
 }
 
 input {
-	width: 300px;
-	height: 50px;
-	font-family: 'Sunflower', sans-serif;
+   width: 300px;
+   height: 50px;
+   font-family: 'Sunflower', sans-serif;
 }
 
 #browsers {
-	width: 300px;
-	height: 30px;
-	font-family: 'Sunflower', sans-serif;
+   width: 300px;
+   height: 30px;
+   font-family: 'Sunflower', sans-serif;
 }
 
 input[type="checkbox"] {
-	display: none;
-	font-family: 'Sunflower', sans-serif;
+   display: none;
+   font-family: 'Sunflower', sans-serif;
 }
 
 input[type="checkbox"]+label {
-	font-size: 13px;
-	font-family: 'Sunflower', sans-serif;
+   font-size: 13px;
+   font-family: 'Sunflower', sans-serif;
 }
 input[type="checkbox"]+label span {
-	display: inline-block;
-	width: 15px;
-	height: 15px;
-	margin: -2px 10px 0 0;
-	vertical-align: middle;
-	background:
-		url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/210284/check_radio_sheet.png)
-		left top no-repeat;
-	cursor: pointer;
-	font-family: 'Sunflower', sans-serif;
+   display: inline-block;
+   width: 15px;
+   height: 15px;
+   margin: -2px 10px 0 0;
+   vertical-align: middle;
+   background:
+      url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/210284/check_radio_sheet.png)
+      left top no-repeat;
+   cursor: pointer;
+   font-family: 'Sunflower', sans-serif;
 }
 input[type="checkbox"]:checked+label span {
-	background:
-		url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/210284/check_radio_sheet.png)
-		-19px top no-repeat;
+   background:
+      url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/210284/check_radio_sheet.png)
+      -19px top no-repeat;
 }
 td {
 	padding: 3px;
@@ -113,32 +115,33 @@ td {
 }
 input {
 	border: 2px solid #dddddd;"
+
 }
 #contentImgArea1 {
-	width: 150px;
-	height: 100px;
-	border: 2px dashed darkgray;
-	text-align: center;
-	display: table-cell;
-	vertical-align: middle;
+   width: 150px;
+   height: 100px;
+   border: 2px dashed darkgray;
+   text-align: center;
+   display: table-cell;
+   vertical-align: middle;
 }
 #contentImgArea1:hover {
-	cursor: pointer;
+   cursor: pointer;
 }
 #menu li  {
-	float: left;
-	font-size: 25px;
-	font-family: 'Sunflower', sans-serif;
-	border: 1px solid black;
-	font-family: 'Sunflower', sans-serif;
+
+   float: left;
+   font-size: 25px;
+   font-family: 'Sunflower', sans-serif;
+   border: 1px solid black;
 }
 
 #menu a {
-	display: block;
-	height: 40px;
-	line-height: 35px;
-	padding: 0 35px;
-	font-family: 'Sunflower', sans-serif;
+   display: block;
+   height: 40px;
+   line-height: 35px;
+   padding: 0 35px;
+
 }
 
 
@@ -150,8 +153,11 @@ input {
 
 
 #menu a:hover {
-	cursor: pointer;
-	background: lightgreen;
+   cursor: pointer;
+   background: lightgreen;
+}
+.ull {
+   board
 }
 .ull {
 	board
@@ -193,6 +199,7 @@ a {
    padding: 0 50px;
    line-height: 25px;
    background-color: red;
+
 }
 button {
 	width:120px;
@@ -210,15 +217,17 @@ button {
 button:hover {
 	cursor: pointer;
 	background: orange;
+
 }
 
 </style>
 </head>
 <jsp:include page="../common/customer_menubar.jsp" />
-<jsp:include page="../common/customer_menuList.jsp"/>	
+<jsp:include page="../common/customer_menuList.jsp"/>   
 <div id="top" style="width: 100%;">
 <br /><br /><br />
 <div id="menu" style="width: 60%;height: 30px; margin: 0 auto;">
+
 		<ul class="ull">
 			<li><a onclick="basicInfo();" id="basic">기본정보</a></li>
 			<li><a onclick="rewardList();" id="reward">리워드</a></li>
@@ -241,31 +250,32 @@ button:hover {
 		</ul>
 	</div>  --%>
 <script>
-	function basicInfo(){
-		var projectNo = $("#projectNo").val();
-		location.href = "baseInfoList.fd?projectNo=" + projectNo;
-	}
-	
-	function rewardList(){
-		var projectNo = $("#projectNo").val();
-		location.href = "rewardList.fd?projectNo=" + projectNo;
-	}
-	function rewardStory(){
-		var projectNo = $("#projectNo").val();
-		location.href = "rewardStory.fd?projectNo=" + projectNo;
-		
-	} 
-	function makerInfo() {
-		var projectNo = $("#projectNo").val();
-		location.href = "makerInfo.fd?projectNo=" + projectNo;
-		
-	}
+   function basicInfo(){
+      var projectNo = $("#projectNo").val();
+      location.href = "baseInfoList.fd?projectNo=" + projectNo;
+   }
+   
+   function rewardList(){
+      var projectNo = $("#projectNo").val();
+      location.href = "rewardList.fd?projectNo=" + projectNo;
+   }
+   function rewardStory(){
+      var projectNo = $("#projectNo").val();
+      location.href = "rewardStory.fd?projectNo=" + projectNo;
+      
+   } 
+   function makerInfo() {
+      var projectNo = $("#projectNo").val();
+      location.href = "makerInfo.fd?projectNo=" + projectNo;
+      
+   }
 </script>
 <br />
 <br />
 <input id="pp" type="hidden" value="${p.category }" />
 <br>
 <div>
+
 	<div id="inputBox" align="center">
 		<form id="saveForm" method="post" enctype="multipart/form-data">
 			<input type="hidden" id="projectNo" value="${p.projectNo}"
@@ -572,38 +582,38 @@ button:hover {
 
 </div>
 <script>
-	$(function() {
+   $(function() {
 
-		$("#browsers").val($("#pp").val()).prop("selected", true);
-		$("#fileArea");
+      $("#browsers").val($("#pp").val()).prop("selected", true);
+      $("#fileArea");
 
-		$("#contentImgArea1").click(function() {
-			$("#photo").click();
-		});
+      $("#contentImgArea1").click(function() {
+         $("#photo").click();
+      });
 
-	});
+   });
 
-	function loadImg(value, num) {
-		if (value.files && value.files[0]) {
-			var reader = new FileReader();
+   function loadImg(value, num) {
+      if (value.files && value.files[0]) {
+         var reader = new FileReader();
 
-			reader.onload = function(e) {
-				switch (num) {
-				case 1:
-					$("#contentImg1").attr("src", e.target.result);
-					break;
-				}
-			}
-			reader.readAsDataURL(value.files[0]);
-		}
-	}
+         reader.onload = function(e) {
+            switch (num) {
+            case 1:
+               $("#contentImg1").attr("src", e.target.result);
+               break;
+            }
+         }
+         reader.readAsDataURL(value.files[0]);
+      }
+   }
 
-	function save() {
-		$("#saveForm").attr("action", "FundingOpen5.fd");
-	}
-	function btn_Next() {
-		$("#saveForm").attr("action", "FundingOpenNext5.fd");
-	}
+   function save() {
+      $("#saveForm").attr("action", "FundingOpen5.fd");
+   }
+   function btn_Next() {
+      $("#saveForm").attr("action", "FundingOpenNext5.fd");
+   }
 </script>
 
 

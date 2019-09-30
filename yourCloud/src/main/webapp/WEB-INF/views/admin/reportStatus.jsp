@@ -23,7 +23,6 @@
                
             }
             opener.parent.location.reload();
-      	 	window.close();
          });
       });
       function st_close(){

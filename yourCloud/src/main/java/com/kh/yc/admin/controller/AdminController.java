@@ -165,7 +165,7 @@ public class AdminController {
 
 		AdminService.updateReport(p);
 
-		return "redirect:/project6.ad";
+		return "redirect:/reportStatus.ad";
 	}
 
 	// 신청 프로젝트 리스트
@@ -198,7 +198,9 @@ public class AdminController {
 		System.out.println(p.getJudgeStatus() + "option");
 
 		AdminService.updateProject(p);
-
+		
+		
+		System.out.println("******************&&&되니************************");
 		return "redirect:/projectStatus.ad";
 	}
 	
