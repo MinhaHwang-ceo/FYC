@@ -410,6 +410,10 @@ public class ProjectDaoImpl implements ProjectDao{
 	
 		return sqlSession.selectOne("Project2.getSortListCount",category);
 	}
+	@Override
+	public int selectFundCount(SqlSessionTemplate sqlSession, Funding fund) {
+		return sqlSession.selectOne("Project2.selectFundCount", fund);
+	}
 
 
 

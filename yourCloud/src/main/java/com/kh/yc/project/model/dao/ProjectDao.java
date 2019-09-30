@@ -103,6 +103,7 @@ void   updateDB(SqlSessionTemplate sqlSession,Map<String, Object> map);
 	int getSortListCount(SqlSessionTemplate sqlSession, String category);
 	
 	void updateReport(SqlSessionTemplate sqlSession, Report report);
+	int selectFundCount(SqlSessionTemplate sqlSession, Funding fund);
 
 
 

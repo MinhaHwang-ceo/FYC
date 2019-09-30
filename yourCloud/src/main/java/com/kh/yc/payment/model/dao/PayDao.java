@@ -47,4 +47,18 @@ public interface PayDao {
 
 	void insertAdjust(SqlSessionTemplate sqlSession, ArrayList<Project> fundSuccessProject);
 
+	Funding selectFund(SqlSessionTemplate sqlSession, Funding fund);
+
+	Payment selectPay(SqlSessionTemplate sqlSession, Funding fund);
+
+	void deletePay(SqlSessionTemplate sqlSession, Payment pay);
+
+	void deleteFund(SqlSessionTemplate sqlSession, Funding fund);
+
+	void deleteDeliveryStatus(SqlSessionTemplate sqlSession, Payment pay);
+
+	void deleteDelivery(SqlSessionTemplate sqlSession, Payment pay);
+
+	void deleteSpon(SqlSessionTemplate sqlSession, Funding fund);
+
 }

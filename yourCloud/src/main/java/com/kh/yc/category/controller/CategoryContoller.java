@@ -39,7 +39,7 @@ public class CategoryContoller {
 	ProjectService ps;
 
 	@RequestMapping(value = "/categoryOne.ca", method = RequestMethod.GET)
-	public String categoryOne(@RequestParam int projectNo,HttpServletRequest request, HttpServletResponse response) {
+	public String categoryOne(@RequestParam int projectNo,HttpServletRequest request, HttpServletResponse response, Model model) {
 		
 		//실시간 시간 테스트중
 		/*
@@ -93,6 +93,15 @@ public class CategoryContoller {
 		ArrayList<Reward> reward =  ps.rewardList(projectNo);
 		//System.out.println(reward);
 		
+		Funding fund = new Funding();
+		fund.setProjectNo(projectNo);
+		fund.setUserNo(mNo);
+		
+		
+		int fundCnt = ps.selectFundCount(fund);
+		
+		System.out.println(fundCnt);
+		
 		request.setAttribute("reportCount", reportCount);
 		request.setAttribute("projectNo", projectNo);
 		request.setAttribute("sumFundMoney", sumFundMoney);
@@ -101,7 +110,7 @@ public class CategoryContoller {
 		request.setAttribute("encoreCount", encoreCount);
 		request.setAttribute("reward", reward);
 		request.setAttribute("makerImg", makerImg);
-		
+		model.addAttribute("fundCnt", fundCnt);
 		
 		return "main/categoryOne";
 
