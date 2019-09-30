@@ -80,6 +80,8 @@ ArrayList<Message> sendMessageList(SqlSessionTemplate sqlSession, Member member)
 
 int deleteReply(SqlSessionTemplate sqlSession, int replyNo);
 
+int answerMessage(SqlSessionTemplate sqlSession, Message message);
+
 
 
 

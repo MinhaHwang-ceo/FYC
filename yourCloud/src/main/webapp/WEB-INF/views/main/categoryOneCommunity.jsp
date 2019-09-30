@@ -438,7 +438,7 @@ a {
        		<td width="150"><c:out value="${reward.userName }"></c:out></td>
        		<td width="700"><c:out value="${reward.replyComment }"/></td>    
        		<td><button id="btn1">수정</button></td>
-        	<td><button id="btn1"  onclick="location.href='deleteReply.me?replyNo=${reward.replyNo}'">삭제</button></td>
+        	<td><button id="btn1" class="replyNo" value="${reward.replyNo}" onclick="deleteReply();">삭제</button></td>
       	</c:if>
       	
       	<c:if test="${loginUser.userNo ne reward.userNo }">
@@ -456,7 +456,32 @@ a {
   </table>
 </div>
 </div>
+<script>
 
+function deleteReply(){
+	
+    var replyNo = $(".replyNo").val();
+	console.log(replyNo);
+	
+	
+	$.ajax({
+		cache:false,
+		url : "deleteReply.me",
+		data : {replyNo : replyNo},
+		success : function(data){
+			alert("댓글이 삭제되었습니다");
+			location.reload();
+		},error : function(data){
+			console.log(data);
+			alert("댓글이 삭제되었습니다");
+			location.reload();
+		}
+	})
+	
+	
+}
+
+</script>
 
 
 <script>
@@ -468,6 +493,10 @@ $(document).ready(function(){
     });
   });
 });
+
+
+
+
 </script>
 		
 		</div>						

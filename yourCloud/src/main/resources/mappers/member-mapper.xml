@@ -224,6 +224,13 @@
 	</select>
 	
 
+	<insert id="answerMessage">
+		INSERT INTO 
+		MESSAGE (MESSAGE_NO,SEND_MEMBER,RECEIVE_MEMBER,CREATE_DATE,MESSAGE_CONTENT,STATUS)
+		VALUES
+		(SEQ_MESSAGENO.NEXTVAL,#{sendMember},#{receiveMember},SYSDATE,#{messageContent},'N')
+	
+	</insert>
 	
 	
 

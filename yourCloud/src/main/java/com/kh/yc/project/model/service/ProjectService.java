@@ -10,6 +10,7 @@ import com.kh.yc.category.model.vo.Reply;
 import com.kh.yc.category.model.vo.Report;
 import com.kh.yc.funding.model.vo.Funding;
 import com.kh.yc.member.model.vo.Member;
+import com.kh.yc.member.model.vo.Message;
 import com.kh.yc.project.model.exception.ProjectSelectListException;
 import com.kh.yc.project.model.vo.Interest;
 import com.kh.yc.project.model.vo.OpenAlarm;
