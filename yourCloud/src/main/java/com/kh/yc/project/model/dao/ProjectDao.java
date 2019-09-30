@@ -23,6 +23,7 @@ import com.kh.yc.reward.model.vo.RewardInfo;
 public interface ProjectDao {
 	//게시물 목록 조회용 메소드
 	int getListCount(SqlSessionTemplate sqlSession) throws ProjectSelectListException;
+	int getListCount4(SqlSessionTemplate sqlSession) throws ProjectSelectListException;
 	//페이징 처리 된 게시물 목록 조회용 메소드
 	public ArrayList<Project> selectBoardList(SqlSessionTemplate sqlSession, PageInfo pi) throws ProjectSelectListException;
 	//게시판 상세보기

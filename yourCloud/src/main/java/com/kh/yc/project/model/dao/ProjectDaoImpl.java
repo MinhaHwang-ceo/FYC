@@ -33,6 +33,14 @@ public class ProjectDaoImpl implements ProjectDao{
 		
 		return result;
 	}
+	@Override
+	public int getListCount4(SqlSessionTemplate sqlSession) throws ProjectSelectListException{
+		
+		
+		int result = sqlSession.selectOne("Project2.selectListCount4");
+		
+		return result;
+	}
 	
 	@Override
 	public int getListCount2(SqlSessionTemplate sqlSession,int userNo) {

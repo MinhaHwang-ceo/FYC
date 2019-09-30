@@ -229,8 +229,8 @@ public class MemberController {
 
 		int port = 465;
 		String recipient = email;
-		String subject = "메일테스트";
-		String body = authNum + "입니다";
+		String subject = "인증메일을 보내드립니다";
+		String body = "니가그린 구름그림의 인증번호는"+authNum + "입니다";
 		Properties props = System.getProperties(); // 정보를 담기 위한 객체 생성
 		props.put("mail.smtp.host", host);// SMTP 서버 정보 설정
 		props.put("mail.smtp.port", port);

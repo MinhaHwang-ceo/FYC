@@ -202,6 +202,16 @@ public class MemberServiceImpl implements MemberService {
 		return md.deleteReply(sqlSession,replyNo);
 	}
 
+	@Override
+	public ArrayList<Project> interestProject(int userNo) {
+		return md.interestProject(sqlSession, userNo);
+	}
+
+	@Override
+	public ArrayList<Project> interestProject2(int userNo) {
+		return md.interestProject2(sqlSession, userNo);
+	}
+
 
 
 

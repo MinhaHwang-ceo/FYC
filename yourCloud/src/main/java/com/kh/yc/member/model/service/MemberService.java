@@ -63,6 +63,10 @@ public interface MemberService {
 
 	public int deleteReply(int replyNo);
 
+	ArrayList<Project> interestProject(int userNo);
+
+	ArrayList<Project> interestProject2(int userNo);
+
 
 	
 

@@ -46,6 +46,13 @@ public class ProjectServiceImpl implements ProjectService {
 
 		return listCount;
 	}
+	@Override
+	public int getListCount4() throws ProjectSelectListException {
+
+		int listCount = pd.getListCount4(sqlSession);
+
+		return listCount;
+	}
 	
 	@Override
 	public int getListCount2(int userNo)  {
