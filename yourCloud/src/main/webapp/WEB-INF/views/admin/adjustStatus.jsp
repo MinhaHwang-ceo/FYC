@@ -24,7 +24,6 @@
                
             }else{window.close();}
             opener.parent.location.reload();
-      	 	window.close();
          });
       });
       function st_close(){

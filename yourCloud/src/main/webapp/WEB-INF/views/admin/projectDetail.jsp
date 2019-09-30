@@ -19,12 +19,11 @@
             var projectNo = $("#projectNo").val();
             if(confirm("수정하시겠습니까?")){
             	judgeStatus = $("#judgeStatus").val();
-         console.log(judgeStatus);
                location.href = "projectUpdate.ad?projectNo="+projectNo+"&judgeStatus="+judgeStatus;
                
             }
-            opener.parent.location.reload();
-      	 	window.close();
+            
+         opener.parent.location.reload();
          });
       });
       function st_close(){

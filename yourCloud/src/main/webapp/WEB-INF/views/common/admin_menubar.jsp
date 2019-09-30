@@ -67,7 +67,7 @@
             <h6 class="collapse-header">관리</h6>
             <a class="collapse-item" href="${ pageContext.request.contextPath}/member.ad">회원관리</a>
             <a class="collapse-item" href="${ pageContext.request.contextPath}/project6.ad">신고관리</a>
-            <a class="collapse-item" href="${ pageContext.request.contextPath}/project2.ad">장부관리</a>
+         <%--    <a class="collapse-item" href="${ pageContext.request.contextPath}/project2.ad">장부관리</a> --%>
 <%--             <a class="collapse-item" href="${ pageContext.request.contextPath}/excel2.ad">엑셀테스트</a>
             <a class="collapse-item" href="${ pageContext.request.contextPath}/excel.ad">엑셀테스트2</a>
             <a class="collapse-item" href="${ pageContext.request.contextPath}/reportTest2.ad">리포트테스트</a>  --%>
@@ -99,12 +99,12 @@
       <div class="sidebar-heading">
         	데이터
       </div>
-      
+<%--       
       <li class="nav-item">
         <a class="nav-link" href="${ contextPath }/project4.ad">
           <i class="fas fa-fw fa-chart-area"></i>
           <span>통계</span></a>
-      </li>
+      </li> --%>
 
       <!-- Nav Item - Pages Collapse Menu -->
       <li class="nav-item">

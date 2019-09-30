@@ -732,7 +732,7 @@ console.log("D:::"+userNoString)
          console.log("dddddddd"+bNum);2
          console.log("dddddddd"+userNo);
          console.log("dddddddd"+endDate);
-         googleQRUrl = "https://chart.googleapis.com/chart?chs=177x177&cht=qr&chl="+"http://192.168.0.39:8001/yc/categoryOne.ca?projectNo="+bNum;
+         googleQRUrl = "https://chart.googleapis.com/chart?chs=177x177&cht=qr&chl="+"http://192.168.130.142:8001/yc/categoryOne.ca?projectNo="+bNum;
          console.log("DdddddddDD"+googleQRUrl)
              // 이미지가 나타날 영역에 원하는 내용을 넣은 QR code의 이미지를 출력합니다.
 
