@@ -124,6 +124,7 @@ td {
 	float: left;
 	font-size: 25px;
 	font-family: 'Sunflower', sans-serif;
+	board-left:1px solid #d9d9de;
 }
 
 #menu a {
@@ -140,6 +141,43 @@ td {
 #menu a:hover {
 	cursor: pointer;
 	background: lightgreen;
+}
+
+body, ul {
+   margin: 0;
+   padding: 0;
+}
+
+li {
+   list-style-type: none;
+}
+
+a {
+   text-decoration: none;
+}
+
+.tab-list {
+   text-align: center;
+}
+
+.tab-list ul {
+   display: inline-block;
+   *display: inline;
+   zoom: 1;
+}
+
+.tab-list ul li {
+   float: left;
+   margin-left: -1px;
+   z-index: 1;
+  
+}
+
+.tab-story a{
+   height: 40px;
+   padding: 0 50px;
+   line-height: 30px;
+  
 }
 
 </style>
@@ -159,6 +197,17 @@ td {
 		</ul>
 	</div>
 </div>
+
+
+	<%-- <div class="tab-list">
+		<ul class="tab-story">
+			<li><a href="#" class="tab-link">스토리</a></li>
+			<li><a href="categoryOneFunding.ca?projectNo=${detail.projectNo}" class="tab-link">펀딩안내</a></li>
+			<li><a href="categoryOneNews.ca?projectNo=${detail.projectNo}" class="tab-link">새소식</a></li>
+			<li><a href="categoryOneCommunity.ca?projectNo=${detail.projectNo}" class="tab-link">커뮤니티</a></li>
+			<li><a href="categoryOneSupporter.ca?projectNo=${detail.projectNo}" class="tab-link">서포터</a></li>
+		</ul>
+	</div> --%>
 <script>
 	function basicInfo(){
 		var projectNo = $("#projectNo").val();
@@ -295,7 +344,7 @@ td {
 							id="c2" name="cc2" /> <label for="c2"><span></span>서류를
 								첨부하지 않겠습니다.</label>
 							<div id="myDiv"
-								style="border: 1px solid red; margin-left: 23px; display: none">
+								style="margin-left: 23px; display: none">
 								<input name="park" type="radio"
 									style="width: 14px; height: 14px;"> <label
 									style="font-size: 10px;">상단의 첨부 서류 알아 서류를 제출 제출하지 않아도
@@ -414,7 +463,7 @@ td {
 
 					</tr>
 
-					<tr>
+				<!-- 	<tr>
 						<td style="background: White"><h4>오픈예정 신청</h4>
 							<p>오픈 예정 진행여부를 선택해 주세요.</p></td>
 						<td id="fno" style="background: Lightgray;"><input
@@ -425,7 +474,7 @@ td {
 							style="width: 14px; height: 14px;"> <label
 							for="progressStatus"><span></span>오픈예정 no</label>
 							<p>오픈예정 7~15일 진행 후, 프로젝트 오픈 추가 플랫폼 수수료 : 3%(VAT별도)</p></td>
-					</tr>
+					</tr> -->
 					<tr>
 						<td></td>
 						<td>

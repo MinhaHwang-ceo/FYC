@@ -74,16 +74,19 @@ input {
 	width: 300px;
 	height: 30px;
 	font-family: 'Sunflower', sans-serif;
+	
 }
 
 input[type="checkbox"] {
 	display: none;
 	font-family: 'Sunflower', sans-serif;
+	
 }
 
 input[type="checkbox"]+label {
 	font-size: 13px;
 	font-family: 'Sunflower', sans-serif;
+	
 }
 
 input[type="checkbox"]+label span {
@@ -97,12 +100,14 @@ input[type="checkbox"]+label span {
 		left top no-repeat;
 	cursor: pointer;
 	font-family: 'Sunflower', sans-serif;
+
 }
 
 input[type="checkbox"]:checked+label span {
 	background:
 		url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/210284/check_radio_sheet.png)
 		-19px top no-repeat;
+		
 }
 #menu li {
 	float: left;
@@ -207,7 +212,7 @@ function addTable(reward) {
     	
     html +='        <label for="option"><span></span>옵션 입력이 필요없는 상품입니다.</label><br></li>';
     html +='        <li><input type="radio" class="option'+idx +'" name="option'+idx +'" value="선택옵션" style="width:14px;height:14px;/> <label for="option"><span></span>옵션 입력이 필요한 상품입니다.</label>&nbsp;&nbsp;&nbsp;<br>';
-    html +='        <textarea rows="5" cols="40" style="width: 300px; height: 100px;"></textarea></li></ul>';
+    html +='       </li></ul>';
     html +='    </td>';
     html +='</tr>';
     html +='<tr>';
@@ -223,13 +228,13 @@ function addTable(reward) {
     html +='    <td>';
     html +='        <h4>배송비</h4>';
     html +='    </td>';
-    html +='    <td align="center"><input value="'+ (reward.deliveryMoney || '')  +'"  id="deliveryMoney'+idx +'" name="deliveryMoney" type="text" style="width: 300px; height: 40px; margin-left: 14px;" />원</td>';
+    html +='    <td align="center"><input value="'+ (reward.deliveryMoney || '')  +'"  id="deliveryMoney'+idx +'" name="deliveryMoney" type="text" style="width: 300px; height: 40px; margin-left: 14px; text-align: right;" />원</td>';
     html +='</tr>';
     html +='<tr>';
     html +='    <td>';
     html +='        <h4>제한수량</h4>';
     html +='    </td>';
-    html +='    <td id="fno" align="center"><input value="'+ (reward.limitCount || '')  +'" id="limitCount'+idx +'" name="limitCount" style="margin-left: 14px;" type="text">개</td>';
+    html +='    <td id="fno" align="center"><input value="'+ (reward.limitCount || '')  +'" id="limitCount'+idx +'" name="limitCount" style="margin-left: 14px; text-align: right;" type="text">개</td>';
     html +='</tr>';
     html +='<tr>';
     html +='    <td>';
@@ -270,6 +275,9 @@ function addTable(reward) {
  	
 	 
  	function save_re(idx){
+ 		if(confirm("저장하시겠습니까?")) {
+ 			
+ 	
 		var idx = idx;
 		var category = $("#category").val();
 		var projectNo = parseInt($("#projectNo").val() || "0");
@@ -316,6 +324,7 @@ function addTable(reward) {
 					console.log(data);
 				
 					dataArr[idx] = data.r.rewardNo;
+					alert("저장되었습니다");
 				},
 				error:function(err) {
 					console.log("실패!");
@@ -328,7 +337,9 @@ function addTable(reward) {
 				data : param,
 				success:function(data){
 					console.log(data);
-					alert("업데이트해야함");
+					//alert("업데이트해야함");
+					alert("저장되었습니다");
+					
 					
 				},
 				error:function(arr){
@@ -337,7 +348,10 @@ function addTable(reward) {
 			});
 		}
 	}
+ }
 	function deleteReward(idx) {
+		if (confirm("삭제하시겠습니까?")) {
+		
 		var rewardNo = parseInt($("#rewardNo").val() || "0");
 		var projectNo = parseInt($("#projectNo").val() || "0");
 		
@@ -354,6 +368,7 @@ function addTable(reward) {
 				console.log("성공");
 				$("#tableReward"+idx).remove();
 				
+				
 				/* if(	$(".tt").length == 0){
 						addTable();
 				} */
@@ -364,14 +379,15 @@ function addTable(reward) {
 				console.log("삭제실패!")
 			}
 		});
-	} 
+	}
+} 
 </script>
 </head>
 <body>
 	
 	<input type="hidden" value="${p.projectNo}"  id="projectNo" name="projectNo"/>       
 	<input type="hidden" value="${p.category}"  id="category" name="category"/>
-	<input type="text" value="${r1.rewardNo}" id="rewardNo" name="rewardNo"/> 
+	<input type="hidden" value="${r1.rewardNo}" id="rewardNo" name="rewardNo"/> 
 	<jsp:include page="../common/customer_menubar.jsp" />
 	<jsp:include page="../common/customer_menuList.jsp"/>
 	

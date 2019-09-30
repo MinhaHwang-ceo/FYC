@@ -798,7 +798,6 @@ public class BoardController {
 		return "board/chat";
 	}
 	
-	
 	@RequestMapping("updateBoardNotice.bo")
 	public String updateBoardNotice(Attachment at, String bNo, Board b,Model model, HttpSession session, HttpServletRequest request, HttpServletResponse response) {
 		
@@ -827,8 +826,6 @@ public class BoardController {
 	
 	@RequestMapping("noticeUpdateComplateEsc.bo")
 	public String noticeUpdateComplateEsc(Model model, HttpSession session, HttpServletRequest request, HttpServletResponse response) {
-		
-	
 		
 		return "redirect:notice.bo";
 	}

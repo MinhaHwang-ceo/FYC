@@ -81,7 +81,7 @@ table * {
 					</c:if>
 					<hr style="border: 0; height: 1px; background: #ccc;" />
 					<div style="min-height: 500px;">
-						<c:out value="${ b.bcontent }" escapeXml="false" />
+					<pre><c:out value="${ b.bcontent }" escapeXml="false" /></pre>
 					</div>
 				</td>
 			</tr>

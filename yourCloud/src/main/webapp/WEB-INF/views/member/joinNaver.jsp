@@ -140,10 +140,10 @@
   <!-- 회원가입 폼 -->
   <div>
   <form action="naverJoinGo.ne" method="post">
-  <input name="userId" type="text" value="${ naverLoginUser.userId}">
-  <input name="email" type="text" value="${ naverLoginUser.email}">
-  <input name="userName" type="text" value="${ naverLoginUser.userName }">
-  <input name="age" type="text" value="${ naverLoginUser.age}">
+  <input name="userId" type="hidden" value="${ loginUser.userId}">
+  <input name="email" type="hidden" value="${ loginUser.email}">
+  <input name="userName" type="hidden" value="${ loginUser.userName }">
+  <input name="age" type="hidden" value="${ loginUser.age}">
   	<table>
   		<tr>
   			<td><b>+ 추가사항</b></td>

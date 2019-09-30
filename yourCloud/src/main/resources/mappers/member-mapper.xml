@@ -44,12 +44,12 @@
    <insert id="insertMember" parameterType="Member">
    <if test="gender !=null and memberCategory!=null and  age !=null and emailAgree !=null" >
       INSERT INTO MEMBER
-      VALUES( SEQ_MEMBER.NEXTVAL,#{userName},#{userId}, #{userPwd}, #{email},default,null,null,null,#{gender},#{memberCategory},
+      VALUES( SEQ_MEMBERNO.NEXTVAL,#{userName},#{userId}, #{userPwd}, #{email},default,null,null,null,#{gender},#{memberCategory},
       1000,#{age},default,#{emailAgree})
 </if>
    <if test="gender ==null or memberCategory==null or age==null or emailAgree==null" >
       INSERT INTO MEMBER
-      VALUES( SEQ_MEMBER.NEXTVAL,#{userName},#{userId}, #{userPwd}, #{email},default,null,null,null,null,#{memberCategory},
+      VALUES( SEQ_MEMBERNO.NEXTVAL,#{userName},#{userId}, #{userPwd}, #{email},default,null,null,null,null,#{memberCategory},
       0,null,default,'N')
 </if>
 

@@ -10,7 +10,7 @@
 <link
 	href="https://fonts.googleapis.com/css?family=Sunflower:300&display=swap"
 	rel="stylesheet">
-<title>Insert title here</title>
+<title>공지시항</title>
 
 <style>
 .list {
@@ -18,7 +18,7 @@
 	height: 100%;
 	margin: auto;
 	font-family: 'Sunflower', sans-serif;
-	border: 1px solid red;
+	
 }
 
 .tt {
@@ -42,7 +42,21 @@
 	transition: 800ms ease all;
 	outline: none;
 	font-family: 'Sunflower', sans-serif;
+	width: 80px;
+	height: 38px;
+	
+	margin-left: 1020px;
+	margin-bottom: 20px;
 }
+	 table{
+	 	border-top: 1px solid #444444;
+        border-collapse: collapse;
+	 }
+	 
+	 th, td {
+    border-bottom: 1px solid #444444;
+    padding: 5px;
+  }
 </style>
 </head>
 <body>
@@ -54,17 +68,16 @@
 	<br>
 	<br>
 	<br>
-
+	<h1 style="text-align: center;">공지사항</h1>
 	<div class="list">
 		<c:if test="${loginUser.userId eq 'admin' }">
-		<div class="btn">
+		<div  style="margin:0 auto; width: 1300px;">
 			<button id="btn" onclick="location.href='noticeWrite.bo'"
-				style="float: right;">글작성</button>
-
+			>글작성</button>
 		</div>
 		</c:if>
 
-		<table class="list_table" id="boardArea" align="center" border="1" style="border: 1px solid yellow;">
+		<table class="list_table" id="boardArea" align="center" >
 			<c:forEach var="b" items="${ BoardList }">
 				<tr>
 					<td>
@@ -125,7 +138,7 @@
 	<script>
 	$(function(){
 		$("#boardArea").find("td").mouseenter(function(){
-			$(this).parents("tr").css({"background":"orangered","cursor":"pointer"});
+			$(this).parents("tr").css({"background":"gray","cursor":"pointer"});
 		}).mouseout(function(){
 			$(this).parents("tr").css({"background":"white"});
 
